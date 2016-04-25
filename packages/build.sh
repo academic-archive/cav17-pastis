@@ -41,3 +41,12 @@ make > build.out 2> build.err             || fail build
 make install > install.out 2> install.err || fail install
 cd ..
 echo "    done"
+
+pack=Clp-1.15.7
+echo "** Building $pack"
+cd $pack
+./configure --prefix=$SANDBOX > configure.out 2> configure.err || fail configure
+make > build.out 2> build.err             || fail build
+make install > install.out 2> install.err || fail install
+cd ..
+echo "    done"
