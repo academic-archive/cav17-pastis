@@ -19,7 +19,7 @@ OSTYPE=unix
 
 # How to invoke the C preprocessor
 # Works on most Unix systems:
-CPP=/usr/bin/cpp
+CPP=cpp
 # Alternatives:
 # CPP=cpp
 # CPP=/usr/ccs/lib/cpp
@@ -37,11 +37,11 @@ OCAMLLIB=${SANDBOX}/lib/ocaml
 BINDIR=${SANDBOX}/bin
 
 # The Objective Caml compilers (the defaults below should be OK)
-OCAMLC=ocamlc -g
-OCAMLOPT=ocamlopt
-OCAMLYACC=ocamlyacc -v
-OCAMLLEX=ocamllex
-OCAMLDEP=ocamldep
+OCAMLC=${CAML_PREFIX}/bin/ocamlc -g
+OCAMLOPT=${CAML_PREFIX}/bin/ocamlopt
+OCAMLYACC=${CAML_PREFIX}/bin/ocamlyacc -v
+OCAMLLEX=${CAML_PREFIX}/bin/ocamllex
+OCAMLDEP=${CAML_PREFIX}/bin/ocamldep
 
 # Extra flags to pass to the C compiler
 CFLAGS=-Wall -g
