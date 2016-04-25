@@ -31,10 +31,10 @@ RANLIB=ranlib
 #RANLIB=:
 
 # Location of the Objective Caml library in your installation
-OCAMLLIB=/usr/local/lib/ocaml
+OCAMLLIB=${SANDBOX}/lib/ocaml
 
 # Where to install the binaries
-BINDIR=/usr/local/bin
+BINDIR=${SANDBOX}/bin
 
 # The Objective Caml compilers (the defaults below should be OK)
 OCAMLC=ocamlc -g
