@@ -1,3 +1,7 @@
+export GMP_PREFIX=/usr
+export MPFR_PREFIX=/usr
+export CAML_PREFIX=/usr
+
 fail() {
 	echo "failure, details in"
 	echo "    `pwd`/$1.out"
@@ -22,8 +26,16 @@ fi
 
 export SANDBOX=`pwd`/sandbox
 
-echo "** Building camlidl-1.05"
 pack=camlidl-1.05
+echo "** Building $pack"
+cd $pack
+make > build.out 2> build.err             || fail build
+make install > install.out 2> install.err || fail install
+cd ..
+echo "    done"
+
+pack=apron-0.9.9
+echo "** Building $pack"
 cd $pack
 make > build.out 2> build.err             || fail build
 make install > install.out 2> install.err || fail install
