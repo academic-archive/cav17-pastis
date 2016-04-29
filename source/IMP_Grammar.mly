@@ -21,7 +21,7 @@
 %start file
 %%
 
-file: funcs TEOF { List.rev $1 }
+file: rfuncs TEOF { List.rev $1 }
 
 expr:
   | TIDENT         { EVar $1 }
@@ -53,7 +53,7 @@ logic:
 
 rexprrs1:
     exprr                 { [$1] }
-  | exprr TCOMMA rexprrs1 { $1 :: $3 }
+  | rexprrs1 TCOMMA exprr { $3 :: $1 }
 
 exprrs:
     /* empty */ { [] }
@@ -61,7 +61,7 @@ exprrs:
 
 rids1:
     TIDENT              { [$1] }
-  | TIDENT TCOMMA rids1 { $1 :: $3 }
+  | rids1 TCOMMA TIDENT { $3 :: $1 }
 
 ids:
     /* empty */ { [] }
@@ -69,6 +69,7 @@ ids:
 
 instr:
     TBREAK TSEMI                           { IBreak }
+  | TASSUME logic TSEMI                    { IAssume $2 }
   | TIDENT TEQ exprr TSEMI                 { IAssign ($1, $3) }
   | TIF logic TTHEN block TEND             { IIf ($2, $4) }
   | TIF logic TTHEN block TELSE block TEND { IIfElse ($2, $4, $6) }
@@ -79,27 +80,27 @@ instr:
 
 rinstrs1:
     instr          { [$1] }
-  | instr rinstrs1 { $1 :: $2 }
+  | rinstrs1 instr { $2 :: $1 }
 
 block:
     /* empty */ { [] }
   | rinstrs1    { List.rev $1 }
 
+retopt:
+    /* empty */              { [] }
+  | TRETURNS TLPAR ids TRPAR { $3 }
+
 varopt:
     /* empty */    { [] }
   | TVAR ids TSEMI { $2 }
 
-retopt:
-    /* empty */        { [] }
-  | TRETURNS ids TSEMI { $2 }
-
 func:
-  TFUNC TIDENT TLPAR ids TRPAR TDO
-  retopt varopt block TEND
+  TFUNC TIDENT TLPAR ids TRPAR
+  retopt TDO varopt block TEND
   { { fun_name = $2; fun_vars = $8; fun_args = $4
-    ; fun_rets = $7; fun_body = $9 }
+    ; fun_rets = $6; fun_body = $9 }
   }
 
-funcs:
-    func       { [$1] }
-  | func funcs { $1 :: $2 }
+rfuncs:
+    func        { [$1] }
+  | rfuncs func { $2 :: $1 }

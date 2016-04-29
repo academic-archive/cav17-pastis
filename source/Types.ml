@@ -28,6 +28,7 @@ module IMP = struct
 
   type instr =
     | IBreak
+    | IAssume of logic
     | IAssign of id * expr
     | IIf of logic * block
     | IIfElse of logic * block * block
