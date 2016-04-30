@@ -3,11 +3,12 @@
   open Types.IMP
 %}
 
-%token TFUNC TVAR TTRUE TFALSE TRANDOM TSKIP TWHILE TDO TLOOP
-%token TBREAK TRETURNS TEND TIF TTHEN TELSE TNOT TAND TOR TASSUME
-%token TSEMI TCOMMA TLPAR TRPAR TLEQ TLT TGEQ TGT TEQ TNE TADD TSUB TMUL
+%token TFUNC TVAR TTRUE TFALSE TRANDOM TSKIP TDO
+%token TRETURNS TEND TTHEN TELSE TNOT TAND TOR
+%token TSEMI TCOMMA TRPAR TLEQ TLT TGEQ TGT TEQ TNE TADD TSUB TMUL
 %token TEOF
-%token <Types.IMP.id> TIDENT
+%token <Types.IMP.position> TBREAK TASSUME TIF TWHILE TLOOP TLPAR
+%token <(Types.IMP.id * Types.IMP.position)> TIDENT
 %token <int> TNUM
 
 %left TOR
@@ -23,8 +24,10 @@
 
 file: rfuncs TEOF { List.rev $1 }
 
+ident: TIDENT { fst $1 }
+
 expr:
-  | TIDENT         { EVar $1 }
+  | ident          { EVar $1 }
   | TNUM           { ENum $1 }
   | TSUB expr      { ESub (ENum 0, $2) }
   | expr TADD expr { EAdd ($1, $3) }
@@ -60,23 +63,23 @@ exprrs:
   | rexprrs1    { List.rev $1 }
 
 rids1:
-    TIDENT              { [$1] }
-  | rids1 TCOMMA TIDENT { $3 :: $1 }
+    ident              { [$1] }
+  | rids1 TCOMMA ident { $3 :: $1 }
 
 ids:
     /* empty */ { [] }
   | rids1       { List.rev $1 }
 
 instr:
-    TBREAK TSEMI                           { IBreak }
-  | TASSUME logic TSEMI                    { IAssume $2 }
-  | TIDENT TEQ exprr TSEMI                 { IAssign ($1, $3) }
-  | TIF logic TTHEN block TEND             { IIf ($2, $4) }
-  | TIF logic TTHEN block TELSE block TEND { IIfElse ($2, $4, $6) }
-  | TWHILE logic TDO block TEND            { IWhile ($2, $4) }
-  | TLOOP block TEND                       { ILoop $2 }
+    TBREAK TSEMI                           { IBreak, $1 }
+  | TASSUME logic TSEMI                    { IAssume $2, $1 }
+  | TIDENT TEQ exprr TSEMI                 { IAssign (fst $1, $3), snd $1 }
+  | TIF logic TTHEN block TEND             { IIf ($2, $4), $1 }
+  | TIF logic TTHEN block TELSE block TEND { IIfElse ($2, $4, $6), $1 }
+  | TWHILE logic TDO block TEND            { IWhile ($2, $4), $1 }
+  | TLOOP block TEND                       { ILoop $2, $1 }
   | TLPAR ids TRPAR TEQ
-    TIDENT TLPAR exprrs TRPAR TSEMI        { ICall ($2, $5, $7) }
+    ident TLPAR exprrs TRPAR TSEMI         { ICall ($2, $5, $7), $1 }
 
 rinstrs1:
     instr          { [$1] }
@@ -95,7 +98,7 @@ varopt:
   | TVAR ids TSEMI { $2 }
 
 func:
-  TFUNC TIDENT TLPAR ids TRPAR
+  TFUNC ident TLPAR ids TRPAR
   retopt TDO varopt block TEND
   { { fun_name = $2; fun_vars = $8; fun_args = $4
     ; fun_rets = $6; fun_body = $9 }

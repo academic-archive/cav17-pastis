@@ -2,13 +2,8 @@
 {
 open IMP_Grammar
 
-type position =
-  { pos_line: int
-  ; pos_bol: int
-  ; pos_char: int
-  }
-
 let kw = Hashtbl.create 23
+let kwp = Hashtbl.create 23
 let () =
   List.iter (fun (k,t) -> Hashtbl.add kw k t)
   [ "function", TFUNC
@@ -17,25 +12,28 @@ let () =
   ; "false", TFALSE
   ; "random", TRANDOM
   ; "skip", TSKIP
-  ; "while", TWHILE
   ; "do", TDO
-  ; "loop", TLOOP
-  ; "break", TBREAK
   ; "returns", TRETURNS
   ; "end", TEND
-  ; "if", TIF
   ; "then", TTHEN
   ; "else", TELSE
   ; "not", TNOT
   ; "and", TAND
   ; "or", TOR
-  ; "assume", TASSUME
+  ];
+  List.iter (fun (k,t) -> Hashtbl.add kwp k t)
+  [ "break", (fun p -> TBREAK p)
+  ; "assume", (fun p -> TASSUME p)
+  ; "if", (fun p -> TIF p)
+  ; "while", (fun p -> TWHILE p)
+  ; "loop", (fun p -> TLOOP p)
   ]
 
-let pos lexbuf =
-  { pos_line = lexbuf.Lexing.pos_lnum
-  ; pos_bol = lexbuf.Lexing.pos_bol
-  ; pos_char = lexbuf.Lexing.pos_cnum
+let pos { Lexing.lex_start_p = start; _ } =
+  { Types.IMP.pos_file = start.Lexing.pos_fname
+  ; pos_line = start.Lexing.pos_lnum
+  ; pos_bol = start.Lexing.pos_bol
+  ; pos_char = start.Lexing.pos_cnum
   }
 
 let newline lexbuf =
@@ -58,7 +56,7 @@ rule token = parse
   | ['0'-'9']+       { TNUM (int_of_string (Lexing.lexeme lexbuf)) }
   | ";"              { TSEMI }
   | ","              { TCOMMA }
-  | "("              { TLPAR }
+  | "("              { TLPAR (pos lexbuf) }
   | ")"              { TRPAR }
   | "<="             { TLEQ }
   | "<"              { TLT }
@@ -70,5 +68,8 @@ rule token = parse
   | "-"              { TSUB }
   | "*"              { TMUL }
   | ident            { let id = Lexing.lexeme lexbuf in
-                       try Hashtbl.find kw id with Not_found -> TIDENT id }
+                       let p = pos lexbuf in
+                       try Hashtbl.find kw id with Not_found ->
+                       try Hashtbl.find kwp id p with Not_found ->
+                       TIDENT (id, p) }
   | eof              { TEOF }

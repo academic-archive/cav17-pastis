@@ -26,6 +26,13 @@ module IMP = struct
     | LOr of logic * logic
     | LNot of logic
 
+  type position =
+    { pos_file: string
+    ; pos_line: int
+    ; pos_bol: int
+    ; pos_char: int
+    }
+
   type instr =
     | IBreak
     | IAssume of logic
@@ -36,7 +43,7 @@ module IMP = struct
     | ILoop of block
     | ICall of id list * id * expr list
 
-  and block = instr list
+  and block = (instr * position) list
 
   type func =
     { fun_name: id
