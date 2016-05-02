@@ -3,23 +3,23 @@
 let input_file = ref ""
 let main_func = ref ""
 
-let usage_msg = "usage: pasta [OPTIONS] FILE\n"
+let usagemsg = "usage: pasta [OPTIONS] FILE\n"
 let argspec = Arg.align
   [ "-func", Arg.String (fun s -> main_func := s),
     "<name>: Analyze this function body"
   ]
+let annonarg s =
+  if !input_file <> "" then
+    raise (Arg.Bad "too many input files");
+  input_file := s
+let failarg msg =
+  Printf.eprintf "%s: %s\n" Sys.argv.(0) msg;
+  Arg.usage argspec usagemsg;
+  exit 1
 
-letr main () =
-  let set_input s =
-    if !input_file <> "" then
-      raise (Arg.Bad "too many input files");
-    input_file := s
-  in
-  Arg.parse argspec set_input usage_msg;
-  if !input_file = "" then begin
-    Arg.usage argspec usage_msg;
-    exit 1;
-  end;
+let main () =
+  Arg.parse argspec annonarg usagemsg;
+  if !input_file = "" then failarg "no input file provided";
   try
     let efmt = Format.err_formatter in
     let imp_file = IMP.parse_file efmt !input_file in
