@@ -1,4 +1,4 @@
-BIN = IMP_Lexer.native
+BIN = Driver.native
 
 all:
 	@ocamlbuild ${BIN}

@@ -6,17 +6,12 @@ let kw = Hashtbl.create 23
 let kwp = Hashtbl.create 23
 let () =
   List.iter (fun (k,t) -> Hashtbl.add kw k t)
-  [ "function", TFUNC
-  ; "var", TVAR
+  [ "var", TVAR
   ; "true", TTRUE
   ; "false", TFALSE
   ; "random", TRANDOM
   ; "skip", TSKIP
-  ; "do", TDO
   ; "returns", TRETURNS
-  ; "end", TEND
-  ; "then", TTHEN
-  ; "else", TELSE
   ; "not", TNOT
   ; "and", TAND
   ; "or", TOR
@@ -27,10 +22,15 @@ let () =
   ; "if", (fun p -> TIF p)
   ; "while", (fun p -> TWHILE p)
   ; "loop", (fun p -> TLOOP p)
+  ; "function", (fun p -> TFUNC p)
+  ; "end", (fun p -> TEND p)
+  ; "then", (fun p -> TTHEN p)
+  ; "else", (fun p -> TELSE p)
+  ; "do", (fun p -> TDO p)
   ]
 
 let pos { Lexing.lex_start_p = start; _ } =
-  { Types.IMP.pos_file = start.Lexing.pos_fname
+  { Types.pos_file = start.Lexing.pos_fname
   ; pos_line = start.Lexing.pos_lnum
   ; pos_bol = start.Lexing.pos_bol
   ; pos_char = start.Lexing.pos_cnum

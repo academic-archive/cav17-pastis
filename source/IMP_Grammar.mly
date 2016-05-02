@@ -1,14 +1,21 @@
 /* Quentin Carbonneaux - 2016 */
 %{
+  open Types
   open Types.IMP
+
+  let b startp b endp =
+    { b_start_p = startp
+    ; b_end_p = endp
+    ; b_body = b
+    }
 %}
 
-%token TFUNC TVAR TTRUE TFALSE TRANDOM TSKIP TDO
-%token TRETURNS TEND TTHEN TELSE TNOT TAND TOR
-%token TSEMI TCOMMA TRPAR TLEQ TLT TGEQ TGT TEQ TNE TADD TSUB TMUL
+%token TVAR TTRUE TFALSE TRANDOM TSKIP TDO TRETURNS
+%token TTHEN TNOT TAND TOR TSEMI TCOMMA
+%token TRPAR TLEQ TLT TGEQ TGT TEQ TNE TADD TSUB TMUL
 %token TEOF
-%token <Types.IMP.position> TBREAK TASSUME TIF TWHILE TLOOP TLPAR
-%token <(Types.IMP.id * Types.IMP.position)> TIDENT
+%token <Types.position> TBREAK TASSUME TIF TELSE TWHILE TLOOP TLPAR TFUNC TEND TTHEN TDO
+%token <(Types.id * Types.position)> TIDENT
 %token <int> TNUM
 
 %left TOR
@@ -74,10 +81,10 @@ instr:
     TBREAK TSEMI                           { IBreak, $1 }
   | TASSUME logic TSEMI                    { IAssume $2, $1 }
   | TIDENT TEQ exprr TSEMI                 { IAssign (fst $1, $3), snd $1 }
-  | TIF logic TTHEN block TEND             { IIf ($2, $4), $1 }
-  | TIF logic TTHEN block TELSE block TEND { IIfElse ($2, $4, $6), $1 }
-  | TWHILE logic TDO block TEND            { IWhile ($2, $4), $1 }
-  | TLOOP block TEND                       { ILoop $2, $1 }
+  | TIF logic TTHEN block TEND             { IIf ($2, b $3 $4 $5, b $5 [] $5), $1 }
+  | TIF logic TTHEN block TELSE block TEND { IIf ($2, b $3 $4 $5, b $5 $6 $7), $1 }
+  | TWHILE logic TDO block TEND            { IWhile ($2, b $3 $4 $5), $1 }
+  | TLOOP block TEND                       { ILoop (b $1 $2 $3), $1 }
   | TLPAR ids TRPAR TEQ
     ident TLPAR exprrs TRPAR TSEMI         { ICall ($2, $5, $7), $1 }
 
@@ -101,7 +108,8 @@ func:
   TFUNC ident TLPAR ids TRPAR
   retopt TDO varopt block TEND
   { { fun_name = $2; fun_vars = $8; fun_args = $4
-    ; fun_rets = $6; fun_body = $9 }
+    ; fun_rets = $6; fun_body = b $1 $9 $10
+    ; fun_start_p = $1; fun_end_p = $10 }
   }
 
 rfuncs:
