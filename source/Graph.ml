@@ -68,6 +68,7 @@ let from_imp =
   in
 
   begin function impf ->
+    next_node := 0;
     let g_end = new_node impf.fun_end_p in
     let g_start = gob g_end (-1) impf.fun_body.IMP.b_body in
     let g_position = Array.make !next_node impf.fun_end_p in
