@@ -1,1 +1,3 @@
 <lib>: include
+<Graph_Apron.ml>: use_apron
+<Driver.{native,byte}>: use_apron

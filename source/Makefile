@@ -1,6 +1,9 @@
 BIN = Driver.native
 
 all:
-	@ocamlbuild ${BIN}
+	@SANDBOX="`pwd`/../packages/sandbox" ocamlbuild ${BIN}
 
-.PHONY: all
+clean:
+	rm -fr ${BIN} _build
+
+.PHONY: all clean
