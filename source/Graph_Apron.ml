@@ -9,6 +9,84 @@
 open Types
 open Types.Graph
 
+module DNF = struct
+  type 'a t = 'a list list
+  let lift x = [[x]]
+  let true_ = [[]]
+  let false_ = []
+  let disjunct = List.rev_append
+  let rec conjunct a b =
+    match a with
+    | [] -> []
+    | x :: a ->
+      disjunct (List.map ((@) x) b) (conjunct a b)
+end
+
+module Translate = struct
+
+  (* The logical conditions (type logic) and program expressions
+     (type expr) need to be turned into what Apron understands.
+
+     One difficulty is that abstract interpretation can only
+     manipulate conjunctive states, so we use the DNF module
+     to normalize all disjunctions at the top of logic
+     expressions.
+  *)
+
+  module E = Apron.Texpr1
+  module C = Apron.Tcons1
+
+  let texpr_of_expr e: E.expr =
+    let rec tr = function
+      | ERandom -> E.Cst (Apron.Coeff.i_of_float neg_infinity infinity)
+      | EVar id -> E.Var (Apron.Var.of_string id)
+      | ENum n -> E.Cst (Apron.Coeff.Scalar (Apron.Scalar.Mpqf (Mpqf.of_int n)))
+      | ESub (ENum 0, e) -> E.Unop (E.Neg, tr e, E.Int, E.Rnd)
+      | EAdd (e1, e2) -> E.Binop (E.Add, tr e1, tr e2, E.Int, E.Rnd)
+      | ESub (e1, e2) -> E.Binop (E.Sub, tr e1, tr e2, E.Int, E.Rnd)
+      | EMul (e1, e2) -> E.Binop (E.Mul, tr e1, tr e2, E.Int, E.Rnd)
+    in tr e
+
+  let tcons_of_logic env l: C.earray list =
+    let cmp e1 c e2 =
+      let e1 = texpr_of_expr e1 in
+      let e2 = texpr_of_expr e2 in
+      C.make (E.of_expr env (E.Binop (E.Sub, e1, e2, E.Int, E.Rnd))) c
+    in
+    let rec tpos = function
+      | LTrue | LRandom -> DNF.true_
+      | LFalse -> DNF.false_
+      | LLE (e1, e2) -> DNF.lift (cmp e2 C.SUPEQ e1)
+      | LLT (e1, e2) -> DNF.lift (cmp e2 C.SUP e1)
+      | LGE (e1, e2) -> DNF.lift (cmp e1 C.SUPEQ e2)
+      | LGT (e1, e2) -> DNF.lift (cmp e1 C.SUP e2)
+      | LEQ (e1, e2) -> DNF.lift (cmp e1 C.EQ e2)
+      | LNE (e1, e2) -> DNF.lift (cmp e1 C.DISEQ e2)
+      | LAnd (l1, l2) -> DNF.conjunct (tpos l1) (tpos l2)
+      | LOr (l1, l2) -> DNF.disjunct (tpos l1) (tpos l2)
+      | LNot l -> tneg l
+    and tneg = function
+      | LFalse | LRandom -> DNF.true_
+      | LTrue -> DNF.false_
+      | LGT (e1, e2) -> DNF.lift (cmp e2 C.SUPEQ e1)
+      | LGE (e1, e2) -> DNF.lift (cmp e2 C.SUP e1)
+      | LLT (e1, e2) -> DNF.lift (cmp e1 C.SUPEQ e2)
+      | LLE (e1, e2) -> DNF.lift (cmp e1 C.SUP e2)
+      | LNE (e1, e2) -> DNF.lift (cmp e1 C.EQ e2)
+      | LEQ (e1, e2) -> DNF.lift (cmp e1 C.DISEQ e2)
+      | LOr (l1, l2) -> DNF.conjunct (tneg l1) (tneg l2)
+      | LAnd (l1, l2) -> DNF.disjunct (tneg l1) (tneg l2)
+      | LNot l -> tpos l
+    in
+    let formula = List.filter ((<>) []) (tpos l) in
+    List.map begin fun cnj ->
+      let ea = C.array_make env (List.length cnj) in
+      List.iteri (C.array_set ea) cnj;
+      ea
+    end formula
+
+end
+
 type transfer =
   | TGuard of logic
   | TAssign of id * expr
