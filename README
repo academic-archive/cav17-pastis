@@ -6,8 +6,8 @@
 Pasta comes with its rarely installed dependencies.  To build it
 you will still need to have the following core:
 
-  * GMP 4.2 or up
-  * MPFR 2.2 or up
+  * GMP 4.2 or up (with development headers)
+  * MPFR 2.2 or up (with development headers)
   * OCaml 4.0 or up
   * A C99 compiler (gcc/clang)
   * A C++ compiler (g++/clang++)
