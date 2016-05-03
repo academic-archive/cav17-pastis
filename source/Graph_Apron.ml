@@ -152,7 +152,7 @@ module HyperGraph = struct
         ; fi_args = vara_of_idl f.fun_args
         ; fi_rets = vara_of_idl f.fun_rets
         ; fi_arg_tmps = vara_of_idl (tmpl "arg." f.fun_args)
-        ; fi_ret_tmps = vara_of_idl (tmpl "ret." f.fun_args)
+        ; fi_ret_tmps = vara_of_idl (tmpl "ret." f.fun_rets)
         ; fi_func = f
         };
       for node = 0 to Array.length f.fun_body.g_edges - 1 do
