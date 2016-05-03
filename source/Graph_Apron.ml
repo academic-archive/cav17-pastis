@@ -92,11 +92,21 @@ module Translate = struct
 
 end
 
+type func_info =
+  { fi_env: Apron.Environment.t
+  ; fi_vars: Apron.Var.t array
+  ; fi_args: Apron.Var.t array
+  ; fi_rets: Apron.Var.t array
+  ; fi_arg_tmps: Apron.Var.t array
+  ; fi_ret_tmps: Apron.Var.t array
+  ; fi_func: Types.Graph.func
+  }
+
 type transfer =
   | TGuard of Translate.disj
   | TAssign of Apron.Var.t * Apron.Texpr1.t
-  | TCall of func * func * Apron.Var.t array * Apron.Var.t array
-  | TReturn of func * func * Apron.Var.t array * Apron.Var.t array
+  | TCall of func_info * func_info * Apron.Var.t array * Apron.Var.t array
+  | TReturn of func_info * func_info * Apron.Var.t array * Apron.Var.t array
 
 module HyperGraph = struct
 
@@ -106,15 +116,6 @@ module HyperGraph = struct
      for function call/returns.
   *)
 
-  type func_info =
-    { fi_env: Apron.Environment.t
-    ; fi_vars: Apron.Var.t array
-    ; fi_args: Apron.Var.t array
-    ; fi_rets: Apron.Var.t array
-    ; fi_arg_tmps: Apron.Var.t array
-    ; fi_ret_tmps: Apron.Var.t array
-    ; fi_func: Types.Graph.func
-    }
   type info = (string, func_info) Hashtbl.t
 
   type vertex = id * int  (* pair of function name and node id *)
@@ -138,20 +139,12 @@ module HyperGraph = struct
     let g: (vertex, hedge, unit, transfer, info) PSHGraph.t =
       PSHGraph.create PSHGraph.stdcompare 3 info in
 
-    (* Add all the vertices first. *)
-    List.iter begin fun f ->
-      for node = 0 to Array.length f.fun_body.g_edges - 1 do
-        PSHGraph.add_vertex g (f.fun_name, node) ();
-      done;
-    end fl;
-
-    (* Then add all the edges.
-       It is trivial except for the ACall case.
-    *)
+    (* Add all the vertices and fill the info table first. *)
     List.iter begin fun f ->
       let tmpl s = List.map ((^) s) in
-      let vars = f.fun_args @ f.fun_rets @
-                 f.fun_vars @ tmpl "+" f.fun_args in
+      let vars =
+        f.fun_args @ f.fun_rets @
+        f.fun_vars @ tmpl "+" f.fun_args in
       let env = Apron.Environment.make (vara_of_idl vars) [||] in
       Hashtbl.add info f.fun_name
         { fi_env = env
@@ -162,6 +155,16 @@ module HyperGraph = struct
         ; fi_ret_tmps = vara_of_idl (tmpl "-" f.fun_args)
         ; fi_func = f
         };
+      for node = 0 to Array.length f.fun_body.g_edges - 1 do
+        PSHGraph.add_vertex g (f.fun_name, node) ();
+      done;
+    end fl;
+
+    (* Then add all the edges.
+       It is trivial except for the ACall case.
+    *)
+    List.iter begin fun f ->
+      let {fi_env=env;_} as fi = Hashtbl.find info f.fun_name in
       Array.iteri begin fun src el ->
         List.iter begin fun (act, dst) ->
           let src = f.fun_name, src in
@@ -178,7 +181,9 @@ module HyperGraph = struct
             PSHGraph.add_hedge g (new_edge ())
               (TAssign (v, te)) ~pred:[|src|] ~succ:[|dst|];
           | ACall (idl, idf', el) ->
-            let f' = List.find (fun f -> f.fun_name = idf') fl in
+            let f'i = Hashtbl.find info idf' in
+            let f'start = f'i.fi_func.fun_body.g_start in
+            let f'end = f'i.fi_func.fun_body.g_end in
             let vl = vara_of_idl idl in
             let vl' = List.map begin function
               | EVar v -> Apron.Var.of_string v
@@ -186,11 +191,11 @@ module HyperGraph = struct
               end el in
             let vl' = Array.of_list vl' in
             PSHGraph.add_hedge g (new_edge ())
-              (TCall (f, f', vl, vl'))
-              ~pred:[|src|] ~succ:[|idf', f'.fun_body.g_start|];
+              (TCall (fi, f'i, vl, vl'))
+              ~pred:[|src|] ~succ:[|idf', f'start|];
             PSHGraph.add_hedge g (new_edge ())
-              (TReturn (f, f', vl, vl'))
-              ~pred:[|src; idf', f'.fun_body.g_end|] ~succ:[|dst|];
+              (TReturn (fi, f'i, vl, vl'))
+              ~pred:[|src; idf', f'end|] ~succ:[|dst|];
         end el;
       end f.fun_body.g_edges;
     end fl
@@ -208,7 +213,7 @@ module Solver = struct
   let make_fpmanager man graph abstract_init apply dot_fmt =
     let info = PSHGraph.info graph in
     let print_vertex fmt (vf, vp) =
-      let f = (Hashtbl.find info vf).HyperGraph.fi_func in
+      let f = (Hashtbl.find info vf).fi_func in
       let pos = f.fun_body.g_position.(vp) in
       Utils.print_position fmt pos
     in
@@ -231,13 +236,13 @@ module Solver = struct
           Apron.Texpr1.print e;
       | TCall (_, f', reta, arga) ->
         Format.fprintf fmt "Call %a = %s%a"
-          print_vara reta f'.fun_name print_vara arga;
+          print_vara reta f'.fi_func.fun_name print_vara arga;
       | TReturn (_, f', reta, arga) ->
         Format.fprintf fmt "Return %a = %s%a"
-          print_vara reta f'.fun_name print_vara arga;
+          print_vara reta f'.fi_func.fun_name print_vara arga;
     in
     { Fixpoint.bottom = begin fun (vf, _) ->
-        A.bottom man (Hashtbl.find info vf).HyperGraph.fi_env
+        A.bottom man (Hashtbl.find info vf).fi_env
       end
     ; canonical = begin fun _ _ -> () end
     ; is_bottom = begin fun _ -> A.is_bottom man end
@@ -308,41 +313,64 @@ module Solver = struct
     let penv = Apron.Environment.make arga [||] in
     let abs = A.change_environment man abs penv false in
     (* 2. rename parameters into f' temporary arguments *)
-    A.rename_array_with man abs arga fi'.HyperGraph.fi_arg_tmps;
+    A.rename_array_with man abs arga fi'.fi_arg_tmps;
     (* 3. embed in f' environment *)
-    A.change_environment_with man abs fi'.HyperGraph.fi_env false;
+    A.change_environment_with man abs fi'.fi_env false;
     (* 4. assign f' arguments from the temporaries *)
-    if fi'.HyperGraph.fi_arg_tmps <> [||] then
+    if fi'.fi_arg_tmps <> [||] then
     A.assign_linexpr_array_with man abs
-      fi'.HyperGraph.fi_args
-      (linexpr_array abs fi'.HyperGraph.fi_arg_tmps) None;
+      fi'.fi_args
+      (linexpr_array abs fi'.fi_arg_tmps) None;
     abs
 
   let apply_TReturn man abs abs' fi fi' reta arga =
     (* abs is from the caller, abs' is from the callee *)
     (* 1. leave only argument temporaries and return vars *)
-    let vara =
-      Array.append
-        (fi'.HyperGraph.fi_rets)
-        (fi'.HyperGraph.fi_arg_tmps) in
+    let vara = Array.append (fi'.fi_rets) (fi'.fi_arg_tmps) in
     let penv = Apron.Environment.make vara [||] in
     let res = A.change_environment man abs' penv false in
     (* 2. rename return vars into return temporaries *)
-    A.rename_array_with man res
-      fi'.HyperGraph.fi_rets
-      fi'.HyperGraph.fi_ret_tmps;
+    A.rename_array_with man res fi'.fi_rets fi'.fi_ret_tmps;
     (* 3. rename argument temporaries arguments into arguments *)
-    A.rename_array_with man res fi'.HyperGraph.fi_arg_tmps arga;
+    A.rename_array_with man res fi'.fi_arg_tmps arga;
     (* 4. embed into the caller environment *)
     A.unify_with man res abs;
     (* 5. assign actual return variables *)
-    if fi'.HyperGraph.fi_ret_tmps <> [||] then
+    if fi'.fi_ret_tmps <> [||] then
     A.assign_linexpr_array_with man res
       reta
-      (linexpr_array res fi'.HyperGraph.fi_ret_tmps) None;
+      (linexpr_array res fi'.fi_ret_tmps) None;
     (* 6. get rid of return temporaries *)
-    A.change_environment_with man res fi.HyperGraph.fi_env false;
+    A.change_environment_with man res fi.fi_env false;
     res
+
+  let apply man graph hedge tabs =
+    let transfer = PSHGraph.attrhedge graph hedge in
+    let res =
+      match transfer with
+      | TGuard disj -> apply_TGuard man tabs.(0) disj
+      | TAssign (v, e) -> apply_TAssign man tabs.(0) v e
+      | TCall (fi, fi', reta, arga) ->
+        apply_TCall man tabs.(0) fi fi' reta arga
+      | TReturn (fi, fi', reta, arga) ->
+        apply_TReturn man tabs.(0) tabs.(1) fi fi' reta arga
+    in ((), res)
+
+  let compute man graph fstart dotfmt =
+    let info = PSHGraph.info graph in
+    let fs = (Hashtbl.find info fstart).fi_func in
+    let starts =
+      PSette.singleton compare (fstart, fs.fun_body.g_start) in
+    let absinit (vf, _) =
+      A.top man (Hashtbl.find info vf).fi_env in
+    let fpman =
+      make_fpmanager man graph absinit apply dotfmt in
+    Fixpoint.analysis_std
+      fpman graph starts
+      (Fixpoint.make_strategy_default
+        ~vertex_dummy:("", -1)
+        ~hedge_dummy:(-1)
+        graph starts)
 
 end
 
