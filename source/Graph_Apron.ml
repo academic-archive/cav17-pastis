@@ -36,18 +36,22 @@ module Translate = struct
   module E = Apron.Texpr1
   module C = Apron.Tcons1
 
+  (* A disjunction of an array of conjuncted constraints,
+     or true (if None). *)
+  type disj = C.earray list option
+
   let texpr_of_expr e: E.expr =
     let rec tr = function
       | ERandom -> E.Cst (Apron.Coeff.i_of_float neg_infinity infinity)
       | EVar id -> E.Var (Apron.Var.of_string id)
-      | ENum n -> E.Cst (Apron.Coeff.Scalar (Apron.Scalar.Mpqf (Mpqf.of_int n)))
+      | ENum n -> E.Cst (Apron.Coeff.s_of_int n)
       | ESub (ENum 0, e) -> E.Unop (E.Neg, tr e, E.Int, E.Rnd)
       | EAdd (e1, e2) -> E.Binop (E.Add, tr e1, tr e2, E.Int, E.Rnd)
       | ESub (e1, e2) -> E.Binop (E.Sub, tr e1, tr e2, E.Int, E.Rnd)
       | EMul (e1, e2) -> E.Binop (E.Mul, tr e1, tr e2, E.Int, E.Rnd)
     in tr e
 
-  let tcons_of_logic env l: C.earray list =
+  let disj_of_logic env l: disj =
     let cmp e1 c e2 =
       let e1 = texpr_of_expr e1 in
       let e2 = texpr_of_expr e2 in
@@ -78,20 +82,21 @@ module Translate = struct
       | LAnd (l1, l2) -> DNF.disjunct (tneg l1) (tneg l2)
       | LNot l -> tpos l
     in
-    let formula = List.filter ((<>) []) (tpos l) in
-    List.map begin fun cnj ->
+    let formula = tpos l in
+    if List.mem [] formula then None else
+    Some (List.map begin fun cnj ->
       let ea = C.array_make env (List.length cnj) in
       List.iteri (C.array_set ea) cnj;
       ea
-    end formula
+    end formula)
 
 end
 
 type transfer =
-  | TGuard of logic
-  | TAssign of id * expr
-  | TCall of func * func * id list * expr list
-  | TReturn of func * func * id list * expr list
+  | TGuard of Translate.disj
+  | TAssign of Apron.Var.t * Apron.Texpr1.t
+  | TCall of func * func * Apron.Var.t array * Apron.Var.t array
+  | TReturn of func * func * Apron.Var.t array * Apron.Var.t array
 
 module HyperGraph = struct
 
@@ -101,21 +106,22 @@ module HyperGraph = struct
      for function call/returns.
   *)
 
+  type func_info =
+    { fi_env: Apron.Environment.t
+    ; fi_vars: Apron.Var.t array
+    ; fi_args: Apron.Var.t array
+    ; fi_rets: Apron.Var.t array
+    ; fi_arg_tmps: Apron.Var.t array
+    ; fi_ret_tmps: Apron.Var.t array
+    ; fi_func: Types.Graph.func
+    }
+  type info = (string, func_info) Hashtbl.t
+
   type vertex = id * int  (* pair of function name and node id *)
   type hedge = int
 
-  let compare =
-    { PSHGraph.hashv =
-      { Hashhe.hash = (Hashtbl.hash: vertex -> int)
-      ; Hashhe.equal = (==)
-      }
-    ; PSHGraph.hashh =
-      { Hashhe.hash = abs
-      ; Hashhe.equal = (==)
-      }
-    ; PSHGraph.comparev = compare
-    ; PSHGraph.compareh = compare
-    }
+  let vara_of_idl l =
+    Array.of_list (List.map Apron.Var.of_string l)
 
   let from_graph fl =
     let new_edge =
@@ -126,10 +132,11 @@ module HyperGraph = struct
        hedge:    type of hyper-edges
        unit:     data associated to the vertices
        transfer: data associated to the hyper-edges
-       unit:     data associated to the whole graph
+       info:     data associated to the whole graph
     *)
-    let g: (vertex, hedge, unit, transfer, unit) PSHGraph.t =
-      PSHGraph.create compare 3 () in
+    let info = Hashtbl.create 51 in
+    let g: (vertex, hedge, unit, transfer, info) PSHGraph.t =
+      PSHGraph.create PSHGraph.stdcompare 3 info in
 
     (* Add all the vertices first. *)
     List.iter begin fun f ->
@@ -142,27 +149,203 @@ module HyperGraph = struct
        It is trivial except for the ACall case.
     *)
     List.iter begin fun f ->
+      let tmpl s = List.map ((^) s) in
+      let vars = f.fun_args @ f.fun_rets @
+                 f.fun_vars @ tmpl "+" f.fun_args in
+      let env = Apron.Environment.make (vara_of_idl vars) [||] in
+      Hashtbl.add info f.fun_name
+        { fi_env = env
+        ; fi_vars = vara_of_idl f.fun_vars
+        ; fi_args = vara_of_idl f.fun_args
+        ; fi_rets = vara_of_idl f.fun_rets
+        ; fi_arg_tmps = vara_of_idl (tmpl "+" f.fun_args)
+        ; fi_ret_tmps = vara_of_idl (tmpl "-" f.fun_args)
+        ; fi_func = f
+        };
       Array.iteri begin fun src el ->
         List.iter begin fun (act, dst) ->
           let src = f.fun_name, src in
           let dst = f.fun_name, dst in
           match act with
           | AGuard log ->
+            let disj = Translate.disj_of_logic env log in
             PSHGraph.add_hedge g (new_edge ())
-              (TGuard log) ~pred:[|src|] ~succ:[|dst|];
+              (TGuard disj) ~pred:[|src|] ~succ:[|dst|];
           | AAssign (id, e) ->
+            let te = Translate.texpr_of_expr e in
+            let te = Apron.Texpr1.of_expr env te in
+            let v = Apron.Var.of_string id in
             PSHGraph.add_hedge g (new_edge ())
-              (TAssign (id, e)) ~pred:[|src|] ~succ:[|dst|];
+              (TAssign (v, te)) ~pred:[|src|] ~succ:[|dst|];
           | ACall (idl, idf', el) ->
             let f' = List.find (fun f -> f.fun_name = idf') fl in
+            let vl = vara_of_idl idl in
+            let vl' = List.map begin function
+              | EVar v -> Apron.Var.of_string v
+              | _ -> Utils._TODO "expression argument in call"
+              end el in
+            let vl' = Array.of_list vl' in
             PSHGraph.add_hedge g (new_edge ())
-              (TCall (f, f', idl, el))
+              (TCall (f, f', vl, vl'))
               ~pred:[|src|] ~succ:[|idf', f'.fun_body.g_start|];
             PSHGraph.add_hedge g (new_edge ())
-              (TReturn (f, f', idl, el))
+              (TReturn (f, f', vl, vl'))
               ~pred:[|src; idf', f'.fun_body.g_end|] ~succ:[|dst|];
         end el;
       end f.fun_body.g_edges;
     end fl
 
 end
+
+module Solver = struct
+
+  (* Here we use the fixpoint library to find an
+     abstract state for each vertex of the hypergraph.
+  *)
+
+  module A = Apron.Abstract1
+
+  let make_fpmanager man graph abstract_init apply dot_fmt =
+    let info = PSHGraph.info graph in
+    let print_vertex fmt (vf, vp) =
+      let f = (Hashtbl.find info vf).HyperGraph.fi_func in
+      let pos = f.fun_body.g_position.(vp) in
+      Utils.print_position fmt pos
+    in
+    let print_vara =
+      Print.array
+        ~first:"(@[" ~sep:",@ " ~last:"@])"
+        Apron.Var.print in
+    let print_transfer fmt = function
+      | TGuard (Some disj) ->
+        Format.fprintf fmt "Guard ";
+        Print.list ~sep:" ||@ "
+          (Apron.Tcons1.array_print
+            ~first:"@[" ~sep:" &&@ " ~last:"@]")
+          fmt disj;
+      | TGuard None ->
+        Format.fprintf fmt "Guard True";
+      | TAssign (v, e) ->
+        Format.fprintf fmt "%a = %a"
+          Apron.Var.print v
+          Apron.Texpr1.print e;
+      | TCall (_, f', reta, arga) ->
+        Format.fprintf fmt "Call %a = %s%a"
+          print_vara reta f'.fun_name print_vara arga;
+      | TReturn (_, f', reta, arga) ->
+        Format.fprintf fmt "Return %a = %s%a"
+          print_vara reta f'.fun_name print_vara arga;
+    in
+    { Fixpoint.bottom = begin fun (vf, _) ->
+        A.bottom man (Hashtbl.find info vf).HyperGraph.fi_env
+      end
+    ; canonical = begin fun _ _ -> () end
+    ; is_bottom = begin fun _ -> A.is_bottom man end
+    ; is_leq = begin fun _ -> A.is_leq man end
+    ; join = begin fun _ -> A.join man end
+    ; join_list = begin fun _ absl ->
+        A.join_array man (Array.of_list absl)
+      end
+    ; odiff = None
+    ; widening = begin fun _ -> A.widening man end
+    ; abstract_init = abstract_init
+    ; arc_init = begin fun _ -> () end
+    ; apply = apply man graph
+    ; print_vertex = print_vertex
+    ; print_hedge = Format.pp_print_int
+    ; print_abstract = A.print
+    ; print_arc = begin fun fmt () ->
+        Format.pp_print_string fmt "()"
+      end
+    ; accumulate = false
+    ; print_fmt = Format.std_formatter
+    ; print_analysis = false
+    ; print_component = false
+    ; print_step = false
+    ; print_state = false
+    ; print_postpre = false
+    ; print_workingsets = false
+    ; dot_fmt = dot_fmt
+    ; dot_vertex = print_vertex
+    ; dot_hedge = Format.pp_print_int
+    ; dot_attrvertex = print_vertex
+    ; dot_attrhedge = begin fun fmt hedge ->
+        let transfer = PSHGraph.attrhedge graph hedge in
+        Format.fprintf fmt "%i: %a"
+          hedge print_transfer transfer
+      end
+    }
+
+  (* We can now define the action of transfers on
+     the abstract state.
+  *)
+
+  let linexpr_array abs =
+    let env = A.env abs in
+    Array.map begin fun var ->
+      let e = Apron.Linexpr1.make ~sparse:true env in
+      Apron.Linexpr1.set_coeff e var (Apron.Coeff.s_of_int 1);
+      e
+    end
+
+  let apply_TGuard man abs disj =
+    let abs_and_disj =
+      match disj with
+      | None -> [abs]
+      | Some disj ->
+        List.map (A.meet_tcons_array man abs) disj
+    in
+    match abs_and_disj with
+    | [] -> A.bottom man (A.env abs)
+    | [x] -> x
+    | disj -> A.join_array man (Array.of_list disj)
+
+  let apply_TAssign man abs v e =
+    A.assign_texpr man abs v e None
+
+  let apply_TCall man abs _ fi' _ arga =
+    (* 1. remove all non-argument variables *)
+    let penv = Apron.Environment.make arga [||] in
+    let abs = A.change_environment man abs penv false in
+    (* 2. rename parameters into f' temporary arguments *)
+    A.rename_array_with man abs arga fi'.HyperGraph.fi_arg_tmps;
+    (* 3. embed in f' environment *)
+    A.change_environment_with man abs fi'.HyperGraph.fi_env false;
+    (* 4. assign f' arguments from the temporaries *)
+    if fi'.HyperGraph.fi_arg_tmps <> [||] then
+    A.assign_linexpr_array_with man abs
+      fi'.HyperGraph.fi_args
+      (linexpr_array abs fi'.HyperGraph.fi_arg_tmps) None;
+    abs
+
+  let apply_TReturn man abs abs' fi fi' reta arga =
+    (* abs is from the caller, abs' is from the callee *)
+    (* 1. leave only argument temporaries and return vars *)
+    let vara =
+      Array.append
+        (fi'.HyperGraph.fi_rets)
+        (fi'.HyperGraph.fi_arg_tmps) in
+    let penv = Apron.Environment.make vara [||] in
+    let res = A.change_environment man abs' penv false in
+    (* 2. rename return vars into return temporaries *)
+    A.rename_array_with man res
+      fi'.HyperGraph.fi_rets
+      fi'.HyperGraph.fi_ret_tmps;
+    (* 3. rename argument temporaries arguments into arguments *)
+    A.rename_array_with man res fi'.HyperGraph.fi_arg_tmps arga;
+    (* 4. embed into the caller environment *)
+    A.unify_with man res abs;
+    (* 5. assign actual return variables *)
+    if fi'.HyperGraph.fi_ret_tmps <> [||] then
+    A.assign_linexpr_array_with man res
+      reta
+      (linexpr_array res fi'.HyperGraph.fi_ret_tmps) None;
+    (* 6. get rid of return temporaries *)
+    A.change_environment_with man res fi.HyperGraph.fi_env false;
+    res
+
+end
+
+(* Common API for abstract interpretation modules. *)
+type absval = Polka.loose Polka.t Apron.Abstract1.t
+let is_nonneg _ _ = false
