@@ -144,15 +144,15 @@ module HyperGraph = struct
       let tmpl s = List.map ((^) s) in
       let vars =
         f.fun_args @ f.fun_rets @
-        f.fun_vars @ tmpl "+" f.fun_args in
+        f.fun_vars @ tmpl "arg." f.fun_args in
       let env = Apron.Environment.make (vara_of_idl vars) [||] in
       Hashtbl.add info f.fun_name
         { fi_env = env
         ; fi_vars = vara_of_idl f.fun_vars
         ; fi_args = vara_of_idl f.fun_args
         ; fi_rets = vara_of_idl f.fun_rets
-        ; fi_arg_tmps = vara_of_idl (tmpl "+" f.fun_args)
-        ; fi_ret_tmps = vara_of_idl (tmpl "-" f.fun_args)
+        ; fi_arg_tmps = vara_of_idl (tmpl "arg." f.fun_args)
+        ; fi_ret_tmps = vara_of_idl (tmpl "ret." f.fun_args)
         ; fi_func = f
         };
       for node = 0 to Array.length f.fun_body.g_edges - 1 do
