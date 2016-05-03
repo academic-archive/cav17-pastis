@@ -1,0 +1,9 @@
+function start(x) returns(y) do
+  if x <= 0 then
+    y = 0;
+  else
+    x = x - 1;
+    (y) = start(x);
+    y = y + 2;
+  end
+end

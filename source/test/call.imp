@@ -1,0 +1,15 @@
+function add(x) returns (j) do
+  x = x + 1;
+  j = x;
+end
+
+function start(n) do
+  var i;
+
+  assume n >= 0;
+  i = 0;
+  while not i >= n do
+    (i) = add(i);
+  end
+
+end
