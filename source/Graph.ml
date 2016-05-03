@@ -90,6 +90,8 @@ let from_imp =
 module AbsInt:
 sig
   type absval
+  val analyze: ?debug:bool -> func list -> id ->
+               (string, absval array) Hashtbl.t
   val is_nonneg: absval -> expr -> bool
 end
 = Graph_Apron

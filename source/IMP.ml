@@ -16,7 +16,7 @@ let parse_file efmt f =
   | Parsing.Parse_error ->
     let startp = Lexing.lexeme_start_p lexbuf in
     Format.fprintf efmt
-      "%s:%i:%i: syntax error '%s'@."
+      "%s:%i:%i: syntax error near '%s'@."
       startp.Lexing.pos_fname
       startp.Lexing.pos_lnum
       (startp.Lexing.pos_cnum - startp.Lexing.pos_bol + 1)

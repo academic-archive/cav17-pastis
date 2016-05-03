@@ -23,7 +23,8 @@ let main () =
   try
     let efmt = Format.err_formatter in
     let imp_file = IMP.parse_file efmt !input_file in
-    let _g_file = List.map Graph.from_imp imp_file in
+    let g_file = List.map Graph.from_imp imp_file in
+    let _ = Graph.AbsInt.analyze ~debug:true g_file "start" in
     ()
   with
   | Utils.Error -> exit 1

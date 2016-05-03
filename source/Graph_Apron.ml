@@ -124,7 +124,7 @@ module HyperGraph = struct
   let vara_of_idl l =
     Array.of_list (List.map Apron.Var.of_string l)
 
-  let from_graph fl =
+  let from_funcl fl =
     let new_edge =
       let next_edge = ref (-1) in
       fun () -> incr next_edge; !next_edge in
@@ -198,7 +198,8 @@ module HyperGraph = struct
               ~pred:[|src; idf', f'end|] ~succ:[|dst|];
         end el;
       end f.fun_body.g_edges;
-    end fl
+    end fl;
+    g
 
 end
 
@@ -360,11 +361,14 @@ module Solver = struct
     let info = PSHGraph.info graph in
     let fs = (Hashtbl.find info fstart).fi_func in
     let starts =
-      PSette.singleton compare (fstart, fs.fun_body.g_start) in
+      PSette.singleton
+        PSHGraph.stdcompare.PSHGraph.comparev
+        (fstart, fs.fun_body.g_start) in
     let absinit (vf, _) =
       A.top man (Hashtbl.find info vf).fi_env in
     let fpman =
       make_fpmanager man graph absinit apply dotfmt in
+    fpman,
     Fixpoint.analysis_std
       fpman graph starts
       (Fixpoint.make_strategy_default
@@ -375,5 +379,37 @@ module Solver = struct
 end
 
 (* Common API for abstract interpretation modules. *)
-type absval = Polka.loose Polka.t Apron.Abstract1.t
+
+type absval = Polka.loose Polka.t Solver.A.t
+
+let analyze ?(debug=false) fl fstart =
+  let graph = HyperGraph.from_funcl fl in
+  let info = PSHGraph.info graph in
+  let man = Polka.manager_alloc_loose () in
+  let dotfmt =
+    if debug then
+      let (_fn, oc) = Filename.open_temp_file "apron" ".dot" in
+      Some (Format.formatter_of_out_channel oc)
+    else None
+  in
+  let (fpman, res) = Solver.compute man graph fstart dotfmt in
+  if debug then begin
+    Fixpoint.print_output fpman Format.std_formatter res;
+    Format.printf "@.";
+  end;
+
+  let resh = Hashtbl.create 51 in
+  Hashtbl.iter begin fun fname {fi_env; fi_func=f; _} ->
+    let top = Apron.Abstract1.top man fi_env in
+    Hashtbl.add resh fname
+      (Array.make (Array.length f.fun_body.g_edges) top);
+  end info;
+
+  PSHGraph.iter_vertex res
+  begin fun (vf, vn) abs ~pred ~succ ->
+    let map = Hashtbl.find resh vf in
+    map.(vn) <- abs;
+  end;
+  resh
+
 let is_nonneg _ _ = false
