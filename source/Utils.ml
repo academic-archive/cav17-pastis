@@ -3,6 +3,9 @@
 open Types
 
 exception Error
+exception Todo of string
+
+let _TODO s = raise (Todo s)
 
 let print_position fmt pos =
   Format.fprintf fmt "%s:%i:%i"
