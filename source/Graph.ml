@@ -86,3 +86,10 @@ let from_imp =
     ; fun_end_p = impf.fun_end_p
     }
   end
+
+module AbsInt:
+sig
+  type absval
+  val is_nonneg: absval -> expr -> bool
+end
+= Graph_Apron
