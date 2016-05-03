@@ -8,7 +8,7 @@ open Types.Graph
    are program points and the edges have
    actions on them.
 *)
-let from_imp =
+let from_imp impf =
 
   let h_position = Hashtbl.create 51 in
   let h_edges = Hashtbl.create 51 in
@@ -67,25 +67,22 @@ let from_imp =
       goi fin loo pos i
   in
 
-  begin function impf ->
-    next_node := 0;
-    let g_end = new_node impf.fun_end_p in
-    let g_start = gob g_end (-1) impf.fun_body.IMP.b_body in
-    let g_position = Array.make !next_node impf.fun_end_p in
-    let g_edges = Array.make !next_node [] in
-    for i = 0 to !next_node - 1 do
-      g_position.(i) <- Hashtbl.find h_position i;
-      g_edges.(i) <- Hashtbl.find_all h_edges i;
-    done;
-    { fun_name = impf.fun_name
-    ; fun_vars = impf.fun_vars
-    ; fun_args = impf.fun_args
-    ; fun_rets = impf.fun_rets
-    ; fun_body = { g_start; g_end; g_edges; g_position }
-    ; fun_start_p = impf.fun_start_p
-    ; fun_end_p = impf.fun_end_p
-    }
-  end
+  let g_end = new_node impf.fun_end_p in
+  let g_start = gob g_end (-1) impf.fun_body.IMP.b_body in
+  let g_position = Array.make !next_node impf.fun_end_p in
+  let g_edges = Array.make !next_node [] in
+  for i = 0 to !next_node - 1 do
+    g_position.(i) <- Hashtbl.find h_position i;
+    g_edges.(i) <- Hashtbl.find_all h_edges i;
+  done;
+  { fun_name = impf.fun_name
+  ; fun_vars = impf.fun_vars
+  ; fun_args = impf.fun_args
+  ; fun_rets = impf.fun_rets
+  ; fun_body = { g_start; g_end; g_edges; g_position }
+  ; fun_start_p = impf.fun_start_p
+  ; fun_end_p = impf.fun_end_p
+  }
 
 module AbsInt:
 sig
