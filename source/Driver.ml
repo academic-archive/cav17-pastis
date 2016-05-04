@@ -7,7 +7,7 @@ let dump_ai = ref false
 let usagemsg = "usage: pasta [OPTIONS] FILE\n"
 let argspec = Arg.align
   [ "-func", Arg.String (fun s -> main_func := Some s),
-    "<name>: Analyze this function body"
+    "<f> Analyze this function 'f'"
   ; "-dump-ai", Arg.Set dump_ai,
     " Display abstract interpretation output"
   ]
