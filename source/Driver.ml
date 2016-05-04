@@ -1,11 +1,11 @@
 (* Quentin Carbonneaux - 2016 *)
 
 let input_file = ref ""
-let main_func = ref ""
+let main_func = ref None
 
 let usagemsg = "usage: pasta [OPTIONS] FILE\n"
 let argspec = Arg.align
-  [ "-func", Arg.String (fun s -> main_func := s),
+  [ "-func", Arg.String (fun s -> main_func := Some s),
     "<name>: Analyze this function body"
   ]
 let annonarg s =
@@ -23,8 +23,18 @@ let main () =
   try
     let efmt = Format.err_formatter in
     let imp_file = IMP.parse_file efmt !input_file in
+    let fstart =
+      match !main_func with
+      | Some f -> f
+      | None ->
+        if List.length imp_file = 1
+        then (List.hd imp_file).Types.fun_name
+        else "start"
+    in
+    if not (List.exists (fun f -> f.Types.fun_name = fstart) imp_file) then
+      failarg (Printf.sprintf "cannot find function '%s' to analyze" fstart);
     let g_file = List.map Graph.from_imp imp_file in
-    let _ = Graph.AbsInt.analyze ~debug:true g_file "start" in
+    let _ = Graph.AbsInt.analyze ~debug:true g_file fstart in
     ()
   with
   | Utils.Error -> exit 1
