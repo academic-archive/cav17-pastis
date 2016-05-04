@@ -357,11 +357,11 @@ let debug_print fmt info graph res =
       Apron.Var.print in
   let print_transfer fmt = function
     | TGuard (Some disj) ->
-      Format.fprintf fmt "Guard ";
-      Print.list ~sep:" ||@ "
-        (Apron.Tcons1.array_print
-          ~first:"@[" ~sep:" &&@ " ~last:"@]")
-        fmt disj;
+      Format.fprintf fmt "Guard %a"
+        (Print.list ~first:"(@[<h>" ~sep:" ||@ " ~last:"@])"
+          (Apron.Tcons1.array_print
+            ~first:"@[<h>" ~sep:" &&@ " ~last:"@]"))
+        disj;
     | TGuard None ->
       Format.fprintf fmt "Guard True";
     | TAssign (v, e) ->
