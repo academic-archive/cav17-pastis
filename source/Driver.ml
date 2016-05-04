@@ -2,11 +2,14 @@
 
 let input_file = ref ""
 let main_func = ref None
+let dump_ai = ref false
 
 let usagemsg = "usage: pasta [OPTIONS] FILE\n"
 let argspec = Arg.align
   [ "-func", Arg.String (fun s -> main_func := Some s),
     "<name>: Analyze this function body"
+  ; "-dump-ai", Arg.Set dump_ai,
+    " Display abstract interpretation output"
   ]
 let annonarg s =
   if !input_file <> "" then
@@ -34,9 +37,9 @@ let main () =
     if not (List.exists (fun f -> f.Types.fun_name = fstart) imp_file) then
       failarg (Printf.sprintf "cannot find function '%s' to analyze" fstart);
     let g_file = List.map Graph.from_imp imp_file in
-    let _ = Graph.AbsInt.analyze ~debug:true g_file fstart in
-    ()
+    let _ = Graph.AbsInt.analyze ~dump:!dump_ai g_file fstart in
+    0
   with
-  | Utils.Error -> exit 1
+  | Utils.Error -> 1
 
-let () = main ()
+let () = Utils.exit (main ())

@@ -121,6 +121,11 @@ module HyperGraph = struct
   type vertex = id * int  (* pair of function name and node id *)
   type hedge = int
 
+  let print_vertex info fmt (vf, vp) =
+    let f = (Hashtbl.find info vf).fi_func in
+    let pos = f.fun_body.g_position.(vp) in
+    Utils.print_position fmt pos
+
   let vara_of_idl l =
     Array.of_list (List.map Apron.Var.of_string l)
 
@@ -211,37 +216,9 @@ module Solver = struct
 
   module A = Apron.Abstract1
 
-  let make_fpmanager man graph abstract_init apply dot_fmt =
+  let make_fpmanager man graph abstract_init apply =
     let info = PSHGraph.info graph in
-    let print_vertex fmt (vf, vp) =
-      let f = (Hashtbl.find info vf).fi_func in
-      let pos = f.fun_body.g_position.(vp) in
-      Utils.print_position fmt pos
-    in
-    let print_vara =
-      Print.array
-        ~first:"(@[" ~sep:",@ " ~last:"@])"
-        Apron.Var.print in
-    let print_transfer fmt = function
-      | TGuard (Some disj) ->
-        Format.fprintf fmt "Guard ";
-        Print.list ~sep:" ||@ "
-          (Apron.Tcons1.array_print
-            ~first:"@[" ~sep:" &&@ " ~last:"@]")
-          fmt disj;
-      | TGuard None ->
-        Format.fprintf fmt "Guard True";
-      | TAssign (v, e) ->
-        Format.fprintf fmt "%a = %a"
-          Apron.Var.print v
-          Apron.Texpr1.print e;
-      | TCall (_, f', reta, arga) ->
-        Format.fprintf fmt "Call %a = %s%a"
-          print_vara reta f'.fi_func.fun_name print_vara arga;
-      | TReturn (_, f', reta, arga) ->
-        Format.fprintf fmt "Return %a = %s%a"
-          print_vara reta f'.fi_func.fun_name print_vara arga;
-    in
+    let dont_print _ _ = () in
     { Fixpoint.bottom = begin fun (vf, _) ->
         A.bottom man (Hashtbl.find info vf).fi_env
       end
@@ -257,7 +234,7 @@ module Solver = struct
     ; abstract_init = abstract_init
     ; arc_init = begin fun _ -> () end
     ; apply = apply man graph
-    ; print_vertex = print_vertex
+    ; print_vertex = HyperGraph.print_vertex info
     ; print_hedge = Format.pp_print_int
     ; print_abstract = A.print
     ; print_arc = begin fun fmt () ->
@@ -271,15 +248,11 @@ module Solver = struct
     ; print_state = false
     ; print_postpre = false
     ; print_workingsets = false
-    ; dot_fmt = dot_fmt
-    ; dot_vertex = print_vertex
-    ; dot_hedge = Format.pp_print_int
-    ; dot_attrvertex = print_vertex
-    ; dot_attrhedge = begin fun fmt hedge ->
-        let transfer = PSHGraph.attrhedge graph hedge in
-        Format.fprintf fmt "%i: %a"
-          hedge print_transfer transfer
-      end
+    ; dot_fmt = None
+    ; dot_vertex = dont_print
+    ; dot_hedge = dont_print
+    ; dot_attrvertex = dont_print
+    ; dot_attrhedge = dont_print
     }
 
   (* We can now define the action of transfers on
@@ -357,7 +330,7 @@ module Solver = struct
         apply_TReturn man tabs.(0) tabs.(1) fi fi' reta arga
     in ((), res)
 
-  let compute man graph fstart dotfmt =
+  let compute man graph fstart =
     let info = PSHGraph.info graph in
     let fs = (Hashtbl.find info fstart).fi_func in
     let starts =
@@ -366,8 +339,7 @@ module Solver = struct
         (fstart, fs.fun_body.g_start) in
     let absinit (vf, _) =
       A.top man (Hashtbl.find info vf).fi_env in
-    let fpman =
-      make_fpmanager man graph absinit apply dotfmt in
+    let fpman = make_fpmanager man graph absinit apply in
     fpman,
     Fixpoint.analysis_std
       fpman graph starts
@@ -378,24 +350,67 @@ module Solver = struct
 
 end
 
+let debug_print fmt info graph res =
+  let print_vara =
+    Print.array
+      ~first:"(@[" ~sep:",@ " ~last:"@])"
+      Apron.Var.print in
+  let print_transfer fmt = function
+    | TGuard (Some disj) ->
+      Format.fprintf fmt "Guard ";
+      Print.list ~sep:" ||@ "
+        (Apron.Tcons1.array_print
+          ~first:"@[" ~sep:" &&@ " ~last:"@]")
+        fmt disj;
+    | TGuard None ->
+      Format.fprintf fmt "Guard True";
+    | TAssign (v, e) ->
+      Format.fprintf fmt "Assign %a = %a"
+        Apron.Var.print v
+        Apron.Texpr1.print e;
+    | TCall (_, f', reta, arga) ->
+      Format.fprintf fmt "Call %a = %s%a"
+        print_vara reta f'.fi_func.fun_name print_vara arga;
+    | TReturn (_, f', reta, arga) ->
+      Format.fprintf fmt "Return %a = %s%a"
+        print_vara reta f'.fi_func.fun_name print_vara arga;
+  in
+  let print_hedge_attr fmt hedge transfer =
+    Format.fprintf fmt "%a"
+      print_transfer transfer
+  in
+  PSHGraph.print_dot
+    begin fun fmt (vf, vn) -> Format.fprintf fmt "%s_%d" vf vn end
+    begin fun fmt hid -> Format.fprintf fmt "e_%d" hid end
+    begin fun fmt v _ ->
+      Solver.A.print fmt (PSHGraph.attrvertex res v)
+    end
+    print_hedge_attr
+    fmt graph
+
 (* Common API for abstract interpretation modules. *)
 
 type absval = Polka.loose Polka.t Solver.A.t
 
-let analyze ?(debug=false) fl fstart =
+let analyze ~dump fl fstart =
   let graph = HyperGraph.from_funcl fl in
   let info = PSHGraph.info graph in
   let man = Polka.manager_alloc_loose () in
-  let dotfmt =
-    if debug then
-      let (_fn, oc) = Filename.open_temp_file "apron" ".dot" in
-      Some (Format.formatter_of_out_channel oc)
-    else None
-  in
-  let (fpman, res) = Solver.compute man graph fstart dotfmt in
-  if debug then begin
-    Fixpoint.print_output fpman Format.std_formatter res;
-    Format.printf "@.";
+  let (fpman, res) = Solver.compute man graph fstart in
+
+  if dump then begin
+    let (fn, oc) = Filename.open_temp_file "" ".dot" in
+    let fpdf = fn ^ ".pdf" in
+    let fmt = Format.formatter_of_out_channel oc in
+    debug_print fmt info graph res;
+    close_out oc;
+    let cmd = Printf.sprintf "dot -O -Tpdf %s" fn in
+    if (try Sys.command cmd with Sys_error _ -> 1) <> 0 then
+      Printf.eprintf
+        "Error: '%s' failed, be sure to have GraphViz installed with PDF support.\n"
+        cmd
+    else Utils.show_remove_pdf fpdf;
+    Sys.remove fn;
   end;
 
   let resh = Hashtbl.create 51 in

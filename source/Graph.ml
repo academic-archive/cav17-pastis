@@ -87,7 +87,7 @@ let from_imp impf =
 module AbsInt:
 sig
   type absval
-  val analyze: ?debug:bool -> func list -> id ->
+  val analyze: dump:bool -> func list -> id ->
                (string, absval array) Hashtbl.t
   val is_nonneg: absval -> expr -> bool
 end
