@@ -34,7 +34,7 @@ make install > install.out 2> install.err || fail install
 cd ..
 echo "    done"
 
-pack=apron-0.9.9
+pack=apron-0.9.10
 echo "** Building $pack"
 cd $pack
 make > build.out 2> build.err             || fail build
