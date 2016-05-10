@@ -50,3 +50,5 @@ make > build.out 2> build.err             || fail build
 make install > install.out 2> install.err || fail install
 cd ..
 echo "    done"
+
+touch $SANDBOX/done
