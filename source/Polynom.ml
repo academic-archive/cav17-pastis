@@ -1,5 +1,7 @@
 (* Quentin Carbonneaux - 2016 *)
 
+let fsmall = 1e-7
+
 module type Factor = sig
   type t = Var of Types.id | Max of poly and poly
   val compare: t -> t -> int
@@ -25,6 +27,7 @@ module type Poly = sig
   val of_monom: monom -> float -> t
   val compare: t -> t -> int
   val fold: (monom -> float -> 'a -> 'a) -> t -> 'a -> 'a
+  val get_coeff: monom -> t -> float
   val mul_monom: monom -> float -> t -> t
   val add_monom: monom -> float -> t -> t
   val add_scale: float -> t -> t -> t
@@ -51,10 +54,8 @@ module MkFactor(Pol: Poly)
     | Max _, Var _ -> +1
 
   let print fmt = function
-    | Var v -> Format.pp_print_string fmt v
-    | Max p ->
-      Format.fprintf fmt "max(0, %a)"
-        Pol.print p
+    | Var v -> Format.fprintf fmt "%s" v
+    | Max p -> Format.fprintf fmt "max(0, %a)" Pol.print p
 
 end
 
@@ -74,12 +75,15 @@ module MkMonom(Fac: Factor)
   let compare = (M.compare compare: t -> t -> int)
   let fold = M.fold
   let one = M.empty
-  let of_factor f e = M.add f e one
+
+  let of_factor f e =
+    if e = 0 then one else M.add f e one
 
   let get_pow f m =
     try M.find f m with Not_found -> 0
 
   let mul_factor f e m =
+    if e = 0 then m else
     M.add f (e + get_pow f m) m
 
   let mul m m' =
@@ -125,13 +129,28 @@ module MkPoly(Mon: Monom)
   type t = float M.t
 
   let zero = M.empty
-  let const k = M.add Mon.one k zero
+  let const k = M.singleton Mon.one k
   let compare = (M.compare compare: t -> t -> int)
   let fold = M.fold
-  let of_monom m k = M.add m k zero
+  let of_monom m k = M.singleton m k
 
   let get_coeff m pol =
     try M.find m pol with Not_found -> 0.
+
+  let add_monom m k pol =
+    let c = get_coeff m pol +. k in
+    if abs_float c <= fsmall
+      then M.remove m pol
+      else M.add m c pol
+
+  let add_scale scale =
+    let f = function Some c -> c | None -> 0. in
+    M.merge (fun _ ac bc ->
+      let c = scale *. f ac +. f bc in
+      if abs_float c <= fsmall then None else Some c
+    )
+
+  let add = add_scale 1.
 
   let mul_factor f e pol =
     fold begin fun m coeff res ->
@@ -139,18 +158,10 @@ module MkPoly(Mon: Monom)
     end pol zero
 
   let mul_monom m coeff pol =
+    if abs_float coeff <= fsmall then zero else
     fold begin fun m' coeff' res ->
       M.add (Mon.mul m m') (coeff *. coeff') res
     end pol zero
-
-  let add_monom m k pol =
-    M.add m (get_coeff m pol +. k) pol
-
-  let add_scale scale =
-    let f = function Some c -> c | None -> 0. in
-    M.merge (fun _ ac bc -> Some (scale *. f ac +. f bc))
-
-  let add = add_scale 1.
 
   let mul p1 p2 =
     fold begin fun m coeff res ->
@@ -174,7 +185,7 @@ module MkPoly(Mon: Monom)
         Format.fprintf fmt
           (if first then "%s%g" else "@ %s %g")
           pref flt
-      else if abs_float (flt -. 1.) <= 1e-6 then
+      else if abs_float (flt -. 1.) <= fsmall then
         Format.fprintf fmt
           (if first then "%s%a" else "@ %s %a")
           pref Mon.print monom
