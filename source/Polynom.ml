@@ -12,7 +12,7 @@ module type Monom = sig
   val compare: t -> t -> int
   val fold: (factor -> int -> 'a -> 'a) -> t -> 'a -> 'a
   val one: t
-  val of_factor: factor -> t
+  val of_factor: factor -> int -> t
   val mul_factor: factor -> int -> t -> t
   val mul: t -> t -> t
 end
@@ -21,10 +21,11 @@ module type Poly = sig
   type t and monom
   val zero: unit -> t
   val const: float -> t
-  val of_monom: monom -> t
+  val of_monom: monom -> float -> t
   val compare: t -> t -> int
   val fold: (monom -> float -> 'a -> 'a) -> t -> 'a -> 'a
   val mul_monom: monom -> float -> t -> t
+  val add_monom: monom -> float -> t -> t
   val add_scale: float -> t -> t -> t
   val add: t -> t -> t
   val mul: t -> t -> t
@@ -69,7 +70,7 @@ module MkMonom(Fac: Factor)
   let compare = (M.compare compare: t -> t -> int)
   let fold = M.fold
   let one = M.empty
-  let of_factor factor = M.add factor 1 one
+  let of_factor f e = M.add f e one
 
   let get_pow f m =
     try M.find f m with Not_found -> 0
@@ -100,7 +101,7 @@ module MkPoly(Mon: Monom)
   let const k = M.add Mon.one k zero
   let compare = (M.compare compare: t -> t -> int)
   let fold = M.fold
-  let of_monom m = M.add m 1. zero
+  let of_monom m k = M.add m k zero
 
   let get_coeff m pol =
     try M.find m pol with Not_found -> 0.
@@ -114,6 +115,9 @@ module MkPoly(Mon: Monom)
     fold begin fun m' coeff' res ->
       M.add (Mon.mul m m') (coeff *. coeff') res
     end pol zero
+
+  let add_monom m k pol =
+    M.add m (get_coeff m pol +. k) pol
 
   let add_scale scale =
     let f = function Some c -> c | None -> 0. in
@@ -149,17 +153,39 @@ module
   = MkFactor(Poly)
 
 
+let rec mul_fmp a b =
+  let mkmonom = function `Factor (fa, ea) ->
+    `Monom (Monom.of_factor fa ea, 1.)
+  in match a, b with
+  | `Poly pa, `Poly pb -> `Poly (Poly.mul pa pb)
+  | `Poly pa, `Monom (mb, kb) -> `Poly (Poly.mul_monom mb kb pa)
+  | `Monom (ma, ka), `Poly pb -> `Poly (Poly.mul_monom ma ka pb)
+  | `Poly _, (`Factor _ as b) -> mul_fmp a (mkmonom b)
+  | (`Factor _ as a), `Poly _ -> mul_fmp (mkmonom a) b
+  | `Monom (ma, ka), `Monom (mb, kb) -> `Monom (Monom.mul ma mb, ka *. kb)
+  | `Monom (ma, ka), `Factor (fb, eb) -> `Monom (Monom.mul_factor fb eb ma, ka)
+  | `Factor (fa, ea), `Monom (mb, kb) -> `Monom (Monom.mul_factor fa ea mb, kb)
+  | (`Factor _ as a), (`Factor _ as b) -> mul_fmp (mkmonom a) (mkmonom b)
+
 let rec factor_subst id p = function
-  | Factor.Var v when v = id -> p
-  | Factor.Max p' -> Poly.of_monom (Monom.of_factor (Factor.Max (poly_subst id p p')))
-  | f -> Poly.of_monom (Monom.of_factor f)
+  | Factor.Var v when v = id -> `Poly p
+  | Factor.Max p' -> `Factor (Factor.Max (poly_subst id p p'), 1)
+  | f -> `Factor (f, 1)
 
 and monom_subst id p m =
   Monom.fold begin fun f e res ->
-    Poly.mul (Poly.pow e (factor_subst id p f)) res
-  end m (Poly.const 1.)
+    let fe =
+      match factor_subst id p f with
+      | `Poly p -> `Poly (Poly.pow e p)
+      | `Factor (f, e') -> `Factor (f, e * e')
+    in
+    mul_fmp fe res
+  end m (`Monom (Monom.one, 1.))
 
 and poly_subst id p p' =
   Poly.fold begin fun m k res ->
-    Poly.add_scale k (monom_subst id p m) res
+    match monom_subst id p m with
+    | `Poly p -> Poly.add_scale k p res
+    | `Monom (m', k') -> Poly.add_monom m' k' res
+    | `Factor (f, e) -> Poly.add_monom (Monom.of_factor f e) 1. res
   end p' (Poly.zero ())
