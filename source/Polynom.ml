@@ -181,6 +181,6 @@ and poly_subst id p p' =
   Poly.fold begin fun m k res ->
     match monom_subst id p m with
     | `Poly p -> Poly.add_scale k p res
-    | `Monom (m', k') -> Poly.add_monom m' k' res
-    | `Factor (f, e) -> Poly.add_monom (Monom.of_factor f e) 1. res
+    | `Monom (m, k') -> Poly.add_monom m (k' *. k) res
+    | `Factor (f, e) -> Poly.add_monom (Monom.of_factor f e) k res
   end p' (Poly.zero ())
