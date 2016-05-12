@@ -1,8 +1,7 @@
 (* Quentin Carbonneaux - 2016 *)
 
 module type Factor = sig
-  type poly
-  type t = Var of Types.id | Max of poly
+  type t = Var of Types.id | Max of poly and poly
   val compare: t -> t -> int
 end
 
@@ -31,10 +30,6 @@ module type Poly = sig
   val mul: t -> t -> t
   val pow: int -> t -> t
 end
-
-(* we have to tie Poly.factor and Factor.t,
-   also Monom.poly and Poly.t
-*)
 
 module MkFactor(Pol: Poly)
 : Factor with type poly = Pol.t
