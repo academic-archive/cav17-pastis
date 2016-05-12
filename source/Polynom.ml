@@ -3,6 +3,7 @@
 module type Factor = sig
   type t = Var of Types.id | Max of poly and poly
   val compare: t -> t -> int
+  val print: Format.formatter -> t -> unit
 end
 
 module type Monom = sig
@@ -14,6 +15,7 @@ module type Monom = sig
   val of_factor: factor -> int -> t
   val mul_factor: factor -> int -> t -> t
   val mul: t -> t -> t
+  val print: Format.formatter -> t -> unit
 end
 
 module type Poly = sig
@@ -29,6 +31,7 @@ module type Poly = sig
   val add: t -> t -> t
   val mul: t -> t -> t
   val pow: int -> t -> t
+  val print: Format.formatter -> t -> unit
 end
 
 module MkFactor(Pol: Poly)
@@ -46,6 +49,12 @@ module MkFactor(Pol: Poly)
     | Max p1, Max p2 -> Pol.compare p1 p2
     | Var _, Max _ -> -1
     | Max _, Var _ -> +1
+
+  let print fmt = function
+    | Var v -> Format.pp_print_string fmt v
+    | Max p ->
+      Format.fprintf fmt "max(0, %a)"
+        Pol.print p
 
 end
 
@@ -77,6 +86,29 @@ module MkMonom(Fac: Factor)
     if is_one m then m' else
     if is_one m' then m else
     fold mul_factor m' m
+
+  let superdigit =
+    [| "⁰"; "¹"; "²"; "³"; "⁴"; "⁵"; "⁶"; "⁷"; "⁸"; "⁹" |]
+
+  let print fmt m =
+    let superscript n =
+      if n = 1 then "" else
+      if false then "^" ^ string_of_int n else
+      let rec go n =
+        if n = 0 then "" else
+        go (n/10) ^ superdigit.(n mod 10)
+      in go n
+    in
+    Format.fprintf fmt "@[<h>";
+    ignore (fold begin fun f e first ->
+      if e = 0 then first else begin
+       Format.fprintf fmt
+          (if first then "%a%s" else "@ %a%s")
+          Fac.print f (superscript e);
+        false
+      end
+    end m true);
+    Format.fprintf fmt "@]"
 
 end
 
@@ -129,6 +161,30 @@ module MkPoly(Mon: Monom)
     if n < 0 then failwith "invalid argument" else
     if n = 0 then const 1. else
     mul pol (pow (n-1) pol)
+
+  let print fmt pol =
+    Format.fprintf fmt "@[<hov>";
+    ignore (fold begin fun monom k first ->
+      let pref, flt =
+        if k < 0.
+          then "-", (-. k)
+          else (if first then "" else "+"), k
+      in
+      if Mon.is_one monom then
+        Format.fprintf fmt
+          (if first then "%s%g" else "@ %s %g")
+          pref flt
+      else if abs_float (flt -. 1.) <= 1e-6 then
+        Format.fprintf fmt
+          (if first then "%s%a" else "@ %s %a")
+          pref Mon.print monom
+      else
+        Format.fprintf fmt
+          (if first then "%s@[<h>%g %a@]" else "@ %s @[<h>%g %a@]")
+          pref flt Mon.print monom;
+      false
+    end pol true);
+    Format.fprintf fmt "@]"
 
   let zero () = zero
 
