@@ -28,11 +28,13 @@ module type Poly = sig
   val compare: t -> t -> int
   val fold: (monom -> float -> 'a -> 'a) -> t -> 'a -> 'a
   val get_coeff: monom -> t -> float
+  val scale: float -> t -> t
   val mul_monom: monom -> float -> t -> t
   val add_monom: monom -> float -> t -> t
   val add_scale: float -> t -> t -> t
   val add: t -> t -> t
   val mul: t -> t -> t
+  val sub: t -> t -> t
   val pow: int -> t -> t
   val print: Format.formatter -> t -> unit
 end
@@ -129,13 +131,25 @@ module MkPoly(Mon: Monom)
   type t = float M.t
 
   let zero = M.empty
-  let const k = M.singleton Mon.one k
   let compare = (M.compare compare: t -> t -> int)
   let fold = M.fold
   let of_monom m k = M.singleton m k
 
+  let const k =
+    if abs_float k <= fsmall
+      then zero
+      else M.singleton Mon.one k
+
   let get_coeff m pol =
     try M.find m pol with Not_found -> 0.
+
+  let scale k pol =
+    fold begin fun m k' res ->
+      let k' = k' *. k in
+      if abs_float k' <= fsmall
+        then res
+        else M.add m k' res
+    end pol zero
 
   let add_monom m k pol =
     let c = get_coeff m pol +. k in
@@ -151,6 +165,8 @@ module MkPoly(Mon: Monom)
     )
 
   let add = add_scale 1.
+
+  let sub a b = add_scale (-1.) b a
 
   let mul_factor f e pol =
     fold begin fun m coeff res ->
