@@ -15,6 +15,7 @@ module type Monom = sig
   val fold: (factor -> int -> 'a -> 'a) -> t -> 'a -> 'a
   val one: t
   val of_factor: factor -> int -> t
+  val of_var: Types.id -> t
   val mul_factor: factor -> int -> t -> t
   val mul: t -> t -> t
   val print: Format.formatter -> t -> unit
@@ -25,6 +26,7 @@ module type Poly = sig
   val zero: unit -> t
   val const: float -> t
   val of_monom: monom -> float -> t
+  val of_expr: Types.expr -> t
   val compare: t -> t -> int
   val fold: (monom -> float -> 'a -> 'a) -> t -> 'a -> 'a
   val get_coeff: monom -> t -> float
@@ -79,7 +81,10 @@ module MkMonom(Fac: Factor)
   let one = M.empty
 
   let of_factor f e =
-    if e = 0 then one else M.add f e one
+    if e = 0 then one else M.singleton f e
+
+  let of_var v =
+    of_factor (Fac.Var v) 1
 
   let get_pow f m =
     try M.find f m with Not_found -> 0
@@ -184,6 +189,14 @@ module MkPoly(Mon: Monom)
       add (mul_monom m coeff p2) res
     end p1 zero
 
+  let rec of_expr = function
+    | Types.ERandom -> failwith "expression contains random"
+    | Types.EVar v -> of_monom (Mon.of_var v) 1.
+    | Types.ENum n -> of_monom Mon.one (float_of_int n)
+    | Types.EAdd (e1, e2) -> add (of_expr e1) (of_expr e2)
+    | Types.ESub (e1, e2) -> sub (of_expr e2) (of_expr e2)
+    | Types.EMul (e1, e2) -> mul (of_expr e1) (of_expr e2)
+
   let rec pow n pol =
     if n < 0 then failwith "invalid argument" else
     if n = 0 then const 1. else
@@ -267,3 +280,9 @@ and poly_subst id p p' =
     | `Monom (m, k') -> Poly.add_monom m (k' *. k) res
     | `Factor (f, e) -> Poly.add_monom (Monom.of_factor f e) k res
   end p' (Poly.zero ())
+
+let monom_subst id p m =
+  match monom_subst id p m with
+  | `Poly p -> p
+  | `Monom (m, k) -> Poly.of_monom m k
+  | `Factor (f, e) -> Poly.of_monom (Monom.of_factor f e) 1.
