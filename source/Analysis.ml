@@ -6,17 +6,20 @@ open Polynom
 
 type stats =
   { mutable num_lpvars: int
-  ; mutable num_constraints: int
+  ; mutable num_lpcons: int
+  ; mutable max_focus: int
   }
 
 let stats =
   { num_lpvars = 0
-  ; num_constraints = 0
+  ; num_lpcons = 0
+  ; max_focus = 0
   }
 
 let reset_stats () = begin
     stats.num_lpvars <- 0;
-    stats.num_constraints <- 0;
+    stats.num_lpcons <- 0;
+    stats.max_focus <- 0;
   end
 
 module Potential
@@ -115,7 +118,7 @@ end
       end le []
     in
     if l <> [] then begin
-      stats.num_constraints <- stats.num_constraints + 1;
+      stats.num_lpcons <- stats.num_lpcons + 1;
       Clp.add_row
         { Clp.row_lower = k
         ; Clp.row_upper = if ge then infinity else k
@@ -249,9 +252,12 @@ let run ai_results focus fl start query =
   let find_focus f node =
     let ai = Hashtbl.find ai_results f in
     let is_nonneg = AbsInt.is_nonneg ai.(node) in
-    focus |>
+    let res =
+      focus |>
       List.filter (fun (chk, _) -> List.for_all is_nonneg chk) |>
-      List.map snd
+      List.map snd in
+    stats.max_focus <- max (List.length res) stats.max_focus;
+    res
   in
 
   (* Create a new potential annotation resulting from
