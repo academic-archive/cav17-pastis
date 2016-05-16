@@ -194,7 +194,7 @@ module MkPoly(Mon: Monom)
     | Types.EVar v -> of_monom (Mon.of_var v) 1.
     | Types.ENum n -> of_monom Mon.one (float_of_int n)
     | Types.EAdd (e1, e2) -> add (of_expr e1) (of_expr e2)
-    | Types.ESub (e1, e2) -> sub (of_expr e2) (of_expr e2)
+    | Types.ESub (e1, e2) -> sub (of_expr e1) (of_expr e2)
     | Types.EMul (e1, e2) -> mul (of_expr e1) (of_expr e2)
 
   let rec pow n pol =
