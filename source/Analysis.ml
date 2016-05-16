@@ -208,7 +208,9 @@ end
         absl := abs :: !absl;
         v
       end annot in
-    let _, kpl = expand l pl in
+    let exannot, kpl = expand l pl in
+    constrain_eq exannot annot;
+    let kpl = [] in
     let obj = Clp.objective_coefficients () in
     List.iter (fun k -> obj.(k) <- 1.) kpl;
     List.iter (fun k -> obj.(k) <- 1.) !absl;
@@ -235,9 +237,10 @@ let run ai_results focus fl start query =
   let body = f.fun_body in
 
   let monoms =
+    let monoms = Poly.fold (fun m _ ms -> m :: ms) query [] in
     List.fold_left begin fun monoms (_, p) ->
       Poly.fold (fun m _ ms -> m :: ms) p monoms
-    end [] focus
+    end monoms focus
   in
 
   (* Find all the non-negative focus functions at a
