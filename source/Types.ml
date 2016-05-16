@@ -45,6 +45,7 @@ module IMP = struct
 
   type instr =
     | IBreak
+    | IWeaken
     | IAssume of logic
     | IAssign of id * expr
     | IIf of logic * block * block
@@ -67,6 +68,7 @@ module Graph = struct
   type node = int
 
   type action =
+    | AWeaken
     | AGuard of logic
     | AAssign of id * expr
     | ACall of id list * id * expr list

@@ -29,6 +29,10 @@ let from_imp impf =
 
   let rec goi fin loo pos = function
     | IMP.IBreak -> loo
+    | IMP.IWeaken ->
+      let beg = new_node pos in
+      new_edge beg AWeaken fin;
+      beg
     | IMP.IAssume log ->
       let beg = new_node pos in
       new_edge beg (AGuard log) fin;

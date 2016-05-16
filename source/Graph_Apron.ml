@@ -175,6 +175,9 @@ module HyperGraph = struct
           let src = f.fun_name, src in
           let dst = f.fun_name, dst in
           match act with
+          | AWeaken ->
+            PSHGraph.add_hedge g (new_edge ())
+              (TGuard None) ~pred:[|src|] ~succ:[|dst|];
           | AGuard log ->
             let disj = Translate.disj_of_logic env log in
             PSHGraph.add_hedge g (new_edge ())

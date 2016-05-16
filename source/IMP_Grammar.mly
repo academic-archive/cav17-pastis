@@ -14,7 +14,7 @@
 %token TTHEN TNOT TAND TOR TSEMI TCOMMA
 %token TRPAR TLEQ TLT TGEQ TGT TEQ TNE TADD TSUB TMUL
 %token TEOF
-%token <Types.position> TBREAK TASSUME TIF TELSE TWHILE TLOOP TLPAR TFUNC TEND TTHEN TDO
+%token <Types.position> TBREAK TASSUME TIF TELSE TWHILE TLOOP TLPAR TFUNC TEND TTHEN TDO TWEAK
 %token <(Types.id * Types.position)> TIDENT
 %token <int> TNUM
 
@@ -78,7 +78,8 @@ ids:
   | rids1       { List.rev $1 }
 
 instr:
-    TBREAK TSEMI                           { IBreak, $1 }
+  | TBREAK TSEMI                           { IBreak, $1 }
+  | TWEAK TSEMI                            { IWeaken, $1 }
   | TASSUME logic TSEMI                    { IAssume $2, $1 }
   | TIDENT TEQ exprr TSEMI                 { IAssign (fst $1, $3), snd $1 }
   | TIF logic TTHEN block TEND             { IIf ($2, b $3 $4 $5, b $5 [] $5), $1 }

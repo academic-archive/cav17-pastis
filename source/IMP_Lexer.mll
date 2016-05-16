@@ -27,6 +27,7 @@ let () =
   ; "then", (fun p -> TTHEN p)
   ; "else", (fun p -> TELSE p)
   ; "do", (fun p -> TDO p)
+  ; "weaken", (fun p -> TWEAK p)
   ]
 
 let pos { Lexing.lex_start_p = start; _ } =
