@@ -1,7 +1,7 @@
 (* Quentin Carbonneaux - 2016 *)
 
 (*
-   a >= b                            when a >= b  (check)
+   a >= b                            when a >= b  (check_ge)
 
    max(0, a) >= 0                                 (max0_ge_0)
    max(0, a) >= a                                 (max0_ge_arg)
@@ -17,20 +17,20 @@ open Polynom
 module Builder
 : sig
   type t
-  val check: Poly.t -> Poly.t -> t
+  val check_ge: Types.expr -> Types.expr -> t
   val max0_ge_0: Poly.t -> t
   val max0_ge_arg: Poly.t -> t
   val max0_le_arg: t -> t
   val max0_monotonic: t -> t
   val max0_sublinear: t -> t
   val binom_monotonic: int -> t -> t
-  val export: t -> (Poly.t * Poly.t list)
+  val export: t -> (Types.expr list * Poly.t)
 end
 = struct
 
-  type property =
-    | Ge0 of Poly.t
-    | Ge of Poly.t * Poly.t
+  type 'a property =
+    | Ge0 of 'a
+    | Ge of 'a * 'a
 
   let prop_Ge0 = function
     | Ge0 p -> p
@@ -61,10 +61,14 @@ end
 
   (* Invariant function building blocks. *)
 
-  type t = { proves: property; checks: property list }
+  type t =
+    { proves: Poly.t property
+    ; checks: (Types.expr property) list }
 
-  let check a b =
-    { proves = Ge (a, b)
+  let check_ge a b =
+    let pa = Poly.of_expr a in
+    let pb = Poly.of_expr b in
+    { proves = Ge (pa, pb)
     ; checks = [Ge (a, b)] }
 
   let max0_ge_0 a =
@@ -96,6 +100,9 @@ end
     ; checks = i.checks }
 
   let export i =
-    (prop_Ge0 i.proves, List.map prop_Ge0 i.checks)
+    let mkexpr = function
+      | Ge0 e -> e
+      | Ge (e1, e2) -> Types.ESub (e1, e2) in
+    (List.map mkexpr i.checks, prop_Ge0 i.proves)
 
 end
