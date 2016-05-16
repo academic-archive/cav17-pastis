@@ -1,9 +1,11 @@
-BIN = Driver.native
+all: Driver.native
 
-all:
-	@SANDBOX="`pwd`/../packages/sandbox" ocamlbuild ${BIN}
+%.cmo %.mli %.byte %.native: force
+	@SANDBOX="`pwd`/../packages/sandbox" ocamlbuild $@
 
 clean:
-	rm -fr ${BIN} _build
+	rm -fr *.native *.byte _build
 
-.PHONY: all clean
+force: ;
+
+.PHONY: all clean force
