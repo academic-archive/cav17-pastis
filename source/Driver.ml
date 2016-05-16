@@ -37,7 +37,22 @@ let main () =
     if not (List.exists (fun f -> f.Types.fun_name = fstart) imp_file) then
       failarg (Printf.sprintf "cannot find function '%s' to analyze" fstart);
     let g_file = List.map Graph.from_imp imp_file in
-    let _ = Graph.AbsInt.analyze ~dump:!dump_ai g_file fstart in
+    let ai_results = Graph.AbsInt.analyze ~dump:!dump_ai g_file fstart in
+    let focus = [] in
+    let query =
+      let open Polynom in
+      Poly.add
+        (Poly.of_monom (Monom.of_var "z") 1.)
+        (Poly.of_monom (Monom.of_factor (Factor.Var "x") 2) 1.) in
+    let st_results = Analysis.run ai_results focus g_file fstart query in
+    begin match st_results with
+    | None ->
+      Format.printf "Sorry, I could not find a bound.@."
+    | Some p ->
+      Format.printf "Bound for %a: %a@."
+        Polynom.Poly.print query
+        Polynom.Poly.print p
+    end;
     0
   with
   | Utils.Error -> 1
