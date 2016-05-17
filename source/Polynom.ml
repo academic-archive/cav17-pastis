@@ -111,14 +111,15 @@ module MkMonom(Fac: Factor)
       in go n
     in
     Format.fprintf fmt "@[<h>";
-    ignore (fold begin fun f e first ->
-      if e = 0 then first else begin
-       Format.fprintf fmt
-          (if first then "%a%s" else "@ %a%s")
-          Fac.print f (superscript e);
-        false
-      end
-    end m true);
+    let is_one = fold begin fun f e first ->
+        if e = 0 then first else begin
+         Format.fprintf fmt
+            (if first then "%a%s" else "@ %a%s")
+            Fac.print f (superscript e);
+          false
+        end
+      end m true in
+    if is_one then Format.fprintf fmt "1";
     Format.fprintf fmt "@]"
 
 end
@@ -204,26 +205,27 @@ module MkPoly(Mon: Monom)
 
   let print fmt pol =
     Format.fprintf fmt "@[<hov>";
-    ignore (fold begin fun monom k first ->
-      let pref, flt =
-        if k < 0.
-          then "-", (-. k)
-          else (if first then "" else "+"), k
-      in
-      if Mon.is_one monom then
-        Format.fprintf fmt
-          (if first then "%s%g" else "@ %s %g")
-          pref flt
-      else if abs_float (flt -. 1.) <= fsmall then
-        Format.fprintf fmt
-          (if first then "%s%a" else "@ %s %a")
-          pref Mon.print monom
-      else
-        Format.fprintf fmt
-          (if first then "%s@[<h>%g %a@]" else "@ %s @[<h>%g %a@]")
-          pref flt Mon.print monom;
-      false
-    end pol true);
+    let is_zero = fold begin fun monom k first ->
+        let pref, flt =
+          if k < 0.
+            then "-", (-. k)
+            else (if first then "" else "+"), k
+        in
+        if Mon.is_one monom then
+          Format.fprintf fmt
+            (if first then "%s%g" else "@ %s %g")
+            pref flt
+        else if abs_float (flt -. 1.) <= fsmall then
+          Format.fprintf fmt
+            (if first then "%s%a" else "@ %s %a")
+            pref Mon.print monom
+        else
+          Format.fprintf fmt
+            (if first then "%s@[<h>%g %a@]" else "@ %s @[<h>%g %a@]")
+            pref flt Mon.print monom;
+        false
+      end pol true in
+    if is_zero then Format.fprintf fmt "0";
     Format.fprintf fmt "@]"
 
   let zero () = zero
