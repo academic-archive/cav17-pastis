@@ -178,13 +178,25 @@ end
       end plsum l in
     (plsum, kpl)
 
+  let frame_from ?init:(init=fun () -> new_lpvar ()) pl annot =
+    let frame = M.map (fun _ -> init ()) annot in
+    let frame =
+      List.fold_left begin fun frame p ->
+        Poly.fold begin fun monom _ frame ->
+          if M.mem monom frame
+            then frame
+            else M.add monom (init ()) frame
+        end p frame
+      end frame pl in
+    frame
+
   (* Returns annot' such that  annot' >= annot, using a
      list of non-negative polynomials.  If the polynomials
      are actually null, the returned potential has the
      same value as the passed one.
   *)
   let rewrite pl annot =
-    let l = M.map (fun _ -> new_lpvar ()) annot in
+    let l = frame_from pl annot in
     let exannot, kpl = expand l pl in
     constrain_eq exannot annot;
     let annot', kpl' = expand l pl in
@@ -192,15 +204,15 @@ end
     List.iter2 begin fun kp1 kp2 ->
       Hashtbl.clear le;
       assert (kp1 <> kp2);
-      Hashtbl.add le kp1 (+1.);
-      Hashtbl.add le kp2 (-1.);
+      Hashtbl.add le kp1 (-1.);
+      Hashtbl.add le kp2 (+1.);
       add_lprow true le;
     end kpl kpl';
     annot'
 
   let solve_min pl annot =
     let absl = ref [] in
-    let l = M.map begin fun _ ->
+    let l = frame_from pl annot ~init:begin fun () ->
         let v = new_lpvar () and abs = new_lpvar () in
         List.iter Clp.add_row
           [ { Clp.row_lower = 0.; row_upper = infinity
@@ -210,7 +222,7 @@ end
           ];
         absl := abs :: !absl;
         v
-      end annot in
+      end in
     let exannot, kpl = expand l pl in
     constrain_eq exannot annot;
     let kpl = [] in
@@ -235,6 +247,7 @@ end
 end
 
 let run ai_results focus fl start query =
+  reset_stats ();
 
   let f = List.find (fun f -> f.fun_name = start) fl in
   let body = f.fun_body in
@@ -275,7 +288,7 @@ let run ai_results focus fl start query =
      a given node.  The potential at the end of
      the function is set to query.
 
-     We follow a depth first-search on the tree
+     We follow a depth first-search on the graph
      and update annotations for nodes lazily, this
      allows to reduce the number of LP variables.
   *)
