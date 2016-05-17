@@ -178,14 +178,14 @@ end
       end plsum l in
     (plsum, kpl)
 
-  let frame_from ?init:(init=fun () -> new_lpvar ()) pl annot =
-    let frame = M.map (fun _ -> init ()) annot in
+  let frame_from ?init:(init=fun _ -> new_lpvar ()) pl annot =
+    let frame = M.mapi (fun m _ -> init m) annot in
     let frame =
       List.fold_left begin fun frame p ->
-        Poly.fold begin fun monom _ frame ->
-          if M.mem monom frame
+        Poly.fold begin fun m _ frame ->
+          if M.mem m frame
             then frame
-            else M.add monom (init ()) frame
+            else M.add m (init m) frame
         end p frame
       end frame pl in
     frame
@@ -212,7 +212,7 @@ end
 
   let solve_min pl annot =
     let absl = ref [] in
-    let l = frame_from pl annot ~init:begin fun () ->
+    let l = frame_from pl annot ~init:begin fun _ ->
         let v = new_lpvar () and abs = new_lpvar () in
         List.iter Clp.add_row
           [ { Clp.row_lower = 0.; row_upper = infinity
