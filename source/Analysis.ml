@@ -225,23 +225,42 @@ end
       end in
     let exannot, kpl = expand l pl in
     constrain_eq exannot annot;
+
+    (* Initial solving call trying to minimize the
+       coefficients of the frame L.
+    *)
     let obj = Clp.objective_coefficients () in
-    List.iter (fun k -> obj.(k) <- 1.) kpl;
     List.iter (fun k -> obj.(k) <- 1.) !absl;
     Clp.change_objective_coefficients obj;
+    Clp.set_log_level 0;
     Clp.initial_solve ();
-    match Clp.status () with
-    | 0 ->
-      let sol = Clp.primal_column_solution () in
-      Some (M.fold begin fun m le poly ->
-          let k =
-            Hashtbl.fold begin fun v kv k ->
-              k +. kv *. sol.(v)
-            end le 0.
-          in Poly.add_monom m k poly
-        end annot (Poly.zero ())
-      )
-    | _ -> None
+    if Clp.status () <> 0 then None else
+
+    (* Second solving call, this time minimizing
+       the coefficients of the polynomials in pl.
+    *)
+    let sol = Clp.primal_column_solution () in
+    List.iter begin fun k ->
+      obj.(k) <- 0.;
+      Clp.add_row
+        { Clp.row_lower = sol.(k); row_upper = sol.(k)
+        ; row_elements = [| (k, 1.) |] }
+    end !absl;
+    List.iter (fun k -> obj.(k) <- 1.) kpl;
+    Clp.change_objective_coefficients obj;
+    Clp.primal ();
+    if Clp.status () <> 0 then None else
+
+    (* Build polynomial solution. *)
+    let sol = Clp.primal_column_solution () in
+    Some (M.fold begin fun m le poly ->
+      let k =
+        Hashtbl.fold begin fun v kv k ->
+          k +. kv *. sol.(v)
+        end le 0.
+      in Poly.add_monom m k poly
+      end annot (Poly.zero ())
+    )
 
 end
 
