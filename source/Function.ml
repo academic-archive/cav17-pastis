@@ -47,17 +47,12 @@ end
 
   let poly_binom k p =
     if k < 0 then failwith "invalid argument" else
-    let rec fact k =
-      if k <= 1 then 1. else
-      fact (k-1) *. float_of_int k
-    in
     let rec prod k accu =
       let k = k - 1 in
       if k < 0 then accu else
       let p_min_k = Poly.sub p (Poly.const (float_of_int k)) in
       prod k (Poly.mul p_min_k accu)
-    in
-    Poly.scale (fact k) (prod k (Poly.const 1.))
+    in prod k (Poly.const 1.)
 
   (* Invariant function building blocks. *)
 
