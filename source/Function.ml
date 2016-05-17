@@ -76,7 +76,7 @@ end
     ; checks = [] }
 
   let max0_ge_arg a =
-    { proves = Ge (poly_max a, Poly.zero ())
+    { proves = Ge (poly_max a, a)
     ; checks = [] }
 
   let max0_le_arg i =
