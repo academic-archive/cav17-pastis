@@ -225,7 +225,6 @@ end
       end in
     let exannot, kpl = expand l pl in
     constrain_eq exannot annot;
-    let kpl = [] in
     let obj = Clp.objective_coefficients () in
     List.iter (fun k -> obj.(k) <- 1.) kpl;
     List.iter (fun k -> obj.(k) <- 1.) !absl;
