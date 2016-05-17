@@ -393,7 +393,8 @@ let debug_print fmt info graph res =
 
 (* Common API for abstract interpretation modules. *)
 
-type absval = Polka.loose Polka.t Solver.A.t
+type polka = Polka.loose Polka.t
+type absval = (polka Apron.Manager.t * polka Solver.A.t)
 
 let analyze ~dump fl fstart =
   let graph = HyperGraph.from_funcl fl in
@@ -420,14 +421,19 @@ let analyze ~dump fl fstart =
   Hashtbl.iter begin fun fname {fi_env; fi_func=f; _} ->
     let top = Apron.Abstract1.top man fi_env in
     Hashtbl.add resh fname
-      (Array.make (Array.length f.fun_body.g_edges) top);
+      (Array.make (Array.length f.fun_body.g_edges) (man, top));
   end info;
 
   PSHGraph.iter_vertex res
   begin fun (vf, vn) abs ~pred ~succ ->
     let map = Hashtbl.find resh vf in
-    map.(vn) <- abs;
+    map.(vn) <- (man, abs);
   end;
   resh
 
-let is_nonneg _ _ = false
+let is_nonneg (man, abs) expr =
+  let texpr = Translate.texpr_of_expr expr in
+  let env = Solver.A.env abs in
+  let texpr = Translate.E.of_expr env texpr in
+  let tcons = Translate.C.make texpr Translate.C.SUPEQ in
+  Solver.A.sat_tcons man abs tcons
