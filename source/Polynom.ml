@@ -16,6 +16,7 @@ module type Monom = sig
   val one: t
   val of_factor: factor -> int -> t
   val of_var: Types.id -> t
+  val pow: int -> t -> t
   val mul_factor: factor -> int -> t -> t
   val mul: t -> t -> t
   val print: Format.formatter -> t -> unit
@@ -29,6 +30,7 @@ module type Poly = sig
   val of_expr: Types.expr -> t
   val compare: t -> t -> int
   val fold: (monom -> float -> 'a -> 'a) -> t -> 'a -> 'a
+  val is_const: t -> float option
   val get_coeff: monom -> t -> float
   val scale: float -> t -> t
   val mul_monom: monom -> float -> t -> t
@@ -89,6 +91,9 @@ module MkMonom(Fac: Factor)
   let get_pow f m =
     try M.find f m with Not_found -> 0
 
+  let pow e =
+    M.map (( * ) e)
+
   let mul_factor f e m =
     if e = 0 then m else
     M.add f (e + get_pow f m) m
@@ -148,6 +153,10 @@ module MkPoly(Mon: Monom)
 
   let get_coeff m pol =
     try M.find m pol with Not_found -> 0.
+
+  let is_const pol =
+    if M.cardinal pol <> 1 then None else
+    try Some (M.find Mon.one pol) with Not_found -> None
 
   let scale k pol =
     fold begin fun m k' res ->
@@ -246,6 +255,11 @@ module
   = MkFactor(Poly)
 
 
+let poly_max pol =
+  match Poly.is_const pol with
+  | Some k -> `Monom (Monom.one, max 0. k)
+  | None -> `Factor (Factor.Max pol, 1)
+
 let rec mul_fmp a b =
   let mkmonom = function `Factor (fa, ea) ->
     `Monom (Monom.of_factor fa ea, 1.)
@@ -262,7 +276,7 @@ let rec mul_fmp a b =
 
 let rec factor_subst id p = function
   | Factor.Var v when v = id -> `Poly p
-  | Factor.Max p' -> `Factor (Factor.Max (poly_subst id p p'), 1)
+  | Factor.Max p' -> poly_max (poly_subst id p p')
   | f -> `Factor (f, 1)
 
 and monom_subst id p m =
@@ -270,6 +284,7 @@ and monom_subst id p m =
     let fe =
       match factor_subst id p f with
       | `Poly p -> `Poly (Poly.pow e p)
+      | `Monom (m, k) -> `Monom (Monom.pow e m, k ** (float_of_int e))
       | `Factor (f, e') -> `Factor (f, e * e')
     in
     mul_fmp fe res
@@ -283,8 +298,11 @@ and poly_subst id p p' =
     | `Factor (f, e) -> Poly.add_monom (Monom.of_factor f e) k res
   end p' (Poly.zero ())
 
-let monom_subst id p m =
-  match monom_subst id p m with
+let normalize x =
+  match x with
   | `Poly p -> p
   | `Monom (m, k) -> Poly.of_monom m k
   | `Factor (f, e) -> Poly.of_monom (Monom.of_factor f e) 1.
+
+let monom_subst id p m = normalize (monom_subst id p m)
+let poly_max p = normalize (poly_max p)
