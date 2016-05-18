@@ -17,4 +17,4 @@ type graph =
   ; g_position: position array
   }
 
-type func = graph func_
+type func = (Function.focus, graph) func_

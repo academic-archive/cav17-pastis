@@ -7,6 +7,12 @@ exception Todo of string
 
 let _TODO s = raise (Todo s)
 
+let dummy_position =
+  { pos_file = ""
+  ; pos_line = -1
+  ; pos_bol = -1
+  ; pos_char = -1 }
+
 let print_position fmt pos =
   Format.fprintf fmt "%s:%i:%i"
     pos.pos_file pos.pos_line

@@ -79,14 +79,7 @@ let from_imp impf =
     g_position.(i) <- Hashtbl.find h_position i;
     g_edges.(i) <- Hashtbl.find_all h_edges i;
   done;
-  { fun_name = impf.fun_name
-  ; fun_vars = impf.fun_vars
-  ; fun_args = impf.fun_args
-  ; fun_rets = impf.fun_rets
-  ; fun_body = { g_start; g_end; g_edges; g_position }
-  ; fun_start_p = impf.fun_start_p
-  ; fun_end_p = impf.fun_end_p
-  }
+  { impf with fun_body = { g_start; g_end; g_edges; g_position } }
 
 module AbsInt:
 sig

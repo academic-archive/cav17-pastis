@@ -18,4 +18,4 @@ and block =
   ; b_body: (instr * position) list
   }
 
-type func = block func_
+type func = (Function.focus, block) func_

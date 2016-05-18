@@ -14,17 +14,20 @@
 
 open Polynom
 
+type focus = Types.expr list * Poly.t
+
 module Builder
 : sig
   type t
   val check_ge: Types.expr -> Types.expr -> t
+  val one_ge_0: t
   val max0_ge_0: Poly.t -> t
   val max0_ge_arg: Poly.t -> t
   val max0_le_arg: t -> t
   val max0_monotonic: t -> t
   val max0_sublinear: t -> t
   val binom_monotonic: int -> t -> t
-  val export: t -> (Types.expr list * Poly.t)
+  val export: t -> focus
 end
 = struct
 
@@ -66,6 +69,10 @@ end
     { proves = Ge (pa, pb)
     ; checks = [Ge (a, b)] }
 
+  let one_ge_0 =
+    { proves = Ge0 (Poly.const 1.)
+    ; checks = [] }
+
   let max0_ge_0 a =
     { proves = Ge0 (poly_max a)
     ; checks = [] }
@@ -101,3 +108,65 @@ end
     (List.map mkexpr i.checks, prop_Ge0 i.proves)
 
 end
+
+let interpret fe =
+  let open Types in
+  let check_arity f args pos n =
+    if List.length args <> n then begin
+      Format.eprintf "%a: invalid number of arguments in %s (%d, got %d)@."
+        Utils.print_position pos f n (List.length args);
+      raise Utils.Error
+    end in
+  let arg_expr pos f args n =
+    match List.nth args n with
+    | FBase e -> e
+    | _ ->
+      Format.eprintf "%a: expression expected as argument %d of %s@."
+        Utils.print_position pos n f;
+      raise Utils.Error
+  in
+  let arg_num pos f args n =
+    match List.nth args n with
+    | FBase (ENum n) -> n
+    | _ ->
+      Format.eprintf "%a: number expected as argument %d of %s@."
+        Utils.print_position pos n f;
+      raise Utils.Error
+  in
+  let rec i = function
+    | FBase e ->
+      Builder.check_ge e (ENum 0)
+    | FApply (">=", [FBase e1; FBase e2], _) ->
+      Builder.check_ge e1 e2
+    | FApply ("max0_ge_0" as f, args, pos) ->
+      check_arity f args pos 1;
+      let e = arg_expr pos f args 0 in
+      Builder.max0_ge_0 (Poly.of_expr e)
+    | FApply ("max0_ge_arg" as f, args, pos) ->
+      check_arity f args pos 1;
+      let e = arg_expr pos f args 0 in
+      Builder.max0_ge_arg (Poly.of_expr e)
+    | FApply ("max0_le_arg" as f, args, pos) ->
+      check_arity f args pos 1;
+      let f = arg_func pos f args 0 in
+      Builder.max0_le_arg f
+    | FApply ("max0_monotonic" as f, args, pos) ->
+      check_arity f args pos 1;
+      let f = arg_func pos f args 0 in
+      Builder.max0_monotonic f
+    | FApply ("max0_sublinear" as f, args, pos) ->
+      check_arity f args pos 1;
+      let f = arg_func pos f args 0 in
+      Builder.max0_sublinear f
+    | FApply ("binom_monotonic" as f, args, pos) ->
+      check_arity f args pos 2;
+      let n = arg_num pos f args 0 in
+      let f = arg_func pos f args 1 in
+      Builder.binom_monotonic n f
+    | FApply (f, _, pos) ->
+      Format.eprintf "%a: unknown focus function '%s'@."
+        Utils.print_position pos f;
+      raise Utils.Error
+  and arg_func _pos f args n =
+    i (List.nth args n)
+  in Builder.export (i fe)

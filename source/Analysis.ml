@@ -264,10 +264,11 @@ end
 
 end
 
-let run ai_results focus fl start query =
+let run ai_results fl start query =
   reset_stats ();
 
   let f = List.find (fun f -> f.fun_name = start) fl in
+  let focus = ([], Poly.const 1.) :: f.fun_focus in
   let body = f.fun_body in
 
   let monoms =
@@ -306,7 +307,7 @@ let run ai_results focus fl start query =
      a given node.  The potential at the end of
      the function is set to query.
 
-     We follow a depth first-search on the graph
+     We follow a depth-first search on the graph
      and update annotations for nodes lazily, this
      allows to reduce the number of LP variables.
   *)

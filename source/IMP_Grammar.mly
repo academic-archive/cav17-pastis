@@ -11,7 +11,7 @@
 %}
 
 %token TVAR TTRUE TFALSE TRANDOM TSKIP TDO TRETURNS
-%token TTHEN TNOT TAND TOR TSEMI TCOMMA
+%token TTHEN TNOT TAND TOR TFOCUS TSEMI TCOMMA
 %token TRPAR TLEQ TLT TGEQ TGT TEQ TNE TADD TSUB TMUL
 %token TEOF
 %token <Types.position> TBREAK TASSUME TIF TELSE TWHILE TLOOP TLPAR TFUNC TEND TTHEN TDO TWEAK
@@ -25,7 +25,7 @@
 %left TADD TSUB
 %left TMUL
 
-%type <IMP_Types.func list> file
+%type <(Types.free_expr, IMP_Types.block) Types.func_ list> file
 %start file
 %%
 
@@ -97,6 +97,20 @@ block:
     /* empty */ { [] }
   | rinstrs1    { List.rev $1 }
 
+rfrees:
+    free               { [$1] }
+  | rfrees TCOMMA free { $3 :: $1 }
+
+frees:
+    /* empty */ { [] }
+  | rfrees      { List.rev $1 }
+
+free:
+    expr                     { FBase $1 }
+  | TIDENT TLPAR frees TRPAR { FApply (fst $1, $3, snd $1) }
+  | expr TGEQ expr           { FApply (">=", [FBase $1; FBase $3]
+                                      , Utils.dummy_position) }
+
 retopt:
     /* empty */              { [] }
   | TRETURNS TLPAR ids TRPAR { $3 }
@@ -105,12 +119,17 @@ varopt:
     /* empty */    { [] }
   | TVAR ids TSEMI { $2 }
 
+focusopt:
+    /* empty */        { [] }
+  | TFOCUS frees TSEMI { $2 }
+
 func:
   TFUNC ident TLPAR ids TRPAR
-  retopt TDO varopt block TEND
+  retopt TDO varopt focusopt block TEND
   { { fun_name = $2; fun_vars = $8; fun_args = $4
-    ; fun_rets = $6; fun_body = b $1 $9 $10
-    ; fun_start_p = $1; fun_end_p = $10 }
+    ; fun_rets = $6; fun_focus = $9
+    ; fun_body = b $1 $10 $11
+    ; fun_start_p = $1; fun_end_p = $11 }
   }
 
 rfuncs:

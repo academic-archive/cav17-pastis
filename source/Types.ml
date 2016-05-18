@@ -9,16 +9,6 @@ type position =
   ; pos_char: int
   }
 
-type 'a func_ =
-  { fun_name: id
-  ; fun_vars: id list
-  ; fun_args: id list
-  ; fun_rets: id list
-  ; fun_body: 'a
-  ; fun_start_p: position
-  ; fun_end_p: position
-  }
-
 type expr =
   | ERandom
   | EVar of id
@@ -26,6 +16,21 @@ type expr =
   | EAdd of expr * expr
   | ESub of expr * expr
   | EMul of expr * expr
+
+type free_expr =
+  | FBase of expr
+  | FApply of id * free_expr list * position
+
+type ('a, 'b) func_ =
+  { fun_name: id
+  ; fun_vars: id list
+  ; fun_args: id list
+  ; fun_rets: id list
+  ; fun_focus: 'a list
+  ; fun_body: 'b
+  ; fun_start_p: position
+  ; fun_end_p: position
+  }
 
 type logic =
   | LTrue

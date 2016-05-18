@@ -15,6 +15,7 @@ let () =
   ; "not", TNOT
   ; "and", TAND
   ; "or", TOR
+  ; "focus", TFOCUS
   ];
   List.iter (fun (k,t) -> Hashtbl.add kwp k t)
   [ "break", (fun p -> TBREAK p)
