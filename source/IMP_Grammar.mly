@@ -1,7 +1,7 @@
 /* Quentin Carbonneaux - 2016 */
 %{
   open Types
-  open Types.IMP
+  open IMP_Types
 
   let b startp b endp =
     { b_start_p = startp
@@ -25,7 +25,7 @@
 %left TADD TSUB
 %left TMUL
 
-%type <Types.IMP.func list> file
+%type <IMP_Types.func list> file
 %start file
 %%
 

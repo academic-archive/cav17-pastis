@@ -1,7 +1,7 @@
 (* Quentin Carbonneaux - 2016 *)
 
 open Types
-open Types.Graph
+include Graph_Types
 
 (* Construct a graph representation of the
    given IMP program.  The nodes of the graph

@@ -7,7 +7,7 @@
 *)
 
 open Types
-open Types.Graph
+open Graph_Types
 
 module DNF = struct
   type 'a t = 'a list list
@@ -99,7 +99,7 @@ type func_info =
   ; fi_rets: Apron.Var.t array
   ; fi_arg_tmps: Apron.Var.t array
   ; fi_ret_tmps: Apron.Var.t array
-  ; fi_func: Types.Graph.func
+  ; fi_func: func
   }
 
 type transfer =

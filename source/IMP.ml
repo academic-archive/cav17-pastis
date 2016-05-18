@@ -1,5 +1,7 @@
 (* Quentin Carbonneaux - 2016 *)
 
+include IMP_Types
+
 let parse_file efmt f =
   let ic =
     try open_in f with
