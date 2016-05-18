@@ -49,9 +49,6 @@ end
 
   (* Polynom helper functions. *)
 
-  let poly_max p =
-    Poly.of_monom (Monom.of_factor (Factor.Max p) 1) 1.
-
   let poly_binom k p =
     if k < 0 then failwith "invalid argument" else
     let rec prod k accu =
