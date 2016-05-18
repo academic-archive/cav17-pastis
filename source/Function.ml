@@ -10,6 +10,9 @@
    max(0, b) + a - b >= max(0, a)    when a >= b  (max0_sublinear)
 
    binom(k, a) >= binom(k, b)        when a >= b  (binom_monotonic)
+
+   a * b >= c * d                    when a >= c  (product)
+                                     and b >= d
 *)
 
 open Polynom
@@ -27,6 +30,7 @@ module Builder
   val max0_monotonic: t -> t
   val max0_sublinear: t -> t
   val binom_monotonic: int -> t -> t
+  val product: t -> t -> t
   val export: t -> focus
 end
 = struct
@@ -101,6 +105,12 @@ end
     { proves = Ge (poly_binom k a, poly_binom k b)
     ; checks = i.checks }
 
+  let product i1 i2 =
+    let a1, b1 = prop_Ge i1.proves in
+    let a2, b2 = prop_Ge i2.proves in
+    { proves = Ge (Poly.mul a1 a2, Poly.mul b1 b2)
+    ; checks = i1.checks @ i2.checks }
+
   let export i =
     let mkexpr = function
       | Ge0 e -> e
@@ -163,6 +173,11 @@ let interpret fe =
       let n = arg_num pos f args 0 in
       let f = arg_func pos f args 1 in
       Builder.binom_monotonic n f
+    | FApply ("product" as f, args, pos) ->
+      check_arity f args pos 2;
+      let f1 = arg_func pos f args 0 in
+      let f2 = arg_func pos f args 1 in
+      Builder.product f1 f2
     | FApply (f, _, pos) ->
       Format.eprintf "%a: unknown focus function '%s'@."
         Utils.print_position pos f;
