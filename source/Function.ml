@@ -11,8 +11,8 @@
 
    binom(k, a) >= binom(k, b)        when a >= b  (binom_monotonic)
 
-   a * b >= c * d                    when a >= c  (product)
-                                     and b >= d
+   x * a >= x * b                    when a >= b  (product)
+                                     and x >= 0
 *)
 
 open Polynom
@@ -103,9 +103,9 @@ end
     ; checks = i.checks }
 
   let product i1 i2 =
-    let a1, b1 = prop_Ge i1.proves in
-    let a2, b2 = prop_Ge i2.proves in
-    { proves = Ge (Poly.mul a1 a2, Poly.mul b1 b2)
+    let a, b = prop_Ge i2.proves in
+    let x = prop_Ge0 i1.proves in
+    { proves = Ge (Poly.mul x a, Poly.mul x b)
     ; checks = i1.checks @ i2.checks }
 
   let export i =
