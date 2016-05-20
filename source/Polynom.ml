@@ -155,6 +155,7 @@ module MkPoly(Mon: Monom)
     try M.find m pol with Not_found -> 0.
 
   let is_const pol =
+    if M.is_empty pol then Some 0. else
     if M.cardinal pol <> 1 then None else
     try Some (M.find Mon.one pol) with Not_found -> None
 
