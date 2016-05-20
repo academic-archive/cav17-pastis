@@ -393,8 +393,8 @@ let debug_print fmt info graph res =
 
 (* Common API for abstract interpretation modules. *)
 
-type polka = Polka.loose Polka.t
-type absval = (polka Apron.Manager.t * polka Solver.A.t)
+type base = Polka.loose Polka.t
+type absval = (base Apron.Manager.t * base Solver.A.t)
 
 let analyze ~dump fl fstart =
   let graph = HyperGraph.from_funcl fl in
