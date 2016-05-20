@@ -176,9 +176,10 @@ let sprintf ?margin format =
     fmt
     format
 
-external is_printable: char -> bool = "caml_is_printable"
 external char_code: char -> int = "%identity"
 external char_chr: int -> char = "%identity"
+
+let is_printable c = 32 <= char_code c && char_code c <= 126
 
 let escaped ?(linebreak:char='n') s =
   let n = ref 0 in
