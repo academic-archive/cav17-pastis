@@ -120,6 +120,14 @@ end
       end le []
     in
     if l <> [] then begin
+      if false then
+      begin
+        List.iter (fun (v, kv) ->
+          Format.eprintf "%g * v%d + " kv v;) l;
+        Format.eprintf "0 %s %g@."
+          (if ge then ">=" else "=")
+          k;
+      end;
       stats.num_lpcons <- stats.num_lpcons + 1;
       Clp.add_row
         { Clp.row_lower = k
