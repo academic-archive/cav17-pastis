@@ -8,7 +8,7 @@ you will still need to have the following core:
 
   * GMP 4.2 or up (with development headers)
   * MPFR 2.2 or up (with development headers)
-  * OCaml 4.0 or up
+  * OCaml 4.0 or up (and ocamlbuild)
   * A C99 compiler (gcc/clang)
   * A C++ compiler (g++/clang++)
 
