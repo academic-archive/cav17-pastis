@@ -63,7 +63,7 @@ libpolkaMPQ_caml.a libpolkaMPQ_caml_debug.a \
 libpolkaRll_caml.a libpolkaRll_caml_debug.a
 ifneq ($(HAS_OCAMLOPT),)
 CAML_TO_INSTALL := $(CAML_TO_INSTALL) \
-polka.cmxa polka.a \
+polka.cmx polka.cmxa polka.a \
 polkaMPQ.cmxa polkaMPQ.a \
 polkaRll.cmxa polkaRll.a
 endif

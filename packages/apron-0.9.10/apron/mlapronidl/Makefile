@@ -48,7 +48,7 @@ MLOBJ = $(MLMODULES:%=%.cmo)
 MLOBJx = $(MLMODULES:%=%.cmx)
 MLLIB_TOINSTALL = $(IDLMODULES:%=%.idl) apron.cmi apron.cma
 ifneq ($(HAS_OCAMLOPT),)
-MLLIB_TOINSTALL := $(MLLIB_TOINSTALL) apron.cmxa apron.a
+MLLIB_TOINSTALL := $(MLLIB_TOINSTALL) apron.cmx apron.cmxa apron.a
 endif
 
 CCMODULES = apron_caml $(IDLMODULES:%=%_caml)
