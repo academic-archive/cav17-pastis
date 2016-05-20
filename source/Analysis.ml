@@ -73,6 +73,7 @@ end
 
   let new_annot monoms =
     List.fold_left begin fun annot m ->
+      if M.mem m annot then annot else
       let le = new_linexpr () in
       let v = new_lpvar () in
       Hashtbl.add le v 1.;
