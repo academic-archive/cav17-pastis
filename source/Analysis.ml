@@ -23,13 +23,23 @@ let reset_stats () =
     stats.max_focus <- 0;
   end
 
+type order =
+  | Ge
+  | Le
+  | Eq
+
+let swap_order = function
+  | Ge -> Le
+  | Le -> Ge
+  | Eq -> Eq
+
 module Potential
 : sig
   type annot
   val new_annot: Monom.t list -> annot
   val of_poly: Poly.t -> annot
   val exec_assignment: (id * expr) -> annot -> annot
-  val constrain_eq: annot -> annot -> unit
+  val constrain: annot -> order -> annot -> unit
   val rewrite: Poly.t list -> annot -> annot
   val solve_min: Poly.t list -> annot -> Poly.t option
 end
@@ -107,11 +117,20 @@ end
         add_poly le (monom_subst v e monom)
       end annot M.empty
 
-  (* Constrain the linear expression le to be
-     non-negative if ge is true and zero if ge
-     is false.
+  let add_lprow_array ?(k=0.) arr o =
+    begin
+      stats.num_lpcons <- stats.num_lpcons + 1;
+      Clp.add_row
+        { Clp.row_lower = if o = Le then neg_infinity else k
+        ; Clp.row_upper = if o = Ge then infinity else k
+        ; Clp.row_elements = arr
+        };
+    end
+
+  (* Constrain the linear expression le
+     against the constant k.
   *)
-  let add_lprow ?k:(k=0.) ge le =
+  let add_lprow ?(k=0.) le o =
     let l =
       Hashtbl.fold begin fun v kv l ->
         if abs_float kv <= fsmall
@@ -125,15 +144,10 @@ end
         List.iter (fun (v, kv) ->
           Format.eprintf "%g * v%d + " kv v;) l;
         Format.eprintf "0 %s %g@."
-          (if ge then ">=" else "=")
+          (match o with Ge -> ">=" | Le -> "<=" | Eq -> "=")
           k;
       end;
-      stats.num_lpcons <- stats.num_lpcons + 1;
-      Clp.add_row
-        { Clp.row_lower = k
-        ; Clp.row_upper = if ge then infinity else k
-        ; Clp.row_elements = Array.of_list l
-        };
+      add_lprow_array (Array.of_list l) o ~k
     end
 
   let of_poly p =
@@ -141,12 +155,12 @@ end
       let v = new_lpvar () in
       let le = new_linexpr () in
       Hashtbl.add le v 1.;
-      add_lprow ~k false le;
+      add_lprow le Eq ~k;
       M.add monom le annot
     end p M.empty
 
-  (* Constrain annot1 = annot2. *)
-  let constrain_eq annot1 annot2 =
+  (* Pointwise constrain annot1 and annot2. *)
+  let constrain annot1 o annot2 =
     begin
       (* Constrain common coefficients. *)
       M.iter begin fun m le1 ->
@@ -155,12 +169,12 @@ end
           try linexpr_addmul le (-1.) (M.find m annot2)
           with Not_found -> ()
         end;
-        add_lprow false le
+        add_lprow le o
       end annot1;
-      (* Set the coefficients in annot2 only to 0. *)
+      (* Constrain the coefficients in annot2 only. *)
       M.iter begin fun m le2 ->
         if not (M.mem m annot1) then
-          add_lprow false le2;
+          add_lprow le2 (swap_order o);
       end annot2;
     end
 
@@ -208,15 +222,11 @@ end
   let rewrite pl annot =
     let l = frame_from pl annot in
     let exannot, kpl = expand l pl in
-    constrain_eq exannot annot;
+    constrain exannot Eq annot;
     let annot', kpl' = expand l pl in
-    let le = new_linexpr () in
     List.iter2 begin fun kp1 kp2 ->
-      Hashtbl.clear le;
       assert (kp1 <> kp2);
-      Hashtbl.add le kp1 (-1.);
-      Hashtbl.add le kp2 (+1.);
-      add_lprow true le;
+      add_lprow_array [| kp2, 1.; kp1, -1. |] Ge;
     end kpl kpl';
     annot'
 
@@ -224,17 +234,13 @@ end
     let absl = ref [] in
     let l = frame_from pl annot ~init:begin fun _ ->
         let v = new_lpvar () and abs = new_lpvar () in
-        List.iter Clp.add_row
-          [ { Clp.row_lower = 0.; row_upper = infinity
-            ; row_elements = [| abs, 1.; v, +1. |] }
-          ; { Clp.row_lower = 0.; row_upper = infinity
-            ; row_elements = [| abs, 1.; v, -1. |] }
-          ];
+        add_lprow_array [| abs, 1.; v, +1. |] Ge;
+        add_lprow_array [| abs, 1.; v, -1. |] Ge;
         absl := abs :: !absl;
         v
       end in
     let exannot, kpl = expand l pl in
-    constrain_eq exannot annot;
+    constrain exannot Ge annot;
 
     (* Initial solving call trying to minimize the
        coefficients of the frame L.
@@ -252,11 +258,12 @@ end
     let sol = Clp.primal_column_solution () in
     List.iter begin fun k ->
       obj.(k) <- 0.;
-      Clp.add_row
-        { Clp.row_lower = sol.(k); row_upper = sol.(k)
-        ; row_elements = [| (k, 1.) |] }
+      add_lprow_array [| k, 1. |] Eq ~k:sol.(k);
     end !absl;
-    List.iter (fun k -> obj.(k) <- 1.) kpl;
+    List.iter begin fun k ->
+      obj.(k) <- 1.;
+      add_lprow_array [| k, 1. |] Ge; (* XXX not great for lower bounds... *)
+    end kpl;
     Clp.change_objective_coefficients obj;
     Clp.primal ();
     if Clp.status () <> 0 then None else
@@ -337,13 +344,13 @@ let run ai_results fl start query =
           let annot = do_action node act (dfs node') in
           List.fold_left begin fun annot (act, node') ->
             let annot' = do_action node act (dfs node') in
-            Potential.constrain_eq annot annot';
+            Potential.constrain annot Eq annot';
             annot
           end annot edges
       in
       begin match annot.(node) with
       | `Doing -> ()
-      | `Done a' -> Potential.constrain_eq a a'
+      | `Done a' -> Potential.constrain a Eq a'
       | `Todo -> failwith "unreachable"
       end;
       annot.(node) <- `Done a;
