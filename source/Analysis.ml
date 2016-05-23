@@ -241,29 +241,33 @@ end
       end in
     let exannot, kpl = expand l pl in
     constrain exannot Ge annot;
+    let vmax = new_lpvar () in
+    List.iter (fun k ->
+      add_lprow_array [| vmax, 1.; k, -1. |] Ge) kpl;
 
     (* Initial solving call trying to minimize the
-       coefficients of the frame L.
+       coefficients of the frame L and the max of
+       all coefficients of pl polynomials.
     *)
     let obj = Clp.objective_coefficients () in
     List.iter (fun k -> obj.(k) <- 1.) !absl;
+    obj.(vmax) <- 1.;
     Clp.change_objective_coefficients obj;
     Clp.set_log_level 0;
     Clp.initial_solve ();
     if Clp.status () <> 0 then None else
 
     (* Second solving call, this time minimizing
-       the coefficients of the polynomials in pl.
+       the sum of coefficients of the polynomials
+       in pl.
     *)
     let sol = Clp.primal_column_solution () in
-    List.iter begin fun k ->
+    List.iter (fun k ->
       obj.(k) <- 0.;
-      add_lprow_array [| k, 1. |] Eq ~k:sol.(k);
-    end !absl;
-    List.iter begin fun k ->
-      obj.(k) <- 1.;
-      add_lprow_array [| k, 1. |] Ge; (* XXX not great for lower bounds... *)
-    end kpl;
+      add_lprow_array [| k, 1. |] Eq ~k:sol.(k)) !absl;
+    List.iter (fun k -> obj.(k) <- 1.) kpl;
+    add_lprow_array [| vmax, 1. |] Eq ~k:sol.(vmax);
+    obj.(vmax) <- 0.;
     Clp.change_objective_coefficients obj;
     Clp.primal ();
     if Clp.status () <> 0 then None else
