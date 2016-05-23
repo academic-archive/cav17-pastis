@@ -23,9 +23,8 @@ module Builder
 : sig
   type t
   val check_ge: Types.expr -> Types.expr -> t
-  val one_ge_0: t
-  val max0_ge_0: Poly.t -> t
-  val max0_ge_arg: Poly.t -> t
+  val max0_ge_0: Types.expr -> t
+  val max0_ge_arg: Types.expr -> t
   val max0_le_arg: t -> t
   val max0_monotonic: t -> t
   val max0_sublinear: t -> t
@@ -65,20 +64,16 @@ end
     ; checks: (Types.expr property) list }
 
   let check_ge a b =
-    let pa = Poly.of_expr a in
-    let pb = Poly.of_expr b in
-    { proves = Ge (pa, pb)
+    { proves = Ge (Poly.of_expr a, Poly.of_expr b)
     ; checks = [Ge (a, b)] }
 
-  let one_ge_0 =
-    { proves = Ge0 (Poly.const 1.)
-    ; checks = [] }
-
   let max0_ge_0 a =
+    let a = Poly.of_expr a in
     { proves = Ge0 (poly_max a)
     ; checks = [] }
 
   let max0_ge_arg a =
+    let a = Poly.of_expr a in
     { proves = Ge (poly_max a, a)
     ; checks = [] }
 
@@ -116,69 +111,75 @@ end
 
 end
 
+type _ interp =
+  | IFunc: 'a interp -> (Builder.t -> 'a) interp
+  | IExpr: 'a interp -> (Types.expr -> 'a) interp
+  | INum: 'a interp -> (int -> 'a) interp
+  | IEnd: Builder.t interp
+
+type dp = DP: 'a interp * 'a -> dp
+
+let interp_map =
+  [ "max0_ge_0",       DP (IExpr IEnd, Builder.max0_ge_0)
+  ; "max0_ge_arg",     DP (IExpr IEnd, Builder.max0_ge_arg)
+  ; "max0_le_arg",     DP (IFunc IEnd, Builder.max0_le_arg)
+  ; "max0_monotonic",  DP (IFunc IEnd, Builder.max0_monotonic)
+  ; "max0_sublinear",  DP (IFunc IEnd, Builder.max0_sublinear)
+  ; "binom_monotonic", DP (INum (IFunc IEnd), Builder.binom_monotonic)
+  ; "product",         DP (IFunc (IFunc IEnd), Builder.product)
+  ; ">=",              DP (IExpr (IExpr IEnd), Builder.check_ge)
+  ]
+
 let interpret fe =
-  let open Types in
-  let check_arity f args pos n =
-    if List.length args <> n then begin
-      Format.eprintf "%a: invalid number of arguments in %s (%d, got %d)@."
-        Utils.print_position pos f n (List.length args);
-      raise Utils.Error
-    end in
-  let arg_expr pos f args n =
-    match List.nth args n with
-    | FBase e -> e
-    | _ ->
-      Format.eprintf "%a: expression expected as argument %d of %s@."
-        Utils.print_position pos n f;
-      raise Utils.Error
+  let nth n =
+    if n > 2 then string_of_int (n+1) ^ "-th" else
+    [| "first"; "second"; "third" |].(n)
   in
-  let arg_num pos f args n =
-    match List.nth args n with
-    | FBase (ENum n) -> n
-    | _ ->
-      Format.eprintf "%a: number expected as argument %d of %s@."
-        Utils.print_position pos n f;
-      raise Utils.Error
-  in
-  let rec i = function
-    | FBase e ->
-      Builder.check_ge e (ENum 0)
-    | FApply (">=", [FBase e1; FBase e2], _) ->
-      Builder.check_ge e1 e2
-    | FApply ("max0_ge_0" as f, args, pos) ->
-      check_arity f args pos 1;
-      let e = arg_expr pos f args 0 in
-      Builder.max0_ge_0 (Poly.of_expr e)
-    | FApply ("max0_ge_arg" as f, args, pos) ->
-      check_arity f args pos 1;
-      let e = arg_expr pos f args 0 in
-      Builder.max0_ge_arg (Poly.of_expr e)
-    | FApply ("max0_le_arg" as f, args, pos) ->
-      check_arity f args pos 1;
-      let f = arg_func pos f args 0 in
-      Builder.max0_le_arg f
-    | FApply ("max0_monotonic" as f, args, pos) ->
-      check_arity f args pos 1;
-      let f = arg_func pos f args 0 in
-      Builder.max0_monotonic f
-    | FApply ("max0_sublinear" as f, args, pos) ->
-      check_arity f args pos 1;
-      let f = arg_func pos f args 0 in
-      Builder.max0_sublinear f
-    | FApply ("binom_monotonic" as f, args, pos) ->
-      check_arity f args pos 2;
-      let n = arg_num pos f args 0 in
-      let f = arg_func pos f args 1 in
-      Builder.binom_monotonic n f
-    | FApply ("product" as f, args, pos) ->
-      check_arity f args pos 2;
-      let f1 = arg_func pos f args 0 in
-      let f2 = arg_func pos f args 1 in
-      Builder.product f1 f2
-    | FApply (f, _, pos) ->
-      Format.eprintf "%a: unknown focus function '%s'@."
-        Utils.print_position pos f;
-      raise Utils.Error
-  and arg_func _pos f args n =
-    i (List.nth args n)
-  in Builder.export (i fe)
+
+  let rec iargs pos fname (DP (i, f)) l n: Builder.t =
+    let getarg = function
+      | h :: tl -> h, tl
+      | [] ->
+        Format.eprintf "%a: too few arguments for %s@."
+          Utils.print_position pos fname;
+        raise Utils.Error
+    in
+    match i with
+    | IEnd ->
+      if l = [] then f else begin
+        Format.eprintf "%a: too many arguments for %s (%d expected)@."
+          Utils.print_position pos fname n;
+        raise Utils.Error
+      end
+    | IFunc i ->
+      let arg, l = getarg l in
+      iargs pos fname (DP (i, f (interp arg))) l (n+1)
+    | IExpr i ->
+      let arg, l = getarg l in
+      let arg = match arg with
+        | Types.FBase e -> e
+        | _ ->
+          Format.eprintf "%a: expression expected as %s argument of %s@."
+            Utils.print_position pos (nth n) fname;
+          raise Utils.Error in
+      iargs pos fname (DP (i, f arg)) l (n+1)
+    | INum i ->
+      let arg, l = getarg l in
+      let arg = match arg with
+        | Types.FBase (Types.ENum n) -> n
+        | _ ->
+          Format.eprintf "%a: number expected as %s argument of %s@."
+            Utils.print_position pos (nth n) fname;
+          raise Utils.Error in
+      iargs pos fname (DP (i, f arg)) l (n+1)
+
+  and interp = function
+    | Types.FBase e -> Builder.check_ge e (Types.ENum 0)
+    | Types.FApply (f, l, pos) ->
+      try iargs pos f (List.assoc f interp_map) l 0
+      with Not_found ->
+        Format.eprintf "%a: unknown focus function '%s'@."
+          Utils.print_position pos f;
+        raise Utils.Error
+
+  in Builder.export (interp fe)
