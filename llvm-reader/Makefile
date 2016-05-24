@@ -1,7 +1,9 @@
+LLC = llvm-config
+
 BIN = llvm-reader
 
-CXXFLAGS = `llvm-config --cxxflags`
-LDFLAGS = `llvm-config --ldflags --system-libs --libs bitreader core support`
+CXXFLAGS += `${LLC} --cxxflags`
+LDFLAGS += `${LLC} --ldflags --system-libs --libs bitreader core support`
 
 all: ${BIN}
 
