@@ -407,7 +407,7 @@ unsigned processBlock(BasicBlock *BB, Func &f, ValueMap<BasicBlock *, unsigned> 
 		else if (BranchInst *BI = dyn_cast<BranchInst>(CurI)) {
 			if (BI->isConditional()) {
 				Cond C = valueCond(BI->getCondition());
-				Cond CNeg = C.negate();
+				Cond NotC = C.negate();
 
 				BasicBlock *BBTrue = BI->getSuccessor(0);
 				BasicBlock *BBFalse = BI->getSuccessor(1);
@@ -415,7 +415,7 @@ unsigned processBlock(BasicBlock *BB, Func &f, ValueMap<BasicBlock *, unsigned> 
 				node = f.newNode();
 
 				f.addEdge(node, Edge(processBlock(BBTrue, f, bbMap), C));
-				f.addEdge(node, Edge(processBlock(BBFalse, f, bbMap), CNeg));
+				f.addEdge(node, Edge(processBlock(BBFalse, f, bbMap), NotC));
 			}
 			else {
 				BasicBlock *Succ = BI->getSuccessor(0);
@@ -513,12 +513,14 @@ int main(int argc, char *argv[])
 		ofs << "digraph " << f.name << "{\n";
 		unsigned n = 0, e = 0;;
 		for (auto &vec: f.body) {
+
 			ofs << "n_" << n << " [shape=circle,fontsize=8,label=\"";
 			if (n == f.start)
 				ofs << "start";
 			if (n == f.ret)
 				ofs << "end";
 			ofs << "\"];\n";
+
 			for (auto &edge: vec) {
 				if (edge.type == Edge::None) {
 					ofs << "n_" << n << " -> " << "n_" << edge.dest << ";\n";
@@ -540,6 +542,7 @@ int main(int argc, char *argv[])
 				ofs << "e_" << e << " -> " << "n_" << edge.dest << ";\n";
 				e++;
 			}
+
 			n++;
 		}
 		ofs << "}\n";
