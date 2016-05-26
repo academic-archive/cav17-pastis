@@ -3,7 +3,7 @@ LLC = llvm-config
 BIN = llvm-reader
 
 CXXFLAGS += -O0 -g \
-	-DLLVM_MINOR=`${LLC} --version | awk -F. "{print \\$$2}"` \
+	-DLLVM_MINOR=`${LLC} --version | cut -d. -f2` \
 	`${LLC} --cxxflags`
 
 LDFLAGS += `${LLC} --ldflags --system-libs --libs bitreader core support`
