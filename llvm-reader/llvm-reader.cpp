@@ -13,9 +13,10 @@
 #include <llvm/IR/Instructions.h>
 #include <llvm/IR/Constant.h>
 #include <llvm/IR/Constants.h>
-#include <llvm/IR/ModuleSlotTracker.h>
-#include <llvm/IR/ValueMap.h>
-#include <llvm/Support/DataStream.h>
+#include <llvm/Support/raw_ostream.h>
+#include <llvm/Support/MemoryBuffer.h>
+#include <llvm/ADT/DenseMap.h>
+#include <llvm/ADT/STLExtras.h>
 
 using namespace llvm;
 
@@ -252,14 +253,30 @@ struct Func {
 	: name(n), arguments(args), ret(-1u), nextNode(0) {}
 };
 
-std::unique_ptr<ModuleSlotTracker> Machine;
+class ValueTracker {
+	int nextSlot;
+	DenseMap<Value *, int> vMap;
+public:
+	int getLocalSlot(Value *v)
+	{
+		if (vMap.count(v) == 0)
+			return vMap[v] = nextSlot++;
+		else
+			return vMap[v];
+	}
+
+	ValueTracker()
+	: nextSlot(0) {}
+};
+
+ValueTracker VTrack;
 
 std::string valueName(Value *v)
 {
 	if (v->hasName())
 		return v->getName();
 	else {
-		int SlotNum = Machine->getLocalSlot(v);
+		int SlotNum = VTrack.getLocalSlot(v);
 		return "_" + std::to_string(SlotNum);
 	}
 }
@@ -364,7 +381,7 @@ Cond valueCond(Value *v)
 	return Cond();
 }
 
-unsigned processBlock(BasicBlock *BB, Func &f, ValueMap<BasicBlock *, unsigned> &bbMap)
+unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> &bbMap)
 {
 	unsigned node = -1u;
 
@@ -380,8 +397,6 @@ unsigned processBlock(BasicBlock *BB, Func &f, ValueMap<BasicBlock *, unsigned> 
 	}
 
 	bbMap[BB] = -1u;
-
-	// errs() << "In block " << Machine->getLocalSlot(BB) << '\n';
 
 	for (auto BI = BB->rbegin(), BE = BB->rend(); BI != BE; ++BI) {
 		Instruction *CurI = &*BI;
@@ -471,7 +486,7 @@ Func extractFunc(Function &F)
 	for (Argument &A: F.getArgumentList())
 		args.push_back(valueName(&A));
 	Func f(valueName(&F), args);
-	ValueMap<BasicBlock *, unsigned> bbMap;
+	DenseMap<BasicBlock *, unsigned> bbMap;
 	f.start = processBlock(&F.getEntryBlock(), f, bbMap);
 	return f;
 }
@@ -481,29 +496,38 @@ int main(int argc, char *argv[])
 	LLVMContext Context;
 	std::string Filename = "test.o";
 
-	std::string ErrorMessage;
-	std::unique_ptr<DataStreamer> Streamer =
-	  getDataFileStreamer(Filename, &ErrorMessage);
-
-	if (!Streamer) {
-		errs() << argv[0] << ": " << ErrorMessage << '\n';
+	ErrorOr<std::unique_ptr<MemoryBuffer>> MemBufOrErr =
+		MemoryBuffer::getFile(Filename);
+	if (!MemBufOrErr) {
+		errs() << argv[0] << ": could not read input file\n";
 		return 1;
 	}
+	std::unique_ptr<MemoryBuffer> MemBuf = std::move(*MemBufOrErr);
 
-	ErrorOr<std::unique_ptr<Module>> ErrOrM =
-		getStreamedBitcodeModule(Filename, std::move(Streamer), Context);
-	std::unique_ptr<Module> M = std::move(*ErrOrM);
+#if LLVM_MINOR >= 8
+	ErrorOr<std::unique_ptr<Module>> MOrErr =
+		parseBitcodeFile(MemBuf->getMemBufferRef(), Context);
+#else
+	ErrorOr<std::unique_ptr<Module>> MOrErr =
+		parseBitcodeFile(MemBuf.get(), Context);
+#endif
+	if (!MOrErr) {
+		errs() << argv[0] << ": could not parse input file\n";
+		return 1;
+	}
+	std::unique_ptr<Module> M = std::move(*MOrErr);
 	M->materializeAll();
 
-
 	Module::iterator MI = M->begin();
-	if (MI == M->end()) {
-		errs() << argv[0] << ": Empty module\n";
-		return 1;
+	for (;; ++MI) {
+		if (MI == M->end()) {
+			errs() << argv[0] << ": empty module\n";
+			return 1;
+		}
+		if (!MI->isIntrinsic())
+			break;
 	}
 
-	Machine = make_unique<ModuleSlotTracker>(M.get());
-	Machine->incorporateFunction(*MI);
 	Func f = extractFunc(*MI);
 
 	if (Debug) {
