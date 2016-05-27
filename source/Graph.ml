@@ -3,6 +3,12 @@
 open Types
 include Graph_Types
 
+type stats =
+  { mutable weaken_map: (id * int) list }
+
+let stats =
+  { weaken_map = [] }
+
 (* Construct a graph representation of the
    given IMP program.  The nodes of the graph
    are program points and the edges have
@@ -80,6 +86,56 @@ let from_imp impf =
     g_edges.(i) <- Hashtbl.find_all h_edges i;
   done;
   { impf with fun_body = { g_start; g_end; g_edges; g_position } }
+
+(* Place weakening points automatically.
+   A good heuristic is to insert them at
+   the end of guard edges.
+*)
+let auto_weaken ({ fun_name; fun_body = g } as graphf) =
+
+  let is_guard = function
+    | AGuard _ -> true
+    | _ -> false
+  in
+
+  let weaken = ref [] in
+  Array.iter begin fun edges ->
+    List.iter begin function
+      | act, dst when is_guard act ->
+        let d_edges = g.g_edges.(dst) in
+        if d_edges = []
+        || not (List.for_all (fun (a, _) -> is_guard a) d_edges)
+          then weaken := dst :: !weaken;
+      | _ -> ()
+    end edges
+  end g.g_edges;
+
+  let nnodes = Array.length g.g_edges in
+  let weaken = Array.of_list !weaken in
+  let new_end = ref g.g_end in
+  let new_edges =
+    Array.mapi begin fun new_node node ->
+      let new_node = new_node + nnodes in
+      let edges = g.g_edges.(node) in
+      g.g_edges.(node) <- [AWeaken, new_node];
+      if node = g.g_end then
+        new_end := new_node;
+      edges
+    end weaken
+  in
+  let new_position =
+    Array.map (fun node -> g.g_position.(node)) weaken in
+
+  let nweaken = Array.length new_edges in
+  stats.weaken_map <- (fun_name, nweaken) :: stats.weaken_map;
+
+  let fun_body =
+    { g with
+      g_edges = Array.append g.g_edges new_edges;
+      g_position = Array.append g.g_position new_position;
+      g_end = !new_end
+    } in
+  { graphf with fun_body }
 
 module AbsInt:
 sig

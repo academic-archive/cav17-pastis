@@ -4,16 +4,23 @@ let input_file = ref ""
 let main_func = ref None
 let dump_ai = ref false
 let dump_stats = ref false
+let no_weaken = ref false
 
 let usagemsg = Printf.sprintf "usage: %s [OPTIONS] FILE\n" Sys.argv.(0)
 let argspec = Arg.align
+
   [ "-func", Arg.String (fun s -> main_func := Some s),
     "<fn> Analyze the specified function"
+
   ; "-dump-ai", Arg.Set dump_ai,
     " Display abstract interpretation results"
   ; "-dump-stats", Arg.Set dump_stats,
     " Display statistics of the size-tracking analysis"
+
+  ; "-no-weaken", Arg.Set no_weaken,
+    " Do not automatically add weakening points"
   ]
+
 let annonarg s =
   if !input_file <> "" then
     raise (Arg.Bad "too many input files");
@@ -39,6 +46,10 @@ let main () =
     if not (List.exists (fun f -> f.Types.fun_name = fstart) imp_file) then
       failarg (Printf.sprintf "cannot find function '%s' to analyze" fstart);
     let g_file = List.map Graph.from_imp imp_file in
+    let g_file =
+      if !no_weaken then g_file else
+      List.map Graph.auto_weaken g_file
+    in
     let ai_results = Graph.AbsInt.analyze ~dump:!dump_ai g_file fstart in
     let query =
       let open Polynom in
@@ -56,7 +67,16 @@ let main () =
     if !dump_stats then begin
       let open Format in
       let { Analysis.num_lpvars; num_lpcons; max_focus } = Analysis.stats in
+      let { Graph.weaken_map } = Graph.stats in
       printf "@.Statistics:@.    @[<v>";
+      if not !no_weaken then begin
+        printf "Weakenings inserted per function:@     @[<hov>";
+        let first = ref true in
+        List.iter (fun (f, n) ->
+          printf (if !first then "%d for %s" else ",@ %d for %s") n f;
+          first := false) (List.rev weaken_map);
+        printf "@]@ ";
+      end;
       printf "Number of LP variables: %d@ " num_lpvars;
       printf "Number of LP constraints: %d@ " num_lpcons;
       printf "Maximum focus functions in use: %d" max_focus;
