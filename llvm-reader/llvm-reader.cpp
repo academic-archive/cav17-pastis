@@ -504,7 +504,7 @@ int main(int argc, char *argv[])
 	}
 	std::unique_ptr<MemoryBuffer> MemBuf = std::move(*MemBufOrErr);
 
-#if LLVM_MINOR >= 8
+#if LLVM_MAJOR > 3 || (LLVM_MAJOR == 3 && LLVM_MINOR >= 8)
 	ErrorOr<std::unique_ptr<Module>> MOrErr =
 		parseBitcodeFile(MemBuf->getMemBufferRef(), Context);
 #else

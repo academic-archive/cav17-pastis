@@ -2,7 +2,8 @@ LLC = llvm-config
 
 BIN = llvm-reader
 
-CXXFLAGS += -O0 -g \
+CXXFLAGS += \
+	-DLLVM_MAJOR=`${LLC} --version | cut -d. -f1` \
 	-DLLVM_MINOR=`${LLC} --version | cut -d. -f2` \
 	`${LLC} --cxxflags`
 
