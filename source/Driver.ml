@@ -5,12 +5,16 @@ let main_func = ref None
 let dump_ai = ref false
 let dump_stats = ref false
 let no_weaken = ref false
+let ascii = ref false
 
 let usagemsg = Printf.sprintf "usage: %s [OPTIONS] FILE\n" Sys.argv.(0)
 let argspec = Arg.align
 
   [ "-func", Arg.String (fun s -> main_func := Some s),
     "<fn> Analyze the specified function"
+
+  ; "-ascii", Arg.Set ascii,
+    " Output results using ascii only"
 
   ; "-dump-ai", Arg.Set dump_ai,
     " Display abstract interpretation results"
@@ -56,13 +60,14 @@ let main () =
         (Poly.of_monom (Monom.of_var "z") (+1.))
     in
     let st_results = Analysis.run ai_results g_file fstart query in
+    let poly_print =
+      if !ascii then Polynom.Poly.print_ascii else Polynom.Poly.print
+    in
     begin match st_results with
     | None ->
       Format.printf "Sorry, I could not find a bound.@."
     | Some p ->
-      Format.printf "Upper bound for %a: %a@."
-        Polynom.Poly.print query
-        Polynom.Poly.print p
+      Format.printf "Upper bound for %a: %a@." poly_print query poly_print p
     end;
     if !dump_stats then begin
       let open Format in

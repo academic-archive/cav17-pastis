@@ -19,7 +19,7 @@ module type Monom = sig
   val pow: int -> t -> t
   val mul_factor: factor -> int -> t -> t
   val mul: t -> t -> t
-  val print: Format.formatter -> t -> unit
+  val print: ascii: bool -> Format.formatter -> t -> unit
 end
 
 module type Poly = sig
@@ -41,6 +41,7 @@ module type Poly = sig
   val sub: t -> t -> t
   val pow: int -> t -> t
   val print: Format.formatter -> t -> unit
+  val print_ascii: Format.formatter -> t -> unit
 end
 
 module MkFactor(Pol: Poly)
@@ -106,10 +107,10 @@ module MkMonom(Fac: Factor)
   let superdigit =
     [| "⁰"; "¹"; "²"; "³"; "⁴"; "⁵"; "⁶"; "⁷"; "⁸"; "⁹" |]
 
-  let print fmt m =
+  let print ~ascii fmt m =
     let superscript n =
       if n = 1 then "" else
-      if false then "^" ^ string_of_int n else
+      if ascii then "^" ^ string_of_int n else
       let rec go n =
         if n = 0 then "" else
         go (n/10) ^ superdigit.(n mod 10)
@@ -213,7 +214,7 @@ module MkPoly(Mon: Monom)
     if n = 0 then const 1. else
     mul pol (pow (n-1) pol)
 
-  let print fmt pol =
+  let print ascii fmt pol =
     Format.fprintf fmt "@[<hov>";
     let is_zero = fold begin fun monom k first ->
         let pref, flt =
@@ -228,15 +229,18 @@ module MkPoly(Mon: Monom)
         else if abs_float (flt -. 1.) <= fsmall then
           Format.fprintf fmt
             (if first then "%s%a" else "@ %s %a")
-            pref Mon.print monom
+            pref (Mon.print ~ascii) monom
         else
           Format.fprintf fmt
             (if first then "%s@[<h>%g %a@]" else "@ %s @[<h>%g %a@]")
-            pref flt Mon.print monom;
+            pref flt (Mon.print ~ascii) monom;
         false
       end pol true in
     if is_zero then Format.fprintf fmt "0";
     Format.fprintf fmt "@]"
+
+  let print_ascii = print true
+  let print = print false
 
   let zero () = zero
 
