@@ -1,0 +1,30 @@
+# A compilation of Abstract Interpretation failures.
+
+function f1(N) do
+  var i, z;
+
+  assume N >= 0;
+  i = 0;
+  z = 0;
+  while i < N do
+    i = i + 1;
+    z = z + 2*i + 1;
+  end
+  # Fail to prove: N >= 0
+  # Removing z = 0 allows to prove it.
+
+end
+
+function f2(x) do
+  var y;
+
+  assume y >= 0;
+  x = 10;
+  while x > 0 do
+    x = x - 1;
+    y = y + x;
+  end
+  # Fail to prove: y >= 0
+  # Removing x = 10 allows to prove it.
+
+end
