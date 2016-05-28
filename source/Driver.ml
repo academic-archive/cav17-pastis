@@ -19,7 +19,7 @@ let argspec = Arg.align
   ; "-dump-ai", Arg.Set dump_ai,
     " Display abstract interpretation results"
   ; "-dump-stats", Arg.Set dump_stats,
-    " Display statistics of the size-tracking analysis"
+    " Display statistics of the analysis"
 
   ; "-no-weaken", Arg.Set no_weaken,
     " Do not automatically add weakening points"
