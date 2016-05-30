@@ -10,8 +10,7 @@ function f1(N) do
     i = i + 1;
     z = z + 2*i + 1;
   end
-  # Fail to prove: N >= 0
-  # Removing z = 0 allows to prove it.
+  assume N >= 0; # polka does not get this one
 
 end
 
@@ -24,7 +23,23 @@ function f2(x) do
     x = x - 1;
     y = y + x;
   end
-  # Fail to prove: y >= 0
-  # Removing x = 10 allows to prove it.
+  assume y >= 0; # polka does not get this one
+
+end
+
+function f3(N) do
+  var i, j, z;
+
+  i = 0;
+  z = 0;
+  assume N >= 0;
+
+  while i < N do
+    z = z + 2*i + 1;
+    i = i + 1;
+  end
+
+  assume N >= 0;   # polka does not get this one
+  assume N-i >= 0; # oct does not get this one
 
 end
