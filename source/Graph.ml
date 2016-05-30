@@ -144,4 +144,4 @@ sig
                (string, absval array) Hashtbl.t
   val is_nonneg: absval -> expr -> bool
 end
-= Graph_Apron
+= Graph_AI_Apron
