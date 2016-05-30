@@ -15,7 +15,7 @@ let flag_sandbox_lib = [ A "-I"; A (sandbox ^ "/lib") ]
 let flag_sandbox_include = [ A "-ccopt"; A ("-I" ^ sandbox ^ "/include") ]
 
 (* Apron specific flags. *)
-let apron_libs = [ "bigarray"; "gmp"; "apron"; "polka" ]
+let apron_libs = [ "bigarray"; "gmp"; "apron"; "oct" ]
 let flag_apron_nat = flag_sandbox_lib @ List.map (fun lib -> A (lib ^ ".cmxa")) apron_libs
 let flag_apron_byt = flag_sandbox_lib @ List.map (fun lib -> A (lib ^ ".cma")) apron_libs
 

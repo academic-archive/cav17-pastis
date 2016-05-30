@@ -393,13 +393,13 @@ let debug_print fmt info graph res =
 
 (* Common API for abstract interpretation modules. *)
 
-type base = Polka.loose Polka.t
+type base = Oct.t
 type absval = (base Apron.Manager.t * base Solver.A.t)
 
 let analyze ~dump fl fstart =
   let graph = HyperGraph.from_funcl fl in
   let info = PSHGraph.info graph in
-  let man = Polka.manager_alloc_loose () in
+  let man = Oct.manager_alloc () in
   let (fpman, res) = Solver.compute man graph fstart in
 
   if dump then begin
