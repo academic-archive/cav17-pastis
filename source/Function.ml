@@ -8,6 +8,7 @@
    a >= max(0, a)                    when a >= 0  (max0_le_arg)
    max(0, a) >= max(0, b)            when a >= b  (max0_monotonic)
    max(0, b) + a - b >= max(0, a)    when a >= b  (max0_sublinear)
+   a * max(0, x) >= max(0, a * x)    when a >= 0  (max0_sublinear_mul)
 
    binom(k, a) >= binom(k, b)        when a >= b  (binom_monotonic)
 
@@ -28,6 +29,7 @@ module Builder
   val max0_le_arg: t -> t
   val max0_monotonic: t -> t
   val max0_sublinear: t -> t
+  val max0_sublinear_mul: t -> Types.expr -> t
   val binom_monotonic: int -> t -> t
   val product: t -> t -> t
   val export: t -> focus
@@ -92,6 +94,12 @@ end
     { proves = Ge (Poly.add (poly_max b) (Poly.sub a b), poly_max a)
     ; checks = i.checks }
 
+  let max0_sublinear_mul i e =
+    let a = prop_Ge0 i.proves in
+    let p = Poly.of_expr e in
+    { proves = Ge (Poly.mul a (poly_max p), poly_max (Poly.mul a p))
+    ; checks = i.checks }
+
   let binom_monotonic k i =
     let a, b = prop_Ge i.proves in
     { proves = Ge (poly_binom k a, poly_binom k b)
@@ -125,6 +133,7 @@ let interp_map =
   ; "max0_le_arg",     DP (IFunc IEnd, Builder.max0_le_arg)
   ; "max0_monotonic",  DP (IFunc IEnd, Builder.max0_monotonic)
   ; "max0_sublinear",  DP (IFunc IEnd, Builder.max0_sublinear)
+  ; "max0_sublinear_mul", DP (IFunc (IExpr IEnd), Builder.max0_sublinear_mul)
   ; "binom_monotonic", DP (INum (IFunc IEnd), Builder.binom_monotonic)
   ; "product",         DP (IFunc (IFunc IEnd), Builder.product)
   ; ">=",              DP (IExpr (IExpr IEnd), Builder.check_ge)
