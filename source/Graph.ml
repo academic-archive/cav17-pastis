@@ -99,42 +99,42 @@ let auto_weaken ({ fun_name; fun_body = g } as graphf) =
   in
 
   let weaken = ref [] in
-  Array.iter begin fun edges ->
-    List.iter begin function
-      | act, dst when is_guard act ->
-        let d_edges = g.g_edges.(dst) in
-        if d_edges = []
-        || not (List.for_all (fun (a, _) -> is_guard a) d_edges)
-          then weaken := dst :: !weaken;
-      | _ -> ()
-    end edges
-  end g.g_edges;
+  let nweaken = ref 0 in
+  let add_weaken =
+    let nnodes = Array.length g.g_edges in
+    fun dst ->
+      weaken := [AWeaken, dst] :: !weaken;
+      incr nweaken;
+      !nweaken - 1 + nnodes
+  in
 
-  let nnodes = Array.length g.g_edges in
-  let weaken = Array.of_list !weaken in
-  let new_end = ref g.g_end in
   let new_edges =
-    Array.mapi begin fun new_node node ->
-      let new_node = new_node + nnodes in
-      let edges = g.g_edges.(node) in
-      g.g_edges.(node) <- [AWeaken, new_node];
-      if node = g.g_end then
-        new_end := new_node;
-      edges
+    Array.mapi begin fun src ->
+      List.map begin function
+        | act, dst when is_guard act ->
+          let d_edges = g.g_edges.(dst) in
+          if d_edges = []
+          || not (List.for_all (fun (a, _) -> is_guard a) d_edges)
+          then (act, add_weaken dst)
+          else (act, dst)
+        | e -> e
+      end
+    end g.g_edges
+  in
+
+  let weaken = Array.of_list (List.rev !weaken) in
+  let new_position =
+    Array.map begin function
+      | [_, dst] -> g.g_position.(dst)
+      | _ -> assert false
     end weaken
   in
-  let new_position =
-    Array.map (fun node -> g.g_position.(node)) weaken in
-
-  let nweaken = Array.length new_edges in
-  stats.weaken_map <- (fun_name, nweaken) :: stats.weaken_map;
-
   let fun_body =
     { g with
-      g_edges = Array.append g.g_edges new_edges;
+      g_edges = Array.append new_edges weaken;
       g_position = Array.append g.g_position new_position;
-      g_end = !new_end
     } in
+  stats.weaken_map <- (fun_name, !nweaken) :: stats.weaken_map;
   { graphf with fun_body }
 
 module AbsInt:
