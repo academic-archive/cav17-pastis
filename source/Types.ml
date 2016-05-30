@@ -38,12 +38,7 @@ type logic =
   | LTrue
   | LFalse
   | LRandom
-  | LLE of expr * expr
-  | LLT of expr * expr
-  | LGE of expr * expr
-  | LGT of expr * expr
-  | LEQ of expr * expr
-  | LNE of expr * expr
+  | LCmp of expr * cmp * expr
   | LAnd of logic * logic
   | LOr of logic * logic
   | LNot of logic

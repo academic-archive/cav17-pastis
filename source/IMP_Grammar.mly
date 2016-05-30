@@ -50,12 +50,12 @@ logic:
     TTRUE            { LTrue }
   | TFALSE           { LFalse }
   | TRANDOM          { LRandom }
-  | expr TLEQ expr   { LLE ($1, $3) }
-  | expr TLT expr    { LLT ($1, $3) }
-  | expr TGEQ expr   { LGE ($1, $3) }
-  | expr TGT expr    { LGT ($1, $3) }
-  | expr TEQ expr    { LEQ ($1, $3) }
-  | expr TNE expr    { LNE ($1, $3) }
+  | expr TLEQ expr   { LCmp ($1, Le, $3) }
+  | expr TLT expr    { LCmp ($1, Lt, $3) }
+  | expr TGEQ expr   { LCmp ($1, Ge, $3) }
+  | expr TGT expr    { LCmp ($1, Gt, $3) }
+  | expr TEQ expr    { LCmp ($1, Eq, $3) }
+  | expr TNE expr    { LCmp ($1, Ne, $3) }
   | logic TAND logic { LAnd ($1, $3) }
   | logic TOR logic  { LOr ($1, $3) }
   | TNOT logic       { LNot $2 }

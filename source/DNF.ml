@@ -22,24 +22,14 @@ let of_logic ground l =
   let rec tpos = function
     | LTrue | LRandom -> true_
     | LFalse -> false_
-    | LLE (e1, e2) -> ground e1 Le e2
-    | LLT (e1, e2) -> ground e1 Lt e2
-    | LGE (e1, e2) -> ground e1 Ge e2
-    | LGT (e1, e2) -> ground e1 Gt e2
-    | LEQ (e1, e2) -> ground e1 Eq e2
-    | LNE (e1, e2) -> ground e1 Ne e2
+    | LCmp (e1, c, e2) -> ground e1 c e2
     | LAnd (l1, l2) -> conjunct (tpos l1) (tpos l2)
     | LOr (l1, l2) -> disjunct (tpos l1) (tpos l2)
     | LNot l -> tneg l
   and tneg = function
     | LFalse | LRandom -> true_
     | LTrue -> false_
-    | LGT (e1, e2) -> ground e1 Le e2
-    | LGE (e1, e2) -> ground e1 Lt e2
-    | LLT (e1, e2) -> ground e1 Ge e2
-    | LLE (e1, e2) -> ground e1 Gt e2
-    | LNE (e1, e2) -> ground e1 Eq e2
-    | LEQ (e1, e2) -> ground e1 Ne e2
+    | LCmp (e1, c, e2) -> ground e1 (Utils.negate_cmp c) e2
     | LOr (l1, l2) -> conjunct (tneg l1) (tneg l2)
     | LAnd (l1, l2) -> disjunct (tneg l1) (tneg l2)
     | LNot l -> tpos l

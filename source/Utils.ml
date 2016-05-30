@@ -18,6 +18,14 @@ let print_position fmt pos =
     pos.pos_file pos.pos_line
     (pos.pos_char - pos.pos_bol + 1)
 
+let negate_cmp = function
+  | Le -> Gt
+  | Lt -> Ge
+  | Ge -> Lt
+  | Gt -> Le
+  | Eq -> Ne
+  | Ne -> Eq
+
 let children = ref []
 
 let show_remove_pdf fpdf =
