@@ -9,19 +9,6 @@
 open Types
 open Graph_Types
 
-module DNF = struct
-  type 'a t = 'a list list
-  let lift x = [[x]]
-  let true_ = [[]]
-  let false_ = []
-  let disjunct = List.rev_append
-  let rec conjunct a b =
-    match a with
-    | [] -> []
-    | x :: a ->
-      disjunct (List.map ((@) x) b) (conjunct a b)
-end
-
 module Translate = struct
 
   (* The logical conditions (type logic) and program expressions
@@ -83,7 +70,7 @@ module Translate = struct
       | LNot l -> tpos l
     in
     let formula = tpos l in
-    if List.mem [] formula then None else
+    if DNF.is_true formula then None else
     Some (List.map begin fun cnj ->
       let ea = C.array_make env (List.length cnj) in
       List.iteri (C.array_set ea) cnj;
