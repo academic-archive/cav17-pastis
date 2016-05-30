@@ -40,36 +40,21 @@ module Translate = struct
 
   let disj_of_logic env l: disj =
     let cmp e1 c e2 =
+      let e1, c, e2 =
+        match c with
+        | Le -> e2, C.SUPEQ, e1
+        | Lt -> e2, C.SUP, e1
+        | Ge -> e1, C.SUPEQ, e2
+        | Gt -> e1, C.SUP, e2
+        | Eq -> e1, C.EQ, e2
+        | Ne -> e1, C.DISEQ, e2
+      in
       let e1 = texpr_of_expr e1 in
       let e2 = texpr_of_expr e2 in
-      C.make (E.of_expr env (E.Binop (E.Sub, e1, e2, E.Int, E.Rnd))) c
+      DNF.lift (C.make
+        (E.of_expr env (E.Binop (E.Sub, e1, e2, E.Int, E.Rnd))) c)
     in
-    let rec tpos = function
-      | LTrue | LRandom -> DNF.true_
-      | LFalse -> DNF.false_
-      | LLE (e1, e2) -> DNF.lift (cmp e2 C.SUPEQ e1)
-      | LLT (e1, e2) -> DNF.lift (cmp e2 C.SUP e1)
-      | LGE (e1, e2) -> DNF.lift (cmp e1 C.SUPEQ e2)
-      | LGT (e1, e2) -> DNF.lift (cmp e1 C.SUP e2)
-      | LEQ (e1, e2) -> DNF.lift (cmp e1 C.EQ e2)
-      | LNE (e1, e2) -> DNF.lift (cmp e1 C.DISEQ e2)
-      | LAnd (l1, l2) -> DNF.conjunct (tpos l1) (tpos l2)
-      | LOr (l1, l2) -> DNF.disjunct (tpos l1) (tpos l2)
-      | LNot l -> tneg l
-    and tneg = function
-      | LFalse | LRandom -> DNF.true_
-      | LTrue -> DNF.false_
-      | LGT (e1, e2) -> DNF.lift (cmp e2 C.SUPEQ e1)
-      | LGE (e1, e2) -> DNF.lift (cmp e2 C.SUP e1)
-      | LLT (e1, e2) -> DNF.lift (cmp e1 C.SUPEQ e2)
-      | LLE (e1, e2) -> DNF.lift (cmp e1 C.SUP e2)
-      | LNE (e1, e2) -> DNF.lift (cmp e1 C.EQ e2)
-      | LEQ (e1, e2) -> DNF.lift (cmp e1 C.DISEQ e2)
-      | LOr (l1, l2) -> DNF.conjunct (tneg l1) (tneg l2)
-      | LAnd (l1, l2) -> DNF.disjunct (tneg l1) (tneg l2)
-      | LNot l -> tpos l
-    in
-    let formula = tpos l in
+    let formula = DNF.of_logic cmp l in
     if DNF.is_true formula then None else
     Some (List.map begin fun cnj ->
       let ea = C.array_make env (List.length cnj) in
