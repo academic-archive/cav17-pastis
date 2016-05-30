@@ -256,7 +256,11 @@ struct Func {
 std::string valueName(Value *v)
 {
 	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
+#if LLVM_MAJOR > 3 || (LLVM_MAJOR == 3 && LLVM_MINOR >= 8)
 		const DataLayout &DL = GEP->getModule()->getDataLayout();
+#else
+		const DataLayout &DL = *GEP->getDataLayout();
+#endif
 		APInt Off(64, 0);
 		GEP->accumulateConstantOffset(DL, Off);
 		return "_at" + Off.toString(10, true) + valueName(GEP->getPointerOperand());
