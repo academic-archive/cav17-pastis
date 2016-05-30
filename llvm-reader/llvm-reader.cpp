@@ -253,38 +253,51 @@ struct Func {
 	: name(n), arguments(args), ret(-1u), nextNode(0) {}
 };
 
-class ValueTracker {
-	int nextSlot;
-	DenseMap<Value *, int> vMap;
-public:
-	int getLocalSlot(Value *v)
-	{
-		if (vMap.count(v) == 0)
-			return vMap[v] = nextSlot++;
-		else
-			return vMap[v];
-	}
-
-	ValueTracker()
-	: nextSlot(0) {}
-};
-
-ValueTracker VTrack;
-
 std::string valueName(Value *v)
 {
+	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
+		const DataLayout &DL = GEP->getModule()->getDataLayout();
+		APInt Off(64, 0);
+		GEP->accumulateConstantOffset(DL, Off);
+		return "_at" + Off.toString(10, true) + valueName(GEP->getPointerOperand());
+	}
+
+	if (LoadInst *LI = dyn_cast<LoadInst>(v))
+		return "_ld_" + valueName(LI->getPointerOperand());
+
 	if (v->hasName())
 		return v->getName();
-	else {
-		int SlotNum = VTrack.getLocalSlot(v);
-		return "_" + std::to_string(SlotNum);
-	}
+
+	for (User *U: v->users())
+		if (StoreInst *SI = dyn_cast<StoreInst>(U))
+			if (Argument *Arg = dyn_cast<Argument>(SI->getValueOperand()))
+				if (Arg->getType()->isPointerTy())
+					v->takeName(Arg);
+
+	if (!v->hasName())
+		v->setName("_tmp");
+
+	return v->getName();
 }
 
-bool isTracked(Value *v)
+bool isTracked(Value *v, bool ptr = false)
 {
-	AllocaInst *AI = dyn_cast<AllocaInst>(v);
-	return AI && AI->isStaticAlloca() && AI->getAllocatedType()->isIntegerTy();
+	/* TODO: Use LLVM's alias analysis to make sure those variables
+	   are only modified through GEPs of the same kind.
+	*/
+	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
+		if (!GEP->hasAllConstantIndices())
+			return false;
+		return isTracked(GEP->getPointerOperand());
+	}
+
+	if (LoadInst *LI = dyn_cast<LoadInst>(v))
+		return isTracked(LI->getPointerOperand(), true);
+
+	if (AllocaInst *AI = dyn_cast<AllocaInst>(v))
+		return AI->isStaticAlloca() && (ptr || AI->getAllocatedType()->isIntegerTy());
+
+	return false;
 }
 
 std::unique_ptr<Expr> valueExpr(Value *v)
