@@ -217,7 +217,7 @@ module Solver = struct
               L.set id (-l/k) i
           end abs'
         in
-        Presburger.meet abs' abs
+        List.rev_append abs' abs
 
       else
         (* Case 2. *)
