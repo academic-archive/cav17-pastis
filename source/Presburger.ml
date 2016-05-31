@@ -186,6 +186,7 @@ let join ps1 ps2 =
   List.rev_append ps1 ps2
     |> List.filter (implies ps1)
     |> List.filter (implies ps2)
+    |> minimize
 
 let print fmt ps =
   if ps = [] then Format.pp_print_string fmt "Top" else
