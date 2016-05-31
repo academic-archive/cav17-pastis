@@ -26,6 +26,10 @@ module L = struct
 
   let const k = {m = empty; k}
 
+  let eq a b =
+    let n = filter (fun _ -> (<>) 0) in
+    compare ( - ) (n a.m) (n b.m) = 0 && a.k = b.k
+
   let coeff id {m;_} =
     try find id m with Not_found -> 0
 
@@ -167,13 +171,16 @@ let implies ps a =
   let nega = L.addk 1 (L.mult (-1) a) in
   not (sat (nega :: ps))
 
-let meet ?(minimize=false) ps1 ps2 =
-  if minimize then
-    List.fold_left
-      (fun ps a -> if implies ps a then ps else a :: ps)
-      ps2 ps1
-  else
-    List.rev_append ps1 ps2
+let minimize =
+  let rec f ps = function
+    | a :: ps' ->
+      if implies ps a then f ps ps' else
+      f (a :: List.filter (fun b -> not (implies [a] b)) ps) ps'
+    | [] -> ps
+  in f []
+
+let meet ps1 ps2 =
+  minimize (List.rev_append ps1 ps2)
 
 let join ps1 ps2 =
   List.rev_append ps1 ps2

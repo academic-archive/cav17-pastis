@@ -144,7 +144,7 @@ module Solver = struct
           Presburger.bottom absl
       end
     ; odiff = None
-    ; widening = widening
+    ; widening = (fun _ -> widening)
     ; abstract_init = (fun _ -> [])
     ; arc_init = (fun _ -> ())
     ; apply = apply graph
@@ -156,11 +156,11 @@ module Solver = struct
       end
     ; accumulate = false
     ; print_fmt = Format.std_formatter
-    ; print_analysis = true
-    ; print_component = true
-    ; print_step = true
-    ; print_state = true
-    ; print_postpre = true
+    ; print_analysis = false
+    ; print_component = false
+    ; print_step = false
+    ; print_state = false
+    ; print_postpre = false
     ; print_workingsets = false
     ; dot_fmt = None
     ; dot_vertex = dont_print
@@ -257,11 +257,13 @@ module Solver = struct
               (merge lbs lbs', merge ubs ubs')
           end pe ([(1, L.const 0)], [(1, L.const 0)])
         in
-        let lid = L.set id 1 (L.const 0) in
-        Utils._TODO ""
-        (* let lbs = List.map (fun i -> L.plus (-1) lid i) lbs in
-        let ubs = List.map (fun i -> L.plus (-1) i lid) ubs in
-        List.rev_append lbs (List.rev_append ubs abs) *)
+        let bound low (k, l) =
+          let l = L.plus (-1) (L.set id k (L.const 0)) l in
+          if low then l else L.mult (-1) l
+        in
+        let lbs = List.map (bound true) lbs in
+        let ubs = List.map (bound false) ubs in
+        List.rev_append lbs (List.rev_append ubs abs)
 
     (* General polynomial assignment, the best we
        we can do is bound independently each monom
@@ -278,8 +280,9 @@ module Solver = struct
       | TAssign (id, pe) -> apply_TAssign tabs.(0) id pe
     in ((), res)
 
-  let widening _ _a _b =
-    Utils._TODO "widening"
+  let widening a b =
+    let in_a x = List.exists (L.eq x) a in
+    Presburger.minimize (List.filter in_a b)
 
   let compute graph fstart =
     let info = PSHGraph.info graph in
