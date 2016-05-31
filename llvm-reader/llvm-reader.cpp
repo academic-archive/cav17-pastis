@@ -263,11 +263,12 @@ std::string valueName(Value *v)
 #endif
 		APInt Off(64, 0);
 		GEP->accumulateConstantOffset(DL, Off);
-		return "_at" + Off.toString(10, true) + valueName(GEP->getPointerOperand());
+		Value *vptr = GEP->getPointerOperand();
+		return valueName(vptr) + "_off" + Off.toString(10, true);
 	}
 
 	if (LoadInst *LI = dyn_cast<LoadInst>(v))
-		return "_ld_" + valueName(LI->getPointerOperand());
+		return valueName(LI->getPointerOperand()) + "_dref";
 
 	if (v->hasName())
 		return v->getName();
@@ -284,6 +285,26 @@ std::string valueName(Value *v)
 	return v->getName();
 }
 
+bool checkAllUses(Value *v)
+{
+	/* Checks that the value is only used in loads
+	 * and in at most one store where the stored value
+	 * is an argument.
+	 */
+
+	int nstore = 0;
+	for (User *U: v->users()) {
+		if (StoreInst *SI = dyn_cast<StoreInst>(U)) {
+			if (!isa<Argument>(SI->getValueOperand()))
+				return false;
+			nstore++;
+		}
+		else if (!isa<LoadInst>(U))
+			return false;
+	}
+	return nstore <= 1;
+}
+
 bool isTracked(Value *v, bool ptr = false)
 {
 	/* TODO: Use LLVM's alias analysis to make sure those variables
@@ -292,14 +313,21 @@ bool isTracked(Value *v, bool ptr = false)
 	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
 		if (!GEP->hasAllConstantIndices())
 			return false;
-		return isTracked(GEP->getPointerOperand());
+		return !ptr && isTracked(GEP->getPointerOperand(), ptr);
 	}
 
-	if (LoadInst *LI = dyn_cast<LoadInst>(v))
-		return isTracked(LI->getPointerOperand(), true);
+	if (LoadInst *LI = dyn_cast<LoadInst>(v)) {
+		return !ptr && isTracked(LI->getPointerOperand(), true);
+	}
 
-	if (AllocaInst *AI = dyn_cast<AllocaInst>(v))
-		return AI->isStaticAlloca() && (ptr || AI->getAllocatedType()->isIntegerTy());
+	if (AllocaInst *AI = dyn_cast<AllocaInst>(v)) {
+		if (!AI->isStaticAlloca())
+			return false;
+		if (ptr)
+			return checkAllUses(AI);
+		else
+			return AI->getAllocatedType()->isIntegerTy();
+	}
 
 	return false;
 }
