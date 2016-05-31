@@ -5,6 +5,7 @@ let fsmall = 1e-7
 module type Factor = sig
   type t = Var of Types.id | Max of poly and poly
   val compare: t -> t -> int
+  val degree: t -> int
   val print: Format.formatter -> t -> unit
 end
 
@@ -12,7 +13,9 @@ module type Monom = sig
   type t and factor
   val is_one: t -> bool
   val compare: t -> t -> int
+  val degree: t -> int
   val fold: (factor -> int -> 'a -> 'a) -> t -> 'a -> 'a
+  val pick: t -> (factor * int)
   val one: t
   val of_factor: factor -> int -> t
   val of_var: Types.id -> t
@@ -29,6 +32,7 @@ module type Poly = sig
   val of_monom: monom -> float -> t
   val of_expr: Types.expr -> t
   val compare: t -> t -> int
+  val degree: t -> int
   val fold: (monom -> float -> 'a -> 'a) -> t -> 'a -> 'a
   val is_const: t -> float option
   val get_coeff: monom -> t -> float
@@ -60,6 +64,10 @@ module MkFactor(Pol: Poly)
     | Var _, Max _ -> -1
     | Max _, Var _ -> +1
 
+  let degree = function
+    | Var _ -> 1
+    | Max p -> Pol.degree p
+
   let print fmt = function
     | Var v -> Format.fprintf fmt "%s" v
     | Max p -> Format.fprintf fmt "max(0, %a)" Pol.print p
@@ -82,6 +90,10 @@ module MkMonom(Fac: Factor)
   let compare = (M.compare compare: t -> t -> int)
   let fold = M.fold
   let one = M.empty
+  let pick = M.choose
+
+  let degree m =
+    fold (fun f e d -> d + e * Fac.degree f) m 0
 
   let of_factor f e =
     if e = 0 then one else M.singleton f e
@@ -146,6 +158,9 @@ module MkPoly(Mon: Monom)
   let compare = (M.compare compare: t -> t -> int)
   let fold = M.fold
   let of_monom m k = M.singleton m k
+
+  let degree p =
+    fold (fun m _ d -> max d (Mon.degree m)) p 0
 
   let const k =
     if abs_float k <= fsmall
