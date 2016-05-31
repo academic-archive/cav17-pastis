@@ -174,9 +174,9 @@ let meet ?(minimize=false) ps1 ps2 =
     ps1 @ ps2
 
 let join ps1 ps2 =
-  let ps2' = List.filter (implies ps1)  ps2 in
-  let ps1' = List.filter (implies ps2)  ps1 in
-  meet ~minimize:true ps2' ps1'
+  (ps1 @ ps2)
+    |> List.filter (implies ps1)
+    |> List.filter (implies ps2)
 
 let print fmt ps =
   if ps = [] then Format.pp_print_string fmt "T" else
