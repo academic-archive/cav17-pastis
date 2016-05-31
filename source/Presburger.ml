@@ -1,11 +1,9 @@
 (* Quentin Carbonneaux - 2016 *)
 
-open Types
-
 let debug = false
 
 module Id = struct
-  type t = id
+  type t = Types.id
   let compare = compare
 end
 
@@ -74,7 +72,8 @@ module L = struct
     in
     let first = p true (bindings m) in
     if k <> 0 then
-      fprintf fmt "%s%d" (sign first k) (abs k)
+      fprintf fmt (if first then "%s%d" else "%s@ %d")
+        (sign first k) (abs k)
     else if first then
       fprintf fmt "0"
 end
@@ -161,6 +160,9 @@ let sat ps =
 
 (* Applications. *)
 
+let bottom =
+  [L.const 1]
+
 let implies ps a =
   let nega = L.addk 1 (L.mult (-1) a) in
   not (sat (nega :: ps))
@@ -171,15 +173,16 @@ let meet ?(minimize=false) ps1 ps2 =
       (fun ps a -> if implies ps a then ps else a :: ps)
       ps2 ps1
   else
-    ps1 @ ps2
+    List.rev_append ps1 ps2
 
 let join ps1 ps2 =
-  (ps1 @ ps2)
+  List.rev_append ps1 ps2
     |> List.filter (implies ps1)
     |> List.filter (implies ps2)
 
 let print fmt ps =
-  if ps = [] then Format.pp_print_string fmt "T" else
+  if ps = [] then Format.pp_print_string fmt "Top" else
+  if not (sat ps) then Format.pp_print_string fmt "Bot" else
   Print.list ~first:"@[<h>" ~sep:" &&@ " ~last:"@]"
     (fun fmt -> Format.fprintf fmt "%a ≤ 0" L.print)
     fmt ps
