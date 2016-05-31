@@ -361,4 +361,8 @@ let analyze ~dump fl fstart =
   end;
   resh
 
-let is_nonneg abs expr = false
+let is_nonneg abs expr =
+  let pe = Poly.of_expr expr in
+  if Poly.degree pe > 1 then false else
+  let l = L.mult (-1) (Translate.linear_of_poly pe) in
+  Presburger.implies abs l
