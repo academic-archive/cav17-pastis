@@ -285,7 +285,7 @@ end
 
 end
 
-let run ai_results fl start query =
+let run ai_results ai_is_nonneg fl start query =
   reset_stats ();
 
   let f = List.find (fun f -> f.fun_name = start) fl in
@@ -304,7 +304,7 @@ let run ai_results fl start query =
   *)
   let find_focus f node =
     let ai = Hashtbl.find ai_results f in
-    let ok (c, _) = List.for_all (AbsInt.is_nonneg ai.(node)) c in
+    let ok (c, _) = List.for_all (ai_is_nonneg ai.(node)) c in
     let res = List.map snd (List.filter ok focus) in
     stats.max_focus <- max (List.length res) stats.max_focus;
     res

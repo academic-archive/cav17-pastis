@@ -6,12 +6,15 @@ let dump_ai = ref false
 let dump_stats = ref false
 let no_weaken = ref false
 let ascii = ref false
+let ai = ref "simple"
 
 let usagemsg = Printf.sprintf "usage: %s [OPTIONS] FILE\n" Sys.argv.(0)
 let argspec = Arg.align
 
   [ "-func", Arg.String (fun s -> main_func := Some s),
     "<fn> Analyze the specified function"
+  ; "-ai", Arg.Symbol (["apron"; "simple"], fun s -> ai := s),
+    " Select the abstract interpretation backend"
 
   ; "-ascii", Arg.Set ascii,
     " Output results using ascii only"
@@ -54,12 +57,18 @@ let main () =
       if !no_weaken then g_file else
       List.map Graph.auto_weaken g_file
     in
-    let ai_results = Graph.AbsInt.analyze ~dump:!dump_ai g_file fstart in
+    let module AI = (val begin
+        match !ai with
+        | "apron" -> (module Graph.AbsInt.Apron)
+        | _       -> (module Graph.AbsInt.Simple)
+      end: Graph.AbsInt)
+    in
+    let ai_results = AI.analyze ~dump:!dump_ai g_file fstart in
     let query =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))
     in
-    let st_results = Analysis.run ai_results g_file fstart query in
+    let st_results = Analysis.run ai_results AI.is_nonneg g_file fstart query in
     let poly_print =
       if !ascii then Polynom.Poly.print_ascii else Polynom.Poly.print
     in

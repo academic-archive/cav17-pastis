@@ -137,11 +137,14 @@ let auto_weaken ({ fun_name; fun_body = g } as graphf) =
   stats.weaken_map <- (fun_name, !nweaken) :: stats.weaken_map;
   { graphf with fun_body }
 
-module AbsInt:
-sig
+module type AbsInt = sig
   type absval
   val analyze: dump:bool -> func list -> id ->
                (string, absval array) Hashtbl.t
   val is_nonneg: absval -> expr -> bool
 end
-= Graph_AI_Apron
+
+module AbsInt = struct
+  module Apron: AbsInt = Graph_AI_Apron
+  module Simple: AbsInt = Graph_AI_Simple
+end
