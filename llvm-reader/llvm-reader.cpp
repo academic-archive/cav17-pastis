@@ -323,10 +323,7 @@ bool isTracked(Value *v, bool ptr = false)
 	if (AllocaInst *AI = dyn_cast<AllocaInst>(v)) {
 		if (!AI->isStaticAlloca())
 			return false;
-		if (ptr)
-			return checkAllUses(AI);
-		else
-			return AI->getAllocatedType()->isIntegerTy();
+		return !ptr || checkAllUses(AI);
 	}
 
 	return false;
@@ -456,9 +453,10 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 			 */
 
 			Value *vptr = SI->getPointerOperand();
-			if (isTracked(vptr)) {
+			Value *vop = SI->getValueOperand();
+			if (vop->getType()->isIntegerTy() && isTracked(vptr)) {
 				unsigned newNode = f.newNode();
-				auto e = valueExpr(SI->getValueOperand());
+				auto e = valueExpr(vop);
 				f.addEdge(newNode, Edge(node, valueName(vptr), std::move(e)));
 				node = newNode;
 			}
