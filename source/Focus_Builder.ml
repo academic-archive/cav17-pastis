@@ -31,7 +31,7 @@ let prop_Ge = function
 
 type t =
   { proves: Poly.t property
-  ; checks: Types.expr list }
+  ; checks: Poly.t list }
 
 let export i =
   (i.checks, prop_Ge0 i.proves)
@@ -54,16 +54,14 @@ let export i =
 *)
 
 let check_ge a b =
-  { proves = Ge (Poly.of_expr a, Poly.of_expr b)
-  ; checks = [Types.ESub (a, b)] }
+  { proves = Ge (a, b)
+  ; checks = [Poly.sub a b] }
 
 let max0_ge_0 a =
-  let a = Poly.of_expr a in
   { proves = Ge0 (poly_max a)
   ; checks = [] }
 
 let max0_ge_arg a =
-  let a = Poly.of_expr a in
   { proves = Ge (poly_max a, a)
   ; checks = [] }
 
@@ -82,10 +80,9 @@ let max0_sublinear i =
   { proves = Ge (Poly.add (poly_max b) (Poly.sub a b), poly_max a)
   ; checks = i.checks }
 
-let max0_sublinear_mul i e =
+let max0_sublinear_mul i a =
   let a = prop_Ge0 i.proves in
-  let p = Poly.of_expr e in
-  { proves = Ge (Poly.mul a (poly_max p), poly_max (Poly.mul a p))
+  { proves = Ge (Poly.mul a (poly_max a), poly_max (Poly.mul a a))
   ; checks = i.checks }
 
 let binom_monotonic k i =

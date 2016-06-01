@@ -27,6 +27,38 @@ module Translate = struct
      or true (if None). *)
   type disj = C.earray list option
 
+  let texpr_of_poly p: E.expr =
+    let open Polynom in
+    let rec pow n x =
+      if n = 0 then failwith "invalid argument" else
+      if n = 1 then x else
+      E.Binop (E.Mul, pow (n-1) x, x, E.Int, E.Rnd)
+    in
+    let trf = function
+      | Factor.Var v -> E.Var (Apron.Var.of_string v)
+      | _ -> failwith "invalid argument"
+    in
+    let trm m =
+      let (f, e) = Monom.pick m in
+      Monom.fold (fun f e trm ->
+        E.Binop (E.Mul, pow e (trf f), trm, E.Int, E.Rnd))
+        m (pow e (trf f))
+    in
+    match
+      Poly.fold begin fun m k trp ->
+        let k = E.Cst (Apron.Coeff.s_of_float k) in
+        let mk =
+          if Monom.is_one m then k else
+          E.Binop (E.Mul, k, trm m, E.Int, E.Rnd)
+        in
+        match trp with
+        | None -> Some mk
+        | Some e -> Some (E.Binop (E.Add, mk, e, E.Int, E.Rnd))
+      end p None
+    with
+    | None -> E.Cst (Apron.Coeff.s_of_int 0)
+    | Some e -> e
+
   let texpr_of_expr e: E.expr =
     let rec tr = function
       | ERandom -> E.Cst (Apron.Coeff.i_of_float neg_infinity infinity)
@@ -403,8 +435,8 @@ let analyze ~dump fl fstart =
   end;
   resh
 
-let is_nonneg (man, abs) expr =
-  let texpr = Translate.texpr_of_expr expr in
+let is_nonneg (man, abs) pol =
+  let texpr = Translate.texpr_of_poly pol in
   let env = Solver.A.env abs in
   let texpr = Translate.E.of_expr env texpr in
   let tcons = Translate.C.make texpr Translate.C.SUPEQ in

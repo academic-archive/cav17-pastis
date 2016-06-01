@@ -141,7 +141,7 @@ module type AbsInt = sig
   type absval
   val analyze: dump:bool -> func list -> id ->
                (string, absval array) Hashtbl.t
-  val is_nonneg: absval -> expr -> bool
+  val is_nonneg: absval -> Polynom.Poly.t -> bool
   val get_nonneg: absval -> Polynom.Poly.t list
 end
 

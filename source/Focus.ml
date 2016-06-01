@@ -1,12 +1,14 @@
 (* Quentin Carbonneaux - 2016 *)
 
+open Polynom
+
 module Builder = Focus_Builder
 
-type focus = Types.expr list * Polynom.Poly.t
+type focus = Poly.t list * Poly.t
 
 type _ interp =
   | IFunc: 'a interp -> (Builder.t -> 'a) interp
-  | IExpr: 'a interp -> (Types.expr -> 'a) interp
+  | IExpr: 'a interp -> (Poly.t -> 'a) interp
   | INum: 'a interp -> (int -> 'a) interp
   | IEnd: Builder.t interp
 
@@ -51,7 +53,7 @@ let interpret fe =
     | IExpr i ->
       let arg, l = getarg l in
       let arg = match arg with
-        | Types.FBase e -> e
+        | Types.FBase e -> Poly.of_expr e
         | _ ->
           Format.eprintf "%a: expression expected as %s argument of %s@."
             Utils.print_position pos (nth n) fname;
@@ -68,7 +70,7 @@ let interpret fe =
       iargs pos fname (DP (i, f arg)) l (n+1)
 
   and interp = function
-    | Types.FBase e -> Builder.check_ge e (Types.ENum 0)
+    | Types.FBase e -> Builder.check_ge (Poly.of_expr e) (Poly.zero ())
     | Types.FApply (f, l, pos) ->
       try iargs pos f (List.assoc f interp_map) l 0
       with Not_found ->
