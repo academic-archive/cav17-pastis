@@ -87,7 +87,9 @@ let main () =
     end;
     if !dump_stats then begin
       let open Format in
-      let { Analysis.num_lpvars; num_lpcons; max_focus } = Analysis.stats in
+      let { Analysis.num_lpvars; num_lpcons;
+            max_focus; lp_runtime }
+        = Analysis.stats in
       let { Graph.weaken_map } = Graph.stats in
       printf "@.Statistics:@.    @[<v>";
       if not !no_weaken then begin
@@ -100,7 +102,8 @@ let main () =
       end;
       printf "Number of LP variables: %d@ " num_lpvars;
       printf "Number of LP constraints: %d@ " num_lpcons;
-      printf "Maximum focus functions in use: %d" max_focus;
+      printf "Maximum focus functions in use: %d@ " max_focus;
+      printf "LP solver runtime: %.3fs" !lp_runtime;
       printf "@]@.";
     end;
     0

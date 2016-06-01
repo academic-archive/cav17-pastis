@@ -8,12 +8,14 @@ type stats =
   { mutable num_lpvars: int
   ; mutable num_lpcons: int
   ; mutable max_focus: int
+  ; lp_runtime: float ref
   }
 
 let stats =
   { num_lpvars = 0
   ; num_lpcons = 0
   ; max_focus = 0
+  ; lp_runtime = ref 0.
   }
 
 let reset_stats () =
@@ -21,6 +23,7 @@ let reset_stats () =
     stats.num_lpvars <- 0;
     stats.num_lpcons <- 0;
     stats.max_focus <- 0;
+    stats.lp_runtime := 0.;
   end
 
 type order =
@@ -245,45 +248,47 @@ end
     List.iter (fun k ->
       add_lprow_array [| vmax, 1.; k, -1. |] Ge) kpl;
 
-    (* Initial solving call trying to minimize the
-       coefficients of the frame L and the max of
-       all coefficients of pl polynomials.
-    *)
-    let obj = Clp.objective_coefficients () in
-    List.iter (fun k -> obj.(k) <- 1.) !absl;
-    obj.(vmax) <- 1.;
-    Clp.change_objective_coefficients obj;
-    Clp.set_log_level 0;
-    Clp.initial_solve ();
-    if Clp.status () <> 0 then None else
+    Time.wrap_duration stats.lp_runtime begin fun () ->
+      (* Initial solving call trying to minimize the
+         coefficients of the frame L and the max of
+         all coefficients of pl polynomials.
+      *)
+      let obj = Clp.objective_coefficients () in
+      List.iter (fun k -> obj.(k) <- 1.) !absl;
+      obj.(vmax) <- 1.;
+      Clp.change_objective_coefficients obj;
+      Clp.set_log_level 0;
+      Clp.initial_solve ();
+      if Clp.status () <> 0 then None else
 
-    (* Second solving call, this time minimizing
-       the sum of coefficients of the polynomials
-       in pl.
-    *)
-    let sol = Clp.primal_column_solution () in
-    List.iter (fun k ->
-      obj.(k) <- 0.;
-      add_lprow_array [| k, 1. |] Eq ~k:sol.(k)) !absl;
-    List.iter (fun k ->
-      add_lprow_array [| k, 1. |] Ge ~k:(-100.);
-      obj.(k) <- 1.) kpl;
-    add_lprow_array [| vmax, 1. |] Eq ~k:sol.(vmax);
-    obj.(vmax) <- 0.;
-    Clp.change_objective_coefficients obj;
-    Clp.primal ();
-    if Clp.status () <> 0 then None else
+      (* Second solving call, this time minimizing
+         the sum of coefficients of the polynomials
+         in pl.
+      *)
+      let sol = Clp.primal_column_solution () in
+      List.iter (fun k ->
+        obj.(k) <- 0.;
+        add_lprow_array [| k, 1. |] Eq ~k:sol.(k)) !absl;
+      List.iter (fun k ->
+        add_lprow_array [| k, 1. |] Ge ~k:(-100.);
+        obj.(k) <- 1.) kpl;
+      add_lprow_array [| vmax, 1. |] Eq ~k:sol.(vmax);
+      obj.(vmax) <- 0.;
+      Clp.change_objective_coefficients obj;
+      Clp.primal ();
+      if Clp.status () <> 0 then None else
 
-    (* Build polynomial solution. *)
-    let sol = Clp.primal_column_solution () in
-    Some (M.fold begin fun m le poly ->
-      let k =
-        Hashtbl.fold begin fun v kv k ->
-          k +. kv *. sol.(v)
-        end le 0.
-      in Poly.add_monom m k poly
-      end annot (Poly.zero ())
-    )
+      (* Build polynomial solution. *)
+      let sol = Clp.primal_column_solution () in
+      Some (M.fold begin fun m le poly ->
+        let k =
+          Hashtbl.fold begin fun v kv k ->
+            k +. kv *. sol.(v)
+          end le 0.
+        in Poly.add_monom m k poly
+        end annot (Poly.zero ())
+      )
+    end
 
 end
 
