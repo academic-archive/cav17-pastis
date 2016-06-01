@@ -365,7 +365,7 @@ let is_nonneg abs expr =
   let pe = Poly.of_expr expr in
   if Poly.degree pe > 1 then false else
   let l = L.mult (-1) (Translate.linear_of_poly pe) in
-  Presburger.implies abs l
+  List.exists (L.eq l) abs || Presburger.implies abs l
 
 let get_nonneg abs =
   let neg x = float_of_int (-x) in
