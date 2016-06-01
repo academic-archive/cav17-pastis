@@ -58,7 +58,7 @@ let main () =
     let g_file = List.map Graph.from_imp imp_file in
     let g_file =
       if !no_weaken then g_file else
-      List.map Graph.auto_weaken g_file
+      List.map Heuristics.add_weaken g_file
     in
     let module AI = (val begin
         match !ai with
@@ -73,7 +73,7 @@ let main () =
     in
     let g_file =
       if !no_focus then g_file else
-      List.map (Focus_Auto.add_focus ai_results AI.get_nonneg) g_file
+      List.map (Heuristics.add_focus ai_results AI.get_nonneg) g_file
     in
     let st_results = Analysis.run ai_results AI.is_nonneg g_file fstart query in
     let poly_print =
