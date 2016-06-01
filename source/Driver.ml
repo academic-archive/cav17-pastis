@@ -5,6 +5,7 @@ let main_func = ref None
 let dump_ai = ref false
 let dump_stats = ref false
 let no_weaken = ref false
+let no_focus = ref false
 let ascii = ref false
 let ai = ref "simple"
 
@@ -26,6 +27,8 @@ let argspec = Arg.align
 
   ; "-no-weaken", Arg.Set no_weaken,
     " Do not automatically add weakening points"
+  ; "-no-focus", Arg.Set no_focus,
+    " Do not automatically add focus functions"
   ]
 
 let annonarg s =
@@ -67,6 +70,10 @@ let main () =
     let query =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))
+    in
+    let g_file =
+      if !no_focus then g_file else
+      List.map (Focus_Auto.add_focus ai_results AI.get_nonneg) g_file
     in
     let st_results = Analysis.run ai_results AI.is_nonneg g_file fstart query in
     let poly_print =
