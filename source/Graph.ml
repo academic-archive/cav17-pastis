@@ -49,20 +49,20 @@ let from_imp impf =
       beg
     | IMP.IIf (log, bi, be) ->
       let beg = new_node pos in
-      let begi = gob fin loo bi.IMP.b_body in
-      let bege = gob fin loo be.IMP.b_body in
+      let begi = gob fin loo bi in
+      let bege = gob fin loo be in
       new_edge beg (AGuard log) begi;
       new_edge beg (AGuard (LNot log)) bege;
       beg
     | IMP.IWhile (log, b) ->
       let jmp = new_node b.IMP.b_end_p in
-      let begb = gob jmp fin b.IMP.b_body in
+      let begb = gob jmp fin b in
       new_edge jmp (AGuard log) begb;
       new_edge jmp (AGuard (LNot log)) fin;
       jmp
     | IMP.ILoop b ->
       let jmp = new_node b.IMP.b_end_p in
-      let begb = gob jmp fin b.IMP.b_body in
+      let begb = gob jmp fin b in
       new_edge jmp (AGuard LTrue) begb;
       begb
     | IMP.ICall (idl, idf, el) ->
@@ -70,15 +70,21 @@ let from_imp impf =
       new_edge beg (ACall (idl, idf, el)) fin;
       beg
 
-  and gob fin loo = function
+  and goil fin loo = function
     | [] -> fin
     | (i, pos) :: b ->
-      let fin = gob fin loo b in
+      let fin = goil fin loo b in
       goi fin loo pos i
+
+  and gob fin loo { IMP.b_end_p; b_body } =
+    let beg = new_node b_end_p in
+    new_edge beg (AGuard LTrue) fin;
+    goil beg loo b_body
+
   in
 
   let g_end = new_node impf.fun_end_p in
-  let g_start = gob g_end (-1) impf.fun_body.IMP.b_body in
+  let g_start = gob g_end (-1) impf.fun_body in
   let g_position = Array.make !next_node impf.fun_end_p in
   let g_edges = Array.make !next_node [] in
   for i = 0 to !next_node - 1 do
