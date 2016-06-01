@@ -265,7 +265,9 @@ end
     List.iter (fun k ->
       obj.(k) <- 0.;
       add_lprow_array [| k, 1. |] Eq ~k:sol.(k)) !absl;
-    List.iter (fun k -> obj.(k) <- 1.) kpl;
+    List.iter (fun k ->
+      add_lprow_array [| k, 1. |] Ge ~k:(-100.);
+      obj.(k) <- 1.) kpl;
     add_lprow_array [| vmax, 1. |] Eq ~k:sol.(vmax);
     obj.(vmax) <- 0.;
     Clp.change_objective_coefficients obj;
