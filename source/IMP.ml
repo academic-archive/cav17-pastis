@@ -18,7 +18,7 @@ let parse_file f =
   try
     let l = IMP_Grammar.file IMP_Lexer.token lexbuf in
     List.map (fun f ->
-      { f with fun_focus = List.map Function.interpret f.fun_focus } ) l
+      { f with fun_focus = List.map Focus.interpret f.fun_focus } ) l
   with Parsing.Parse_error ->
     let startp = Lexing.lexeme_start_p lexbuf in
     Format.eprintf "%s:%i:%i: syntax error near '%s'@."
