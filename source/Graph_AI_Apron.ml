@@ -409,3 +409,5 @@ let is_nonneg (man, abs) expr =
   let texpr = Translate.E.of_expr env texpr in
   let tcons = Translate.C.make texpr Translate.C.SUPEQ in
   Solver.A.sat_tcons man abs tcons
+
+let get_nonneg _abs = []

@@ -366,3 +366,11 @@ let is_nonneg abs expr =
   if Poly.degree pe > 1 then false else
   let l = L.mult (-1) (Translate.linear_of_poly pe) in
   Presburger.implies abs l
+
+let get_nonneg abs =
+  let neg x = float_of_int (-x) in
+  let poly_of_linear l =
+    L.fold
+      (fun v k -> Poly.add_monom (Monom.of_var v) (neg k))
+      l.L.m (Poly.const (neg l.L.k))
+  in List.map poly_of_linear abs
