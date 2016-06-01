@@ -27,21 +27,20 @@ module L = struct
   let const k = {m = empty; k}
 
   let eq a b =
-    let n = filter (fun _ -> (<>) 0) in
-    compare ( - ) (n a.m) (n b.m) = 0 && a.k = b.k
+    compare ( - ) a.m b.m = 0 && a.k = b.k
 
   let coeff id {m;_} =
     try find id m with Not_found -> 0
 
-  let set x c {m;k} = {m = add x c m; k}
+  let set x c {m;k} =
+    {m = if c = 0 then remove x m else add x c m; k}
 
-  let addl id n m =
-    let c = coeff id m in
-    set id (c+n) m
+  let addl id n m = set id (coeff id m + n) m
 
   let addk k' {m; k} = {m; k = k + k'}
 
   let mult c {m; k} =
+    if c = 0 then {m = empty; k = 0} else
     {m = map (fun n -> c * n) m; k = c * k}
 
   let vars vs s =
