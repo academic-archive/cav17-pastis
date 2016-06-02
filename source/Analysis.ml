@@ -294,7 +294,6 @@ let run ai_results ai_is_nonneg fl start query =
   let f = List.find (fun f -> f.fun_name = start) fl in
   let focus = ([], Poly.const 1.) :: f.fun_focus in
   let body = f.fun_body in
-  let pquery = Potential.of_poly query in
 
   let monoms =
     let monoms = Poly.fold (fun m _ ms -> m :: ms) query [] in
@@ -347,7 +346,7 @@ let run ai_results ai_is_nonneg fl start query =
         match body.Graph.g_edges.(node) with
         | [] ->
           if node <> body.Graph.g_end then Utils._TODO "mmh?";
-          pquery
+          Potential.of_poly query
         | (act, node') :: edges ->
           let annot = do_action node act (dfs node') in
           List.fold_left begin fun annot (act, node') ->
@@ -367,5 +366,6 @@ let run ai_results ai_is_nonneg fl start query =
 
   let start_node = body.Graph.g_start in
   let start_annot = dfs start_node in
-  Potential.constrain start_annot Ge pquery;
+  let pzero = Potential.of_poly (Poly.zero ()) in
+  Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
   Potential.solve_min (find_focus start start_node) start_annot
