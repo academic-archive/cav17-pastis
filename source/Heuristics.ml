@@ -16,43 +16,38 @@ let add_focus ai_results ai_get_nonneg gfunc =
 
   let assigns =
     Array.fold_left
-      (List.fold_left (fun l (a, _) ->
-        match a with
-        | AAssign (v, e) -> (v, Poly.of_expr e) :: l
-        | _ -> l))
+      (List.fold_left begin fun l (a, _) ->
+          match a with
+          | AAssign (v, e) -> (v, Poly.of_expr e) :: l
+          | _ -> l
+        end)
       [] gfunc.fun_body.g_edges
   in
-
   (* Collect all conditions used by the program. *)
   let base =
-    Hashtbl.fold (fun _ abs_array base ->
-      Array.fold_left (fun base abs ->
+    Hashtbl.fold begin fun _ abs_array base ->
+      Array.fold_left begin fun base abs ->
         List.fold_left
           (fun b p -> PSet.add p b) base
           (ai_get_nonneg abs)
-      ) base abs_array
-    ) ai_results PSet.empty
+      end base abs_array
+    end ai_results PSet.empty
   in
-
   (* Close them under all the program assignments. *)
-  let close v pe acc =
+  let close acc (v, pe) =
     let mv = Monom.of_var v in
     if abs_float (Poly.get_coeff mv pe) = 1. then acc else
     PSet.fold (fun p -> PSet.add (poly_subst v pe p))
       base acc
   in
-  let base =
-    List.fold_left (fun base (v, e) -> close v e base)
-      base assigns
-  in
-
+  let base = List.fold_left close base assigns in
   (* Remove constants. *)
   let base =
-    PSet.filter (fun p ->
+    PSet.filter begin fun p ->
       match Poly.is_const p with
       | Some _ -> false
       | None -> true
-    ) base
+    end base
   in
 
   if false then
@@ -67,7 +62,6 @@ let add_focus ai_results ai_get_nonneg gfunc =
       res
     end base []
   in
-
   let fun_focus =
     List.rev_append
       gfunc.fun_focus
@@ -80,12 +74,10 @@ let add_focus ai_results ai_get_nonneg gfunc =
    the end of guard edges.
 *)
 let add_weaken ({ fun_name; fun_body = g } as graphf) =
-
   let is_guard = function
     | AGuard _ -> true
     | _ -> false
   in
-
   let weaken = ref [] in
   let nweaken = ref 0 in
   let add_weaken =
@@ -95,7 +87,6 @@ let add_weaken ({ fun_name; fun_body = g } as graphf) =
       incr nweaken;
       !nweaken - 1 + nnodes
   in
-
   let new_edges =
     Array.mapi begin fun src ->
       List.map begin function
@@ -109,7 +100,6 @@ let add_weaken ({ fun_name; fun_body = g } as graphf) =
       end
     end g.g_edges
   in
-
   let weaken = Array.of_list (List.rev !weaken) in
   let new_position =
     Array.map begin function
