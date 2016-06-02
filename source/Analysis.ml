@@ -256,7 +256,7 @@ end
       let obj = Clp.objective_coefficients () in
       List.iter (fun k -> obj.(k) <- 1.) !absl;
       Clp.change_objective_coefficients obj;
-      if false then Clp.set_log_level 0;
+      Clp.set_log_level 0;
       Clp.initial_solve ();
       if Clp.status () <> 0 then None else
 
