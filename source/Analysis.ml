@@ -255,9 +255,8 @@ end
       *)
       let obj = Clp.objective_coefficients () in
       List.iter (fun k -> obj.(k) <- 1.) !absl;
-      obj.(vmax) <- 1.;
       Clp.change_objective_coefficients obj;
-      Clp.set_log_level 0;
+      if false then Clp.set_log_level 0;
       Clp.initial_solve ();
       if Clp.status () <> 0 then None else
 
@@ -266,14 +265,11 @@ end
          in pl.
       *)
       let sol = Clp.primal_column_solution () in
+      add_lprow_array [| vmax, 1. |] Le ~k:sol.(vmax);
       List.iter (fun k ->
         obj.(k) <- 0.;
         add_lprow_array [| k, 1. |] Eq ~k:sol.(k)) !absl;
-      List.iter (fun k ->
-        add_lprow_array [| k, 1. |] Ge ~k:(-100.);
-        obj.(k) <- 1.) kpl;
-      add_lprow_array [| vmax, 1. |] Eq ~k:sol.(vmax);
-      obj.(vmax) <- 0.;
+      List.iter (fun k -> obj.(k) <- 1.) kpl;
       Clp.change_objective_coefficients obj;
       Clp.primal ();
       if Clp.status () <> 0 then None else
@@ -298,6 +294,7 @@ let run ai_results ai_is_nonneg fl start query =
   let f = List.find (fun f -> f.fun_name = start) fl in
   let focus = ([], Poly.const 1.) :: f.fun_focus in
   let body = f.fun_body in
+  let pquery = Potential.of_poly query in
 
   let monoms =
     let monoms = Poly.fold (fun m _ ms -> m :: ms) query [] in
@@ -350,7 +347,7 @@ let run ai_results ai_is_nonneg fl start query =
         match body.Graph.g_edges.(node) with
         | [] ->
           if node <> body.Graph.g_end then Utils._TODO "mmh?";
-          Potential.of_poly query
+          pquery
         | (act, node') :: edges ->
           let annot = do_action node act (dfs node') in
           List.fold_left begin fun annot (act, node') ->
@@ -370,4 +367,5 @@ let run ai_results ai_is_nonneg fl start query =
 
   let start_node = body.Graph.g_start in
   let start_annot = dfs start_node in
+  Potential.constrain start_annot Ge pquery;
   Potential.solve_min (find_focus start start_node) start_annot
