@@ -477,7 +477,8 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 			}
 			else {
 				BasicBlock *Succ = BI->getSuccessor(0);
-				node = processBlock(Succ, f, bbMap);
+				node = f.newNode();
+				f.addEdge(node, processBlock(Succ, f, bbMap));
 			}
 
 		}
@@ -501,15 +502,11 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 			unsigned nsucc = TI->getNumSuccessors();
 			assert(nsucc > 0);
 
-			if (nsucc == 1)
-				node = processBlock(TI->getSuccessor(0), f, bbMap);
-			else {
-				node = f.newNode();
-				for (unsigned s = 0; s < nsucc; ++s) {
-					BasicBlock *succ = TI->getSuccessor(s);
-					unsigned nodeSucc = processBlock(succ, f, bbMap);
-					f.addEdge(node, Edge(nodeSucc));
-				}
+			node = f.newNode();
+			for (unsigned s = 0; s < nsucc; ++s) {
+				BasicBlock *succ = TI->getSuccessor(s);
+				unsigned nodeSucc = processBlock(succ, f, bbMap);
+				f.addEdge(node, Edge(nodeSucc));
 			}
 		}
 	}
