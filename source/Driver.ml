@@ -44,18 +44,24 @@ let main () =
   Arg.parse argspec annonarg usagemsg;
   if !input_file = "" then failarg "no input file provided";
   try
+    (*
     let imp_file = IMP.parse_file !input_file in
+    let g_file = List.map Graph.from_imp imp_file in
+    *)
+    let g_file =
+      let ic = open_in !input_file in
+      [Graph_Reader.read_func ic]
+    in
     let fstart =
       match !main_func with
       | Some f -> f
       | None ->
-        if List.length imp_file = 1
-        then (List.hd imp_file).Types.fun_name
+        if List.length g_file = 1
+        then (List.hd g_file).Types.fun_name
         else "start"
     in
-    if not (List.exists (fun f -> f.Types.fun_name = fstart) imp_file) then
+    if not (List.exists (fun f -> f.Types.fun_name = fstart) g_file) then
       failarg (Printf.sprintf "cannot find function '%s' to analyze" fstart);
-    let g_file = List.map Graph.from_imp imp_file in
     let g_file =
       if !no_weaken then g_file else
       List.map Heuristics.add_weaken g_file
@@ -73,7 +79,7 @@ let main () =
     in
     let g_file =
       if !no_focus then g_file else
-      List.map (Heuristics.add_focus ~deg:2 ai_results AI.get_nonneg) g_file
+      List.map (Heuristics.add_focus ~deg:1 ai_results AI.get_nonneg) g_file
     in
     let st_results = Analysis.run ai_results AI.is_nonneg g_file fstart query in
     let poly_print =
