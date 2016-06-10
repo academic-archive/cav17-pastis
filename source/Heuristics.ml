@@ -88,22 +88,22 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
     binom (n-1) (PSet.fold binom_max base acc)
   in
   let degn = binom deg [] in
-
-  (*
   let base_list = PSet.elements base in
   let degn =
-    if true then degn else
+    if false then degn else
     List.fold_left (fun acc x ->
       prodfold (deg - degree x) base_list acc
       begin fun prod acc ->
-        let prod = List.fold_left (fun p (b, e) ->
+        List.fold_left
+          (fun p (b, e) ->
             if e = 0 then p else
-            product (binom_monotonic e (max0_ge_0 b)) p
-          ) one_ge_0 prod
-        in product prod x :: acc
+            product p
+              (binom_monotonic e
+                (max0_ge_0 b)
+                (check_ge pzero pzero))
+          ) x prod :: acc
       end
     ) degn degn in
-  *)
 
   (* Add focus functions. *)
   let fun_focus =
@@ -114,7 +114,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
   (*
   List.iter (fun (l, p) ->
     if l = [] then
-    Format.eprintf "%a@." Poly.print p) fun_focus;
+    Format.eprintf "%a@." Poly.print_ascii p) fun_focus;
   *)
   { gfunc with fun_focus }
 
