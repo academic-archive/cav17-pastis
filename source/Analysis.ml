@@ -44,7 +44,7 @@ module Potential
   val exec_assignment: (id * expr) -> annot -> annot
   val constrain: annot -> order -> annot -> unit
   val rewrite: Poly.t list -> annot -> annot
-  val solve_min: Poly.t list -> annot -> Poly.t option
+  val solve_min: Poly.t list -> annot -> annot list -> Poly.t option
 end
 = struct
 
@@ -233,7 +233,7 @@ end
     end kpl kpl';
     annot'
 
-  let solve_min pl annot =
+  let solve_min pl annot dumps =
     let absl = ref [] in
     let l = frame_from pl annot ~init:begin fun _ ->
         let v = new_lpvar () and abs = new_lpvar () in
@@ -276,14 +276,21 @@ end
 
       (* Build polynomial solution. *)
       let sol = Clp.primal_column_solution () in
-      Some (M.fold begin fun m le poly ->
-        let k =
-          Hashtbl.fold begin fun v kv k ->
-            k +. kv *. sol.(v)
-          end le 0.
-        in Poly.add_monom m k poly
-        end annot (Poly.zero ())
-      )
+      let make_poly annot =
+        M.fold begin fun m le poly ->
+          let k =
+            Hashtbl.fold begin fun v kv k ->
+              k +. kv *. sol.(v)
+            end le 0.
+          in Poly.add_monom m k poly
+          end annot (Poly.zero ())
+      in
+      (* Dump debug information. *)
+      List.iter (fun annot ->
+        Format.eprintf "Dump: %a@."
+          Poly.print_ascii (make_poly annot)
+      ) dumps;
+      Some (make_poly annot)
     end
 
 end
@@ -294,6 +301,7 @@ let run ai_results ai_is_nonneg fl start query =
   let f = List.find (fun f -> f.fun_name = start) fl in
   let focus = ([], Poly.const 1.) :: f.fun_focus in
   let body = f.fun_body in
+  let dumps = ref [] in
 
   let monoms =
     let monoms = Poly.fold (fun m _ ms -> m :: ms) query [] in
@@ -319,6 +327,7 @@ let run ai_results ai_is_nonneg fl start query =
   let do_action node act a =
     match act with
     | Graph.AWeaken -> Potential.rewrite (find_focus start node) a
+    | Graph.AGuard LRandom -> dumps := a :: !dumps; a
     | Graph.AGuard _ -> a
     | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
     | Graph.ACall _ -> Utils._TODO "calls"
@@ -368,4 +377,4 @@ let run ai_results ai_is_nonneg fl start query =
   let start_annot = dfs start_node in
   let pzero = Potential.of_poly (Poly.zero ()) in
   Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
-  Potential.solve_min (find_focus start start_node) start_annot
+  Potential.solve_min (find_focus start start_node) start_annot !dumps
