@@ -25,7 +25,7 @@ using namespace llvm;
 
 bool Debug = false;
 
-class Serializer {
+class Dumper {
 	std::ostream &os;
 
 public:
@@ -46,7 +46,7 @@ public:
 		os << s;
 	}
 
-	Serializer(std::ostream &s) : os(s) {}
+	Dumper(std::ostream &s) : os(s) {}
 };
 
 struct Expr {
@@ -93,7 +93,7 @@ struct Expr {
 		}
 	}
 
-	void serialize(Serializer &se)
+	void serialize(Dumper &se)
 	{
 		se.put_byte(type);
 		switch (type) {
@@ -234,7 +234,7 @@ struct Cond {
 		}
 	}
 
-	void serialize(Serializer &se)
+	void serialize(Dumper &se)
 	{
 		se.put_byte(type);
 		switch (type) {
@@ -333,7 +333,7 @@ struct Edge {
 		}
 	}
 
-	void serialize(Serializer &se)
+	void serialize(Dumper &se)
 	{
 		se.put_byte(type);
 		switch (type) {
@@ -389,7 +389,7 @@ struct Func {
 		body.at(s).push_back(std::move(e));
 	}
 
-	void serialize(Serializer &se)
+	void serialize(Dumper &se)
 	{
 		std::set<std::string> locals;
 		std::sort(arguments.begin(), arguments.end());
@@ -713,18 +713,25 @@ int main(int argc, char *argv[])
 	}
 	std::unique_ptr<MemoryBuffer> MemBuf = std::move(*MemBufOrErr);
 
+	std::unique_ptr<Module> M;
 #if LLVM_MAJOR > 3 || (LLVM_MAJOR == 3 && LLVM_MINOR >= 8)
 	ErrorOr<std::unique_ptr<Module>> MOrErr =
 		parseBitcodeFile(MemBuf->getMemBufferRef(), Context);
+	if (MOrErr)
+		M = std::move(*MOrErr);
+#elif (LLVM_MAJOR == 3 && LLVM_MINOR >= 6)
+	ErrorOr<Module *> MOrErr =
+		parseBitcodeFile(MemBuf->getMemBufferRef(), Context);
+	M = std::unique_ptr<Module>(MOrErr ? *MOrErr : nullptr);
 #else
-	ErrorOr<std::unique_ptr<Module>> MOrErr =
+	ErrorOr<Module *> MOrErr =
 		parseBitcodeFile(MemBuf.get(), Context);
+	M = std::unique_ptr<Module>(MOrErr ? *MOrErr : nullptr);
 #endif
 	if (!MOrErr) {
 		errs() << argv[0] << ": could not parse input file\n";
 		return 1;
 	}
-	std::unique_ptr<Module> M = std::move(*MOrErr);
 	M->materializeAll();
 
 	Module::iterator MI = M->begin();
@@ -781,7 +788,7 @@ int main(int argc, char *argv[])
 		ofs << "}\n";
 	}
 	else {
-		Serializer se(std::cout);
+		Dumper se(std::cout);
 		f.serialize(se);
 	}
 
