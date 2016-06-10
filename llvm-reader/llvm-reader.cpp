@@ -345,12 +345,12 @@ struct Edge {
 			expr->serialize(se);
 			break;
 		case None:
-			Cond(Cond::True).serialize(se);
 			break;
 		case Invalid:
 			assert(!"reachable");
 			break;
 		}
+		se.put(dest);
 	}
 
 	Edge(unsigned d, const Cond &c)
@@ -401,6 +401,7 @@ struct Func {
 		for (std::vector<Edge> &ve: body)
 			for (Edge &e: ve)
 				e.iterVars(collect);
+		se.put(name);
 		se.put(arguments.size());
 		for (std::string &arg: arguments)
 			se.put(arg);
