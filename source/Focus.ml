@@ -21,7 +21,7 @@ let interp_map =
   ; "max0_monotonic",  DP (IFunc IEnd, Builder.max0_monotonic)
   ; "max0_sublinear",  DP (IFunc IEnd, Builder.max0_sublinear)
   ; "max0_sublinear_mul", DP (IFunc (IExpr IEnd), Builder.max0_sublinear_mul)
-  ; "binom_monotonic", DP (INum (IFunc IEnd), Builder.binom_monotonic)
+  ; "binom_monotonic", DP (INum (IFunc (IFunc IEnd)), Builder.binom_monotonic)
   ; "product",         DP (IFunc (IFunc IEnd), Builder.product)
   ; ">=",              DP (IExpr (IExpr IEnd), Builder.check_ge)
   ]

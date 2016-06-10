@@ -31,10 +31,14 @@ let prop_Ge = function
 
 type t =
   { proves: Poly.t property
-  ; checks: Poly.t list }
+  ; checks: Poly.t list
+  ; degree: int }
 
 let export i =
   (i.checks, prop_Ge0 i.proves)
+
+let degree i =
+  i.degree
 
 (* Focus function building blocks:
 
@@ -48,50 +52,69 @@ let export i =
    a * max(0, x) >= max(0, a * x)    when a >= 0  (max0_sublinear_mul)
 
    binom(k, a) >= binom(k, b)        when a >= b  (binom_monotonic)
+                                     and b >= 0
 
    x * a >= x * b                    when a >= b  (product)
                                      and x >= 0
 *)
 
 let check_ge a b =
+  let checks =
+    let sub = Poly.sub a b in
+    match Poly.is_const sub with
+    | Some k when k >= 0. -> []
+    | _ -> [sub]
+  in
   { proves = Ge (a, b)
-  ; checks = [Poly.sub a b] }
+  ; checks = checks
+  ; degree = max (Poly.degree a) (Poly.degree b) }
 
 let max0_ge_0 a =
   { proves = Ge0 (poly_max a)
-  ; checks = [] }
+  ; checks = []
+  ; degree = Poly.degree a }
 
 let max0_ge_arg a =
   { proves = Ge (poly_max a, a)
-  ; checks = [] }
+  ; checks = []
+  ; degree = Poly.degree a }
 
 let max0_le_arg i =
   let a = prop_Ge0 i.proves in
   { proves = Ge (a, poly_max a)
-  ; checks = i.checks }
+  ; checks = i.checks
+  ; degree = i.degree }
 
 let max0_monotonic i =
   let a, b = prop_Ge i.proves in
   { proves = Ge (poly_max a, poly_max b)
-  ; checks = i.checks }
+  ; checks = i.checks
+  ; degree = i.degree }
 
 let max0_sublinear i =
   let a, b = prop_Ge i.proves in
   { proves = Ge (Poly.add (poly_max b) (Poly.sub a b), poly_max a)
-  ; checks = i.checks }
+  ; checks = i.checks
+  ; degree = i.degree }
 
 let max0_sublinear_mul i a =
-  let a = prop_Ge0 i.proves in
-  { proves = Ge (Poly.mul a (poly_max a), poly_max (Poly.mul a a))
-  ; checks = i.checks }
+  let x = prop_Ge0 i.proves in
+  { proves = Ge (Poly.mul x (poly_max a), poly_max (Poly.mul x a))
+  ; checks = i.checks
+  ; degree = i.degree + Poly.degree a }
 
-let binom_monotonic k i =
-  let a, b = prop_Ge i.proves in
+let binom_monotonic k i1 i2 =
+  let a, b = prop_Ge i1.proves in
+  let b' = prop_Ge0 i2.proves in
+  if Poly.compare b b' <> 0 then
+    failwith "invalid argument combination" else
   { proves = Ge (poly_binom k a, poly_binom k b)
-  ; checks = i.checks }
+  ; checks = i1.checks @ i2.checks
+  ; degree = i1.degree * k }
 
 let product i1 i2 =
   let a, b = prop_Ge i2.proves in
   let x = prop_Ge0 i1.proves in
   { proves = Ge (Poly.mul x a, Poly.mul x b)
-  ; checks = i1.checks @ i2.checks }
+  ; checks = i1.checks @ i2.checks
+  ; degree = i1.degree + i2.degree }

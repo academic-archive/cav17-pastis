@@ -10,9 +10,23 @@ module PSet = Set.Make(struct
   let compare = Poly.compare
 end)
 
+(* Helper functions to create higher degree indices. *)
+
+let rec prodfold n l ?(acc=[]) accf f =
+  if n = 0 then f acc accf else
+  match l with
+  | [] -> accf
+  | x :: l ->
+    let rec iota i accf =
+      if i > n then accf else
+      let acc = (x, i) :: acc in
+      iota (i+1) (prodfold (n-i) l ~acc accf f)
+    in iota 0 accf
+
 (* The heuristic to infer focus functions.
 *)
-let add_focus ai_results ai_get_nonneg gfunc =
+let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
+  let pzero = Poly.zero () in
 
   let assigns =
     Array.fold_left
@@ -54,19 +68,55 @@ let add_focus ai_results ai_get_nonneg gfunc =
   PSet.iter (fun p ->
     Format.eprintf " %a@." Poly.print p) base;
 
-  let res =
-    PSet.fold begin fun pol res ->
-      max0_ge_0 pol ::
-      max0_ge_arg pol ::
-      max0_le_arg (check_ge pol (Poly.zero ())) ::
-      res
-    end base []
+  (* Create larger degree indices using product()
+     and binom_monotonic().
+  *)
+  let rec binom n acc =
+    if n = 0 then acc else
+    let binom_max pol acc =
+      binom_monotonic n
+        (max0_ge_0 pol)
+        (check_ge pzero pzero) ::
+      binom_monotonic n
+        (max0_ge_arg pol)
+        (check_ge pol pzero) ::
+      binom_monotonic n
+        (max0_le_arg (check_ge pol pzero))
+        (max0_ge_0 pol) ::
+      acc
+    in
+    binom (n-1) (PSet.fold binom_max base acc)
   in
+  let degn = binom deg [] in
+
+  (*
+  let base_list = PSet.elements base in
+  let degn =
+    if true then degn else
+    List.fold_left (fun acc x ->
+      prodfold (deg - degree x) base_list acc
+      begin fun prod acc ->
+        let prod = List.fold_left (fun p (b, e) ->
+            if e = 0 then p else
+            product (binom_monotonic e (max0_ge_0 b)) p
+          ) one_ge_0 prod
+        in product prod x :: acc
+      end
+    ) degn degn in
+  *)
+
+  (* Add focus functions. *)
   let fun_focus =
     List.rev_append
       gfunc.fun_focus
-      (List.map export res)
-  in { gfunc with fun_focus }
+      (List.map export degn)
+  in
+  (*
+  List.iter (fun (l, p) ->
+    if l = [] then
+    Format.eprintf "%a@." Poly.print p) fun_focus;
+  *)
+  { gfunc with fun_focus }
 
 
 (* Place weakening points automatically.
