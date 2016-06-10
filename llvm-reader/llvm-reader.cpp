@@ -23,7 +23,7 @@
 
 using namespace llvm;
 
-bool Debug = false;
+bool Debug = true;
 
 class Dumper {
 	std::ostream &os;
@@ -787,10 +787,9 @@ int main(int argc, char *argv[])
 		}
 		ofs << "}\n";
 	}
-	else {
-		Dumper se(std::cout);
-		f.serialize(se);
-	}
+
+	Dumper se(std::cout);
+	f.serialize(se);
 
 	return 0;
 }
