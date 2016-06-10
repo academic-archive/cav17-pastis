@@ -62,7 +62,7 @@ let read_edge ic =
       let v = read_string ic in
       let e = read_expr ic in
       AAssign (v, e)
-    | 3 -> AGuard (LTrue)
+    | 3 -> AGuard LTrue
     | _ -> error "invalid edge type"
   in (action, read_int ic)
 
@@ -70,7 +70,8 @@ let read_list read ic =
   let size = read_int ic in
   let rec go n =
     if n = 0 then [] else
-    read ic :: go (n-1)
+    let x = read ic in
+    x :: go (n-1)
   in go size
 
 let read_func ic =
