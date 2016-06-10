@@ -3,6 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <set>
+#include <algorithm>
+#include <functional>
 
 #include <llvm/IR/LLVMContext.h>
 #include <llvm/Bitcode/ReaderWriter.h>
@@ -20,7 +23,31 @@
 
 using namespace llvm;
 
-bool Debug = true;
+bool Debug = false;
+
+class Serializer {
+	std::ostream &os;
+
+public:
+	void put_byte(uint8_t x)
+	{
+		os.put(x);
+	}
+
+	void put(int64_t x)
+	{
+		for (int s = 56; s >= 0; s -= 8)
+			os.put((uint8_t)(x >> s));
+	}
+
+	void put(std::string s)
+	{
+		put(s.size());
+		os << s;
+	}
+
+	Serializer(std::ostream &s) : os(s) {}
+};
 
 struct Expr {
 
@@ -30,12 +57,12 @@ struct Expr {
 	 */
 
 	enum Type {
-		Add,
-		Sub,
-		Mul,
-		Num,
-		Var,
-		Rnd
+		Add = 1,
+		Sub = 2,
+		Mul = 3,
+		Num = 4,
+		Var = 5,
+		Rnd = 6
 	};
 
 	Type type;
@@ -46,6 +73,45 @@ struct Expr {
 	bool isRandom()
 	{
 		return type == Rnd;
+	}
+
+	void iterVars(const std::function<void(std::string &)> &f)
+	{
+		switch (type) {
+		case Add:
+		case Sub:
+		case Mul:
+			left->iterVars(f);
+			right->iterVars(f);
+			break;
+		case Var:
+			f(var);
+			break;
+		case Num:
+		case Rnd:
+			break;
+		}
+	}
+
+	void serialize(Serializer &se)
+	{
+		se.put_byte(type);
+		switch (type) {
+		case Add:
+		case Sub:
+		case Mul:
+			left->serialize(se);
+			right->serialize(se);
+			break;
+		case Num:
+			se.put(value);
+			break;
+		case Var:
+			se.put(var);
+			break;
+		case Rnd:
+			break;
+		}
 	}
 
 	friend std::ostream &operator<<(std::ostream &os, const Expr &e)
@@ -95,15 +161,15 @@ struct Cond {
 	 */
 
 	enum Type {
-		True,
-		False,
-		LE,
-		GE,
-		LT,
-		GT,
-		EQ,
-		NE,
-		Random
+		True   = 1,
+		False  = 2,
+		Random = 3,
+		LE     = 4,
+		GE     = 5,
+		LT     = 6,
+		GT     = 7,
+		EQ     = 8,
+		NE     = 9,
 	};
 
 	Type type;
@@ -147,6 +213,45 @@ struct Cond {
 			break;
 		}
 		return Cond(t, left, right);
+	}
+
+	void iterVars(const std::function<void(std::string &)> &f)
+	{
+		switch (type) {
+		case True:
+		case False:
+		case Random:
+			break;
+		case LE:
+		case GE:
+		case LT:
+		case GT:
+		case EQ:
+		case NE:
+			left->iterVars(f);
+			right->iterVars(f);
+			break;
+		}
+	}
+
+	void serialize(Serializer &se)
+	{
+		se.put_byte(type);
+		switch (type) {
+		case True:
+		case False:
+		case Random:
+			break;
+		case LE:
+		case GE:
+		case LT:
+		case GT:
+		case EQ:
+		case NE:
+			left->serialize(se);
+			right->serialize(se);
+			break;
+		}
 	}
 
 	friend std::ostream &operator<<(std::ostream &os, const Cond &c)
@@ -200,9 +305,9 @@ struct Edge {
 	 */
 
 	enum Type {
-		Guard,
-		Assign,
-		None,
+		Guard  = 1,
+		Assign = 2,
+		None   = 3,
 		Invalid,
 	};
 
@@ -211,6 +316,42 @@ struct Edge {
 	Cond cond;
 	std::string var;
 	std::unique_ptr<Expr> expr;
+
+	void iterVars(const std::function<void(std::string &)> &f)
+	{
+		switch (type) {
+		case Guard:	
+			cond.iterVars(f);
+			break;
+		case Assign:
+			f(var);
+			expr->iterVars(f);
+			break;
+		case None:
+		case Invalid:
+			break;
+		}
+	}
+
+	void serialize(Serializer &se)
+	{
+		se.put_byte(type);
+		switch (type) {
+		case Guard:
+			cond.serialize(se);
+			break;
+		case Assign:
+			se.put(var);
+			expr->serialize(se);
+			break;
+		case None:
+			Cond(Cond::True).serialize(se);
+			break;
+		case Invalid:
+			assert(!"reachable");
+			break;
+		}
+	}
 
 	Edge(unsigned d, const Cond &c)
 	: type(Guard), dest(d), cond(c)
@@ -232,7 +373,6 @@ struct Func {
 
 	std::string name;
 	std::vector<std::string> arguments;
-	std::vector<std::string> locals;
 	std::vector<std::vector<Edge>> body;
 	unsigned start, ret;
 	unsigned nextNode;
@@ -247,6 +387,34 @@ struct Func {
 		assert(s < nextNode && e.dest < nextNode);
 		body.resize(nextNode);
 		body.at(s).push_back(std::move(e));
+	}
+
+	void serialize(Serializer &se)
+	{
+		std::set<std::string> locals;
+		std::sort(arguments.begin(), arguments.end());
+		auto collect = [&] (std::string &s) {
+			auto low = std::lower_bound(arguments.begin(), arguments.end(), s);
+			if (low == arguments.end() || *low != s)
+				locals.insert(s);
+		};
+		for (std::vector<Edge> &ve: body)
+			for (Edge &e: ve)
+				e.iterVars(collect);
+		se.put(arguments.size());
+		for (std::string &arg: arguments)
+			se.put(arg);
+		se.put(locals.size());
+		for (const std::string &loc: locals)
+			se.put(loc);
+		se.put(start);
+		se.put(ret);
+		se.put(body.size());
+		for (std::vector<Edge> &ve: body) {
+			se.put(ve.size());
+			for (Edge &e: ve)
+				e.serialize(se);
+		}
 	}
 
 	Func(const std::string &n, const std::vector<std::string> &args)
@@ -610,6 +778,10 @@ int main(int argc, char *argv[])
 			n++;
 		}
 		ofs << "}\n";
+	}
+	else {
+		Serializer se(std::cout);
+		f.serialize(se);
 	}
 
 	return 0;
