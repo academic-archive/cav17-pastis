@@ -93,6 +93,35 @@ let from_imp impf =
   done;
   { impf with fun_body = { g_start; g_end; g_edges; g_position } }
 
+let rpo_order gfunc =
+  let g = gfunc.fun_body in
+  let map = Array.map (fun _ -> -1) g.g_edges in
+  let rec dfs node n =
+    let n = List.fold_left
+      (fun n (_, dst) -> dfs dst n)
+      n g.g_edges.(node) in
+    map.(node) <- n;
+    n + 1
+  in
+  let nlive = dfs g.g_start 0 in
+  Array.iteri (fun i n -> map.(i) <- nlive - 1 - n) map;
+  let new_edges = Array.make nlive [] in
+  let new_position = Array.make nlive Utils.dummy_position in
+  Array.iteri (fun i n ->
+    let tr_edges = List.map (fun (a, d) -> (a, map.(d))) in
+    if n <> -1 then begin
+      new_edges.(n) <- tr_edges g.g_edges.(i);
+      new_position.(n) <- g.g_position.(i);
+    end
+  ) map;
+  { gfunc with fun_body =
+    { g_start = map.(g.g_start)
+    ; g_end = map.(g.g_end)
+    ; g_edges = new_edges
+    ; g_position = new_position
+    }
+  }
+
 module type AbsInt = sig
   type absval
   val analyze: dump:bool -> func list -> id ->
