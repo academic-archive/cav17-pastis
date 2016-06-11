@@ -122,6 +122,42 @@ let rpo_order gfunc =
     }
   }
 
+let add_loop_counter cnt gfunc =
+  let gfunc = rpo_order gfunc in
+  let g = gfunc.fun_body in
+  let nnodes = Array.length g.g_edges in
+  let incs = ref [[AAssign (cnt, ENum 0), g.g_start]] in
+  let nincs = ref 1 in
+  let add_increment dst =
+    let e = EAdd (ENum 1, EVar cnt) in
+    incs := [AAssign (cnt, e), dst] :: !incs;
+    incr nincs;
+    !nincs - 1 + nnodes
+  in
+  let new_edges =
+    Array.mapi begin fun src ->
+      List.map begin function
+        | (a, dst) when dst <= src ->
+	  (a, add_increment dst)
+	| e -> e
+      end
+    end g.g_edges
+  in
+  let incs = Array.of_list (List.rev !incs) in
+  let new_position =
+    Array.map begin function
+      | [_, dst] -> g.g_position.(dst)
+      | _ -> assert false
+    end incs
+  in
+  { gfunc with fun_body =
+    { g with
+      g_start = nnodes;
+      g_edges = Array.append new_edges incs;
+      g_position = Array.append g.g_position new_position;
+    }
+  }
+
 module type AbsInt = sig
   type absval
   val analyze: dump:bool -> func list -> id ->
