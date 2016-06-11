@@ -17,7 +17,7 @@ let read_int ic =
     go (n-1) ((acc lsl 8) + read_byte ic)
   in go 8 0
   in
-  if abs n > 10000 then failwith (Printf.sprintf "oops, suspicious %x" n) else n
+  if abs n > 100000 then failwith (Printf.sprintf "oops, suspicious %x" n) else n
 
 let read_string ic =
   let size = read_int ic in

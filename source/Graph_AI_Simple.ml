@@ -57,7 +57,7 @@ end
 
 type transfer =
   | TGuard of L.sum DNF.t
-  | TAssign of id * Poly.t
+  | TAssign of id * Poly.t option
 
 module HyperGraph = struct
 
@@ -111,9 +111,13 @@ module HyperGraph = struct
             PSHGraph.add_hedge g (new_edge ())
               (TGuard disj) ~pred:[|src|] ~succ:[|dst|];
           | AAssign (id, e) ->
-            let pe = Poly.of_expr e in
+            let peo =
+              match e with
+              | ERandom -> None
+              | _ -> Some (Poly.of_expr e)
+            in
             PSHGraph.add_hedge g (new_edge ())
-              (TAssign (id, pe)) ~pred:[|src|] ~succ:[|dst|];
+              (TAssign (id, peo)) ~pred:[|src|] ~succ:[|dst|];
           | ACall (_idl, _idf', _el) ->
             Utils._TODO "calls"
         end el;
@@ -180,9 +184,11 @@ module Solver = struct
     | [x] -> x
     | x :: disj -> List.fold_left Presburger.join x disj
 
-  let apply_TAssign abs id pe =
+  let apply_TAssign abs id peo =
     let forget_id abs =
       List.filter (fun l -> L.coeff id l = 0) abs in
+    if peo = None then forget_id abs else
+    let pe = match peo with Some x -> x | _ -> assert false in
 
     (* Linear assignment, we consider two cases:
        1. If the assignment is an increment "x = x+i"
@@ -309,7 +315,9 @@ let debug_print fmt info graph res =
         (Print.list ~first:"(@[<h>" ~sep:" ||@ " ~last:"@])"
           Presburger.print)
         disj;
-    | TAssign (v, pe) ->
+    | TAssign (v, None) ->
+      Format.fprintf fmt "Assign %s = random" v
+    | TAssign (v, Some pe) ->
       Format.fprintf fmt "Assign %s = %a" v Poly.print_ascii pe;
   in
   let print_hedge_attr fmt hedge transfer =

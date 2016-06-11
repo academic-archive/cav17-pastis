@@ -32,6 +32,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
     Array.fold_left
       (List.fold_left begin fun l (a, _) ->
           match a with
+          | AAssign (_, ERandom) -> l
           | AAssign (v, e) -> (v, Poly.of_expr e) :: l
           | _ -> l
         end)
