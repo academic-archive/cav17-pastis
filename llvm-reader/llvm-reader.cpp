@@ -740,7 +740,7 @@ int main(int argc, char *argv[])
 			errs() << argv[0] << ": empty module\n";
 			return 1;
 		}
-		if (!MI->isIntrinsic())
+		if (!MI->isDeclaration())
 			break;
 	}
 
