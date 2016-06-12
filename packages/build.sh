@@ -1,6 +1,10 @@
-export GMP_PREFIX=/usr
-export MPFR_PREFIX=/usr
+. ../config.mk
+
 export CAML_PREFIX=`ocamlc -where`/../..
+export GMP_PREFIX
+export MPFR_PREFIX
+export CC
+export CXX
 
 pack_camlidl=camlidl-1.05
 pack_apron=apron-0.9.10
