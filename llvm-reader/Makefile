@@ -1,4 +1,4 @@
-LLC = llvm-config
+include ../config.mk
 
 BIN = llvm-reader
 

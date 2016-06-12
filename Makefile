@@ -1,9 +1,17 @@
+include config.mk
+
 all: packages/sandbox/done
 	@make --no-print-directory -C source $@
+ifneq ($(LLC),)
+	@make --no-print-directory -C llvm-reader $@
+endif
 
 clean:
 	@cd packages && sh build.sh clean
 	@make --no-print-directory -C source clean
+ifneq ($(LLC),)
+	@make --no-print-directory -C llvm-reader $@
+endif
 
 dist-clean: clean
 	@rm -f config.mk
@@ -11,9 +19,7 @@ dist-clean: clean
 packages/sandbox/done:
 	@cd packages && sh build.sh
 
-.PHONY: all clean dist-clean install
-
 config.mk:
 	@./configure
 
-include config.mk
+.PHONY: all clean dist-clean install
