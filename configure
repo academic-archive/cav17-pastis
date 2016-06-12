@@ -24,8 +24,9 @@ fi
 
 usage() {
 	cat << EOM
-./configure [OPTIONS]
+usage: ./configure [options]
 
+Options:
 	-prefix PATH      The installation prefix path
 	-prefix=PATH
 	-gmp PATH         The directory containing the GMP library
