@@ -40,12 +40,27 @@ let failarg msg =
   Arg.usage argspec usagemsg;
   exit 1
 
-let exec_llvm_reader _f =
+let exec_llvm_reader f =
   let reader = "/llvm-reader" in
-  let _candidates =
-    [ Config.build_path ^ reader ]
-  in
-  Utils._TODO "llvm"
+  let candidates =
+    [ Config.build_path ^ "/../llvm-reader" ^ reader
+    ] in
+  match
+    List.fold_left (fun ico cand ->
+      if ico = None then
+        try
+          let _ = Unix.access cand [Unix.X_OK] in
+          let cmd = Printf.sprintf "%s %s" cand f in
+          Some (Unix.open_process_in cmd)
+        with Sys_error _ -> None
+      else ico
+    ) None candidates
+  with
+  | Some ic -> ic
+  | None ->
+    Format.eprintf "%s: failed executing llvm-reader@."
+      Sys.argv.(0);
+    raise Utils.Error
 
 let main () =
   Arg.parse argspec annonarg usagemsg;
@@ -63,9 +78,21 @@ let main () =
         else if ends_with ".o" !input_file
              || ends_with ".bc" !input_file then
           let ic = exec_llvm_reader !input_file in
-          let gfunc = Graph_Reader.read_func ic in
-          let gfunc = Graph.add_loop_counter "z" gfunc in
-          [gfunc]
+          try
+            let gfunc = Graph_Reader.read_func ic in
+            let gfunc = Graph.add_loop_counter "z" gfunc in
+            [gfunc]
+          with End_of_file ->
+            match Unix.close_process_in ic with
+            | Unix.WEXITED 0 -> failwith "llvm-reader should have failed"
+            | Unix.WEXITED _ ->
+              Format.eprintf "%s: llvm-reader could not parse '%s'@."
+                Sys.argv.(0) !input_file;
+              raise Utils.Error
+            | _ ->
+              Format.eprintf "%s: llvm-reader process was killed@."
+                Sys.argv.(0);
+              raise Utils.Error
         else begin
           Format.eprintf "%s: unknown input file type for '%s'@."
             Sys.argv.(0) !input_file;
