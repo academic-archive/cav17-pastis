@@ -40,17 +40,41 @@ let failarg msg =
   Arg.usage argspec usagemsg;
   exit 1
 
+let exec_llvm_reader _f =
+  let reader = "/llvm-reader" in
+  let _candidates =
+    [ Config.build_path ^ reader ]
+  in
+  Utils._TODO "llvm"
+
 let main () =
   Arg.parse argspec annonarg usagemsg;
   if !input_file = "" then failarg "no input file provided";
   try
-    (*
-    let imp_file = IMP.parse_file !input_file in
-    let g_file = List.map Graph.from_imp imp_file in
-    *)
+    let ends_with s s' =
+      let ls' = String.length s' and ls = String.length s in
+      ls' >= ls && String.sub s' (ls' - ls) ls = s
+    in
     let g_file =
-      let ic = open_in !input_file in
-      [Graph_Reader.read_func ic]
+      try
+        if ends_with ".imp" !input_file then
+          let imp_file = IMP.parse_file !input_file in
+          List.map Graph.from_imp imp_file
+        else if ends_with ".o" !input_file
+             || ends_with ".bc" !input_file then
+          let ic = exec_llvm_reader !input_file in
+          let gfunc = Graph_Reader.read_func ic in
+          let gfunc = Graph.add_loop_counter "z" gfunc in
+          [gfunc]
+        else begin
+          Format.eprintf "%s: unknown input file type for '%s'@."
+            Sys.argv.(0) !input_file;
+          raise Utils.Error
+        end
+      with Sys_error _ ->
+        Format.eprintf "%s: cannot open file '%s'@."
+          Sys.argv.(0) !input_file;
+        raise Utils.Error
     in
     let fstart =
       match !main_func with
@@ -79,7 +103,7 @@ let main () =
     in
     let g_file =
       if !no_focus then g_file else
-      List.map (Heuristics.add_focus ~deg:1 ai_results AI.get_nonneg) g_file
+      List.map (Heuristics.add_focus ~deg:2 ai_results AI.get_nonneg) g_file
     in
     let st_results = Analysis.run ai_results AI.is_nonneg g_file fstart query in
     let poly_print =
