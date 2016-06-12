@@ -5,7 +5,7 @@ BIN = llvm-reader
 CXXFLAGS += \
 	-DLLVM_MAJOR=`${LLC} --version | cut -d. -f1` \
 	-DLLVM_MINOR=`${LLC} --version | cut -d. -f2` \
-	`${LLC} --cxxflags`
+	`${LLC} --cxxflags` -fno-rtti
 
 LDFLAGS += `${LLC} --ldflags --system-libs --libs bitreader core support`
 

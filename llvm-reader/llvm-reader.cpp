@@ -18,12 +18,11 @@
 #include <llvm/IR/Constants.h>
 #include <llvm/Support/raw_ostream.h>
 #include <llvm/Support/MemoryBuffer.h>
+#include <llvm/Support/CommandLine.h>
 #include <llvm/ADT/DenseMap.h>
 #include <llvm/ADT/STLExtras.h>
 
 using namespace llvm;
-
-bool Debug = true;
 
 class Dumper {
 	std::ostream &os;
@@ -700,10 +699,23 @@ Func extractFunc(Function &F)
 	return f;
 }
 
+cl::opt<std::string> OutputFilename("o",
+	cl::desc("Select output file"),
+	cl::value_desc("filename"),
+	cl::init("-")
+);
+cl::opt<std::string> Filename(
+	cl::Positional, cl::Required,
+	cl::desc("<input file>")
+);
+cl::opt<bool> OutDot("dot",
+	cl::desc("Dump extracted program in a Graphviz .dot file")
+);
+
 int main(int argc, char *argv[])
 {
 	LLVMContext Context;
-	std::string Filename = "test.o";
+	cl::ParseCommandLineOptions(argc, argv);
 
 	ErrorOr<std::unique_ptr<MemoryBuffer>> MemBufOrErr =
 		MemoryBuffer::getFile(Filename);
@@ -746,7 +758,7 @@ int main(int argc, char *argv[])
 
 	Func f = extractFunc(*MI);
 
-	if (Debug) {
+	if (OutDot) {
 		std::ofstream ofs;
 		ofs.open(Filename + ".dot");
 
@@ -788,8 +800,14 @@ int main(int argc, char *argv[])
 		ofs << "}\n";
 	}
 
-	Dumper se(std::cout);
-	f.serialize(se);
+	if (OutputFilename == "-") {
+		Dumper se(std::cout);
+		f.serialize(se);
+	} else {
+		std::ofstream ofs(OutputFilename);
+		Dumper se(ofs);
+		f.serialize(se);
+	}
 
 	return 0;
 }
