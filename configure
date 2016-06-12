@@ -6,7 +6,7 @@ findlib() {
 	for p in / /usr /usr/local $arg
 	do
 		if test -d $p/lib &&
-		   find $p/lib -name lib$lib\* -depth 1 |
+		   find $p/lib -maxdepth 1 -name lib$lib\* |
 		     grep '$' > /dev/null
 		then
 			echo $p
@@ -19,7 +19,7 @@ findlib() {
 if test -f config.mk
 then
 	# Reload last configuration
-	. config.mk
+	. ./config.mk
 fi
 
 usage() {
@@ -134,5 +134,4 @@ Configuration:
    C compiler:          $CC
    Build llvm-reader:   $buildllvm
 
-You can now run "make".
 EOM
