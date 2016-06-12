@@ -3,11 +3,8 @@ open Command
 
 let debug = false
 
-let sandbox =
-  try Sys.getenv "SANDBOX" with Not_found ->
-  Printf.eprintf "\nBuild error: $SANDBOX environment variable not found.\n\n";
-  exit 1
-
+let build_path = Sys.getcwd ()
+let sandbox = build_path ^ "/../packages/sandbox"
 let cxx = try Sys.getenv "CXX" with Not_found -> "g++"
 
 (* Flag to use ocaml libraries and headers in the sandbox. *)
@@ -46,6 +43,12 @@ let () =
     flag ["link"; "ocaml"; "byte"; "use_apron"] (S flag_apron_byt);
     flag ["link"; "ocaml"; "native"; "use_clp"] (S flag_clp_nat);
     flag ["link"; "ocaml"; "byte"; "use_clp"] (S flag_clp_byt);
+
+    rule "Create configuration file" ~prod:"Config.ml"
+      begin fun _env _build ->
+        let out = Printf.sprintf "let build_path = %S" build_path in
+        Cmd (S [A "echo"; A out; Sh "> "; Px "Config.ml"])
+      end;
 
   | _ -> ()
   end
