@@ -13,4 +13,4 @@ you will still need to have the following core:
   * A C++ compiler (g++/clang++)
 
 The location of most of these dependencies can be specified using
-the main configure script, see ./configure --help for details.
+the main configure script, see ./configure -help for details.

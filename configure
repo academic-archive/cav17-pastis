@@ -26,16 +26,16 @@ usage() {
 	cat << EOM
 ./configure [OPTIONS]
 
-	--prefix PATH      The installation prefix path
-	--prefix=PATH
-	--gmp PATH         The directory containing the GMP library
-	--mpfr PATH        The directory containing the MPFR library
+	-prefix PATH      The installation prefix path
+	-prefix=PATH
+	-gmp PATH         The directory containing the GMP library
+	-mpfr PATH        The directory containing the MPFR library
 
-	--llvm-config CMD  The name used to invoke llvm-config.
-	--cxx CMD          The C++ compiler to use (must support C++11)
-	--cc CMD           The C compiler to use (must support C99)
+	-llvm-config CMD  The name used to invoke llvm-config
+	-cxx CMD          The C++ compiler to use (must support C++11)
+	-cc CMD           The C compiler to use (must support C99)
 
-	--help             Display this help message
+	-help             Display this help message
 EOM
 	exit 0
 }
