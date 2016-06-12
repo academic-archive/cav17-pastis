@@ -52,13 +52,13 @@ let exec_llvm_reader f =
           let _ = Unix.access cand [Unix.X_OK] in
           let cmd = Printf.sprintf "%s %s" cand f in
           Some (Unix.open_process_in cmd)
-        with Sys_error _ -> None
+        with Sys_error _ | Unix.Unix_error _ -> None
       else ico
     ) None candidates
   with
   | Some ic -> ic
   | None ->
-    Format.eprintf "%s: failed executing llvm-reader@."
+    Format.eprintf "%s: llvm-reader could not be found or run@."
       Sys.argv.(0);
     raise Utils.Error
 
