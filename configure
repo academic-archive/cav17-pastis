@@ -50,35 +50,35 @@ do
 	arg=$1
 	shift
 	case $arg in
-	--prefix=*)
+	--prefix=*|-prefix=*)
 		OUR_PREFIX=${arg#*=}
 		;;
-	--prefix)
+	--prefix|-prefix)
 		test $# -gt 0 || usage
 		OUR_PREFIX=$1
 		shift
 		;;
-	--gmp)
+	--gmp|-gmp)
 		test $# -gt 0 || usage
 		GMP_PREFIX=$(dirname $1)
 		shift
 		;;
-	--mpfr)
+	--mpfr|-mpfr)
 		test $# -gt 0 || usage
 		MPFR_PREFIX=$(dirname $1)
 		shift
 		;;
-	--llvm-config)
+	--llvm-config|-llvm-config)
 		test $# -gt 0 || usage
 		LLC=$1
 		shift
 		;;
-	--cc)
+	--cc|-cc)
 		test $# -gt 0 || usage
 		CC=$1
 		shift
 		;;
-	--cxx)
+	--cxx|-cxx)
 		test $# -gt 0 || usage
 		CXX=$1
 		shift
@@ -88,6 +88,32 @@ do
 		;;
 	esac
 done
+
+$CC -std=c99 -x c - << EOF
+struct S {int i; char c[];};
+int main() { return sizeof(struct S) - sizeof(int); }
+EOF
+test $? -eq 0 && ./a.out
+can_c99=$?
+rm -f ./a.out
+if test $can_c99 -ne 0
+then
+	echo "✗ $CC cannot be compile C99 code" 1>&2
+	exit 1
+fi
+
+$CXX -std=c++11 -x c++ - << EOF
+#include <functional>
+int main() { auto f = [] { return 0; }; return f(); }
+EOF
+test $? -eq 0 && ./a.out
+can_cxx11=$?
+rm -f ./a.out
+if test $can_cxx11 -ne 0
+then
+	echo "✗ $CXX cannot be compile C++11 code" 1>&2
+	exit 1
+fi
 
 if ! ( ocamlbuild -vnum; ) > /dev/null 2>&1
 then
