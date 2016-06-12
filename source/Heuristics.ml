@@ -124,7 +124,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
    A good heuristic is to insert them at
    the end of guard edges.
 *)
-let add_weaken ({ fun_name; fun_body = g } as graphf) =
+let add_weaken ({ fun_name; fun_body = g } as gfunc) =
   let is_guard = function
     | AGuard _ -> true
     | _ -> false
@@ -164,4 +164,4 @@ let add_weaken ({ fun_name; fun_body = g } as graphf) =
       g_position = Array.append g.g_position new_position;
     } in
   stats.weaken_map <- (fun_name, !nweaken) :: stats.weaken_map;
-  { graphf with fun_body }
+  { gfunc with fun_body }
