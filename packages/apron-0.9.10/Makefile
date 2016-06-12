@@ -44,7 +44,7 @@ endif
 	(cd apron; make doc)
 
 mlgmpidl/Makefile.config: Makefile.config Makefile
-	$(SED) -e '1 aHAS_MPFR=1\n' Makefile.config >$@
+	( echo "HAS_MPFR=1"; cat Makefile.config; ) > $@
 
 apron/Makefile.config: Makefile.config Makefile
 	cp -f $< $@ 
