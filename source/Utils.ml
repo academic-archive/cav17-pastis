@@ -26,6 +26,17 @@ let negate_cmp = function
   | Eq -> Ne
   | Ne -> Eq
 
+let fresh_name =
+  let cnt = ref 0 in
+  fun () ->
+    let n = "fresh." ^ string_of_int !cnt in
+    incr cnt;
+    n
+
+let is_fresh n =
+  String.length n >= 6 &&
+  String.sub n 0 6 = "fresh."
+
 let show_remove_pdf fpdf =
   let viewers = [ "mupdf"; "xpdf"; "open" ] in
   match Unix.fork () with

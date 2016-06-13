@@ -6,6 +6,7 @@ module type Factor = sig
   type t = Var of Types.id | Max of poly and poly
   val compare: t -> t -> int
   val degree: t -> int
+  val var_exists: (Types.id -> bool) -> t -> bool
   val print: Format.formatter -> t -> unit
 end
 
@@ -14,6 +15,7 @@ module type Monom = sig
   val is_one: t -> bool
   val compare: t -> t -> int
   val degree: t -> int
+  val var_exists: (Types.id -> bool) -> t -> bool
   val fold: (factor -> int -> 'a -> 'a) -> t -> 'a -> 'a
   val pick: t -> (factor * int)
   val one: t
@@ -33,6 +35,7 @@ module type Poly = sig
   val of_expr: Types.expr -> t
   val compare: t -> t -> int
   val degree: t -> int
+  val var_exists: (Types.id -> bool) -> t -> bool
   val fold: (monom -> float -> 'a -> 'a) -> t -> 'a -> 'a
   val is_const: t -> float option
   val get_coeff: monom -> t -> float
@@ -68,6 +71,10 @@ module MkFactor(Pol: Poly)
     | Var _ -> 1
     | Max p -> Pol.degree p
 
+  let var_exists pred = function
+    | Var v -> pred v
+    | Max p -> Pol.var_exists pred p
+
   let print fmt = function
     | Var v -> Format.fprintf fmt "%s" v
     | Max p -> Format.fprintf fmt "max(0, %a)" Pol.print p
@@ -94,6 +101,9 @@ module MkMonom(Fac: Factor)
 
   let degree m =
     fold (fun f e d -> d + e * Fac.degree f) m 0
+
+  let var_exists pred m =
+    fold (fun f _ b -> b || Fac.var_exists pred f) m false
 
   let of_factor f e =
     if e = 0 then one else M.singleton f e
@@ -161,6 +171,9 @@ module MkPoly(Mon: Monom)
 
   let degree p =
     fold (fun m _ d -> max d (Mon.degree m)) p 0
+
+  let var_exists pred p =
+    fold (fun m _ b -> b || Mon.var_exists pred m) p false
 
   let const k =
     if abs_float k <= fsmall

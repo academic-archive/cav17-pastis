@@ -112,13 +112,17 @@ end
       end
 
   let exec_assignment (v, e) annot =
-    match e with
-    | ERandom -> Utils._TODO "non-deterministic assignments"
-    | e ->
-      let e = Poly.of_expr e in
+    let subst e =
       M.fold begin fun monom le ->
         add_poly le (monom_subst v e monom)
       end annot M.empty
+    in
+    match e with
+    | ERandom ->
+      let fresh = Utils.fresh_name () in
+      let e = Poly.of_monom (Monom.of_var fresh) 1. in
+      subst e
+    | e -> subst (Poly.of_expr e)
 
   let add_lprow_array ?(k=0.) arr o =
     begin
@@ -235,6 +239,13 @@ end
 
   let solve_min pl annot dumps =
     let absl = ref [] in
+    M.iter begin fun m le ->
+      (* Zero out all fresh variables created by
+         non-deterministic assignments.
+      *)
+      if Monom.var_exists Utils.is_fresh m then
+        add_lprow le Eq
+    end annot;
     let l = frame_from pl annot ~init:begin fun _ ->
         let v = new_lpvar () and abs = new_lpvar () in
         add_lprow_array [| abs, 1.; v, +1. |] Ge;
