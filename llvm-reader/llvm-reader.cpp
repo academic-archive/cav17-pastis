@@ -374,6 +374,7 @@ struct Func {
 	std::vector<std::string> arguments;
 	std::vector<std::vector<Edge>> body;
 	unsigned start, ret;
+	std::set<std::string> unsignedVars;
 	unsigned nextNode;
 
 	unsigned newNode()
@@ -546,7 +547,7 @@ std::unique_ptr<Expr> valueExpr(Value *v)
 	return make_unique<Expr>();
 }
 
-Cond valueCond(Value *v)
+Cond valueCond(Value *v, Func &f)
 {
 	if (ICmpInst *CI = dyn_cast<ICmpInst>(v)) {
 		Cond::Type cty;
@@ -574,11 +575,17 @@ Cond valueCond(Value *v)
 			return Cond();
 		}
 
-		return Cond(
-			cty,
-			valueExpr(CI->getOperand(0)),
-			valueExpr(CI->getOperand(1))
-		);
+		auto vl = valueExpr(CI->getOperand(0));
+		auto vr = valueExpr(CI->getOperand(1));
+
+		if (CI->isUnsigned()) {
+			if (vl->type == Expr::Var)
+				f.unsignedVars.insert(vl->var);
+			if (vr->type == Expr::Var)
+				f.unsignedVars.insert(vr->var);
+		}
+
+		return Cond(cty, std::move(vl), std::move(vr));
 	}
 
 	if (ConstantInt *CI = dyn_cast<ConstantInt>(v)) {
@@ -632,7 +639,7 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 
 		else if (BranchInst *BI = dyn_cast<BranchInst>(CurI)) {
 			if (BI->isConditional()) {
-				Cond C = valueCond(BI->getCondition());
+				Cond C = valueCond(BI->getCondition(), f);
 				Cond NotC = C.negate();
 
 				BasicBlock *BBTrue = BI->getSuccessor(0);
@@ -704,7 +711,27 @@ Func extractFunc(Function &F)
 		args.push_back(valueName(&A));
 	Func f(valueName(&F), args);
 	DenseMap<BasicBlock *, unsigned> bbMap;
-	f.start = processBlock(&F.getEntryBlock(), f, bbMap);
+	unsigned start = processBlock(&F.getEntryBlock(), f, bbMap);
+
+	/* Add guards for variables that appear in unsigned
+	 * comparisons.  This allows to handle the following
+	 * idiom:
+	 *
+	 *     void f(unsigned x) {
+	 *             while (x--) {
+	 *                 ...
+	 *             }
+	 *     }
+	 */
+	auto zero = std::make_shared<Expr>(0);
+	for (auto const &var: f.unsignedVars) {
+		unsigned node = f.newNode();
+		Cond cond(Cond::GE, std::make_shared<Expr>(var), zero);
+		f.addEdge(node, {start, cond});
+		start = node;
+	}
+	f.start = start;
+
 	return f;
 }
 
