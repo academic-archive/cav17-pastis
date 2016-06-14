@@ -424,6 +424,9 @@ struct Func {
 
 std::string valueName(Value *v)
 {
+	if (CastInst *CI = dyn_cast<CastInst>(v))
+		return valueName(CI->getOperand(0));
+
 	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
 #if LLVM_MAJOR > 3 || (LLVM_MAJOR == 3 && LLVM_MINOR >= 8)
 		const DataLayout &DL = GEP->getModule()->getDataLayout();
@@ -479,6 +482,10 @@ bool isTracked(Value *v, bool ptr = false)
 	/* TODO: Use LLVM's alias analysis to make sure those variables
 	   are only modified through GEPs of the same kind.
 	*/
+	if (CastInst *CI = dyn_cast<CastInst>(v)) {
+		return ptr && isTracked(CI->getOperand(0), ptr);
+	}
+
 	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
 		if (!GEP->hasAllConstantIndices())
 			return false;
