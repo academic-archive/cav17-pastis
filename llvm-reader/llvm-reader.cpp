@@ -625,7 +625,7 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 			if (vop->getType()->isIntegerTy() && isTracked(vptr)) {
 				unsigned newNode = f.newNode();
 				auto e = valueExpr(vop);
-				f.addEdge(newNode, Edge(node, valueName(vptr), std::move(e)));
+				f.addEdge(newNode, {node, valueName(vptr), std::move(e)});
 				node = newNode;
 			}
 		}
@@ -640,8 +640,8 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 
 				node = f.newNode();
 
-				f.addEdge(node, Edge(processBlock(BBTrue, f, bbMap), C));
-				f.addEdge(node, Edge(processBlock(BBFalse, f, bbMap), NotC));
+				f.addEdge(node, {processBlock(BBTrue, f, bbMap), C});
+				f.addEdge(node, {processBlock(BBFalse, f, bbMap), NotC});
 			}
 			else {
 				BasicBlock *Succ = BI->getSuccessor(0);
@@ -652,9 +652,10 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 		}
 
 		else if (isa<ReturnInst>(CurI)) {
+		Return:
 			node = f.newNode();
 			if (f.ret != -1u)
-				f.addEdge(node, Edge(f.ret));
+				f.addEdge(node, f.ret);
 			else
 				f.ret = node;
 		}
@@ -668,13 +669,21 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 			 */
 
 			unsigned nsucc = TI->getNumSuccessors();
-			assert(nsucc > 0);
+
+			if (nsucc == 0) {
+				/* This is a sound handling of this situation
+				 * only when a single function is analyzed.
+				 * Otherwise, proper program abortion should be
+				 * modeled.
+				 */
+				goto Return;
+			}
 
 			node = f.newNode();
 			for (unsigned s = 0; s < nsucc; ++s) {
 				BasicBlock *succ = TI->getSuccessor(s);
 				unsigned nodeSucc = processBlock(succ, f, bbMap);
-				f.addEdge(node, Edge(nodeSucc));
+				f.addEdge(node, nodeSucc);
 			}
 		}
 	}
@@ -684,7 +693,7 @@ unsigned processBlock(BasicBlock *BB, Func &f, DenseMap<BasicBlock *, unsigned> 
 	if (newNode == -1u)
 		bbMap[BB] = node;
 	else
-		f.addEdge(newNode, Edge(node));
+		f.addEdge(newNode, node);
 	return node;
 }
 
