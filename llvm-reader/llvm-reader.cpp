@@ -483,7 +483,7 @@ bool isTracked(Value *v, bool ptr = false)
 	   are only modified through GEPs of the same kind.
 	*/
 	if (CastInst *CI = dyn_cast<CastInst>(v)) {
-		return ptr && isTracked(CI->getOperand(0), ptr);
+		return isTracked(CI->getOperand(0), ptr);
 	}
 
 	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
