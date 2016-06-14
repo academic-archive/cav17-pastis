@@ -130,18 +130,21 @@ let main () =
     in
     let g_file =
       if !no_focus then g_file else
-      List.map (Heuristics.add_focus ~deg:2 ai_results AI.get_nonneg) g_file
+      List.map (Heuristics.add_focus ~deg:1 ai_results AI.get_nonneg) g_file
     in
     let st_results = Analysis.run ai_results AI.is_nonneg g_file fstart query in
     let poly_print =
       if !ascii then Polynom.Poly.print_ascii else Polynom.Poly.print
     in
-    begin match st_results with
-    | None ->
-      Format.printf "Sorry, I could not find a bound.@."
-    | Some p ->
-      Format.printf "Upper bound for %a: %a@." poly_print query poly_print p
-    end;
+    let retcode =
+      match st_results with
+      | None ->
+        Format.printf "Sorry, I could not find a bound.@.";
+        1
+      | Some p ->
+        Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
+        0
+    in
     if !dump_stats then begin
       let open Format in
       let { Analysis.num_lpvars; num_lpcons;
@@ -163,7 +166,7 @@ let main () =
       printf "LP solver runtime: %.3fs" !lp_runtime;
       printf "@]@.";
     end;
-    0
-  with Utils.Error -> 1
+    retcode
+  with Utils.Error -> 2
 
 let () = Utils.exit (main ())
