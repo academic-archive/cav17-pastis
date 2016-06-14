@@ -2,6 +2,7 @@ open Ocamlbuild_plugin
 open Command
 
 let debug = false
+let debug_build = true
 
 let build_path = Sys.getcwd ()
 let sandbox = build_path ^ "/../packages/sandbox"
@@ -36,6 +37,11 @@ let () =
   | After_rules ->
     (* Make OCaml files with flag use_clp depend on Clp_Stubs.o. *)
     dep ["compile"; "ocaml"; "use_clp"] [clp_stubs];
+
+    if debug_build then begin
+      flag ["compile"] (S [A "-ccopt"; A "-g"; A "-g"]);
+      flag ["link"] (S [A "-ccopt"; A "-g"; A "-g"]);
+    end;
 
     flag ["compile"; "ocaml"; "use_apron"] (S flag_sandbox_lib);
     flag ["compile"; "c"; "use_clp"] (S flag_sandbox_include);
