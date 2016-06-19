@@ -545,10 +545,16 @@ std::unique_ptr<Expr> valueExpr(Value *v)
 
 	if (ConstantInt *CI = dyn_cast<ConstantInt>(v)) {
 		int64_t truncVal = CI->getValue().getLimitedValue();
-		if (CI->getType()->isIntegerTy(32))
+		switch (CI->getType()->getIntegerBitWidth()) {
+		case 8:
+			return make_unique<Expr>((int8_t)truncVal);
+		case 16:
+			return make_unique<Expr>((int16_t)truncVal);
+		case 32:
 			return make_unique<Expr>((int32_t)truncVal);
-		else
+		default:
 			return make_unique<Expr>(truncVal);
+		}
 	}
 
 	return make_unique<Expr>();
