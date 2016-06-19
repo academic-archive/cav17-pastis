@@ -231,30 +231,23 @@ module Solver = struct
         let lbs, ubs =
           Poly.fold begin fun m k (lbs, ubs) ->
             let k = int_of_float k in
-            let addk (k', l) = (k', L.addk (k*k') l) in
+            let addk k (k', l) = (k', L.addk (k*k') l) in
             if Monom.is_one m then
-              (List.map addk lbs, List.map addk ubs)
+              (List.map (addk (+k)) lbs, List.map (addk (-k)) ubs)
             else
               let v = monom_var m in
-              let ubs', lbs' =
-                List.fold_left begin fun (ubs, lbs) l ->
-                  let c = L.coeff v l in
-                  if c < 0 then (ubs, l :: lbs)
-                  else if c > 0 then (l :: ubs, lbs)
-                  else (ubs, lbs)
-                end ([], []) abs
-              in
+              let c_comp f l = f (L.coeff v l) 0 in
+              let ubs' = List.filter (c_comp (>)) abs in
+              let lbs' = List.filter (c_comp (<)) abs in
               let ubs', lbs', k =
                 if k < 0 then (lbs', ubs', -k) else (ubs', lbs', +k)
               in
               let addscale l (k', l') =
                 let vk = Pervasives.abs (L.coeff v l) in
-                let lvk = Presburger.lcm k vk in
-                let k = lvk/k in
-                let l = L.mult (lvk/vk) l in
-                let lkk' = Presburger.lcm k k' in
-                let l = L.plus (lkk'/k) l (L.mult (lkk'/k') l') in
-                (lkk', L.set v 0 l)
+                let l = L.mult k l in
+                let lcm = Presburger.lcm vk k' in
+                let l = L.plus (lcm/vk) l (L.mult (lcm/k') l') in
+                (lcm, L.set v 0 l)
               in
               let merge a a' =
                 List.concat
@@ -264,8 +257,8 @@ module Solver = struct
           end pe ([(1, L.const 0)], [(1, L.const 0)])
         in
         let bound low (k, l) =
-          let l = L.plus (-1) (L.set id k (L.const 0)) l in
-          if low then l else L.mult (-1) l
+          let coeff = if low then (-1) else (+1) in
+          L.plus coeff (L.set id k (L.const 0)) l
         in
         let lbs = List.map (bound true) lbs in
         let ubs = List.map (bound false) ubs in
@@ -277,6 +270,14 @@ module Solver = struct
     *)
     else
       forget_id abs
+
+  (*
+  let apply_TAssign abs id peo =
+    let res = apply_TAssign abs id peo in
+    Format.eprintf "apply_TAssign(%a) = %a@."
+      Presburger.print abs Presburger.print res;
+    res
+  *)
 
   let apply graph hedge tabs =
     let transfer = PSHGraph.attrhedge graph hedge in
