@@ -140,10 +140,8 @@ let rec elim x (ps, ds) vars =
       sb || loop (i-1)
     in loop (l * w - 1)
   end (
-    if lbs = []
-        (* This is not complete, but sound. *)
-      then [L.set x (-l) (L.const (-10_000))]
-      else lbs
+    if lbs <> [] then lbs else
+    [L.set x (-l) (L.const (-100_000_000_000))]
   )
 
 and sat (ps, divs) = function
