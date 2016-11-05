@@ -344,16 +344,16 @@ let analyze ~dump fl fstart =
 
   if dump then begin
     let (fn, oc) = Filename.open_temp_file "" ".dot" in
-    let fpdf = fn ^ ".pdf" in
+    let fpng = fn ^ ".png" in
     let fmt = Format.formatter_of_out_channel oc in
     debug_print fmt info graph res;
     close_out oc;
-    let cmd = Printf.sprintf "dot -O -Tpdf %s" fn in
+    let cmd = Printf.sprintf "dot -O -Tpng %s" fn in
     if (try Sys.command cmd with Sys_error _ -> 1) <> 0 then
       Printf.eprintf
         "Error: '%s' failed, be sure to have Graphviz installed with PDF support.\n"
         cmd
-    else Utils.show_remove_pdf fpdf;
+    else Utils.show_remove_png fpng;
     Sys.remove fn;
   end;
 

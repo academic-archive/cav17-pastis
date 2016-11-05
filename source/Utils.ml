@@ -37,16 +37,16 @@ let is_fresh n =
   String.length n >= 6 &&
   String.sub n 0 6 = "fresh."
 
-let show_remove_pdf fpdf =
-  let viewers = [ "mupdf"; "xpdf"; "open" ] in
+let show_remove_png fpng =
+  let viewers = [ "feh"; "display"; "open" ] in
   match Unix.fork () with
   | 0 ->
     List.iter begin fun prog ->
-      let cmd = Printf.sprintf "%s %s >/dev/null 2>&1" prog fpdf in
+      let cmd = Printf.sprintf "%s %s >/dev/null 2>&1" prog fpng in
       if (try Sys.command cmd with Sys_error _ -> 1) = 0
-      then (Sys.remove fpdf; exit 0)
+      then (Sys.remove fpng; exit 0)
     end viewers;
-    Printf.eprintf "Could open file '%s' for display.\n" fpdf;
+    Printf.eprintf "Could open file '%s' for display.\n" fpng;
     exit 0
   | _ -> ()
 
