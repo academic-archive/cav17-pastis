@@ -471,49 +471,94 @@ std::string valueName(Value *v)
 	return v->getName();
 }
 
-bool checkAllUses(Value *v)
+bool checkNoEscape(Value *v)
 {
-	/* Checks that the value is only used in loads
-	 * and in at most one store where the stored value
-	 * is an argument.
-	 */
-
-	int nstore = 0;
-	for (User *U: v->users()) {
-		if (StoreInst *SI = dyn_cast<StoreInst>(U)) {
-			if (!isa<Argument>(SI->getValueOperand()))
-				return false;
-			nstore++;
+	bool ok = true;
+	for (User *U: v->users())
+		if (isa<GetElementPtrInst>(U)
+		||  isa<CastInst>(U)) {
+			ok = ok && checkNoEscape(U);
+		}
+		else if (StoreInst *SI = dyn_cast<StoreInst>(U)) {
+			ok = ok && v == SI->getPointerOperand();
 		}
 		else if (!isa<LoadInst>(U))
-			return false;
-	}
-	return nstore <= 1;
+			ok = false;
+	return ok;
 }
 
-bool isTracked(Value *v, bool ptr = false)
+bool checkChain(Value *v, int ptr)
 {
-	/* TODO: Use LLVM's alias analysis to make sure those variables
-	   are only modified through GEPs of the same kind.
-	*/
-	if (CastInst *CI = dyn_cast<CastInst>(v)) {
-		return isTracked(CI->getOperand(0), ptr);
+	/* Recursively goes through all the users and
+	 * check that they are chains of loads, gep
+	 * and casts.
+	 */
+	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
+		if (!GEP->hasAllConstantIndices())
+			return false;
 	}
+	else if (isa<LoadInst>(v)) {
+		--ptr;
+	}
+	else if (!isa<CastInst>(v)) {
+		return false;
+	}
+
+	if (ptr == 0)
+		return checkNoEscape(v);
+
+	for (User *U: v->users()) {
+		if (!checkChain(U, ptr))
+			return false;
+	}
+	return true;
+}
+
+bool isTracked(Value *v, int ptr = 0)
+{
+	if (CastInst *CI = dyn_cast<CastInst>(v))
+		return isTracked(CI->getOperand(0), ptr);
 
 	if (GetElementPtrInst *GEP = dyn_cast<GetElementPtrInst>(v)) {
 		if (!GEP->hasAllConstantIndices())
 			return false;
-		return !ptr && isTracked(GEP->getPointerOperand(), ptr);
+		return isTracked(GEP->getPointerOperand(), ptr);
 	}
 
-	if (LoadInst *LI = dyn_cast<LoadInst>(v)) {
-		return !ptr && isTracked(LI->getPointerOperand(), true);
-	}
+	if (LoadInst *LI = dyn_cast<LoadInst>(v))
+		return isTracked(LI->getPointerOperand(), ptr+1);
 
 	if (AllocaInst *AI = dyn_cast<AllocaInst>(v)) {
 		if (!AI->isStaticAlloca())
 			return false;
-		return !ptr || checkAllUses(AI);
+
+		/* 1. The alloca is for an integer type.
+		 *
+		 *    In that case we simply make sure that
+		 *    it is only used in stores and loads.
+		 */
+		if (ptr == 0)
+			return checkNoEscape(AI);
+
+		/* 2. The alloca is a pointer with one chain
+		 *    of [ptr] dereferences (we went through it).
+		 *
+		 *    In that case we check that it is stored
+		 *    only once from an argument, and that all
+		 *    the recursive uses chains of length [ptr]
+		 *    or less are loads/geps/casts.
+		 */
+		bool stored = false;
+		for (User *U: AI->users())
+			if (StoreInst *SI = dyn_cast<StoreInst>(U)) {
+				if (stored)
+					return false;
+				if (!isa<Argument>(SI->getValueOperand()))
+					return false;
+				stored = true;
+			} else if (!checkChain(U, ptr))
+				return false;
+		return true;
 	}
 
 	return false;
@@ -522,10 +567,17 @@ bool isTracked(Value *v, bool ptr = false)
 std::unique_ptr<Expr> valueExpr(Value *v)
 {
 	if (isa<Instruction>(*v)) {
+		if (SExtInst *SI = dyn_cast<SExtInst>(v)) {
+			return valueExpr(SI->getOperand(0));
+		}
+
+		if (CastInst *CI = dyn_cast<CastInst>(v)) {
+			return valueExpr(CI->getOperand(0));
+		}
 
 		if (LoadInst *LI = dyn_cast<LoadInst>(v)) {
 			Value *vptr = LI->getPointerOperand();
-			if (isTracked(vptr))
+			if (LI->getType()->isIntegerTy() && isTracked(vptr))
 				return make_unique<Expr>(valueName(vptr));
 		}
 
@@ -561,14 +613,22 @@ std::unique_ptr<Expr> valueExpr(Value *v)
 		int64_t truncVal = CI->getValue().getLimitedValue();
 		switch (CI->getType()->getIntegerBitWidth()) {
 		case 8:
-			return make_unique<Expr>((int8_t)truncVal);
+			truncVal = (int8_t)truncVal;
+			break;
 		case 16:
-			return make_unique<Expr>((int16_t)truncVal);
+			truncVal = (int16_t)truncVal;
+			break;
 		case 32:
-			return make_unique<Expr>((int32_t)truncVal);
+			truncVal = (int32_t)truncVal;
+			break;
 		default:
-			return make_unique<Expr>(truncVal);
+			break;
 		}
+		if (truncVal <= 10000 && truncVal >= -10000)
+			/* avoid big constants that make the
+			 * LP solver overflow
+			 */
+			return make_unique<Expr>(truncVal);
 	}
 
 	return make_unique<Expr>();
