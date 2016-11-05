@@ -90,7 +90,7 @@ do
 	esac
 done
 
-$CC -std=c99 -x c - << EOF
+$CC -std=c99 -x c - 2> /dev/null << EOF
 struct S {int i; char c[];};
 int main() { return sizeof(struct S) - sizeof(int); }
 EOF
@@ -99,11 +99,11 @@ can_c99=$?
 rm -f ./a.out
 if test $can_c99 -ne 0
 then
-	echo "✗ $CC cannot be compile C99 code" 1>&2
+	echo "✗ $CC cannot compile C99 code" 1>&2
 	exit 1
 fi
 
-$CXX -std=c++11 -x c++ - << EOF
+$CXX -std=c++11 -x c++ - 2> /dev/null << EOF
 #include <functional>
 int main() { auto f = [] { return 0; }; return f(); }
 EOF
@@ -112,7 +112,7 @@ can_cxx11=$?
 rm -f ./a.out
 if test $can_cxx11 -ne 0
 then
-	echo "✗ $CXX cannot be compile C++11 code" 1>&2
+	echo "✗ $CXX cannot compile C++11 code" 1>&2
 	exit 1
 fi
 
