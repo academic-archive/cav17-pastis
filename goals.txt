@@ -1,0 +1,41 @@
+The classic stack/kmp example does not work
+automatically, it must be fixed.
+
+The XNU function in the Loopus 15 paper should
+work automatically in our system, but it does not.
+
+xnu(int len) {
+	int beg, end, i = 0;
+	while (i < len) {
+		i++;
+		if (*)
+			end = i;
+		if (*) {
+			int k = beg;
+			while (k < end)
+				k++;
+			end = i;
+			beg = end;
+		}
+	}
+}
+
+Another function that works directly with Loopus, but
+is pretty complex in our setting is:
+
+int MDfile0_len(FILE * f, word32 longcount)
+{
+    int bytecount;
+    unsigned char buffer[1024];
+    do {
+        if (longcount < (word32) 1024)
+            bytecount = (int) longcount;
+        else
+            bytecount = 1024;
+        bytecount = fread(buffer, 1, bytecount, f);
+        if (bytecount > 0) {
+            longcount -= bytecount;
+        }
+    } while (bytecount == 1024);
+    return 0;
+}
