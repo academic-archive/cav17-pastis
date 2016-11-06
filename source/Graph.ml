@@ -112,7 +112,7 @@ let rpo_order gfunc =
   let new_position = Array.make nlive Utils.dummy_position in
   Array.iteri (fun i n ->
     let tr_edges = List.map (fun (a, d) -> (a, map.(d))) in
-    if n <> -1 then begin
+    if n <> nlive then begin
       new_edges.(n) <- tr_edges g.g_edges.(i);
       new_position.(n) <- g.g_position.(i);
     end
