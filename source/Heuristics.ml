@@ -10,6 +10,160 @@ module PSet = Set.Make(struct
   let compare = Poly.compare
 end)
 
+module ISet = Set.Make(struct
+  type t = int
+  let compare = compare
+end)
+
+let pset_of_logic log =
+  let cmp e1 c e2 =
+    let p1 = Poly.of_expr e1
+    and p2 = Poly.of_expr e2 in
+    let one = Poly.const 1. in
+    match c with
+    | Le -> [[Poly.sub p2 p1]]
+    | Lt -> [[Poly.sub (Poly.sub p2 p1) one]]
+    | Ge -> [[Poly.sub p1 p2]]
+    | Gt -> [[Poly.sub (Poly.sub p1 p2) one]]
+    | _ -> [[]]
+  in
+  match DNF.of_logic cmp log with
+  | [l] -> List.fold_left
+    (fun ps pol -> PSet.add pol ps)
+    PSet.empty l
+  | _ -> PSet.empty
+
+type loop = {
+  l_head: int;
+  mutable l_body: ISet.t;
+  mutable l_chld: loop list;
+  mutable l_base: PSet.t;
+}
+
+let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
+  (* While following the rpo in the function
+     graph, we collect all the loops we can
+     find.  Loops are represented as sets of
+     integers.
+
+     For each loop, we collect the "continue"
+     conditions.  Each of them, combined with
+     a maximum increment in the loop will give
+     two base functions of interest.
+  *)
+
+  let gfunc = Graph.rpo_order gfunc in
+  let edges = gfunc.fun_body.g_edges in
+  let nnodes = Array.length edges in
+
+  let preds = Array.make nnodes [] in
+  let _ =
+    Array.iteri (fun pred ->
+      List.iter (fun (_, succ) ->
+        preds.(succ) <- pred :: preds.(succ))
+    ) edges;
+    Array.map (List.sort_uniq compare) preds
+  in
+
+  let mkloop head = {
+    l_head = head;
+    l_body = ISet.empty;
+    l_chld = [];
+    l_base = PSet.empty;
+  } in
+
+  let root = mkloop (-1) in
+  let loopinfo = Array.make nnodes root in
+
+  let _ =
+    let rec collect l n =
+      if loopinfo.(n) == l || n < l.l_head then
+        (* Already visited, or clearly out of
+           the loop. *)
+        ISet.empty
+      else begin
+        loopinfo.(n) <- l;
+        List.fold_left
+          (fun body pred ->
+            ISet.union body (collect l pred))
+          (ISet.singleton n)
+          preds.(n)
+      end
+    in
+    let ishead node = List.exists
+      (fun pred -> pred >= node)
+      preds.(node)
+    in
+    for node = 0 to nnodes-1 do
+      if ishead node then begin
+        let ldad = loopinfo.(node) in
+        let lme = mkloop node in
+        ldad.l_chld <- lme :: ldad.l_chld;
+        lme.l_body <- collect lme node;
+      end
+    done in
+
+  let iterloops f =
+    let rec go f l =
+      f l; List.iter (go f) l.l_chld in
+    go f root in
+
+  iterloops begin fun l ->
+    ISet.iter (fun node ->
+      if List.exists
+        (fun (_, dst) -> not (ISet.mem dst l.l_body))
+        edges.(node)
+      then begin
+        (* One edge out of node exits the
+           loop l *)
+        let base =
+          List.fold_left (fun ps (act, dst) ->
+            if not (ISet.mem dst l.l_body) then ps else
+            match act with
+            | AGuard log -> PSet.union ps (pset_of_logic log)
+            | _ -> ps
+          ) PSet.empty edges.(node)
+        in
+        l.l_base <- PSet.union base l.l_base;
+      end
+    ) l.l_body
+  end;
+
+  if true then begin (* Debug display of loop information. *)
+    let open Format in
+    let rec printl fmt l =
+      if l.l_head = -1 then
+        fprintf fmt "@[<v>Program root."
+      else begin
+        fprintf fmt "* @[<v>Loop %d." l.l_head;
+        fprintf fmt "@ Norms: ";
+        Print.list ~first:"@[<hov>" ~sep:",@ " ~last:"@]"
+          Poly.print fmt (PSet.elements l.l_base);
+        fprintf fmt "@ Body: ";
+        Print.list ~first:"@[<hov>" ~sep:"@ " ~last:"@]"
+          Format.pp_print_int fmt (ISet.elements l.l_body);
+      end;
+      if l.l_chld = [] then
+        ()
+      else begin
+        fprintf fmt "@ Children loops:@   @[<v>";
+        let fst = ref true in
+        List.iter (fun l ->
+          fprintf fmt
+            (if !fst then "%a" else "@ %a")
+            printl l;
+          fst := false;
+        ) l.l_chld;
+        fprintf fmt "@]";
+      end;
+      fprintf fmt "@]";
+    in
+    eprintf "Function \x1b[1m%s\x1b[0m:@." gfunc.fun_name;
+    eprintf "%a@.@." printl root
+  end;
+
+  gfunc
+
 (* Helper functions to create higher degree indices. *)
 
 let rec prodfold n l ?(acc=[]) accf f =
@@ -25,7 +179,7 @@ let rec prodfold n l ?(acc=[]) accf f =
 
 (* The heuristic to infer focus functions.
 *)
-let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
+let add_focus_old ?(deg=1) ai_results ai_get_nonneg gfunc =
   let pzero = Poly.zero () in
 
   let assigns =
