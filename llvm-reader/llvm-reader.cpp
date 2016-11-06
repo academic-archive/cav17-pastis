@@ -506,6 +506,7 @@ bool checkChain(Value *v, int ptr)
 
 	if (ptr == 0)
 		return checkNoEscape(v);
+		// return true;
 
 	for (User *U: v->users()) {
 		if (!checkChain(U, ptr))
@@ -527,6 +528,9 @@ bool isTracked(Value *v, int ptr = 0)
 
 	if (LoadInst *LI = dyn_cast<LoadInst>(v))
 		return isTracked(LI->getPointerOperand(), ptr+1);
+
+	if (isa<GlobalVariable>(v))
+		return true;
 
 	if (AllocaInst *AI = dyn_cast<AllocaInst>(v)) {
 		if (!AI->isStaticAlloca())
