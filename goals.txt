@@ -1,3 +1,6 @@
+PATTERN 1
+=========
+
 The classic stack/kmp example does not work
 automatically, it must be fixed.
 
@@ -19,6 +22,39 @@ xnu(int len) {
 		}
 	}
 }
+
+PATTERN 2
+=========
+
+loop:
+  x--
+  if x <= 0:
+    break
+  z++
+
+
+PATTERN 3
+=========
+
+while x >= 0:
+  y--
+  if y >= 0:
+    # or y-- here
+    x++
+  else
+    x--
+
+PATTERN 4
+=========
+
+while x < N:
+  x++
+  if x <= n:
+    x = n
+  z++
+
+BONUS
+=====
 
 Another function that works directly with Loopus, but
 is pretty complex in our setting is:
