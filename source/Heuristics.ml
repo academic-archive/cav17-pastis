@@ -38,6 +38,7 @@ type loop = {
   mutable l_body: ISet.t;
   mutable l_chld: loop list;
   mutable l_base: PSet.t;
+  mutable l_incr: PSet.t;
 }
 
 let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
@@ -70,6 +71,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
     l_body = ISet.empty;
     l_chld = [];
     l_base = PSet.empty;
+    l_incr = PSet.empty;
   } in
 
   let root = mkloop (-1) in
@@ -105,7 +107,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
 
   let iterloops f =
     let rec go f l =
-      f l; List.iter (go f) l.l_chld in
+      List.iter (go f) l.l_chld; f l in
     go f root in
 
   iterloops begin fun l ->
@@ -116,18 +118,41 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
       then begin
         (* One edge out of node exits the
            loop l *)
-        let base =
+        let base ps =
           List.fold_left (fun ps (act, dst) ->
             if not (ISet.mem dst l.l_body) then ps else
             match act with
             | AGuard log -> PSet.union ps (pset_of_logic log)
             | _ -> ps
-          ) PSet.empty edges.(node)
+          ) ps edges.(node)
         in
-        l.l_base <- PSet.union base l.l_base;
+        l.l_base <- base l.l_base;
       end
     ) l.l_body
   end;
+
+  (* For each base in each loop, figure out its possible
+     decrements in the loop body.
+       - If only one decrement is found, add it to the
+         base to figure some candidate potential.
+       - If none or multple are found, form a candidate
+         by adding one to the base.
+     Add the rewrite m0(cand) >= cand
+     Add the rewrite base >= m0(base)
+     Add the rewrite m0(cand) >= m0(base) (to weaken on gopan style examples)
+
+     For each base of the loop and children loops,
+     check if it can grow in the current loop.
+     Check all assertions in the path to the modification,
+     all of those that are changed in the loop are added
+     in the base set to process.
+
+     For each assignment changing a base, create and add
+     the new base resulting from execution of the assignment.
+     Generate the rewrite function m0(base) >= m0(base').
+     If x = y is the assignment, add x - y if there is
+     a base with -x, and y - x if there is a base with x.
+  *)
 
   if true then begin (* Debug display of loop information. *)
     let open Format in
