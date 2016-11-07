@@ -41,7 +41,7 @@ type loop = {
   mutable l_incr: PSet.t;
 }
 
-let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
+let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
   (* While following the rpo in the function
      graph, we collect all the loops we can
      find.  Loops are represented as sets of
@@ -53,6 +53,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
      two base functions of interest.
   *)
 
+  let ai_results = Hashtbl.find ai_results gfunc.fun_name in
   let gfunc = Graph.rpo_order gfunc in
   let edges = gfunc.fun_body.g_edges in
   let nnodes = Array.length edges in
@@ -153,6 +154,87 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg gfunc =
      If x = y is the assignment, add x - y if there is
      a base with -x, and y - x if there is a base with x.
   *)
+
+  let classify node p = function
+    (* Classify an action as an increment,
+       a decrement, a reset, a no-op, or
+       something else.
+    *)
+    | AAssign (v, e) ->
+      let is_nonneg = ai_is_nonneg ai_results.(node) in
+      let pe = Poly.of_expr e in
+      if not (Poly.var_exists ((=) v) pe) then
+        `Reset pe
+      else
+      let p' = Poly.sub p (poly_subst v pe p) in
+      let mp' = Poly.scale (-1.) p' in
+      if Poly.is_const p' = Some 0. then
+        `NoOp
+      else if (* p and p' have variables in common *)
+        Poly.var_exists
+          (fun v' -> Poly.var_exists ((=) v') p) p'
+      then
+        `DontKnow
+      else if is_nonneg p' then
+        `Decrement p'
+      else if is_nonneg mp' then
+        `Increment mp'
+      else
+        `DontKnow
+    | _ -> `NoOp
+  in
+
+  let maxdecr p l =
+    let module Jump = struct exception Out end in
+    let jumpout _where = raise Jump.Out in
+    let maxof pa pb =
+      if Poly.compare pa pb = 0 then pa else
+      if Poly.is_const pa = Some 0. then pb else
+      if Poly.is_const pb = Some 0. then pa else
+      match Poly.is_const (Poly.sub pa pb) with
+      | Some k -> if k < 0. then pb else pa
+      | None -> jumpout "maxof"
+    in
+    let hmemo = Hashtbl.create 11 in
+    let rec go node maxd =
+      try
+        let maxd' = Hashtbl.find hmemo node in
+        if Poly.compare maxd' maxd <> 0
+        then jumpout "loop"
+        else maxd
+      with Not_found ->
+        Hashtbl.add hmemo node maxd;
+        let maxafter =
+          List.fold_left (fun mx (act, dst) ->
+            if dst = l.l_head
+            || not (ISet.mem dst l.l_body)
+            then mx
+            else
+              match classify node p act with
+              | `Decrement d ->
+                maxof mx (go dst (Poly.add d maxd))
+              | `DontKnow ->
+                jumpout "dontknow"
+              | `NoOp | `Increment _ | `Reset _ ->
+                maxof mx (go dst maxd)
+          ) (Poly.zero ()) edges.(node)
+        in
+        Hashtbl.remove hmemo node;
+        if Poly.is_const maxafter = Some 0.
+        then maxd
+        else maxafter
+    in
+    try go l.l_head (Poly.zero ())
+    with Jump.Out -> Poly.const 1.
+  in
+
+  iterloops begin fun l ->
+    l.l_base <-
+      PSet.fold (fun pbase ->
+        let md = maxdecr pbase l in
+        PSet.add (Poly.add md pbase)
+      ) l.l_base PSet.empty
+  end;
 
   if true then begin (* Debug display of loop information. *)
     let open Format in
