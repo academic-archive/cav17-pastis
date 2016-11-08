@@ -117,6 +117,7 @@ let main () =
       if !no_weaken then g_file else
       List.map Heuristics.add_weaken g_file
     in
+    let g_file = List.map Graph.rpo_order g_file in
     let module AI = (val begin
         match !ai with
         | "apron" -> (module Graph.AbsInt.Apron)

@@ -42,6 +42,9 @@ type loop = {
 }
 
 let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
+
+  let debug = true in
+
   (* While following the rpo in the function
      graph, we collect all the loops we can
      find.  Loops are represented as sets of
@@ -54,7 +57,6 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
   *)
 
   let ai_results = Hashtbl.find ai_results gfunc.fun_name in
-  let gfunc = Graph.rpo_order gfunc in
   let edges = gfunc.fun_body.g_edges in
   let nnodes = Array.length edges in
 
@@ -185,6 +187,9 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
   in
 
   let maxdecr p l =
+    (* This sucks, we should be doing constants
+       only.
+    *)
     let module Jump = struct exception Out end in
     let jumpout _where = raise Jump.Out in
     let maxof pa pb =
@@ -228,15 +233,21 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     with Jump.Out -> Poly.const 1.
   in
 
+  let focus = ref [] in
+  let add_focus f = focus := f :: !focus in
+
   iterloops begin fun l ->
     l.l_base <-
       PSet.fold (fun pbase ->
         let md = maxdecr pbase l in
+        add_focus (max0_pre_decrement pbase md);
+        (* add_focus (max0_ge_0 pbase); *)
+        add_focus (max0_ge_0 (Poly.add pbase md));
         PSet.add (Poly.add md pbase)
       ) l.l_base PSet.empty
   end;
 
-  if true then begin (* Debug display of loop information. *)
+  if debug then begin (* Debug display of loop information. *)
     let open Format in
     let rec printl fmt l =
       if l.l_head = -1 then
@@ -269,7 +280,13 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     eprintf "%a@.@." printl root
   end;
 
-  gfunc
+  let fun_focus = gfunc.fun_focus @ List.map export !focus in
+  if debug then begin
+    Format.eprintf "Focus functions:@.  %a@.@."
+      (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]"
+        Poly.print) (List.map snd fun_focus);
+  end;
+  { gfunc with fun_focus }
 
 (* Helper functions to create higher degree indices. *)
 
