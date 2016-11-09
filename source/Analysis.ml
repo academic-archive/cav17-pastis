@@ -327,13 +327,16 @@ let run ai_results ai_is_nonneg fl start query =
   let find_focus f node =
     let ai = Hashtbl.find ai_results f in
     let ok (c, _) = List.for_all (ai_is_nonneg ai.(node)) c in
-    let res = List.map snd (List.filter ok focus) in
-    if false then
-    Format.eprintf "Using: %a@."
-      (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]" Poly.print)
-      res;
+    let res = List.filter ok focus in
+    if false then begin
+      let fprint fmt (c, f) =
+        Format.fprintf fmt (if c <> [] then "* %a" else "  %a")
+          Poly.print f in
+      Format.eprintf "Using:@.%a@."
+        (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]" fprint) res
+    end;
     stats.max_focus <- max (List.length res) stats.max_focus;
-    res
+    List.map snd res
   in
 
   (* Create a new potential annotation resulting from

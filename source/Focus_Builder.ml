@@ -35,7 +35,12 @@ type t =
   ; degree: int }
 
 let export i =
-  (i.checks, prop_Ge0 i.proves)
+  let checks = List.filter
+    (fun p ->
+      match Poly.is_const p with
+      | Some k -> k < 0.
+      | None -> true) i.checks
+  in (checks, prop_Ge0 i.proves)
 
 let degree i =
   i.degree
@@ -59,12 +64,18 @@ let degree i =
    ----- Focus functions for automation ----
 
    max(0, x) >= y + max(0, x - y)    when x >= y >= 0 (max0_pre_decrement)
+   max(0, x) + y >= max(0, x + y)    when y >= 0      (max0_pre_increment)
 *)
 
 let max0_pre_decrement x y =
   let xsuby = Poly.sub x y in
   { proves = Ge (poly_max x, Poly.add (poly_max xsuby) y)
   ; checks = [xsuby; y]
+  ; degree = max (Poly.degree x) (Poly.degree y) }
+
+let max0_pre_increment x y =
+  { proves = Ge (Poly.add (poly_max x) y, poly_max (Poly.add x y))
+  ; checks = [y]
   ; degree = max (Poly.degree x) (Poly.degree y) }
 
 let check_ge a b =

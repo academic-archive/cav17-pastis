@@ -43,8 +43,6 @@ type loop = {
 
 let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
 
-  let debug = true in
-
   (* While following the rpo in the function
      graph, we collect all the loops we can
      find.  Loops are represented as sets of
@@ -265,6 +263,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
             | `NoOp | `DontKnow -> ()
             | `Decrement pd ->
               let pdecr = Poly.sub pcand pd in
+              add_focus (max0_ge_0 pdecr);
               add_focus (max0_monotonic (check_ge pcand pdecr));
               add_focus (max0_pre_decrement pcand pd);
             | `Increment pi ->
@@ -291,6 +290,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
                 | _ -> ()
               in
               up node;
+              add_focus (max0_pre_increment pcand pi);
             | `Reset (v, pe) ->
               (* Add a focus function to weaken our
                  candidate to the substitution result. *)
@@ -313,6 +313,8 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
        to the corresponding base.
     *)
   end;
+
+  let debug = true in
 
   if debug then begin (* Debug display of loop information. *)
     let open Format in
