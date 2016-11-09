@@ -140,6 +140,11 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
        a decrement, a reset, a no-op, or
        something else.
     *)
+    | AAssign (v, ERandom) ->
+      if Poly.var_exists ((=) v) p then
+        `DontKnow
+      else
+        `NoOp
     | AAssign (v, e) ->
       let is_nonneg = ai_is_nonneg ai_results.(node) in
       let pe = Poly.of_expr e in
@@ -378,7 +383,7 @@ let rec prodfold n l ?(acc=[]) accf f =
 
 (* The heuristic to infer focus functions.
 *)
-let add_focus_old ?(deg=1) ai_results ai_get_nonneg gfunc =
+let add_focus_old ?(deg=1) ai_results ai_get_nonneg _ gfunc =
   let pzero = Poly.zero () in
 
   let assigns =
