@@ -58,12 +58,13 @@ let degree i =
 
    ----- Focus functions for automation ----
 
-   max(0, x + y) >= y + max(0, x)    when x,y >= 0 (max0_pre_decrement)
+   max(0, x) >= y + max(0, x - y)    when x >= y >= 0 (max0_pre_decrement)
 *)
 
 let max0_pre_decrement x y =
-  { proves = Ge (poly_max (Poly.add x y), Poly.add (poly_max x) y)
-  ; checks = [x; y]
+  let xsuby = Poly.sub x y in
+  { proves = Ge (poly_max x, Poly.add (poly_max xsuby) y)
+  ; checks = [xsuby; y]
   ; degree = max (Poly.degree x) (Poly.degree y) }
 
 let check_ge a b =

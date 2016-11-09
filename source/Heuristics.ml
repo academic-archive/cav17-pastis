@@ -115,27 +115,6 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
 
   (* TODO: Maybe sort the subloops by -head. *)
 
-  iterloops begin fun l ->
-    ISet.iter (fun node ->
-      if List.exists
-        (fun (_, dst) -> not (ISet.mem dst l.l_body))
-        edges.(node)
-      then begin
-        (* One edge out of node exits the
-           loop l *)
-        let base ps =
-          List.fold_left (fun ps (act, dst) ->
-            if not (ISet.mem dst l.l_body) then ps else
-            match act with
-            | AGuard log -> PSet.union ps (pset_of_logic log)
-            | _ -> ps
-          ) ps edges.(node)
-        in
-        l.l_base <- base l.l_base;
-      end
-    ) l.l_body
-  end;
-
   (* For each base in each loop, figure out its possible
      decrements in the loop body.
        - If only one decrement is found, add it to the
@@ -232,6 +211,35 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     with Jump.Out -> Poly.const 1.
   in
 
+  let cands_of_log loop log =
+    List.fold_left (fun ps pbase ->
+      let md = maxdecr pbase loop in
+      if Poly.is_const md = Some 0. then ps else
+      PSet.add (Poly.add md pbase) ps
+    ) PSet.empty (PSet.elements (pset_of_logic log)) in
+
+  iterloops begin fun l ->
+    ISet.iter (fun node ->
+      if List.exists
+        (fun (_, dst) -> not (ISet.mem dst l.l_body))
+        edges.(node)
+      then begin
+        (* One edge out of node exits the
+           loop l *)
+        let base ps =
+          List.fold_left (fun ps (act, dst) ->
+            if not (ISet.mem dst l.l_body) then ps else
+            match act with
+            | AGuard log ->
+              PSet.union ps (cands_of_log l log)
+            | _ -> ps
+          ) ps edges.(node)
+        in
+        l.l_base <- base l.l_base;
+      end
+    ) l.l_body
+  end;
+
   let focus = ref [] in
   let add_focus f =
     assert (Poly.is_const (snd (export f)) <> Some 0.);
@@ -243,30 +251,22 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     let rec go bs =
       match !stk with
       | [] -> bs
-      | pbase :: stk' ->
+      | pcand :: stk' ->
         stk := stk';
 
-        (* With maxdecr, we can find a good candidate
-           for potential for this loop.
-        *)
-        if PSet.mem pbase bs then go bs else
-        let md = maxdecr pbase l in
-        if Poly.is_const md = Some 0. then go bs else
-        let pcand = Poly.add md pbase in
+        if PSet.mem pcand bs then go bs else
+        begin
 
-        add_focus (max0_pre_decrement pbase md);
-        add_focus (max0_ge_0 (Poly.add pbase md));
-        add_focus (max0_monotonic (check_ge pcand pbase));
+        add_focus (max0_ge_0 pcand);
         ISet.iter (fun node ->
           List.iter (fun (act, dst) ->
             if not (ISet.mem dst l.l_body) then () else
             match classify node pcand act with
             | `NoOp | `DontKnow -> ()
-            | `Decrement pd
-              when Poly.compare pd md = 0 -> ()
             | `Decrement pd ->
               let pdecr = Poly.sub pcand pd in
               add_focus (max0_monotonic (check_ge pcand pdecr));
+              add_focus (max0_pre_decrement pcand pd);
             | `Increment pi ->
               (* Look for conditions on the way to
                  the increment in the loop, use them
@@ -283,9 +283,9 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
                   in
                   begin match act with
                   | AGuard log ->
-                    PSet.iter
-                      (fun p -> stk := p :: !stk)
-                      (pset_of_logic log)
+                    stk :=
+                      PSet.elements (cands_of_log l log)
+                      @ !stk;
                   | _ -> up pred
                   end
                 | _ -> ()
@@ -295,17 +295,15 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
               (* Add a focus function to weaken our
                  candidate to the substitution result. *)
               let psubs = poly_subst v pe pcand in
-
               (* TODO, use AI to see if we can do it. *)
               add_focus (max0_monotonic (check_ge pcand psubs));
-
-              (* FIXME, this should not be handled like a
-                 base, but like a candidate instead. *)
               stk := psubs :: !stk;
           ) edges.(node);
         ) l.l_body;
 
-        go (PSet.add pcand bs)
+        go (PSet.add pcand bs);
+
+        end
     in
     l.l_base <- go PSet.empty;
 
