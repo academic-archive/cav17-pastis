@@ -328,6 +328,10 @@ let run ai_results ai_is_nonneg fl start query =
     let ai = Hashtbl.find ai_results f in
     let ok (c, _) = List.for_all (ai_is_nonneg ai.(node)) c in
     let res = List.map snd (List.filter ok focus) in
+    if false then
+    Format.eprintf "Using: %a@."
+      (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]" Poly.print)
+      res;
     stats.max_focus <- max (List.length res) stats.max_focus;
     res
   in

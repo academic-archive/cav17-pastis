@@ -113,6 +113,8 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
       List.iter (go f) l.l_chld; f l in
     go f root in
 
+  (* TODO: Maybe sort the subloops by -head. *)
+
   iterloops begin fun l ->
     ISet.iter (fun node ->
       if List.exists
@@ -138,10 +140,9 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
      decrements in the loop body.
        - If only one decrement is found, add it to the
          base to figure some candidate potential.
-       - If none or multple are found, form a candidate
+       - If none or multiple are found, form a candidate
          by adding one to the base.
-     Add the rewrite m0(cand) >= cand
-     Add the rewrite base >= m0(base)
+     Add the rewrite m0(cand) >= cand-base + m0(base)
      Add the rewrite m0(cand) >= m0(base) (to weaken on gopan style examples)
 
      For each base of the loop and children loops,
@@ -166,17 +167,15 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
       let is_nonneg = ai_is_nonneg ai_results.(node) in
       let pe = Poly.of_expr e in
       if not (Poly.var_exists ((=) v) pe) then
-        `Reset pe
+        if Poly.var_exists ((=) v) p then
+          `Reset (v, pe)
+        else
+          `NoOp
       else
       let p' = Poly.sub p (poly_subst v pe p) in
       let mp' = Poly.scale (-1.) p' in
       if Poly.is_const p' = Some 0. then
         `NoOp
-      else if (* p and p' have variables in common *)
-        Poly.var_exists
-          (fun v' -> Poly.var_exists ((=) v') p) p'
-      then
-        `DontKnow
       else if is_nonneg p' then
         `Decrement p'
       else if is_nonneg mp' then
@@ -234,17 +233,87 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
   in
 
   let focus = ref [] in
-  let add_focus f = focus := f :: !focus in
+  let add_focus f =
+    assert (Poly.is_const (snd (export f)) <> Some 0.);
+    focus := f :: !focus in
 
   iterloops begin fun l ->
-    l.l_base <-
-      PSet.fold (fun pbase ->
+    let stk = ref (PSet.elements l.l_base) in
+
+    let rec go bs =
+      match !stk with
+      | [] -> bs
+      | pbase :: stk' ->
+        stk := stk';
+
+        (* With maxdecr, we can find a good candidate
+           for potential for this loop.
+        *)
+        if PSet.mem pbase bs then go bs else
         let md = maxdecr pbase l in
+        if Poly.is_const md = Some 0. then go bs else
+        let pcand = Poly.add md pbase in
+
         add_focus (max0_pre_decrement pbase md);
-        (* add_focus (max0_ge_0 pbase); *)
         add_focus (max0_ge_0 (Poly.add pbase md));
-        PSet.add (Poly.add md pbase)
-      ) l.l_base PSet.empty
+        add_focus (max0_monotonic (check_ge pcand pbase));
+        ISet.iter (fun node ->
+          List.iter (fun (act, dst) ->
+            if not (ISet.mem dst l.l_body) then () else
+            match classify node pcand act with
+            | `NoOp | `DontKnow -> ()
+            | `Decrement pd
+              when Poly.compare pd md = 0 -> ()
+            | `Decrement pd ->
+              let pdecr = Poly.sub pcand pd in
+              add_focus (max0_monotonic (check_ge pcand pdecr));
+            | `Increment pi ->
+              (* Look for conditions on the way to
+                 the increment in the loop, use them
+                 to infer new base functions.
+                 TODO, some domination information
+                 would be handy here.
+              *)
+              let rec up node =
+                match preds.(node) with
+                | [ pred ] ->
+                  let (act, _) = List.find
+                    (fun (_, d) -> d = node)
+                    edges.(pred)
+                  in
+                  begin match act with
+                  | AGuard log ->
+                    PSet.iter
+                      (fun p -> stk := p :: !stk)
+                      (pset_of_logic log)
+                  | _ -> up pred
+                  end
+                | _ -> ()
+              in
+              up node;
+            | `Reset (v, pe) ->
+              (* Add a focus function to weaken our
+                 candidate to the substitution result. *)
+              let psubs = poly_subst v pe pcand in
+
+              (* TODO, use AI to see if we can do it. *)
+              add_focus (max0_monotonic (check_ge pcand psubs));
+
+              (* FIXME, this should not be handled like a
+                 base, but like a candidate instead. *)
+              stk := psubs :: !stk;
+          ) edges.(node);
+        ) l.l_body;
+
+        go (PSet.add pcand bs)
+    in
+    l.l_base <- go PSet.empty;
+
+    (* Find all bases in the subloops that are
+       incremented in this loop, make sure to
+       insert the focus function to give potential
+       to the corresponding base.
+    *)
   end;
 
   if debug then begin (* Debug display of loop information. *)
@@ -281,11 +350,17 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
   end;
 
   let fun_focus = gfunc.fun_focus @ List.map export !focus in
+  let fun_focus = List.sort_uniq
+    (fun (_, a) (_, b) -> Poly.compare a b)
+    fun_focus
+  in
+
   if debug then begin
     Format.eprintf "Focus functions:@.  %a@.@."
       (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]"
         Poly.print) (List.map snd fun_focus);
   end;
+
   { gfunc with fun_focus }
 
 (* Helper functions to create higher degree indices. *)
