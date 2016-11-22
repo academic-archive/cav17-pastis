@@ -106,12 +106,21 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
       end
     done in
 
-  let iterloops f =
+  let iterloops ?pre f =
     let rec go f l =
-      List.iter (go f) l.l_chld; f l in
+      begin match pre with
+      | None -> ()
+      | Some pre -> pre l
+      end;
+      List.iter (go f) l.l_chld;
+      f l in
     go f root in
 
-  (* TODO: Maybe sort the subloops by -head. *)
+  iterloops begin fun l ->
+    l.l_chld <- List.sort
+      (fun a b -> compare b.l_head a.l_head)
+      l.l_chld;
+  end;
 
   (* For each base in each loop, figure out its possible
      decrements in the loop body.
@@ -243,23 +252,69 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     ) l.l_body
   end;
 
+  let lastl = ref None in
+
   let focus = ref [] in
   let add_focus f =
     assert (Poly.is_const (snd (export f)) <> Some 0.);
     focus := f :: !focus in
 
-  iterloops begin fun l ->
-    let stk = ref (PSet.elements l.l_base) in
+  iterloops
+  ~pre:begin fun l ->
 
-    let rec go bs =
-      match !stk with
+    (* Translate all base functions needed
+       after in the program source in the current
+       loop's "language".  Then add them as bases.
+    *)
+    let l_end =
+      if l.l_head = -1 then -1 else
+      ISet.max_elt l.l_body in
+
+    let transl bs dst =
+      (* FIXME, this really only works with
+         straight-line code.
+      *)
+      let rec go bs node =
+        if node <= l_end then bs else
+        List.fold_left (fun bs' pred ->
+          if pred >= node then bs' else
+          match
+            List.find (fun (_, d) -> d = node) edges.(pred)
+          with
+          | AAssign (v, e), _ ->
+            let bs =
+              match e with
+              | ERandom ->
+                PSet.filter
+                  (fun b -> not (Poly.var_exists ((=) v) b))
+                  bs
+              | e ->
+                let pe = Poly.of_expr e in
+                PSet.map (poly_subst v pe) bs
+            in
+            PSet.union bs' (go bs pred)
+          | _ -> PSet.union bs' (go bs pred)
+        ) PSet.empty preds.(node)
+      in
+      go bs dst
+    in
+
+    match !lastl with
+    | None -> ()
+    | Some ll ->
+      l.l_base <- PSet.union l.l_base
+        (transl ll.l_base ll.l_head)
+  end
+  begin fun l ->
+
+    let rec go stk bs =
+      match stk with
       | [] -> bs
-      | pcand :: stk' ->
-        stk := stk';
-
-        if PSet.mem pcand bs then go bs else
-        begin
-
+      | pcand :: stk
+        when PSet.mem pcand bs || Poly.is_const pcand <> None
+        -> go stk bs
+      | pcand :: stk ->
+        let stk = ref stk in
         add_focus (max0_ge_0 pcand);
         ISet.iter (fun node ->
           List.iter (fun (act, dst) ->
@@ -289,7 +344,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
                   | AGuard log ->
                     stk :=
                       PSet.elements (cands_of_log l log)
-                      @ !stk;
+                      @ !stk
                   | _ -> up pred
                   end
                 | _ -> ()
@@ -305,18 +360,19 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
               stk := psubs :: !stk;
           ) edges.(node);
         ) l.l_body;
-
-        go (PSet.add pcand bs);
-
-        end
+        go !stk (PSet.add pcand bs);
     in
-    l.l_base <- go PSet.empty;
 
-    (* Find all bases in the subloops that are
-       incremented in this loop, make sure to
-       insert the focus function to give potential
-       to the corresponding base.
+    (* Aggregate all the bases of the child loops.  Those
+       might be modified by the current current loop.
     *)
+    let bases = List.fold_left
+      (fun bs l -> PSet.union bs l.l_base)
+      l.l_base l.l_chld
+    in
+    l.l_base <- go (PSet.elements bases) PSet.empty;
+    lastl := Some l;
+
   end;
 
   let debug = true in
