@@ -351,7 +351,7 @@ let analyze ~dump fl fstart =
     let cmd = Printf.sprintf "dot -O -Tpng %s" fn in
     if (try Sys.command cmd with Sys_error _ -> 1) <> 0 then
       Printf.eprintf
-        "Error: '%s' failed, be sure to have Graphviz installed with PDF support.\n"
+        "Error: '%s' failed, be sure to have Graphviz installed.\n"
         cmd
     else Utils.show_remove_png fpng;
     Sys.remove fn;
