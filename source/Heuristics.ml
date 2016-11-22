@@ -269,6 +269,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     let rec go bs node =
       if node < l.l_head then PSet.empty else
       if ISet.mem node l.l_body then bs else
+      if preds.(node) = [] then bs else
       List.fold_left (fun bs' pred ->
         if pred >= node then bs' else
         match
@@ -547,10 +548,7 @@ let add_focus_old ?(deg=1) ai_results ai_get_nonneg _ gfunc =
    the end of guard edges.
 *)
 let add_weaken ({ fun_name; fun_body = g } as gfunc) =
-  let is_guard = function
-    | AGuard _ -> true
-    | _ -> false
-  in
+  let is_guard = function AGuard _ -> true | _ -> false in
   let weaken = ref [] in
   let nweaken = ref 0 in
   let add_weaken =

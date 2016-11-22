@@ -5,6 +5,7 @@ open Types
 type node = int
 
 type action =
+  | ANone
   | AWeaken
   | AGuard of logic
   | AAssign of id * expr

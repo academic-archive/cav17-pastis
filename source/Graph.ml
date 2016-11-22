@@ -63,7 +63,7 @@ let from_imp impf =
     | IMP.ILoop b ->
       let jmp = new_node b.IMP.b_end_p in
       let begb = gob jmp fin b in
-      new_edge jmp (AGuard LTrue) begb;
+      new_edge jmp ANone begb;
       begb
     | IMP.ICall (idl, idf, el) ->
       let beg = new_node pos in
@@ -78,7 +78,7 @@ let from_imp impf =
 
   and gob fin loo { IMP.b_end_p; b_body } =
     let beg = new_node b_end_p in
-    new_edge beg (AGuard LTrue) fin;
+    new_edge beg ANone fin;
     goil beg loo b_body
 
   in

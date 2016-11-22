@@ -11,7 +11,7 @@ let read_byte ic =
   Char.code (input_char ic)
 
 let read_int ic =
-  let n = 
+  let n =
   let rec go n acc =
     if n = 0 then acc else
     go (n-1) ((acc lsl 8) + read_byte ic)
@@ -62,7 +62,7 @@ let read_edge ic =
       let v = read_string ic in
       let e = read_expr ic in
       AAssign (v, e)
-    | 3 -> AGuard LTrue
+    | 3 -> ANone
     | _ -> error "invalid edge type"
   in (action, read_int ic)
 

@@ -346,7 +346,7 @@ let run ai_results ai_is_nonneg fl start query =
     match act with
     | Graph.AWeaken -> Potential.rewrite (find_focus start node) a
     | Graph.AGuard LRandom -> dumps := a :: !dumps; a
-    | Graph.AGuard _ -> a
+    | Graph.AGuard _ | Graph.ANone -> a
     | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
     | Graph.ACall _ -> Utils._TODO "calls"
   in
