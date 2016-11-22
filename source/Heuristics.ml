@@ -259,51 +259,50 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     assert (Poly.is_const (snd (export f)) <> Some 0.);
     focus := f :: !focus in
 
+  let transl bs dst l =
+    (* This takes a set of base functions relevant at 'dst'
+       and attempts to express them at the loop 'l'.
+
+       FIXME, this really only works with
+       straight-line code.
+    *)
+    let rec go bs node =
+      if node < l.l_head then PSet.empty else
+      if ISet.mem node l.l_body then bs else
+      List.fold_left (fun bs' pred ->
+        if pred >= node then bs' else
+        match
+          List.find (fun (_, d) -> d = node) edges.(pred)
+        with
+        | AAssign (v, e), _ ->
+          let bs =
+            match e with
+            | ERandom ->
+              PSet.filter
+                (fun b -> not (Poly.var_exists ((=) v) b))
+                bs
+            | e ->
+              let pe = Poly.of_expr e in
+              PSet.map (poly_subst v pe) bs
+          in
+          PSet.union bs' (go bs pred)
+        | _ -> PSet.union bs' (go bs pred)
+      ) PSet.empty preds.(node)
+    in
+    go bs dst
+  in
+
   iterloops
   ~pre:begin fun l ->
-
     (* Translate all base functions needed
        after in the program source in the current
        loop's "language".  Then add them as bases.
     *)
-    let l_end =
-      if l.l_head = -1 then -1 else
-      ISet.max_elt l.l_body in
-
-    let transl bs dst =
-      (* FIXME, this really only works with
-         straight-line code.
-      *)
-      let rec go bs node =
-        if node <= l_end then bs else
-        List.fold_left (fun bs' pred ->
-          if pred >= node then bs' else
-          match
-            List.find (fun (_, d) -> d = node) edges.(pred)
-          with
-          | AAssign (v, e), _ ->
-            let bs =
-              match e with
-              | ERandom ->
-                PSet.filter
-                  (fun b -> not (Poly.var_exists ((=) v) b))
-                  bs
-              | e ->
-                let pe = Poly.of_expr e in
-                PSet.map (poly_subst v pe) bs
-            in
-            PSet.union bs' (go bs pred)
-          | _ -> PSet.union bs' (go bs pred)
-        ) PSet.empty preds.(node)
-      in
-      go bs dst
-    in
-
     match !lastl with
     | None -> ()
     | Some ll ->
       l.l_base <- PSet.union l.l_base
-        (transl ll.l_base ll.l_head)
+        (transl ll.l_base ll.l_head l)
   end
   begin fun l ->
 
@@ -370,7 +369,16 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
       (fun bs l -> PSet.union bs l.l_base)
       l.l_base l.l_chld
     in
-    l.l_base <- go (PSet.elements bases) PSet.empty;
+    if l.l_head = -1 then
+      (* Special case for the topmost "loop". *)
+      match l.l_chld with
+      | lfst :: _ ->
+        PSet.iter
+          (fun b -> add_focus (max0_ge_0 b))
+          (transl bases lfst.l_head root)
+      | _ -> ()
+    else
+      l.l_base <- go (PSet.elements bases) PSet.empty;
     lastl := Some l;
 
   end;
