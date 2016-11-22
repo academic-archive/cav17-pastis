@@ -56,6 +56,7 @@ module Translate = struct
 end
 
 type transfer =
+  | TWeaken
   | TGuard of L.sum DNF.t
   | TAssign of id * Poly.t option
 
@@ -105,7 +106,7 @@ module HyperGraph = struct
           match act with
           | AWeaken ->
             PSHGraph.add_hedge g (new_edge ())
-              (TGuard DNF.true_) ~pred:[|src|] ~succ:[|dst|];
+              TWeaken ~pred:[|src|] ~succ:[|dst|];
           | AGuard log ->
             let disj = Translate.dnf_of_logic log in
             PSHGraph.add_hedge g (new_edge ())
@@ -285,6 +286,7 @@ module Solver = struct
       match transfer with
       | TGuard disj -> apply_TGuard tabs.(0) disj
       | TAssign (id, pe) -> apply_TAssign tabs.(0) id pe
+      | TWeaken -> tabs.(0)
     in ((), res)
 
   let widening a b =
@@ -311,6 +313,8 @@ end
 
 let debug_print fmt info graph res =
   let print_transfer fmt = function
+    | TWeaken ->
+      Format.fprintf fmt "Weaken";
     | TGuard disj ->
       Format.fprintf fmt "Guard %a"
         (Print.list ~first:"(@[<h>" ~sep:" ||@ " ~last:"@])"
