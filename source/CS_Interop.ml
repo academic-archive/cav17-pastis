@@ -65,13 +65,21 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
     let do_ins ins s_node =
       match ins with
       | IInc (id, op, v) ->
-         let e_node = new_node () in
-         let n_act = match op with
-           | OPlus -> AAssign (id, EAdd (EVar id, EVar v))
-           | OMinus -> AAssign (id, ESub (EVar id, EVar v))
-         in
-         new_edge s_node n_act e_node;
-         e_node
+         (try
+           let e_node = new_node () in
+           let int_value = int_of_string v in
+             let n_act = match op with
+               | OPlus -> AAssign (id, EAdd (EVar id, ENum int_value))
+               | OMinus -> AAssign (id, ESub (EVar id, ENum int_value))
+             in
+             new_edge s_node n_act e_node; e_node
+          with Failure e ->
+             let e_node = new_node () in
+             let n_act = match op with
+               | OPlus -> AAssign (id, EAdd (EVar id, EVar v))
+               | OMinus -> AAssign (id, ESub (EVar id, EVar v))
+             in
+             new_edge s_node n_act e_node; e_node)
       | ICall (ido, id, idl) ->
          let e_node = new_node () in
          let el = List.map (fun x -> EVar x) idl in
