@@ -129,16 +129,17 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
     in
 
     (* function processing *)
-    for i = 0 to initialnumber_of_nodes - 1 do
+    (*for i = 0 to initialnumber_of_nodes - 1 do
       do_blk i (get_blk fdesc i)
-    done;
+    done; *)
+    fun_iteri do_blk fdesc;
 
     let edges = Array.make !next_node [] in
     for i = 0 to !next_node - 1 do
       edges.(i) <- Hashtbl.find_all h_edges i
     done;
     
-    { fun_name = "";
+    { fun_name = name;
       fun_vars = locs;
       fun_args = args;
       fun_rets = [!ret];
@@ -152,5 +153,30 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
       fun_start_p = Utils.dummy_position;
       fun_end_p = Utils.dummy_position
     }
+    
+  (* graph of main function and all called function inside *)
+  let graph_from_main () = 
+  	(* get all function called from main *)
+		let get_all_funcs_from_main () = 
+			let mainf = get_main () in 
+			let func_l = ref [] in
+		
+			let do_f_ins ins acc = 
+			match ins with
+			| ICall (ido, id, idl) -> (get_func id) :: acc
+			| _ -> acc
+			in
+		 
+			let do_f_blk acc blk = blk_foldl do_f_ins acc blk 
+			in 
+		
+			let n = get_nblk mainf in
+    	for i = 0 to n-1 do
+    		func_l := do_f_blk !func_l (get_blk mainf i) 
+    	done;
+    	mainf::(!func_l)
+   in
+   let g_prog = List.map graph_from_fundesc (get_all_funcs_from_main ()) in
+   List.map (Graph.add_loop_counter "z") g_prog
 
 end
