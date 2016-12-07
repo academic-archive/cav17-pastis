@@ -94,9 +94,10 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
          new_edge s_node ANone e_node;
          e_node
       | IAssert (lexpr, cmp, rexp) ->
-         let e_node = new_node () in
+         (*let e_node = new_node () in
          new_edge s_node ANone e_node;
-         e_node
+         e_node *)
+         s_node
       | ISet (id, vo) ->
          let e_node = new_node () in
          let n_act = match vo with
