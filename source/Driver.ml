@@ -73,7 +73,7 @@ let main () =
     let g_file =
       try
         if ends_with ".imp" !input_file then
-          let imp_file = IMP.parse_file !input_file in
+          let _, imp_file = IMP.parse_file !input_file in
           List.map Graph.from_imp imp_file
         else if ends_with ".o" !input_file
              || ends_with ".bc" !input_file then
@@ -131,7 +131,9 @@ let main () =
     in
     let g_file =
       if !no_focus then g_file else
-      List.map (Heuristics.add_focus ~deg:1 ai_results AI.get_nonneg AI.is_nonneg) g_file
+      g_file
+      |> List.map (Heuristics.add_focus ~deg:1 ai_results AI.get_nonneg AI.is_nonneg)
+      (*|> List.map (Heuristics.add_focus_old ~deg:1 ai_results AI.get_nonneg AI.is_nonneg)*)
     in
     let st_results = Analysis.run ai_results AI.is_nonneg g_file fstart query in
     let poly_print =

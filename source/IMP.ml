@@ -9,8 +9,8 @@ let parse_file f =
   lexbuf.Lexing.lex_curr_p <-
     { lexbuf.Lexing.lex_curr_p with Lexing.pos_fname = f };
   try
-    let l = IMP_Grammar.file IMP_Lexer.token lexbuf in
-    List.map (fun f ->
+    let g, l = IMP_Grammar.file IMP_Lexer.token lexbuf in
+    g, List.map (fun f ->
       { f with fun_focus = List.map Focus.interpret f.fun_focus }) l
   with Parsing.Parse_error ->
     let startp = Lexing.lexeme_start_p lexbuf in

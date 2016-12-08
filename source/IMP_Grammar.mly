@@ -25,11 +25,11 @@
 %left TADD TSUB
 %left TMUL
 
-%type <(Types.free_expr, IMP_Types.block) Types.func_ list> file
+%type <Types.id list * (Types.free_expr, IMP_Types.block) Types.func_ list> file
 %start file
 %%
 
-file: rfuncs TEOF { List.rev $1 }
+file: varopt rfuncs TEOF { $1, List.rev $2 }
 
 ident: TIDENT { fst $1 }
 
