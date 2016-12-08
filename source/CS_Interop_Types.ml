@@ -11,6 +11,13 @@ type instruction =
   | ISet of Types.id * Types.id option
   | ICall of Types.id option * Types.id * Types.id list
 
+type block =
+  {
+    bpreds : int list;
+    binsts : instruction list;
+    bjump : jump
+  }
+  
 module type CS_Querier = sig
   (* Module signature for code queriers.
    * This is the module type that has to be
