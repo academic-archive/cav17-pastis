@@ -33,19 +33,18 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
      representation as in Graph_Types.
      Ignore function calls at first. *)
       
-  let graph_from_fundesc fdesc =
+  let graph_from_fundesc (fname, fdesc) =
 
     (*init (); it will be called outside *)
 
     (* each block starts with the node equivalent to its id *)
-    let h_position = Hashtbl.create 45 in
     let h_edges = Hashtbl.create 45 in
     let initialnumber_of_nodes = get_nblk fdesc in 
     let next_node = ref (initialnumber_of_nodes - 1) in
     let start_node = 0 in
     let end_node = ref 0 in
     let ret = ref "" in
-    let name = "" in
+    let name = fname in
     let locs = get_locs fdesc in
     let args = get_args fdesc in
     let focus = [] in
@@ -155,28 +154,49 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
     }
     
   (* graph of main function and all called function inside *)
-  let graph_from_main () = 
-  	(* get all function called from main *)
-		let get_all_funcs_from_main () = 
-			let mainf = get_main () in 
-			let func_l = ref [] in
-		
-			let do_f_ins ins acc = 
-			match ins with
-			| ICall (ido, id, idl) -> (get_func id) :: acc
-			| _ -> acc
-			in
-		 
-			let do_f_blk acc blk = blk_foldl do_f_ins acc blk 
-			in 
-		
-			let n = get_nblk mainf in
-    	for i = 0 to n-1 do
-    		func_l := do_f_blk !func_l (get_blk mainf i) 
-    	done;
-    	mainf::(!func_l)
-   in
-   let g_prog = List.map graph_from_fundesc (get_all_funcs_from_main ()) in
-   List.map (Graph.add_loop_counter "z") g_prog
+  let graph_from_main () =
+    (* init the querier *)
+    init ();
+    
+    let h_funcs = Hashtbl.create 45 in
+
+    let add_new_func fname fdesc =
+      Hashtbl.replace h_funcs fname fdesc
+    in
+    
+    let rec get_all_called_funcs fd =
+      let do_f_ins ins =
+        match ins with
+        | ICall (_, id, _) ->
+           let fdesc = get_func id in
+           add_new_func id fdesc;
+           get_all_called_funcs fdesc 
+        | _ -> ()
+      in
+
+      let do_f_blk blk =
+        let n = get_nins blk in
+        for i = 0 to n - 1 do
+          do_f_ins (get_ins blk i)
+        done
+      in
+
+      let n = get_nblk fd in
+      for i = 0 to n - 1 do
+        do_f_blk (get_blk fd i)
+      done
+    in
+
+    (* get all function called from main *)
+    let mainf = get_main () in
+    get_all_called_funcs mainf;
+    add_new_func "start" mainf;
+    let g_prog = List.map graph_from_fundesc (Hashtbl.fold
+                                                (
+                                                  fun fn fb acc -> (fn, fb) :: acc
+                                                )
+                                                h_funcs [])
+    in
+    List.map (Graph.add_loop_counter "z") g_prog
 
 end
