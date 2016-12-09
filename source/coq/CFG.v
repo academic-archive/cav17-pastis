@@ -3,6 +3,7 @@ Require Import List.
 
 Definition id : Type := nat.
 
+(* Conceivably we could also shallowly embed these? *)
 Inductive expr :=
 (*  | ERandom *)
   | EVar : id -> expr
@@ -28,6 +29,7 @@ type ('a, 'b) func_ =
   }
 *)
 
+(*
 Inductive cmp  := Le | Lt | Ge | Gt | Eq | Ne.
 
 Inductive logic :=
@@ -38,13 +40,19 @@ Inductive logic :=
   | LAnd : logic -> logic -> logic
   | LOr  : logic -> logic -> logic
   | LNot : logic -> logic.
+*)
 
 Definition node : Type := nat.
+
+Definition state := id -> Z.
+
+Definition update (x : id)  (v : Z) (s : state) :=
+  fun y => if (eq_nat_dec x y) then v else (s y).
 
 Inductive action :=
   | ANone
   | AWeaken
-  | AGuard : logic -> action
+  | AGuard : (state -> Prop) -> action 
   | AAssign : id -> expr -> action
   | ACall  : list id -> id -> list expr -> action.
 
@@ -56,10 +64,6 @@ Inductive graph :=
 
 (* type func = (Focus.focus, graph) func_ *)
 
-Definition state := id -> Z.
-
-Definition update (x : id)  (v : Z) (s : state) :=
-  fun y => if (eq_nat_dec x y) then v else (s y).
 
 Fixpoint eval (e : expr) (s : state) :=
   (match e with
@@ -73,6 +77,7 @@ Fixpoint eval (e : expr) (s : state) :=
 Inductive step : state -> action -> state -> Prop :=
 | SNone   : forall s, step s ANone s
 | SWeaken : forall s, step s AWeaken s
+| SGuard  : forall s (P : state -> Prop) s',  P s -> step s (AGuard P) s'                           
 | SAssign : forall s x e, step s (AAssign x e) (update x (eval e s) s)
 (* TODO: ACall *)
 .

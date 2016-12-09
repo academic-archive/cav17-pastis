@@ -209,12 +209,13 @@ let print fmt ps =
     (fun fmt -> Format.fprintf fmt "%a ≤ 0" L.print)
     fmt ps
 
+(* We assume the context contains a state s. *)
 let print_as_coq varnames fmt ps =
-  Format.fprintf fmt "@[<v>fun s => @,";
+  Format.fprintf fmt "@[<v>";
   if ps = [] then Format.pp_print_string fmt "True" else
   if not (sat ps) then Format.pp_print_string fmt "False" else
-  Print.list ~first:"@[<h>" ~sep:" /\\@ " ~last:"@]"
-    (fun fmt -> Format.fprintf fmt "%a <= 0" (L.print_as_coq varnames))
+  Print.list ~first:"@[<h>(" ~sep:" /\\@ " ~last:"@]"
+    (fun fmt -> Format.fprintf fmt "%a <= 0)%%Z" (L.print_as_coq varnames))
     fmt ps;
   Format.fprintf fmt "@]"
     
