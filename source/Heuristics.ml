@@ -258,9 +258,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
   let lastl = ref None in
 
   let focus = ref [] in
-  let add_focus f =
-    assert (Poly.is_const (snd (export f)) <> Some 0.);
-    focus := f :: !focus in
+  let add_focus f = focus := f :: !focus in
 
   let transl bs dst l =
     (* This takes a set of base functions relevant at 'dst'
@@ -272,7 +270,6 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     let rec go bs node =
       if node < l.l_head then PSet.empty else
       if ISet.mem node l.l_body then bs else
-      if preds.(node) = [] then bs else
       List.fold_left (fun bs' pred ->
         if pred >= node then bs' else
         match
@@ -291,7 +288,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
           in
           PSet.union bs' (go bs pred)
         | _ -> PSet.union bs' (go bs pred)
-      ) PSet.empty preds.(node)
+      ) bs preds.(node)
     in
     go bs dst
   in
@@ -336,7 +333,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
                  TODO, some domination information
                  would be handy here.
               *)
-              let rec up node =
+              let rec upguard node =
                 match preds.(node) with
                 | [ pred ] ->
                   let (act, _) = List.find
@@ -348,18 +345,20 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
                     stk :=
                       PSet.elements (cands_of_log l log)
                       @ !stk
-                  | _ -> up pred
+                  | _ -> upguard pred
                   end
                 | _ -> ()
               in
-              up node;
+              upguard node;
               add_focus (max0_pre_increment pcand pi);
             | `Reset (v, pe) ->
               (* Add a focus function to weaken our
                  candidate to the substitution result. *)
               let psubs = poly_subst v pe pcand in
-              (* TODO, use AI to see if we can do it. *)
+              (* TODO, filter using AI results *)
               add_focus (max0_monotonic (check_ge pcand psubs));
+              (* add [v, pe] and [pe, v] and subadditive
+                 property for all bases depending on v *)
               stk := psubs :: !stk;
           ) edges.(node);
         ) l.l_body;
@@ -423,10 +422,10 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
   end;
 
   let fun_focus = gfunc.fun_focus @ List.map export !focus in
+  let fun_focus = List.filter
+    (fun (_, f) -> Poly.is_const f = None) fun_focus in
   let fun_focus = List.sort_uniq
-    (fun (_, a) (_, b) -> Poly.compare a b)
-    fun_focus
-  in
+    (fun (_, a) (_, b) -> Poly.compare a b) fun_focus in
 
   if debug then begin
     Format.eprintf "Focus functions:@.  %a@.@."
@@ -563,14 +562,12 @@ let add_weaken ({ fun_name; fun_body = g } as gfunc) =
   in
   let new_edges =
     Array.mapi begin fun src ->
-      List.map begin function
-        | act, dst when is_guard act ->
-          let d_edges = g.g_edges.(dst) in
-          if d_edges = []
-          || not (List.for_all (fun (a, _) -> is_guard a) d_edges)
-          then (act, add_weaken dst)
-          else (act, dst)
-        | e -> e
+      List.map begin fun (act, dst) ->
+        let d_edges = g.g_edges.(dst) in
+        if d_edges = [] || List.length d_edges > 1
+        || is_guard act && not (List.for_all (fun (a, _) -> is_guard a) d_edges)
+        then (act, add_weaken dst)
+        else (act, dst)
       end
     end g.g_edges
   in
