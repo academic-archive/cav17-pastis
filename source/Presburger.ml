@@ -79,6 +79,23 @@ module L = struct
         (sign first k) (abs k)
     else if first then
       fprintf fmt "0"
+
+  let print_as_coq varnames fmt {m; k} =
+    let open Format in
+    let rec p first = function
+      | (x, c) :: tl when c <> 0 ->
+          fprintf fmt (if first then "(%d * (s %s))" else "+ (%d * (s %s))")
+            c (varnames x);
+          p false tl
+      | _ :: tl -> p first tl
+      | [] -> first
+    in
+    let first = p true (bindings m) in
+    if k <> 0 then
+      fprintf fmt (if first then "%d" else "%d") k
+    else if first then
+      fprintf fmt "0"
+	      
 end
 
 (* The Presburger decision procedure. *)
@@ -191,3 +208,13 @@ let print fmt ps =
   Print.list ~first:"@[<h>" ~sep:" &&@ " ~last:"@]"
     (fun fmt -> Format.fprintf fmt "%a ≤ 0" L.print)
     fmt ps
+
+let print_as_coq varnames fmt ps =
+  Format.fprintf fmt "@[<v>fun s => @,";
+  if ps = [] then Format.pp_print_string fmt "True" else
+  if not (sat ps) then Format.pp_print_string fmt "False" else
+  Print.list ~first:"@[<h>" ~sep:" /\\@ " ~last:"@]"
+    (fun fmt -> Format.fprintf fmt "%a <= 0" (L.print_as_coq varnames))
+    fmt ps;
+  Format.fprintf fmt "@]"
+    

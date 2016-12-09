@@ -390,3 +390,5 @@ let get_nonneg abs =
       (fun v k -> Poly.add_monom (Monom.of_var v) (neg k))
       l.L.m (Poly.const (neg l.L.k))
   in List.map poly_of_linear abs
+
+let print_as_coq fmt av = Presburger.print_as_coq fmt av	      

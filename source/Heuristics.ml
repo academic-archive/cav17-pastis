@@ -15,6 +15,9 @@ module ISet = Set.Make(struct
   let compare = compare
 end)
 
+let pset_map f t =
+  PSet.fold (fun x xs -> PSet.add (f x)  xs) t PSet.empty
+		      
 let pset_of_logic log =
   let cmp e1 c e2 =
     let p1 = Poly.of_expr e1
@@ -284,7 +287,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
                 bs
             | e ->
               let pe = Poly.of_expr e in
-              PSet.map (poly_subst v pe) bs
+              pset_map (poly_subst v pe) bs
           in
           PSet.union bs' (go bs pred)
         | _ -> PSet.union bs' (go bs pred)

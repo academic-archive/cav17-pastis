@@ -4,6 +4,7 @@ let input_file = ref ""
 let main_func = ref None
 let dump_ai = ref false
 let dump_stats = ref false
+let dump_coq = ref false
 let no_weaken = ref false
 let no_focus = ref false
 let ascii = ref false
@@ -25,6 +26,9 @@ let argspec = Arg.align
   ; "-dump-stats", Arg.Set dump_stats,
     " Display statistics of the analysis"
 
+  ; "-dump-coq", Arg.Set dump_coq,
+    " Generate a Coq proof"
+      
   ; "-no-weaken", Arg.Set no_weaken,
     " Do not automatically add weakening points"
   ; "-no-focus", Arg.Set no_focus,
@@ -117,14 +121,20 @@ let main () =
       if !no_weaken then g_file else
       List.map Heuristics.add_weaken g_file
     in
+
+    let original_g_file = g_file in
+
     let g_file = List.map Graph.rpo_order g_file in
     let module AI = (val begin
         match !ai with
-        | "apron" -> (module Graph.AbsInt.Apron)
+	(*        | "apron" -> (module Graph.AbsInt.Apron) *)
         | _       -> (module Graph.AbsInt.Simple)
       end: Graph.AbsInt)
     in
     let ai_results = AI.analyze ~dump:!dump_ai g_file fstart in
+    
+    let _ = Coqgen.dump_graph original_g_file AI.print_as_coq ai_results in
+    
     let query =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))

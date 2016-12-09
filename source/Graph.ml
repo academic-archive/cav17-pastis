@@ -167,9 +167,11 @@ module type AbsInt = sig
                (string, absval array) Hashtbl.t
   val is_nonneg: absval -> Polynom.Poly.t -> bool
   val get_nonneg: absval -> Polynom.Poly.t list
+					   
+  val print_as_coq: (id -> string) -> Format.formatter -> absval -> unit
 end
 
 module AbsInt = struct
-  module Apron: AbsInt = Graph_AI_Apron
+  (*  module Apron: AbsInt = Graph_AI_Apron *)
   module Simple: AbsInt = Graph_AI_Simple
 end
