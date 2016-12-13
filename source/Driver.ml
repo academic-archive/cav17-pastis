@@ -122,8 +122,6 @@ let main () =
       List.map Heuristics.add_weaken g_file
     in
 
-    let original_g_file = g_file in
-
     let g_file = List.map Graph.rpo_order g_file in
     let module AI = (val begin
         match !ai with
@@ -133,7 +131,7 @@ let main () =
     in
     let ai_results = AI.analyze ~dump:!dump_ai g_file fstart in
     
-    let _ = Coqgen.dump_graph original_g_file AI.print_as_coq ai_results in
+    let _ = Coqgen.dump_graph g_file AI.print_as_coq ai_results in
     
     let query =
       let open Polynom in

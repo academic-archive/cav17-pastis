@@ -92,7 +92,7 @@ module L = struct
     in
     let first = p true (bindings m) in
     if k <> 0 then
-      fprintf fmt (if first then "%d" else "%d") k
+      fprintf fmt " + (%d)" k
     else if first then
       fprintf fmt "0"
 	      
@@ -214,8 +214,8 @@ let print_as_coq varnames fmt ps =
   Format.fprintf fmt "@[<v>";
   if ps = [] then Format.pp_print_string fmt "True" else
   if not (sat ps) then Format.pp_print_string fmt "False" else
-  Print.list ~first:"@[<h>(" ~sep:" /\\@ " ~last:"@]"
-    (fun fmt -> Format.fprintf fmt "%a <= 0)%%Z" (L.print_as_coq varnames))
+  Print.list ~first:"@[<h>(" ~sep:" /\\@ " ~last:")%%Z@]"
+    (fun fmt -> Format.fprintf fmt "%a <= 0" (L.print_as_coq varnames))
     fmt ps;
   Format.fprintf fmt "@]"
     

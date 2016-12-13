@@ -52,7 +52,8 @@ let dump_func fmt i f =
   Format.fprintf fmt "Require Import List.@.";
   Format.fprintf fmt "Require Import ZArith.@.";
   Format.fprintf fmt "Require Import Arith.@.";
-  Format.fprintf fmt "Require Import CFG.@]@.@.";
+  Format.fprintf fmt "Require Import CFG.@.";
+  Format.fprintf fmt "\n\nOpaque Zplus.\nOpaque Zmult.@]@.@.";
 
   Format.fprintf fmt "@[<v>";
   List.iteri (fun i x -> Format.fprintf fmt "Notation %s := %d.@," (varname x) i) f.fun_vars;
@@ -67,7 +68,8 @@ let dump_func fmt i f =
 let dump_ai_func_bounds print_bound fmt bounds =
   Format.fprintf fmt "@[<v>";
   Array.iteri (fun i v -> Format.fprintf fmt "| %d => %a@," i print_bound v)
-	    bounds;
+	      bounds;
+  Format.fprintf fmt "| _ => False@,";
   Format.fprintf fmt "@]"
 		 
 let dump_ai_bounds print_bound fmt bounds =
@@ -78,8 +80,9 @@ let dump_ai_bounds print_bound fmt bounds =
 		Format.fprintf fmt "  match p with@,";
 		Format.fprintf fmt "    @[<v4>%a@]@," (dump_ai_func_bounds (print_bound (mkvarname funname))) b)
      	                                              bounds;
-		Format.fprintf fmt "  end.@,";
-			      
+  Format.fprintf fmt "  end.@,";
+  Format.fprintf fmt "Theorem func0_bounds_corrects : forall s p' s', steps (g_start func0) s func0 p' s' -> func0_bounds p' s'.@,";
+  Format.fprintf fmt "Proof. prove_ai_bounds_correct. Qed.";			      
   Format.fprintf fmt "@]"
 		 
 let dump_graph fs print_bound ai_bounds = 

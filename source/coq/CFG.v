@@ -77,7 +77,7 @@ Fixpoint eval (e : expr) (s : state) :=
 Inductive step : state -> action -> state -> Prop :=
 | SNone   : forall s, step s ANone s
 | SWeaken : forall s, step s AWeaken s
-| SGuard  : forall s (P : state -> Prop) s',  P s -> step s (AGuard P) s'                           
+| SGuard  : forall s (P : state -> Prop),  P s -> step s (AGuard P) s
 | SAssign : forall s x e, step s (AAssign x e) (update x (eval e s) s)
 (* TODO: ACall *)
 .
@@ -103,7 +103,7 @@ Qed.
 Fixpoint reachable_ind_VC  (P : node -> state -> Prop) (ns : list (node * action * node)) : Prop :=
   match ns with
     | nil => True
-    | (p,a,p') :: ns => (forall s a s', step s a s' -> P p s -> P p' s') /\ reachable_ind_VC P ns
+    | (p,a,p') :: ns => (forall s s', step s a s' -> P p s -> P p' s') /\ reachable_ind_VC P ns
   end.
 
 Lemma reachable_ind_VC_spec : forall P ns,
@@ -131,3 +131,24 @@ Proof.
   refine (reachable_ind' g P Hinit _ s p' s' H).
   apply reachable_ind_VC_spec; assumption.
 Qed.
+
+
+Opaque Zplus.
+Opaque Zmult.
+
+(* This tactic is used to prove the bounds deduced by the 
+   Presburger arithmetic abstract interpreter. It basically
+   just calls Coq's omega. *)
+Ltac prove_ai_bounds_correct :=
+  apply reachable_ind;
+  [ (* base case *) intros s; simpl; auto
+  | (* step case *)
+    simpl;
+    repeat apply conj;
+    intros;
+    try (match goal with [ H : step _ _ _ |- _] => inversion H end; subst);
+    simpl;
+    try unfold update;
+    simpl;
+    auto;
+    try omega].
