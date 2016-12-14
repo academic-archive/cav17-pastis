@@ -44,7 +44,9 @@ module Potential
   val exec_assignment: (id * expr) -> annot -> annot
   val constrain: annot -> order -> annot -> unit
   val rewrite: Poly.t list -> annot -> annot
-  val solve_min: Poly.t list -> annot -> annot list -> Poly.t option
+  val solve_min:
+    Poly.t list -> annot array -> int ->
+    annot list -> (Poly.t array * Poly.t) option
 end
 = struct
 
@@ -237,7 +239,8 @@ end
     end kpl kpl';
     annot'
 
-  let solve_min pl annot dumps =
+  let solve_min pl annot start dumps =
+    let start_annot = annot.(start) in
     let absl = ref [] in
     M.iter begin fun m le ->
       (* Zero out all fresh variables created by
@@ -245,8 +248,8 @@ end
       *)
       if Monom.var_exists Utils.is_fresh m then
         add_lprow le Eq
-    end annot;
-    let l = frame_from pl annot ~init:begin fun _ ->
+    end start_annot;
+    let l = frame_from pl start_annot ~init:begin fun _ ->
         let v = new_lpvar () and abs = new_lpvar () in
         add_lprow_array [| abs, 1.; v, +1. |] Ge;
         add_lprow_array [| abs, 1.; v, -1. |] Ge;
@@ -254,7 +257,7 @@ end
         v
       end in
     let exannot, kpl = expand l pl in
-    constrain exannot Ge annot;
+    constrain exannot Ge start_annot;
     let vmax = new_lpvar () in
     List.iter (fun k ->
       add_lprow_array [| vmax, 1.; k, -1. |] Ge) kpl;
@@ -287,21 +290,22 @@ end
 
       (* Build polynomial solution. *)
       let sol = Clp.primal_column_solution () in
-      let make_poly annot =
+      let make_poly a =
         M.fold begin fun m le poly ->
           let k =
             Hashtbl.fold begin fun v kv k ->
               k +. kv *. sol.(v)
             end le 0.
           in Poly.add_monom m k poly
-          end annot (Poly.zero ())
+          end a (Poly.zero ())
       in
+      let final_polys = Array.map make_poly annot in
       (* Dump debug information. *)
       List.iter (fun annot ->
         Format.eprintf "Dump: %a@."
           Poly.print_ascii (make_poly annot)
       ) dumps;
-      Some (make_poly annot)
+      Some (final_polys, make_poly start_annot)
     end
 
 end
@@ -395,4 +399,10 @@ let run ai_results ai_is_nonneg fl start query =
   let start_annot = dfs start_node in
   let pzero = Potential.of_poly (Poly.zero ()) in
   Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
-  Potential.solve_min (find_focus start start_node) start_annot !dumps
+  let annot =
+    Array.map (function
+      | `Done a -> a
+      | _ -> failwith "missing annotation"
+    ) annot
+  in
+  Potential.solve_min (find_focus start start_node) annot start_node !dumps

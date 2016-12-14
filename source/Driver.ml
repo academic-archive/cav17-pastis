@@ -28,7 +28,7 @@ let argspec = Arg.align
 
   ; "-dump-coq", Arg.Set dump_coq,
     " Generate a Coq proof"
-      
+
   ; "-no-weaken", Arg.Set no_weaken,
     " Do not automatically add weakening points"
   ; "-no-focus", Arg.Set no_focus,
@@ -121,7 +121,6 @@ let main () =
       if !no_weaken then g_file else
       List.map Heuristics.add_weaken g_file
     in
-
     let g_file = List.map Graph.rpo_order g_file in
     let module AI = (val begin
         match !ai with
@@ -130,9 +129,6 @@ let main () =
       end: Graph.AbsInt)
     in
     let ai_results = AI.analyze ~dump:!dump_ai g_file fstart in
-    
-    let _ = Coqgen.dump_graph g_file AI.print_as_coq ai_results in
-    
     let query =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))
@@ -152,8 +148,9 @@ let main () =
       | None ->
         Format.printf "Sorry, I could not find a bound.@.";
         1
-      | Some p ->
+      | Some (annot, p) ->
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
+        Coqgen.dump g_file AI.print_as_coq ai_results annot;
         0
     in
     if !dump_stats then begin
