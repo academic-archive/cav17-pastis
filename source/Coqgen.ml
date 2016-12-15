@@ -89,35 +89,35 @@ let dump_edges varname fmt es =
 
 let dump_func fmt i f =
   let varname = (mkvarname f.fun_name) in
-  Format.fprintf fmt "@[<h>Add LoadPath \"coq\".@.";
-  Format.fprintf fmt "Require Import List.@.";
-  Format.fprintf fmt "Require Import ZArith.@.";
-  Format.fprintf fmt "Require Import Arith.@.";
-  Format.fprintf fmt "Require Import CFG.@.";
-  Format.fprintf fmt "\n\nOpaque Zplus.\nOpaque Zmult.@]@.@.";
+  Format.fprintf fmt
+    "@[<v>Add LoadPath \"coq\".@,\
+     Require Import List.@,\
+     Require Import ZArith.@,\
+     Require Import Arith.@,\
+     Require Import CFG.@,\
+     Opaque Zplus.@,\
+     Opaque Zmult.@,@,";
 
-  Format.fprintf fmt "@[<v>";
   List.iteri (fun i x ->
     Format.fprintf fmt "Notation %s := %d.@," (varname x) i
   ) f.fun_vars;
-  Format.fprintf fmt "@]";
 
   Format.fprintf fmt
-    "@[<v>Definition func%d : graph :=@,\
-       {| g_start := %d;@,\
-          g_end := %d;@,\
-          g_edges := %a@,\
-       |}.@]"
+    "Definition func%d : graph := {|@   @[<v>\
+         g_start := %d;@,\
+         g_end := %d;@,\
+         g_edges := %a\
+       @]@,|}.@,"
     i f.fun_body.g_start f.fun_body.g_end
-    (dump_edges varname) f.fun_body.g_edges
+    (dump_edges varname) f.fun_body.g_edges;
+
+  Format.fprintf fmt "@]"
 
 let dump_ai_func_bounds print_bound fmt bounds =
-  Format.fprintf fmt "@[<v>";
   Array.iteri (fun i v ->
     Format.fprintf fmt "| %d => %a@," i print_bound v
   ) bounds;
-  Format.fprintf fmt "| _ => False@,";
-  Format.fprintf fmt "@]"
+  Format.fprintf fmt "| _ => False"
 
 let dump_ai_bounds print_bound fmt bounds =
   (* TODO: print the correct function name *)
@@ -125,22 +125,21 @@ let dump_ai_bounds print_bound fmt bounds =
   Hashtbl.iter (fun funname b ->
     Format.fprintf fmt "Definition func0_bounds (p : node) (s : state) := @,";
     Format.fprintf fmt "  match p with@,";
-    Format.fprintf fmt "    @[<v4>%a@]@,"
+    Format.fprintf fmt "    @[<v>%a@]@,"
       (dump_ai_func_bounds (print_bound (mkvarname funname))) b;
   ) bounds;
   Format.fprintf fmt "  end.@,";
   Format.fprintf fmt
-    "Theorem func0_bounds_corrects : \
-    forall s p' s', steps (g_start func0) s func0 p' s' -> \
-    func0_bounds p' s'.@,\
-    Proof. prove_ai_bounds_correct. Qed.";
+    "Theorem func0_bounds_corrects:@   \
+     forall s p' s', steps (g_start func0) s func0 p' s' -> \
+     func0_bounds p' s'.@,\
+     Proof. prove_ai_bounds_correct. Qed.";
   Format.fprintf fmt "@]"
 
 let dump fs print_bound ai_bounds _annot =
   let oc = open_out "generated_coq.v" in
   let fmt = Format.formatter_of_out_channel oc in
   List.iteri (dump_func fmt) fs;
-  Format.fprintf fmt "@,@,@,";
   dump_ai_bounds print_bound fmt ai_bounds;
   Format.fprintf fmt "@.";
   close_out oc
