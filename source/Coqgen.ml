@@ -210,7 +210,7 @@ let rec dump_poly ring varname fmt pol =
           pref (dump_monom ring varname) monom
       else
         Format.fprintf fmt
-          (if first then "%s@[<h>%a*%a@]" else "@ %s @[<h>%a*%a@]")
+          (if first then "%s@[<h>%a * %a@]" else "@ %s @[<h>%a * %a@]")
           pref print_coeff k (dump_monom ring varname) monom;
         false
     end pol true in
@@ -218,28 +218,31 @@ let rec dump_poly ring varname fmt pol =
   Format.fprintf fmt "@]"
 
 and dump_monom ring varname fmt m =
-  Format.fprintf fmt "%s@[<h>"
-    (match ring with `Q -> "inject_Z(" | `Z -> "");
+  Format.fprintf fmt "@[<h>";
   let is_one = Monom.fold begin fun f e first ->
       if e = 0 then first else begin
       if e = 1 then
         Format.fprintf fmt
           (if first then "%a" else "@ %a")
-          (dump_factor varname) f
+          (dump_factor ring varname) f
       else
         Format.fprintf fmt
           (if first then "%a^%d" else "@ %a^%d")
-          (dump_factor varname) f e;
+          (dump_factor ring varname) f e;
         false
       end
     end m true in
   if is_one then Format.fprintf fmt "1";
-  Format.fprintf fmt "@]%s"
-    (match ring with `Q -> ")" | `Z -> "")
+  Format.fprintf fmt "@]"
 
-and dump_factor varname fmt = function
-  | Factor.Var v -> Format.fprintf fmt "%s" (varname v)
-  | Factor.Max p -> Format.fprintf fmt "max0(%a)" (dump_poly `Z varname) p
+and dump_factor ring varname fmt = function
+  | Factor.Var v ->
+    Format.fprintf fmt
+      (match ring with `Q -> "inject_Z %s" | `Z -> "%s")
+      (varname v)
+  | Factor.Max p ->
+    Format.fprintf fmt "max0(%a)"
+      (dump_poly `Z varname) p
 
 let dump_annot fmt annot =
   (* TODO: print the correct function name *)
