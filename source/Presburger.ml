@@ -80,22 +80,23 @@ module L = struct
     else if first then
       fprintf fmt "0"
 
-  let print_as_coq varnames fmt {m; k} =
+  let print_as_coq varname fmt {m; k} =
     let open Format in
     let rec p first = function
       | (x, c) :: tl when c <> 0 ->
-          fprintf fmt (if first then "(%d * (s %s))" else "+ (%d * (s %s))")
-            c (varnames x);
+          fprintf fmt
+            (if first then "%d * %s" else "+ %d * %s")
+            c (varname x);
           p false tl
       | _ :: tl -> p first tl
       | [] -> first
     in
     let first = p true (bindings m) in
     if k <> 0 then
-      fprintf fmt " + (%d)" k
+      fprintf fmt " + %d" k
     else if first then
       fprintf fmt "0"
-	      
+
 end
 
 (* The Presburger decision procedure. *)
@@ -209,13 +210,11 @@ let print fmt ps =
     (fun fmt -> Format.fprintf fmt "%a ≤ 0" L.print)
     fmt ps
 
-(* We assume the context contains a state s. *)
-let print_as_coq varnames fmt ps =
+let print_as_coq varname fmt ps =
   Format.fprintf fmt "@[<v>";
   if ps = [] then Format.pp_print_string fmt "True" else
   if not (sat ps) then Format.pp_print_string fmt "False" else
-  Print.list ~first:"@[<h>(" ~sep:" /\\@ " ~last:")%%Z@]"
-    (fun fmt -> Format.fprintf fmt "%a <= 0" (L.print_as_coq varnames))
+  Print.list ~first:"@[<h>" ~sep:" /\\@ " ~last:"@]"
+    (fun fmt -> Format.fprintf fmt "%a <= 0" (L.print_as_coq varname))
     fmt ps;
   Format.fprintf fmt "@]"
-    

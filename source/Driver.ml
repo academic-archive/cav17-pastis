@@ -150,7 +150,7 @@ let main () =
         1
       | Some (annot, p) ->
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
-        Coqgen.dump g_file AI.print_as_coq ai_results annot;
+        Coqgen.dump fstart g_file AI.print_as_coq ai_results annot;
         0
     in
     if !dump_stats then begin
