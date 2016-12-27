@@ -90,14 +90,13 @@ let dump_edges varname fmt es =
   Format.fprintf fmt "@]"
 
 let dump_func fmt i f =
-  let varname = (mkvarname f.fun_name) in
+  let varname = (mkvarname "func0") in
   Format.fprintf fmt
     "@[<v>Add LoadPath \"coq\".@,\
      Require Import List.@,\
      Require Import ZArith.@,\
      Require Import Arith.@,\
      Require Import CFG.@,\
-     Open Scope Z.@,\
      Opaque Zplus.@,\
      Opaque Zmult.@,@,";
 
@@ -125,7 +124,7 @@ let dump_ai_bounds print_bound fmt bounds =
   let print_bound = print_bound varname in
   Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i v ->
-    Format.fprintf fmt "| %d => %a@," i print_bound v
+    Format.fprintf fmt "| %d => (%a)%%Z@," i print_bound v
   ) bounds;
   Format.fprintf fmt "| _ => False@]@,  end.@,";
   Format.fprintf fmt
@@ -246,14 +245,18 @@ and dump_factor ring varname fmt = function
 
 let dump_annot fmt annot =
   (* TODO: print the correct function name *)
-  Format.fprintf fmt "@[<v>@,Definition func0_annots (p : node) (s : state) := @,";
+  Format.fprintf fmt
+    "@[<v>@,Require Import QArith.@,\
+     Require Import Qcanon.@,\
+     Coercion Q2Qc: Q >-> Qc.@,@,";
+  Format.fprintf fmt "Definition func0_annots (p : node) (s : state) := @,";
   Format.fprintf fmt "  match p with@,";
   let varname = statevar "s" (mkvarname "func0") in
   Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i v ->
-    Format.fprintf fmt "| %d => %a@," i (dump_poly `Q varname) v
+    Format.fprintf fmt "| %d => (%a)%%Qc@," i (dump_poly `Q varname) v
   ) annot;
-  Format.fprintf fmt "| _ => (0 # 0)@]@,  end.@,";
+  Format.fprintf fmt "| _ => (0 # 1)%%Qc@]@,  end.@,";
   Format.fprintf fmt "@]";
   ()
 
