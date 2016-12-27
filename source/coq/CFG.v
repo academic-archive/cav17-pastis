@@ -12,36 +12,6 @@ Inductive expr :=
   | ESub : expr -> expr -> expr
   | EMul : expr -> expr -> expr.
 
-(*
-type free_expr =
-  | FBase of expr
-  | FApply of id * free_expr list * position
-
-type ('a, 'b) func_ =
-  { fun_name: id
-  ; fun_vars: id list
-  ; fun_args: id list
-  ; fun_rets: id list
-  ; fun_focus: 'a list
-  ; fun_body: 'b
-  ; fun_start_p: position
-  ; fun_end_p: position
-  }
-*)
-
-(*
-Inductive cmp  := Le | Lt | Ge | Gt | Eq | Ne.
-
-Inductive logic :=
-  | LTrue
-  | LFalse
-  | LRandom
-  | LCmp : expr -> cmp -> expr -> logic
-  | LAnd : logic -> logic -> logic
-  | LOr  : logic -> logic -> logic
-  | LNot : logic -> logic.
-*)
-
 Definition node : Type := nat.
 
 Definition state := id -> Z.
@@ -84,31 +54,35 @@ Inductive step : state -> action -> state -> Prop :=
 
 Inductive steps (p : node) (s : state) (g : graph) : node -> state -> Prop :=
 | SStart : steps p s g p s
-| SStep : forall p1 s1 a p2 s2 ,
-            steps p s g p1 s1 -> In (p1,a,p2) (g_edges g) -> step s1 a s2 -> steps p s g p2 s2.
+| SStep p1 s1 a p2 s2 :
+    steps p s g p1 s1 -> In (p1,a,p2) (g_edges g) -> step s1 a s2 ->
+    steps p s g p2 s2.
 
-Lemma reachable_ind' : forall (g : graph)
-                               (P : node -> state -> Prop)
-                               (Hinit : forall s, P (g_start g) s)
-                               (Hstep : forall p s a p' s',
-                                         In (p,a,p') (g_edges g) -> step s a s' -> P p s -> P p' s'),
-                        forall s p' s', steps (g_start g) s g p' s' -> P p' s'.
+Lemma reachable_ind' :
+  forall (g: graph) (P: node -> state -> Prop)
+         (Hstep : forall p s a p' s',
+             In (p,a,p') (g_edges g) -> step s a s' -> P p s -> P p' s'),
+  forall s p' s', P (g_start g) s -> steps (g_start g) s g p' s' -> P p' s'.
 Proof.
-  intros g P Hinit Hstep s p' s' Hsteps.
+  intros g P Hstep s p' s' Hinit Hsteps.
   induction Hsteps.
   + auto.
   + eapply Hstep; eauto.
 Qed.
 
-Fixpoint reachable_ind_VC  (P : node -> state -> Prop) (ns : list (node * action * node)) : Prop :=
+Fixpoint reachable_ind_VC
+         (P : node -> state -> Prop)
+         (ns : list (node * action * node)) : Prop :=
   match ns with
-    | nil => True
-    | (p,a,p') :: ns => (forall s s', step s a s' -> P p s -> P p' s') /\ reachable_ind_VC P ns
+  | nil => True
+  | (p,a,p') :: ns =>
+    (forall s s', step s a s' -> P p s -> P p' s') /\
+    reachable_ind_VC P ns
   end.
 
-Lemma reachable_ind_VC_spec : forall P ns,
-                                reachable_ind_VC P ns
-                                -> forall p s a p' s', In (p,a,p') ns -> step s a s' -> P p s -> P p' s'.
+Lemma reachable_ind_VC_spec :
+  forall P ns, reachable_ind_VC P ns ->
+    forall p s a p' s', In (p,a,p') ns -> step s a s' -> P p s -> P p' s'.
 Proof.
  induction ns.
  + simpl; intros; tauto.
@@ -121,28 +95,28 @@ Proof.
    - eauto.
 Qed.
 
-Lemma reachable_ind : forall (g : graph)
-                             (P : node -> state -> Prop)
-                             (Hinit : forall s, P (g_start g) s)
-                             (Hstep : reachable_ind_VC P (g_edges g)),
-                        forall s p' s', steps (g_start g) s g p' s' -> P p' s'.
+Lemma reachable_ind :
+  forall (g : graph)
+         (P : node -> state -> Prop)
+         (Hstep : reachable_ind_VC P (g_edges g)),
+  forall s p' s', P (g_start g) s -> steps (g_start g) s g p' s' -> P p' s'.
 Proof.
-  intros.
-  refine (reachable_ind' g P Hinit _ s p' s' H).
+  intros g P Hstep s p' s' Hinit Hsteps.
+  refine (reachable_ind' g P _ s p' s' Hinit Hsteps).
   apply reachable_ind_VC_spec; assumption.
 Qed.
 
-
 Opaque Zplus.
+Opaque Zminus.
 Opaque Zmult.
 
 (* This tactic is used to prove the bounds deduced by the 
    Presburger arithmetic abstract interpreter. It basically
    just calls Coq's omega. *)
 Ltac prove_ai_bounds_correct :=
+  intros until 0;
   apply reachable_ind;
-  [ (* base case *) intros s; simpl; auto
-  | (* step case *)
+  [ (* step case *)
     simpl;
     repeat apply conj;
     intros;
@@ -151,4 +125,9 @@ Ltac prove_ai_bounds_correct :=
     try unfold update;
     simpl;
     auto;
-    try omega].
+    try omega
+  | (* base case *) simpl; auto ].
+
+Require Import QArith.
+
+Definition max0 (x: Z) := inject_Z (Z.max 0 x).
