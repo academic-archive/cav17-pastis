@@ -1,4 +1,4 @@
-open Polynom
+module Poly = Polynom.Poly
 
 type ast =
   | F_one

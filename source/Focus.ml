@@ -1,7 +1,6 @@
 (* Quentin Carbonneaux - 2016 *)
 
 include Focus_Types
-open Polynom
 
 module Builder = Focus_Builder
 
