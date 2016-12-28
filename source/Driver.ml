@@ -124,7 +124,7 @@ let main () =
     let g_file = List.map Graph.rpo_order g_file in
     let module AI = (val begin
         match !ai with
-	(*        | "apron" -> (module Graph.AbsInt.Apron) *)
+        (* | "apron" -> (module Graph.AbsInt.Apron) *)
         | _       -> (module Graph.AbsInt.Simple)
       end: Graph.AbsInt)
     in

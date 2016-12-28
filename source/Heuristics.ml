@@ -4,6 +4,7 @@ open Types
 open Graph
 open Polynom
 open Focus_Builder
+open Focus
 
 module PSet = Set.Make(struct
   type t = Poly.t
@@ -17,7 +18,7 @@ end)
 
 let pset_map f t =
   PSet.fold (fun x xs -> PSet.add (f x)  xs) t PSet.empty
-		      
+
 let pset_of_logic log =
   let cmp e1 c e2 =
     let p1 = Poly.of_expr e1
@@ -421,16 +422,16 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
     eprintf "%a@.@." printl root
   end;
 
-  let fun_focus = gfunc.fun_focus @ List.map export !focus in
-  let fun_focus = List.filter
-    (fun (_, f) -> Poly.is_const f = None) fun_focus in
-  let fun_focus = List.sort_uniq
-    (fun (_, a) (_, b) -> Poly.compare a b) fun_focus in
+  let fun_focus =
+    gfunc.fun_focus @ List.map export !focus |>
+    List.filter (fun f -> Poly.is_const f.proves = None) |>
+    List.sort_uniq (fun a b -> Poly.compare a.proves b.proves)
+  in
 
   if debug then begin
     Format.eprintf "Focus functions:@.  %a@.@."
       (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]"
-        Poly.print) (List.map snd fun_focus);
+        Poly.print) (List.map (fun f -> f.proves) fun_focus);
   end;
 
   { gfunc with fun_focus }
@@ -532,11 +533,7 @@ let add_focus_old ?(deg=1) ai_results ai_get_nonneg _ gfunc =
     ) degn degn in
 
   (* Add focus functions. *)
-  let fun_focus =
-    List.rev_append
-      gfunc.fun_focus
-      (List.map export degn)
-  in
+  let fun_focus = gfunc.fun_focus @ (List.map export degn) in
   (*
   List.iter (fun (l, p) ->
     if l = [] then
@@ -565,7 +562,8 @@ let add_weaken ({ fun_name; fun_body = g } as gfunc) =
       List.map begin fun (act, dst) ->
         let d_edges = g.g_edges.(dst) in
         if d_edges = [] || List.length d_edges > 1
-        || is_guard act && not (List.for_all (fun (a, _) -> is_guard a) d_edges)
+        || is_guard act &&
+           not (List.for_all (fun (a, _) -> is_guard a) d_edges)
         then (act, add_weaken dst)
         else (act, dst)
       end

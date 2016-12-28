@@ -17,6 +17,8 @@ let poly_binom k p =
    composing smaller lemmas defined below.
 *)
 
+open Focus_Types
+
 type 'a property =
   | Ge0 of 'a        (* a >= 0 *)
   | Ge of 'a * 'a    (* a >= b *)
@@ -32,7 +34,8 @@ let prop_Ge = function
 type t =
   { proves: Poly.t property
   ; checks: Poly.t list
-  ; degree: int }
+  ; degree: int
+  ; ast: ast }
 
 let export i =
   let checks = List.filter
@@ -40,7 +43,11 @@ let export i =
       match Poly.is_const p with
       | Some k -> k < 0.
       | None -> true) i.checks
-  in (checks, prop_Ge0 i.proves)
+  in
+  { Focus_Types.checks = checks
+  ; proves = prop_Ge0 i.proves
+  ; ast = i.ast
+  }
 
 let degree i =
   i.degree
@@ -54,12 +61,11 @@ let degree i =
    a >= max(0, a)                    when a >= 0  (max0_le_arg)
    max(0, a) >= max(0, b)            when a >= b  (max0_monotonic)
    max(0, b) + a - b >= max(0, a)    when a >= b  (max0_sublinear)
-   a * max(0, x) >= max(0, a * x)    when a >= 0  (max0_sublinear_mul)
 
    binom(k, a) >= binom(k, b)        when a >= b  (binom_monotonic)
                                      and b >= 0
-
-   x * a >= x * b                    when a,x >= b (product)
+   x * a >= x * b                    when x >= 0  (product)
+                                     and a >= b
 
    ----- Focus functions for automation ----
 
@@ -71,12 +77,14 @@ let max0_pre_decrement x y =
   let xsuby = Poly.sub x y in
   { proves = Ge (poly_max x, Poly.add (poly_max xsuby) y)
   ; checks = [xsuby; y]
-  ; degree = max (Poly.degree x) (Poly.degree y) }
+  ; degree = max (Poly.degree x) (Poly.degree y)
+  ; ast = F_max0_pre_decrement (x, y) }
 
 let max0_pre_increment x y =
   { proves = Ge (Poly.add (poly_max x) y, poly_max (Poly.add x y))
   ; checks = [y]
-  ; degree = max (Poly.degree x) (Poly.degree y) }
+  ; degree = max (Poly.degree x) (Poly.degree y)
+  ; ast = F_max0_pre_increment (x, y) }
 
 let check_ge a b =
   let checks =
@@ -87,41 +95,41 @@ let check_ge a b =
   in
   { proves = Ge (a, b)
   ; checks = checks
-  ; degree = max (Poly.degree a) (Poly.degree b) }
+  ; degree = max (Poly.degree a) (Poly.degree b)
+  ; ast = F_check_ge (a, b) }
 
 let max0_ge_0 a =
   { proves = Ge0 (poly_max a)
   ; checks = []
-  ; degree = Poly.degree a }
+  ; degree = Poly.degree a
+  ; ast = F_max0_ge_0 a }
 
 let max0_ge_arg a =
   { proves = Ge (poly_max a, a)
   ; checks = []
-  ; degree = Poly.degree a }
+  ; degree = Poly.degree a
+  ; ast = F_max0_ge_arg a }
 
 let max0_le_arg i =
   let a = prop_Ge0 i.proves in
   { proves = Ge (a, poly_max a)
   ; checks = i.checks
-  ; degree = i.degree }
+  ; degree = i.degree
+  ; ast = F_max0_le_arg i.ast }
 
 let max0_monotonic i =
   let a, b = prop_Ge i.proves in
   { proves = Ge (poly_max a, poly_max b)
   ; checks = i.checks
-  ; degree = i.degree }
+  ; degree = i.degree
+  ; ast = F_max0_monotonic i.ast }
 
 let max0_sublinear i =
   let a, b = prop_Ge i.proves in
   { proves = Ge (Poly.add (poly_max b) (Poly.sub a b), poly_max a)
   ; checks = i.checks
-  ; degree = i.degree }
-
-let max0_sublinear_mul i a =
-  let x = prop_Ge0 i.proves in
-  { proves = Ge (Poly.mul x (poly_max a), poly_max (Poly.mul x a))
-  ; checks = i.checks
-  ; degree = i.degree + Poly.degree a }
+  ; degree = i.degree
+  ; ast = F_max0_sublinear i.ast }
 
 let binom_monotonic k i1 i2 =
   let a, b = prop_Ge i1.proves in
@@ -130,11 +138,13 @@ let binom_monotonic k i1 i2 =
     failwith "invalid argument combination" else
   { proves = Ge (poly_binom k a, poly_binom k b)
   ; checks = i1.checks @ i2.checks
-  ; degree = i1.degree * k }
+  ; degree = i1.degree * k
+  ; ast = F_binom_monotonic (k, i1.ast, i2.ast) }
 
 let product i1 i2 =
   let a, b = prop_Ge i2.proves in
   let x = prop_Ge0 i1.proves in
   { proves = Ge (Poly.mul x a, Poly.mul x b)
   ; checks = i1.checks @ i2.checks
-  ; degree = i1.degree + i2.degree }
+  ; degree = i1.degree + i2.degree
+  ; ast = F_product (i1.ast, i2.ast)  }

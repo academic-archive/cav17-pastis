@@ -3,6 +3,7 @@
 open Graph
 open Types
 open Polynom
+open Focus
 
 type stats =
   { mutable num_lpvars: int
@@ -43,7 +44,7 @@ module Potential
   val of_poly: Poly.t -> annot
   val exec_assignment: (id * expr) -> annot -> annot
   val constrain: annot -> order -> annot -> unit
-  val rewrite: Poly.t list -> annot -> annot
+  val weaken: Poly.t list -> annot -> annot
   val solve_min:
     Poly.t list -> annot array -> int ->
     annot list -> (Poly.t array * Poly.t) option
@@ -211,6 +212,11 @@ end
       end plsum l in
     (plsum, kpl)
 
+  (* Create a new annotation using the init function to
+     create new coefficients.  The returned annotation
+     has an LP variable for every monomial in the list
+     of polynomials pl and in the annotation annot.
+  *)
   let frame_from ?init:(init=fun _ -> new_lpvar ()) pl annot =
     let frame = M.mapi (fun m _ -> init m) annot in
     let frame =
@@ -228,7 +234,7 @@ end
      are actually null, the returned potential has the
      same value as the passed one.
   *)
-  let rewrite pl annot =
+  let weaken pl annot =
     let l = frame_from pl annot in
     let exannot, kpl = expand l pl in
     constrain exannot Eq annot;
@@ -257,7 +263,7 @@ end
         v
       end in
     let exannot, kpl = expand l pl in
-    constrain exannot Ge start_annot;
+    constrain exannot Eq start_annot;
     let vmax = new_lpvar () in
     List.iter (fun k ->
       add_lprow_array [| vmax, 1.; k, -1. |] Ge) kpl;
@@ -314,14 +320,14 @@ let run ai_results ai_is_nonneg fl start query =
   reset_stats ();
 
   let f = List.find (fun f -> f.fun_name = start) fl in
-  let focus = ([], Poly.const 1.) :: f.fun_focus in
+  let focus = Focus.one :: f.fun_focus in
   let body = f.fun_body in
   let dumps = ref [] in
 
   let monoms =
     let monoms = Poly.fold (fun m _ ms -> m :: ms) query [] in
-    List.fold_left begin fun monoms (_, p) ->
-      Poly.fold (fun m _ ms -> m :: ms) p monoms
+    List.fold_left begin fun monoms f ->
+      Poly.fold (fun m _ ms -> m :: ms) f.proves monoms
     end monoms focus
   in
 
@@ -330,17 +336,18 @@ let run ai_results ai_is_nonneg fl start query =
   *)
   let find_focus f node =
     let ai = Hashtbl.find ai_results f in
-    let ok (c, _) = List.for_all (ai_is_nonneg ai.(node)) c in
+    let ok f =
+      List.for_all (ai_is_nonneg ai.(node)) f.checks in
     let res = List.filter ok focus in
     if false then begin
-      let fprint fmt (c, f) =
+      let fprint fmt {checks = c; proves = f; _} =
         Format.fprintf fmt (if c <> [] then "* %a" else "  %a")
           Poly.print f in
       Format.eprintf "Using:@.%a@."
         (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]" fprint) res
     end;
     stats.max_focus <- max (List.length res) stats.max_focus;
-    List.map snd res
+    List.map (fun f -> f.proves) res
   in
 
   (* Create a new potential annotation resulting from
@@ -348,7 +355,7 @@ let run ai_results ai_is_nonneg fl start query =
   *)
   let do_action node act a =
     match act with
-    | Graph.AWeaken -> Potential.rewrite (find_focus start node) a
+    | Graph.AWeaken -> Potential.weaken (find_focus start node) a
     | Graph.AGuard LRandom -> dumps := a :: !dumps; a
     | Graph.AGuard _ | Graph.ANone -> a
     | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a

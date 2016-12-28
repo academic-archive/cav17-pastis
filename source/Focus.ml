@@ -1,10 +1,15 @@
 (* Quentin Carbonneaux - 2016 *)
 
+include Focus_Types
 open Polynom
 
 module Builder = Focus_Builder
 
-type focus = Poly.t list * Poly.t
+let one =
+  { proves = Poly.const 1.
+  ; checks = []
+  ; ast = F_one
+  }
 
 type _ interp =
   | IFunc: 'a interp -> (Builder.t -> 'a) interp
@@ -20,7 +25,6 @@ let interp_map =
   ; "max0_le_arg",     DP (IFunc IEnd, Builder.max0_le_arg)
   ; "max0_monotonic",  DP (IFunc IEnd, Builder.max0_monotonic)
   ; "max0_sublinear",  DP (IFunc IEnd, Builder.max0_sublinear)
-  ; "max0_sublinear_mul", DP (IFunc (IExpr IEnd), Builder.max0_sublinear_mul)
   ; "binom_monotonic", DP (INum (IFunc (IFunc IEnd)), Builder.binom_monotonic)
   ; "product",         DP (IFunc (IFunc IEnd), Builder.product)
   ; ">=",              DP (IExpr (IExpr IEnd), Builder.check_ge)
