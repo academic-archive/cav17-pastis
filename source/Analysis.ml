@@ -40,14 +40,15 @@ let swap_order = function
 module Potential
 : sig
   type annot
+  type focus_annot
+  type solution
   val new_annot: Monom.t list -> annot
   val of_poly: Poly.t -> annot
   val exec_assignment: (id * expr) -> annot -> annot
   val constrain: annot -> order -> annot -> unit
-  val weaken: Poly.t list -> annot -> annot
-  val solve_min:
-    Poly.t list -> annot array -> int ->
-    annot list -> (Poly.t array * Poly.t) option
+  val weaken: Poly.t list -> annot -> (annot * focus_annot list)
+  val solve_min: Poly.t list -> annot -> solution option
+  val poly_of_annot: solution -> annot -> Poly.t
 end
 = struct
 
@@ -73,6 +74,8 @@ end
   module M = Map.Make(Monom)
   type linexpr = (lpvar, float) Hashtbl.t
   type annot = linexpr M.t
+  type focus_annot = lpvar * lpvar
+  type solution = float array
 
   let new_lpvar () =
     stats.num_lpvars <- stats.num_lpvars + 1;
@@ -243,10 +246,9 @@ end
       assert (kp1 <> kp2);
       add_lprow_array [| kp2, 1.; kp1, -1. |] Ge;
     end kpl kpl';
-    annot'
+    (annot', List.combine kpl kpl')
 
-  let solve_min pl annot start dumps =
-    let start_annot = annot.(start) in
+  let solve_min pl start_annot =
     let absl = ref [] in
     M.iter begin fun m le ->
       (* Zero out all fresh variables created by
@@ -296,23 +298,17 @@ end
 
       (* Build polynomial solution. *)
       let sol = Clp.primal_column_solution () in
-      let make_poly a =
-        M.fold begin fun m le poly ->
-          let k =
-            Hashtbl.fold begin fun v kv k ->
-              k +. kv *. sol.(v)
-            end le 0.
-          in Poly.add_monom m k poly
-          end a (Poly.zero ())
-      in
-      let final_polys = Array.map make_poly annot in
-      (* Dump debug information. *)
-      List.iter (fun annot ->
-        Format.eprintf "Dump: %a@."
-          Poly.print_ascii (make_poly annot)
-      ) dumps;
-      Some (final_polys, make_poly start_annot)
+      Some sol
     end
+
+  let poly_of_annot sol a =
+    M.fold begin fun m le poly ->
+      let k =
+        Hashtbl.fold begin fun v kv k ->
+          k +. kv *. sol.(v)
+        end le 0.
+      in Poly.add_monom m k poly
+    end a (Poly.zero ())
 
 end
 
@@ -353,9 +349,12 @@ let run ai_results ai_is_nonneg fl start query =
   (* Create a new potential annotation resulting from
      executing one action (backwards).
   *)
+  let fannots = Array.map (fun _ -> []) body.Graph.g_position in
   let do_action node act a =
     match act with
-    | Graph.AWeaken -> Potential.weaken (find_focus start node) a
+    | Graph.AWeaken ->
+      let a, fa = Potential.weaken (find_focus start node) a in
+      fannots.(node) <- fa; a
     | Graph.AGuard LRandom -> dumps := a :: !dumps; a
     | Graph.AGuard _ | Graph.ANone -> a
     | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
@@ -406,10 +405,20 @@ let run ai_results ai_is_nonneg fl start query =
   let start_annot = dfs start_node in
   let pzero = Potential.of_poly (Poly.zero ()) in
   Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
-  let annot =
-    Array.map (function
-      | `Done a -> a
-      | _ -> failwith "missing annotation"
-    ) annot
-  in
-  Potential.solve_min (find_focus start start_node) annot start_node !dumps
+  match
+    Potential.solve_min (find_focus start start_node) start_annot
+  with
+  | None -> None
+  | Some sol ->
+    let make_poly = Potential.poly_of_annot sol in
+    List.iter begin fun a ->
+      Format.eprintf "Dump: %a@."
+        Poly.print_ascii (make_poly a)
+    end !dumps;
+    let annot =
+      Array.map (function
+        | `Done a -> make_poly a
+        | _ -> failwith "missing annotation"
+      ) annot
+    in
+    Some annot
