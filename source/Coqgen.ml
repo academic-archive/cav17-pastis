@@ -1,4 +1,5 @@
 open Types
+open Focus_Types
 open Graph_Types
 open Presburger
 open Polynom
@@ -259,12 +260,58 @@ let dump_annot fmt annot =
   Format.fprintf fmt "@]";
   ()
 
-let dump fstart fs print_bound ai_bounds annot _fannot =
+let dump_hints fmt fannot =
+
+  let varname = statevar "s" (mkvarname "func0") in
+  let rec dump_ast fmt =
+    let print s = Format.fprintf fmt s in
+    let poly = dump_poly `Z varname in
+    function
+    | F_one -> print "F_one"
+    | F_check_ge (a, b) ->
+      print "rf_check_ge (%a) (%a)" poly a poly b
+    | F_max0_pre_decrement (a, b) ->
+      print "rf_max0_pre_decrement (%a) (%a)" poly a poly b
+    | F_max0_pre_increment (a, b) ->
+      print "rf_max0_pre_increment (%a) (%a)" poly a poly b
+    | F_max0_ge_0 a ->
+      print "rf_max0_ge_0 (%a)" poly a
+    | F_max0_ge_arg a ->
+      print "rf_max0_ge_arg (%a)" poly a
+    | F_max0_le_arg f ->
+      print "rf_max0_le_arg (%a)" dump_ast f
+    | F_max0_monotonic f ->
+      print "rf_max0_monotonic (%a)" dump_ast f
+    | F_max0_sublinear f ->
+      print "rf_max0_sublinear (%a)" dump_ast f
+    | F_binom_monotonic (k, f, g) ->
+      print "rf_binom_monotonic %d (%a) (%a)" k dump_ast f dump_ast g
+    | F_product (f, g) ->
+      print "rf_product (%a) (%a)" dump_ast f dump_ast g
+  in
+  let dump_hint fmt ((ka, kb), f) =
+    Format.fprintf fmt "@[<h>(*%g %g*) %a@]" ka kb dump_ast f.ast
+  in
+
+  Format.fprintf fmt "@[<v>@,Definition func0_hints (p : node) (s : state) := @,";
+  Format.fprintf fmt "  match p with@,";
+  Format.fprintf fmt "    @[<v>";
+  Array.iteri (fun i l ->
+    List.filter (fun ((ka, kb), _) -> abs_float (ka -. kb) > fsmall) l |>
+    Format.fprintf fmt "| %d => %a@,"
+      i (Print.list dump_hint)
+  ) fannot;
+  Format.fprintf fmt "| _ => []@]@,  end.@,";
+  Format.fprintf fmt "@]";
+  ()
+
+let dump fstart fs print_bound ai_bounds annot fannot =
   let oc = open_out "generated_coq.v" in
   let fmt = Format.formatter_of_out_channel oc in
   List.iteri (dump_func fmt) fs;
   let bounds = Hashtbl.find ai_bounds fstart in
   dump_ai_bounds print_bound fmt bounds;
   dump_annot fmt annot;
+  dump_hints fmt fannot;
   Format.fprintf fmt "@.";
   close_out oc

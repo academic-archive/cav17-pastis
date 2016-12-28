@@ -347,8 +347,9 @@ let run ai_results ai_is_nonneg fl start query =
         (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]" fprint) res
     end;
     stats.max_focus <- max (List.length res) stats.max_focus;
-    List.map (fun f -> f.proves) res
+    res
   in
+  let polys_of_focus = List.map (fun f -> f.proves) in
 
   (* Create a new potential annotation resulting from
      executing one action (backwards).
@@ -358,7 +359,8 @@ let run ai_results ai_is_nonneg fl start query =
     match act with
     | Graph.AWeaken ->
       let focus = find_focus start node in
-      let a, fa = Potential.weaken focus a in
+      let polys = polys_of_focus focus in
+      let a, fa = Potential.weaken polys a in
       fannot.(node) <- List.combine fa focus; a
     | Graph.AGuard LRandom -> dumps := a :: !dumps; a
     | Graph.AGuard _ | Graph.ANone -> a
@@ -411,7 +413,8 @@ let run ai_results ai_is_nonneg fl start query =
   let pzero = Potential.of_poly (Poly.zero ()) in
   Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
   match
-    Potential.solve_min (find_focus start start_node) start_annot
+    let focus = find_focus start start_node in
+    Potential.solve_min (polys_of_focus focus) start_annot
   with
   | None -> None
   | Some sol ->
