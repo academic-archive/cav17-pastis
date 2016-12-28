@@ -148,7 +148,7 @@ let main () =
       | None ->
         Format.printf "Sorry, I could not find a bound.@.";
         1
-      | Some annot ->
+      | Some (annot, _fannot) ->
         let f = List.find (fun f -> f.Types.fun_name = fstart) g_file in
         let p = annot.(f.Types.fun_body.Graph.g_start) in
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;

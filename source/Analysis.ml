@@ -48,7 +48,8 @@ module Potential
   val constrain: annot -> order -> annot -> unit
   val weaken: Poly.t list -> annot -> (annot * focus_annot list)
   val solve_min: Poly.t list -> annot -> solution option
-  val poly_of_annot: solution -> annot -> Poly.t
+  val annot_sol: solution -> annot -> Poly.t
+  val focus_annot_sol: solution -> focus_annot -> (float * float)
 end
 = struct
 
@@ -246,7 +247,7 @@ end
       assert (kp1 <> kp2);
       add_lprow_array [| kp2, 1.; kp1, -1. |] Ge;
     end kpl kpl';
-    (annot', List.combine kpl kpl')
+    (annot', List.rev (List.combine kpl kpl'))
 
   let solve_min pl start_annot =
     let absl = ref [] in
@@ -301,7 +302,7 @@ end
       Some sol
     end
 
-  let poly_of_annot sol a =
+  let annot_sol sol a =
     M.fold begin fun m le poly ->
       let k =
         Hashtbl.fold begin fun v kv k ->
@@ -309,6 +310,9 @@ end
         end le 0.
       in Poly.add_monom m k poly
     end a (Poly.zero ())
+
+  let focus_annot_sol sol (ka, kb) =
+    (sol.(ka), sol.(kb))
 
 end
 
@@ -349,12 +353,13 @@ let run ai_results ai_is_nonneg fl start query =
   (* Create a new potential annotation resulting from
      executing one action (backwards).
   *)
-  let fannots = Array.map (fun _ -> []) body.Graph.g_position in
+  let fannot = Array.map (fun _ -> []) body.Graph.g_position in
   let do_action node act a =
     match act with
     | Graph.AWeaken ->
-      let a, fa = Potential.weaken (find_focus start node) a in
-      fannots.(node) <- fa; a
+      let focus = find_focus start node in
+      let a, fa = Potential.weaken focus a in
+      fannot.(node) <- List.combine fa focus; a
     | Graph.AGuard LRandom -> dumps := a :: !dumps; a
     | Graph.AGuard _ | Graph.ANone -> a
     | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
@@ -410,7 +415,7 @@ let run ai_results ai_is_nonneg fl start query =
   with
   | None -> None
   | Some sol ->
-    let make_poly = Potential.poly_of_annot sol in
+    let make_poly = Potential.annot_sol sol in
     List.iter begin fun a ->
       Format.eprintf "Dump: %a@."
         Poly.print_ascii (make_poly a)
@@ -421,4 +426,10 @@ let run ai_results ai_is_nonneg fl start query =
         | _ -> failwith "missing annotation"
       ) annot
     in
-    Some annot
+    let fannot =
+      Array.map
+        (List.map (fun (fa, f) ->
+          (Potential.focus_annot_sol sol fa, f)))
+        fannot
+    in
+    Some (annot, fannot)
