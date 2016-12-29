@@ -23,11 +23,13 @@ Inductive ineq :=
   | ige (a: Z) (b: Z)
   | ige0 (a: Z)
 .
+Notation "a '>= b" := (ige a b) (at level 70).
+Notation "a '>= 0" := (ige0 a) (at level 70).
 
 Definition ineq_prop (i: ineq) :=
   match i with
-    | ige a b => a >= b
-    | ige0 a => a >= 0
+    | a '>= b => a >= b
+    | a '>= 0 => a >= 0
   end.
 
 
@@ -36,9 +38,9 @@ Definition ineq_prop (i: ineq) :=
  * respectively.
  *)
 Definition ineq_ge (i: ineq) :=
-  match i with ige a b => (a, b) | ige0 a => (a, 0) end.
+  match i with a '>= b => (a, b) | a '>= 0 => (a, 0) end.
 Definition ineq_ge0 (i: ineq) :=
-  match i with ige a b => a - b | ige0 a => a end.
+  match i with a '>= b => a - b | a '>= 0 => a end.
 
 Lemma ineq_ge_semantics:
   forall p x y, ineq_ge p = (x, y) -> ineq_prop p -> x >= y.
@@ -70,36 +72,36 @@ Fixpoint interpret (p: rewrite_ast): interp :=
   match p with
 
     | F_check_ge x y =>
-      [ [ige x y] |- ige x y ]
+      [ [x '>= y] |- x '>= y ]
 
     | F_max0_ge_0 x =>
-      [ [] |- ige0 (max0 x) ]
+      [ [] |- max0 x '>= 0 ]
 
     | F_max0_ge_arg x =>
-      [ [] |- ige (max0 x) x ]
+      [ [] |- max0 x '>= x ]
 
     | F_max0_le_arg q =>
       let (a, c) := interpret q in
       let x := ineq_ge0 c in
-      [ a |- ige x (max0 x) ]
+      [ a |- x '>= max0 x ]
 
     | F_max0_monotonic q =>
       let (a, c) := interpret q in
       let (x, y) := ineq_ge c in
-      [ a |- ige (max0 x) (max0 y) ]
+      [ a |- max0 x '>= max0 y ]
 
     | F_max0_sublinear q =>
       let (a, c) := interpret q in
       let (x, y) := ineq_ge c in
-      [ a |- ige (max0 y + x - y) (max0 x) ]
+      [ a |- max0 y + x - y '>= max0 x ]
 
     | F_max0_pre_decrement x y =>
-      [ [ige x y; ige0 y] |-
-        ige (max0 x) (y + max0 (x - y)) ]
+      [ [x '>= y; y '>= 0] |-
+        max0 x '>= y + max0 (x - y) ]
 
     | F_max0_pre_increment x y =>
-      [ [ige0 y] |-
-        ige (y + max0 x) (max0 (x + y)) ]
+      [ [y '>= 0] |-
+        y + max0 x '>= max0 (x + y) ]
 
   end.
 
