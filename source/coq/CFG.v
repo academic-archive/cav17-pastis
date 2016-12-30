@@ -26,10 +26,12 @@ Inductive action :=
   | AAssign : id -> expr -> action
   | ACall  : list id -> id -> list expr -> action.
 
+Definition edge := (node * action * node)%type.
+
 Inductive graph :=
   { g_start: node
   ; g_end: node
-  ; g_edges: (list (node * action * node))
+  ; g_edges: list edge
   }.
 
 (* type func = (Focus.focus, graph) func_ *)
@@ -52,57 +54,69 @@ Inductive step : state -> action -> state -> Prop :=
 (* TODO: ACall *)
 .
 
-Inductive steps (p : node) (s : state) (g : graph) : node -> state -> Prop :=
-| SStart : steps p s g p s
+Inductive steps (p : node) (s : state) (es : list edge) : node -> state -> Prop :=
+| SStart : steps p s es p s
 | SStep p1 s1 a p2 s2 :
-    steps p s g p1 s1 -> In (p1,a,p2) (g_edges g) -> step s1 a s2 ->
-    steps p s g p2 s2.
+    steps p s es p1 s1 -> In (p1,a,p2) es -> step s1 a s2 ->
+    steps p s es p2 s2.
 
 Lemma reachable_ind' :
-  forall (g: graph) (P: node -> state -> Prop)
-         (Hstep : forall p s a p' s',
-             In (p,a,p') (g_edges g) -> step s a s' -> P p s -> P p' s'),
-  forall s p' s', P (g_start g) s -> steps (g_start g) s g p' s' -> P p' s'.
+  forall (g: graph) (P: node -> state -> Prop) s_i
+         (Hstep : forall p s a p' s'
+                         (PAP'EDGE:  In (p,a,p') (g_edges g))
+                         (REACHABLE: steps (g_start g) s_i (g_edges g) p s)
+                         (STEP:      step s a s')
+                         (HIND:      P p s),
+                    P p' s'),
+  forall p s, P (g_start g) s_i -> steps (g_start g) s_i (g_edges g) p s -> P p s.
 Proof.
-  intros g P Hstep s p' s' Hinit Hsteps.
+  intros g P s_i Hstep p s Hinit Hsteps.
   induction Hsteps.
   + auto.
   + eapply Hstep; eauto.
 Qed.
 
 Fixpoint reachable_ind_VC
-         (P : node -> state -> Prop)
-         (ns : list (node * action * node)) : Prop :=
+         (p_i: node) (s_i: state) (es: list edge)
+         (P : node -> state -> Prop) (ns : list edge) : Prop :=
   match ns with
   | nil => True
   | (p,a,p') :: ns =>
-    (forall s s', step s a s' -> P p s -> P p' s') /\
-    reachable_ind_VC P ns
+    (forall s s'
+            (REACHABLE: steps p_i s_i es p s)
+            (STEP:      step s a s')
+            (HIND:      P p s),
+       P p' s') /\
+    reachable_ind_VC p_i s_i es P ns
   end.
 
 Lemma reachable_ind_VC_spec :
-  forall P ns, reachable_ind_VC P ns ->
-    forall p s a p' s', In (p,a,p') ns -> step s a s' -> P p s -> P p' s'.
+  forall p_i s_i es P ns, reachable_ind_VC p_i s_i es P ns ->
+    forall p s a p' s',
+      In (p,a,p') ns ->
+      steps p_i s_i es p s ->
+      step s a s' ->
+      P p s ->
+      P p' s'.
 Proof.
  induction ns.
  + simpl; intros; tauto.
  + destruct a as [[p a] p'].
    simpl.
    intuition.
-    - inversion H5.
+    - inversion H6.
       subst.
       eauto.
    - eauto.
 Qed.
 
 Lemma reachable_ind :
-  forall (g : graph)
-         (P : node -> state -> Prop)
-         (Hstep : reachable_ind_VC P (g_edges g)),
-  forall s p' s', P (g_start g) s -> steps (g_start g) s g p' s' -> P p' s'.
+  forall (g : graph) (P : node -> state -> Prop) s_i
+         (STEP : reachable_ind_VC (g_start g) s_i (g_edges g) P (g_edges g)),
+  forall p' s', P (g_start g) s_i -> steps (g_start g) s_i (g_edges g) p' s' -> P p' s'.
 Proof.
-  intros g P Hstep s p' s' Hinit Hsteps.
-  refine (reachable_ind' g P _ s p' s' Hinit Hsteps).
+  intros g P s_i STEP p' s' INIT STEPS.
+  refine (reachable_ind' g P s_i _ p' s' INIT STEPS).
   apply reachable_ind_VC_spec; assumption.
 Qed.
 
@@ -127,7 +141,3 @@ Ltac prove_ai_bounds_correct :=
     auto;
     try omega
   | (* base case *) simpl; auto ].
-
-Require Import QArith.
-
-Definition max0 (x: Z) := inject_Z (Z.max 0 x).
