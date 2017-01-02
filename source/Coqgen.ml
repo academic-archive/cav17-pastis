@@ -91,51 +91,34 @@ let dump_edges varname fmt es =
   Format.fprintf fmt "@]"
 
 let dump_func fmt i f =
-  let varname = (mkvarname "func0") in
-  Format.fprintf fmt
-    "@[<v>Add LoadPath \"coq\".@,\
-     Require Import List.@,\
-     Require Import Arith.@,\
-     Require Import ZArith.@,\
-     Require Import QArith.@,\
-     Require Import CFG.@,\
-     Opaque Zplus.@,\
-     Opaque Zminus.@,\
-     Opaque Zmult.@,\
-     Close Scope Q.@,@,";
-
+  let varname = (mkvarname f.fun_name) in
   List.iteri (fun i x ->
     Format.fprintf fmt "Notation %s := %d.@," (varname x) i
   ) f.fun_vars;
 
   Format.fprintf fmt
-    "Definition func%d : graph := {|@   @[<v>\
+    "Definition %s : graph := {|@   @[<v>\
          g_start := %d;@,\
          g_end := %d;@,\
          g_edges := %a\
        @]@,|}.@,"
-    i f.fun_body.g_start f.fun_body.g_end
+    f.fun_name f.fun_body.g_start f.fun_body.g_end
     (dump_edges varname) f.fun_body.g_edges;
 
   Format.fprintf fmt "@]"
 
-let dump_ai_bounds print_bound fmt bounds =
+let dump_ai print_bound fn fmt ai_annots =
   (* TODO: print the correct function name *)
   Format.fprintf fmt "@[<v>";
-  Format.fprintf fmt "@,Definition func0_bounds (p : node) (s : state) := @,";
+  Format.fprintf fmt "@,Definition %s_ai (p: node) (s: state) := @," fn;
   Format.fprintf fmt "  match p with@,";
-  let varname = statevar "s" (mkvarname "func0") in
+  let varname = statevar "s" (mkvarname fn) in
   let print_bound = print_bound varname in
   Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i v ->
     Format.fprintf fmt "| %d => (%a)%%Z@," i print_bound v
-  ) bounds;
+  ) ai_annots;
   Format.fprintf fmt "| _ => False@]@,  end.@,";
-  Format.fprintf fmt
-    "Theorem func0_bounds_corrects:@   \
-     forall s p' s', steps (g_start func0) s func0 p' s' -> \
-     func0_bounds p' s'.@,\
-     Proof. prove_ai_bounds_correct. Qed.@,";
   Format.fprintf fmt "@]"
 
 let eps = 1e-4
@@ -240,18 +223,15 @@ and dump_monom ring varname fmt m =
 
 and dump_factor ring varname fmt = function
   | Factor.Var v ->
-    Format.fprintf fmt
-      (match ring with `Q -> "inject_Z %s" | `Z -> "%s")
-      (varname v)
+    Format.fprintf fmt "%s" (varname v)
   | Factor.Max p ->
     Format.fprintf fmt "max0(%a)"
       (dump_poly `Z varname) p
 
-let dump_annot fmt annot =
-  (* TODO: print the correct function name *)
-  Format.fprintf fmt "@[<v>@,Definition func0_annots (p : node) (s : state) := @,";
+let dump_annot fn fmt annot =
+  Format.fprintf fmt "@[<v>@,Definition %s_pot (p : node) (s : state) := @," fn;
   Format.fprintf fmt "  match p with@,";
-  let varname = statevar "s" (mkvarname "func0") in
+  let varname = statevar "s" (mkvarname fn) in
   Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i v ->
     Format.fprintf fmt "| %d => (%a)%%Q@," i (dump_poly `Q varname) v
@@ -260,40 +240,40 @@ let dump_annot fmt annot =
   Format.fprintf fmt "@]";
   ()
 
-let dump_hints fmt fannot =
+let dump_hints fn fmt fannot =
 
-  let varname = statevar "s" (mkvarname "func0") in
+  let varname = statevar "s" (mkvarname fn) in
   let rec dump_ast fmt =
     let print s = Format.fprintf fmt s in
     let poly = dump_poly `Z varname in
     function
     | F_one -> print "F_one"
     | F_check_ge (a, b) ->
-      print "rf_check_ge (%a) (%a)" poly a poly b
+      print "F_check_ge (%a) (%a)" poly a poly b
     | F_max0_pre_decrement (a, b) ->
-      print "rf_max0_pre_decrement (%a) (%a)" poly a poly b
+      print "F_max0_pre_decrement (%a) (%a)" poly a poly b
     | F_max0_pre_increment (a, b) ->
-      print "rf_max0_pre_increment (%a) (%a)" poly a poly b
+      print "F_max0_pre_increment (%a) (%a)" poly a poly b
     | F_max0_ge_0 a ->
-      print "rf_max0_ge_0 (%a)" poly a
+      print "F_max0_ge_0 (%a)" poly a
     | F_max0_ge_arg a ->
-      print "rf_max0_ge_arg (%a)" poly a
+      print "F_max0_ge_arg (%a)" poly a
     | F_max0_le_arg f ->
-      print "rf_max0_le_arg (%a)" dump_ast f
+      print "F_max0_le_arg (%a)" dump_ast f
     | F_max0_monotonic f ->
-      print "rf_max0_monotonic (%a)" dump_ast f
+      print "F_max0_monotonic (%a)" dump_ast f
     | F_max0_sublinear f ->
-      print "rf_max0_sublinear (%a)" dump_ast f
+      print "F_max0_sublinear (%a)" dump_ast f
     | F_binom_monotonic (k, f, g) ->
-      print "rf_binom_monotonic %d (%a) (%a)" k dump_ast f dump_ast g
+      print "F_binom_monotonic %d (%a) (%a)" k dump_ast f dump_ast g
     | F_product (f, g) ->
-      print "rf_product (%a) (%a)" dump_ast f dump_ast g
+      print "F_product (%a) (%a)" dump_ast f dump_ast g
   in
   let dump_hint fmt ((ka, kb), f) =
     Format.fprintf fmt "@[<h>(*%g %g*) %a@]" ka kb dump_ast f.ast
   in
 
-  Format.fprintf fmt "@[<v>@,Definition func0_hints (p : node) (s : state) := @,";
+  Format.fprintf fmt "@[<v>@,Definition %s_hints (p : node) (s : state) := @," fn;
   Format.fprintf fmt "  match p with@,";
   Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i l ->
@@ -302,16 +282,38 @@ let dump_hints fmt fannot =
       i (Print.list dump_hint)
   ) fannot;
   Format.fprintf fmt "| _ => []@]@,  end.@,";
+  Format.fprintf fmt "@,@,@]";
+  ()
+
+let dump_theorems fn fmt =
+  Format.fprintf fmt "@[<v>";
+  Format.fprintf fmt
+    "Theorem %s_ai_correct:@   \
+       forall s p' s', steps (g_start %s) s (g_edges %s) p' s' -> \
+       %s_ai p' s'.@,\
+     Proof.@,  check_ai.@,Qed.@,@,"
+    fn fn fn fn;
+  Format.fprintf fmt
+    "Theorem %s_pot_correct:@   \
+       forall s p' s',@,    \
+         steps (g_start %s) s (g_edges %s) p' s' ->@,    \
+         (%s_pot (g_start %s) s >= %s_pot p' s')%%Q.@,\
+     Proof.@,  check_lp %s_ai_correct %s_hints.@,Qed.@,"
+    fn fn fn fn fn fn fn fn;
   Format.fprintf fmt "@]";
   ()
 
-let dump fstart fs print_bound ai_bounds annot fannot =
+let dump fstart fs print_bound ai_results annot fannot =
   let oc = open_out "generated_coq.v" in
   let fmt = Format.formatter_of_out_channel oc in
+  Format.fprintf fmt
+    "@[<v>Add LoadPath \"coq\".@,\
+     Require Import Pasta.@,@,";
   List.iteri (dump_func fmt) fs;
-  let bounds = Hashtbl.find ai_bounds fstart in
-  dump_ai_bounds print_bound fmt bounds;
-  dump_annot fmt annot;
-  dump_hints fmt fannot;
+  let ai_annots = Hashtbl.find ai_results fstart in
+  dump_ai print_bound fstart fmt ai_annots;
+  dump_annot fstart fmt annot;
+  dump_hints fstart fmt fannot;
+  dump_theorems fstart fmt;
   Format.fprintf fmt "@.";
   close_out oc
