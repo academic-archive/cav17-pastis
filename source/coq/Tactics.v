@@ -91,7 +91,7 @@ Proof.
     assumption.
 Qed.
 
-Ltac check_lp ai_theorem annots rewrites :=
+Ltac check_lp ai_theorem rewrites :=
   
   intros until 0;
   match goal with

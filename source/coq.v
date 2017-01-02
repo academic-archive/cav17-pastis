@@ -82,4 +82,4 @@ Theorem foo:
   forall s p' s',
     steps (g_start func0) s (g_edges func0) p' s' ->
     (func0_annots (g_start func0) s >= func0_annots p' s')%Q.
-Proof. check_lp func0_bounds_corrects func0_annots func0_hints. Qed.
+Proof. check_lp func0_bounds_corrects func0_hints. Qed.
