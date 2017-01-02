@@ -71,7 +71,8 @@ Fixpoint interpret (p: rewrite_ast): interp :=
     | F_check_ge x y =>
       [ [x '>= y] |- x '>= y ]
 
-    | F_one => [ [] |- 1 '>= 0 ]
+    | F_one =>
+      [ [] |- 1 '>= 0 ]
 
     | F_max0_ge_0 x =>
       [ [] |- max0 x '>= 0 ]
