@@ -10,7 +10,7 @@ Close Scope Q.
 
 (* This tactic is used to prove the bounds deduced by the 
    Presburger arithmetic abstract interpreter. It basically
-   just calls Coq's omega. *)
+   just calls Coq's lia. *)
 Ltac check_ai :=
 
   intros until 0;
@@ -25,7 +25,7 @@ Ltac check_ai :=
     try unfold update;
     simpl in *;
     auto;
-    try omega
+    try lia
   | (* base case *)
     auto
   ].
@@ -59,8 +59,8 @@ Ltac simplify_max0 :=
   repeat match goal with
   | [ |- context[ max0 (Zpos ?x) ] ] =>
     change (max0 (Zpos x)) with (Zpos x)
-  | [ |- context[ max0 0 ] ] =>
-    change (max0 0) with 0
+  | [ |- context[ max0 Z0 ] ] =>
+    change (max0 Z0) with Z0
   | [ |- context[ max0 (Zneg ?x) ] ] =>
     change (max0 (Zneg x)) with 0
   end.
