@@ -227,7 +227,7 @@ and dump_factor ring varname fmt = function
       (dump_poly `Z varname) p
 
 let dump_annot fn fmt annot =
-  Format.fprintf fmt "@[<v>@,Definition %s_pot (p : node) (s : state) := @," fn;
+  Format.fprintf fmt "@[<v>@,Definition %s_pot (p : node) (s : state): Q := @," fn;
   Format.fprintf fmt "  match p with@,";
   let varname = statevar "s" (mkvarname fn) in
   Format.fprintf fmt "    @[<v>";
