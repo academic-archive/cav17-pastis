@@ -119,25 +119,3 @@ Proof.
   refine (reachable_ind' g P s_i _ p' s' INIT STEPS).
   apply reachable_ind_VC_spec; assumption.
 Qed.
-
-Opaque Zplus.
-Opaque Zminus.
-Opaque Zmult.
-
-(* This tactic is used to prove the bounds deduced by the 
-   Presburger arithmetic abstract interpreter. It basically
-   just calls Coq's omega. *)
-Ltac prove_ai_bounds_correct :=
-  intros until 0;
-  apply reachable_ind;
-  [ (* step case *)
-    simpl;
-    repeat apply conj;
-    intros;
-    try (match goal with [ H : step _ _ _ |- _] => inversion H end; subst);
-    simpl;
-    try unfold update;
-    simpl;
-    auto;
-    try omega
-  | (* base case *) simpl; auto ].
