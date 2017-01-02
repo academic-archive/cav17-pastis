@@ -7,6 +7,7 @@ Open Scope Z.
 
 Inductive rewrite_ast :=
   | F_check_ge (x: Z) (y: Z)
+  | F_one
   | F_max0_ge_0 (x: Z)
   | F_max0_ge_arg (x: Z)
   | F_max0_le_arg (p: rewrite_ast)
@@ -70,6 +71,8 @@ Fixpoint interpret (p: rewrite_ast): interp :=
     | F_check_ge x y =>
       [ [x '>= y] |- x '>= y ]
 
+    | F_one => [ [] |- 1 '>= 0 ]
+
     | F_max0_ge_0 x =>
       [ [] |- max0 x '>= 0 ]
 
@@ -116,6 +119,7 @@ Proof.
   end;
   intros; subst; simpl in *.
   + tauto.
+  + auto with zarith.
   + apply ZLemmas.lem_max0_ge_0.
   + apply ZLemmas.lem_max0_ge_arg.
   + apply ZLemmas.lem_max0_le_arg; eauto.
