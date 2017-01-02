@@ -32,12 +32,10 @@ let rec dump_expr varname fmt  = function
 
 (* Assumes that we have a state s in the context. *)
 let rec dump_logic varname fmt = function
-  | LTrue ->
+  | LRandom | LTrue ->
     Format.fprintf fmt "True"
   | LFalse ->
     Format.fprintf fmt "False"
-  | LRandom ->
-    Utils._TODO "coqgen random logic"
   | LCmp (e1,cmp,e2) ->
     let cmp = match cmp with
       | Le -> "<="
@@ -90,11 +88,11 @@ let dump_edges varname fmt es =
   Format.fprintf fmt "nil";
   Format.fprintf fmt "@]"
 
-let dump_func fmt i f =
+let dump_func fmt f =
   let varname = (mkvarname f.fun_name) in
   List.iteri (fun i x ->
     Format.fprintf fmt "Notation %s := %d.@," (varname x) i
-  ) f.fun_vars;
+  ) (f.fun_vars @ f.fun_args);
 
   Format.fprintf fmt
     "Definition %s : graph := {|@   @[<v>\
@@ -181,7 +179,7 @@ let rec dump_poly ring varname fmt pol =
   in
   Format.fprintf fmt "@[<hov>";
   let is_zero = Poly.fold begin fun monom k first ->
-      let pref, flt =
+      let pref, k =
         if k < 0.
         then "-", (-. k)
         else (if first then "" else "+"), k
@@ -190,7 +188,7 @@ let rec dump_poly ring varname fmt pol =
         Format.fprintf fmt
           (if first then "%s%a" else "@ %s %a")
           pref print_coeff k
-      else if abs_float (flt -. 1.) < eps then
+      else if abs_float (k -. 1.) < eps then
         Format.fprintf fmt
           (if first then "%s%a" else "@ %s %a")
           pref (dump_monom ring varname) monom
@@ -309,7 +307,7 @@ let dump fstart fs print_bound ai_results annot fannot =
   Format.fprintf fmt
     "@[<v>Add LoadPath \"coq\".@,\
      Require Import Pasta.@,@,";
-  List.iteri (dump_func fmt) fs;
+  dump_func fmt (List.find (fun f -> f.fun_name = fstart) fs);
   let ai_annots = Hashtbl.find ai_results fstart in
   dump_ai print_bound fstart fmt ai_annots;
   dump_annot fstart fmt annot;
