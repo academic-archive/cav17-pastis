@@ -1,5 +1,6 @@
 Require Import ZArith.
 Require Import List.
+Require Import Utils.
 
 Definition id : Type := nat.
 
@@ -76,43 +77,35 @@ Proof.
   + eapply Hstep; eauto.
 Qed.
 
-Fixpoint reachable_ind_VC
-         (p_i: node) (s_i: state) (es: list edge)
-         (P : node -> state -> Prop) (ns : list edge) : Prop :=
-  match ns with
-  | nil => True
-  | (p,a,p') :: ns =>
-    (forall s s'
-            (REACHABLE: steps p_i s_i es p s)
-            (STEP:      step s a s')
-            (HIND:      P p s),
-       P p' s') /\
-    reachable_ind_VC p_i s_i es P ns
-  end.
+Definition reachable_ind_VC
+           (p_i: node) (s_i: state) (es: list edge)
+           (P: node -> state -> Prop) :=
+  Forall (fun e =>
+            match e with (p,a,p') =>
+              forall s s'
+                     (REACHABLE: steps p_i s_i es p s)
+                     (STEP:      step s a s')
+                     (HIND:      P p s),
+                P p' s'
+            end)
+         es.
 
 Lemma reachable_ind_VC_spec :
-  forall p_i s_i es P ns, reachable_ind_VC p_i s_i es P ns ->
+  forall p_i s_i es P, reachable_ind_VC p_i s_i es P ->
     forall p s a p' s',
-      In (p,a,p') ns ->
+      In (p,a,p') es ->
       steps p_i s_i es p s ->
       step s a s' ->
       P p s ->
       P p' s'.
 Proof.
- induction ns.
- + simpl; intros; tauto.
- + destruct a as [[p a] p'].
-   simpl.
-   intuition.
-    - inversion H6.
-      subst.
-      eauto.
-   - eauto.
+  intros p_i s_i es P REACH p s a p' s' IN.
+  now apply (Forall_In _ _ _ REACH (p,a,p') IN s s').
 Qed.
 
 Lemma reachable_ind :
   forall (g : graph) (P : node -> state -> Prop) s_i
-         (STEP : reachable_ind_VC (g_start g) s_i (g_edges g) P (g_edges g)),
+         (STEP : reachable_ind_VC (g_start g) s_i (g_edges g) P),
   forall p' s', P (g_start g) s_i -> steps (g_start g) s_i (g_edges g) p' s' -> P p' s'.
 Proof.
   intros g P s_i STEP p' s' INIT STEPS.

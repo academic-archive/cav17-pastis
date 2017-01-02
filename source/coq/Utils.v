@@ -2,13 +2,32 @@ Require Import List.
 Require Import ZArith.
 Require Import QArith.
 
-Global Coercion inject_Z: Z >-> Q.
 
-Fixpoint Forall {A: Type} (P: A -> Prop) (l: list A): Prop :=
-  match l with
-    | x :: l' => P x /\ Forall P l'
-    | nil => True
-  end.
+Section Forall.
+
+  Variable A: Type.
+  Variable P: A -> Prop.
+
+  Fixpoint Forall (l: list A): Prop :=
+    match l with
+      | x :: l' => P x /\ Forall l'
+      | nil => True
+    end.
+  Global Implicit Arguments Forall.
+
+  Theorem Forall_In:
+    forall l, Forall l -> forall x, In x l -> P x.
+  Proof.
+    induction l.
+    + now auto.
+    + simpl; intuition.
+      congruence.
+  Qed.
+
+End Forall.
+
+
+Global Coercion inject_Z: Z >-> Q.
 
 Definition max0 x := Z.max 0 x.
 

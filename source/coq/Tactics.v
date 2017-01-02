@@ -15,19 +15,19 @@ Ltac check_ai :=
 
   intros until 0;
   apply reachable_ind;
+  simpl;
 
   [ (* step case *)
-    simpl;
     repeat apply conj;
     intros;
     try (match goal with [ H : step _ _ _ |- _] => inversion H end; subst);
     simpl;
     try unfold update;
-    simpl;
+    simpl in *;
     auto;
     try omega
   | (* base case *)
-    simpl; auto
+    auto
   ].
 
 (* This tactic simplifies goals that contain max0 terms.
