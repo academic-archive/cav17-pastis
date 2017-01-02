@@ -42,20 +42,20 @@ Proof. check_ai. Qed.
 
 Definition func0_annots (p : node) (s : state) := 
   match p with
-    | 0 => ((5 # 1) + inject_Z (s IDfunc0_z))%Q
-    | 1 => (inject_Z (s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 2 => (inject_Z (s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 3 => (inject_Z (s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 4 => ((1 # 1) + inject_Z (s IDfunc0_z)
+    | 0 => ((5 # 1) + (s IDfunc0_z))%Q
+    | 1 => ((s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
+    | 2 => ((s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
+    | 3 => ((s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
+    | 4 => ((1 # 1) + (s IDfunc0_z)
             + (1 # 2) * max0(9 - (s IDfunc0_t)))%Q
-    | 5 => ((1 # 1) + inject_Z (s IDfunc0_z)
+    | 5 => ((1 # 1) + (s IDfunc0_z)
             + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 6 => (inject_Z (s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 7 => (inject_Z (s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 8 => (inject_Z (s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 9 => (inject_Z (s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 10 => (inject_Z (s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
-    | 11 => (inject_Z (s IDfunc0_z))%Q
+    | 6 => ((s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
+    | 7 => ((s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
+    | 8 => ((s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
+    | 9 => ((s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
+    | 10 => ((s IDfunc0_z) + (1 # 2) * max0(11 - (s IDfunc0_t)))%Q
+    | 11 => ((s IDfunc0_z))%Q
     | _ => (0 # 1)%Q
   end.
 
