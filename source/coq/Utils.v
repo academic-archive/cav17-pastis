@@ -123,12 +123,12 @@ Module ZLemmas.
   Qed.
 
   Lemma lem_prodn_monotonic:
-    forall k x y l, x >= y -> y >= 0 -> y >= l -> l >= 0 ->
+    forall k x y l, x >= y -> y >= l -> l >= 0 ->
                     prodn k x l >= prodn k y l.
   Proof.
     induction k.
     + intros; apply Z.le_ge, Z.le_refl.
-    + intros x y l XY Y0 YL L0. simpl.
+    + intros x y l XY YL L0. simpl.
       assert (YDISJ: y = l \/ y >= l + 1) by omega.
       destruct YDISJ as [YEQL | YGTL].
       - rewrite YEQL, Z.sub_diag, Z.mul_0_l.
