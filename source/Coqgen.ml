@@ -207,11 +207,11 @@ and dump_monom ring varname fmt m =
       if e = 0 then first else begin
       if e = 1 then
         Format.fprintf fmt
-          (if first then "%a" else "@ %a")
+          (if first then "%a" else "@ *@ %a")
           (dump_factor ring varname) f
       else
         Format.fprintf fmt
-          (if first then "%a^%d" else "@ %a^%d")
+          (if first then "%a^%d" else "@ *@ %a^%d")
           (dump_factor ring varname) f e;
         false
       end
