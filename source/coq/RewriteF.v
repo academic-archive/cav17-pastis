@@ -6,15 +6,16 @@ Open Scope Z.
 
 
 Inductive rewrite_ast :=
-  | F_check_ge (x: Z) (y: Z)
+  | F_check_ge (x y: Z)
   | F_one
   | F_max0_ge_0 (x: Z)
   | F_max0_ge_arg (x: Z)
   | F_max0_le_arg (p: rewrite_ast)
   | F_max0_monotonic (p: rewrite_ast)
   | F_max0_sublinear (p: rewrite_ast)
-  | F_max0_pre_decrement (x: Z) (y: Z)
-  | F_max0_pre_increment (x: Z) (y: Z)
+  | F_max0_pre_decrement (x y: Z)
+  | F_max0_pre_increment (x y: Z)
+  | F_binom_monotonic (k: nat) (p q: rewrite_ast)
 .
 
 
@@ -103,6 +104,14 @@ Fixpoint interpret (p: rewrite_ast): interp :=
       [ [y '>= 0] |-
         y + max0 x '>= max0 (x + y) ]
 
+    | F_binom_monotonic k q r =>
+      let (aq, cq) := interpret q in
+      let (x, y) := ineq_ge cq in
+      let (ar, cr) := interpret r in
+      let y' := ineq_ge0 cr in
+      [ app aq ar |-
+        prodn k (x - y + y') 0 '>= prodn k y' 0 ]
+
   end.
 
 
@@ -128,4 +137,8 @@ Proof.
   + apply ZLemmas.lem_max0_sublinear; eauto.
   + apply ZLemmas.lem_max0_pre_decrement; tauto.
   + apply ZLemmas.lem_max0_pre_increment; tauto.
+  + destruct (Forall_app _ _ _ _ HYPS).
+    assert (z >= z0) by eauto.
+    assert (ineq_ge0 i0 >= 0) by eauto.
+    apply ZLemmas.lem_prodn_monotonic; omega.
 Qed.

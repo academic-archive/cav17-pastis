@@ -24,12 +24,30 @@ Section Forall.
       congruence.
   Qed.
 
+  Theorem Forall_app:
+    forall l l', Forall (app l l') -> (Forall l /\ Forall l').
+  Proof.
+    induction l; intros; simpl in *.
+    + tauto.
+    + intuition.
+      - refine (proj1 (IHl l' _)); assumption.
+      - refine (proj2 (IHl l' _)); assumption.
+  Qed.
+
 End Forall.
 
+
+Open Scope Z.
 
 Global Coercion inject_Z: Z >-> Q.
 
 Definition max0 x := Z.max 0 x.
+
+Fixpoint prodn (n: nat) (k l: Z) :=
+  match n with
+  | O => 1
+  | S n' => (k - l) * prodn n' k (l + 1)
+  end.
 
 (* Some convenient lemmas about the max0 functions
    and Z in general.  They are used in the proof
@@ -39,7 +57,6 @@ Definition max0 x := Z.max 0 x.
 Module ZLemmas.
 
   Require Import Omega.
-  Open Scope Z.
 
   Lemma lem_max0_ge_0:
     forall x, max0 x >= 0.
@@ -89,6 +106,41 @@ Module ZLemmas.
     intros x y Hxy. apply Z.le_ge, Z.max_lub.
     + generalize (lem_max0_ge_0 x). omega.
     + generalize (lem_max0_ge_arg x). omega.
+  Qed.
+
+  Lemma lem_prodn_nonneg:
+    forall k x l, 0 <= l -> l <= x -> 0 <= prodn k x l.
+  Proof.
+    induction k.
+    + intros; now auto with zarith.
+    + intros x l X0 L0. simpl.
+      assert (XDISJ: x = l \/ l + 1 <= x) by omega.
+      destruct XDISJ as [XEQL | XGTL].
+      - rewrite XEQL, Z.sub_diag, Z.mul_0_l.
+        now apply Z.le_refl.
+      - apply Z.mul_nonneg_nonneg;
+        [| apply IHk ]; omega.
+  Qed.
+
+  Lemma lem_prodn_monotonic:
+    forall k x y l, x >= y -> y >= 0 -> y >= l -> l >= 0 ->
+                    prodn k x l >= prodn k y l.
+  Proof.
+    induction k.
+    + intros; apply Z.le_ge, Z.le_refl.
+    + intros x y l XY Y0 YL L0. simpl.
+      assert (YDISJ: y = l \/ y >= l + 1) by omega.
+      destruct YDISJ as [YEQL | YGTL].
+      - rewrite YEQL, Z.sub_diag, Z.mul_0_l.
+        assert (XDISJ: x = l \/ x >= l + 1) by omega.
+        destruct XDISJ as [XEQL | XGTL].
+        * rewrite XEQL, Z.sub_diag, Z.mul_0_l.
+          now apply Z.le_ge, Z.le_refl.
+        * apply Z.le_ge, Z.mul_nonneg_nonneg;
+          [| apply lem_prodn_nonneg ]; omega.
+      - apply Z.le_ge, Z.mul_le_mono_nonneg; try omega.
+        apply lem_prodn_nonneg; omega.
+        apply Z.ge_le, IHk; omega.
   Qed.
 
 End ZLemmas.
