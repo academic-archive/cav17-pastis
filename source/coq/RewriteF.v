@@ -16,6 +16,7 @@ Inductive rewrite_ast :=
   | F_max0_pre_decrement (x y: Z)
   | F_max0_pre_increment (x y: Z)
   | F_binom_monotonic (k: nat) (p q: rewrite_ast)
+  | F_product (p q: rewrite_ast)
 .
 
 
@@ -112,6 +113,13 @@ Fixpoint interpret (p: rewrite_ast): interp :=
       [ app aq ar |-
         prodn k (x - y + y') 0 '>= prodn k y' 0 ]
 
+    | F_product q r =>
+      let (aq, cq) := interpret q in
+      let (x, y) := ineq_ge cq in
+      let (ar, cr) := interpret r in
+      let m := ineq_ge0 cr in
+      [ app aq ar |-
+        m * x '>= m * y ]
   end.
 
 
@@ -125,9 +133,12 @@ Proof.
   repeat match goal with
     | [ |- (let (_, _) := ?x in _) = _ -> _ ] =>
       case_eq x; intros until 1
+    | [ |- Forall _ (app _ _) -> _ ] =>
+      intro HYPS; apply Forall_app in HYPS; destruct HYPS
     | [ |- (_, _) = (_, _) -> _ ] => injection 1
+    | [ |- _ = _ -> _ ] => destruct 1
   end;
-  intros; subst; simpl in *.
+  intros; simpl in *.
   + tauto.
   + auto with zarith.
   + apply ZLemmas.lem_max0_ge_0.
@@ -137,8 +148,8 @@ Proof.
   + apply ZLemmas.lem_max0_sublinear; eauto.
   + apply ZLemmas.lem_max0_pre_decrement; tauto.
   + apply ZLemmas.lem_max0_pre_increment; tauto.
-  + destruct (Forall_app _ _ _ _ HYPS).
-    assert (z >= z0) by eauto.
+  + assert (z >= z0) by eauto.
     assert (ineq_ge0 i0 >= 0) by eauto.
     apply ZLemmas.lem_prodn_monotonic; omega.
+  + apply Zmult_ge_compat_l; eauto.
 Qed.
