@@ -11,12 +11,26 @@ type instruction =
   | ISet of Types.id * Types.id option
   | ICall of Types.id option * Types.id * Types.id list
 
-type block =
+type csblock =
   {
     bpreds : int list;
     binsts : instruction list;
     bjump : jump
   }
+
+type 'a csfunc =
+  {
+    fname : Types.id;
+    fargs : Types.id list;
+    flocs : Types.id list;
+    fbody : 'a
+  }
+  
+(* 
+   for example, 
+   blkdesc = csblock
+   funcdesc = block array csfunc
+ *)
   
 module type CS_Querier = sig
   (* Module signature for code queriers.
