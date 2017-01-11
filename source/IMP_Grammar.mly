@@ -61,13 +61,15 @@ logic:
   | TNOT logic       { LNot $2 }
   | TLPAR logic TRPAR { $2 }
 
+/*
 rexprrs1:
     exprr                 { [$1] }
   | rexprrs1 TCOMMA exprr { $3 :: $1 }
 
 exprrs:
-    /* empty */ { [] }
+    / * empty * / { [] }
   | rexprrs1    { List.rev $1 }
+*/
 
 rids1:
     ident              { [$1] }
@@ -86,8 +88,9 @@ instr:
   | TIF logic TTHEN block TELSE block TEND { IIf ($2, b $3 $4 $5, b $5 $6 $7), $1 }
   | TWHILE logic TDO block TEND            { IWhile ($2, b $3 $4 $5), $1 }
   | TLOOP block TEND                       { ILoop (b $1 $2 $3), $1 }
-  | TLPAR ids TRPAR TEQ
-    ident TLPAR exprrs TRPAR TSEMI         { ICall ($2, $5, $7), $1 }
+/*  | TLPAR ids TRPAR TEQ
+    ident TLPAR exprrs TRPAR TSEMI         { ICall ($2, $5, $7), $1 } */
+  | TIDENT TLPAR TRPAR TSEMI                { ICall (fst $1), snd $1 }
 
 rinstrs1:
     instr          { [$1] }

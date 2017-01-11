@@ -123,7 +123,7 @@ module HyperGraph = struct
             in
             PSHGraph.add_hedge g (new_edge ())
               (TAssign (id, peo)) ~pred:[|src|] ~succ:[|dst|];
-          | ACall (_idl, _idf', _el) ->
+          | ACall _idf' ->
             Utils._TODO "calls"
         end el;
       end f.fun_body.g_edges;
@@ -391,4 +391,4 @@ let get_nonneg abs =
       l.L.m (Poly.const (neg l.L.k))
   in List.map poly_of_linear abs
 
-let print_as_coq fmt av = Presburger.print_as_coq fmt av	      
+let print_as_coq fmt av = Presburger.print_as_coq fmt av

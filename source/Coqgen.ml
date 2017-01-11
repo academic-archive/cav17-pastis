@@ -73,7 +73,7 @@ let dump_action varname fmt = function
     Format.fprintf fmt "(AAssign@ %s@ %a)"
       (varname x)
       (dump_expr varname) e
-  | ACall (xs,y,es) ->
+  | ACall f ->
     Utils._TODO "coqgen calls"
 
 let dump_edges' varname fmt s es =

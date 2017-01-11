@@ -65,9 +65,9 @@ let from_imp impf =
       let begb = gob jmp fin b in
       new_edge jmp ANone begb;
       begb
-    | IMP.ICall (idl, idf, el) ->
+    | IMP.ICall idf ->
       let beg = new_node pos in
-      new_edge beg (ACall (idl, idf, el)) fin;
+      new_edge beg (ACall idf) fin;
       beg
 
   and goil fin loo = function
@@ -167,7 +167,7 @@ module type AbsInt = sig
                (string, absval array) Hashtbl.t
   val is_nonneg: absval -> Polynom.Poly.t -> bool
   val get_nonneg: absval -> Polynom.Poly.t list
-					   
+
   val print_as_coq: (id -> string) -> Format.formatter -> absval -> unit
 end
 

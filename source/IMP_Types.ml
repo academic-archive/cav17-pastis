@@ -10,7 +10,7 @@ type instr =
   | IIf of logic * block * block
   | IWhile of logic * block
   | ILoop of block
-  | ICall of id list * id * expr list
+  | ICall of id
 
 and block =
   { b_start_p: position
