@@ -74,18 +74,18 @@ let main () =
       let ls' = String.length s' and ls = String.length s in
       ls' >= ls && String.sub s' (ls' - ls) ls = s
     in
-    let g_file =
+    let globals, g_funcl =
       try
         if ends_with ".imp" !input_file then
-          let _, imp_file = IMP.parse_file !input_file in
-          List.map Graph.from_imp imp_file
+          let globals, imp_file = IMP.parse_file !input_file in
+          globals, List.map Graph.from_imp imp_file
         else if ends_with ".o" !input_file
              || ends_with ".bc" !input_file then
           let ic = exec_llvm_reader !input_file in
           try
             let gfunc = Graph_Reader.read_func ic in
             let gfunc = Graph.add_loop_counter "z" gfunc in
-            [gfunc]
+            [], [gfunc]
           with End_of_file ->
             match Unix.close_process_in ic with
             | Unix.WEXITED 0 -> failwith "llvm-reader should have failed"
@@ -111,35 +111,35 @@ let main () =
       match !main_func with
       | Some f -> f
       | None ->
-        if List.length g_file = 1
-        then (List.hd g_file).Types.fun_name
+        if List.length g_funcl = 1
+        then (List.hd g_funcl).Types.fun_name
         else "start"
     in
-    if not (List.exists (fun f -> f.Types.fun_name = fstart) g_file) then
+    if not (List.exists (fun f -> f.Types.fun_name = fstart) g_funcl) then
       failarg (Printf.sprintf "cannot find function '%s' to analyze" fstart);
-    let g_file =
-      if !no_weaken then g_file else
-      List.map Heuristics.add_weaken g_file
+    let g_funcl =
+      if !no_weaken then g_funcl else
+      List.map Heuristics.add_weaken g_funcl
     in
-    let g_file = List.map Graph.rpo_order g_file in
+    let g_funcl = List.map Graph.rpo_order g_funcl in
     let module AI = (val begin
         match !ai with
         (* | "apron" -> (module Graph.AbsInt.Apron) *)
         | _       -> (module Graph.AbsInt.Simple)
       end: Graph.AbsInt)
     in
-    let ai_results = AI.analyze ~dump:!dump_ai g_file fstart in
+    let ai_results = AI.analyze ~dump:!dump_ai (globals, g_funcl) fstart in
     let query =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))
     in
-    let g_file =
-      if !no_focus then g_file else
-      g_file
+    let g_funcl =
+      if !no_focus then g_funcl else
+      g_funcl
       |> List.map (Heuristics.add_focus ~deg:1 ai_results AI.get_nonneg AI.is_nonneg)
       (*|> List.map (Heuristics.add_focus_old ~deg:1 ai_results AI.get_nonneg AI.is_nonneg)*)
     in
-    let st_results = Analysis.run ai_results AI.is_nonneg g_file fstart query in
+    let st_results = Analysis.run ai_results AI.is_nonneg g_funcl fstart query in
     let poly_print =
       if !ascii then Polynom.Poly.print_ascii else Polynom.Poly.print
     in
@@ -149,10 +149,10 @@ let main () =
         Format.printf "Sorry, I could not find a bound.@.";
         1
       | Some (annot, fannot) ->
-        let f = List.find (fun f -> f.Types.fun_name = fstart) g_file in
+        let f = List.find (fun f -> f.Types.fun_name = fstart) g_funcl in
         let p = annot.(f.Types.fun_body.Graph.g_start) in
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
-        Coqgen.dump fstart g_file AI.print_as_coq ai_results annot fannot;
+        Coqgen.dump fstart g_funcl AI.print_as_coq ai_results annot fannot;
         0
     in
     if !dump_stats then begin

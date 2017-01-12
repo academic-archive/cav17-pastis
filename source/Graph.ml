@@ -163,7 +163,7 @@ let add_loop_counter cnt gfunc =
 
 module type AbsInt = sig
   type absval
-  val analyze: dump:bool -> func list -> id ->
+  val analyze: dump:bool -> (id list * func list) -> id ->
                (string, absval array) Hashtbl.t
   val is_nonneg: absval -> Polynom.Poly.t -> bool
   val get_nonneg: absval -> Polynom.Poly.t list

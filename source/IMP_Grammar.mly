@@ -129,10 +129,10 @@ focusopt:
   | TFOCUS frees TSEMI { $2 }
 
 func:
-  TFUNC ident TDO varopt focusopt block TEND
-  { { fun_name = $2; fun_vars = $4
-    ; fun_focus = $5; fun_body = b $1 $6 $7
-    ; fun_start_p = $1; fun_end_p = $7 }
+  TFUNC ident TLPAR TRPAR TDO varopt focusopt block TEND
+  { { fun_name = $2; fun_vars = $6
+    ; fun_focus = $7; fun_body = b $1 $8 $9
+    ; fun_start_p = $1; fun_end_p = $9 }
   }
 
 rfuncs:

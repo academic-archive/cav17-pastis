@@ -11,6 +11,7 @@ open Graph_Types
 open Polynom
 
 module L = Presburger.L
+module S = Presburger.S
 
 let monom_var m =
   assert (Monom.degree m = 1);
@@ -69,7 +70,7 @@ module HyperGraph = struct
 
   type info =
     { funch: (id, func) Hashtbl.t
-    ; globs: id list
+    ; globs: S.t
     }
 
   type vertex = id * int  (* pair of function name and node id *)
@@ -92,7 +93,8 @@ module HyperGraph = struct
        info:     data associated to the whole graph
     *)
     let funch = Hashtbl.create 51 in
-    let info = { funch; globs = gl } in
+    let globs = List.fold_left (fun s g -> S.add g s) S.empty gl in
+    let info = { funch; globs } in
     let g: (vertex, hedge, unit, transfer, info) PSHGraph.t =
       PSHGraph.create PSHGraph.stdcompare 3 info in
 
@@ -296,21 +298,23 @@ module Solver = struct
     res
   *)
 
-  let apply_TCall gl abs_caller caller =
-    Utils._TODO "apply_TCall"
+  let apply_TCall gs abs =
+    List.filter (fun s -> S.subset (L.vars S.empty s) gs) abs
 
-  let apply_TReturn gl abs_caller abs_callee caller callee =
-    Utils._TODO "apply_TReturn"
+  let apply_TReturn gs abs_caller abs_callee caller =
+    let ls = List.fold_left (fun ls v -> S.add v ls) S.empty caller.fun_vars in
+    List.filter (fun s -> S.subset (L.vars S.empty s) gs) abs_callee @
+    List.filter (fun s -> S.subset (L.vars S.empty s) ls) abs_caller
 
   let apply graph hedge tabs =
-    let gl = (PSHGraph.info graph).HyperGraph.globs in
+    let gs = (PSHGraph.info graph).HyperGraph.globs in
     let transfer = PSHGraph.attrhedge graph hedge in
     let res =
       match transfer with
       | TGuard disj -> apply_TGuard tabs.(0) disj
       | TAssign (id, pe) -> apply_TAssign tabs.(0) id pe
-      | TCall (f, _f') -> apply_TCall gl tabs.(0) f
-      | TReturn (f, f') -> apply_TReturn gl tabs.(0) tabs.(1) f f'
+      | TCall _ -> apply_TCall gs tabs.(0)
+      | TReturn (f, _) -> apply_TReturn gs tabs.(0) tabs.(1) f
       | TWeaken | TNone -> tabs.(0)
     in ((), res)
 
@@ -368,8 +372,8 @@ let debug_print fmt info graph res =
 
 type absval = Presburger.L.sum list
 
-let analyze ~dump fl fstart =
-  let graph = HyperGraph.from_program ([], fl) in
+let analyze ~dump (gl, fl) fstart =
+  let graph = HyperGraph.from_program (gl, fl) in
   let info = PSHGraph.info graph in
   let (fpman, res) = Solver.compute graph fstart in
 
