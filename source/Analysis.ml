@@ -43,10 +43,14 @@ module Potential
   type focus_annot
   type solution
   val new_annot: Monom.t list -> annot
+  val dump: Format.formatter -> annot -> unit
   val of_poly: Poly.t -> annot
+  val monoms: annot -> Monom.t list
   val exec_assignment: (id * expr) -> annot -> annot
   val constrain: annot -> order -> annot -> unit
   val weaken: Poly.t list -> annot -> (annot * focus_annot list)
+  val split: IdSet.t -> annot -> ((* local *) annot * (* global *) annot)
+  val merge: (annot * annot) -> annot
   val solve_min: Poly.t list -> annot -> solution option
   val annot_sol: solution -> annot -> Poly.t
   val focus_annot_sol: solution -> focus_annot -> (float * float)
@@ -99,6 +103,28 @@ end
       Hashtbl.add le v 1.;
       M.add m le annot
     end M.empty monoms
+
+  let dump fmt a =
+    let dump_le fmt le =
+      Format.fprintf fmt "@[<h>";
+      let first = ref true in
+      Hashtbl.iter begin fun lpv k ->
+        Format.fprintf fmt
+          (if !first
+           then "%g v%d"
+           else "@ +@ %g v%d")
+          k lpv;
+        first := false;
+      end le;
+      Format.fprintf fmt "@]";
+    in
+    Format.fprintf fmt "@[<v>";
+    M.iter begin fun m le ->
+      Format.fprintf fmt "Monom (%a) %a@,"
+        (Monom.print ~ascii:true) m
+        dump_le le
+    end a;
+    Format.fprintf fmt "@]"
 
   (* Performs: le2 += k * le1 *)
   let linexpr_addmul le2 k le1 =
@@ -172,6 +198,9 @@ end
       add_lprow le Eq ~k;
       M.add monom le annot
     end p M.empty
+
+  let monoms a =
+    M.fold (fun m _ l -> m :: l) a []
 
   (* Pointwise constrain annot1 and annot2. *)
   let constrain annot1 o annot2 =
@@ -249,6 +278,58 @@ end
     end kpl kpl';
     (annot', List.rev (List.combine kpl kpl'))
 
+  (* Split an annotation into two annotations that add
+     to the argument annotation.  The first element of
+     the pair result is a purely local annotation and
+     the second one is purely global.
+  *)
+  let split gs annot =
+    M.fold begin fun m le (purel, pureg) ->
+      let has_glo = ref false in
+      let has_loc = ref false in
+      let _ =
+        Monom.var_exists (fun v ->
+          if IdSet.mem v gs then
+            has_glo := true
+          else
+            has_loc := true;
+          false (* keep iterating *)
+        ) m
+      in
+      match !has_glo, !has_loc with
+      | true, true ->
+        (* Mixed term, we currently zero it out.
+           FIXME, we should handle cases where the
+           monom is a product of a pure global and
+           a pure local part.
+        *)
+        add_lprow le Eq;
+        (purel, pureg)
+      | false, true -> (M.add m le purel, pureg)
+      | false, false
+      | true, false -> (purel, M.add m le pureg)
+    end annot (M.empty, M.empty)
+
+  (* An operation opposite to the split one. *)
+  let merge (purel, pureg) =
+    M.merge begin fun m leo1 leo2 ->
+      match leo1, leo2 with
+      | Some le, None
+      | None, Some le -> Some le
+      | Some le1, Some le2 ->
+        if not (Monom.is_one m) then
+          let _ =
+            Format.eprintf "Merge error on monom: %a@."
+              (Monom.print ~ascii:true) m in
+          failwith "invalid Potential.merge call"
+        else
+          let le = new_linexpr () in
+          linexpr_addmul le 1. le1;
+          linexpr_addmul le 1. le2;
+          Some le
+      | None, None -> assert false
+    end purel pureg
+
   let solve_min pl start_annot =
     let absl = ref [] in
     M.iter begin fun m le ->
@@ -316,10 +397,12 @@ end
 
 end
 
-let run ai_results ai_is_nonneg fl =
+let run ai_results ai_is_nonneg (gl, fl) =
   reset_stats ();
 
+  let gs = IdSet.of_list gl in
   let debug_dumps = ref [] in
+  let pzero = Potential.of_poly (Poly.zero ()) in
 
   (* Find all the non-negative focus functions at a
      given program point.
@@ -352,7 +435,7 @@ let run ai_results ai_is_nonneg fl =
     let focus = Focus.one :: f.fun_focus in
     let body = f.fun_body in
     let monoms =
-      let monoms = Poly.fold (fun m _ ms -> m :: ms) query [] in
+      let monoms = Potential.monoms query in
       List.fold_left begin fun monoms f ->
         Poly.fold (fun m _ ms -> m :: ms) f.proves monoms
       end monoms focus
@@ -375,7 +458,12 @@ let run ai_results ai_is_nonneg fl =
       | Graph.AGuard LRandom -> debug_dumps := a :: !debug_dumps; a
       | Graph.AGuard _ | Graph.ANone -> a
       | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
-      | Graph.ACall _ -> Utils._TODO "calls"
+      | Graph.ACall f' ->
+        let (la, ga) = Potential.split gs a in
+        let _, _, a' = do_fun f' ga in
+        let (la', ga) = Potential.split gs a' in
+        (* Potential.constrain la' Eq pzero; *)
+        Potential.merge (la, ga)
     in
 
     (* Annotate all program points starting from
@@ -399,7 +487,7 @@ let run ai_results ai_is_nonneg fl =
           match body.Graph.g_edges.(node) with
           | [] ->
             if node <> body.Graph.g_end then Utils._TODO "mmh?";
-            Potential.of_poly query
+            query
           | (act, node') :: edges ->
             let annot = do_action node act (dfs node') in
             List.fold_left begin fun annot (act, node') ->
@@ -429,8 +517,8 @@ let run ai_results ai_is_nonneg fl =
 
   fun start query ->
     let fstart = List.find (fun f -> f.fun_name = start) fl in
+    let query = Potential.of_poly query in
     let (fannot, annot, start_annot) = do_fun start query in
-    let pzero = Potential.of_poly (Poly.zero ()) in
     Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
     match
       let start_node = fstart.fun_body.Graph.g_start in

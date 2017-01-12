@@ -2,12 +2,7 @@
 
 let debug = false
 
-module Id = struct
-  type t = Types.id
-  let compare = compare
-end
-
-module S = Set.Make(Id)
+module S = Types.IdSet
 
 module L = struct
 
@@ -21,7 +16,7 @@ module L = struct
 
   *)
 
-  include Map.Make(Id)
+  include Map.Make(Types.Id)
   type sum = {m: int t; k: int}
 
   let const k = {m = empty; k}

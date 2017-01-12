@@ -2,6 +2,14 @@
 
 type id = string
 
+module Id = String
+module IdSet = struct
+  include Set.Make(Id)
+
+  let of_list =
+    List.fold_left (fun s i -> add i s) empty
+end
+
 type position =
   { pos_file: string
   ; pos_line: int

@@ -136,10 +136,12 @@ let main () =
     let g_funcl =
       if !no_focus then g_funcl else
       g_funcl
+      (*
       |> List.map (Heuristics.add_focus ~deg:1 ai_results AI.get_nonneg AI.is_nonneg)
+      *)
       (*|> List.map (Heuristics.add_focus_old ~deg:1 ai_results AI.get_nonneg AI.is_nonneg)*)
     in
-    let st_results = Analysis.run ai_results AI.is_nonneg g_funcl fstart query in
+    let st_results = Analysis.run ai_results AI.is_nonneg (globals, g_funcl) fstart query in
     let poly_print =
       if !ascii then Polynom.Poly.print_ascii else Polynom.Poly.print
     in
@@ -152,7 +154,8 @@ let main () =
         let f = List.find (fun f -> f.Types.fun_name = fstart) g_funcl in
         let p = annot.(f.Types.fun_body.Graph.g_start) in
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
-        Coqgen.dump fstart g_funcl AI.print_as_coq ai_results annot fannot;
+        (try Coqgen.dump fstart g_funcl AI.print_as_coq ai_results annot fannot
+        with Utils.Todo what -> Format.eprintf "Coq extraction failure (%s)@." what);
         0
     in
     if !dump_stats then begin

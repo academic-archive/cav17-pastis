@@ -11,7 +11,7 @@ open Graph_Types
 open Polynom
 
 module L = Presburger.L
-module S = Presburger.S
+module S = Types.IdSet
 
 let monom_var m =
   assert (Monom.degree m = 1);
