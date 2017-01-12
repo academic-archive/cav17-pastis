@@ -316,25 +316,15 @@ end
 
 end
 
-let run ai_results ai_is_nonneg fl start query =
+let run ai_results ai_is_nonneg fl =
   reset_stats ();
 
-  let f = List.find (fun f -> f.fun_name = start) fl in
-  let focus = Focus.one :: f.fun_focus in
-  let body = f.fun_body in
-  let dumps = ref [] in
-
-  let monoms =
-    let monoms = Poly.fold (fun m _ ms -> m :: ms) query [] in
-    List.fold_left begin fun monoms f ->
-      Poly.fold (fun m _ ms -> m :: ms) f.proves monoms
-    end monoms focus
-  in
+  let debug_dumps = ref [] in
 
   (* Find all the non-negative focus functions at a
      given program point.
   *)
-  let find_focus f node =
+  let find_focus f node focus =
     let ai = Hashtbl.find ai_results f in
     let ok f =
       List.for_all (ai_is_nonneg ai.(node)) f.checks in
@@ -351,88 +341,115 @@ let run ai_results ai_is_nonneg fl start query =
   in
   let polys_of_focus = List.map (fun f -> f.proves) in
 
-  (* Create a new potential annotation resulting from
-     executing one action (backwards).
+  (* Analyze the function with name fname for the query
+     query.  The return value is a triple consisting of
+     focus functions annotations, potential annotations,
+     and finally the annotation of the function start.
   *)
-  let fannot = Array.map (fun _ -> []) body.Graph.g_position in
-  let do_action node act a =
-    match act with
-    | Graph.AWeaken ->
-      let focus = find_focus start node in
-      let polys = polys_of_focus focus in
-      let a, fa = Potential.weaken polys a in
-      fannot.(node) <- List.combine fa focus; a
-    | Graph.AGuard LRandom -> dumps := a :: !dumps; a
-    | Graph.AGuard _ | Graph.ANone -> a
-    | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
-    | Graph.ACall _ -> Utils._TODO "calls"
-  in
+  let rec do_fun fname query =
 
-  (* Annotate all program points starting from
-     a given node.  The potential at the end of
-     the function is set to query.
+    let f = List.find (fun f -> f.fun_name = fname) fl in
+    let focus = Focus.one :: f.fun_focus in
+    let body = f.fun_body in
+    let monoms =
+      let monoms = Poly.fold (fun m _ ms -> m :: ms) query [] in
+      List.fold_left begin fun monoms f ->
+        Poly.fold (fun m _ ms -> m :: ms) f.proves monoms
+      end monoms focus
+    in
 
-     We follow a depth-first search on the graph
-     and update annotations for nodes lazily, this
-     allows to reduce the number of LP variables.
-  *)
-  let annot = Array.map (fun _ -> `Todo) body.Graph.g_position in
-  let rec dfs node =
-    match annot.(node) with
-    | `Done a -> a
-    | `Doing ->
-      let a = Potential.new_annot monoms in
-      annot.(node) <- `Done a;
-      a
-    | `Todo ->
-      annot.(node) <- `Doing;
-      let a =
-        match body.Graph.g_edges.(node) with
-        | [] ->
-          if node <> body.Graph.g_end then Utils._TODO "mmh?";
-          Potential.of_poly query
-        | (act, node') :: edges ->
-          let annot = do_action node act (dfs node') in
-          List.fold_left begin fun annot (act, node') ->
-            let annot' = do_action node act (dfs node') in
-            Potential.constrain annot Eq annot';
-            annot
-          end annot edges
-      in
-      begin match annot.(node) with
-      | `Doing -> ()
-      | `Done a' -> Potential.constrain a Eq a'
-      | `Todo -> failwith "unreachable"
-      end;
-      annot.(node) <- `Done a;
-      a
-  in
+    (* The annotations that will be returned. *)
+    let fannot = Array.map (fun _ -> []) body.Graph.g_position in
+    let annot = Array.map (fun _ -> `Todo) body.Graph.g_position in
 
-  let start_node = body.Graph.g_start in
-  let start_annot = dfs start_node in
-  let pzero = Potential.of_poly (Poly.zero ()) in
-  Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
-  match
-    let focus = find_focus start start_node in
-    Potential.solve_min (polys_of_focus focus) start_annot
-  with
-  | None -> None
-  | Some sol ->
-    let make_poly = Potential.annot_sol sol in
-    List.iter begin fun a ->
-      Format.eprintf "Dump: %a@."
-        Poly.print_ascii (make_poly a)
-    end !dumps;
+    (* Create a new potential annotation resulting from
+       executing one action (backwards).
+    *)
+    let do_action node act a =
+      match act with
+      | Graph.AWeaken ->
+        let focus = find_focus fname node focus in
+        let polys = polys_of_focus focus in
+        let a, fa = Potential.weaken polys a in
+        fannot.(node) <- List.combine fa focus; a
+      | Graph.AGuard LRandom -> debug_dumps := a :: !debug_dumps; a
+      | Graph.AGuard _ | Graph.ANone -> a
+      | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
+      | Graph.ACall _ -> Utils._TODO "calls"
+    in
+
+    (* Annotate all program points starting from
+       a given node.  The potential at the end of
+       the function is set to query.
+
+       We follow a depth-first search on the graph
+       and update annotations for nodes lazily, this
+       allows to reduce the number of LP variables.
+    *)
+    let rec dfs node =
+      match annot.(node) with
+      | `Done a -> a
+      | `Doing ->
+        let a = Potential.new_annot monoms in
+        annot.(node) <- `Done a;
+        a
+      | `Todo ->
+        annot.(node) <- `Doing;
+        let a =
+          match body.Graph.g_edges.(node) with
+          | [] ->
+            if node <> body.Graph.g_end then Utils._TODO "mmh?";
+            Potential.of_poly query
+          | (act, node') :: edges ->
+            let annot = do_action node act (dfs node') in
+            List.fold_left begin fun annot (act, node') ->
+              let annot' = do_action node act (dfs node') in
+              Potential.constrain annot Eq annot';
+              annot
+            end annot edges
+        in
+        begin match annot.(node) with
+        | `Doing -> ()
+        | `Done a' -> Potential.constrain a Eq a'
+        | `Todo -> failwith "unreachable"
+        end;
+        annot.(node) <- `Done a;
+        a
+    in
+
+    let start_annot = dfs body.Graph.g_start in
     let annot =
       Array.map (function
-        | `Done a -> make_poly a
-        | _ -> failwith "missing annotation"
+        `Done a -> a | _ -> failwith "impossible dead code"
       ) annot
     in
-    let fannot =
-      Array.map
-        (List.map (fun (fa, f) ->
-          (Potential.focus_annot_sol sol fa, f)))
-        fannot
-    in
-    Some (annot, fannot)
+    (fannot, annot, start_annot)
+
+  in (* End of do_fun. *)
+
+  fun start query ->
+    let fstart = List.find (fun f -> f.fun_name = start) fl in
+    let (fannot, annot, start_annot) = do_fun start query in
+    let pzero = Potential.of_poly (Poly.zero ()) in
+    Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
+    match
+      let start_node = fstart.fun_body.Graph.g_start in
+      let focus = Focus.one :: fstart.fun_focus in
+      let focus = find_focus start start_node focus in
+      Potential.solve_min (polys_of_focus focus) start_annot
+    with
+    | None -> None
+    | Some sol ->
+      let make_poly = Potential.annot_sol sol in
+      List.iter begin fun a ->
+        Format.eprintf "Dump: %a@."
+          Poly.print_ascii (make_poly a)
+      end !debug_dumps;
+      let annot = Array.map make_poly annot in
+      let fannot =
+        Array.map
+          (List.map (fun (fa, f) ->
+            (Potential.focus_annot_sol sol fa, f)))
+          fannot
+      in
+      Some (annot, fannot)
