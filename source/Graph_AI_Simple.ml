@@ -60,22 +60,27 @@ type transfer =
   | TWeaken
   | TGuard of L.sum DNF.t
   | TAssign of id * Poly.t option
+  | TCall of func * func
+  | TReturn of func * func
 
 module HyperGraph = struct
 
   (* Build the hypergraph required by the fixpoint library. *)
 
-  type info = (string, func) Hashtbl.t
+  type info =
+    { funch: (id, func) Hashtbl.t
+    ; globs: id list
+    }
 
   type vertex = id * int  (* pair of function name and node id *)
   type hedge = int
 
   let print_vertex info fmt (vf, vp) =
-    let f = Hashtbl.find info vf in
+    let f = Hashtbl.find info.funch vf in
     let pos = f.fun_body.g_position.(vp) in
     Utils.print_position fmt pos
 
-  let from_funcl fl =
+  let from_program (gl, fl) =
     let new_edge =
       let next_edge = ref (-1) in
       fun () -> incr next_edge; !next_edge in
@@ -86,13 +91,14 @@ module HyperGraph = struct
        transfer: data associated to the hyper-edges
        info:     data associated to the whole graph
     *)
-    let info = Hashtbl.create 51 in
+    let funch = Hashtbl.create 51 in
+    let info = { funch; globs = gl } in
     let g: (vertex, hedge, unit, transfer, info) PSHGraph.t =
       PSHGraph.create PSHGraph.stdcompare 3 info in
 
     (* Add all the vertices and fill the info table first. *)
     List.iter begin fun f ->
-      Hashtbl.add info f.fun_name f;
+      Hashtbl.add funch f.fun_name f;
       for node = 0 to Array.length f.fun_body.g_edges - 1 do
         PSHGraph.add_vertex g (f.fun_name, node) ();
       done;
@@ -123,8 +129,14 @@ module HyperGraph = struct
             in
             PSHGraph.add_hedge g (new_edge ())
               (TAssign (id, peo)) ~pred:[|src|] ~succ:[|dst|];
-          | ACall _idf' ->
-            Utils._TODO "calls"
+          | ACall f' ->
+            let f' = List.find (fun f -> f.fun_name = f') fl in
+            let f'_start = f'.fun_name, f'.fun_body.g_start in
+            let f'_end = f'.fun_name, f'.fun_body.g_end in
+            PSHGraph.add_hedge g (new_edge ())
+              (TCall (f, f')) ~pred:[|src|] ~succ:[|f'_start|];
+            PSHGraph.add_hedge g (new_edge ())
+              (TReturn (f, f')) ~pred:[|src; f'_end|] ~succ:[|dst|]
         end el;
       end f.fun_body.g_edges;
     end fl;
@@ -284,12 +296,21 @@ module Solver = struct
     res
   *)
 
+  let apply_TCall gl abs_caller caller =
+    Utils._TODO "apply_TCall"
+
+  let apply_TReturn gl abs_caller abs_callee caller callee =
+    Utils._TODO "apply_TReturn"
+
   let apply graph hedge tabs =
+    let gl = (PSHGraph.info graph).HyperGraph.globs in
     let transfer = PSHGraph.attrhedge graph hedge in
     let res =
       match transfer with
       | TGuard disj -> apply_TGuard tabs.(0) disj
       | TAssign (id, pe) -> apply_TAssign tabs.(0) id pe
+      | TCall (f, _f') -> apply_TCall gl tabs.(0) f
+      | TReturn (f, f') -> apply_TReturn gl tabs.(0) tabs.(1) f f'
       | TWeaken | TNone -> tabs.(0)
     in ((), res)
 
@@ -299,7 +320,7 @@ module Solver = struct
 
   let compute graph fstart =
     let info = PSHGraph.info graph in
-    let fs = Hashtbl.find info fstart in
+    let fs = Hashtbl.find info.HyperGraph.funch fstart in
     let starts =
       PSette.singleton
         PSHGraph.stdcompare.PSHGraph.comparev
@@ -317,8 +338,10 @@ end
 
 let debug_print fmt info graph res =
   let print_transfer fmt = function
-    | TWeaken -> Format.fprintf fmt "Weaken";
     | TNone -> ()
+    | TWeaken -> Format.fprintf fmt "Weaken";
+    | TCall _ -> Format.fprintf fmt "Call";
+    | TReturn _ -> Format.fprintf fmt "Return";
     | TGuard disj ->
       Format.fprintf fmt "Guard %a"
         (Print.list ~first:"(@[<h>" ~sep:" ||@ " ~last:"@])"
@@ -346,7 +369,7 @@ let debug_print fmt info graph res =
 type absval = Presburger.L.sum list
 
 let analyze ~dump fl fstart =
-  let graph = HyperGraph.from_funcl fl in
+  let graph = HyperGraph.from_program ([], fl) in
   let info = PSHGraph.info graph in
   let (fpman, res) = Solver.compute graph fstart in
 
@@ -369,7 +392,7 @@ let analyze ~dump fl fstart =
   Hashtbl.iter begin fun fname f ->
     Hashtbl.add resh fname
       (Array.make (Array.length f.fun_body.g_edges) []);
-  end info;
+  end info.HyperGraph.funch;
 
   PSHGraph.iter_vertex res
   begin fun (vf, vn) abs ~pred ~succ ->
