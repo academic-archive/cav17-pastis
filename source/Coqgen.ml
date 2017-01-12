@@ -92,7 +92,7 @@ let dump_func fmt f =
   let varname = (mkvarname f.fun_name) in
   List.iteri (fun i x ->
     Format.fprintf fmt "Notation %s := %d.@," (varname x) i
-  ) (f.fun_vars @ f.fun_args);
+  ) f.fun_vars;
 
   Format.fprintf fmt
     "Definition %s : graph := {|@   @[<v>\

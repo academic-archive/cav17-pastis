@@ -24,8 +24,6 @@ type free_expr =
 type ('a, 'b) func_ =
   { fun_name: id
   ; fun_vars: id list
-  ; fun_args: id list
-  ; fun_rets: id list
   ; fun_focus: 'a list
   ; fun_body: 'b
   ; fun_start_p: position

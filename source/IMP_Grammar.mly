@@ -114,9 +114,11 @@ free:
   | expr TGEQ expr           { FApply (">=", [FBase $1; FBase $3]
                                       , Utils.dummy_position) }
 
+/*
 retopt:
-    /* empty */              { [] }
+    / * empty * /              { [] }
   | TRETURNS TLPAR ids TRPAR { $3 }
+*/
 
 varopt:
     /* empty */    { [] }
@@ -127,12 +129,10 @@ focusopt:
   | TFOCUS frees TSEMI { $2 }
 
 func:
-  TFUNC ident TLPAR ids TRPAR
-  retopt TDO varopt focusopt block TEND
-  { { fun_name = $2; fun_vars = $8; fun_args = $4
-    ; fun_rets = $6; fun_focus = $9
-    ; fun_body = b $1 $10 $11
-    ; fun_start_p = $1; fun_end_p = $11 }
+  TFUNC ident TDO varopt focusopt block TEND
+  { { fun_name = $2; fun_vars = $4
+    ; fun_focus = $5; fun_body = b $1 $6 $7
+    ; fun_start_p = $1; fun_end_p = $7 }
   }
 
 rfuncs:
