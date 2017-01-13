@@ -429,7 +429,13 @@ let run ai_results ai_is_nonneg (gl, fl) =
      focus functions annotations, potential annotations,
      and finally the annotation of the function start.
   *)
-  let rec do_fun fname query =
+  let rec do_fun ctx fname query =
+
+    try
+      let (mk_start_annot, end_annot) = List.assoc fname ctx in
+      Potential.constrain end_annot Eq query;
+      [||], [||], mk_start_annot ()
+    with Not_found ->
 
     let f = List.find (fun f -> f.fun_name = fname) fl in
     let focus = Focus.one :: f.fun_focus in
@@ -440,6 +446,16 @@ let run ai_results ai_is_nonneg (gl, fl) =
         Poly.fold (fun m _ ms -> m :: ms) f.proves monoms
       end monoms focus
     in
+    let rec_annot = ref None in (* in case of recursion *)
+    let mk_rec_annot () =
+      match !rec_annot with
+      | Some annot -> annot
+      | None ->
+        let annot = Potential.new_annot monoms in
+        rec_annot := Some annot;
+        annot
+    in
+    let ctx = (fname, (mk_rec_annot, query)) :: ctx in
 
     (* The annotations that will be returned. *)
     let fannot = Array.map (fun _ -> []) body.Graph.g_position in
@@ -460,7 +476,7 @@ let run ai_results ai_is_nonneg (gl, fl) =
       | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
       | Graph.ACall f' ->
         let (la, ga) = Potential.split gs a in
-        let _, _, a' = do_fun f' ga in
+        let _, _, a' = do_fun ctx f' ga in
         let (la', ga) = Potential.split gs a' in
         (* Potential.constrain la' Eq pzero; *)
         Potential.merge (la, ga)
@@ -506,6 +522,10 @@ let run ai_results ai_is_nonneg (gl, fl) =
     in
 
     let start_annot = dfs body.Graph.g_start in
+    begin match !rec_annot with
+    | Some annot -> Potential.constrain start_annot Eq annot
+    | None -> ()
+    end;
     let annot =
       Array.map (function
         `Done a -> a | _ -> failwith "impossible dead code"
@@ -518,7 +538,7 @@ let run ai_results ai_is_nonneg (gl, fl) =
   fun start query ->
     let fstart = List.find (fun f -> f.fun_name = start) fl in
     let query = Potential.of_poly query in
-    let (fannot, annot, start_annot) = do_fun start query in
+    let (fannot, annot, start_annot) = do_fun [] start query in
     Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
     match
       let start_node = fstart.fun_body.Graph.g_start in
