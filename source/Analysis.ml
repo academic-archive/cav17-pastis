@@ -37,6 +37,24 @@ let swap_order = function
   | Le -> Ge
   | Eq -> Eq
 
+let classify_monom globals m =
+  let has_glo = ref false in
+  let has_loc = ref false in
+  let _ =
+    Monom.var_exists (fun v ->
+      if IdSet.mem v globals then
+        has_glo := true
+      else
+        has_loc := true;
+      false (* keep iterating *)
+    ) m
+  in
+  match !has_glo, !has_loc with
+  | true, false -> `Global
+  | false, true -> `Local
+  | true, true -> `Mixed
+  | false, false -> `Constant
+
 module Potential
 : sig
   type annot
@@ -51,6 +69,7 @@ module Potential
   val weaken: Poly.t list -> annot -> (annot * focus_annot list)
   val split: IdSet.t -> annot -> ((* local *) annot * (* global *) annot)
   val merge: (annot * annot) -> annot
+  val addmul: annot -> int -> annot -> annot
   val solve_min: Poly.t list -> annot -> solution option
   val annot_sol: solution -> annot -> Poly.t
   val focus_annot_sol: solution -> focus_annot -> (float * float)
@@ -285,19 +304,8 @@ end
   *)
   let split gs annot =
     M.fold begin fun m le (purel, pureg) ->
-      let has_glo = ref false in
-      let has_loc = ref false in
-      let _ =
-        Monom.var_exists (fun v ->
-          if IdSet.mem v gs then
-            has_glo := true
-          else
-            has_loc := true;
-          false (* keep iterating *)
-        ) m
-      in
-      match !has_glo, !has_loc with
-      | true, true ->
+      match classify_monom gs m with
+      | `Mixed ->
         (* Mixed term, we currently zero it out.
            FIXME, we should handle cases where the
            monom is a product of a pure global and
@@ -305,9 +313,8 @@ end
         *)
         add_lprow le Eq;
         (purel, pureg)
-      | false, true -> (M.add m le purel, pureg)
-      | false, false
-      | true, false -> (purel, M.add m le pureg)
+      | `Local -> (M.add m le purel, pureg)
+      | `Global | `Constant -> (purel, M.add m le pureg)
     end annot (M.empty, M.empty)
 
   (* An operation opposite to the split one. *)
@@ -324,11 +331,24 @@ end
           failwith "invalid Potential.merge call"
         else
           let le = new_linexpr () in
-          linexpr_addmul le 1. le1;
+          linexpr_addmul le 1. le1; (* ----------------------------- odd... *)
           linexpr_addmul le 1. le2;
           Some le
       | None, None -> assert false
     end purel pureg
+
+  let addmul annot1 k annot2 =
+    M.merge begin fun _ leo1 leo2 ->
+      match leo1, leo2 with
+      | Some le, None
+      | None, Some le -> Some le
+      | Some le1, Some le2 ->
+        let le = new_linexpr () in
+        linexpr_addmul le 1. le1;
+        linexpr_addmul le (float_of_int k) le2;
+        Some le
+      | None, None -> assert false
+    end annot1 annot2
 
   let solve_min pl start_annot =
     let absl = ref [] in
@@ -429,8 +449,9 @@ let run ai_results ai_is_nonneg (gl, fl) =
      focus functions annotations, potential annotations,
      and finally the annotation of the function start.
   *)
-  let rec do_fun ctx fname query =
+  let rec do_fun ctx fname degree query =
 
+    if degree = 0 then [||], [||], query (* Optimization. *) else
     try
       let (mk_start_annot, end_annot) = List.assoc fname ctx in
       Potential.constrain end_annot Eq query;
@@ -438,13 +459,24 @@ let run ai_results ai_is_nonneg (gl, fl) =
     with Not_found ->
 
     let f = List.find (fun f -> f.fun_name = fname) fl in
-    let focus = Focus.one :: f.fun_focus in
     let body = f.fun_body in
+    let focus = Focus.one :: f.fun_focus in
     let monoms =
       let monoms = Potential.monoms query in
       List.fold_left begin fun monoms f ->
         Poly.fold (fun m _ ms -> m :: ms) f.proves monoms
       end monoms focus
+    in
+    let focus, monoms =
+      List.filter (fun f -> Poly.degree f.proves <= degree) focus,
+      List.filter (fun m -> Monom.degree m <= degree) monoms
+    in
+    let global_monoms = (* --------------------------------- TODO, precompute them. *)
+      List.filter (fun m ->
+        Monom.degree m < degree &&
+        classify_monom gs m = `Global ||
+        classify_monom gs m = `Constant
+      ) monoms
     in
     let rec_annot = ref None in (* in case of recursion *)
     let mk_rec_annot () =
@@ -476,10 +508,14 @@ let run ai_results ai_is_nonneg (gl, fl) =
       | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
       | Graph.ACall f' ->
         let (la, ga) = Potential.split gs a in
-        let _, _, a' = do_fun ctx f' ga in
-        let (la', ga) = Potential.split gs a' in
-        (* Potential.constrain la' Eq pzero; *)
-        Potential.merge (la, ga)
+        let ga1 = Potential.new_annot global_monoms in
+        let ga = Potential.addmul ga (-1) ga1 in
+        let _, _, a = do_fun ctx f' degree ga in
+        let (_la', ga) = Potential.split gs a in
+        let _, _, a1 = do_fun [] f' (degree-1) ga1 in
+        let (_la1, ga1) = Potential.split gs a1 in
+        (* Potential.constrain _la' Eq pzero; *)
+        Potential.merge (la, Potential.addmul ga (+1) ga1)
     in
 
     (* Annotate all program points starting from
@@ -535,10 +571,10 @@ let run ai_results ai_is_nonneg (gl, fl) =
 
   in (* End of do_fun. *)
 
-  fun start query ->
+  fun start degree query ->
     let fstart = List.find (fun f -> f.fun_name = start) fl in
     let query = Potential.of_poly query in
-    let (fannot, annot, start_annot) = do_fun [] start query in
+    let (fannot, annot, start_annot) = do_fun [] start degree query in
     Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
     match
       let start_node = fstart.fun_body.Graph.g_start in

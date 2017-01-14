@@ -133,15 +133,16 @@ let main () =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))
     in
+    let deg = 1 in
     let g_funcl =
       if !no_focus then g_funcl else
       g_funcl
       (*
-      |> List.map (Heuristics.add_focus ~deg:1 ai_results AI.get_nonneg AI.is_nonneg)
+      |> List.map (Heuristics.add_focus ~deg ai_results AI.get_nonneg AI.is_nonneg)
       *)
-      (*|> List.map (Heuristics.add_focus_old ~deg:1 ai_results AI.get_nonneg AI.is_nonneg)*)
+      (*|> List.map (Heuristics.add_focus_old ~deg ai_results AI.get_nonneg AI.is_nonneg)*)
     in
-    let st_results = Analysis.run ai_results AI.is_nonneg (globals, g_funcl) fstart query in
+    let st_results = Analysis.run ai_results AI.is_nonneg (globals, g_funcl) fstart deg query in
     let poly_print =
       if !ascii then Polynom.Poly.print_ascii else Polynom.Poly.print
     in
