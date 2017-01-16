@@ -1,17 +1,18 @@
 var arg_l, arg_h, z;
 
 function start() do
-  qs();
+  qslin();
 end
 
-function qs() do
+function qslin() do
   # The recursive linear part of Quicksort.
   # This should work without any heuristics
   # for focus functions.
   var h, l, m;
   focus
     h - l,
-    arg_h - arg_l;
+    arg_h, # just to have the monoms
+    arg_l;
 
   h = arg_h;
   l = arg_l;
@@ -26,12 +27,12 @@ function qs() do
     # qs(l, m)
     arg_h = m;
     arg_l = l;
-    qs();
+    qslin();
 
     # qs(m+1, h)
     arg_h = h;
     arg_l = m+1;
-    qs();
+    qslin();
 
   end
 end
@@ -46,5 +47,32 @@ function simple() do
     z = z + 1;
     arg_h = arg_h - 1;
     simple();
+  end
+end
+
+function qsquad() do
+  var h, l, m;
+  focus
+    binom_monotonic(2, h - l, 0),
+    product(m - l, h - (m+1)),
+    h-1 - m,
+    arg_h, arg_l, arg_h * arg_h, arg_l * arg_l, arg_h * arg_l;
+
+  h = arg_h;
+  l = arg_l;
+  assume h >= l;
+
+  if l < h then
+
+    m = l;
+    while m < h-1 or random do
+      z = z + 1;
+      m = m + 1;
+    end
+    assume m >= l and m < h;
+
+    arg_h = m; arg_l = l;   qsquad();
+    arg_h = h; arg_l = m+1; qsquad();
+
   end
 end
