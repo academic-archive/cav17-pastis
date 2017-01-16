@@ -1,9 +1,50 @@
-function start(x) returns(y) do
-  if x <= 0 then
-    y = 0;
+var arg_l, arg_h, z;
+
+function start() do
+  qs();
+end
+
+function qs() do
+  # The recursive linear part of Quicksort.
+  # This should work without any heuristics
+  # for focus functions.
+  var h, l, m;
+  focus
+    h - l,
+    arg_h - arg_l;
+
+  h = arg_h;
+  l = arg_l;
+  assume h >= l;
+
+  if h <= l then
   else
-    x = x - 1;
-    (y) = start(x);
-    y = y + 2;
+    z = z + 1;
+    m = random;
+    assume m >= l and m < h;
+
+    # qs(l, m)
+    arg_h = m;
+    arg_l = l;
+    qs();
+
+    # qs(m+1, h)
+    arg_h = h;
+    arg_l = m+1;
+    qs();
+
+  end
+end
+
+function simple() do
+  # The simplest example of recursion, it
+  # should work without "framing".
+  focus arg_h;
+  assume arg_h >= 0;
+  if arg_h <= 0 then
+  else
+    z = z + 1;
+    arg_h = arg_h - 1;
+    simple();
   end
 end
