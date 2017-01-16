@@ -388,6 +388,8 @@ end
          the sum of coefficients of the polynomials
          in pl.
       *)
+      let () = if false then
+        Printf.printf "[i] Second optimization round.\n" in
       let sol = Clp.primal_column_solution () in
       add_lprow_array [| vmax, 1. |] Le ~k:sol.(vmax);
       List.iter (fun k ->
@@ -422,7 +424,7 @@ let run ai_results ai_is_nonneg (gl, fl) =
 
   let gs = IdSet.of_list gl in
   let debug_dumps = ref [] in
-  let pzero = Potential.of_poly (Poly.zero ()) in
+  let _pzero = Potential.of_poly (Poly.zero ()) in
 
   (* Find all the non-negative focus functions at a
      given program point.
@@ -575,7 +577,6 @@ let run ai_results ai_is_nonneg (gl, fl) =
     let fstart = List.find (fun f -> f.fun_name = start) fl in
     let query = Potential.of_poly query in
     let (fannot, annot, start_annot) = do_fun [] start degree query in
-    Potential.constrain start_annot Ge pzero; (* XXX we don't want this *)
     match
       let start_node = fstart.fun_body.Graph.g_start in
       let focus = Focus.one :: fstart.fun_focus in
