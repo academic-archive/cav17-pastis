@@ -54,6 +54,7 @@ function qsquad() do
   var h, l, m;
   focus
     binom_monotonic(2, h - l, 0),
+    h - l,
     product(m - l, h - (m+1)),
     h-1 - m,
     arg_h, arg_l, arg_h * arg_h, arg_l * arg_l, arg_h * arg_l;
@@ -63,16 +64,59 @@ function qsquad() do
   assume h >= l;
 
   if l < h then
-
     m = l;
-    while m < h-1 or random do
+    while m < h-1 and random do
       z = z + 1;
       m = m + 1;
     end
     assume m >= l and m < h;
 
+    z = z + 1;
     arg_h = m; arg_l = l;   qsquad();
+    z = z + 1;
     arg_h = h; arg_l = m+1; qsquad();
+
+  end
+end
+
+function qsint() do
+  var h, l, m;
+  focus
+    # weakening of the else branch of "if l < h"
+    binom_monotonic(2, max0_ge_0(h - l), 0),
+
+    # upon entry of "if l < h"
+    max0_pre_decrement(2, h - l, 1),
+
+    # to turn ([l, h-1], 2) into ([l, m], 2) + ([m+1, h], 2) + (X >= 0)
+    binom_monotonic(2, max0_ge_arg(h-1 - l), h-1 - l),
+    binom_monotonic(2, max0_le_arg(h - (m+1)), max0_ge_0(h - (m+1))),
+    binom_monotonic(2, max0_le_arg(m - l), max0_ge_0(m - l)),
+
+    # to weaken the cross product
+    product(h - (m+1), m - l),
+
+    # inner loop
+    max0_pre_decrement(1, h-1 - m, 1),
+    max0_ge_0(h-1 - m),
+
+    # the ones below are just for the monomials
+    binom_monotonic(2, max0_ge_0(arg_h - arg_l), 0);
+
+  h = arg_h;
+  l = arg_l;
+
+  if l < h then
+
+    m = l;
+    while m < h-1 do
+      z = z + 1;
+      m = m + 1;
+    end
+    assume l <= m and m < h;
+
+    arg_h = m; arg_l = l;   qsint();
+    arg_h = h; arg_l = m+1; qsint();
 
   end
 end
