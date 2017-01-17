@@ -326,7 +326,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
               let pdecr = Poly.sub pcand pd in
               add_focus (max0_ge_0 pdecr);
               add_focus (max0_monotonic (check_ge pcand pdecr));
-              add_focus (max0_pre_decrement pcand pd);
+              add_focus (max0_pre_decrement 1 pcand pd);
             | `Increment pi ->
               (* Look for conditions on the way to
                  the increment in the loop, use them
@@ -351,7 +351,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
                 | _ -> ()
               in
               upguard node;
-              add_focus (max0_pre_increment pcand pi);
+              add_focus (max0_pre_increment 1 pcand pi);
             | `Reset (v, pe) ->
               (* Add a focus function to weaken our
                  candidate to the substitution result. *)

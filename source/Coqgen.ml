@@ -12,7 +12,7 @@ let statevar s varname x = "(" ^ s ^ " " ^ varname x ^ ")"
 (* Assumes that we have a state s in the context. *)
 let rec dump_expr varname fmt  = function
   | ERandom ->
-    Utils._TODO "coqgen random expressions"
+    Utils._TODO "random expressions"
   | EVar x ->
     Format.fprintf fmt "(EVar %s)" (varname x)
   | ENum n ->
@@ -74,7 +74,7 @@ let dump_action varname fmt = function
       (varname x)
       (dump_expr varname) e
   | ACall f ->
-    Utils._TODO "coqgen calls"
+    Utils._TODO "calls"
 
 let dump_edges' varname fmt s es =
   List.iter (fun (a,s') ->
@@ -248,9 +248,9 @@ let dump_hints fn fmt fannot =
     | F_one -> print "F_one"
     | F_check_ge (a, b) ->
       print "F_check_ge (%a) (%a)" poly a poly b
-    | F_max0_pre_decrement (a, b) ->
+    | F_max0_pre_decrement (1, a, b) ->
       print "F_max0_pre_decrement (%a) (%a)" poly a poly b
-    | F_max0_pre_increment (a, b) ->
+    | F_max0_pre_increment (1, a, b) ->
       print "F_max0_pre_increment (%a) (%a)" poly a poly b
     | F_max0_ge_0 a ->
       print "F_max0_ge_0 (%a)" poly a
@@ -266,6 +266,7 @@ let dump_hints fn fmt fannot =
       print "F_binom_monotonic %d (%a) (%a)" k dump_ast f dump_ast g
     | F_product (f, g) ->
       print "F_product (%a) (%a)" dump_ast f dump_ast g
+    | _ -> Utils._TODO "higher degree pre_{in,de}crements"
   in
   let dump_hint fmt ((ka, kb), f) =
     Format.fprintf fmt "@[<h>(*%g %g*) %a@]" ka kb dump_ast f.ast

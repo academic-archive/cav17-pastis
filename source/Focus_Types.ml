@@ -3,8 +3,8 @@ module Poly = Polynom.Poly
 type ast =
   | F_one
   | F_check_ge of Poly.t * Poly.t
-  | F_max0_pre_decrement of Poly.t * Poly.t
-  | F_max0_pre_increment of Poly.t * Poly.t
+  | F_max0_pre_decrement of int * Poly.t * Poly.t
+  | F_max0_pre_increment of int * Poly.t * Poly.t
   | F_max0_ge_0 of Poly.t
   | F_max0_ge_arg of Poly.t
   | F_max0_le_arg of ast

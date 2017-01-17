@@ -73,18 +73,22 @@ let degree i =
    max(0, x) + y >= max(0, x + y)    when y >= 0      (max0_pre_increment)
 *)
 
-let max0_pre_decrement x y =
+let max0_pre_decrement k x y =
   let xsuby = Poly.sub x y in
-  { proves = Ge (poly_max x, Poly.add (poly_max xsuby) y)
+  let lhs = poly_binom k (poly_max x) in
+  let rhs = poly_binom k (Poly.add (poly_max xsuby) y) in
+  { proves = Ge (lhs, rhs)
   ; checks = [xsuby; y]
-  ; degree = max (Poly.degree x) (Poly.degree y)
-  ; ast = F_max0_pre_decrement (x, y) }
+  ; degree = k * max (Poly.degree x) (Poly.degree y)
+  ; ast = F_max0_pre_decrement (k, x, y) }
 
-let max0_pre_increment x y =
-  { proves = Ge (Poly.add (poly_max x) y, poly_max (Poly.add x y))
+let max0_pre_increment k x y =
+  let lhs = poly_binom k (Poly.add (poly_max x) y) in
+  let rhs = poly_binom k (poly_max (Poly.add x y)) in
+  { proves = Ge (lhs , rhs)
   ; checks = [y]
-  ; degree = max (Poly.degree x) (Poly.degree y)
-  ; ast = F_max0_pre_increment (x, y) }
+  ; degree = k * max (Poly.degree x) (Poly.degree y)
+  ; ast = F_max0_pre_increment (k, x, y) }
 
 let check_ge a b =
   let checks =
@@ -134,8 +138,11 @@ let max0_sublinear i =
 let binom_monotonic k i1 i2 =
   let a, b = prop_Ge i1.proves in
   let b' = prop_Ge0 i2.proves in
-  if Poly.compare b b' <> 0 then
-    failwith "invalid argument combination" else
+  if Poly.compare b b' <> 0 then begin
+    Format.eprintf "(%a) <> (%a)@."
+      Poly.print_ascii b Poly.print_ascii b';
+    failwith "invalid argument combination ";
+  end else
   { proves = Ge (poly_binom k a, poly_binom k b)
   ; checks = i1.checks @ i2.checks
   ; degree = i1.degree * k

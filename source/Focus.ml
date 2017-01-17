@@ -19,14 +19,19 @@ type _ interp =
 type dp = DP: 'a interp * 'a -> dp
 
 let interp_map =
-  [ "max0_ge_0",       DP (IExpr IEnd, Builder.max0_ge_0)
-  ; "max0_ge_arg",     DP (IExpr IEnd, Builder.max0_ge_arg)
-  ; "max0_le_arg",     DP (IFunc IEnd, Builder.max0_le_arg)
-  ; "max0_monotonic",  DP (IFunc IEnd, Builder.max0_monotonic)
-  ; "max0_sublinear",  DP (IFunc IEnd, Builder.max0_sublinear)
-  ; "binom_monotonic", DP (INum (IFunc (IFunc IEnd)), Builder.binom_monotonic)
-  ; "product",         DP (IFunc (IFunc IEnd), Builder.product)
-  ; ">=",              DP (IExpr (IExpr IEnd), Builder.check_ge)
+  [ "max0_ge_0",          DP (IExpr IEnd, Builder.max0_ge_0)
+  ; "max0_ge_arg",        DP (IExpr IEnd, Builder.max0_ge_arg)
+  ; "max0_le_arg",        DP (IFunc IEnd, Builder.max0_le_arg)
+  ; "max0_monotonic",     DP (IFunc IEnd, Builder.max0_monotonic)
+  ; "max0_sublinear",     DP (IFunc IEnd, Builder.max0_sublinear)
+  ; "product",            DP (IFunc (IFunc IEnd), Builder.product)
+  ; ">=",                 DP (IExpr (IExpr IEnd), Builder.check_ge)
+  ; "binom_monotonic",    DP ( INum (IFunc (IFunc IEnd))
+                             , Builder.binom_monotonic)
+  ; "max0_pre_decrement", DP ( INum (IExpr (IExpr IEnd))
+                             , Builder.max0_pre_decrement)
+  ; "max0_pre_increment", DP ( INum (IExpr (IExpr IEnd))
+                             , Builder.max0_pre_increment)
   ]
 
 let interpret fe =
