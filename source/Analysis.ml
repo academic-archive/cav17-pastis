@@ -435,10 +435,12 @@ let run ai_results ai_is_nonneg (gl, fl) =
       List.for_all (ai_is_nonneg ai.(node)) f.checks in
     let res = List.filter ok focus in
     if false then begin
+      let fn = List.find (fun g -> g.fun_name = f) fl in
       let fprint fmt {checks = c; proves = f; _} =
-        Format.fprintf fmt (if c <> [] then "* %a" else "  %a")
+        Format.fprintf fmt (if c <> [] then "* %a" else ". %a")
           Poly.print f in
-      Format.eprintf "Using:@.%a@."
+      Format.eprintf "At %a, using:@.%a@."
+        Utils.print_position fn.fun_body.g_position.(node)
         (Print.list ~first:"@[<v>" ~sep:"@ " ~last:"@]" fprint) res
     end;
     stats.max_focus <- max (List.length res) stats.max_focus;
