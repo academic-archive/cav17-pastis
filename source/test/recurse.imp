@@ -120,3 +120,46 @@ function qsint() do
 
   end
 end
+
+function qsint2() do
+  var h, l, m;
+  focus
+    # weakening of the else branch of "if l < h"
+    binom_monotonic(2, max0_ge_0(h - l), 0),
+
+    # upon entry of "if l < h"
+    max0_pre_decrement(2, h - l, 1),
+
+    # inner loop invariant ([m, h-1], 2) + ([l, m], 2) + [l, m][m, h-1]
+    binom_monotonic(2, max0_ge_0(h-1 - m), 0),
+    binom_monotonic(2, max0_ge_0(m - l), 0),
+    product(max0_ge_0(h-1 - m), max0_ge_0(m - l)),
+
+    max0_pre_decrement(2, h-1 - m, 1),
+    max0_pre_increment(2, m - l, 1),
+    product(max0_ge_0(h-1 - (m+1)), max0_pre_increment(1, m - l, 1)),  # Nooooooooo...
+    product(max0_ge_0(m - l), max0_pre_decrement(1, h-1 - m, 1)),
+
+    # linear paying for "z = z + 1" in inner loop
+    max0_pre_decrement(1, h-1 - m, 1),
+    max0_ge_0(h-1 - m),
+
+    # the ones below are just for the monomials
+    binom_monotonic(2, max0_ge_0(arg_h - arg_l), 0);
+
+  h = arg_h;
+  l = arg_l;
+
+  if l < h then
+
+    m = l;
+    while m < h-1 do
+      z = z + 1;
+      m = m + 1;
+    end
+
+    arg_h = m; arg_l = l;   qsint2();
+    arg_h = h; arg_l = m+1; qsint2();
+
+  end
+end
