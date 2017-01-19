@@ -1,5 +1,5 @@
-/* Quentin Carbonneaux - 2016 */
-/* Van Chan Ngo, 2016 */
+/* Quentin Carbonneaux - 2016-2017 */
+/* Van Chan Ngo - 2016 */
 
 #include <iostream>
 #include <fstream>

@@ -1,4 +1,4 @@
-(* Quentin Carbonneaux - 2016 *)
+(* Quentin Carbonneaux - 2016-2017 *)
 
 (* Interface with the APRON library to compute
    logical invariants at all program points.

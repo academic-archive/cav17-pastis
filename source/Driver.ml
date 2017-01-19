@@ -1,4 +1,4 @@
-(* Quentin Carbonneaux - 2016 *)
+(* Quentin Carbonneaux - 2016-2017 *)
 
 let input_file = ref ""
 let main_func = ref None
@@ -133,7 +133,7 @@ let main () =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))
     in
-    let deg = 1 in
+    let deg = 2 in
     let g_funcl =
       if !no_focus then g_funcl else
       g_funcl

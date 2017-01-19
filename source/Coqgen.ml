@@ -1,3 +1,4 @@
+(* Vilhelm Sjoberg & Quentin Carbonneaux - 2017 *)
 open Types
 open Focus_Types
 open Graph_Types

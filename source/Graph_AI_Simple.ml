@@ -1,4 +1,4 @@
-(* Quentin Carbonneaux - 2016 *)
+(* Quentin Carbonneaux - 2016-2017 *)
 
 (* Implementation of a simple abstract domain.
    The advantage is that the outcome is more

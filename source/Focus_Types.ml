@@ -1,3 +1,4 @@
+(* Quentin Carbonneaux - 2017 *)
 module Poly = Polynom.Poly
 
 type ast =
