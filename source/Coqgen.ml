@@ -318,9 +318,7 @@ let dump_theorems fn fmt =
 let dump fstart fs print_bound ai_results annot fannot =
   let oc = open_out "generated_coq.v" in
   let fmt = Format.formatter_of_out_channel oc in
-  Format.fprintf fmt
-    "@[<v>Add LoadPath \"coq\".@,\
-     Require Import Pasta.@,@,";
+  Format.fprintf fmt "@[<v>Require Import pasta.Pasta.@,@,";
   dump_func fmt (List.find (fun f -> f.fun_name = fstart) fs);
   let ai_annots = Hashtbl.find ai_results fstart in
   dump_ai print_bound fstart fmt ai_annots;
