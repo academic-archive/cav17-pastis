@@ -420,6 +420,7 @@ end
 end
 
 let run ai_results ai_is_nonneg (gl, fl) =
+  Clp.reset ();
   reset_stats ();
 
   let gs = IdSet.of_list gl in
@@ -518,7 +519,7 @@ let run ai_results ai_is_nonneg (gl, fl) =
         let (_la', ga) = Potential.split gs a in
         let _, _, a1 = do_fun [] f' (degree-1) ga1 in
         let (_la1, ga1) = Potential.split gs a1 in
-        (* Potential.constrain _la' Eq pzero; *)
+        (* Potential.constrain _la' Eq _pzero; *)
         Potential.merge (la, Potential.addmul ga (+1) ga1)
     in
 
@@ -579,6 +580,7 @@ let run ai_results ai_is_nonneg (gl, fl) =
     let fstart = List.find (fun f -> f.fun_name = start) fl in
     let query = Potential.of_poly query in
     let (fannot, annot, start_annot) = do_fun [] start degree query in
+    Potential.constrain start_annot Ge _pzero;
     match
       let start_node = fstart.fun_body.Graph.g_start in
       let focus = Focus.one :: fstart.fun_focus in

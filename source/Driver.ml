@@ -7,6 +7,7 @@ let dump_stats = ref false
 let dump_coq = ref false
 let no_weaken = ref false
 let no_focus = ref false
+let degree = ref 1
 let ascii = ref false
 let ai = ref "simple"
 
@@ -28,6 +29,9 @@ let argspec = Arg.align
 
   ; "-dump-coq", Arg.Set dump_coq,
     " Generate a Coq proof"
+
+  ; "-degree", Arg.Int (fun d -> degree := d),
+    " Maximum degree to consider in the bound search"
 
   ; "-no-weaken", Arg.Set no_weaken,
     " Do not automatically add weakening points"
@@ -133,16 +137,23 @@ let main () =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))
     in
-    let deg = 2 in
     let g_funcl =
       if !no_focus then g_funcl else
       g_funcl
-      (*
-      |> List.map (Heuristics.add_focus ~deg ai_results AI.get_nonneg AI.is_nonneg)
-      *)
-      (*|> List.map (Heuristics.add_focus_old ~deg ai_results AI.get_nonneg AI.is_nonneg)*)
+      |> List.map (Heuristics.add_focus ~degree:!degree ai_results AI.get_nonneg AI.is_nonneg)
+      |> List.map (Heuristics.add_focus_old ~degree:!degree ai_results AI.get_nonneg AI.is_nonneg)
     in
-    let st_results = Analysis.run ai_results AI.is_nonneg (globals, g_funcl) fstart deg query in
+    let (deg, st_results) =
+      let rec try_run d =
+        if d > !degree then (0, None) else
+        match
+          Analysis.run ai_results AI.is_nonneg
+            (globals, g_funcl) fstart d query
+        with
+        | None -> try_run (d+1)
+        | Some sol -> (d, Some sol)
+      in try_run 1
+    in
     let poly_print =
       if !ascii then Polynom.Poly.print_ascii else Polynom.Poly.print
     in
@@ -155,8 +166,12 @@ let main () =
         let f = List.find (fun f -> f.Types.fun_name = fstart) g_funcl in
         let p = annot.(f.Types.fun_body.Graph.g_start) in
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
-        (try Coqgen.dump fstart g_funcl AI.print_as_coq ai_results annot fannot
-        with Utils.Todo what -> Format.eprintf "Coq extraction failure (%s)@." what);
+        Format.printf "Degree: %d@." deg;
+        begin try
+          Coqgen.dump fstart g_funcl AI.print_as_coq ai_results annot fannot
+        with Utils.Todo what ->
+          Format.eprintf "Coq extraction failure (%s)@." what
+        end;
         0
     in
     if !dump_stats then begin

@@ -45,7 +45,7 @@ type loop = {
   mutable l_incr: PSet.t;
 }
 
-let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
+let add_focus ?(degree=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
 
   (* While following the rpo in the function
      graph, we collect all the loops we can
@@ -387,7 +387,7 @@ let add_focus ?(deg=1) ai_results ai_get_nonneg ai_is_nonneg gfunc =
 
   end;
 
-  let debug = true in
+  let debug = false in
 
   if debug then begin (* Debug display of loop information. *)
     let open Format in
@@ -451,7 +451,7 @@ let rec prodfold n l ?(acc=[]) accf f =
 
 (* The heuristic to infer focus functions.
 *)
-let add_focus_old ?(deg=1) ai_results ai_get_nonneg _ gfunc =
+let add_focus_old ?(degree=1) ai_results ai_get_nonneg _ gfunc =
   let pzero = Poly.zero () in
 
   let assigns =
@@ -514,12 +514,12 @@ let add_focus_old ?(deg=1) ai_results ai_get_nonneg _ gfunc =
     in
     binom (n-1) (PSet.fold binom_max base acc)
   in
-  let degn = binom deg [] in
+  let degn = binom degree [] in
   let base_list = PSet.elements base in
   let degn =
     if false then degn else
     List.fold_left (fun acc x ->
-      prodfold (deg - degree x) base_list acc
+      prodfold (degree - Focus_Builder.degree x) base_list acc
       begin fun prod acc ->
         List.fold_left
           (fun p (b, e) ->

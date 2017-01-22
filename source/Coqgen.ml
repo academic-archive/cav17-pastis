@@ -11,25 +11,32 @@ let mkvarname funname x = "ID" ^ funname ^ "_" ^ x
 let statevar s varname x = "(" ^ s ^ " " ^ varname x ^ ")"
 
 (* Assumes that we have a state s in the context. *)
-let rec dump_expr varname fmt  = function
+let rec dump_expr_norand varname fmt  = function
   | ERandom ->
-    Utils._TODO "random expressions"
+    failwith "ERandom in invalid context"
   | EVar x ->
     Format.fprintf fmt "(EVar %s)" (varname x)
   | ENum n ->
-    Format.fprintf fmt "(ENum %d)" n
+    Format.fprintf fmt "(ENum (%d))" n
   | EAdd (e1, e2) ->
      Format.fprintf fmt "(EAdd %a@ %a)"
-       (dump_expr varname) e1
-       (dump_expr varname) e2
+       (dump_expr_norand varname) e1
+       (dump_expr_norand varname) e2
   | ESub (e1, e2) ->
     Format.fprintf fmt "(ESub %a@ %a)"
-      (dump_expr varname) e1
-      (dump_expr varname) e2
+      (dump_expr_norand varname) e1
+      (dump_expr_norand varname) e2
   | EMul (e1, e2) ->
     Format.fprintf fmt "(EMul %a@ %a)"
-      (dump_expr varname) e1
-      (dump_expr varname) e2
+      (dump_expr_norand varname) e1
+      (dump_expr_norand varname) e2
+
+let dump_expr varname fmt = function
+  | ERandom ->
+    Format.fprintf fmt "None"
+  | e ->
+    Format.fprintf fmt "(Some %a)"
+      (dump_expr_norand varname) e
 
 (* Assumes that we have a state s in the context. *)
 let rec dump_logic varname fmt = function
@@ -47,9 +54,9 @@ let rec dump_logic varname fmt = function
       | Ne -> "<>"
     in
     Format.fprintf fmt "((eval %a@ s) %s@ (eval %a@ s))%%Z"
-      (dump_expr varname) e1
+      (dump_expr_norand varname) e1
       cmp
-      (dump_expr varname) e2
+      (dump_expr_norand varname) e2
   | LAnd (l1,l2) ->
     Format.fprintf fmt "(%a@ /\\ %a)"
       (dump_logic varname) l1
@@ -79,8 +86,9 @@ let dump_action varname fmt = function
 
 let dump_edges' varname fmt s es =
   List.iter (fun (a,s') ->
-    Format.fprintf fmt "@[<hov>(%d,@,%a,@,%d)@]::@,"
-      s (dump_action varname) a s'
+    Format.fprintf fmt
+      "@[<hov>(%d%%positive,@,%a,@,%d%%positive)@]::@,"
+      (s+1) (dump_action varname) a (s'+1)
   ) es
 
 let dump_edges varname fmt es =
@@ -92,16 +100,18 @@ let dump_edges varname fmt es =
 let dump_func fmt f =
   let varname = (mkvarname f.fun_name) in
   List.iteri (fun i x ->
-    Format.fprintf fmt "Notation %s := %d.@," (varname x) i
+    Format.fprintf fmt "Notation %s := %d%%positive.@,"
+      (varname x) (i+1)
   ) f.fun_vars;
 
   Format.fprintf fmt
     "Definition %s : graph := {|@   @[<v>\
-         g_start := %d;@,\
-         g_end := %d;@,\
+         g_start := %d%%positive;@,\
+         g_end := %d%%positive;@,\
          g_edges := %a\
        @]@,|}.@,"
-    f.fun_name f.fun_body.g_start f.fun_body.g_end
+    f.fun_name
+    (f.fun_body.g_start+1) (f.fun_body.g_end+1)
     (dump_edges varname) f.fun_body.g_edges;
 
   Format.fprintf fmt "@]"
@@ -115,7 +125,8 @@ let dump_ai print_bound fn fmt ai_annots =
   let print_bound = print_bound varname in
   Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i v ->
-    Format.fprintf fmt "| %d => (%a)%%Z@," i print_bound v
+    Format.fprintf fmt "| %d%%positive => (%a)%%Z@,"
+      (i+1) print_bound v
   ) ai_annots;
   Format.fprintf fmt "| _ => False@]@,  end.@,";
   Format.fprintf fmt "@]"
@@ -233,7 +244,8 @@ let dump_annot fn fmt annot =
   let varname = statevar "s" (mkvarname fn) in
   Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i v ->
-    Format.fprintf fmt "| %d => (%a)%%Q@," i (dump_poly `Q varname) v
+    Format.fprintf fmt "| %d%%positive => (%a)%%Q@,"
+      (i+1) (dump_poly `Q varname) v
   ) annot;
   Format.fprintf fmt "| _ => (0 # 1)%%Q@]@,  end.@,";
   Format.fprintf fmt "@]";
@@ -278,8 +290,8 @@ let dump_hints fn fmt fannot =
   Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i l ->
     List.filter (fun ((ka, kb), _) -> abs_float (ka -. kb) > fsmall) l |>
-    Format.fprintf fmt "| %d => %a@,"
-      i (Print.list dump_hint)
+    Format.fprintf fmt "| %d%%positive => %a@,"
+      (i+1) (Print.list dump_hint)
   ) fannot;
   Format.fprintf fmt "| _ => []@]@,  end.@,";
   Format.fprintf fmt "@,@,@]";

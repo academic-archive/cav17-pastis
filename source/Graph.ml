@@ -153,12 +153,14 @@ let add_loop_counter cnt gfunc =
       | _ -> assert false
     end incs
   in
-  { gfunc with fun_body =
-    { g with
+  { gfunc with
+    fun_vars = cnt :: gfunc.fun_vars;
+    fun_body = {
+      g with
       g_start = nnodes;
       g_edges = Array.append new_edges incs;
       g_position = Array.append g.g_position new_position;
-    }
+    };
   }
 
 module type AbsInt = sig

@@ -64,36 +64,38 @@ external status : t -> int = "clp_status"
 
 (* buffering wrapper for efficiency *)
 
-let st = create ()
+let dummycol =
+  { column_obj = 0.
+  ; column_lower = 0.
+  ; column_upper = 0.
+  ; column_elements = [| |]
+  }
+and dummyrow =
+  { row_lower = 0.
+  ; row_upper = 0.
+  ; row_elements = [| |]
+  }
 
 let maxcols = 1000
-let cols, ncols =
-  let dummycol =
-    { column_obj = 0.
-    ; column_lower = 0.
-    ; column_upper = 0.
-    ; column_elements = [| |]
-    } in
-  ( Array.make maxcols dummycol
-  , ref 0
-  )
 let maxrows = 1000
-let rows, nrows =
-  let dummyrow =
-    { row_lower = 0.
-    ; row_upper = 0.
-    ; row_elements = [| |]
-    } in
-  ( Array.make maxrows dummyrow
-  , ref 0
-  )
+let cols, ncols = (Array.make maxcols dummycol, ref 0)
+let rows, nrows = (Array.make maxrows dummyrow, ref 0)
+
+let st = ref (Obj.magic 0)
+
+let reset () =
+  st := create ();
+  Array.fill cols 0 maxcols dummycol;
+  Array.fill rows 0 maxrows dummyrow;
+  nrows := 0;
+  ncols := 0
 
 let number_columns () =
-  number_columns st + !ncols
+  number_columns !st + !ncols
 
 let flush_cols () =
   if !ncols > 0 then begin
-    add_columns st cols;
+    add_columns !st cols;
     ncols := 0;
   end
 
@@ -106,7 +108,7 @@ let add_column col =
 let flush_rows () =
   if !nrows > 0 then begin
     flush_cols ();
-    add_rows st rows;
+    add_rows !st rows;
     nrows := 0;
   end
 
@@ -118,24 +120,24 @@ let add_row row =
 
 let objective_coefficients () =
   flush_rows ();
-  objective_coefficients st
+  objective_coefficients !st
 
-let change_objective_coefficients =
-  change_objective_coefficients st
+let change_objective_coefficients o =
+  change_objective_coefficients !st o
 
-let set_log_level =
-  set_log_level st
+let set_log_level n =
+  set_log_level !st n
 
 let initial_solve () =
   flush_rows ();
-  initial_solve st
+  initial_solve !st
 
 let primal () =
   flush_rows ();
-  primal st
+  primal !st
 
 let status () =
-  status st
+  status !st
 
 let primal_column_solution () =
-  primal_column_solution st
+  primal_column_solution !st

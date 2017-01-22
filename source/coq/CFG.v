@@ -2,7 +2,7 @@ Require Import ZArith.
 Require Import List.
 Require Import Utils.
 
-Definition id : Type := nat.
+Definition id : Type := positive.
 
 (* Conceivably we could also shallowly embed these? *)
 Inductive expr :=
@@ -13,18 +13,18 @@ Inductive expr :=
   | ESub : expr -> expr -> expr
   | EMul : expr -> expr -> expr.
 
-Definition node : Type := nat.
+Definition node : Type := positive.
 
 Definition state := id -> Z.
 
 Definition update (x : id)  (v : Z) (s : state) :=
-  fun y => if (eq_nat_dec x y) then v else (s y).
+  fun y => if (Pos.eq_dec x y) then v else (s y).
 
 Inductive action :=
   | ANone
   | AWeaken
   | AGuard : (state -> Prop) -> action 
-  | AAssign : id -> expr -> action
+  | AAssign : id -> option expr -> action
   | ACall  : list id -> id -> list expr -> action.
 
 Definition edge := (node * action * node)%type.
@@ -48,10 +48,11 @@ Fixpoint eval (e : expr) (s : state) :=
   end)%Z.
 
 Inductive step : state -> action -> state -> Prop :=
-| SNone   : forall s, step s ANone s
-| SWeaken : forall s, step s AWeaken s
-| SGuard  : forall s (P : state -> Prop),  P s -> step s (AGuard P) s
-| SAssign : forall s x e, step s (AAssign x e) (update x (eval e s) s)
+| SNone       : forall s, step s ANone s
+| SWeaken     : forall s, step s AWeaken s
+| SGuard      : forall s (P : state -> Prop),  P s -> step s (AGuard P) s
+| SAssignExpr : forall s x e, step s (AAssign x (Some e)) (update x (eval e s) s)
+| SAssignRand : forall s x n, step s (AAssign x None) (update x n s)
 (* TODO: ACall *)
 .
 
