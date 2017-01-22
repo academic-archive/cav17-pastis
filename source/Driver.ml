@@ -143,15 +143,15 @@ let main () =
       |> List.map (Heuristics.add_focus ~degree:!degree ai_results AI.get_nonneg AI.is_nonneg)
       |> List.map (Heuristics.add_focus_old ~degree:!degree ai_results AI.get_nonneg AI.is_nonneg)
     in
-    let (deg, st_results) =
+    let st_results =
       let rec try_run d =
-        if d > !degree then (0, None) else
+        if d > !degree then None else
         match
           Analysis.run ai_results AI.is_nonneg
             (globals, g_funcl) fstart d query
         with
         | None -> try_run (d+1)
-        | Some sol -> (d, Some sol)
+        | Some sol -> Some sol
       in try_run 1
     in
     let poly_print =
@@ -166,7 +166,7 @@ let main () =
         let f = List.find (fun f -> f.Types.fun_name = fstart) g_funcl in
         let p = annot.(f.Types.fun_body.Graph.g_start) in
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
-        Format.printf "Degree: %d@." deg;
+        Format.printf "Degree: %d@." (Polynom.Poly.degree p);
         begin try
           Coqgen.dump fstart g_funcl AI.print_as_coq ai_results annot fannot
         with Utils.Todo what ->
