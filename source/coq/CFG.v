@@ -1,6 +1,6 @@
 Require Import ZArith.
 Require Import List.
-Require Import Utils.
+Require Import pasta.Utils.
 
 Definition id : Type := positive.
 

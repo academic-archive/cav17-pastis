@@ -1,9 +1,9 @@
 Require Import ZArith.
 Require Import QArith.
 Require Import Psatz.
-Require Import Utils.
-Require Import CFG.
-Require Import RewriteF.
+Require Import pasta.Utils.
+Require Import pasta.CFG.
+Require Import pasta.RewriteF.
 
 Close Scope Z.
 Close Scope Q.
@@ -30,31 +30,22 @@ Ltac check_ai :=
     auto
   ].
 
-(* This tactic simplifies goals that contain max0 terms.
-   It first makes sure that all pairs of max0 applications
-   with equal arguments (using ring) have syntactically
-   equal arguments.
-   Then it simplifies max0 applications with a constant
-   argument. *)
+(* This tactic simplifies goals that contain max0 terms. *)
 Ltac simplify_max0 :=
-
-  (* Uniformize contents of max0 terms. *)
-  repeat match goal with
-  | [ |- context[ max0 ?a ] ] =>
-    match goal with
-    | [ |- context[ max0 ?b ] ] =>
-      let H := fresh "H" in
-      (assert (H: a = b) by reflexivity; fail 1) ||
-      (assert (H: a = b) by ring; rewrite H; clear H)
-    end
-  end;
-
-  (* Reduce max0 when the argument is a constant. *)
   repeat match goal with
   | [ |- context[ max0 ?x ] ] => set (max0 x)
   end;
   repeat match goal with
-  | [ m := max0 ?x |- _ ] => revert m; ring_simplify x
+  | [ m := max0 ?a |- _ ] =>
+    (* Uniformize contents of max0 terms. *)
+    repeat match goal with
+    | [ |- context[ max0 ?b ] ] =>
+      let H := fresh "H" in
+      (assert (H: b = a) by reflexivity; fail 1) ||
+      (assert (H: b = a) by ring; rewrite H; clear H)
+    end;
+    (* Reduce max0 when the argument is a constant. *)
+    revert m; ring_simplify a
   end;
   repeat match goal with
   | [ |- context[ max0 (Zpos ?x) ] ] =>
