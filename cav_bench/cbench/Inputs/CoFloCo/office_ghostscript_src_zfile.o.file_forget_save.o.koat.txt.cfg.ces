@@ -1,0 +1,11 @@
+eq(eval_file_forget_save_start,1,[eval_file_forget_save_bb0_in],[]).
+eq(eval_file_forget_save_bb5_in,1,[eval_file_forget_save_stop],[]).
+eq(eval_file_forget_save_bb0_in,1,[eval_file_forget_save_bb1_in(A),loop_cont_eval_file_forget_save_bb1_in],[A=0]).
+eq(eval_file_forget_save_bb0_in,1,[eval_file_forget_save_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_file_forget_save_bb1_in,0,[eval_file_forget_save_bb5_in],[]).
+eq(eval_file_forget_save_bb1_in(A),1,[eval_file_forget_save_bb1_in(A)],[B<0]).
+eq(eval_file_forget_save_bb1_in(A),1,[eval_file_forget_save_bb1_in(A)],[B>0]).
+eq(eval_file_forget_save_bb1_in(A),1,[],[A=0,B=0]).
+eq(eval_file_forget_save_bb1_in(A),0,[],[A=1]).
+eq(eval_file_forget_save_bb1_in(A),1,[],[A=0,B<0]).
+eq(eval_file_forget_save_bb1_in(A),1,[],[A=0,B>0]).

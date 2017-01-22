@@ -1,0 +1,17 @@
+eq(eval_ref_param_write_name_array_start(A,B,C,D),1,[eval_ref_param_write_name_array_bb0_in(A,B,C,D)],[]).
+eq(eval_ref_param_write_name_array_bb0_in(A,B,C,D),1,[eval_ref_param_write_name_array_1(A,B,E,D)],[]).
+eq(eval_ref_param_write_name_array_1(A,B,C,D),1,[eval_ref_param_write_name_array_2(A,B,C,D)],[]).
+eq(eval_ref_param_write_name_array_2(A,B,C,D),1,[eval_ref_param_write_name_array_bb6_in(A,B,C,D)],[]).
+eq(eval_ref_param_write_name_array_10(A,B,C,D),1,[eval_ref_param_write_name_array_11(A,B,C,D)],[]).
+eq(eval_ref_param_write_name_array_11(A,B,C,D),1,[eval_ref_param_write_name_array_bb6_in(A,B,C,D)],[]).
+eq(eval_ref_param_write_name_array_bb6_in(A,B,C,D),1,[eval_ref_param_write_name_array_stop(A,B,C,D)],[]).
+eq(eval_ref_param_write_name_array_2(A,B,C,D),1,[eval_ref_param_write_name_array_bb2_in(A,B,C,C,E,F,G,H,I),loop_cont_eval_ref_param_write_name_array_bb2_in(F,G,H,I)],[E=0]).
+eq(eval_ref_param_write_name_array_2(A,B,C,D),1,[eval_ref_param_write_name_array_bb2_in(A,B,C,C,E,F,G,H,I)],[E=1]).
+eq(loop_cont_eval_ref_param_write_name_array_bb2_in(A,B,C,D),0,[eval_ref_param_write_name_array_bb6_in(A,B,C,D)],[]).
+eq(loop_cont_eval_ref_param_write_name_array_bb2_in(A,B,C,D),0,[eval_ref_param_write_name_array_10(A,B,C,D)],[]).
+eq(eval_ref_param_write_name_array_bb2_in(A,B,C,D,E,F,G,H,I),1,[eval_ref_param_write_name_array_6(J,0,C,D,E,F,G,H,I)],[D>0]).
+eq(eval_ref_param_write_name_array_6(A,B,C,D,E,F,G,H,I),1,[eval_ref_param_write_name_array_7(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_ref_param_write_name_array_7(A,B,C,D,E,F,G,H,I),1,[eval_ref_param_write_name_array_bb2_in(A,B,C,D-1,E,F,G,H,I)],[]).
+eq(eval_ref_param_write_name_array_7(A,B,C,D,E,A,B,C,D),1,[],[E=0]).
+eq(eval_ref_param_write_name_array_bb2_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,D=<0]).
+eq(eval_ref_param_write_name_array_bb2_in(A,B,C,D,E,A,B,C,D),0,[],[E=1,D>=0+1]).

@@ -1,0 +1,11 @@
+eq(eval_L16toGry_start(A,B,C,D),1,[eval_L16toGry_bb0_in(A,B,C,D)],[]).
+eq(eval_L16toGry_bb0_in(A,B,C,D),1,[eval_L16toGry_bb1_in(D,B,C,D,E,F,G,H,I),loop_cont_eval_L16toGry_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_L16toGry_bb0_in(A,B,C,D),1,[eval_L16toGry_bb1_in(D,B,C,D,E,F,G,H,I)],[E=1]).
+eq(eval_L16toGry_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_L16toGry_4(A,A-1,J,D,E,F,G,H,I)],[A>0]).
+eq(eval_L16toGry_4(A,B,C,D,E,F,G,H,I),1,[eval_L16toGry_5(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_L16toGry_5(A,B,C,D,E,F,G,H,I),1,[eval_L16toGry_bb5_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_L16toGry_5(A,B,C,D,E,F,G,H,I),1,[eval_L16toGry_6(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_L16toGry_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_L16toGry_bb1_in(B,B,C,D,E,F,G,H,I)],[]).
+eq(eval_L16toGry_6(A,B,C,D,E,F,G,H,I),1,[eval_L16toGry_7(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_L16toGry_7(A,B,C,D,E,F,G,H,I),1,[eval_L16toGry_bb5_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_L16toGry_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,A=<0]).

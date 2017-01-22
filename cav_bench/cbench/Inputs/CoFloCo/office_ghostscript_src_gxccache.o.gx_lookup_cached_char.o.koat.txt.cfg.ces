@@ -1,0 +1,8 @@
+eq(eval_gx_lookup_cached_char_start(A,B,C),1,[eval_gx_lookup_cached_char_bb0_in(A,B,C)],[]).
+eq(eval_gx_lookup_cached_char_bb8_in(A,B,C),1,[eval_gx_lookup_cached_char_stop(A,B,C)],[]).
+eq(eval_gx_lookup_cached_char_bb0_in(A,B,C),1,[eval_gx_lookup_cached_char_bb1_in(A,B,C,D,E,F,G),loop_cont_eval_gx_lookup_cached_char_bb1_in(E,F,G)],[D=0]).
+eq(eval_gx_lookup_cached_char_bb0_in(A,B,C),1,[eval_gx_lookup_cached_char_bb1_in(A,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_gx_lookup_cached_char_bb1_in(A,B,C),0,[eval_gx_lookup_cached_char_bb8_in(A,B,C)],[]).
+eq(eval_gx_lookup_cached_char_bb1_in(A,B,C,D,E,F,G),1,[eval_gx_lookup_cached_char_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_gx_lookup_cached_char_bb7_in(A,B,C,D,E,F,G),1,[eval_gx_lookup_cached_char_bb1_in(A,B,C,D,E,F,G)],[]).
+eq(eval_gx_lookup_cached_char_bb1_in(A,B,C,D,A,B,C),1,[],[D=0]).

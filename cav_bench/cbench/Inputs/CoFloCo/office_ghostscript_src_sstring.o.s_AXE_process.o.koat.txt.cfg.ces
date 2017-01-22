@@ -1,0 +1,12 @@
+eq(eval_s_AXE_process_start(A,B),1,[eval_s_AXE_process_bb0_in(A,B)],[]).
+eq(eval_s_AXE_process_bb7_in(A,B),1,[eval_s_AXE_process_stop(A,B)],[]).
+eq(eval_s_AXE_process_bb0_in(A,B),1,[eval_s_AXE_process_bb1_in(C,B,D,E,F),loop_cont_eval_s_AXE_process_bb1_in(E,F)],[D=0,G-H+63=0,I=0]).
+eq(eval_s_AXE_process_bb0_in(A,B),1,[eval_s_AXE_process_bb1_in(C,B,D,E,F)],[D=1,G-H+63=0,I=0]).
+eq(eval_s_AXE_process_bb0_in(A,B),1,[eval_s_AXE_process_bb1_in(C,B,D,E,F),loop_cont_eval_s_AXE_process_bb1_in(E,F)],[D=0,G-H+63>0,I>=0,I<G-H+63]).
+eq(eval_s_AXE_process_bb0_in(A,B),1,[eval_s_AXE_process_bb1_in(C,B,D,E,F)],[D=1,G-H+63>0,I>=0,I<G-H+63]).
+eq(eval_s_AXE_process_bb0_in(A,B),1,[eval_s_AXE_process_bb1_in(C,B,D,E,F),loop_cont_eval_s_AXE_process_bb1_in(E,F)],[D=0,G-H+63<0,I=<0,I>G-H+63]).
+eq(eval_s_AXE_process_bb0_in(A,B),1,[eval_s_AXE_process_bb1_in(C,B,D,E,F)],[D=1,G-H+63<0,I=<0,I>G-H+63]).
+eq(loop_cont_eval_s_AXE_process_bb1_in(A,B),0,[eval_s_AXE_process_bb7_in(A,B)],[]).
+eq(eval_s_AXE_process_bb1_in(A,B,C,D,E),1,[eval_s_AXE_process_bb1_in(A-1,B,C,D,E)],[A-1>=0]).
+eq(eval_s_AXE_process_bb1_in(A,B,C,A,B),1,[],[C=0,A-1<0]).
+eq(eval_s_AXE_process_bb1_in(A,B,C,A,B),0,[],[C=1]).

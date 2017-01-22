@@ -1,0 +1,17 @@
+eq(eval_gc_objects_compact_start(A,B),1,[eval_gc_objects_compact_bb0_in(A,B)],[]).
+eq(eval_gc_objects_compact_bb16_in(A,B),1,[eval_gc_objects_compact_stop(A,B)],[]).
+eq(eval_gc_objects_compact_bb0_in(A,B),1,[eval_gc_objects_compact_bb1_in(A,B,C,D,E),loop_cont_eval_gc_objects_compact_bb1_in(D,E)],[C=0]).
+eq(eval_gc_objects_compact_bb0_in(A,B),1,[eval_gc_objects_compact_bb1_in(A,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_gc_objects_compact_bb1_in(A,B),0,[eval_gc_objects_compact_bb16_in(A,B)],[]).
+eq(eval_gc_objects_compact_bb1_in(A,B,C,D,E),1,[eval_gc_objects_compact_bb12_in(F,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_bb1_in(A,B,C,D,E),1,[eval_gc_objects_compact_bb7_in(F,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_bb12_in(A,B,C,D,E),1,[eval_gc_objects_compact_bb1_in(A,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_bb7_in(A,B,C,D,E),1,[eval_gc_objects_compact_24(A,A+16,C,D,E)],[]).
+eq(eval_gc_objects_compact_bb7_in(A,B,C,D,E),1,[eval_gc_objects_compact_bb11_in(A,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_bb7_in(A,B,C,D,E),1,[eval_gc_objects_compact_27(A,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_24(A,B,C,D,E),1,[eval_gc_objects_compact_25(A,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_bb11_in(A,B,C,D,E),1,[eval_gc_objects_compact_bb12_in(A,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_27(A,B,C,D,E),1,[eval_gc_objects_compact_28(A,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_25(A,B,C,D,E),1,[eval_gc_objects_compact_bb11_in(A,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_28(A,B,C,D,E),1,[eval_gc_objects_compact_bb11_in(A,B,C,D,E)],[]).
+eq(eval_gc_objects_compact_bb1_in(A,B,C,A,B),1,[],[C=0]).

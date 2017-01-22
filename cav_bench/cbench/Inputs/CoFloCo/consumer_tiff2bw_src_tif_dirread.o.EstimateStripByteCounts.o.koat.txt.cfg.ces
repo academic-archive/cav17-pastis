@@ -1,0 +1,51 @@
+eq(eval_EstimateStripByteCounts_start(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_bb0_in(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_0(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_bb0_in(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb2_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_0(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_1(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_1(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb2_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_bb2_in(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_6(4*I,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_6(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_7(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_7(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_16(A,12*D+14,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_7(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_58(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_16(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_17(A,B,I,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_58(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_bb16_in(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb18_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_bb18_in(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_17(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,D,B,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb4_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_EstimateStripByteCounts_17(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,D,B,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H),0,[eval_EstimateStripByteCounts_bb8_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_bb8_in(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb9_in(A,B,C,D,0,F,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb9_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_EstimateStripByteCounts_bb8_in(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb9_in(A,B,C,D,0,F,G,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_EstimateStripByteCounts_bb9_in(A,B,C,D,E,F,G,H),0,[eval_EstimateStripByteCounts_bb16_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb14_in(J,K,L,M,N,O,P,Q)],[I=0,R=0,S=0]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q)],[I=1,R=0,S=0]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb14_in(J,K,L,M,N,O,P,Q)],[I=0,R=1,S=T]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q)],[I=1,R=1,S=T]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb14_in(J,K,L,M,N,O,P,Q)],[I=0,R= -1,S= -T]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q)],[I=1,R= -1,S= -T]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb14_in(J,K,L,M,N,O,P,Q)],[I=0,R>1,S>0,T>=0,T<S]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q)],[I=1,R>1,S>0,T>=0,T<S]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb14_in(J,K,L,M,N,O,P,Q)],[I=0,R>1,S<0,T=<0,T>S]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q)],[I=1,R>1,S<0,T=<0,T>S]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb14_in(J,K,L,M,N,O,P,Q)],[I=0,R< -1,S>0,T=<0,T> -S]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q)],[I=1,R< -1,S>0,T=<0,T> -S]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_EstimateStripByteCounts_bb14_in(J,K,L,M,N,O,P,Q)],[I=0,R< -1,S<0,T>=0,T< -S]).
+eq(eval_EstimateStripByteCounts_59(A,B,C,D,E,F,G,H),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q)],[I=1,R< -1,S<0,T>=0,T< -S]).
+eq(loop_cont_eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,F,G,H),0,[eval_EstimateStripByteCounts_bb16_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G-1,H+R*S,I,J,K,L,M,N,O,P,Q)],[G>0]).
+eq(eval_EstimateStripByteCounts_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_EstimateStripByteCounts_bb9_in(A,B,C,D,E+1,F,G,H,I,J,K,L,M,N,O,P,Q)],[E<R]).
+eq(eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,F+1,G,H,I,J,K,L,M,N,O,P,Q)],[F<R]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G=<0,C-H=0,J=0]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),0,[],[I=1]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G=<0,J=1,K=C-H]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G=<0,J= -1,K= -C+H]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G=<0,J>1,C-H>0,K>=0,K<C-H]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G=<0,J>1,C-H<0,K=<0,K>C-H]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G=<0,J< -1,C-H>0,K=<0,K> -C+H]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G=<0,J< -1,C-H<0,K>=0,K< -C+H]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G=<0]).
+eq(eval_EstimateStripByteCounts_bb4_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),0,[],[I=1,G>=0+1]).
+eq(eval_EstimateStripByteCounts_bb9_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,E>=J]).
+eq(eval_EstimateStripByteCounts_bb9_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),0,[],[I=1,J>=E]).
+eq(eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,F>=J]).
+eq(eval_EstimateStripByteCounts_bb14_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),0,[],[I=1,J>=F]).

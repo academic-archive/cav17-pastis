@@ -1,0 +1,17 @@
+eq(eval_pop_estack_start(A,B,C,D,E,F,G,H),1,[eval_pop_estack_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_pop_estack_18(A,B,C,D,E,F,G,H),1,[eval_pop_estack_19(A,B,C,D,E,F,G,H)],[]).
+eq(eval_pop_estack_19(A,B,C,D,E,F,G,H),1,[eval_pop_estack_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_pop_estack_bb0_in(A,B,C,D,E,F,G,H),1,[eval_pop_estack_bb1_in(A,B,C,D,E,0,0,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_pop_estack_bb1_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_pop_estack_bb0_in(A,B,C,D,E,F,G,H),1,[eval_pop_estack_bb1_in(A,B,C,D,E,0,0,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_pop_estack_bb1_in(A,B,C,D,E,F,G,H),0,[eval_pop_estack_18(A,B,C,D,E,F,G,H)],[]).
+eq(eval_pop_estack_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_4(A,B,F-G,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[F<E]).
+eq(eval_pop_estack_4(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_5(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_pop_estack_5(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_11(F-G+1,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_pop_estack_5(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_bb4_in(A,B,C,D,E,F,G,G,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_pop_estack_11(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_12(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_pop_estack_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_bb1_in(A,B,C,D,E,F+1,H,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_pop_estack_12(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_13(A,F+1,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_pop_estack_13(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_14(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_pop_estack_14(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_pop_estack_bb4_in(A,B,C,D,E,F,G,B,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_pop_estack_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,E-G,E,F,G,H),1,[],[I=0,F>=E]).
+eq(eval_pop_estack_bb1_in(A,B,C,D,E+1,F,G,H,I,A,B,C,D,E+1,F,G,H),0,[],[I=1,E>=F]).

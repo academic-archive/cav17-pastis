@@ -1,0 +1,16 @@
+eq(eval_trie_lookup_start,1,[eval_trie_lookup_bb0_in],[]).
+eq(eval_trie_lookup_bb8_in,1,[eval_trie_lookup_stop],[]).
+eq(eval_trie_lookup_bb0_in,1,[eval_trie_lookup_bb1_in(A),loop_cont_eval_trie_lookup_bb1_in],[A=0]).
+eq(eval_trie_lookup_bb0_in,1,[eval_trie_lookup_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_trie_lookup_bb1_in,0,[eval_trie_lookup_bb8_in],[]).
+eq(eval_trie_lookup_bb1_in(A),1,[eval_trie_lookup_bb3_in(B),loop_cont_eval_trie_lookup_bb3_in(A)],[B=0,C<0]).
+eq(eval_trie_lookup_bb1_in(A),1,[eval_trie_lookup_bb3_in(B),loop_cont_eval_trie_lookup_bb3_in(A)],[B=0,C>0]).
+eq(eval_trie_lookup_bb3_in(A),1,[eval_trie_lookup_bb3_in(A)],[B<0]).
+eq(eval_trie_lookup_bb3_in(A),1,[eval_trie_lookup_bb3_in(A)],[B>0]).
+eq(loop_cont_eval_trie_lookup_bb3_in(A),0,[eval_trie_lookup_bb1_in(A)],[]).
+eq(eval_trie_lookup_bb3_in(A),1,[],[A=0,B=0]).
+eq(eval_trie_lookup_bb3_in(A),0,[],[A=1]).
+eq(eval_trie_lookup_bb3_in(A),1,[],[A=0,B<0]).
+eq(eval_trie_lookup_bb3_in(A),1,[],[A=0,B>0]).
+eq(eval_trie_lookup_bb1_in(A),1,[],[A=0,B=0]).
+eq(eval_trie_lookup_bb1_in(A),0,[],[A=1]).

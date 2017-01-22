@@ -1,0 +1,34 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_zsetcacheparams_start))
+(VAR nondef.5 nondef.7 nondef.9 v_31 v_36 v_41 v_i.0)
+(RULES
+  eval_zsetcacheparams_start(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb0_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_bb0_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb1_in(v_31, v_36, v_41, 0))
+  eval_zsetcacheparams_bb1_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb11_in(v_31, v_36, v_41, v_i.0)) :|: v_i.0 < 3
+  eval_zsetcacheparams_bb1_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb1_in(v_31, v_36, v_41, v_i.0 + 1)) :|: v_i.0 < 3
+  eval_zsetcacheparams_bb1_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_14(v_31, v_36, v_41, v_i.0)) :|: v_i.0 < 3
+  eval_zsetcacheparams_bb1_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_.critedge_in(v_31, v_36, v_41, v_i.0)) :|: v_i.0 < 3
+  eval_zsetcacheparams_bb1_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_.critedge_in(v_31, v_36, v_41, v_i.0)) :|: v_i.0 >= 3
+  eval_zsetcacheparams_14(v_31, v_36, v_41, v_i.0) -> Com_2(eval_check_type_failed_start(v_31, v_36, v_41, v_i.0), eval_zsetcacheparams_15(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_15(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb11_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_.critedge_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb9_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_.critedge_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_NewDefault_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_.critedge_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb8_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_.critedge_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_17(nondef.5, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_17(v_31, v_36, v_41, v_i.0) -> Com_2(eval_gs_setcachesize_start(v_31, v_36, v_41, v_i.0), eval_zsetcacheparams_18(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_18(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb11_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_18(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb8_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_bb8_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_20(v_31, nondef.7, v_41, v_i.0))
+  eval_zsetcacheparams_20(v_31, v_36, v_41, v_i.0) -> Com_2(eval_gs_setcachelower_start(v_31, v_36, v_41, v_i.0), eval_zsetcacheparams_21(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_21(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb11_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_21(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb9_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_bb9_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_23(v_31, v_36, nondef.9, v_i.0))
+  eval_zsetcacheparams_23(v_31, v_36, v_41, v_i.0) -> Com_2(eval_gs_setcacheupper_start(v_31, v_36, v_41, v_i.0), eval_zsetcacheparams_24(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_24(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb11_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_24(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb10_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_NewDefault_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb10_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_bb10_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_25(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_25(v_31, v_36, v_41, v_i.0) -> Com_2(eval_zcleartomark_start(v_31, v_36, v_41, v_i.0), eval_zsetcacheparams_26(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_26(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_bb11_in(v_31, v_36, v_41, v_i.0))
+  eval_zsetcacheparams_bb11_in(v_31, v_36, v_41, v_i.0) -> Com_1(eval_zsetcacheparams_stop(v_31, v_36, v_41, v_i.0))
+)

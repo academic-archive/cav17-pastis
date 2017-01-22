@@ -1,0 +1,13 @@
+eq(eval_uInt64_qrm10_start(A,B),1,[eval_uInt64_qrm10_bb0_in(A,B)],[]).
+eq(eval_uInt64_qrm10_bb0_in(A,B),1,[eval_uInt64_qrm10_bb1_in(7,0,C,D,E),loop_cont_eval_uInt64_qrm10_bb1_in(D,E)],[C=0]).
+eq(eval_uInt64_qrm10_bb0_in(A,B),1,[eval_uInt64_qrm10_bb1_in(7,0,C,D,E)],[C=1]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G=0,H=0,256*B+G=0,F=0]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G=0,H=0,256*B+G>0,F>=0,F<10]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G=0,H=0,256*B+G<0,F=<0,F> -10]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G>0,H>=0,H<256*B+G,256*B+G=0,F=0]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G>0,H>=0,H<256*B+G,256*B+G>0,F>=0,F<10]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G>0,H>=0,H<256*B+G,256*B+G<0,F=<0,F> -10]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G<0,H=<0,H>256*B+G,256*B+G=0,F=0]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G<0,H=<0,H>256*B+G,256*B+G>0,F>=0,F<10]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,D,E),1,[eval_uInt64_qrm10_bb1_in(A-1,F,C,D,E)],[A>=0,256*B+G<0,H=<0,H>256*B+G,256*B+G<0,F=<0,F> -10]).
+eq(eval_uInt64_qrm10_bb1_in(A,B,C,A,B),1,[],[C=1,A<0]).

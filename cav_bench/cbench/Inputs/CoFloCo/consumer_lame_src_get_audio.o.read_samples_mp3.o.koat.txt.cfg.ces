@@ -1,0 +1,13 @@
+eq(eval_read_samples_mp3_start(A,B),1,[eval_read_samples_mp3_bb0_in(A,B)],[]).
+eq(eval_read_samples_mp3_bb0_in(A,B),1,[eval_read_samples_mp3_0(A,B)],[]).
+eq(eval_read_samples_mp3_0(A,B),1,[eval_read_samples_mp3_1(A,B)],[]).
+eq(eval_read_samples_mp3_1(A,B),1,[eval_read_samples_mp3_bb5_in(A,B)],[]).
+eq(eval_read_samples_mp3_bb5_in(A,B),1,[eval_read_samples_mp3_bb6_in(A,B)],[]).
+eq(eval_read_samples_mp3_bb6_in(A,B),1,[eval_read_samples_mp3_stop(A,B)],[]).
+eq(eval_read_samples_mp3_1(A,B),1,[eval_read_samples_mp3_bb2_in(0,B,C,D,E),loop_cont_eval_read_samples_mp3_bb2_in(D,E)],[C=0]).
+eq(eval_read_samples_mp3_1(A,B),1,[eval_read_samples_mp3_bb2_in(0,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_read_samples_mp3_bb2_in(A,B),0,[eval_read_samples_mp3_bb6_in(A,B)],[]).
+eq(loop_cont_eval_read_samples_mp3_bb2_in(A,B),0,[eval_read_samples_mp3_bb5_in(A,B)],[]).
+eq(eval_read_samples_mp3_bb2_in(A,B,C,D,E),1,[eval_read_samples_mp3_bb2_in(A+1,B,C,D,E)],[A<1152]).
+eq(eval_read_samples_mp3_bb2_in(A,B,C,A,B),1,[],[C=0,A>=1152]).
+eq(eval_read_samples_mp3_bb2_in(A,B,C,A,B),0,[],[C=1,1152>=A+1]).

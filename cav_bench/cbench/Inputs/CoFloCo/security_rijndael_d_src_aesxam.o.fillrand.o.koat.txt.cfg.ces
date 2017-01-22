@@ -1,0 +1,6 @@
+eq(eval_fillrand_start(A,B,C,D),1,[eval_fillrand_bb0_in(A,B,C,D)],[]).
+eq(eval_fillrand_bb0_in(A,B,C,D),1,[eval_fillrand_bb2_in(A,B,0,D,E,F,G,H,I),loop_cont_eval_fillrand_bb2_in(F,G,H,I)],[E=0]).
+eq(eval_fillrand_bb0_in(A,B,C,D),1,[eval_fillrand_bb2_in(A,B,0,D,E,F,G,H,I)],[E=1]).
+eq(eval_fillrand_bb2_in(A,B,C,D,E,F,G,H,I),1,[eval_fillrand_bb5_in(A,B,C,D,E,F,G,H,I)],[C<D]).
+eq(eval_fillrand_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_fillrand_bb2_in(A,B,C+1,D,E,F,G,H,I)],[]).
+eq(eval_fillrand_bb2_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,C>=D]).

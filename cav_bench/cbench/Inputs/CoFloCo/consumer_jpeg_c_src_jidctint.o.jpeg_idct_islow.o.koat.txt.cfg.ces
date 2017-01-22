@@ -1,0 +1,12 @@
+eq(eval_jpeg_idct_islow_start(A,B,C),1,[eval_jpeg_idct_islow_bb0_in(A,B,C)],[]).
+eq(eval_jpeg_idct_islow_bb0_in(A,B,C),1,[eval_jpeg_idct_islow_bb1_in(8,B,C,D,E,F,G),loop_cont_eval_jpeg_idct_islow_bb1_in(E,F,G)],[D=0]).
+eq(eval_jpeg_idct_islow_bb0_in(A,B,C),1,[eval_jpeg_idct_islow_bb1_in(8,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_jpeg_idct_islow_bb1_in(A,B,C),0,[eval_jpeg_idct_islow_bb7_in(A,B,C,D,E,F,G),loop_cont_eval_jpeg_idct_islow_bb7_in(E,F,G)],[D=0]).
+eq(loop_cont_eval_jpeg_idct_islow_bb1_in(A,B,C),0,[eval_jpeg_idct_islow_bb7_in(A,B,C,D,E,F,G)],[D=1]).
+eq(eval_jpeg_idct_islow_bb1_in(A,B,C,D,E,F,G),1,[eval_jpeg_idct_islow_bb5_in(A,B,C,D,E,F,G)],[A>0]).
+eq(eval_jpeg_idct_islow_bb7_in(A,B,C,D,E,F,G),1,[eval_jpeg_idct_islow_bb11_in(A,B,C,D,E,F,G)],[B<8]).
+eq(eval_jpeg_idct_islow_bb5_in(A,B,C,D,E,F,G),1,[eval_jpeg_idct_islow_bb1_in(A-1,B,C,D,E,F,G)],[]).
+eq(eval_jpeg_idct_islow_bb11_in(A,B,C,D,E,F,G),1,[eval_jpeg_idct_islow_bb7_in(A,B+1,C,D,E,F,G)],[]).
+eq(eval_jpeg_idct_islow_bb1_in(A,B,C,D,A,0,C),1,[],[D=0,A=<0]).
+eq(eval_jpeg_idct_islow_bb1_in(A,B,C,D,A,B,C),0,[],[D=1,A>=0+1]).
+eq(eval_jpeg_idct_islow_bb7_in(A,B,C,D,A,B,C),1,[],[D=1,B>=8]).

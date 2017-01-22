@@ -1,0 +1,39 @@
+eq(eval_init_userhash_start(A,B,C,D,E),1,[eval_init_userhash_bb0_in(A,B,C,D,E)],[]).
+eq(eval_init_userhash_bb0_in(A,B,C,D,E),1,[eval_init_userhash_bb2_in(A,B,C,D,E)],[]).
+eq(eval_init_userhash_bb0_in(A,B,C,D,E),1,[eval_init_userhash_0(A,B,C,D,E)],[]).
+eq(eval_init_userhash_0(A,B,C,D,E),1,[eval_init_userhash_1(A,B,C,D,E)],[]).
+eq(eval_init_userhash_1(A,B,C,D,E),1,[eval_init_userhash_2(A,B,C,D,E)],[]).
+eq(eval_init_userhash_2(A,B,C,D,E),1,[eval_init_userhash_3(A,B,C,D,E)],[]).
+eq(eval_init_userhash_3(A,B,C,D,E),1,[eval_init_userhash_bb2_in(A,B,C,D,E)],[]).
+eq(eval_init_userhash_bb2_in(A,B,C,D,E),1,[eval_init_userhash_bb3_in(A,B,C,D,0,F,G,H,I,J,K),loop_cont_eval_init_userhash_bb3_in(G,H,I,J,K)],[F=0]).
+eq(eval_init_userhash_bb2_in(A,B,C,D,E),1,[eval_init_userhash_bb3_in(A,B,C,D,0,F,G,H,I,J,K)],[F=1]).
+eq(eval_init_userhash_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_7(A,B,C,D,E,F,G,H,I,J,K)],[E<B]).
+eq(eval_init_userhash_bb5_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_9(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_7(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_8(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_9(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_10(A,B,L,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_8(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb15_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_8(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb5_in(A,B,C,D,E,L,M,N,O,P,Q),loop_cont_eval_init_userhash_bb5_in(M,N,O,P,Q,F,G,H,I,J,K)],[L=0]).
+eq(eval_init_userhash_8(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb5_in(A,B,C,D,E,L,M,N,O,P,Q)],[F=1,L=1]).
+eq(eval_init_userhash_10(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_12(A,B,C,L,E,F,G,H,I,J,K)],[C< -1]).
+eq(eval_init_userhash_10(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_12(A,B,C,L,E,F,G,H,I,J,K)],[C> -1]).
+eq(eval_init_userhash_bb15_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb3_in(A,B,C,D,E+1,F,G,H,I,J,K)],[]).
+eq(loop_cont_eval_init_userhash_bb5_in(A,B,C,D,E,F,G,H,I,J,K),0,[eval_init_userhash_43(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_12(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_13(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_43(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_44(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_13(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_14(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_13(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb9_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_44(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb15_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_14(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_15(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_bb9_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb13_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_bb9_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_21(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_bb9_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb5_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_15(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb9_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_bb13_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_25(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_21(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_22(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_25(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_26(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_22(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb13_in(166,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_26(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_27(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_27(A,B,C,D,E,F,G,H,I,J,K),1,[eval_init_userhash_bb5_in(L-1,M,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_init_userhash_bb3_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,E>=B]).
+eq(eval_init_userhash_10(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,C= -1]).
+eq(eval_init_userhash_10(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1]).

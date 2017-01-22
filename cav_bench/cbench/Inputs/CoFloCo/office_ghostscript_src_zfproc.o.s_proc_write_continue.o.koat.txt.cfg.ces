@@ -1,0 +1,16 @@
+eq(eval_s_proc_write_continue_start,1,[eval_s_proc_write_continue_bb0_in],[]).
+eq(eval_s_proc_write_continue_bb0_in,1,[eval_s_proc_write_continue_bb9_in],[]).
+eq(eval_s_proc_write_continue_bb0_in,1,[eval_s_proc_write_continue_24],[]).
+eq(eval_s_proc_write_continue_bb0_in,1,[eval_s_proc_write_continue_26],[]).
+eq(eval_s_proc_write_continue_17,1,[eval_s_proc_write_continue_18],[]).
+eq(eval_s_proc_write_continue_18,1,[eval_s_proc_write_continue_bb9_in],[]).
+eq(eval_s_proc_write_continue_24,1,[eval_s_proc_write_continue_25],[]).
+eq(eval_s_proc_write_continue_25,1,[eval_s_proc_write_continue_bb9_in],[]).
+eq(eval_s_proc_write_continue_26,1,[eval_s_proc_write_continue_27],[]).
+eq(eval_s_proc_write_continue_27,1,[eval_s_proc_write_continue_bb9_in],[]).
+eq(eval_s_proc_write_continue_bb9_in,1,[eval_s_proc_write_continue_stop],[]).
+eq(eval_s_proc_write_continue_bb0_in,1,[eval_s_proc_write_continue_bb3_in(A),loop_cont_eval_s_proc_write_continue_bb3_in],[A=0]).
+eq(eval_s_proc_write_continue_bb0_in,1,[eval_s_proc_write_continue_bb3_in(A)],[A=1]).
+eq(loop_cont_eval_s_proc_write_continue_bb3_in,0,[eval_s_proc_write_continue_17],[]).
+eq(eval_s_proc_write_continue_bb3_in(A),1,[eval_s_proc_write_continue_bb3_in(A)],[]).
+eq(eval_s_proc_write_continue_bb3_in(A),1,[],[A=0]).

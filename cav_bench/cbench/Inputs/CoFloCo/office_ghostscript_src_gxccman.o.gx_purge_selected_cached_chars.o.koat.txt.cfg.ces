@@ -1,0 +1,13 @@
+eq(eval_gx_purge_selected_cached_chars_start(A,B),1,[eval_gx_purge_selected_cached_chars_bb0_in(A,B)],[]).
+eq(eval_gx_purge_selected_cached_chars_bb0_in(A,B),1,[eval_gx_purge_selected_cached_chars_bb1_in(C,0,D,E,F),loop_cont_eval_gx_purge_selected_cached_chars_bb1_in(E,F)],[D=0]).
+eq(eval_gx_purge_selected_cached_chars_bb0_in(A,B),1,[eval_gx_purge_selected_cached_chars_bb1_in(C,0,D,E,F)],[D=1]).
+eq(eval_gx_purge_selected_cached_chars_bb1_in(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_4(A,B,C,D,E)],[B=<A]).
+eq(eval_gx_purge_selected_cached_chars_bb1_in(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_bb5_in(A,B,C,D,E)],[B=<A]).
+eq(eval_gx_purge_selected_cached_chars_4(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_5(A,B,C,D,E)],[]).
+eq(eval_gx_purge_selected_cached_chars_bb5_in(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_bb1_in(A,B+1,C,D,E)],[]).
+eq(eval_gx_purge_selected_cached_chars_5(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_6(A,B,C,D,E)],[]).
+eq(eval_gx_purge_selected_cached_chars_5(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_bb5_in(A,B,C,D,E)],[]).
+eq(eval_gx_purge_selected_cached_chars_6(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_7(A,B,C,D,E)],[]).
+eq(eval_gx_purge_selected_cached_chars_7(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_8(A,B,C,D,E)],[]).
+eq(eval_gx_purge_selected_cached_chars_8(A,B,C,D,E),1,[eval_gx_purge_selected_cached_chars_bb1_in(A,B,C,D,E)],[]).
+eq(eval_gx_purge_selected_cached_chars_bb1_in(A,B,C,A,B),1,[],[C=1,B>A]).

@@ -1,0 +1,12 @@
+eq(eval_TIFFUnRegisterCODEC_start,1,[eval_TIFFUnRegisterCODEC_bb0_in],[]).
+eq(eval_TIFFUnRegisterCODEC_1,1,[eval_TIFFUnRegisterCODEC_2],[]).
+eq(eval_TIFFUnRegisterCODEC_2,1,[eval_TIFFUnRegisterCODEC_bb5_in],[]).
+eq(eval_TIFFUnRegisterCODEC_3,1,[eval_TIFFUnRegisterCODEC_4],[]).
+eq(eval_TIFFUnRegisterCODEC_4,1,[eval_TIFFUnRegisterCODEC_bb5_in],[]).
+eq(eval_TIFFUnRegisterCODEC_bb5_in,1,[eval_TIFFUnRegisterCODEC_stop],[]).
+eq(eval_TIFFUnRegisterCODEC_bb0_in,1,[eval_TIFFUnRegisterCODEC_bb1_in(A),loop_cont_eval_TIFFUnRegisterCODEC_bb1_in],[A=0]).
+eq(eval_TIFFUnRegisterCODEC_bb0_in,1,[eval_TIFFUnRegisterCODEC_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_TIFFUnRegisterCODEC_bb1_in,0,[eval_TIFFUnRegisterCODEC_1],[]).
+eq(loop_cont_eval_TIFFUnRegisterCODEC_bb1_in,0,[eval_TIFFUnRegisterCODEC_3],[]).
+eq(eval_TIFFUnRegisterCODEC_bb1_in(A),1,[eval_TIFFUnRegisterCODEC_bb1_in(A)],[]).
+eq(eval_TIFFUnRegisterCODEC_bb1_in(A),1,[],[A=0]).

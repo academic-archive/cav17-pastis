@@ -1,0 +1,5 @@
+eq(eval_cmd_clear_known_start(A,B),1,[eval_cmd_clear_known_bb0_in(A,B)],[]).
+eq(eval_cmd_clear_known_bb0_in(A,B),1,[eval_cmd_clear_known_bb1_in(C,B,D,E,F),loop_cont_eval_cmd_clear_known_bb1_in(E,F)],[D=0]).
+eq(eval_cmd_clear_known_bb0_in(A,B),1,[eval_cmd_clear_known_bb1_in(C,B,D,E,F)],[D=1]).
+eq(eval_cmd_clear_known_bb1_in(A,B,C,D,E),1,[eval_cmd_clear_known_bb1_in(A-1,B,C,D,E)],[A-1>=0]).
+eq(eval_cmd_clear_known_bb1_in(A,B,C,A,B),1,[],[C=1,A-1<0]).

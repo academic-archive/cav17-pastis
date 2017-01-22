@@ -1,0 +1,9 @@
+eq(eval_put_demapped_gray_start(A,B,C),1,[eval_put_demapped_gray_bb0_in(A,B,C)],[]).
+eq(eval_put_demapped_gray_12(A,B,C),1,[eval_put_demapped_gray_13(A,B,C)],[]).
+eq(eval_put_demapped_gray_13(A,B,C),1,[eval_put_demapped_gray_stop(A,B,C)],[]).
+eq(eval_put_demapped_gray_bb0_in(A,B,C),1,[eval_put_demapped_gray_bb1_in(A,D,C,E,F,G,H),loop_cont_eval_put_demapped_gray_bb1_in(F,G,H)],[E=0]).
+eq(eval_put_demapped_gray_bb0_in(A,B,C),1,[eval_put_demapped_gray_bb1_in(A,D,C,E,F,G,H)],[E=1]).
+eq(loop_cont_eval_put_demapped_gray_bb1_in(A,B,C),0,[eval_put_demapped_gray_12(A,B,C)],[]).
+eq(eval_put_demapped_gray_bb1_in(A,B,C,D,E,F,G),1,[eval_put_demapped_gray_bb1_in(A,B-1,C,D,E,F,G)],[B>0]).
+eq(eval_put_demapped_gray_bb1_in(A,B,C,D,E,B,C),1,[],[D=0,B=<0]).
+eq(eval_put_demapped_gray_bb1_in(A,B,C,D,A,B,C),0,[],[D=1,B>=0+1]).

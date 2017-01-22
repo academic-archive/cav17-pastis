@@ -1,0 +1,14 @@
+eq(eval_pdfmark_find_key_start(A,B),1,[eval_pdfmark_find_key_bb0_in(A,B)],[]).
+eq(eval_pdfmark_find_key_5(A,B),1,[eval_pdfmark_find_key_6(A,B)],[]).
+eq(eval_pdfmark_find_key_6(A,B),1,[eval_pdfmark_find_key_bb6_in(A,B)],[]).
+eq(eval_pdfmark_find_key_bb6_in(A,B),1,[eval_pdfmark_find_key_stop(A,B)],[]).
+eq(eval_pdfmark_find_key_bb0_in(A,B),1,[eval_pdfmark_find_key_bb1_in(A,0,C,D,E),loop_cont_eval_pdfmark_find_key_bb1_in(D,E)],[C=0]).
+eq(eval_pdfmark_find_key_bb0_in(A,B),1,[eval_pdfmark_find_key_bb1_in(A,0,C,D,E)],[C=1]).
+eq(loop_cont_eval_pdfmark_find_key_bb1_in(A,B),0,[eval_pdfmark_find_key_5(A,B)],[]).
+eq(loop_cont_eval_pdfmark_find_key_bb1_in(A,B),0,[eval_pdfmark_find_key_bb6_in(A,B)],[]).
+eq(eval_pdfmark_find_key_bb1_in(A,B,C,D,E),1,[eval_pdfmark_find_key_1(A,B,C,D,E)],[B<A]).
+eq(eval_pdfmark_find_key_1(A,B,C,D,E),1,[eval_pdfmark_find_key_2(A,B,C,D,E)],[]).
+eq(eval_pdfmark_find_key_2(A,B,C,D,E),1,[eval_pdfmark_find_key_bb1_in(A,B+2,C,D,E)],[]).
+eq(eval_pdfmark_find_key_2(A,B,C,A,B),1,[],[C=0]).
+eq(eval_pdfmark_find_key_bb1_in(A,B,C,A,B),1,[],[C=0,B>=A]).
+eq(eval_pdfmark_find_key_bb1_in(A+1,B,C,A+1,B),0,[],[C=1,A>=B]).

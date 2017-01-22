@@ -1,0 +1,12 @@
+eq(eval_pat_search_start(A,B,C),1,[eval_pat_search_bb0_in(A,B,C)],[]).
+eq(eval_pat_search_bb0_in(A,B,C),1,[eval_pat_search_bb6_in(A,B,C)],[]).
+eq(eval_pat_search_bb6_in(A,B,C),1,[eval_pat_search_stop(A,B,C)],[]).
+eq(eval_pat_search_bb0_in(A,B,C),1,[eval_pat_search_bb1_in(A,B,C,D,E,F,G),loop_cont_eval_pat_search_bb1_in(E,F,G)],[D=0]).
+eq(eval_pat_search_bb0_in(A,B,C),1,[eval_pat_search_bb1_in(A,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_pat_search_bb1_in(A,B,C),0,[eval_pat_search_bb6_in(A,B,C)],[]).
+eq(eval_pat_search_bb1_in(A,B,C,D,E,F,G),1,[eval_pat_search_7(H,I,C,D,E,F,G)],[]).
+eq(eval_pat_search_7(A,B,C,D,E,F,G),1,[eval_pat_search_8(A,B,C,D,E,F,G)],[]).
+eq(eval_pat_search_8(A,B,C,D,E,F,G),1,[eval_pat_search_bb4_in(A,B,C,D,E,F,G)],[]).
+eq(eval_pat_search_bb4_in(A,B,C,D,E,F,G),1,[eval_pat_search_bb1_in(A,B,C,D,E,F,G)],[A<H]).
+eq(eval_pat_search_bb4_in(A,B,C,D,A,B,C),1,[],[D=0,A>=E]).
+eq(eval_pat_search_bb4_in(A,B,C,D,A,B,C),0,[],[D=1,E>=A]).

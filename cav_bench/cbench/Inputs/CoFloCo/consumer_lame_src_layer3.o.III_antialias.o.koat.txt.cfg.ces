@@ -1,0 +1,16 @@
+eq(eval_III_antialias_start(A,B,C),1,[eval_III_antialias_bb0_in(A,B,C)],[]).
+eq(eval_III_antialias_bb0_in(A,B,C),1,[eval_III_antialias_bb3_in(A,1,C)],[]).
+eq(eval_III_antialias_bb0_in(A,B,C),1,[eval_III_antialias_bb8_in(A,B,C)],[]).
+eq(eval_III_antialias_bb0_in(A,B,C),1,[eval_III_antialias_bb3_in(A,D-1,C)],[]).
+eq(eval_III_antialias_bb8_in(A,B,C),1,[eval_III_antialias_stop(A,B,C)],[]).
+eq(eval_III_antialias_bb3_in(A,B,C),1,[eval_III_antialias_bb4_in(B,B,C,D,E,F,G),loop_cont_eval_III_antialias_bb4_in(E,F,G)],[D=0]).
+eq(eval_III_antialias_bb3_in(A,B,C),1,[eval_III_antialias_bb4_in(B,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_III_antialias_bb4_in(A,B,C),0,[eval_III_antialias_bb8_in(A,B,C)],[]).
+eq(eval_III_antialias_bb4_in(A,B,C,D,E,F,G),1,[eval_III_antialias_bb5_in(A,B,7,H,I,J,K),loop_cont_eval_III_antialias_bb5_in(I,J,K,D,E,F,G)],[H=0,A<0]).
+eq(eval_III_antialias_bb4_in(A,B,C,D,E,F,G),1,[eval_III_antialias_bb5_in(A,B,7,H,I,J,K),loop_cont_eval_III_antialias_bb5_in(I,J,K,D,E,F,G)],[H=0,A>0]).
+eq(eval_III_antialias_bb5_in(A,B,C,D,E,F,G),1,[eval_III_antialias_bb5_in(A,B,C-1,D,E,F,G)],[C>=0]).
+eq(loop_cont_eval_III_antialias_bb5_in(A,B,C,D,E,F,G),0,[eval_III_antialias_bb4_in(A,B,C,D,E,F,G)],[]).
+eq(eval_III_antialias_bb4_in(A,B,C,D,A,B,C),1,[],[D=0,A=0]).
+eq(eval_III_antialias_bb4_in(A,B,C,D,A,B,C),0,[],[D=1]).
+eq(eval_III_antialias_bb5_in(A,B,C,D,A-1,B,C),1,[],[D=0,C<0]).
+eq(eval_III_antialias_bb5_in(A,B,C,D,A,B,C),0,[],[D=1]).

@@ -1,0 +1,131 @@
+eq(eval_jinit_downsampler_start(A),1,[eval_jinit_downsampler_bb0_in(A)],[]).
+eq(eval_jinit_downsampler_bb0_in(A),1,[eval_jinit_downsampler_0(A)],[]).
+eq(eval_jinit_downsampler_0(A),1,[eval_jinit_downsampler_1(A)],[]).
+eq(eval_jinit_downsampler_1(A),1,[eval_jinit_downsampler_8(A)],[]).
+eq(eval_jinit_downsampler_1(A),1,[eval_jinit_downsampler_bb2_in(A)],[]).
+eq(eval_jinit_downsampler_8(A),1,[eval_jinit_downsampler_9(A)],[]).
+eq(eval_jinit_downsampler_9(A),1,[eval_jinit_downsampler_bb2_in(A)],[]).
+eq(eval_jinit_downsampler_71(A),1,[eval_jinit_downsampler_72(A)],[]).
+eq(eval_jinit_downsampler_72(A),1,[eval_jinit_downsampler_bb24_in(A)],[]).
+eq(eval_jinit_downsampler_bb24_in(A),1,[eval_jinit_downsampler_stop(A)],[]).
+eq(eval_jinit_downsampler_bb2_in(A),1,[eval_jinit_downsampler_bb3_in(0,B,C),loop_cont_eval_jinit_downsampler_bb3_in(C)],[B=0]).
+eq(eval_jinit_downsampler_bb2_in(A),1,[eval_jinit_downsampler_bb3_in(0,B,C)],[B=1]).
+eq(loop_cont_eval_jinit_downsampler_bb3_in(A),0,[eval_jinit_downsampler_bb24_in(A)],[]).
+eq(loop_cont_eval_jinit_downsampler_bb3_in(A),0,[eval_jinit_downsampler_71(A)],[]).
+eq(eval_jinit_downsampler_bb3_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[A<D]).
+eq(eval_jinit_downsampler_bb3_in(A,B,C),1,[eval_jinit_downsampler_bb9_in(A,B,C)],[A<D]).
+eq(eval_jinit_downsampler_bb21_in(A,B,C),1,[eval_jinit_downsampler_bb3_in(A+1,B,C)],[]).
+eq(eval_jinit_downsampler_bb9_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[]).
+eq(eval_jinit_downsampler_bb9_in(A,B,C),1,[eval_jinit_downsampler_bb12_in(A,B,C)],[]).
+eq(eval_jinit_downsampler_bb12_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[]).
+eq(eval_jinit_downsampler_bb12_in(A,B,C),1,[eval_jinit_downsampler_bb17_in(A,B,C)],[]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=0,E=0,F=0,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=0,E=0,F=1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=0,E=0,F= -1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=0,E=0,F>1,G>0,H>=0,H<F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=0,E=0,F>1,G<0,H=<0,H> -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=0,E=0,F< -1,G>0,H>=0,H< -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=0,E=0,F< -1,G<0,H=<0,H>F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=1,E=0,F=0,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=1,E=0,F=1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=1,E=0,F= -1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=1,E=0,F>1,G>0,H>=0,H<F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=1,E=0,F>1,G<0,H=<0,H> -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=1,E=0,F< -1,G>0,H>=0,H< -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D=1,E=0,F< -1,G<0,H=<0,H>F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D= -1,E=0,F=0,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D= -1,E=0,F=1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D= -1,E=0,F= -1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D= -1,E=0,F>1,G>0,H>=0,H<F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D= -1,E=0,F>1,G<0,H=<0,H> -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D= -1,E=0,F< -1,G>0,H>=0,H< -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D= -1,E=0,F< -1,G<0,H=<0,H>F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E>0,F>=0,F<D,G=0,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E>0,F>=0,F<D,G=1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E>0,F>=0,F<D,G= -1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E>0,F>=0,F<D,G>1,H>0,I>=0,I<G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E>0,F>=0,F<D,G>1,H<0,I=<0,I> -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E>0,F>=0,F<D,G< -1,H>0,I>=0,I< -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E>0,F>=0,F<D,G< -1,H<0,I=<0,I>G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G=0,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G=1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G= -1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G>1,H>0,I>=0,I<G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G>1,H<0,I=<0,I> -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G< -1,H>0,I>=0,I< -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G< -1,H<0,I=<0,I>G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G=0,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G=1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G= -1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G>1,H>0,I>=0,I<G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G>1,H<0,I=<0,I> -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G< -1,H>0,I>=0,I< -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G< -1,H<0,I=<0,I>G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G=0,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G=1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G= -1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G>1,H>0,I>=0,I<G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G>1,H<0,I=<0,I> -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G< -1,H>0,I>=0,I< -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G< -1,H<0,I=<0,I>G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=0,E=0,F=0,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=0,E=0,F=1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=0,E=0,F= -1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=0,E=0,F>1,G>0,H>=0,H<F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=0,E=0,F>1,G<0,H=<0,H> -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=0,E=0,F< -1,G>0,H>=0,H< -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=0,E=0,F< -1,G<0,H=<0,H>F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=1,E=0,F=0,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=1,E=0,F=1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=1,E=0,F= -1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=1,E=0,F>1,G>0,H>=0,H<F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=1,E=0,F>1,G<0,H=<0,H> -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=1,E=0,F< -1,G>0,H>=0,H< -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=1,E=0,F< -1,G<0,H=<0,H>F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D= -1,E=0,F=0,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D= -1,E=0,F=1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D= -1,E=0,F= -1,G=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D= -1,E=0,F>1,G>0,H>=0,H<F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D= -1,E=0,F>1,G<0,H=<0,H> -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D= -1,E=0,F< -1,G>0,H>=0,H< -F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D= -1,E=0,F< -1,G<0,H=<0,H>F]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E>0,F>=0,F<D,G=0,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E>0,F>=0,F<D,G=1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E>0,F>=0,F<D,G= -1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E>0,F>=0,F<D,G>1,H>0,I>=0,I<G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E>0,F>=0,F<D,G>1,H<0,I=<0,I> -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E>0,F>=0,F<D,G< -1,H>0,I>=0,I< -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E>0,F>=0,F<D,G< -1,H<0,I=<0,I>G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G=0,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G=1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G= -1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G>1,H>0,I>=0,I<G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G>1,H<0,I=<0,I> -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G< -1,H>0,I>=0,I< -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E<0,F=<0,F> -D,G< -1,H<0,I=<0,I>G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G=0,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G=1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G= -1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G>1,H>0,I>=0,I<G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G>1,H<0,I=<0,I> -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G< -1,H>0,I>=0,I< -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E>0,F>=0,F< -D,G< -1,H<0,I=<0,I>G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G=0,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G=1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G= -1,H=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G>1,H>0,I>=0,I<G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G>1,H<0,I=<0,I> -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G< -1,H>0,I>=0,I< -G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E<0,F=<0,F>D,G< -1,H<0,I=<0,I>G]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=0,E=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D=1,E=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D= -1,E=0]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E>0,F>=0,F<D]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D>1,E<0,F=<0,F> -D]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E>0,F>=0,F< -D]).
+eq(eval_jinit_downsampler_bb17_in(A,B,C),1,[eval_jinit_downsampler_bb20_in(A,B,C)],[D< -1,E<0,F=<0,F>D]).
+eq(eval_jinit_downsampler_bb20_in(A,B,C),1,[eval_jinit_downsampler_64(A,B,C)],[]).
+eq(eval_jinit_downsampler_64(A,B,C),1,[eval_jinit_downsampler_65(A,B,C)],[]).
+eq(eval_jinit_downsampler_65(A,B,C),1,[eval_jinit_downsampler_bb21_in(A,B,C)],[]).
+eq(eval_jinit_downsampler_bb3_in(A,B,A),1,[],[B=0,A>=C]).
+eq(eval_jinit_downsampler_bb3_in(A,B,A),0,[],[B=1,C>=A]).

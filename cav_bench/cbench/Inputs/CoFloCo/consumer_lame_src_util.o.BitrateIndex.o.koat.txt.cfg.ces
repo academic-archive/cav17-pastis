@@ -1,0 +1,14 @@
+eq(eval_BitrateIndex_start(A,B,C,D,E),1,[eval_BitrateIndex_bb0_in(A,B,C,D,E)],[]).
+eq(eval_BitrateIndex_8(A,B,C,D,E),1,[eval_BitrateIndex_9(A,B,C,D,E)],[]).
+eq(eval_BitrateIndex_9(A,B,C,D,E),1,[eval_BitrateIndex_bb5_in(A,B,C,D,E)],[]).
+eq(eval_BitrateIndex_bb5_in(A,B,C,D,E),1,[eval_BitrateIndex_stop(A,B,C,D,E)],[]).
+eq(eval_BitrateIndex_bb0_in(A,B,C,D,E),1,[eval_BitrateIndex_bb1_in(A,0,0,D,E,F,G,H,I,J,K),loop_cont_eval_BitrateIndex_bb1_in(G,H,I,J,K)],[F=0]).
+eq(eval_BitrateIndex_bb0_in(A,B,C,D,E),1,[eval_BitrateIndex_bb1_in(A,0,0,D,E,F,G,H,I,J,K)],[F=1]).
+eq(loop_cont_eval_BitrateIndex_bb1_in(A,B,C,D,E),0,[eval_BitrateIndex_bb5_in(A,B,C,D,E)],[]).
+eq(loop_cont_eval_BitrateIndex_bb1_in(A,B,C,D,E),0,[eval_BitrateIndex_8(A,B,C,D,E)],[]).
+eq(eval_BitrateIndex_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_BitrateIndex_bb1_in(A,1,C,D,E,F,G,H,I,J,K)],[B=0,C<15]).
+eq(eval_BitrateIndex_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,B<0]).
+eq(eval_BitrateIndex_bb1_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1]).
+eq(eval_BitrateIndex_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,B>0]).
+eq(eval_BitrateIndex_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,C>=15]).
+eq(eval_BitrateIndex_bb1_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1,15>=C+1]).

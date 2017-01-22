@@ -1,0 +1,16 @@
+eq(eval_alaw_input_start,1,[eval_alaw_input_bb0_in],[]).
+eq(eval_alaw_input_11,1,[eval_alaw_input_12],[]).
+eq(eval_alaw_input_12,1,[eval_alaw_input_bb8_in],[]).
+eq(eval_alaw_input_12,1,[eval_alaw_input_bb7_in],[]).
+eq(eval_alaw_input_bb7_in,1,[eval_alaw_input_bb8_in],[]).
+eq(eval_alaw_input_bb8_in,1,[eval_alaw_input_stop],[]).
+eq(eval_alaw_input_bb0_in,1,[eval_alaw_input_bb1_in(A),loop_cont_eval_alaw_input_bb1_in],[A=0]).
+eq(eval_alaw_input_bb0_in,1,[eval_alaw_input_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_alaw_input_bb1_in,0,[eval_alaw_input_11],[]).
+eq(loop_cont_eval_alaw_input_bb1_in,0,[eval_alaw_input_bb7_in],[]).
+eq(eval_alaw_input_bb1_in(A),1,[eval_alaw_input_2(A)],[]).
+eq(eval_alaw_input_bb1_in(A),1,[eval_alaw_input_bb3_in(A)],[]).
+eq(eval_alaw_input_2(A),1,[eval_alaw_input_3(A)],[]).
+eq(eval_alaw_input_bb3_in(A),1,[eval_alaw_input_bb1_in(A)],[]).
+eq(eval_alaw_input_3(A),1,[eval_alaw_input_bb3_in(A)],[]).
+eq(eval_alaw_input_bb3_in(A),1,[],[A=0]).

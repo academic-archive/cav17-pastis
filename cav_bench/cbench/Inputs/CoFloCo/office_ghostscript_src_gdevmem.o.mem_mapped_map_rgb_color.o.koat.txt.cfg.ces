@@ -1,0 +1,8 @@
+eq(eval_mem_mapped_map_rgb_color_start(A,B,C,D,E),1,[eval_mem_mapped_map_rgb_color_bb0_in(A,B,C,D,E)],[]).
+eq(eval_mem_mapped_map_rgb_color_bb0_in(A,B,C,D,E),1,[eval_mem_mapped_map_rgb_color_bb1_in(A,B,F,D,E,G,H,I,J,K,L),loop_cont_eval_mem_mapped_map_rgb_color_bb1_in(H,I,J,K,L)],[G=0]).
+eq(eval_mem_mapped_map_rgb_color_bb0_in(A,B,C,D,E),1,[eval_mem_mapped_map_rgb_color_bb1_in(A,B,F,D,E,G,H,I,J,K,L)],[G=1]).
+eq(eval_mem_mapped_map_rgb_color_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_mem_mapped_map_rgb_color_bb5_in(C-3,B,C,D,E,F,G,H,I,J,K)],[C-3>=0]).
+eq(eval_mem_mapped_map_rgb_color_bb5_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_mem_mapped_map_rgb_color_bb1_in(A,B,A,D,E,F,G,H,I,J,K)],[]).
+eq(eval_mem_mapped_map_rgb_color_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,C-3<0,G-H=0,I=0]).
+eq(eval_mem_mapped_map_rgb_color_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,C-3<0,G-H>0,I>=0,I<G-H]).
+eq(eval_mem_mapped_map_rgb_color_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,C-3<0,G-H<0,I=<0,I>G-H]).

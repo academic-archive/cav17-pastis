@@ -1,0 +1,26 @@
+eq(eval_III_reorder_start(A,B,C,D,E,F,G),1,[eval_III_reorder_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_III_reorder_bb0_in(A,B,C,D,E,F,G),1,[eval_III_reorder_bb3_in(A,B,C,0,E,F,G)],[]).
+eq(eval_III_reorder_57(A,B,C,D,E,F,G),1,[eval_III_reorder_58(A,B,C,D,E,F,G)],[]).
+eq(eval_III_reorder_58(A,B,C,D,E,F,G),1,[eval_III_reorder_stop(A,B,C,D,E,F,G)],[]).
+eq(eval_III_reorder_bb0_in(A,B,C,D,E,F,G),1,[eval_III_reorder_bb1_in(A,0,C,D,E,F,G,H,I,J,K,L,M,N,O),loop_cont_eval_III_reorder_bb1_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_III_reorder_bb0_in(A,B,C,D,E,F,G),1,[eval_III_reorder_bb1_in(A,0,C,D,E,F,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(loop_cont_eval_III_reorder_bb1_in(A,B,C,D,E,F,G),0,[eval_III_reorder_bb3_in(A,B,C,D,E,F,G)],[]).
+eq(eval_III_reorder_bb3_in(A,B,C,D,E,F,G),1,[eval_III_reorder_bb4_in(A,B,C,D,0,F,G,H,I,J,K,L,M,N,O),loop_cont_eval_III_reorder_bb4_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_III_reorder_bb3_in(A,B,C,D,E,F,G),1,[eval_III_reorder_bb4_in(A,B,C,D,0,F,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(loop_cont_eval_III_reorder_bb4_in(A,B,C,D,E,F,G),0,[eval_III_reorder_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),loop_cont_eval_III_reorder_bb7_in(I,J,K,L,M,N,O)],[H=0]).
+eq(loop_cont_eval_III_reorder_bb4_in(A,B,C,D,E,F,G),0,[eval_III_reorder_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(loop_cont_eval_III_reorder_bb7_in(A,B,C,D,E,F,G),0,[eval_III_reorder_57(A,B,C,D,E,F,G)],[]).
+eq(eval_III_reorder_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_III_reorder_bb1_in(A,B+P,C,D,E,F,G,H,I,J,K,L,M,N,O)],[B<36]).
+eq(eval_III_reorder_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_III_reorder_bb4_in(A,B,C,D,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3]).
+eq(eval_III_reorder_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_III_reorder_bb10_in(A,B,C,D,E,F,P,H,I,J,K,L,M,N,O)],[C<576,F+1=0,P=0]).
+eq(eval_III_reorder_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_III_reorder_bb10_in(A,B,C,D,E,F,P,H,I,J,K,L,M,N,O)],[C<576,F+1>0,P>=0,P<3]).
+eq(eval_III_reorder_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_III_reorder_bb10_in(A,B,C,D,E,F,P,H,I,J,K,L,M,N,O)],[C<576,F+1<0,P=<0,P> -3]).
+eq(eval_III_reorder_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_III_reorder_bb10_in(A,B,C,D,E,F,F,H,I,J,K,L,M,N,O)],[C<576]).
+eq(eval_III_reorder_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_III_reorder_bb12_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_III_reorder_bb12_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_III_reorder_bb7_in(A,B,C+1,D,E,G,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_III_reorder_bb1_in(A,B,C,D,E,F,G,H,A,B,C,2,E,F,G),1,[],[H=0,B>=36]).
+eq(eval_III_reorder_bb1_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,36>=B+1]).
+eq(eval_III_reorder_bb4_in(A,B,C,D,E,F,G,H,A,B,18*D,D,E,0,G),1,[],[H=0,E>=3]).
+eq(eval_III_reorder_bb4_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,3>=E+1]).
+eq(eval_III_reorder_bb7_in(A,B,C,D,E,F,G,H,-72*D+2304,B,C,D,E,F,G),1,[],[H=0,C>=576]).
+eq(eval_III_reorder_bb7_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,576>=C+1]).

@@ -1,0 +1,16 @@
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_start(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_bb0_in(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb0_in(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_bb2_in(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb2_in(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_bb6_in(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb6_in(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_stop(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb6_in(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_34(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb6_in(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_36(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_34(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_35(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_35(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_stop(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_36(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_37(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_37(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_stop(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb2_in(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_bb3_in(B-C,B,D,E,F),loop_cont_eval_APCM_quantization_xmaxc_to_exp_mant_bb3_in(E,F)],[D=0]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb2_in(A,B),1,[eval_APCM_quantization_xmaxc_to_exp_mant_bb3_in(B-C,B,D,E,F)],[D=1]).
+eq(loop_cont_eval_APCM_quantization_xmaxc_to_exp_mant_bb3_in(A,B),0,[eval_APCM_quantization_xmaxc_to_exp_mant_bb6_in(A,B)],[]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb3_in(A,B,C,D,E),1,[eval_APCM_quantization_xmaxc_to_exp_mant_bb3_in(F,B,C,D,E)],[A=<7]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb3_in(A,B,C,A,B),1,[],[C=0,A>7]).
+eq(eval_APCM_quantization_xmaxc_to_exp_mant_bb3_in(A,B,C,A,B),0,[],[C=1]).

@@ -1,0 +1,14 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_arg_finit_start))
+(VAR nondef.0)
+(RULES
+  eval_arg_finit_start() -> Com_1(eval_arg_finit_bb0_in())
+  eval_arg_finit_bb0_in() -> Com_1(eval_arg_finit_bb1_in())
+  eval_arg_finit_bb1_in() -> Com_1(eval_arg_finit_10()) :|: nondef.0 < 0
+  eval_arg_finit_bb1_in() -> Com_1(eval_arg_finit_10()) :|: nondef.0 > 0
+  eval_arg_finit_bb1_in() -> Com_1(eval_arg_finit_bb1_in()) :|: nondef.0 < 0
+  eval_arg_finit_bb1_in() -> Com_1(eval_arg_finit_bb1_in()) :|: nondef.0 > 0
+  eval_arg_finit_bb1_in() -> Com_1(eval_arg_finit_stop()) :|: nondef.0 = 0
+  eval_arg_finit_10() -> Com_2(eval_fclose_start(), eval_arg_finit_11())
+  eval_arg_finit_11() -> Com_1(eval_arg_finit_bb1_in())
+)

@@ -1,0 +1,8 @@
+eq(eval_filter_free_start,1,[eval_filter_free_bb0_in],[]).
+eq(eval_filter_free_bb0_in,1,[eval_filter_free_bb1_in(A),loop_cont_eval_filter_free_bb1_in],[A=0]).
+eq(eval_filter_free_bb0_in,1,[eval_filter_free_bb1_in(A)],[A=1]).
+eq(eval_filter_free_bb1_in(A),1,[eval_filter_free_3(A)],[]).
+eq(eval_filter_free_bb1_in(A),1,[eval_filter_free_bb1_in(A)],[]).
+eq(eval_filter_free_3(A),1,[eval_filter_free_4(A)],[]).
+eq(eval_filter_free_4(A),1,[eval_filter_free_bb1_in(A)],[]).
+eq(eval_filter_free_bb1_in(A),1,[],[A=1]).

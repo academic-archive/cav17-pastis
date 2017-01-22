@@ -1,0 +1,8 @@
+eq(eval_h2v2_merged_upsample_start(A,B),1,[eval_h2v2_merged_upsample_bb0_in(A,B)],[]).
+eq(eval_h2v2_merged_upsample_bb5_in(A,B),1,[eval_h2v2_merged_upsample_stop(A,B)],[]).
+eq(eval_h2v2_merged_upsample_bb0_in(A,B),1,[eval_h2v2_merged_upsample_bb1_in(C,B,D,E,F),loop_cont_eval_h2v2_merged_upsample_bb1_in(E,F)],[D=0]).
+eq(eval_h2v2_merged_upsample_bb0_in(A,B),1,[eval_h2v2_merged_upsample_bb1_in(C,B,D,E,F)],[D=1]).
+eq(loop_cont_eval_h2v2_merged_upsample_bb1_in(A,B),0,[eval_h2v2_merged_upsample_bb5_in(A,B)],[]).
+eq(eval_h2v2_merged_upsample_bb1_in(A,B,C,D,E),1,[eval_h2v2_merged_upsample_bb1_in(A-1,B,C,D,E)],[A>0]).
+eq(eval_h2v2_merged_upsample_bb1_in(A,B,C,A,B),1,[],[C=0,A=<0]).
+eq(eval_h2v2_merged_upsample_bb1_in(A,B,C,A,B),0,[],[C=1,A>=0+1]).

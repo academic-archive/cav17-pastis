@@ -1,0 +1,15 @@
+eq(eval_ztype0_adjust_FDepVector_start(A,B),1,[eval_ztype0_adjust_FDepVector_bb0_in(A,B)],[]).
+eq(eval_ztype0_adjust_FDepVector_bb0_in(A,B),1,[eval_ztype0_adjust_FDepVector_1(C,B)],[]).
+eq(eval_ztype0_adjust_FDepVector_1(A,B),1,[eval_ztype0_adjust_FDepVector_2(A,B)],[]).
+eq(eval_ztype0_adjust_FDepVector_2(A,B),1,[eval_ztype0_adjust_FDepVector_bb5_in(A,B)],[]).
+eq(eval_ztype0_adjust_FDepVector_13(A,B),1,[eval_ztype0_adjust_FDepVector_14(A,B)],[]).
+eq(eval_ztype0_adjust_FDepVector_14(A,B),1,[eval_ztype0_adjust_FDepVector_bb5_in(A,B)],[]).
+eq(eval_ztype0_adjust_FDepVector_bb5_in(A,B),1,[eval_ztype0_adjust_FDepVector_stop(A,B)],[]).
+eq(eval_ztype0_adjust_FDepVector_2(A,B),1,[eval_ztype0_adjust_FDepVector_bb2_in(A,0,C,D,E),loop_cont_eval_ztype0_adjust_FDepVector_bb2_in(D,E)],[C=0]).
+eq(eval_ztype0_adjust_FDepVector_2(A,B),1,[eval_ztype0_adjust_FDepVector_bb2_in(A,0,C,D,E)],[C=1]).
+eq(loop_cont_eval_ztype0_adjust_FDepVector_bb2_in(A,B),0,[eval_ztype0_adjust_FDepVector_13(A,B)],[]).
+eq(eval_ztype0_adjust_FDepVector_bb2_in(A,B,C,D,E),1,[eval_ztype0_adjust_FDepVector_4(A,B,C,D,E)],[B<A]).
+eq(eval_ztype0_adjust_FDepVector_4(A,B,C,D,E),1,[eval_ztype0_adjust_FDepVector_5(A,B,C,D,E)],[]).
+eq(eval_ztype0_adjust_FDepVector_5(A,B,C,D,E),1,[eval_ztype0_adjust_FDepVector_bb2_in(A,B+1,C,D,E)],[]).
+eq(eval_ztype0_adjust_FDepVector_bb2_in(A,B,C,A,B),1,[],[C=0,B>=A]).
+eq(eval_ztype0_adjust_FDepVector_bb2_in(A+1,B,C,A+1,B),0,[],[C=1,A>=B]).

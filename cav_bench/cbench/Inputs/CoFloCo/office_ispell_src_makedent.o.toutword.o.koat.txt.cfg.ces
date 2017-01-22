@@ -1,0 +1,15 @@
+eq(eval_toutword_start(A,B,C),1,[eval_toutword_bb0_in(A,B,C)],[]).
+eq(eval_toutword_bb0_in(A,B,C),1,[eval_toutword_1(0,B,C)],[]).
+eq(eval_toutword_1(A,B,C),1,[eval_toutword_2(A,B,C)],[]).
+eq(eval_toutword_13(A,B,C),1,[eval_toutword_14(A,B,C)],[]).
+eq(eval_toutword_14(A,B,C),1,[eval_toutword_stop(A,B,C)],[]).
+eq(eval_toutword_2(A,B,C),1,[eval_toutword_bb1_in(A,B,0,D,E,F,G),loop_cont_eval_toutword_bb1_in(E,F,G)],[D=0]).
+eq(eval_toutword_2(A,B,C),1,[eval_toutword_bb1_in(A,B,0,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_toutword_bb1_in(A,B,C),0,[eval_toutword_13(A,B,C)],[]).
+eq(eval_toutword_bb1_in(A,B,C,D,E,F,G),1,[eval_toutword_9(A,C+65,C,D,E,F,G)],[C<26]).
+eq(eval_toutword_bb1_in(A,B,C,D,E,F,G),1,[eval_toutword_bb4_in(A,B,C,D,E,F,G)],[C<26]).
+eq(eval_toutword_9(A,B,C,D,E,F,G),1,[eval_toutword_10(A,B,C,D,E,F,G)],[]).
+eq(eval_toutword_bb4_in(A,B,C,D,E,F,G),1,[eval_toutword_bb1_in(A,B,C+1,D,E,F,G)],[]).
+eq(eval_toutword_10(A,B,C,D,E,F,G),1,[eval_toutword_bb4_in(A,B,C,D,E,F,G)],[]).
+eq(eval_toutword_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,C>=26]).
+eq(eval_toutword_bb1_in(A,B,C,D,A,B,C),0,[],[D=1,26>=C+1]).

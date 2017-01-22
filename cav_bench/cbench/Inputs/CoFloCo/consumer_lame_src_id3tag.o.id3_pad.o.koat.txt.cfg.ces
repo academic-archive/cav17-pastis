@@ -1,0 +1,7 @@
+eq(eval_id3_pad_start(A,B,C),1,[eval_id3_pad_bb0_in(A,B,C)],[]).
+eq(eval_id3_pad_bb0_in(A,B,C),1,[eval_id3_pad_0(A,B,C)],[]).
+eq(eval_id3_pad_0(A,B,C),1,[eval_id3_pad_1(D,B,C)],[]).
+eq(eval_id3_pad_1(A,B,C),1,[eval_id3_pad_bb1_in(A,A,C,D,E,F,G),loop_cont_eval_id3_pad_bb1_in(E,F,G)],[D=0]).
+eq(eval_id3_pad_1(A,B,C),1,[eval_id3_pad_bb1_in(A,A,C,D,E,F,G)],[D=1]).
+eq(eval_id3_pad_bb1_in(A,B,C,D,E,F,G),1,[eval_id3_pad_bb1_in(A,B+1,C,D,E,F,G)],[B<C]).
+eq(eval_id3_pad_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,B>=C]).

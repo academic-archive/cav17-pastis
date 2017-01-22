@@ -1,0 +1,13 @@
+eq(eval_pdf_end_binary_start,1,[eval_pdf_end_binary_bb0_in],[]).
+eq(eval_pdf_end_binary_4,1,[eval_pdf_end_binary_5],[]).
+eq(eval_pdf_end_binary_5,1,[eval_pdf_end_binary_stop],[]).
+eq(eval_pdf_end_binary_bb0_in,1,[eval_pdf_end_binary_bb1_in(A),loop_cont_eval_pdf_end_binary_bb1_in],[A=0]).
+eq(eval_pdf_end_binary_bb0_in,1,[eval_pdf_end_binary_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_pdf_end_binary_bb1_in,0,[eval_pdf_end_binary_4],[]).
+eq(eval_pdf_end_binary_bb1_in(A),1,[eval_pdf_end_binary_0(A)],[]).
+eq(eval_pdf_end_binary_0(A),1,[eval_pdf_end_binary_1(A)],[]).
+eq(eval_pdf_end_binary_1(A),1,[eval_pdf_end_binary_2(A)],[]).
+eq(eval_pdf_end_binary_1(A),1,[eval_pdf_end_binary_bb1_in(A)],[]).
+eq(eval_pdf_end_binary_2(A),1,[eval_pdf_end_binary_3(A)],[]).
+eq(eval_pdf_end_binary_3(A),1,[eval_pdf_end_binary_bb1_in(A)],[]).
+eq(eval_pdf_end_binary_bb1_in(A),1,[],[A=0]).

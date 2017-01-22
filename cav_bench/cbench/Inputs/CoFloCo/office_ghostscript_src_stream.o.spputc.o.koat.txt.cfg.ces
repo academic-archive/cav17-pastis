@@ -1,0 +1,11 @@
+eq(eval_spputc_start(A),1,[eval_spputc_bb0_in(A)],[]).
+eq(eval_spputc_bb6_in(A),1,[eval_spputc_stop(A)],[]).
+eq(eval_spputc_bb0_in(A),1,[eval_spputc_bb1_in(A,B,C),loop_cont_eval_spputc_bb1_in(C)],[B=0]).
+eq(eval_spputc_bb0_in(A),1,[eval_spputc_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_spputc_bb1_in(A),0,[eval_spputc_bb6_in(A)],[]).
+eq(eval_spputc_bb1_in(A,B,C),1,[eval_spputc_5(A,B,C)],[D=0]).
+eq(eval_spputc_5(A,B,C),1,[eval_spputc_6(A,B,C)],[]).
+eq(eval_spputc_6(A,B,C),1,[eval_spputc_bb1_in(A,B,C)],[]).
+eq(eval_spputc_bb1_in(A,B,A),1,[],[B=0,C<0]).
+eq(eval_spputc_bb1_in(A,B,A),1,[],[B=0,C>0]).
+eq(eval_spputc_bb1_in(A,B,A),1,[],[B=0,C=0]).

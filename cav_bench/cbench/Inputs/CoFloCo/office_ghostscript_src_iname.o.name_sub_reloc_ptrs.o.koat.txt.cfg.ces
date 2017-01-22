@@ -1,0 +1,9 @@
+eq(eval_name_sub_reloc_ptrs_start(A,B),1,[eval_name_sub_reloc_ptrs_bb0_in(A,B)],[]).
+eq(eval_name_sub_reloc_ptrs_bb0_in(A,B),1,[eval_name_sub_reloc_ptrs_bb1_in(0,B,C,D,E),loop_cont_eval_name_sub_reloc_ptrs_bb1_in(D,E)],[C=0]).
+eq(eval_name_sub_reloc_ptrs_bb0_in(A,B),1,[eval_name_sub_reloc_ptrs_bb1_in(0,B,C,D,E)],[C=1]).
+eq(eval_name_sub_reloc_ptrs_bb1_in(A,B,C,D,E),1,[eval_name_sub_reloc_ptrs_bb5_in(A,B,C,D,E)],[A<128]).
+eq(eval_name_sub_reloc_ptrs_bb1_in(A,B,C,D,E),1,[eval_name_sub_reloc_ptrs_9(A,B,C,D,E)],[A<128]).
+eq(eval_name_sub_reloc_ptrs_bb5_in(A,B,C,D,E),1,[eval_name_sub_reloc_ptrs_bb1_in(A+1,B,C,D,E)],[]).
+eq(eval_name_sub_reloc_ptrs_9(A,B,C,D,E),1,[eval_name_sub_reloc_ptrs_10(A,B,C,D,E)],[]).
+eq(eval_name_sub_reloc_ptrs_10(A,B,C,D,E),1,[eval_name_sub_reloc_ptrs_bb5_in(A,B,C,D,E)],[]).
+eq(eval_name_sub_reloc_ptrs_bb1_in(A,B,C,A,B),1,[],[C=1,A>=128]).

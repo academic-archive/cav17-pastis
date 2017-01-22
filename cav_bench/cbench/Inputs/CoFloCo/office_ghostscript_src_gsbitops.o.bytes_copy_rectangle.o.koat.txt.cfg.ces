@@ -1,0 +1,7 @@
+eq(eval_bytes_copy_rectangle_start(A,B,C,D,E,F,G),1,[eval_bytes_copy_rectangle_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_bytes_copy_rectangle_bb0_in(A,B,C,D,E,F,G),1,[eval_bytes_copy_rectangle_bb1_in(E,G,C,D,E,F,G,H,I,J,K,L,M,N,O),loop_cont_eval_bytes_copy_rectangle_bb1_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_bytes_copy_rectangle_bb0_in(A,B,C,D,E,F,G),1,[eval_bytes_copy_rectangle_bb1_in(E,G,C,D,E,F,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(eval_bytes_copy_rectangle_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_bytes_copy_rectangle_6(A,B,A-1,D,E,F,G,H,I,J,K,L,M,N,O)],[A>0]).
+eq(eval_bytes_copy_rectangle_6(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_bytes_copy_rectangle_7(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_bytes_copy_rectangle_7(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_bytes_copy_rectangle_bb1_in(C,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_bytes_copy_rectangle_bb1_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=1,A=<0]).

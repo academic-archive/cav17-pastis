@@ -1,0 +1,9 @@
+eq(eval__TIFFPrintFieldInfo_start(A,B,C,D,E,F),1,[eval__TIFFPrintFieldInfo_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval__TIFFPrintFieldInfo_bb0_in(A,B,C,D,E,F),1,[eval__TIFFPrintFieldInfo_0(A,B,C,D,E,F)],[]).
+eq(eval__TIFFPrintFieldInfo_0(A,B,C,D,E,F),1,[eval__TIFFPrintFieldInfo_1(A,B,C,D,E,F)],[]).
+eq(eval__TIFFPrintFieldInfo_1(A,B,C,D,E,F),1,[eval__TIFFPrintFieldInfo_bb1_in(A,B,C,D,E,0,G,H,I,J,K,L,M),loop_cont_eval__TIFFPrintFieldInfo_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval__TIFFPrintFieldInfo_1(A,B,C,D,E,F),1,[eval__TIFFPrintFieldInfo_bb1_in(A,B,C,D,E,0,G,H,I,J,K,L,M)],[G=1]).
+eq(eval__TIFFPrintFieldInfo_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval__TIFFPrintFieldInfo_18(N,O,P,Q,R,F,G,H,I,J,K,L,M)],[F<S]).
+eq(eval__TIFFPrintFieldInfo_18(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval__TIFFPrintFieldInfo_19(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval__TIFFPrintFieldInfo_19(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval__TIFFPrintFieldInfo_bb1_in(A,B,C,D,E,F+1,G,H,I,J,K,L,M)],[]).
+eq(eval__TIFFPrintFieldInfo_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,F>=H]).

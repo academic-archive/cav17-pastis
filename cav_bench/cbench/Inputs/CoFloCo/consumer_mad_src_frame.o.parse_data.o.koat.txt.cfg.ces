@@ -1,0 +1,11 @@
+eq(eval_parse_data_start(A,B,C,D),1,[eval_parse_data_bb0_in(A,B,C,D)],[]).
+eq(eval_parse_data_bb4_in(A,B,C,D),1,[eval_parse_data_stop(A,B,C,D)],[]).
+eq(eval_parse_data_bb0_in(A,B,C,D),1,[eval_parse_data_bb1_in(A,E,0,D,F,G,H,I,J),loop_cont_eval_parse_data_bb1_in(G,H,I,J)],[F=0]).
+eq(eval_parse_data_bb0_in(A,B,C,D),1,[eval_parse_data_bb1_in(A,E,0,D,F,G,H,I,J)],[F=1]).
+eq(loop_cont_eval_parse_data_bb1_in(A,B,C,D),0,[eval_parse_data_bb4_in(A,B,C,D)],[]).
+eq(eval_parse_data_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_parse_data_9(B-J,B,C,D,E,F,G,H,I)],[C<K]).
+eq(eval_parse_data_9(A,B,C,D,E,F,G,H,I),1,[eval_parse_data_10(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_parse_data_10(A,B,C,D,E,F,G,H,I),1,[eval_parse_data_bb1_in(A,B,C+1,D,E,F,G,H,I)],[]).
+eq(eval_parse_data_10(A,B,C,D,E,A,B,C,D),1,[],[E=0]).
+eq(eval_parse_data_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,C>=F]).
+eq(eval_parse_data_bb1_in(A,B,C,D,E,A,B,C,D),0,[],[E=1,F>=C]).

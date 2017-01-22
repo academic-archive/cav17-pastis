@@ -1,0 +1,28 @@
+eq(eval_read_scan_integer_start(A,B,C),1,[eval_read_scan_integer_bb0_in(A,B,C)],[]).
+eq(eval_read_scan_integer_bb0_in(A,B,C),1,[eval_read_scan_integer_0(A,B,C)],[]).
+eq(eval_read_scan_integer_0(A,B,C),1,[eval_read_scan_integer_1(A,B,C)],[]).
+eq(eval_read_scan_integer_1(A,B,C),1,[eval_read_scan_integer_3(A,D,C)],[]).
+eq(eval_read_scan_integer_1(A,B,C),1,[eval_read_scan_integer_bb9_in(A,B,C)],[]).
+eq(eval_read_scan_integer_3(A,B,C),1,[eval_read_scan_integer_4(A,B,C)],[]).
+eq(eval_read_scan_integer__critedge_in(A,B,C),1,[eval_read_scan_integer_13(A,B,C)],[]).
+eq(eval_read_scan_integer_13(A,B,C),1,[eval_read_scan_integer_14(A,B,C)],[]).
+eq(eval_read_scan_integer_14(A,B,C),1,[eval_read_scan_integer_18(A,B,C)],[]).
+eq(eval_read_scan_integer_14(A,B,C),1,[eval_read_scan_integer_bb8_in(A,B,C)],[]).
+eq(eval_read_scan_integer_14(A,B,C),1,[eval_read_scan_integer_NewDefault_in(A,B,C)],[]).
+eq(eval_read_scan_integer_18(A,B,C),1,[eval_read_scan_integer_19(A,B,C)],[]).
+eq(eval_read_scan_integer_19(A,B,C),1,[eval_read_scan_integer_bb9_in(A,B,C)],[]).
+eq(eval_read_scan_integer_19(A,B,C),1,[eval_read_scan_integer_bb8_in(A,B,C)],[]).
+eq(eval_read_scan_integer_NewDefault_in(A,B,C),1,[eval_read_scan_integer_bb8_in(A,B,C)],[]).
+eq(eval_read_scan_integer_bb8_in(A,B,C),1,[eval_read_scan_integer_bb9_in(A,B,C)],[]).
+eq(eval_read_scan_integer_bb9_in(A,B,C),1,[eval_read_scan_integer_stop(A,B,C)],[]).
+eq(eval_read_scan_integer_4(A,B,C),1,[eval_read_scan_integer_bb2_in(A,B,B,D,E,F,G),loop_cont_eval_read_scan_integer_bb2_in(E,F,G)],[D=0]).
+eq(eval_read_scan_integer_4(A,B,C),1,[eval_read_scan_integer_bb2_in(A,B,B,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_read_scan_integer_bb2_in(A,B,C),0,[eval_read_scan_integer__critedge_in(A,B,C)],[]).
+eq(eval_read_scan_integer_bb2_in(A,B,C,D,E,F,G),1,[eval_read_scan_integer_10(A,B,C,D,E,F,G)],[C< -1]).
+eq(eval_read_scan_integer_bb2_in(A,B,C,D,E,F,G),1,[eval_read_scan_integer_10(A,B,C,D,E,F,G)],[C> -1]).
+eq(eval_read_scan_integer_10(A,B,C,D,E,F,G),1,[eval_read_scan_integer_11(H,B,C,D,E,F,G)],[]).
+eq(eval_read_scan_integer_11(A,B,C,D,E,F,G),1,[eval_read_scan_integer_bb2_in(A,B,A,D,E,F,G)],[]).
+eq(eval_read_scan_integer_bb2_in(A,B,C,D,A,B,C),1,[],[D=0,C< -1]).
+eq(eval_read_scan_integer_bb2_in(A,B,C,D,A,B,C),0,[],[D=1]).
+eq(eval_read_scan_integer_bb2_in(A,B,C,D,A,B,C),1,[],[D=0,C> -1]).
+eq(eval_read_scan_integer_bb2_in(A,B,C,D,A,B,C),1,[],[D=0,C= -1]).

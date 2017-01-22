@@ -1,0 +1,12 @@
+eq(eval_pclxl_remove_char_start(A),1,[eval_pclxl_remove_char_bb0_in(A)],[]).
+eq(eval_pclxl_remove_char_bb0_in(A),1,[eval_pclxl_remove_char_bb7_in(A)],[]).
+eq(eval_pclxl_remove_char_bb0_in(A),1,[eval_pclxl_remove_char_bb3_in(A)],[]).
+eq(eval_pclxl_remove_char_bb3_in(A),1,[eval_pclxl_remove_char_bb7_in(A)],[]).
+eq(eval_pclxl_remove_char_bb7_in(A),1,[eval_pclxl_remove_char_stop(A)],[]).
+eq(eval_pclxl_remove_char_bb3_in(A),1,[eval_pclxl_remove_char_bb5_in(A,B,C),loop_cont_eval_pclxl_remove_char_bb5_in(C)],[B=0]).
+eq(eval_pclxl_remove_char_bb3_in(A),1,[eval_pclxl_remove_char_bb5_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_pclxl_remove_char_bb5_in(A),0,[eval_pclxl_remove_char_bb7_in(A)],[]).
+eq(eval_pclxl_remove_char_bb5_in(A,B,C),1,[eval_pclxl_remove_char_bb5_in(A,B,C)],[D=1]).
+eq(eval_pclxl_remove_char_bb5_in(A,B,A),1,[],[B=0,C<1]).
+eq(eval_pclxl_remove_char_bb5_in(A,B,A),0,[],[B=1]).
+eq(eval_pclxl_remove_char_bb5_in(A,B,A),1,[],[B=0,C>1]).

@@ -1,0 +1,174 @@
+eq(eval_int_downsample_start(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V=0,O=0,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V=0,O=0,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V=0,O=0,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V=1,O=W,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V=1,O=W,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V=1,O=W,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V= -1,O= -W,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V= -1,O= -W,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V= -1,O= -W,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V>1,W>0,O>=0,O<W,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V>1,W>0,O>=0,O<W,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V>1,W>0,O>=0,O<W,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V>1,W<0,O=<0,O>W,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V>1,W<0,O=<0,O>W,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V>1,W<0,O=<0,O>W,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V< -1,W>0,O=<0,O> -W,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V< -1,W>0,O=<0,O> -W,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V< -1,W>0,O=<0,O> -W,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V< -1,W<0,O>=0,O< -W,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V< -1,W<0,O>=0,O< -W,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=0,P=0,V< -1,W<0,O>=0,O< -W,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W=0,O=0,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W=0,O=0,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W=0,O=0,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W=1,O=X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W=1,O=X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W=1,O=X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W= -1,O= -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W= -1,O= -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W= -1,O= -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W>1,X>0,O>=0,O<X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W>1,X>0,O>=0,O<X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W>1,X>0,O>=0,O<X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W>1,X<0,O=<0,O>X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W>1,X<0,O=<0,O>X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W>1,X<0,O=<0,O>X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W< -1,X>0,O=<0,O> -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W< -1,X>0,O=<0,O> -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W< -1,X>0,O=<0,O> -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W< -1,X<0,O>=0,O< -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W< -1,X<0,O>=0,O< -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U=1,P=V,W< -1,X<0,O>=0,O< -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W=0,O=0,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W=0,O=0,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W=0,O=0,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W=1,O=X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W=1,O=X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W=1,O=X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W= -1,O= -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W= -1,O= -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W= -1,O= -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W>1,X>0,O>=0,O<X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W>1,X>0,O>=0,O<X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W>1,X>0,O>=0,O<X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W>1,X<0,O=<0,O>X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W>1,X<0,O=<0,O>X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W>1,X<0,O=<0,O>X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W< -1,X>0,O=<0,O> -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W< -1,X>0,O=<0,O> -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W< -1,X>0,O=<0,O> -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W< -1,X<0,O>=0,O< -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W< -1,X<0,O>=0,O< -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U= -1,P= -V,W< -1,X<0,O>=0,O< -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W=0,O=0,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W=0,O=0,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W=0,O=0,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W=1,O=X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W=1,O=X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W=1,O=X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W= -1,O= -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W= -1,O= -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W= -1,O= -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W>1,X>0,O>=0,O<X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W>1,X>0,O>=0,O<X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W>1,X>0,O>=0,O<X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W>1,X<0,O=<0,O>X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W>1,X<0,O=<0,O>X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W>1,X<0,O=<0,O>X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W< -1,X>0,O=<0,O> -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W< -1,X>0,O=<0,O> -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W< -1,X>0,O=<0,O> -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W< -1,X<0,O>=0,O< -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W< -1,X<0,O>=0,O< -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V>0,P>=0,P<V,W< -1,X<0,O>=0,O< -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W=0,O=0,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W=0,O=0,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W=0,O=0,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W=1,O=X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W=1,O=X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W=1,O=X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W= -1,O= -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W= -1,O= -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W= -1,O= -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W>1,X>0,O>=0,O<X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W>1,X>0,O>=0,O<X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W>1,X>0,O>=0,O<X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W>1,X<0,O=<0,O>X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W>1,X<0,O=<0,O>X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W>1,X<0,O=<0,O>X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W< -1,X>0,O=<0,O> -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W< -1,X>0,O=<0,O> -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W< -1,X>0,O=<0,O> -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W< -1,X<0,O>=0,O< -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W< -1,X<0,O>=0,O< -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U>1,V<0,P=<0,P>V,W< -1,X<0,O>=0,O< -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W=0,O=0,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W=0,O=0,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W=0,O=0,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W=1,O=X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W=1,O=X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W=1,O=X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W= -1,O= -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W= -1,O= -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W= -1,O= -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W>1,X>0,O>=0,O<X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W>1,X>0,O>=0,O<X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W>1,X>0,O>=0,O<X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W>1,X<0,O=<0,O>X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W>1,X<0,O=<0,O>X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W>1,X<0,O=<0,O>X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W< -1,X>0,O=<0,O> -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W< -1,X>0,O=<0,O> -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W< -1,X>0,O=<0,O> -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W< -1,X<0,O>=0,O< -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W< -1,X<0,O>=0,O< -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V>0,P=<0,P> -V,W< -1,X<0,O>=0,O< -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W=0,O=0,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W=0,O=0,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W=0,O=0,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W=1,O=X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W=1,O=X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W=1,O=X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W= -1,O= -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W= -1,O= -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W= -1,O= -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W>1,X>0,O>=0,O<X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W>1,X>0,O>=0,O<X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W>1,X>0,O>=0,O<X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W>1,X<0,O=<0,O>X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W>1,X<0,O=<0,O>X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W>1,X<0,O=<0,O>X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W< -1,X>0,O=<0,O> -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W< -1,X>0,O=<0,O> -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W< -1,X>0,O=<0,O> -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W< -1,X<0,O>=0,O< -X,P*O=0,Q=0]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W< -1,X<0,O>=0,O< -X,P*O>0,Q>=0,Q<P*O]).
+eq(eval_int_downsample_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_13(O,P*O,Q,R,S,8*T*P,8*T,P,I,J,K,L,M,N)],[U< -1,V<0,P>=0,P< -V,W< -1,X<0,O>=0,O< -X,P*O<0,Q=<0,Q>P*O]).
+eq(eval_int_downsample_13(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_14(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_int_downsample_14(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,0,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),loop_cont_eval_int_downsample_bb1_in(P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[O=0]).
+eq(eval_int_downsample_14(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_int_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,0,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[O=1]).
+eq(eval_int_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_int_downsample_bb3_in(A,B,C,D,E,F,G,H,I,0,K,L,M,N,D1,E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1),loop_cont_eval_int_downsample_bb3_in(E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[D1=0,K<S1]).
+eq(eval_int_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_int_downsample_bb3_in(A,B,C,D,E,F,G,H,I,0,K,L,M,N,D1,E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1)],[O=1,D1=1,K<S1]).
+eq(eval_int_downsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,0,M,0,D1,E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1),loop_cont_eval_int_downsample_bb5_in(E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[D1=0,J<G]).
+eq(eval_int_downsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,0,M,0,D1,E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1)],[O=1,D1=1,J<G]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_int_downsample_bb7_in(A,B,C,D,E,F,G,H,0,J,K,L,L,N,D1,E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1),loop_cont_eval_int_downsample_bb7_in(E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[D1=0,N<A]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_int_downsample_bb7_in(A,B,C,D,E,F,G,H,0,J,K,L,L,N,D1,E1,F1,G1,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1)],[O=1,D1=1,N<A]).
+eq(eval_int_downsample_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_int_downsample_bb7_in(A,B,C,D,E,F,G,H,I+1,J,K,L,M+D1,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[I<H]).
+eq(loop_cont_eval_int_downsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),0,[eval_int_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[]).
+eq(loop_cont_eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),0,[eval_int_downsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[]).
+eq(loop_cont_eval_int_downsample_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),0,[eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[]).
+eq(eval_int_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[],[O=1,K>=P]).
+eq(eval_int_downsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J,K+1,L,M,N),1,[],[O=0,J>=G]).
+eq(eval_int_downsample_bb3_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G+1,H,I,J,K,L,M,N),0,[],[O=1,G>=J]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J+1,K,L,M,N),1,[],[O=0,N>=A,L+C=0,P=0]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J,K,L,M,N),0,[],[O=1]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J+1,K,L,M,N),1,[],[O=0,N>=A,B=1,P=L+C]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J+1,K,L,M,N),1,[],[O=0,N>=A,B= -1,P= -L-C]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J+1,K,L,M,N),1,[],[O=0,N>=A,B>1,L+C>0,P>=0,P<L+C]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J+1,K,L,M,N),1,[],[O=0,N>=A,B>1,L+C<0,P=<0,P>L+C]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J+1,K,L,M,N),1,[],[O=0,N>=A,B< -1,L+C>0,P=<0,P> -L-C]).
+eq(eval_int_downsample_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J+1,K,L,M,N),1,[],[O=0,N>=A,B< -1,L+C<0,P>=0,P< -L-C]).
+eq(eval_int_downsample_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J,K,M,M,N+1),1,[],[O=0,I>=H]).
+eq(eval_int_downsample_bb7_in(A,B,C,D,E,F,G,H+1,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H+1,I,J,K,L,M,N),0,[],[O=1,H>=I]).

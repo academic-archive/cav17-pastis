@@ -1,0 +1,41 @@
+eq(eval_LogLuvDecode24_start(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb6_in(A,B,C,I,E,F,G,H)],[G=0,I=0]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb6_in(A,B,C,I,E,F,G,H)],[J=1,I=G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb6_in(A,B,C,I,E,F,G,H)],[J= -1,I= -G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb6_in(A,B,C,I,E,F,G,H)],[J>1,G>0,I>=0,I<G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb6_in(A,B,C,I,E,F,G,H)],[J>1,G<0,I=<0,I>G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb6_in(A,B,C,I,E,F,G,H)],[J< -1,G>0,I=<0,I> -G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb6_in(A,B,C,I,E,F,G,H)],[J< -1,G<0,I>=0,I< -G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_39(A,B,C,D,E,F,G,H)],[G=0,I=0]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_39(A,B,C,D,E,F,G,H)],[I=1,J=G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_39(A,B,C,D,E,F,G,H)],[I= -1,J= -G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_39(A,B,C,D,E,F,G,H)],[I>1,G>0,J>=0,J<G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_39(A,B,C,D,E,F,G,H)],[I>1,G<0,J=<0,J>G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_39(A,B,C,D,E,F,G,H)],[I< -1,G>0,J=<0,J> -G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_39(A,B,C,D,E,F,G,H)],[I< -1,G<0,J>=0,J< -G]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_41(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_bb0_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_43(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_bb6_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_12(4*D,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_12(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_13(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_35(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_36(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_36(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb12_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_37(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_38(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_38(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb12_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_bb12_in(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_39(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_40(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_40(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_41(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_42(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_42(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_43(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_44(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_44(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_13(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb7_in(A,B,C,D,I,0,G,H,J,K,L,M,N,O,P,Q,R),loop_cont_eval_LogLuvDecode24_bb7_in(K,L,M,N,O,P,Q,R)],[J=0]).
+eq(eval_LogLuvDecode24_13(A,B,C,D,E,F,G,H),1,[eval_LogLuvDecode24_bb7_in(A,B,C,D,I,0,G,H,J,K,L,M,N,O,P,Q,R)],[J=1]).
+eq(loop_cont_eval_LogLuvDecode24_bb7_in(A,B,C,D,E,F,G,H),0,[eval_LogLuvDecode24_35(A,B,C,D,E,F,G,H)],[]).
+eq(loop_cont_eval_LogLuvDecode24_bb7_in(A,B,C,D,E,F,G,H),0,[eval_LogLuvDecode24_37(A,B,C,D,E,F,G,H)],[]).
+eq(eval_LogLuvDecode24_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_LogLuvDecode24_bb7_in(A,B,C,D,E-3,F+1,G,H,I,J,K,L,M,N,O,P,Q)],[F<D,E>0]).
+eq(eval_LogLuvDecode24_bb7_in(A,B,C,D,E,F,G,H,I,A,J,D-F,D,E,F,G,H),1,[],[I=0,F>=D]).
+eq(eval_LogLuvDecode24_bb7_in(A,B,C,D+1,E,F,G,H,I,A,B,C,D+1,E,F,G,H),0,[],[I=1,D>=F]).
+eq(eval_LogLuvDecode24_bb7_in(A,B,C,D,E,F,G,H,I,A,J,D-F,D,E,F,G,H),1,[],[I=0,E=<0]).
+eq(eval_LogLuvDecode24_bb7_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),0,[],[I=1,E>=0+1]).
+eq(eval_LogLuvDecode24_bb7_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,F>=D]).
+eq(eval_LogLuvDecode24_bb7_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,E=<0]).

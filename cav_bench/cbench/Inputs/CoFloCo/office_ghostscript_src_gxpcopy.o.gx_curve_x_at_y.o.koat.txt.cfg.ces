@@ -1,0 +1,42 @@
+eq(eval_gx_curve_x_at_y_start(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,O,L,P-Q,L-R)],[]).
+eq(eval_gx_curve_x_at_y_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb6_in(A,B,O,D,E,P,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_104(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_105(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_105(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb18_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb18_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb19_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb19_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb22_in(A,B,C,D,E,F,G,H,I,O,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,J,L,G-D,L-D)],[]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[K*N=0,O=0]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M=1,O=K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M= -1,O= -K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M>1,K*N>0,O>=0,O<K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M>1,K*N<0,O=<0,O>K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M< -1,K*N>0,O=<0,O> -K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M< -1,K*N<0,O>=0,O< -K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb30_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[-K*N=0,O=0]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M=1,O= -K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M= -1,O=K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M>1,-K*N>0,O>=0,O< -K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M>1,-K*N<0,O=<0,O> -K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M< -1,-K*N>0,O=<0,O>K*N]).
+eq(eval_gx_curve_x_at_y_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[M< -1,-K*N<0,O>=0,O<K*N]).
+eq(eval_gx_curve_x_at_y_bb30_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_159(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_159(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_160(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_160(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_stop(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb7_in(A,O,C,C,E,F,F,H,O,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1),loop_cont_eval_gx_curve_x_at_y_bb7_in(Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1)],[P=0]).
+eq(eval_gx_curve_x_at_y_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[eval_gx_curve_x_at_y_bb7_in(A,O,C,C,E,F,F,H,O,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1)],[P=1]).
+eq(loop_cont_eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),0,[eval_gx_curve_x_at_y_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(loop_cont_eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),0,[eval_gx_curve_x_at_y_bb19_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(loop_cont_eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),0,[eval_gx_curve_x_at_y_104(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(loop_cont_eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N),0,[eval_gx_curve_x_at_y_bb18_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N)],[]).
+eq(eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_gx_curve_x_at_y_bb11_in(A,B,C,D,D,F,G,D1+E1,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[I>0]).
+eq(eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_gx_curve_x_at_y_bb11_in(A,B,C,D,D1+E1,F,G,G,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[I>0]).
+eq(eval_gx_curve_x_at_y_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),1,[eval_gx_curve_x_at_y_bb7_in(A,B,C,E,E,F,H,H,I-1,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[]).
+eq(eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,P,K,L,M,N),1,[],[O=0,I=<0]).
+eq(eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J,K,L,M,N),0,[],[O=1,I>=0+1]).
+eq(eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,A,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[],[O=0,I=<0]).
+eq(eval_gx_curve_x_at_y_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,-B,B,C,D,E,F,G,H,I,J,K,L,M,N),1,[],[O=0,I=<0]).

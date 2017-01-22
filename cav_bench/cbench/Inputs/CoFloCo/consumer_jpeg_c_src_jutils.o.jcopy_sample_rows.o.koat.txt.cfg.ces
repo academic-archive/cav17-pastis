@@ -1,0 +1,7 @@
+eq(eval_jcopy_sample_rows_start(A,B,C,D,E,F),1,[eval_jcopy_sample_rows_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_jcopy_sample_rows_bb0_in(A,B,C,D,E,F),1,[eval_jcopy_sample_rows_bb1_in(C,B,C,D,D,F,G,H,I,J,K,L,M),loop_cont_eval_jcopy_sample_rows_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_jcopy_sample_rows_bb0_in(A,B,C,D,E,F),1,[eval_jcopy_sample_rows_bb1_in(C,B,C,D,D,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_jcopy_sample_rows_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_jcopy_sample_rows_5(A,B,C,D,E,F,G,H,I,J,K,L,M)],[E>0]).
+eq(eval_jcopy_sample_rows_5(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_jcopy_sample_rows_6(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_jcopy_sample_rows_6(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_jcopy_sample_rows_bb1_in(A,B,C,D,E-1,F,G,H,I,J,K,L,M)],[]).
+eq(eval_jcopy_sample_rows_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,E=<0]).

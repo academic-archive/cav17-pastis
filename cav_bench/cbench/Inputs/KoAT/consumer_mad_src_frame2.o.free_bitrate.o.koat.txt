@@ -1,0 +1,62 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_free_bitrate_start))
+(VAR nondef.11 nondef.12 nondef.14 nondef.15 nondef.16 nondef.17 nondef.18 nondef.19 nondef.5 v_30 v_32 v_7)
+(RULES
+  eval_free_bitrate_start(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb0_in(v_30, v_32, v_7))
+  eval_free_bitrate_bb0_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_0(v_30, v_32, v_7))
+  eval_free_bitrate_0(v_30, v_32, v_7) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_30, v_32, v_7), eval_free_bitrate_1(v_30, v_32, v_7))
+  eval_free_bitrate_1(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb2_in(v_30, v_32, 1))
+  eval_free_bitrate_bb2_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb3_in(72, v_32, v_7))
+  eval_free_bitrate_bb3_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_12(v_30, v_32, v_7))
+  eval_free_bitrate_12(v_30, v_32, v_7) -> Com_2(eval_mad_stream_sync_start(v_30, v_32, v_7), eval_free_bitrate_13(v_30, nondef.5, v_7))
+  eval_free_bitrate_13(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_14(v_30, v_32, v_7)) :|: v_32 = 0
+  eval_free_bitrate_13(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb12_in(v_30, v_32, v_7)) :|: v_32 < 0
+  eval_free_bitrate_13(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb12_in(v_30, v_32, v_7)) :|: v_32 > 0
+  eval_free_bitrate_14(v_30, v_32, v_7) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_30, v_32, v_7), eval_free_bitrate_15(v_30, v_32, v_7))
+  eval_free_bitrate_15(v_30, v_32, v_7) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_30, v_32, v_7), eval_free_bitrate_16(v_30, v_32, v_7))
+  eval_free_bitrate_16(v_30, v_32, v_7) -> Com_2(eval_decode_header_start(v_30, v_32, v_7), eval_free_bitrate_17(v_30, v_32, v_7))
+  eval_free_bitrate_17(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_24(v_30, v_32, v_7))
+  eval_free_bitrate_17(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb11_in(v_30, v_32, v_7))
+  eval_free_bitrate_24(v_30, v_32, v_7) -> Com_2(eval_mad_bit_nextbyte_start(v_30, v_32, v_7), eval_free_bitrate_25(v_30, v_32, v_7))
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 = 0 && nondef.15 = 0 && nondef.15 = 0 && nondef.16 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 = 0 && nondef.15 = 0 && nondef.15 > 0 && nondef.16 >= 0 && nondef.16 < nondef.15
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 = 0 && nondef.15 = 0 && nondef.15 < 0 && nondef.16 <= 0 && nondef.16 > nondef.15
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 > 0 && nondef.15 >= 0 && nondef.15 < nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 && nondef.15 = 0 && nondef.16 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 > 0 && nondef.15 >= 0 && nondef.15 < nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 && nondef.15 > 0 && nondef.16 >= 0 && nondef.16 < nondef.15
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 > 0 && nondef.15 >= 0 && nondef.15 < nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 && nondef.15 < 0 && nondef.16 <= 0 && nondef.16 > nondef.15
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 < 0 && nondef.15 <= 0 && nondef.15 > nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 && nondef.15 = 0 && nondef.16 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 < 0 && nondef.15 <= 0 && nondef.15 > nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 && nondef.15 > 0 && nondef.16 >= 0 && nondef.16 < nondef.15
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 < 0 && nondef.15 <= 0 && nondef.15 > nondef.14*nondef.11 - nondef.14*nondef.12 - 4*nondef.14*v_7 && nondef.15 < 0 && nondef.16 <= 0 && nondef.16 > nondef.15
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 = 0 && nondef.18 = 0 && nondef.18 = 0 && nondef.19 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 = 0 && nondef.18 = 0 && nondef.18 > 0 && nondef.19 >= 0 && nondef.19 < nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 = 0 && nondef.18 = 0 && nondef.18 < 0 && nondef.19 <= 0 && nondef.19 > nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 = 1 && nondef.18 = nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 = 0 && nondef.19 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 = 1 && nondef.18 = nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 > 0 && nondef.19 >= 0 && nondef.19 < nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 = 1 && nondef.18 = nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 < 0 && nondef.19 <= 0 && nondef.19 > nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 = -1 && nondef.18 = -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 = 0 && nondef.19 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 = -1 && nondef.18 = -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 > 0 && nondef.19 >= 0 && nondef.19 < nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 = -1 && nondef.18 = -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 < 0 && nondef.19 <= 0 && nondef.19 > nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 > 1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 > 0 && nondef.18 >= 0 && nondef.18 < nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 = 0 && nondef.19 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 > 1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 > 0 && nondef.18 >= 0 && nondef.18 < nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 > 0 && nondef.19 >= 0 && nondef.19 < nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 > 1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 > 0 && nondef.18 >= 0 && nondef.18 < nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 < 0 && nondef.19 <= 0 && nondef.19 > nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 > 1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 < 0 && nondef.18 <= 0 && nondef.18 > nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 = 0 && nondef.19 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 > 1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 < 0 && nondef.18 <= 0 && nondef.18 > nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 > 0 && nondef.19 >= 0 && nondef.19 < nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 > 1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 < 0 && nondef.18 <= 0 && nondef.18 > nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 && nondef.18 < 0 && nondef.19 <= 0 && nondef.19 > nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 < -1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 > 0 && nondef.18 <= 0 && nondef.18 > -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 = 0 && nondef.19 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 < -1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 > 0 && nondef.18 <= 0 && nondef.18 > -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 > 0 && nondef.19 >= 0 && nondef.19 < nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 < -1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 > 0 && nondef.18 <= 0 && nondef.18 > -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 < 0 && nondef.19 <= 0 && nondef.19 > nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 < -1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 < 0 && nondef.18 >= 0 && nondef.18 < -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 = 0 && nondef.19 = 0
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 < -1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 < 0 && nondef.18 >= 0 && nondef.18 < -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 > 0 && nondef.19 >= 0 && nondef.19 < nondef.18
+  eval_free_bitrate_25(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb10_in(v_30, v_32, v_7)) :|: v_30 < -1 && nondef.17*nondef.11 - nondef.17*nondef.12 - nondef.17*v_7 < 0 && nondef.18 >= 0 && nondef.18 < -nondef.17*nondef.11 + nondef.17*nondef.12 + nondef.17*v_7 && nondef.18 < 0 && nondef.19 <= 0 && nondef.19 > nondef.18
+  eval_free_bitrate_bb10_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb12_in(v_30, v_32, v_7))
+  eval_free_bitrate_bb10_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb11_in(v_30, v_32, v_7))
+  eval_free_bitrate_bb11_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_50(v_30, v_32, v_7))
+  eval_free_bitrate_50(v_30, v_32, v_7) -> Com_2(eval_mad_bit_skip_start(v_30, v_32, v_7), eval_free_bitrate_51(v_30, v_32, v_7))
+  eval_free_bitrate_51(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb3_in(v_30, v_32, v_7))
+  eval_free_bitrate_bb12_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_52(v_30, v_32, v_7))
+  eval_free_bitrate_52(v_30, v_32, v_7) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_30, v_32, v_7), eval_free_bitrate_53(v_30, v_32, v_7))
+  eval_free_bitrate_53(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb14_in(v_30, v_32, v_7))
+  eval_free_bitrate_53(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb16_in(v_30, v_32, v_7))
+  eval_free_bitrate_bb14_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_bb16_in(v_30, v_32, v_7))
+  eval_free_bitrate_bb16_in(v_30, v_32, v_7) -> Com_1(eval_free_bitrate_stop(v_30, v_32, v_7))
+)

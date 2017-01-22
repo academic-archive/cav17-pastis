@@ -1,0 +1,8 @@
+eq(eval_id3_latin1_encode_start(A),1,[eval_id3_latin1_encode_bb0_in(A)],[]).
+eq(eval_id3_latin1_encode_bb0_in(A),1,[eval_id3_latin1_encode_bb1_in(A,B,C),loop_cont_eval_id3_latin1_encode_bb1_in(C)],[B=0]).
+eq(eval_id3_latin1_encode_bb0_in(A),1,[eval_id3_latin1_encode_bb1_in(A,B,C)],[B=1]).
+eq(eval_id3_latin1_encode_bb1_in(A,B,C),1,[eval_id3_latin1_encode_1(D,B,C)],[]).
+eq(eval_id3_latin1_encode_1(A,B,C),1,[eval_id3_latin1_encode_2(A,B,C)],[]).
+eq(eval_id3_latin1_encode_2(A,B,C),1,[eval_id3_latin1_encode_bb1_in(A,B,C)],[D<0]).
+eq(eval_id3_latin1_encode_2(A,B,C),1,[eval_id3_latin1_encode_bb1_in(A,B,C)],[D>0]).
+eq(eval_id3_latin1_encode_2(A,B,A),1,[],[B=1,C=0]).

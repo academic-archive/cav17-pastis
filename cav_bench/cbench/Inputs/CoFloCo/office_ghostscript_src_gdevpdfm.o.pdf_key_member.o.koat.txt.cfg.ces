@@ -1,0 +1,10 @@
+eq(eval_pdf_key_member_start,1,[eval_pdf_key_member_bb0_in],[]).
+eq(eval_pdf_key_member_bb4_in,1,[eval_pdf_key_member_stop],[]).
+eq(eval_pdf_key_member_bb0_in,1,[eval_pdf_key_member_bb1_in(A),loop_cont_eval_pdf_key_member_bb1_in],[A=0]).
+eq(eval_pdf_key_member_bb0_in,1,[eval_pdf_key_member_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_pdf_key_member_bb1_in,0,[eval_pdf_key_member_bb4_in],[]).
+eq(eval_pdf_key_member_bb1_in(A),1,[eval_pdf_key_member_0(A)],[]).
+eq(eval_pdf_key_member_0(A),1,[eval_pdf_key_member_1(A)],[]).
+eq(eval_pdf_key_member_1(A),1,[eval_pdf_key_member_bb1_in(A)],[]).
+eq(eval_pdf_key_member_1(A),1,[],[A=0]).
+eq(eval_pdf_key_member_bb1_in(A),1,[],[A=0]).

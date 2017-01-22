@@ -1,0 +1,11 @@
+eq(eval_emit_buffered_bits_start(A,B,C),1,[eval_emit_buffered_bits_bb0_in(A,B,C)],[]).
+eq(eval_emit_buffered_bits_bb0_in(A,B,C),1,[eval_emit_buffered_bits_bb3_in(A,B,C)],[]).
+eq(eval_emit_buffered_bits_bb3_in(A,B,C),1,[eval_emit_buffered_bits_stop(A,B,C)],[]).
+eq(eval_emit_buffered_bits_bb0_in(A,B,C),1,[eval_emit_buffered_bits_bb1_in(C,B,C,D,E,F,G),loop_cont_eval_emit_buffered_bits_bb1_in(E,F,G)],[D=0]).
+eq(eval_emit_buffered_bits_bb0_in(A,B,C),1,[eval_emit_buffered_bits_bb1_in(C,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_emit_buffered_bits_bb1_in(A,B,C),0,[eval_emit_buffered_bits_bb3_in(A,B,C)],[]).
+eq(eval_emit_buffered_bits_bb1_in(A,B,C,D,E,F,G),1,[eval_emit_buffered_bits_4(A,H,C,D,E,F,G)],[A>0]).
+eq(eval_emit_buffered_bits_4(A,B,C,D,E,F,G),1,[eval_emit_buffered_bits_5(A,B,C,D,E,F,G)],[]).
+eq(eval_emit_buffered_bits_5(A,B,C,D,E,F,G),1,[eval_emit_buffered_bits_bb1_in(A-1,B,C,D,E,F,G)],[]).
+eq(eval_emit_buffered_bits_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,A=<0]).
+eq(eval_emit_buffered_bits_bb1_in(A,B,C,D,A,B,C),0,[],[D=1,A>=0+1]).

@@ -1,0 +1,15 @@
+eq(eval_read_colormap_start(A,B,C),1,[eval_read_colormap_bb0_in(A,B,C)],[]).
+eq(eval_read_colormap_bb0_in(A,B,C),1,[eval_read_colormap_1(A,B,C)],[]).
+eq(eval_read_colormap_bb0_in(A,B,C),1,[eval_read_colormap_bb2_in(A,B,C)],[]).
+eq(eval_read_colormap_1(A,B,C),1,[eval_read_colormap_2(A,B,C)],[]).
+eq(eval_read_colormap_2(A,B,C),1,[eval_read_colormap_bb2_in(A,B,C)],[]).
+eq(eval_read_colormap_bb2_in(A,B,C),1,[eval_read_colormap_bb3_in(A,0,C,D,E,F,G),loop_cont_eval_read_colormap_bb3_in(E,F,G)],[D=0]).
+eq(eval_read_colormap_bb2_in(A,B,C),1,[eval_read_colormap_bb3_in(A,0,C,D,E,F,G)],[D=1]).
+eq(eval_read_colormap_bb3_in(A,B,C,D,E,F,G),1,[eval_read_colormap_3(A,B,C,D,E,F,G)],[B<A]).
+eq(eval_read_colormap_3(A,B,C,D,E,F,G),1,[eval_read_colormap_4(A,B,C,D,E,F,G)],[]).
+eq(eval_read_colormap_4(A,B,C,D,E,F,G),1,[eval_read_colormap_7(A,B,C,D,E,F,G)],[]).
+eq(eval_read_colormap_7(A,B,C,D,E,F,G),1,[eval_read_colormap_8(A,B,C,D,E,F,G)],[]).
+eq(eval_read_colormap_8(A,B,C,D,E,F,G),1,[eval_read_colormap_11(A,B,C,D,E,F,G)],[]).
+eq(eval_read_colormap_11(A,B,C,D,E,F,G),1,[eval_read_colormap_12(A,B,C,D,E,F,G)],[]).
+eq(eval_read_colormap_12(A,B,C,D,E,F,G),1,[eval_read_colormap_bb3_in(A,B+1,C,D,E,F,G)],[]).
+eq(eval_read_colormap_bb3_in(A,B,C,D,A,B,C),1,[],[D=1,B>=A]).

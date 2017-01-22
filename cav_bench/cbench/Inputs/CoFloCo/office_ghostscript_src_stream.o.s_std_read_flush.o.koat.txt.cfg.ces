@@ -1,0 +1,10 @@
+eq(eval_s_std_read_flush_start,1,[eval_s_std_read_flush_bb0_in],[]).
+eq(eval_s_std_read_flush_bb4_in,1,[eval_s_std_read_flush_stop],[]).
+eq(eval_s_std_read_flush_bb0_in,1,[eval_s_std_read_flush_bb1_in(A),loop_cont_eval_s_std_read_flush_bb1_in],[A=0]).
+eq(eval_s_std_read_flush_bb0_in,1,[eval_s_std_read_flush_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_s_std_read_flush_bb1_in,0,[eval_s_std_read_flush_bb4_in],[]).
+eq(eval_s_std_read_flush_bb1_in(A),1,[eval_s_std_read_flush_10(A)],[B=0]).
+eq(eval_s_std_read_flush_10(A),1,[eval_s_std_read_flush_11(A)],[]).
+eq(eval_s_std_read_flush_11(A),1,[eval_s_std_read_flush_bb1_in(A)],[]).
+eq(eval_s_std_read_flush_bb1_in(A),1,[],[A=0,B<0]).
+eq(eval_s_std_read_flush_bb1_in(A),1,[],[A=0,B>0]).

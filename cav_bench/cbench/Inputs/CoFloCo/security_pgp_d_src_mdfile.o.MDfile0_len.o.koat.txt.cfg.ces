@@ -1,0 +1,16 @@
+eq(eval_MDfile0_len_start(A,B,C,D,E,F,G),1,[eval_MDfile0_len_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_MDfile0_len_bb0_in(A,B,C,D,E,F,G),1,[eval_MDfile0_len_0(A,B,C,D,E,F,G)],[]).
+eq(eval_MDfile0_len_0(A,B,C,D,E,F,G),1,[eval_MDfile0_len_1(A,B,C,D,E,F,G)],[]).
+eq(eval_MDfile0_len_1(A,B,C,D,E,F,G),1,[eval_MDfile0_len_bb1_in(G,B,C,D,E,F,G,H,I,J,K,L,M,N,O),loop_cont_eval_MDfile0_len_bb1_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_MDfile0_len_1(A,B,C,D,E,F,G),1,[eval_MDfile0_len_bb1_in(G,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(eval_MDfile0_len_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_bb3_in(A,B,C,D,E,A,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_MDfile0_len_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_bb3_in(A,B,C,D,E,1024,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_MDfile0_len_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_5(A,B,F,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_MDfile0_len_5(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_6(A,B,C,P,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_MDfile0_len_6(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_8(A,B,C,D,D,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_MDfile0_len_6(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_bb5_in(A,A,C,D,D,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_MDfile0_len_8(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_9(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_MDfile0_len_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_bb1_in(B,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[E=1024]).
+eq(eval_MDfile0_len_9(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_MDfile0_len_bb5_in(A,A-E,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_MDfile0_len_bb5_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=1,E<1024]).
+eq(eval_MDfile0_len_bb5_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=1,E>1024]).

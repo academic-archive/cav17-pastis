@@ -1,0 +1,7 @@
+eq(eval_L16toY_start(A,B,C,D),1,[eval_L16toY_bb0_in(A,B,C,D)],[]).
+eq(eval_L16toY_bb0_in(A,B,C,D),1,[eval_L16toY_bb1_in(D,B,C,D,E,F,G,H,I),loop_cont_eval_L16toY_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_L16toY_bb0_in(A,B,C,D),1,[eval_L16toY_bb1_in(D,B,C,D,E,F,G,H,I)],[E=1]).
+eq(eval_L16toY_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_L16toY_4(A,A-1,J,D,E,F,G,H,I)],[A>0]).
+eq(eval_L16toY_4(A,B,C,D,E,F,G,H,I),1,[eval_L16toY_5(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_L16toY_5(A,B,C,D,E,F,G,H,I),1,[eval_L16toY_bb1_in(B,B,C,D,E,F,G,H,I)],[]).
+eq(eval_L16toY_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,A=<0]).

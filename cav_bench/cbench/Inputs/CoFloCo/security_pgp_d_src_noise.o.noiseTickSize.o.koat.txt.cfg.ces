@@ -1,0 +1,32 @@
+eq(eval_noiseTickSize_start(A,B,C,D,E,F),1,[eval_noiseTickSize_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_bb0_in(A,B,C,D,E,F),1,[eval_noiseTickSize_0(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_0(A,B,C,D,E,F),1,[eval_noiseTickSize_1(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_1(A,B,C,D,E,F),1,[eval_noiseTickSize_2(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_25(A,B,C,D,E,F),1,[eval_noiseTickSize_26(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_26(A,B,C,D,E,F),1,[eval_noiseTickSize_32(A,B,G,H,E,F)],[G+2000000=0,H=0]).
+eq(eval_noiseTickSize_26(A,B,C,D,E,F),1,[eval_noiseTickSize_32(A,B,G,H,E,F)],[2*G=1,H=G+2000000]).
+eq(eval_noiseTickSize_26(A,B,C,D,E,F),1,[eval_noiseTickSize_32(A,B,G,H,E,F)],[2*G= -1,H= -G-2000000]).
+eq(eval_noiseTickSize_26(A,B,C,D,E,F),1,[eval_noiseTickSize_32(A,B,G,H,E,F)],[2*G>1,G+2000000>0,H>=0,H<G+2000000]).
+eq(eval_noiseTickSize_26(A,B,C,D,E,F),1,[eval_noiseTickSize_32(A,B,G,H,E,F)],[2*G>1,G+2000000<0,H=<0,H>G+2000000]).
+eq(eval_noiseTickSize_26(A,B,C,D,E,F),1,[eval_noiseTickSize_32(A,B,G,H,E,F)],[2*G< -1,G+2000000>0,H=<0,H> -G-2000000]).
+eq(eval_noiseTickSize_26(A,B,C,D,E,F),1,[eval_noiseTickSize_32(A,B,G,H,E,F)],[2*G< -1,G+2000000<0,H>=0,H< -G-2000000]).
+eq(eval_noiseTickSize_26(A,B,C,D,E,F),1,[eval_noiseTickSize_bb7_in(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_32(A,B,C,D,E,F),1,[eval_noiseTickSize_33(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_33(A,B,C,D,E,F),1,[eval_noiseTickSize_bb7_in(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_bb7_in(A,B,C,D,E,F),1,[eval_noiseTickSize_stop(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_2(A,B,C,D,E,F),1,[eval_noiseTickSize_bb1_in(A,B,C,D,0,F,G,H,I,J,K,L,M),loop_cont_eval_noiseTickSize_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_noiseTickSize_2(A,B,C,D,E,F),1,[eval_noiseTickSize_bb1_in(A,B,C,D,0,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_noiseTickSize_bb1_in(A,B,C,D,E,F),0,[eval_noiseTickSize_bb7_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_noiseTickSize_bb1_in(A,B,C,D,E,F),0,[eval_noiseTickSize_25(A,B,C,D,E,F)],[]).
+eq(eval_noiseTickSize_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_3(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_noiseTickSize_3(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_4(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_noiseTickSize_4(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_20(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_noiseTickSize_4(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_bb3_in(A,B,C,D,E,E,G,H,I,J,K,L,M)],[]).
+eq(eval_noiseTickSize_20(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_21(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_noiseTickSize_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_22(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_noiseTickSize_21(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_bb3_in(A,B,C,D,E,B,G,H,I,J,K,L,M)],[]).
+eq(eval_noiseTickSize_22(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_23(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_noiseTickSize_23(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_noiseTickSize_bb1_in(A,B,C,D,F,F,G,H,I,J,K,L,M)],[F<15]).
+eq(eval_noiseTickSize_23(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0]).
+eq(eval_noiseTickSize_23(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,F>=15]).
+eq(eval_noiseTickSize_23(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,15>=F+1]).

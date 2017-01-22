@@ -1,0 +1,14 @@
+eq(eval_BF_ofb64_encrypt_start(A,B,C),1,[eval_BF_ofb64_encrypt_bb0_in(A,B,C)],[]).
+eq(eval_BF_ofb64_encrypt_bb7_in(A,B,C),1,[eval_BF_ofb64_encrypt_stop(A,B,C)],[]).
+eq(eval_BF_ofb64_encrypt_bb0_in(A,B,C),1,[eval_BF_ofb64_encrypt_bb1_in(A,C,C,D,E,F,G),loop_cont_eval_BF_ofb64_encrypt_bb1_in(E,F,G)],[D=0]).
+eq(eval_BF_ofb64_encrypt_bb0_in(A,B,C),1,[eval_BF_ofb64_encrypt_bb1_in(A,C,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_BF_ofb64_encrypt_bb1_in(A,B,C),0,[eval_BF_ofb64_encrypt_bb7_in(A,B,C)],[]).
+eq(eval_BF_ofb64_encrypt_bb1_in(A,B,C,D,E,F,G),1,[eval_BF_ofb64_encrypt_64(B-1,B,C,D,E,F,G)],[B<0]).
+eq(eval_BF_ofb64_encrypt_bb1_in(A,B,C,D,E,F,G),1,[eval_BF_ofb64_encrypt_64(B-1,B,C,D,E,F,G)],[B>0]).
+eq(eval_BF_ofb64_encrypt_bb1_in(A,B,C,D,E,F,G),1,[eval_BF_ofb64_encrypt_bb4_in(B-1,B,C,D,E,F,G)],[B<0]).
+eq(eval_BF_ofb64_encrypt_bb1_in(A,B,C,D,E,F,G),1,[eval_BF_ofb64_encrypt_bb4_in(B-1,B,C,D,E,F,G)],[B>0]).
+eq(eval_BF_ofb64_encrypt_64(A,B,C,D,E,F,G),1,[eval_BF_ofb64_encrypt_65(A,B,C,D,E,F,G)],[]).
+eq(eval_BF_ofb64_encrypt_bb4_in(A,B,C,D,E,F,G),1,[eval_BF_ofb64_encrypt_bb1_in(A,A,C,D,E,F,G)],[]).
+eq(eval_BF_ofb64_encrypt_65(A,B,C,D,E,F,G),1,[eval_BF_ofb64_encrypt_bb4_in(A,B,C,D,E,F,G)],[]).
+eq(eval_BF_ofb64_encrypt_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,B=0]).
+eq(eval_BF_ofb64_encrypt_bb1_in(A,B,C,D,A,B,C),0,[],[D=1]).

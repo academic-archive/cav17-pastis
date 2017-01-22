@@ -1,0 +1,15 @@
+eq(eval_build_bl_tree_start(A,B,C,D),1,[eval_build_bl_tree_bb0_in(A,B,C,D)],[]).
+eq(eval_build_bl_tree_bb0_in(A,B,C,D),1,[eval_build_bl_tree_1(A,E,C,D)],[]).
+eq(eval_build_bl_tree_1(A,B,C,D),1,[eval_build_bl_tree_2(A,B,C,D)],[]).
+eq(eval_build_bl_tree_2(A,B,C,D),1,[eval_build_bl_tree_3(A,B,E,D)],[]).
+eq(eval_build_bl_tree_3(A,B,C,D),1,[eval_build_bl_tree_4(A,B,C,D)],[]).
+eq(eval_build_bl_tree_4(A,B,C,D),1,[eval_build_bl_tree_5(A,B,C,D)],[]).
+eq(eval_build_bl_tree_bb4_in(A,B,C,D),1,[eval_build_bl_tree_stop(A,B,C,D)],[]).
+eq(eval_build_bl_tree_5(A,B,C,D),1,[eval_build_bl_tree_bb1_in(A,B,C,18,E,F,G,H,I),loop_cont_eval_build_bl_tree_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_build_bl_tree_5(A,B,C,D),1,[eval_build_bl_tree_bb1_in(A,B,C,18,E,F,G,H,I)],[E=1]).
+eq(loop_cont_eval_build_bl_tree_bb1_in(A,B,C,D),0,[eval_build_bl_tree_bb4_in(A,B,C,D)],[]).
+eq(eval_build_bl_tree_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_build_bl_tree_bb1_in(A,B,C,D-1,E,F,G,H,I)],[D>=3]).
+eq(eval_build_bl_tree_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,D>=3]).
+eq(eval_build_bl_tree_bb1_in(A,B,C,D,E,A,B,C,D),0,[],[E=1,3>=D+1]).
+eq(eval_build_bl_tree_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,D<3]).
+eq(eval_build_bl_tree_bb1_in(A,B,C,D,E,A,B,C,D),0,[],[E=1]).

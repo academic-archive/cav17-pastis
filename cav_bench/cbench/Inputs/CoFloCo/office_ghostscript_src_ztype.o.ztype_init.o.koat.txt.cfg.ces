@@ -1,0 +1,15 @@
+eq(eval_ztype_init_start(A),1,[eval_ztype_init_bb0_in(A)],[]).
+eq(eval_ztype_init_bb0_in(A),1,[eval_ztype_init_0(A)],[]).
+eq(eval_ztype_init_0(A),1,[eval_ztype_init_1(A)],[]).
+eq(eval_ztype_init_18(A),1,[eval_ztype_init_19(A)],[]).
+eq(eval_ztype_init_19(A),1,[eval_ztype_init_stop(A)],[]).
+eq(eval_ztype_init_1(A),1,[eval_ztype_init_bb1_in(0,B,C),loop_cont_eval_ztype_init_bb1_in(C)],[B=0]).
+eq(eval_ztype_init_1(A),1,[eval_ztype_init_bb1_in(0,B,C)],[B=1]).
+eq(loop_cont_eval_ztype_init_bb1_in(A),0,[eval_ztype_init_18(A)],[]).
+eq(eval_ztype_init_bb1_in(A,B,C),1,[eval_ztype_init_bb5_in(A,B,C)],[A<21]).
+eq(eval_ztype_init_bb1_in(A,B,C),1,[eval_ztype_init_8(A,B,C)],[A<21]).
+eq(eval_ztype_init_bb5_in(A,B,C),1,[eval_ztype_init_bb1_in(A+1,B,C)],[]).
+eq(eval_ztype_init_8(A,B,C),1,[eval_ztype_init_9(A,B,C)],[]).
+eq(eval_ztype_init_9(A,B,C),1,[eval_ztype_init_bb5_in(A,B,C)],[]).
+eq(eval_ztype_init_bb1_in(A,B,A),1,[],[B=0,A>=21]).
+eq(eval_ztype_init_bb1_in(A,B,A),0,[],[B=1,21>=A+1]).

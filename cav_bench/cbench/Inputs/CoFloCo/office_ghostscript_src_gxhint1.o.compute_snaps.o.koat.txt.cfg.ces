@@ -1,0 +1,12 @@
+eq(eval_compute_snaps_start(A,B,C),1,[eval_compute_snaps_bb0_in(A,B,C)],[]).
+eq(eval_compute_snaps_bb0_in(A,B,C),1,[eval_compute_snaps_bb1_in(A,0,C,D,E,F,G),loop_cont_eval_compute_snaps_bb1_in(E,F,G)],[D=0]).
+eq(eval_compute_snaps_bb0_in(A,B,C),1,[eval_compute_snaps_bb1_in(A,0,C,D,E,F,G)],[D=1]).
+eq(eval_compute_snaps_bb1_in(A,B,C,D,E,F,G),1,[eval_compute_snaps_6(A,B,C,D,E,F,G)],[B<H]).
+eq(eval_compute_snaps_bb1_in(A,B,C,D,E,F,G),1,[eval_compute_snaps_8(A,B,C,D,E,F,G)],[B<H]).
+eq(eval_compute_snaps_6(A,B,C,D,E,F,G),1,[eval_compute_snaps_7(A,B,C,D,E,F,G)],[]).
+eq(eval_compute_snaps_8(A,B,C,D,E,F,G),1,[eval_compute_snaps_9(A,B,C,D,E,F,G)],[]).
+eq(eval_compute_snaps_7(A,B,C,D,E,F,G),1,[eval_compute_snaps_bb5_in(A,B,C,D,E,F,G)],[]).
+eq(eval_compute_snaps_9(A,B,C,D,E,F,G),1,[eval_compute_snaps_bb5_in(A,B,C,D,E,F,G)],[]).
+eq(eval_compute_snaps_bb5_in(A,B,C,D,E,F,G),1,[eval_compute_snaps_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_compute_snaps_bb7_in(A,B,C,D,E,F,G),1,[eval_compute_snaps_bb1_in(A,B+1,C,D,E,F,G)],[]).
+eq(eval_compute_snaps_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,B>=E]).

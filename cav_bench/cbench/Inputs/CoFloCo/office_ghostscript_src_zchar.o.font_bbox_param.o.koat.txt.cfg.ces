@@ -1,0 +1,17 @@
+eq(eval_font_bbox_param_start(A),1,[eval_font_bbox_param_bb0_in(A)],[]).
+eq(eval_font_bbox_param_bb0_in(A),1,[eval_font_bbox_param_4(A)],[]).
+eq(eval_font_bbox_param_4(A),1,[eval_font_bbox_param_5(A)],[]).
+eq(eval_font_bbox_param_5(A),1,[eval_font_bbox_param_bb10_in(A)],[]).
+eq(eval_font_bbox_param_19(A),1,[eval_font_bbox_param_20(A)],[]).
+eq(eval_font_bbox_param_20(A),1,[eval_font_bbox_param_bb10_in(A)],[]).
+eq(eval_font_bbox_param_20(A),1,[eval_font_bbox_param_bb9_in(A)],[]).
+eq(eval_font_bbox_param_bb9_in(A),1,[eval_font_bbox_param_bb10_in(A)],[]).
+eq(eval_font_bbox_param_bb10_in(A),1,[eval_font_bbox_param_stop(A)],[]).
+eq(eval_font_bbox_param_5(A),1,[eval_font_bbox_param_bb4_in(0,B,C),loop_cont_eval_font_bbox_param_bb4_in(C)],[B=0]).
+eq(eval_font_bbox_param_5(A),1,[eval_font_bbox_param_bb4_in(0,B,C)],[B=1]).
+eq(loop_cont_eval_font_bbox_param_bb4_in(A),0,[eval_font_bbox_param_19(A)],[]).
+eq(eval_font_bbox_param_bb4_in(A,B,C),1,[eval_font_bbox_param_14(A,B,C)],[A<4]).
+eq(eval_font_bbox_param_14(A,B,C),1,[eval_font_bbox_param_15(A,B,C)],[]).
+eq(eval_font_bbox_param_15(A,B,C),1,[eval_font_bbox_param_bb4_in(A+1,B,C)],[]).
+eq(eval_font_bbox_param_bb4_in(A,B,A),1,[],[B=0,A>=4]).
+eq(eval_font_bbox_param_bb4_in(A,B,A),0,[],[B=1,4>=A+1]).

@@ -1,0 +1,9 @@
+eq(eval_rchr_start(A,B,C),1,[eval_rchr_bb0_in(A,B,C)],[]).
+eq(eval_rchr_bb3_in(A,B,C),1,[eval_rchr_stop(A,B,C)],[]).
+eq(eval_rchr_bb0_in(A,B,C),1,[eval_rchr_bb1_in(B,B,C,D,E,F,G),loop_cont_eval_rchr_bb1_in(E,F,G)],[D=0]).
+eq(eval_rchr_bb0_in(A,B,C),1,[eval_rchr_bb1_in(B,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_rchr_bb1_in(A,B,C),0,[eval_rchr_bb3_in(A,B,C)],[]).
+eq(eval_rchr_bb1_in(A,B,C,D,E,F,G),1,[eval_rchr_bb1_in(A,B,C,D,E,F,G)],[H<A]).
+eq(eval_rchr_bb1_in(A,B,C,D,E,F,G),1,[eval_rchr_bb1_in(A,B,C,D,E,F,G)],[H>A]).
+eq(eval_rchr_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,E=A]).
+eq(eval_rchr_bb1_in(A,B,C,D,A,B,C),1,[],[D=0]).

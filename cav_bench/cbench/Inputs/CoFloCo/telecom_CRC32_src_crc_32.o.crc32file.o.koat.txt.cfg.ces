@@ -1,0 +1,24 @@
+eq(eval_crc32file_start(A),1,[eval_crc32file_bb0_in(A)],[]).
+eq(eval_crc32file_bb0_in(A),1,[eval_crc32file_1(A)],[]).
+eq(eval_crc32file_1(A),1,[eval_crc32file_2(A)],[]).
+eq(eval_crc32file_2(A),1,[eval_crc32file_3(A)],[]).
+eq(eval_crc32file_3(A),1,[eval_crc32file_4(A)],[]).
+eq(eval_crc32file_4(A),1,[eval_crc32file_bb7_in(A)],[]).
+eq(eval_crc32file_18(A),1,[eval_crc32file_19(A)],[]).
+eq(eval_crc32file_19(A),1,[eval_crc32file_20(A)],[]).
+eq(eval_crc32file_19(A),1,[eval_crc32file_bb6_in(A)],[]).
+eq(eval_crc32file_20(A),1,[eval_crc32file_21(A)],[]).
+eq(eval_crc32file_21(A),1,[eval_crc32file_bb6_in(A)],[]).
+eq(eval_crc32file_bb6_in(A),1,[eval_crc32file_23(A)],[]).
+eq(eval_crc32file_23(A),1,[eval_crc32file_24(A)],[]).
+eq(eval_crc32file_24(A),1,[eval_crc32file_bb7_in(A)],[]).
+eq(eval_crc32file_bb7_in(A),1,[eval_crc32file_stop(A)],[]).
+eq(eval_crc32file_2(A),1,[eval_crc32file_bb2_in(A,B,C),loop_cont_eval_crc32file_bb2_in(C)],[B=0]).
+eq(eval_crc32file_2(A),1,[eval_crc32file_bb2_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_crc32file_bb2_in(A),0,[eval_crc32file_18(A)],[]).
+eq(eval_crc32file_bb2_in(A,B,C),1,[eval_crc32file_5(A,B,C)],[]).
+eq(eval_crc32file_5(A,B,C),1,[eval_crc32file_6(D,B,C)],[]).
+eq(eval_crc32file_6(A,B,C),1,[eval_crc32file_bb2_in(A,B,C)],[A< -1]).
+eq(eval_crc32file_6(A,B,C),1,[eval_crc32file_bb2_in(A,B,C)],[A> -1]).
+eq(eval_crc32file_6(A,B,A),1,[],[B=0,A= -1]).
+eq(eval_crc32file_6(A,B,A),0,[],[B=1]).

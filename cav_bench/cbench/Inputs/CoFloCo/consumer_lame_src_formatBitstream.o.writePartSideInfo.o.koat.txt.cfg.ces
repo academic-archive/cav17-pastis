@@ -1,0 +1,10 @@
+eq(eval_writePartSideInfo_start(A,B,C),1,[eval_writePartSideInfo_bb0_in(A,B,C)],[]).
+eq(eval_writePartSideInfo_bb0_in(A,B,C),1,[eval_writePartSideInfo_11(A,B,C)],[]).
+eq(eval_writePartSideInfo_11(A,B,C),1,[eval_writePartSideInfo_12(A,B,C)],[]).
+eq(eval_writePartSideInfo_12(A,B,C),1,[eval_writePartSideInfo_stop(A,B,C)],[]).
+eq(eval_writePartSideInfo_bb0_in(A,B,C),1,[eval_writePartSideInfo_bb2_in(A,B,0,D,E,F,G),loop_cont_eval_writePartSideInfo_bb2_in(E,F,G)],[D=0]).
+eq(eval_writePartSideInfo_bb0_in(A,B,C),1,[eval_writePartSideInfo_bb2_in(A,B,0,D,E,F,G)],[D=1]).
+eq(eval_writePartSideInfo_bb2_in(A,B,C,D,E,F,G),1,[eval_writePartSideInfo_5(H,I,C,D,E,F,G)],[C<J]).
+eq(eval_writePartSideInfo_5(A,B,C,D,E,F,G),1,[eval_writePartSideInfo_6(A,B,C,D,E,F,G)],[]).
+eq(eval_writePartSideInfo_6(A,B,C,D,E,F,G),1,[eval_writePartSideInfo_bb2_in(A,B,C+1,D,E,F,G)],[]).
+eq(eval_writePartSideInfo_bb2_in(A,B,C,D,A,B,C),1,[],[D=1,C>=E]).

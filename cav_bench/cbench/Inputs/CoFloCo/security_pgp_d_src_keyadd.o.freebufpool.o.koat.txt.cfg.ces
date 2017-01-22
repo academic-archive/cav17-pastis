@@ -1,0 +1,7 @@
+eq(eval_freebufpool_start,1,[eval_freebufpool_bb0_in],[]).
+eq(eval_freebufpool_bb0_in,1,[eval_freebufpool_bb1_in(A),loop_cont_eval_freebufpool_bb1_in],[A=0]).
+eq(eval_freebufpool_bb0_in,1,[eval_freebufpool_bb1_in(A)],[A=1]).
+eq(eval_freebufpool_bb1_in(A),1,[eval_freebufpool_1(A)],[]).
+eq(eval_freebufpool_1(A),1,[eval_freebufpool_2(A)],[]).
+eq(eval_freebufpool_2(A),1,[eval_freebufpool_bb1_in(A)],[]).
+eq(eval_freebufpool_bb1_in(A),1,[],[A=1]).

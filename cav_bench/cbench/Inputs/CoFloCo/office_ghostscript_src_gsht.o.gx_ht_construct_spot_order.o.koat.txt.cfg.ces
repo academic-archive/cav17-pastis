@@ -1,0 +1,76 @@
+eq(eval_gx_ht_construct_spot_order_start(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[L=0,M=0,N=0,J=0]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[L=0,M=0,K*M=1,J=N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[L=0,M=0,K*M= -1,J= -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[L=0,M=0,K*M>1,N>0,J>=0,J<N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[L=0,M=0,K*M>1,N<0,J=<0,J>N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[L=0,M=0,K*M< -1,N>0,J=<0,J> -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[L=0,M=0,K*M< -1,N<0,J>=0,J< -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K=1,M=L,N=0,J=0]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K=1,M=L,K*M=1,J=N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K=1,M=L,K*M= -1,J= -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K=1,M=L,K*M>1,N>0,J>=0,J<N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K=1,M=L,K*M>1,N<0,J=<0,J>N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K=1,M=L,K*M< -1,N>0,J=<0,J> -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K=1,M=L,K*M< -1,N<0,J>=0,J< -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K= -1,M= -L,N=0,J=0]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K= -1,M= -L,K*M=1,J=N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K= -1,M= -L,K*M= -1,J= -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K= -1,M= -L,K*M>1,N>0,J>=0,J<N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K= -1,M= -L,K*M>1,N<0,J=<0,J>N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K= -1,M= -L,K*M< -1,N>0,J=<0,J> -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K= -1,M= -L,K*M< -1,N<0,J>=0,J< -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L>0,M>=0,M<L,N=0,J=0]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L>0,M>=0,M<L,K*M=1,J=N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L>0,M>=0,M<L,K*M= -1,J= -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L>0,M>=0,M<L,K*M>1,N>0,J>=0,J<N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L>0,M>=0,M<L,K*M>1,N<0,J=<0,J>N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L>0,M>=0,M<L,K*M< -1,N>0,J=<0,J> -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L>0,M>=0,M<L,K*M< -1,N<0,J>=0,J< -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L<0,M=<0,M>L,N=0,J=0]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L<0,M=<0,M>L,K*M=1,J=N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L<0,M=<0,M>L,K*M= -1,J= -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L<0,M=<0,M>L,K*M>1,N>0,J>=0,J<N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L<0,M=<0,M>L,K*M>1,N<0,J=<0,J>N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L<0,M=<0,M>L,K*M< -1,N>0,J=<0,J> -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K>1,L<0,M=<0,M>L,K*M< -1,N<0,J>=0,J< -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L>0,M=<0,M> -L,N=0,J=0]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L>0,M=<0,M> -L,K*M=1,J=N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L>0,M=<0,M> -L,K*M= -1,J= -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L>0,M=<0,M> -L,K*M>1,N>0,J>=0,J<N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L>0,M=<0,M> -L,K*M>1,N<0,J=<0,J>N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L>0,M=<0,M> -L,K*M< -1,N>0,J=<0,J> -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L>0,M=<0,M> -L,K*M< -1,N<0,J>=0,J< -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L<0,M>=0,M< -L,N=0,J=0]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L<0,M>=0,M< -L,K*M=1,J=N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L<0,M>=0,M< -L,K*M= -1,J= -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L<0,M>=0,M< -L,K*M>1,N>0,J>=0,J<N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L<0,M>=0,M< -L,K*M>1,N<0,J=<0,J>N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L<0,M>=0,M< -L,K*M< -1,N>0,J=<0,J> -N]).
+eq(eval_gx_ht_construct_spot_order_bb0_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_11(I,J,K,D,L,F,G,H)],[K< -1,L<0,M>=0,M< -L,K*M< -1,N<0,J>=0,J< -N]).
+eq(eval_gx_ht_construct_spot_order_11(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_12(A,B,C,D,E,F,G,H)],[]).
+eq(eval_gx_ht_construct_spot_order_bb7_in(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_36(A,B,C,D,E,F,G,H)],[]).
+eq(eval_gx_ht_construct_spot_order_36(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_37(A,B,C,D,E,F,G,H)],[]).
+eq(eval_gx_ht_construct_spot_order_37(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_gx_ht_construct_spot_order_12(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,E,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_gx_ht_construct_spot_order_bb1_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_gx_ht_construct_spot_order_12(A,B,C,D,E,F,G,H),1,[eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,E,G,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H),0,[eval_gx_ht_construct_spot_order_bb7_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,F-1,E,F,0,R,S,T,U,V,W,X,Y,Z,A1),loop_cont_eval_gx_ht_construct_spot_order_bb3_in(T,U,V,W,X,Y,Z,A1,I,J,K,L,M,N,O,P,Q)],[S=0,F>0,B1=0,R=0]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,F-1,E,F,0,R,S,T,U,V,W,X,Y,Z,A1),loop_cont_eval_gx_ht_construct_spot_order_bb3_in(T,U,V,W,X,Y,Z,A1,I,J,K,L,M,N,O,P,Q)],[S=0,F>0,C=1,R=0]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,F-1,E,F,0,R,S,T,U,V,W,X,Y,Z,A1),loop_cont_eval_gx_ht_construct_spot_order_bb3_in(T,U,V,W,X,Y,Z,A1,I,J,K,L,M,N,O,P,Q)],[S=0,F>0,C= -1,R=0]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,F-1,E,F,0,R,S,T,U,V,W,X,Y,Z,A1),loop_cont_eval_gx_ht_construct_spot_order_bb3_in(T,U,V,W,X,Y,Z,A1,I,J,K,L,M,N,O,P,Q)],[S=0,F>0,C>1,B1>0,R>=0,R<C]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,F-1,E,F,0,R,S,T,U,V,W,X,Y,Z,A1),loop_cont_eval_gx_ht_construct_spot_order_bb3_in(T,U,V,W,X,Y,Z,A1,I,J,K,L,M,N,O,P,Q)],[S=0,F>0,C>1,B1<0,R=<0,R> -C]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,F-1,E,F,0,R,S,T,U,V,W,X,Y,Z,A1),loop_cont_eval_gx_ht_construct_spot_order_bb3_in(T,U,V,W,X,Y,Z,A1,I,J,K,L,M,N,O,P,Q)],[S=0,F>0,C< -1,B1>0,R>=0,R< -C]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,F-1,E,F,0,R,S,T,U,V,W,X,Y,Z,A1),loop_cont_eval_gx_ht_construct_spot_order_bb3_in(T,U,V,W,X,Y,Z,A1,I,J,K,L,M,N,O,P,Q)],[S=0,F>0,C< -1,B1<0,R=<0,R>C]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G+1,R,I,J,K,L,M,N,O,P,Q)],[G<B,H+C-A=0,R=0]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G+1,R,I,J,K,L,M,N,O,P,Q)],[G<B,C=1,R=0]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G+1,R,I,J,K,L,M,N,O,P,Q)],[G<B,C= -1,R=0]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G+1,R,I,J,K,L,M,N,O,P,Q)],[G<B,C>1,H+C-A>0,R>=0,R<C]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G+1,R,I,J,K,L,M,N,O,P,Q)],[G<B,C>1,H+C-A<0,R=<0,R> -C]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G+1,R,I,J,K,L,M,N,O,P,Q)],[G<B,C< -1,H+C-A>0,R>=0,R< -C]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G+1,R,I,J,K,L,M,N,O,P,Q)],[G<B,C< -1,H+C-A<0,R=<0,R>C]).
+eq(loop_cont_eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),0,[eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,F=<0]).
+eq(eval_gx_ht_construct_spot_order_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),0,[],[I=1,F>=0+1]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,D,G,H),1,[],[I=0,G>=B]).
+eq(eval_gx_ht_construct_spot_order_bb3_in(A,B+1,C,D,E,F,G,H,I,A,B+1,C,D,E,F,G,H),0,[],[I=1,B>=G]).

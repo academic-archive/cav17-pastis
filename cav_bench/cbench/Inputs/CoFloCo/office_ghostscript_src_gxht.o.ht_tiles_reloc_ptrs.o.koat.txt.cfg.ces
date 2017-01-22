@@ -1,0 +1,13 @@
+eq(eval_ht_tiles_reloc_ptrs_start(A,B),1,[eval_ht_tiles_reloc_ptrs_bb0_in(A,B)],[]).
+eq(eval_ht_tiles_reloc_ptrs_bb0_in(A,B),1,[eval_ht_tiles_reloc_ptrs_bb6_in(A,B)],[]).
+eq(eval_ht_tiles_reloc_ptrs_bb0_in(A,B),1,[eval_ht_tiles_reloc_ptrs_0(A,B)],[]).
+eq(eval_ht_tiles_reloc_ptrs_0(A,B),1,[eval_ht_tiles_reloc_ptrs_1(A,B)],[]).
+eq(eval_ht_tiles_reloc_ptrs_1(A,B),1,[eval_ht_tiles_reloc_ptrs_bb6_in(A,B)],[]).
+eq(eval_ht_tiles_reloc_ptrs_bb6_in(A,B),1,[eval_ht_tiles_reloc_ptrs_stop(A,B)],[]).
+eq(eval_ht_tiles_reloc_ptrs_1(A,B),1,[eval_ht_tiles_reloc_ptrs_bb4_in(B,B,C,D,E),loop_cont_eval_ht_tiles_reloc_ptrs_bb4_in(D,E)],[C=0]).
+eq(eval_ht_tiles_reloc_ptrs_1(A,B),1,[eval_ht_tiles_reloc_ptrs_bb4_in(B,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_ht_tiles_reloc_ptrs_bb4_in(A,B),0,[eval_ht_tiles_reloc_ptrs_bb6_in(A,B)],[]).
+eq(eval_ht_tiles_reloc_ptrs_bb4_in(A,B,C,D,E),1,[eval_ht_tiles_reloc_ptrs_bb4_in(A-48,B,C,D,E)],[A<0]).
+eq(eval_ht_tiles_reloc_ptrs_bb4_in(A,B,C,D,E),1,[eval_ht_tiles_reloc_ptrs_bb4_in(A-48,B,C,D,E)],[A>0]).
+eq(eval_ht_tiles_reloc_ptrs_bb4_in(A,B,C,A,B),1,[],[C=0,A=0]).
+eq(eval_ht_tiles_reloc_ptrs_bb4_in(A,B,C,A,B),0,[],[C=1]).

@@ -1,0 +1,16 @@
+eq(eval_stack_param_read_start(A,B,C,D),1,[eval_stack_param_read_bb0_in(A,B,C,D)],[]).
+eq(eval_stack_param_read_11(A,B,C,D),1,[eval_stack_param_read_12(A,B,C,D)],[]).
+eq(eval_stack_param_read_12(A,B,C,D),1,[eval_stack_param_read_bb6_in(A,B,C,D)],[]).
+eq(eval_stack_param_read_bb6_in(A,B,C,D),1,[eval_stack_param_read_stop(A,B,C,D)],[]).
+eq(eval_stack_param_read_bb0_in(A,B,C,D),1,[eval_stack_param_read_bb1_in(A,B,E,F+1,G,H,I,J,K),loop_cont_eval_stack_param_read_bb1_in(H,I,J,K)],[G=0]).
+eq(eval_stack_param_read_bb0_in(A,B,C,D),1,[eval_stack_param_read_bb1_in(A,B,E,F+1,G,H,I,J,K)],[G=1]).
+eq(loop_cont_eval_stack_param_read_bb1_in(A,B,C,D),0,[eval_stack_param_read_11(A,B,C,D)],[]).
+eq(loop_cont_eval_stack_param_read_bb1_in(A,B,C,D),0,[eval_stack_param_read_bb6_in(A,B,C,D)],[]).
+eq(eval_stack_param_read_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_stack_param_read_5(D,B,C,D,E,F,G,H,I)],[C<0]).
+eq(eval_stack_param_read_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_stack_param_read_5(D,B,C,D,E,F,G,H,I)],[C>0]).
+eq(eval_stack_param_read_5(A,B,C,D,E,F,G,H,I),1,[eval_stack_param_read_6(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_stack_param_read_6(A,B,C,D,E,F,G,H,I),1,[eval_stack_param_read_bb5_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_stack_param_read_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_stack_param_read_bb1_in(A,B,C-1,D+2,E,F,G,H,I)],[]).
+eq(eval_stack_param_read_6(A,B,C,D,E,A,D-1,C,D),1,[],[E=0]).
+eq(eval_stack_param_read_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,C=0]).
+eq(eval_stack_param_read_bb1_in(A,B,C,D,E,A,B,C,D),0,[],[E=1]).

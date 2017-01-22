@@ -1,0 +1,7 @@
+eq(eval_Luv24toXYZ_start(A,B,C,D),1,[eval_Luv24toXYZ_bb0_in(A,B,C,D)],[]).
+eq(eval_Luv24toXYZ_bb0_in(A,B,C,D),1,[eval_Luv24toXYZ_bb1_in(D,B,C,D,E,F,G,H,I),loop_cont_eval_Luv24toXYZ_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_Luv24toXYZ_bb0_in(A,B,C,D),1,[eval_Luv24toXYZ_bb1_in(D,B,C,D,E,F,G,H,I)],[E=1]).
+eq(eval_Luv24toXYZ_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_Luv24toXYZ_3(A,A-1,J,D,E,F,G,H,I)],[A>0]).
+eq(eval_Luv24toXYZ_3(A,B,C,D,E,F,G,H,I),1,[eval_Luv24toXYZ_4(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_Luv24toXYZ_4(A,B,C,D,E,F,G,H,I),1,[eval_Luv24toXYZ_bb1_in(B,B,C,D,E,F,G,H,I)],[]).
+eq(eval_Luv24toXYZ_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,A=<0]).

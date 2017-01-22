@@ -1,0 +1,7 @@
+eq(eval_cpTags_start(A,B,C),1,[eval_cpTags_bb0_in(A,B,C)],[]).
+eq(eval_cpTags_bb0_in(A,B,C),1,[eval_cpTags_bb1_in(A,B,C,D,E,F,G),loop_cont_eval_cpTags_bb1_in(E,F,G)],[D=0]).
+eq(eval_cpTags_bb0_in(A,B,C),1,[eval_cpTags_bb1_in(A,B,C,D,E,F,G)],[D=1]).
+eq(eval_cpTags_bb1_in(A,B,C,D,E,F,G),1,[eval_cpTags_3(H,I,J,D,E,F,G)],[]).
+eq(eval_cpTags_3(A,B,C,D,E,F,G),1,[eval_cpTags_4(A,B,C,D,E,F,G)],[]).
+eq(eval_cpTags_4(A,B,C,D,E,F,G),1,[eval_cpTags_bb1_in(A,B,C,D,E,F,G)],[]).
+eq(eval_cpTags_bb1_in(A,B,C,D,A,B,C),1,[],[D=1]).

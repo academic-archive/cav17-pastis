@@ -1,0 +1,15 @@
+eq(eval_set_wraparound_pointers_start(A,B,C),1,[eval_set_wraparound_pointers_bb0_in(A,B,C)],[]).
+eq(eval_set_wraparound_pointers_bb0_in(A,B,C),1,[eval_set_wraparound_pointers_bb1_in(A,0,C,D,E,F,G),loop_cont_eval_set_wraparound_pointers_bb1_in(E,F,G)],[D=0]).
+eq(eval_set_wraparound_pointers_bb0_in(A,B,C),1,[eval_set_wraparound_pointers_bb1_in(A,0,C,D,E,F,G)],[D=1]).
+eq(eval_set_wraparound_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_wraparound_pointers_bb3_in(H,B,0,I,J,K,L),loop_cont_eval_set_wraparound_pointers_bb3_in(J,K,L,D,E,F,G)],[I=0,B<M,N*O=0,H=0]).
+eq(eval_set_wraparound_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_wraparound_pointers_bb3_in(H,B,0,I,J,K,L),loop_cont_eval_set_wraparound_pointers_bb3_in(J,K,L,D,E,F,G)],[I=0,B<M,N=1,H=O*P]).
+eq(eval_set_wraparound_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_wraparound_pointers_bb3_in(H,B,0,I,J,K,L),loop_cont_eval_set_wraparound_pointers_bb3_in(J,K,L,D,E,F,G)],[I=0,B<M,N= -1,H= -O*P]).
+eq(eval_set_wraparound_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_wraparound_pointers_bb3_in(H,B,0,I,J,K,L),loop_cont_eval_set_wraparound_pointers_bb3_in(J,K,L,D,E,F,G)],[I=0,B<M,N>1,O*P>0,H>=0,H<O*P]).
+eq(eval_set_wraparound_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_wraparound_pointers_bb3_in(H,B,0,I,J,K,L),loop_cont_eval_set_wraparound_pointers_bb3_in(J,K,L,D,E,F,G)],[I=0,B<M,N>1,O*P<0,H=<0,H>O*P]).
+eq(eval_set_wraparound_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_wraparound_pointers_bb3_in(H,B,0,I,J,K,L),loop_cont_eval_set_wraparound_pointers_bb3_in(J,K,L,D,E,F,G)],[I=0,B<M,N< -1,O*P>0,H=<0,H> -O*P]).
+eq(eval_set_wraparound_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_wraparound_pointers_bb3_in(H,B,0,I,J,K,L),loop_cont_eval_set_wraparound_pointers_bb3_in(J,K,L,D,E,F,G)],[I=0,B<M,N< -1,O*P<0,H>=0,H< -O*P]).
+eq(eval_set_wraparound_pointers_bb3_in(A,B,C,D,E,F,G),1,[eval_set_wraparound_pointers_bb3_in(A,B,C+1,D,E,F,G)],[C<A]).
+eq(loop_cont_eval_set_wraparound_pointers_bb3_in(A,B,C,D,E,F,G),0,[eval_set_wraparound_pointers_bb1_in(A,B,C,D,E,F,G)],[]).
+eq(eval_set_wraparound_pointers_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,B>=E]).
+eq(eval_set_wraparound_pointers_bb3_in(A,B,C,D,A,B+1,C),1,[],[D=0,C>=A]).
+eq(eval_set_wraparound_pointers_bb3_in(A+1,B,C,D,A+1,B,C),0,[],[D=1,A>=C]).

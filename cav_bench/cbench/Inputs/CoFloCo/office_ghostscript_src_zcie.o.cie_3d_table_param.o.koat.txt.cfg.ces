@@ -1,0 +1,17 @@
+eq(eval_cie_3d_table_param_start(A,B,C),1,[eval_cie_3d_table_param_bb0_in(A,B,C)],[]).
+eq(eval_cie_3d_table_param_bb0_in(A,B,C),1,[eval_cie_3d_table_param_bb11_in(A,B,C)],[]).
+eq(eval_cie_3d_table_param_bb0_in(A,B,C),1,[eval_cie_3d_table_param_30(A,B,C)],[]).
+eq(eval_cie_3d_table_param_25(A,B,C),1,[eval_cie_3d_table_param_26(A,B,C)],[]).
+eq(eval_cie_3d_table_param_26(A,B,C),1,[eval_cie_3d_table_param_bb11_in(A,B,C)],[]).
+eq(eval_cie_3d_table_param_30(A,B,C),1,[eval_cie_3d_table_param_31(A,B,C)],[]).
+eq(eval_cie_3d_table_param_31(A,B,C),1,[eval_cie_3d_table_param_bb11_in(A,B,C)],[]).
+eq(eval_cie_3d_table_param_bb11_in(A,B,C),1,[eval_cie_3d_table_param_stop(A,B,C)],[]).
+eq(eval_cie_3d_table_param_bb0_in(A,B,C),1,[eval_cie_3d_table_param_bb3_in(A,0,C,D,E,F,G),loop_cont_eval_cie_3d_table_param_bb3_in(E,F,G)],[D=0]).
+eq(eval_cie_3d_table_param_bb0_in(A,B,C),1,[eval_cie_3d_table_param_bb3_in(A,0,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_cie_3d_table_param_bb3_in(A,B,C),0,[eval_cie_3d_table_param_bb11_in(A,B,C)],[]).
+eq(loop_cont_eval_cie_3d_table_param_bb3_in(A,B,C),0,[eval_cie_3d_table_param_25(A,B,C)],[]).
+eq(eval_cie_3d_table_param_bb3_in(A,B,C,D,E,F,G),1,[eval_cie_3d_table_param_bb3_in(A,B+1,C,D,E,F,G)],[B<A]).
+eq(eval_cie_3d_table_param_bb3_in(A,B,C,D,A,B,C),1,[],[D=0,B<A]).
+eq(eval_cie_3d_table_param_bb3_in(A,B,C,D,A,B,C),0,[],[D=1]).
+eq(eval_cie_3d_table_param_bb3_in(A,B,C,D,A,B,C),1,[],[D=0,B>=A]).
+eq(eval_cie_3d_table_param_bb3_in(A+1,B,C,D,A+1,B,C),0,[],[D=1,A>=B]).

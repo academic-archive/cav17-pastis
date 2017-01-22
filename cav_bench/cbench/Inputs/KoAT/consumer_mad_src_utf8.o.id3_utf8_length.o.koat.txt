@@ -1,0 +1,20 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_id3_utf8_length_start))
+(VAR nondef.0)
+(RULES
+  eval_id3_utf8_length_start() -> Com_1(eval_id3_utf8_length_bb0_in())
+  eval_id3_utf8_length_bb0_in() -> Com_1(eval_id3_utf8_length_bb1_in())
+  eval_id3_utf8_length_bb1_in() -> Com_1(eval_id3_utf8_length_bb29_in()) :|: nondef.0 < 0
+  eval_id3_utf8_length_bb1_in() -> Com_1(eval_id3_utf8_length_bb29_in()) :|: nondef.0 > 0
+  eval_id3_utf8_length_bb1_in() -> Com_1(eval_id3_utf8_length_bb7_in()) :|: nondef.0 < 0
+  eval_id3_utf8_length_bb1_in() -> Com_1(eval_id3_utf8_length_bb7_in()) :|: nondef.0 > 0
+  eval_id3_utf8_length_bb1_in() -> Com_1(eval_id3_utf8_length_stop()) :|: nondef.0 = 0
+  eval_id3_utf8_length_bb7_in() -> Com_1(eval_id3_utf8_length_bb29_in())
+  eval_id3_utf8_length_bb7_in() -> Com_1(eval_id3_utf8_length_bb11_in())
+  eval_id3_utf8_length_bb11_in() -> Com_1(eval_id3_utf8_length_bb29_in())
+  eval_id3_utf8_length_bb11_in() -> Com_1(eval_id3_utf8_length_bb16_in())
+  eval_id3_utf8_length_bb16_in() -> Com_1(eval_id3_utf8_length_bb29_in())
+  eval_id3_utf8_length_bb16_in() -> Com_1(eval_id3_utf8_length_bb22_in())
+  eval_id3_utf8_length_bb22_in() -> Com_1(eval_id3_utf8_length_bb29_in())
+  eval_id3_utf8_length_bb29_in() -> Com_1(eval_id3_utf8_length_bb1_in())
+)

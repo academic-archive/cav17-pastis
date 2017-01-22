@@ -1,0 +1,7 @@
+eq(eval_huft_free_start,1,[eval_huft_free_bb0_in],[]).
+eq(eval_huft_free_bb0_in,1,[eval_huft_free_bb1_in(A),loop_cont_eval_huft_free_bb1_in],[A=0]).
+eq(eval_huft_free_bb0_in,1,[eval_huft_free_bb1_in(A)],[A=1]).
+eq(eval_huft_free_bb1_in(A),1,[eval_huft_free_0(A)],[]).
+eq(eval_huft_free_0(A),1,[eval_huft_free_1(A)],[]).
+eq(eval_huft_free_1(A),1,[eval_huft_free_bb1_in(A)],[]).
+eq(eval_huft_free_bb1_in(A),1,[],[A=1]).

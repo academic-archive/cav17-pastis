@@ -1,0 +1,12 @@
+eq(eval_jinit_forward_dct_start(A),1,[eval_jinit_forward_dct_bb0_in(A)],[]).
+eq(eval_jinit_forward_dct_bb0_in(A),1,[eval_jinit_forward_dct_0(A)],[]).
+eq(eval_jinit_forward_dct_0(A),1,[eval_jinit_forward_dct_1(A)],[]).
+eq(eval_jinit_forward_dct_1(A),1,[eval_jinit_forward_dct_bb5_in(A)],[]).
+eq(eval_jinit_forward_dct_1(A),1,[eval_jinit_forward_dct_NewDefault_in(A)],[]).
+eq(eval_jinit_forward_dct_NewDefault_in(A),1,[eval_jinit_forward_dct_15(A)],[]).
+eq(eval_jinit_forward_dct_15(A),1,[eval_jinit_forward_dct_16(A)],[]).
+eq(eval_jinit_forward_dct_16(A),1,[eval_jinit_forward_dct_bb5_in(A)],[]).
+eq(eval_jinit_forward_dct_bb5_in(A),1,[eval_jinit_forward_dct_bb6_in(0,B,C),loop_cont_eval_jinit_forward_dct_bb6_in(C)],[B=0]).
+eq(eval_jinit_forward_dct_bb5_in(A),1,[eval_jinit_forward_dct_bb6_in(0,B,C)],[B=1]).
+eq(eval_jinit_forward_dct_bb6_in(A,B,C),1,[eval_jinit_forward_dct_bb6_in(A+1,B,C)],[A<4]).
+eq(eval_jinit_forward_dct_bb6_in(A,B,A),1,[],[B=1,A>=4]).

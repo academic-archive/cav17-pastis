@@ -1,0 +1,12 @@
+eq(eval_main1_start(A,B,C,D,E,F,G,H),1,[eval_main1_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_main1_bb0_in(A,B,C,D,E,F,G,H),1,[eval_main1_bb1_in(F,B,C,D,E,F,0,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_main1_bb1_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_main1_bb0_in(A,B,C,D,E,F,G,H),1,[eval_main1_bb1_in(F,B,C,D,E,F,0,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(eval_main1_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_main1_2(A,A-1,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[A-1>0]).
+eq(eval_main1_2(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_main1_3(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_main1_3(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_main1_7(A,B,R,S,T,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_main1_3(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_main1_bb1_in(B,B,C,D,E,F,R,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_main1_7(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_main1_8(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_main1_8(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_main1_bb1_in(B,B,C,D,E,F,C,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_main1_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=1,A-1=<0,G=0]).
+eq(eval_main1_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=1,A-1=<0,G<0]).
+eq(eval_main1_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=1,A-1=<0,G>0]).

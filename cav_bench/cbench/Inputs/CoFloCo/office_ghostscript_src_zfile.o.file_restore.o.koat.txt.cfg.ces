@@ -1,0 +1,11 @@
+eq(eval_file_restore_start,1,[eval_file_restore_bb0_in],[]).
+eq(eval_file_restore_bb7_in,1,[eval_file_restore_stop],[]).
+eq(eval_file_restore_bb0_in,1,[eval_file_restore_bb1_in(A),loop_cont_eval_file_restore_bb1_in],[A=0]).
+eq(eval_file_restore_bb0_in,1,[eval_file_restore_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_file_restore_bb1_in,0,[eval_file_restore_bb7_in],[]).
+eq(eval_file_restore_bb1_in(A),1,[eval_file_restore_bb1_in(A)],[B<0]).
+eq(eval_file_restore_bb1_in(A),1,[eval_file_restore_bb1_in(A)],[B>0]).
+eq(eval_file_restore_bb1_in(A),1,[],[A=0,B=0]).
+eq(eval_file_restore_bb1_in(A),0,[],[A=1]).
+eq(eval_file_restore_bb1_in(A),1,[],[A=0,B<0]).
+eq(eval_file_restore_bb1_in(A),1,[],[A=0,B>0]).

@@ -1,0 +1,15 @@
+eq(eval_jpeg_add_quant_table_start(A,B,C,D,E),1,[eval_jpeg_add_quant_table_bb0_in(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_bb0_in(A,B,C,D,E),1,[eval_jpeg_add_quant_table_6(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_bb0_in(A,B,C,D,E),1,[eval_jpeg_add_quant_table_bb2_in(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_6(A,B,C,D,E),1,[eval_jpeg_add_quant_table_7(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_7(A,B,C,D,E),1,[eval_jpeg_add_quant_table_bb2_in(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_bb2_in(A,B,C,D,E),1,[eval_jpeg_add_quant_table_8(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_bb2_in(A,B,C,D,E),1,[eval_jpeg_add_quant_table_bb4_in(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_8(A,B,C,D,E),1,[eval_jpeg_add_quant_table_9(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_9(A,B,C,D,E),1,[eval_jpeg_add_quant_table_bb4_in(A,B,C,D,E)],[]).
+eq(eval_jpeg_add_quant_table_bb4_in(A,B,C,D,E),1,[eval_jpeg_add_quant_table_bb5_in(D,B,0,D,E,F,G,H,I,J,K),loop_cont_eval_jpeg_add_quant_table_bb5_in(G,H,I,J,K)],[F=0]).
+eq(eval_jpeg_add_quant_table_bb4_in(A,B,C,D,E),1,[eval_jpeg_add_quant_table_bb5_in(D,B,0,D,E,F,G,H,I,J,K)],[F=1]).
+eq(eval_jpeg_add_quant_table_bb5_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_jpeg_add_quant_table_bb5_in(A,B,C+1,D,E,F,G,H,I,J,K)],[C<64,L*A+50=0,M=0]).
+eq(eval_jpeg_add_quant_table_bb5_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_jpeg_add_quant_table_bb5_in(A,B,C+1,D,E,F,G,H,I,J,K)],[C<64,L*A+50>0,M>=0,M<L*A+50]).
+eq(eval_jpeg_add_quant_table_bb5_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_jpeg_add_quant_table_bb5_in(A,B,C+1,D,E,F,G,H,I,J,K)],[C<64,L*A+50<0,M=<0,M>L*A+50]).
+eq(eval_jpeg_add_quant_table_bb5_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,C>=64]).

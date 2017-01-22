@@ -1,0 +1,14 @@
+eq(eval_gx_install_CIEA_start(A),1,[eval_gx_install_CIEA_bb0_in(A)],[]).
+eq(eval_gx_install_CIEA_bb0_in(A),1,[eval_gx_install_CIEA_0(A)],[]).
+eq(eval_gx_install_CIEA_0(A),1,[eval_gx_install_CIEA_1(A)],[]).
+eq(eval_gx_install_CIEA_7(A),1,[eval_gx_install_CIEA_8(A)],[]).
+eq(eval_gx_install_CIEA_8(A),1,[eval_gx_install_CIEA_9(A)],[]).
+eq(eval_gx_install_CIEA_9(A),1,[eval_gx_install_CIEA_stop(A)],[]).
+eq(eval_gx_install_CIEA_1(A),1,[eval_gx_install_CIEA_bb1_in(0,B,C),loop_cont_eval_gx_install_CIEA_bb1_in(C)],[B=0]).
+eq(eval_gx_install_CIEA_1(A),1,[eval_gx_install_CIEA_bb1_in(0,B,C)],[B=1]).
+eq(loop_cont_eval_gx_install_CIEA_bb1_in(A),0,[eval_gx_install_CIEA_7(A)],[]).
+eq(eval_gx_install_CIEA_bb1_in(A,B,C),1,[eval_gx_install_CIEA_2(A,B,C)],[A<512]).
+eq(eval_gx_install_CIEA_2(A,B,C),1,[eval_gx_install_CIEA_3(A,B,C)],[]).
+eq(eval_gx_install_CIEA_3(A,B,C),1,[eval_gx_install_CIEA_bb1_in(A+1,B,C)],[]).
+eq(eval_gx_install_CIEA_bb1_in(A,B,A),1,[],[B=0,A>=512]).
+eq(eval_gx_install_CIEA_bb1_in(A,B,A),0,[],[B=1,512>=A+1]).

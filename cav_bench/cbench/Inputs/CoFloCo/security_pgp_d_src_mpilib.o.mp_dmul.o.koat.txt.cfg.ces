@@ -1,0 +1,13 @@
+eq(eval_mp_dmul_start(A,B,C,D,E),1,[eval_mp_dmul_bb0_in(A,B,C,D,E)],[]).
+eq(eval_mp_dmul_bb0_in(A,B,C,D,E),1,[eval_mp_dmul_5(A,B,C,F,E)],[]).
+eq(eval_mp_dmul_5(A,B,C,D,E),1,[eval_mp_dmul_6(A,B,C,D,E)],[]).
+eq(eval_mp_dmul_6(A,B,C,D,E),1,[eval_mp_dmul_bb1_in(A,F,C,D,0,G,H,I,J,K,L),loop_cont_eval_mp_dmul_bb1_in(H,I,J,K,L)],[G=0,16*A=0,F=0]).
+eq(eval_mp_dmul_6(A,B,C,D,E),1,[eval_mp_dmul_bb1_in(A,F,C,D,0,G,H,I,J,K,L)],[G=1,16*A=0,F=0]).
+eq(eval_mp_dmul_6(A,B,C,D,E),1,[eval_mp_dmul_bb1_in(A,F,C,D,0,G,H,I,J,K,L),loop_cont_eval_mp_dmul_bb1_in(H,I,J,K,L)],[G=0,16*A>0,F>=0,F<16*A]).
+eq(eval_mp_dmul_6(A,B,C,D,E),1,[eval_mp_dmul_bb1_in(A,F,C,D,0,G,H,I,J,K,L)],[G=1,16*A>0,F>=0,F<16*A]).
+eq(eval_mp_dmul_6(A,B,C,D,E),1,[eval_mp_dmul_bb1_in(A,F,C,D,0,G,H,I,J,K,L),loop_cont_eval_mp_dmul_bb1_in(H,I,J,K,L)],[G=0,16*A<0,F=<0,F>16*A]).
+eq(eval_mp_dmul_6(A,B,C,D,E),1,[eval_mp_dmul_bb1_in(A,F,C,D,0,G,H,I,J,K,L)],[G=1,16*A<0,F=<0,F>16*A]).
+eq(eval_mp_dmul_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_mp_dmul_17(A,B,L,D,E,F,G,H,I,J,K)],[E<B]).
+eq(eval_mp_dmul_17(A,B,C,D,E,F,G,H,I,J,K),1,[eval_mp_dmul_18(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_mp_dmul_18(A,B,C,D,E,F,G,H,I,J,K),1,[eval_mp_dmul_bb1_in(A,B,C,D,E+1,F,G,H,I,J,K)],[]).
+eq(eval_mp_dmul_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,E>=B]).

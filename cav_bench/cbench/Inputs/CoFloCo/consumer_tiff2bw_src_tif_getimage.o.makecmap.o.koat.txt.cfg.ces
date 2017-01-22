@@ -1,0 +1,20 @@
+eq(eval_makecmap_start(A,B),1,[eval_makecmap_bb0_in(A,B)],[]).
+eq(eval_makecmap_bb0_in(A,B),1,[eval_makecmap_8(1024*C+2048,B)],[D=1,C=8]).
+eq(eval_makecmap_bb0_in(A,B),1,[eval_makecmap_8(1024*C+2048,B)],[D= -1,C= -8]).
+eq(eval_makecmap_bb0_in(A,B),1,[eval_makecmap_8(1024*C+2048,B)],[D>1,C>=0,C<8]).
+eq(eval_makecmap_bb0_in(A,B),1,[eval_makecmap_8(1024*C+2048,B)],[D< -1,C=<0,C> -8]).
+eq(eval_makecmap_8(A,B),1,[eval_makecmap_9(A,B)],[]).
+eq(eval_makecmap_9(A,B),1,[eval_makecmap_11(A,B)],[]).
+eq(eval_makecmap_11(A,B),1,[eval_makecmap_12(A,B)],[]).
+eq(eval_makecmap_12(A,B),1,[eval_makecmap_13(A,B)],[]).
+eq(eval_makecmap_13(A,B),1,[eval_makecmap_bb10_in(A,B)],[]).
+eq(eval_makecmap_bb10_in(A,B),1,[eval_makecmap_stop(A,B)],[]).
+eq(eval_makecmap_9(A,B),1,[eval_makecmap_bb3_in(A,0,C,D,E),loop_cont_eval_makecmap_bb3_in(D,E)],[C=0]).
+eq(eval_makecmap_9(A,B),1,[eval_makecmap_bb3_in(A,0,C,D,E)],[C=1]).
+eq(loop_cont_eval_makecmap_bb3_in(A,B),0,[eval_makecmap_bb10_in(A,B)],[]).
+eq(eval_makecmap_bb3_in(A,B,C,D,E),1,[eval_makecmap_bb9_in(A,B,C,D,E)],[B<256]).
+eq(eval_makecmap_bb3_in(A,B,C,D,E),1,[eval_makecmap_NewDefault_in(A,B,C,D,E)],[B<256]).
+eq(eval_makecmap_bb9_in(A,B,C,D,E),1,[eval_makecmap_bb3_in(A,B+1,C,D,E)],[]).
+eq(eval_makecmap_NewDefault_in(A,B,C,D,E),1,[eval_makecmap_bb9_in(A,B,C,D,E)],[]).
+eq(eval_makecmap_bb3_in(A,B,C,A,B),1,[],[C=0,B>=256]).
+eq(eval_makecmap_bb3_in(A,B,C,A,B),0,[],[C=1,256>=B+1]).

@@ -1,0 +1,16 @@
+eq(eval_write_matrix_start(A),1,[eval_write_matrix_bb0_in(A)],[]).
+eq(eval_write_matrix_bb0_in(A),1,[eval_write_matrix_bb9_in(A)],[]).
+eq(eval_write_matrix_bb0_in(A),1,[eval_write_matrix_25(A)],[]).
+eq(eval_write_matrix_25(A),1,[eval_write_matrix_26(A)],[]).
+eq(eval_write_matrix_26(A),1,[eval_write_matrix_bb9_in(A)],[]).
+eq(eval_write_matrix_bb9_in(A),1,[eval_write_matrix_stop(A)],[]).
+eq(eval_write_matrix_bb0_in(A),1,[eval_write_matrix_bb3_in(5,B,C),loop_cont_eval_write_matrix_bb3_in(C)],[B=0]).
+eq(eval_write_matrix_bb0_in(A),1,[eval_write_matrix_bb3_in(5,B,C)],[B=1]).
+eq(loop_cont_eval_write_matrix_bb3_in(A),0,[eval_write_matrix_bb9_in(A)],[]).
+eq(eval_write_matrix_bb3_in(A,B,C),1,[eval_write_matrix_12(A,B,C)],[A>=0]).
+eq(eval_write_matrix_bb3_in(A,B,C),1,[eval_write_matrix_bb6_in(A,B,C)],[A>=0]).
+eq(eval_write_matrix_12(A,B,C),1,[eval_write_matrix_13(A,B,C)],[]).
+eq(eval_write_matrix_bb6_in(A,B,C),1,[eval_write_matrix_bb3_in(A-1,B,C)],[]).
+eq(eval_write_matrix_13(A,B,C),1,[eval_write_matrix_bb6_in(A,B,C)],[]).
+eq(eval_write_matrix_bb3_in(A,B,A),1,[],[B=0,A<0]).
+eq(eval_write_matrix_bb3_in(A,B,A),0,[],[B=1]).

@@ -1,0 +1,80 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_gc_trace_start))
+(VAR nondef.13 nondef.23 nondef.47 v_130 v_240)
+(RULES
+  eval_gc_trace_start(v_130, v_240) -> Com_1(eval_gc_trace_bb0_in(v_130, v_240))
+  eval_gc_trace_bb0_in(v_130, v_240) -> Com_1(eval_gc_trace_bb7_in(v_130, v_240))
+  eval_gc_trace_bb0_in(v_130, v_240) -> Com_1(eval_gc_trace_bb4_in(v_130, v_240))
+  eval_gc_trace_bb0_in(v_130, v_240) -> Com_1(eval_gc_trace_13(v_130, v_240))
+  eval_gc_trace_13(v_130, v_240) -> Com_1(eval_gc_trace_14(v_130, v_240))
+  eval_gc_trace_14(v_130, v_240) -> Com_1(eval_gc_trace_bb4_in(v_130, v_240))
+  eval_gc_trace_bb4_in(v_130, v_240) -> Com_1(eval_gc_trace_bb20_in(v_130, v_240))
+  eval_gc_trace_bb4_in(v_130, v_240) -> Com_1(eval_gc_trace_bb5_in(v_130, v_240))
+  eval_gc_trace_bb5_in(v_130, v_240) -> Com_1(eval_gc_trace_bb7_in(v_130, v_240))
+  eval_gc_trace_bb5_in(v_130, v_240) -> Com_1(eval_gc_trace_bb4_in(v_130, v_240))
+  eval_gc_trace_bb5_in(v_130, v_240) -> Com_1(eval_gc_trace_bb10_in(v_130, v_240))
+  eval_gc_trace_bb7_in(v_130, v_240) -> Com_1(eval_gc_trace_stop(v_130, v_240))
+  eval_gc_trace_bb10_in(v_130, v_240) -> Com_1(eval_gc_trace_bb12_in(v_130, v_240))
+  eval_gc_trace_bb10_in(v_130, v_240) -> Com_1(eval_gc_trace_24(v_130, v_240))
+  eval_gc_trace_24(v_130, v_240) -> Com_1(eval_gc_trace_25(v_130, v_240))
+  eval_gc_trace_25(v_130, v_240) -> Com_1(eval_gc_trace_bb12_in(v_130, v_240))
+  eval_gc_trace_25(v_130, v_240) -> Com_1(eval_gc_trace_bb49_in(v_130, v_240))
+  eval_gc_trace_25(v_130, v_240) -> Com_1(eval_gc_trace_33(v_130, v_240))
+  eval_gc_trace_25(v_130, v_240) -> Com_1(eval_gc_trace_bb20_in(v_130, v_240))
+  eval_gc_trace_25(v_130, v_240) -> Com_1(eval_gc_trace_168(v_130, v_240))
+  eval_gc_trace_bb12_in(v_130, v_240) -> Com_1(eval_gc_trace_bb4_in(v_130, v_240))
+  eval_gc_trace_33(v_130, v_240) -> Com_2(eval_ptr_struct_mark_start(v_130, v_240), eval_gc_trace_34(v_130, v_240))
+  eval_gc_trace_34(v_130, v_240) -> Com_1(eval_gc_trace_bb5_in(v_130, v_240))
+  eval_gc_trace_34(v_130, v_240) -> Com_1(eval_gc_trace_bb10_in(v_130, v_240))
+  eval_gc_trace_bb20_in(v_130, v_240) -> Com_1(eval_gc_trace_bb21_in(v_130, v_240))
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb27_in(v_130, v_240)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb27_in(v_130, v_240)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_68(nondef.23, v_240)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_68(nondef.23, v_240)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb21_in(v_130, v_240)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb21_in(v_130, v_240)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb48_in(v_130, v_240)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb48_in(v_130, v_240)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_NewDefault_in(v_130, v_240)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_NewDefault_in(v_130, v_240)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb44_in(v_130, v_240)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb44_in(v_130, v_240)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb37_in(v_130, v_240)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb37_in(v_130, v_240)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb58_in(v_130, v_240)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb58_in(v_130, v_240)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_130(v_130, nondef.47)) :|: nondef.13 < 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_130(v_130, nondef.47)) :|: nondef.13 > 0
+  eval_gc_trace_bb21_in(v_130, v_240) -> Com_1(eval_gc_trace_bb4_in(v_130, v_240)) :|: nondef.13 = 0
+  eval_gc_trace_68(v_130, v_240) -> Com_2(eval_name_index_ptr_start(v_130, v_240), eval_gc_trace_69(v_130, v_240))
+  eval_gc_trace_69(v_130, v_240) -> Com_1(eval_gc_trace_bb27_in(v_130, v_240))
+  eval_gc_trace_bb27_in(v_130, v_240) -> Com_1(eval_gc_trace_bb21_in(v_130, v_240))
+  eval_gc_trace_bb37_in(v_130, v_240) -> Com_1(eval_gc_trace_bb58_in(v_130, v_240))
+  eval_gc_trace_bb37_in(v_130, v_240) -> Com_1(eval_gc_trace_bb48_in(v_130, v_240))
+  eval_gc_trace_130(v_130, v_240) -> Com_2(eval_gc_string_mark_start(v_130, v_240), eval_gc_trace_131(v_130, v_240))
+  eval_gc_trace_131(v_130, v_240) -> Com_1(eval_gc_trace_bb58_in(v_130, v_240))
+  eval_gc_trace_bb44_in(v_130, v_240) -> Com_1(eval_gc_trace_bb49_in(v_130, v_240))
+  eval_gc_trace_bb44_in(v_130, v_240) -> Com_1(eval_gc_trace_139(v_130, v_240))
+  eval_gc_trace_139(v_130, v_240) -> Com_2(eval_ptr_struct_mark_start(v_130, v_240), eval_gc_trace_140(v_130, v_240))
+  eval_gc_trace_140(v_130, v_240) -> Com_1(eval_gc_trace_bb5_in(v_130, v_240))
+  eval_gc_trace_140(v_130, v_240) -> Com_1(eval_gc_trace_bb58_in(v_130, v_240))
+  eval_gc_trace_bb48_in(v_130, v_240) -> Com_1(eval_gc_trace_bb49_in(v_130, v_240))
+  eval_gc_trace_bb48_in(v_130, v_240) -> Com_1(eval_gc_trace_bb20_in(v_130, v_240))
+  eval_gc_trace_bb49_in(v_130, v_240) -> Com_1(eval_gc_trace_149(v_130, v_240))
+  eval_gc_trace_bb49_in(v_130, v_240) -> Com_1(eval_gc_trace_bb53_in(v_130, v_240))
+  eval_gc_trace_149(v_130, v_240) -> Com_2(eval_gc_extend_stack_start(v_130, v_240), eval_gc_trace_150(v_130, v_240))
+  eval_gc_trace_150(v_130, v_240) -> Com_1(eval_gc_trace_bb4_in(v_130, v_240))
+  eval_gc_trace_150(v_130, v_240) -> Com_1(eval_gc_trace_155(v_130, v_240))
+  eval_gc_trace_155(v_130, v_240) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_130, v_240), eval_gc_trace_156(v_130, v_240))
+  eval_gc_trace_156(v_130, v_240) -> Com_1(eval_gc_trace_bb53_in(v_130, v_240))
+  eval_gc_trace_bb53_in(v_130, v_240) -> Com_1(eval_gc_trace_bb56_in(v_130, v_240))
+  eval_gc_trace_bb53_in(v_130, v_240) -> Com_1(eval_gc_trace_159(v_130, v_240))
+  eval_gc_trace_159(v_130, v_240) -> Com_1(eval_gc_trace_160(v_130, v_240))
+  eval_gc_trace_160(v_130, v_240) -> Com_1(eval_gc_trace_bb56_in(v_130, v_240))
+  eval_gc_trace_160(v_130, v_240) -> Com_1(eval_gc_trace_bb4_in(v_130, v_240))
+  eval_gc_trace_bb56_in(v_130, v_240) -> Com_1(eval_gc_trace_bb4_in(v_130, v_240))
+  eval_gc_trace_NewDefault_in(v_130, v_240) -> Com_1(eval_gc_trace_bb58_in(v_130, v_240))
+  eval_gc_trace_bb58_in(v_130, v_240) -> Com_1(eval_gc_trace_bb21_in(v_130, v_240))
+  eval_gc_trace_168(v_130, v_240) -> Com_1(eval_gc_trace_169(v_130, v_240))
+  eval_gc_trace_169(v_130, v_240) -> Com_1(eval_gc_trace_bb10_in(v_130, v_240))
+)

@@ -1,0 +1,13 @@
+eq(eval_gs_type1_state_reloc_ptrs_start(A,B),1,[eval_gs_type1_state_reloc_ptrs_bb0_in(A,B)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_bb0_in(A,B),1,[eval_gs_type1_state_reloc_ptrs_0(A,B)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_0(A,B),1,[eval_gs_type1_state_reloc_ptrs_1(A,B)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_1(A,B),1,[eval_gs_type1_state_reloc_ptrs_2(A,B)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_2(A,B),1,[eval_gs_type1_state_reloc_ptrs_3(A,B)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_3(A,B),1,[eval_gs_type1_state_reloc_ptrs_4(A,B)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_4(A,B),1,[eval_gs_type1_state_reloc_ptrs_5(A,B)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_5(A,B),1,[eval_gs_type1_state_reloc_ptrs_bb1_in(0,B,C,D,E),loop_cont_eval_gs_type1_state_reloc_ptrs_bb1_in(D,E)],[C=0]).
+eq(eval_gs_type1_state_reloc_ptrs_5(A,B),1,[eval_gs_type1_state_reloc_ptrs_bb1_in(0,B,C,D,E)],[C=1]).
+eq(eval_gs_type1_state_reloc_ptrs_bb1_in(A,B,C,D,E),1,[eval_gs_type1_state_reloc_ptrs_14(A,B,C,D,E)],[A<F]).
+eq(eval_gs_type1_state_reloc_ptrs_14(A,B,C,D,E),1,[eval_gs_type1_state_reloc_ptrs_15(A,B,C,D,E)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_15(A,B,C,D,E),1,[eval_gs_type1_state_reloc_ptrs_bb1_in(A+1,B,C,D,E)],[]).
+eq(eval_gs_type1_state_reloc_ptrs_bb1_in(A,B,C,A,B),1,[],[C=1,A>=D]).

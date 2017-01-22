@@ -1,0 +1,39 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_gstate_share_paths_start))
+(VAR nondef.1 nondef.5 nondef.7)
+(RULES
+  eval_gstate_share_paths_start() -> Com_1(eval_gstate_share_paths_bb0_in())
+  eval_gstate_share_paths_bb0_in() -> Com_1(eval_gstate_share_paths_bb2_in())
+  eval_gstate_share_paths_bb0_in() -> Com_1(eval_gstate_share_paths_6())
+  eval_gstate_share_paths_bb2_in() -> Com_1(eval_gstate_share_paths_bb2_in()) :|: nondef.1 < 0
+  eval_gstate_share_paths_bb2_in() -> Com_1(eval_gstate_share_paths_bb2_in()) :|: nondef.1 > 0
+  eval_gstate_share_paths_bb2_in() -> Com_1(eval_gstate_share_paths_4()) :|: nondef.1 = 0
+  eval_gstate_share_paths_bb2_in() -> Com_1(eval_gstate_share_paths_.critedge_in())
+  eval_gstate_share_paths_4() -> Com_2(eval_gx_path_share_start(), eval_gstate_share_paths_5())
+  eval_gstate_share_paths_5() -> Com_1(eval_gstate_share_paths_.critedge_in())
+  eval_gstate_share_paths_6() -> Com_2(eval_gx_path_share_start(), eval_gstate_share_paths_7())
+  eval_gstate_share_paths_7() -> Com_1(eval_gstate_share_paths_.critedge_in())
+  eval_gstate_share_paths_.critedge_in() -> Com_1(eval_gstate_share_paths_13())
+  eval_gstate_share_paths_.critedge_in() -> Com_1(eval_gstate_share_paths_bb9_in())
+  eval_gstate_share_paths_13() -> Com_2(eval_gx_path_release_start(), eval_gstate_share_paths_14())
+  eval_gstate_share_paths_14() -> Com_1(eval_gstate_share_paths_bb9_in())
+  eval_gstate_share_paths_bb9_in() -> Com_1(eval_gstate_share_paths_bb11_in())
+  eval_gstate_share_paths_bb9_in() -> Com_1(eval_gstate_share_paths_.critedge1_in())
+  eval_gstate_share_paths_bb11_in() -> Com_1(eval_gstate_share_paths_bb11_in()) :|: nondef.5 < 0
+  eval_gstate_share_paths_bb11_in() -> Com_1(eval_gstate_share_paths_bb11_in()) :|: nondef.5 > 0
+  eval_gstate_share_paths_bb11_in() -> Com_1(eval_gstate_share_paths_20()) :|: nondef.5 = 0
+  eval_gstate_share_paths_bb11_in() -> Com_1(eval_gstate_share_paths_.critedge1_in())
+  eval_gstate_share_paths_20() -> Com_2(eval_gx_cpath_share_start(), eval_gstate_share_paths_21())
+  eval_gstate_share_paths_21() -> Com_1(eval_gstate_share_paths_.critedge1_in())
+  eval_gstate_share_paths_.critedge1_in() -> Com_1(eval_gstate_share_paths_bb16_in())
+  eval_gstate_share_paths_.critedge1_in() -> Com_1(eval_gstate_share_paths_.critedge2_in())
+  eval_gstate_share_paths_bb16_in() -> Com_1(eval_gstate_share_paths_bb16_in()) :|: nondef.7 < 0
+  eval_gstate_share_paths_bb16_in() -> Com_1(eval_gstate_share_paths_bb16_in()) :|: nondef.7 > 0
+  eval_gstate_share_paths_bb16_in() -> Com_1(eval_gstate_share_paths_26()) :|: nondef.7 = 0
+  eval_gstate_share_paths_bb16_in() -> Com_1(eval_gstate_share_paths_.critedge2_in())
+  eval_gstate_share_paths_26() -> Com_2(eval_gx_cpath_share_start(), eval_gstate_share_paths_27())
+  eval_gstate_share_paths_27() -> Com_1(eval_gstate_share_paths_.critedge2_in())
+  eval_gstate_share_paths_.critedge2_in() -> Com_1(eval_gstate_share_paths_28())
+  eval_gstate_share_paths_28() -> Com_2(eval_gx_cpath_share_start(), eval_gstate_share_paths_29())
+  eval_gstate_share_paths_29() -> Com_1(eval_gstate_share_paths_stop())
+)

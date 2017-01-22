@@ -1,0 +1,31 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_refs_compact_start))
+(VAR nondef.20 nondef.21 nondef.22 v_new_size.0 v_new_size.1 v_size)
+(RULES
+  eval_refs_compact_start(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb0_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb0_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb1_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb0_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_25(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb1_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb1_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb1_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb7_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_25(v_new_size.0, v_new_size.1, v_size) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_new_size.0, v_new_size.1, v_size), eval_refs_compact_26(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_26(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb7_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb7_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb8_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb8_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb11_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb8_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_48(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb8_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb16_in(nondef.20 - nondef.21 + 16, v_new_size.1, v_size))
+  eval_refs_compact_bb8_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb8_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb11_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb8_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_48(v_new_size.0, v_new_size.1, v_size) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_new_size.0, v_new_size.1, v_size), eval_refs_compact_49(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_49(v_new_size.0, v_new_size.1, v_size) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_new_size.0, v_new_size.1, v_size), eval_refs_compact_50(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_50(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_55(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_55(v_new_size.0, v_new_size.1, v_size) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_new_size.0, v_new_size.1, v_size), eval_refs_compact_56(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_56(v_new_size.0, v_new_size.1, v_size) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_new_size.0, v_new_size.1, v_size), eval_refs_compact_57(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_57(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb8_in(v_new_size.0, v_new_size.1, v_size))
+  eval_refs_compact_bb16_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb16_in(v_new_size.0 + 2, v_new_size.1, v_size)) :|: nondef.22 < 0
+  eval_refs_compact_bb16_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb16_in(v_new_size.0 + 2, v_new_size.1, v_size)) :|: nondef.22 > 0
+  eval_refs_compact_bb16_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb19_in(v_new_size.0, v_new_size.0, v_size)) :|: nondef.22 = 0
+  eval_refs_compact_bb16_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb22_in(v_new_size.0, v_new_size.1, v_size)) :|: nondef.22 = 0
+  eval_refs_compact_bb19_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb19_in(v_new_size.0, v_new_size.1 + 2, v_size)) :|: v_new_size.1 < v_size
+  eval_refs_compact_bb19_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_bb22_in(v_new_size.0, v_new_size.1, v_size)) :|: v_new_size.1 >= v_size
+  eval_refs_compact_bb22_in(v_new_size.0, v_new_size.1, v_size) -> Com_1(eval_refs_compact_stop(v_new_size.0, v_new_size.1, v_size))
+)

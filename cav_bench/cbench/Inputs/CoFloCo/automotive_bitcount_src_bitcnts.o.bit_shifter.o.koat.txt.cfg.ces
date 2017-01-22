@@ -1,0 +1,11 @@
+eq(eval_bit_shifter_start(A,B),1,[eval_bit_shifter_bb0_in(A,B)],[]).
+eq(eval_bit_shifter__critedge_in(A,B),1,[eval_bit_shifter_stop(A,B)],[]).
+eq(eval_bit_shifter_bb0_in(A,B),1,[eval_bit_shifter_bb1_in(B,B,C,D,E),loop_cont_eval_bit_shifter_bb1_in(D,E)],[C=0]).
+eq(eval_bit_shifter_bb0_in(A,B),1,[eval_bit_shifter_bb1_in(B,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_bit_shifter_bb1_in(A,B),0,[eval_bit_shifter__critedge_in(A,B)],[]).
+eq(eval_bit_shifter_bb1_in(A,B,C,D,E),1,[eval_bit_shifter_bb1_in(F,B,C,D,E)],[A<0]).
+eq(eval_bit_shifter_bb1_in(A,B,C,D,E),1,[eval_bit_shifter_bb1_in(F,B,C,D,E)],[A>0]).
+eq(eval_bit_shifter_bb1_in(A,B,C,A,B),1,[],[C=0,A<0]).
+eq(eval_bit_shifter_bb1_in(A,B,C,A,B),1,[],[C=0,A>0]).
+eq(eval_bit_shifter_bb1_in(A,B,C,A,B),1,[],[C=0,A=0]).
+eq(eval_bit_shifter_bb1_in(A,B,C,A,B),0,[],[C=1]).

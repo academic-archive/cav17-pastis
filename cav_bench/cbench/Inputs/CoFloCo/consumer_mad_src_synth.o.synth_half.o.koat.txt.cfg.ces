@@ -1,0 +1,20 @@
+eq(eval_synth_half_start(A,B,C,D,E,F,G),1,[eval_synth_half_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_synth_half_bb0_in(A,B,C,D,E,F,G),1,[eval_synth_half_bb1_in(A,0,C,D,E,F,G,H,I,J,K,L,M,N,O),loop_cont_eval_synth_half_bb1_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_synth_half_bb0_in(A,B,C,D,E,F,G),1,[eval_synth_half_bb1_in(A,0,C,D,E,F,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(eval_synth_half_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_synth_half_bb3_in(A,B,C,D,P,0,G,Q,R,S,T,U,V,W,X),loop_cont_eval_synth_half_bb3_in(R,S,T,U,V,W,X,H,I,J,K,L,M,N,O)],[Q=0,B<C]).
+eq(eval_synth_half_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_synth_half_bb3_in(A,B,C,D,P,0,G,Q,R,S,T,U,V,W,X)],[H=1,Q=1,B<C]).
+eq(eval_synth_half_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_synth_half_11(P,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<D]).
+eq(eval_synth_half_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_synth_half_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[G<16]).
+eq(loop_cont_eval_synth_half_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),0,[eval_synth_half_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_synth_half_11(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_synth_half_12(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_synth_half_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_synth_half_bb5_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M,N,O)],[]).
+eq(eval_synth_half_12(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_synth_half_bb5_in(A,B,C,D,E,F,1,P,Q,R,S,T,U,V,W),loop_cont_eval_synth_half_bb5_in(Q,R,S,T,U,V,W,H,I,J,K,L,M,N,O)],[P=0]).
+eq(eval_synth_half_12(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_synth_half_bb5_in(A,B,C,D,E,F,1,P,Q,R,S,T,U,V,W)],[H=1,P=1]).
+eq(loop_cont_eval_synth_half_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),0,[eval_synth_half_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_synth_half_bb1_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=1,B>=C]).
+eq(eval_synth_half_bb3_in(A,B,C,D,E,F,G,H,A,B+1,C,D,E,F,G),1,[],[H=0,F>=D]).
+eq(eval_synth_half_bb3_in(A,B,C,D+1,E,F,G,H,A,B,C,D+1,E,F,G),0,[],[H=1,D>=F]).
+eq(eval_synth_half_bb5_in(A,B,C,D,E,F,G,H,A,B,C,D,I,F+1,G),1,[],[H=0,G>=16,E+1=0,I=0]).
+eq(eval_synth_half_bb5_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1]).
+eq(eval_synth_half_bb5_in(A,B,C,D,E,F,G,H,A,B,C,D,I,F+1,G),1,[],[H=0,G>=16,E+1>0,I>=0,I<16]).
+eq(eval_synth_half_bb5_in(A,B,C,D,E,F,G,H,A,B,C,D,I,F+1,G),1,[],[H=0,G>=16,E+1<0,I=<0,I> -16]).

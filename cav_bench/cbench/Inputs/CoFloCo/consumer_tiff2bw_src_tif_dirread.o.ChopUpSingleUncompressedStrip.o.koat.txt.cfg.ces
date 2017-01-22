@@ -1,0 +1,38 @@
+eq(eval_ChopUpSingleUncompressedStrip_start(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_bb0_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_2(A,B,C,I,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_2(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_3(A,B,C,D,I,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_3(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,1,G,E)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_3(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,I,G,E*I)],[E=1,I=8192]).
+eq(eval_ChopUpSingleUncompressedStrip_3(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,I,G,E*I)],[E= -1,I= -8192]).
+eq(eval_ChopUpSingleUncompressedStrip_3(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,I,G,E*I)],[E>1,I>=0,I<8192]).
+eq(eval_ChopUpSingleUncompressedStrip_3(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,I,G,E*I)],[E< -1,I=<0,I> -8192]).
+eq(eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb11_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_15(I,4*I,C,D,E,F,G,H)],[D+H-1=0,I=0]).
+eq(eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_15(I,4*I,C,D,E,F,G,H)],[H=1,I=D+H-1]).
+eq(eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_15(I,4*I,C,D,E,F,G,H)],[H= -1,I= -D-H+1]).
+eq(eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_15(I,4*I,C,D,E,F,G,H)],[H>1,D+H-1>0,I>=0,I<D+H-1]).
+eq(eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_15(I,4*I,C,D,E,F,G,H)],[H>1,D+H-1<0,I=<0,I>D+H-1]).
+eq(eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_15(I,4*I,C,D,E,F,G,H)],[H< -1,D+H-1>0,I=<0,I> -D-H+1]).
+eq(eval_ChopUpSingleUncompressedStrip_bb2_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_15(I,4*I,C,D,E,F,G,H)],[H< -1,D+H-1<0,I>=0,I< -D-H+1]).
+eq(eval_ChopUpSingleUncompressedStrip_15(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_16(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_16(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_19(A,B,4*A,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_19(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_20(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_20(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_21(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_20(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb6_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_21(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_22(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_22(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb6_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_bb6_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_23(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_bb6_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb11_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_23(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_24(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_24(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb11_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_36(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_37(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_37(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_38(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_38(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_39(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_39(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb11_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_bb11_in(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_20(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb8_in(A,B,C,D,E,F,0,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_ChopUpSingleUncompressedStrip_bb8_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_ChopUpSingleUncompressedStrip_20(A,B,C,D,E,F,G,H),1,[eval_ChopUpSingleUncompressedStrip_bb8_in(A,B,C,D,E,F,0,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_ChopUpSingleUncompressedStrip_bb8_in(A,B,C,D,E,F,G,H),0,[eval_ChopUpSingleUncompressedStrip_36(A,B,C,D,E,F,G,H)],[]).
+eq(eval_ChopUpSingleUncompressedStrip_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_ChopUpSingleUncompressedStrip_bb8_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M,N,O,P,Q)],[G<A]).
+eq(eval_ChopUpSingleUncompressedStrip_bb8_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,G>=A]).
+eq(eval_ChopUpSingleUncompressedStrip_bb8_in(A+1,B,C,D,E,F,G,H,I,A+1,B,C,D,E,F,G,H),0,[],[I=1,A>=G]).

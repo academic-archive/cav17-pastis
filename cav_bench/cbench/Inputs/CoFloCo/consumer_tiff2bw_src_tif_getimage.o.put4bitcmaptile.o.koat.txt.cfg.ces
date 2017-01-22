@@ -1,0 +1,15 @@
+eq(eval_put4bitcmaptile_start(A,B,C,D,E,F,G,H,I),1,[eval_put4bitcmaptile_bb0_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_put4bitcmaptile_bb0_in(A,B,C,D,E,F,G,H,I),1,[eval_put4bitcmaptile_bb1_in(E,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),loop_cont_eval_put4bitcmaptile_bb1_in(K,L,M,N,O,P,Q,R,S)],[J=0,D=0,T=0]).
+eq(eval_put4bitcmaptile_bb0_in(A,B,C,D,E,F,G,H,I),1,[eval_put4bitcmaptile_bb1_in(E,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[J=1,D=0,T=0]).
+eq(eval_put4bitcmaptile_bb0_in(A,B,C,D,E,F,G,H,I),1,[eval_put4bitcmaptile_bb1_in(E,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),loop_cont_eval_put4bitcmaptile_bb1_in(K,L,M,N,O,P,Q,R,S)],[J=0,D>0,T>=0,T<D]).
+eq(eval_put4bitcmaptile_bb0_in(A,B,C,D,E,F,G,H,I),1,[eval_put4bitcmaptile_bb1_in(E,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[J=1,D>0,T>=0,T<D]).
+eq(eval_put4bitcmaptile_bb0_in(A,B,C,D,E,F,G,H,I),1,[eval_put4bitcmaptile_bb1_in(E,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),loop_cont_eval_put4bitcmaptile_bb1_in(K,L,M,N,O,P,Q,R,S)],[J=0,D<0,T=<0,T>D]).
+eq(eval_put4bitcmaptile_bb0_in(A,B,C,D,E,F,G,H,I),1,[eval_put4bitcmaptile_bb1_in(E,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[J=1,D<0,T=<0,T>D]).
+eq(eval_put4bitcmaptile_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),1,[eval_put4bitcmaptile_bb2_in(A,A-1,G,D,E,F,G,H,I,T,U,V,W,X,Y,Z,A1,B1,C1),loop_cont_eval_put4bitcmaptile_bb2_in(U,V,W,X,Y,Z,A1,B1,C1,J,K,L,M,N,O,P,Q,R,S)],[T=0,A>0]).
+eq(eval_put4bitcmaptile_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),1,[eval_put4bitcmaptile_bb2_in(A,A-1,G,D,E,F,G,H,I,T,U,V,W,X,Y,Z,A1,B1,C1)],[J=1,T=1,A>0]).
+eq(eval_put4bitcmaptile_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),1,[eval_put4bitcmaptile_bb2_in(A,B,C-2,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[C>=2]).
+eq(loop_cont_eval_put4bitcmaptile_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),0,[eval_put4bitcmaptile_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[]).
+eq(eval_put4bitcmaptile_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),1,[eval_put4bitcmaptile_bb1_in(B,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[]).
+eq(eval_put4bitcmaptile_bb1_in(A,B,C,D,E,F,G,H,I,J,A,B,C,D,E,F,G,H,I),1,[],[J=1,A=<0]).
+eq(eval_put4bitcmaptile_bb2_in(A,B,C,D,E,F,G,H,I,J,A,B,C,D,E,F,G,H,I),1,[],[J=0,C<2]).
+eq(eval_put4bitcmaptile_bb2_in(A,B,C,D,E,F,G,H,I,J,A,B,C,D,E,F,G,H,I),0,[],[J=1]).

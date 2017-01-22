@@ -1,0 +1,13 @@
+eq(eval_writePartMainData_start(A,B,C),1,[eval_writePartMainData_bb0_in(A,B,C)],[]).
+eq(eval_writePartMainData_bb0_in(A,B,C),1,[eval_writePartMainData_11(A,B,C)],[]).
+eq(eval_writePartMainData_bb0_in(A,B,C),1,[eval_writePartMainData_13(A,B,C)],[]).
+eq(eval_writePartMainData_11(A,B,C),1,[eval_writePartMainData_12(A,B,C)],[]).
+eq(eval_writePartMainData_12(A,B,C),1,[eval_writePartMainData_stop(A,B,C)],[]).
+eq(eval_writePartMainData_13(A,B,C),1,[eval_writePartMainData_14(A,B,C)],[]).
+eq(eval_writePartMainData_14(A,B,C),1,[eval_writePartMainData_stop(A,B,C)],[]).
+eq(eval_writePartMainData_bb0_in(A,B,C),1,[eval_writePartMainData_bb3_in(A,B,0,D,E,F,G),loop_cont_eval_writePartMainData_bb3_in(E,F,G)],[D=0]).
+eq(eval_writePartMainData_bb0_in(A,B,C),1,[eval_writePartMainData_bb3_in(A,B,0,D,E,F,G)],[D=1]).
+eq(eval_writePartMainData_bb3_in(A,B,C,D,E,F,G),1,[eval_writePartMainData_5(H,I,C,D,E,F,G)],[C<J]).
+eq(eval_writePartMainData_5(A,B,C,D,E,F,G),1,[eval_writePartMainData_6(A,B,C,D,E,F,G)],[]).
+eq(eval_writePartMainData_6(A,B,C,D,E,F,G),1,[eval_writePartMainData_bb3_in(A,B,C+1,D,E,F,G)],[]).
+eq(eval_writePartMainData_bb3_in(A,B,C,D,A,B,C),1,[],[D=1,C>=E]).

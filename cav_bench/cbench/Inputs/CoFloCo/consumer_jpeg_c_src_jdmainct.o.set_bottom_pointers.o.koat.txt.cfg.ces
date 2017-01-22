@@ -1,0 +1,402 @@
+eq(eval_set_bottom_pointers_start(A,B,C),1,[eval_set_bottom_pointers_bb0_in(A,B,C)],[]).
+eq(eval_set_bottom_pointers_bb0_in(A,B,C),1,[eval_set_bottom_pointers_bb1_in(A,0,C,D,E,F,G),loop_cont_eval_set_bottom_pointers_bb1_in(E,F,G)],[D=0]).
+eq(eval_set_bottom_pointers_bb0_in(A,B,C),1,[eval_set_bottom_pointers_bb1_in(A,0,C,D,E,F,G)],[D=1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,L=0,M=0,J*K-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,L=0,M=0,H=1,N=J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,L=0,M=0,H= -1,N= -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,L=0,M=0,H>1,J*K-1>0,N>=0,N<J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,L=0,M=0,H>1,J*K-1<0,N=<0,N>J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,L=0,M=0,H< -1,J*K-1>0,N=<0,N> -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,L=0,M=0,H< -1,J*K-1<0,N>=0,N< -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K=1,L=0,J*K-1=0,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K=1,L=0,H=1,M=J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K=1,L=0,H= -1,M= -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K=1,L=0,H>1,J*K-1>0,M>=0,M<J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K=1,L=0,H>1,J*K-1<0,M=<0,M>J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K=1,L=0,H< -1,J*K-1>0,M=<0,M> -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K=1,L=0,H< -1,J*K-1<0,M>=0,M< -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K= -1,L=0,J*K-1=0,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K= -1,L=0,H=1,M=J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K= -1,L=0,H= -1,M= -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K= -1,L=0,H>1,J*K-1>0,M>=0,M<J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K= -1,L=0,H>1,J*K-1<0,M=<0,M>J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K= -1,L=0,H< -1,J*K-1>0,M=<0,M> -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K= -1,L=0,H< -1,J*K-1<0,M>=0,M< -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L>0,M>=0,M<J*K,J*K-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L>0,M>=0,M<J*K,H=1,N=J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L>0,M>=0,M<J*K,H= -1,N= -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L>0,M>=0,M<J*K,H>1,J*K-1>0,N>=0,N<J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L>0,M>=0,M<J*K,H>1,J*K-1<0,N=<0,N>J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L>0,M>=0,M<J*K,H< -1,J*K-1>0,N=<0,N> -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L>0,M>=0,M<J*K,H< -1,J*K-1<0,N>=0,N< -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L<0,M=<0,M> -J*K,J*K-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L<0,M=<0,M> -J*K,H=1,N=J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L<0,M=<0,M> -J*K,H= -1,N= -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L<0,M=<0,M> -J*K,H>1,J*K-1>0,N>=0,N<J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L<0,M=<0,M> -J*K,H>1,J*K-1<0,N=<0,N>J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L<0,M=<0,M> -J*K,H< -1,J*K-1>0,N=<0,N> -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L<0,M=<0,M> -J*K,H< -1,J*K-1<0,N>=0,N< -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L>0,M>=0,M< -J*K,J*K-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L>0,M>=0,M< -J*K,H=1,N=J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L>0,M>=0,M< -J*K,H= -1,N= -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L>0,M>=0,M< -J*K,H>1,J*K-1>0,N>=0,N<J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L>0,M>=0,M< -J*K,H>1,J*K-1<0,N=<0,N>J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L>0,M>=0,M< -J*K,H< -1,J*K-1>0,N=<0,N> -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L>0,M>=0,M< -J*K,H< -1,J*K-1<0,N>=0,N< -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L<0,M=<0,M>J*K,J*K-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L<0,M=<0,M>J*K,H=1,N=J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L<0,M=<0,M>J*K,H= -1,N= -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L<0,M=<0,M>J*K,H>1,J*K-1>0,N>=0,N<J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L<0,M=<0,M>J*K,H>1,J*K-1<0,N=<0,N>J*K-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L<0,M=<0,M>J*K,H< -1,J*K-1>0,N=<0,N> -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L<0,M=<0,M>J*K,H< -1,J*K-1<0,N>=0,N< -J*K+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,M=0,N=0,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,M=0,N=0,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,M=0,N=0,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,M=0,N=0,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,M=0,N=0,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,M=0,N=0,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,M=0,N=0,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L=1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L=1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L=1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L=1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L=1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L=1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L=1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L= -1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L= -1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L= -1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L= -1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L= -1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L= -1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L= -1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M>0,N>=0,N<K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M>0,N>=0,N<K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M>0,N>=0,N<K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M<0,N=<0,N> -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M<0,N=<0,N> -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M<0,N=<0,N> -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M>0,N>=0,N< -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M>0,N>=0,N< -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M>0,N>=0,N< -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M<0,N=<0,N>K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M<0,N=<0,N>K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M<0,N=<0,N>K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,M=0,N=0,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,M=0,N=0,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,M=0,N=0,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,M=0,N=0,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,M=0,N=0,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,M=0,N=0,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,M=0,N=0,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L=1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L=1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L=1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L=1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L=1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L=1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L=1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L= -1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L= -1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L= -1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L= -1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L= -1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L= -1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L= -1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M>0,N>=0,N<K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M>0,N>=0,N<K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M>0,N>=0,N<K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M<0,N=<0,N> -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M<0,N=<0,N> -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M<0,N=<0,N> -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M>0,N>=0,N< -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M>0,N>=0,N< -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M>0,N>=0,N< -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M<0,N=<0,N>K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M<0,N=<0,N>K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M<0,N=<0,N>K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,M=0,N=0,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,M=0,N=0,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,M=0,N=0,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,M=0,N=0,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,M=0,N=0,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,M=0,N=0,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,M=0,N=0,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L=1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L=1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L=1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L=1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L=1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L=1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L=1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L= -1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L= -1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L= -1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L= -1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L= -1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L= -1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L= -1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M>0,N>=0,N<K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M>0,N>=0,N<K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M>0,N>=0,N<K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M<0,N=<0,N> -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M<0,N=<0,N> -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M<0,N=<0,N> -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M>0,N>=0,N< -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M>0,N>=0,N< -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M>0,N>=0,N< -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M<0,N=<0,N>K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M<0,N=<0,N>K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M<0,N=<0,N>K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,M=0,N=0,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,M=0,N=0,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,M=0,N=0,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,M=0,N=0,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,M=0,N=0,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,M=0,N=0,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,M=0,N=0,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L=1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L=1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L=1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L=1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L=1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L=1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L=1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L= -1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L= -1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L= -1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L= -1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L= -1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L= -1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L= -1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M>0,N>=0,N<K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M>0,N>=0,N<K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M>0,N>=0,N<K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M<0,N=<0,N> -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M<0,N=<0,N> -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M<0,N=<0,N> -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M>0,N>=0,N< -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M>0,N>=0,N< -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M>0,N>=0,N< -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M<0,N=<0,N>K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M<0,N=<0,N>K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M<0,N=<0,N>K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,M=0,N=0,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,M=0,N=0,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,M=0,N=0,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,M=0,N=0,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,M=0,N=0,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,M=0,N=0,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,M=0,N=0,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L=1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L=1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L=1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L=1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L=1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L=1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L=1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L= -1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L= -1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L= -1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L= -1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L= -1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L= -1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L= -1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M>0,N>=0,N<K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M>0,N>=0,N<K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M>0,N>=0,N<K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M<0,N=<0,N> -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M<0,N=<0,N> -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M<0,N=<0,N> -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M>0,N>=0,N< -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M>0,N>=0,N< -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M>0,N>=0,N< -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M<0,N=<0,N>K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M<0,N=<0,N>K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M<0,N=<0,N>K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,M=0,N=0,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,M=0,N=0,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,M=0,N=0,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,M=0,N=0,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,M=0,N=0,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,M=0,N=0,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,M=0,N=0,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L=1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L=1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L=1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L=1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L=1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L=1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L=1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L= -1,M=0,K*L-1=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L= -1,M=0,H=1,N=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L= -1,M=0,H= -1,N= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L= -1,M=0,H>1,K*L-1>0,N>=0,N<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L= -1,M=0,H>1,K*L-1<0,N=<0,N>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L= -1,M=0,H< -1,K*L-1>0,N=<0,N> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L= -1,M=0,H< -1,K*L-1<0,N>=0,N< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M>0,N>=0,N<K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M>0,N>=0,N<K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M>0,N>=0,N<K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M>0,N>=0,N<K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M>0,N>=0,N<K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M<0,N=<0,N> -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M<0,N=<0,N> -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M<0,N=<0,N> -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M<0,N=<0,N> -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M<0,N=<0,N> -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M>0,N>=0,N< -K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M>0,N>=0,N< -K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M>0,N>=0,N< -K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M>0,N>=0,N< -K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M>0,N>=0,N< -K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M<0,N=<0,N>K*L,K*L-1=0,O=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M<0,N=<0,N>K*L,H=1,O=K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M<0,N=<0,N>K*L,H= -1,O= -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1>0,O>=0,O<K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M<0,N=<0,N>K*L,H>1,K*L-1<0,O=<0,O>K*L-1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1>0,O=<0,O> -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M<0,N=<0,N>K*L,H< -1,K*L-1<0,O>=0,O< -K*L+1]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,L=0,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K=1,L=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K= -1,L=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L>0,M>=0,M<J*K]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K>1,L<0,M=<0,M> -J*K]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L>0,M>=0,M< -J*K]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J*K=0,H=0,J*K< -1,L<0,M=<0,M>J*K]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,M=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L=1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L= -1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M>0,N>=0,N<K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L>1,M<0,N=<0,N> -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M>0,N>=0,N< -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J=1,H=K*L,K*L< -1,M<0,N=<0,N>K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,M=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L=1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L= -1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M>0,N>=0,N<K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L>1,M<0,N=<0,N> -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M>0,N>=0,N< -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J= -1,H= -K*L,K*L< -1,M<0,N=<0,N>K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,M=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L=1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L= -1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M>0,N>=0,N<K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L>1,M<0,N=<0,N> -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M>0,N>=0,N< -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L>0,H>=0,H<K*L,K*L< -1,M<0,N=<0,N>K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,M=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L=1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L= -1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M>0,N>=0,N<K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L>1,M<0,N=<0,N> -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M>0,N>=0,N< -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J>1,K*L<0,H=<0,H>K*L,K*L< -1,M<0,N=<0,N>K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,M=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L=1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L= -1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M>0,N>=0,N<K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L>1,M<0,N=<0,N> -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M>0,N>=0,N< -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L>0,H=<0,H> -K*L,K*L< -1,M<0,N=<0,N>K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,M=0,N=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L=1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L= -1,M=0]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M>0,N>=0,N<K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L>1,M<0,N=<0,N> -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M>0,N>=0,N< -K*L]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb4_in(H,B,C,D,E,F,G)],[B<I,J< -1,K*L<0,H>=0,H< -K*L,K*L< -1,M<0,N=<0,N>K*L]).
+eq(eval_set_bottom_pointers_bb5_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb5_in(A,B,C+1,D,E,F,G)],[C<2*A]).
+eq(eval_set_bottom_pointers_bb4_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb5_in(A,B,0,H,I,J,K),loop_cont_eval_set_bottom_pointers_bb5_in(I,J,K,D,E,F,G)],[H=0]).
+eq(eval_set_bottom_pointers_bb4_in(A,B,C,D,E,F,G),1,[eval_set_bottom_pointers_bb5_in(A,B,0,H,I,J,K)],[D=1,H=1]).
+eq(loop_cont_eval_set_bottom_pointers_bb5_in(A,B,C,D,E,F,G),0,[eval_set_bottom_pointers_bb1_in(A,B,C,D,E,F,G)],[]).
+eq(eval_set_bottom_pointers_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,B>=E]).
+eq(eval_set_bottom_pointers_bb5_in(A,B,C,D,A,B+1,C),1,[],[D=0,C>=2*A]).
+eq(eval_set_bottom_pointers_bb5_in(A,B,C,D,A,B,C),0,[],[D=1,2*A>=C+1]).

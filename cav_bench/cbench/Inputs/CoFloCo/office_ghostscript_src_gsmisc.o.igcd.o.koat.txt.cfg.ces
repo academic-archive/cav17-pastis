@@ -1,0 +1,61 @@
+eq(eval_igcd_start(A,B,C,D),1,[eval_igcd_bb0_in(A,B,C,D)],[]).
+eq(eval_igcd_bb0_in(A,B,C,D),1,[eval_igcd_bb1_in(-C,-D,C,D,E,F,G,H,I),loop_cont_eval_igcd_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_igcd_bb0_in(A,B,C,D),1,[eval_igcd_bb1_in(-C,-D,C,D,E,F,G,H,I)],[E=1]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B<0,A=0,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B<0,B=1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B<0,B= -1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B<0,B>1,A>0,J>=0,J<B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B<0,B>1,A<0,J=<0,J> -B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B<0,B< -1,A>0,J>=0,J< -B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B<0,B< -1,A<0,J=<0,J>B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B>0,A=0,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B>0,B=1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B>0,B= -1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B>0,B>1,A>0,J>=0,J<B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B>0,B>1,A<0,J=<0,J> -B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B>0,B< -1,A>0,J>=0,J< -B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A<0,B>0,B< -1,A<0,J=<0,J>B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B<0,A=0,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B<0,B=1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B<0,B= -1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B<0,B>1,A>0,J>=0,J<B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B<0,B>1,A<0,J=<0,J> -B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B<0,B< -1,A>0,J>=0,J< -B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B<0,B< -1,A<0,J=<0,J>B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B>0,A=0,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B>0,B=1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B>0,B= -1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B>0,B>1,A>0,J>=0,J<B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B>0,B>1,A<0,J=<0,J> -B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B>0,B< -1,A>0,J>=0,J< -B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(J,B,C,D,E,F,G,H,I)],[A>0,B>0,B< -1,A<0,J=<0,J>B]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B<0,B=0,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B<0,A=1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B<0,A= -1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B<0,A>1,B>0,J>=0,J<A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B<0,A>1,B<0,J=<0,J> -A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B<0,A< -1,B>0,J>=0,J< -A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B<0,A< -1,B<0,J=<0,J>A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B>0,B=0,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B>0,A=1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B>0,A= -1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B>0,A>1,B>0,J>=0,J<A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B>0,A>1,B<0,J=<0,J> -A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B>0,A< -1,B>0,J>=0,J< -A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A<0,B>0,A< -1,B<0,J=<0,J>A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B<0,B=0,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B<0,A=1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B<0,A= -1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B<0,A>1,B>0,J>=0,J<A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B<0,A>1,B<0,J=<0,J> -A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B<0,A< -1,B>0,J>=0,J< -A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B<0,A< -1,B<0,J=<0,J>A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B>0,B=0,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B>0,A=1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B>0,A= -1,J=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B>0,A>1,B>0,J>=0,J<A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B>0,A>1,B<0,J=<0,J> -A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B>0,A< -1,B>0,J>=0,J< -A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_igcd_bb1_in(A,J,C,D,E,F,G,H,I)],[A>0,B>0,A< -1,B<0,J=<0,J>A]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,A=0]).
+eq(eval_igcd_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,B=0]).

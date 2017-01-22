@@ -1,0 +1,16 @@
+eq(eval_putbits_start(A,B,C,D),1,[eval_putbits_bb0_in(A,B,C,D)],[]).
+eq(eval_putbits_bb0_in(A,B,C,D),1,[eval_putbits_0(A,B,C,D)],[]).
+eq(eval_putbits_bb0_in(A,B,C,D),1,[eval_putbits_bb2_in(A,B,C,D)],[]).
+eq(eval_putbits_0(A,B,C,D),1,[eval_putbits_1(A,B,C,D)],[]).
+eq(eval_putbits_1(A,B,C,D),1,[eval_putbits_bb2_in(A,B,C,D)],[]).
+eq(eval_putbits_43(A,B,C,D),1,[eval_putbits_44(A,B,C,D)],[]).
+eq(eval_putbits_44(A,B,C,D),1,[eval_putbits_stop(A,B,C,D)],[]).
+eq(eval_putbits_bb2_in(A,B,C,D),1,[eval_putbits_bb3_in(A,B,B,D,E,F,G,H,I),loop_cont_eval_putbits_bb3_in(F,G,H,I)],[E=0]).
+eq(eval_putbits_bb2_in(A,B,C,D),1,[eval_putbits_bb3_in(A,B,B,D,E,F,G,H,I)],[E=1]).
+eq(loop_cont_eval_putbits_bb3_in(A,B,C,D),0,[eval_putbits_43(A,B,C,D)],[]).
+eq(eval_putbits_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_putbits_bb6_in(C,B,C,D,E,F,G,H,I)],[C>0]).
+eq(eval_putbits_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_putbits_bb6_in(J,B,C,D,E,F,G,H,I)],[C>0]).
+eq(eval_putbits_bb6_in(A,B,C,D,E,F,G,H,I),1,[eval_putbits_bb9_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_putbits_bb9_in(A,B,C,D,E,F,G,H,I),1,[eval_putbits_bb3_in(A,B,C-A,D,E,F,G,H,I)],[]).
+eq(eval_putbits_bb6_in(A,B,C,D,E,A,B,C,D),1,[],[E=0]).
+eq(eval_putbits_bb3_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,C=<0]).

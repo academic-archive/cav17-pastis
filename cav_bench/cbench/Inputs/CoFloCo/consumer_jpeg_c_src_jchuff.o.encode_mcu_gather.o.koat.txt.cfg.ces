@@ -1,0 +1,16 @@
+eq(eval_encode_mcu_gather_start(A,B,C),1,[eval_encode_mcu_gather_bb0_in(A,B,C)],[]).
+eq(eval_encode_mcu_gather_bb0_in(A,B,C),1,[eval_encode_mcu_gather_bb6_in(A,B,C)],[]).
+eq(eval_encode_mcu_gather_bb0_in(A,B,C),1,[eval_encode_mcu_gather_bb7_in(A,B,C)],[]).
+eq(eval_encode_mcu_gather_bb6_in(A,B,C),1,[eval_encode_mcu_gather_bb7_in(A,B,C)],[]).
+eq(eval_encode_mcu_gather_bb0_in(A,B,C),1,[eval_encode_mcu_gather_bb3_in(A,B,0,D,E,F,G),loop_cont_eval_encode_mcu_gather_bb3_in(E,F,G)],[D=0]).
+eq(eval_encode_mcu_gather_bb0_in(A,B,C),1,[eval_encode_mcu_gather_bb3_in(A,B,0,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_encode_mcu_gather_bb3_in(A,B,C),0,[eval_encode_mcu_gather_bb6_in(A,B,C)],[]).
+eq(eval_encode_mcu_gather_bb7_in(A,B,C),1,[eval_encode_mcu_gather_bb8_in(A,0,C,D,E,F,G),loop_cont_eval_encode_mcu_gather_bb8_in(E,F,G)],[D=0]).
+eq(eval_encode_mcu_gather_bb7_in(A,B,C),1,[eval_encode_mcu_gather_bb8_in(A,0,C,D,E,F,G)],[D=1]).
+eq(eval_encode_mcu_gather_bb3_in(A,B,C,D,E,F,G),1,[eval_encode_mcu_gather_bb3_in(A,B,C+1,D,E,F,G)],[C<H]).
+eq(eval_encode_mcu_gather_bb8_in(A,B,C,D,E,F,G),1,[eval_encode_mcu_gather_29(H,B,C,D,E,F,G)],[B<I]).
+eq(eval_encode_mcu_gather_29(A,B,C,D,E,F,G),1,[eval_encode_mcu_gather_30(A,B,C,D,E,F,G)],[]).
+eq(eval_encode_mcu_gather_30(A,B,C,D,E,F,G),1,[eval_encode_mcu_gather_bb8_in(A,B+1,C,D,E,F,G)],[]).
+eq(eval_encode_mcu_gather_bb3_in(A,B,C,D,A,B,C),1,[],[D=0,C>=E]).
+eq(eval_encode_mcu_gather_bb3_in(A,B,C,D,A,B,C),0,[],[D=1,E>=C]).
+eq(eval_encode_mcu_gather_bb8_in(A,B,C,D,A,B,C),1,[],[D=1,B>=E]).

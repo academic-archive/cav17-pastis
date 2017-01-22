@@ -1,0 +1,61 @@
+eq(eval_mad_header_decode_start(A,B,C),1,[eval_mad_header_decode_bb0_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb0_in(A,B,C),1,[eval_mad_header_decode_bb37_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb0_in(A,B,C),1,[eval_mad_header_decode_bb5_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb0_in(A,B,C),1,[eval_mad_header_decode_bb8_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb5_in(A,B,C),1,[eval_mad_header_decode_bb37_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb5_in(A,B,C),1,[eval_mad_header_decode_bb8_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb14_in(A,B,C),1,[eval_mad_header_decode_bb37_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb18_in(A,B,C),1,[eval_mad_header_decode_bb37_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb37_in(A,B,C),1,[eval_mad_header_decode_bb43_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb42_in(A,B,C),1,[eval_mad_header_decode_bb43_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb43_in(A,B,C),1,[eval_mad_header_decode_stop(A,B,C)],[]).
+eq(eval_mad_header_decode_bb8_in(A,B,C),1,[eval_mad_header_decode_bb9_in(A,B,C,D,E,F,G),loop_cont_eval_mad_header_decode_bb9_in(E,F,G)],[D=0]).
+eq(eval_mad_header_decode_bb8_in(A,B,C),1,[eval_mad_header_decode_bb9_in(A,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_mad_header_decode_bb9_in(A,B,C),0,[eval_mad_header_decode_bb37_in(A,B,C)],[]).
+eq(loop_cont_eval_mad_header_decode_bb9_in(A,B,C),0,[eval_mad_header_decode_bb42_in(A,B,C)],[]).
+eq(loop_cont_eval_mad_header_decode_bb9_in(A,B,C),0,[eval_mad_header_decode_bb18_in(A,B,C)],[]).
+eq(loop_cont_eval_mad_header_decode_bb9_in(A,B,C),0,[eval_mad_header_decode_bb14_in(A,B,C)],[]).
+eq(eval_mad_header_decode_bb9_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb20_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb9_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_46(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb20_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_61(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_46(A,B,C,D,E,F,G),1,[eval_mad_header_decode_47(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_61(A,B,C,D,E,F,G),1,[eval_mad_header_decode_62(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_47(A,B,C,D,E,F,G),1,[eval_mad_header_decode_48(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_62(A,B,C,D,E,F,G),1,[eval_mad_header_decode_63(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_48(A,B,C,D,E,F,G),1,[eval_mad_header_decode_57(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_63(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb25_in(12,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_63(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb24_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_57(A,B,C,D,E,F,G),1,[eval_mad_header_decode_58(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb25_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_77(A,32*A,H,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb24_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb25_in(18,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_58(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb20_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_77(A,B,C,D,E,F,G),1,[eval_mad_header_decode_78(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_78(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb28_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_78(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb29_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_78(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb28_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_84(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb29_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[12*H=0,I=0]).
+eq(eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H=1,I=12*J]).
+eq(eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H= -1,I= -12*J]).
+eq(eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H>1,12*I>0,J>=0,J<12*I]).
+eq(eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H>1,12*I<0,J=<0,J>12*I]).
+eq(eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H< -1,12*I>0,J=<0,J> -12*I]).
+eq(eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H< -1,12*I<0,J>=0,J< -12*I]).
+eq(eval_mad_header_decode_bb30_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb34_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_84(A,B,C,D,E,F,G),1,[eval_mad_header_decode_85(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb44_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb34_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[72*H=0,I=0]).
+eq(eval_mad_header_decode_bb34_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H=1,I=72*J]).
+eq(eval_mad_header_decode_bb34_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H= -1,I= -72*J]).
+eq(eval_mad_header_decode_bb34_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H>1,72*I>0,J>=0,J<72*I]).
+eq(eval_mad_header_decode_bb34_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H>1,72*I<0,J=<0,J>72*I]).
+eq(eval_mad_header_decode_bb34_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H< -1,72*I>0,J=<0,J> -72*I]).
+eq(eval_mad_header_decode_bb34_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb35_in(A,B,C,D,E,F,G)],[H< -1,72*I<0,J>=0,J< -72*I]).
+eq(eval_mad_header_decode_85(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb29_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb44_in(A,B,C,D,E,F,G),1,[eval_mad_header_decode_bb9_in(A,B,C,D,E,F,G)],[]).
+eq(eval_mad_header_decode_bb35_in(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_mad_header_decode_85(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_mad_header_decode_63(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_mad_header_decode_48(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_mad_header_decode_bb9_in(A,B,C,D,A,B,C),1,[],[D=0]).

@@ -1,0 +1,10 @@
+eq(eval_gs_reloc_ref_ptr_start,1,[eval_gs_reloc_ref_ptr_bb0_in],[]).
+eq(eval_gs_reloc_ref_ptr_bb0_in,1,[eval_gs_reloc_ref_ptr_bb14_in],[]).
+eq(eval_gs_reloc_ref_ptr_bb13_in,1,[eval_gs_reloc_ref_ptr_bb14_in],[]).
+eq(eval_gs_reloc_ref_ptr_bb14_in,1,[eval_gs_reloc_ref_ptr_stop],[]).
+eq(eval_gs_reloc_ref_ptr_bb0_in,1,[eval_gs_reloc_ref_ptr_bb3_in(A),loop_cont_eval_gs_reloc_ref_ptr_bb3_in],[A=0]).
+eq(eval_gs_reloc_ref_ptr_bb0_in,1,[eval_gs_reloc_ref_ptr_bb3_in(A)],[A=1]).
+eq(loop_cont_eval_gs_reloc_ref_ptr_bb3_in,0,[eval_gs_reloc_ref_ptr_bb14_in],[]).
+eq(loop_cont_eval_gs_reloc_ref_ptr_bb3_in,0,[eval_gs_reloc_ref_ptr_bb13_in],[]).
+eq(eval_gs_reloc_ref_ptr_bb3_in(A),1,[eval_gs_reloc_ref_ptr_bb3_in(A)],[]).
+eq(eval_gs_reloc_ref_ptr_bb3_in(A),1,[],[A=0]).

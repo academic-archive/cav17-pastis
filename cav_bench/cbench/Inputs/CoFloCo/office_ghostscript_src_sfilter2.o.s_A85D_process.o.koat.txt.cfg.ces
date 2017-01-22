@@ -1,0 +1,16 @@
+eq(eval_s_A85D_process_start(A,B,C),1,[eval_s_A85D_process_bb0_in(A,B,C)],[]).
+eq(eval_s_A85D_process_54(A,B,C),1,[eval_s_A85D_process_55(A,B,C)],[]).
+eq(eval_s_A85D_process_55(A,B,C),1,[eval_s_A85D_process_bb19_in(A,B,C)],[]).
+eq(eval_s_A85D_process_bb19_in(A,B,C),1,[eval_s_A85D_process_bb22_in(A,B,C)],[]).
+eq(eval_s_A85D_process_bb19_in(A,B,C),1,[eval_s_A85D_process_64(A,B,C)],[]).
+eq(eval_s_A85D_process_64(A,B,C),1,[eval_s_A85D_process_65(A,B,C)],[]).
+eq(eval_s_A85D_process_65(A,B,C),1,[eval_s_A85D_process_bb22_in(A,B,C)],[]).
+eq(eval_s_A85D_process_bb22_in(A,B,C),1,[eval_s_A85D_process_stop(A,B,C)],[]).
+eq(eval_s_A85D_process_bb0_in(A,B,C),1,[eval_s_A85D_process_bb1_in(D,B,E,F,G,H,I),loop_cont_eval_s_A85D_process_bb1_in(G,H,I)],[F=0]).
+eq(eval_s_A85D_process_bb0_in(A,B,C),1,[eval_s_A85D_process_bb1_in(D,B,E,F,G,H,I)],[F=1]).
+eq(loop_cont_eval_s_A85D_process_bb1_in(A,B,C),0,[eval_s_A85D_process_bb19_in(A,B,C)],[]).
+eq(loop_cont_eval_s_A85D_process_bb1_in(A,B,C),0,[eval_s_A85D_process_54(A,B,C)],[]).
+eq(eval_s_A85D_process_bb1_in(A,B,C,D,E,F,G),1,[eval_s_A85D_process_bb1_in(0,B,0,D,E,F,G)],[]).
+eq(eval_s_A85D_process_bb1_in(A,B,C,D,E,F,G),1,[eval_s_A85D_process_bb1_in(A+1,B,85*C+H-33,D,E,F,G)],[]).
+eq(eval_s_A85D_process_bb1_in(A,B,C,D,E,F,G),1,[eval_s_A85D_process_bb1_in(A,B,C,D,E,F,G)],[]).
+eq(eval_s_A85D_process_bb1_in(A,B,C,D,A,B,C),1,[],[D=0]).

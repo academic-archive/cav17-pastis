@@ -1,0 +1,51 @@
+eq(eval_lame_decode_fromfile_start(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_bb0_in(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_1(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_1(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_2(I,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_2(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_bb16_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_2(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_4(A,B,C,D,E,A,G,H)],[]).
+eq(eval_lame_decode_fromfile_4(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_5(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_NewDefault_in(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_34(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_34(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_35(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_35(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_36(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_36(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_bb15_in(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_bb16_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_bb16_in(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_5(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_lame_decode_fromfile_bb2_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_lame_decode_fromfile_5(A,B,C,D,E,F,G,H),1,[eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H),0,[eval_lame_decode_fromfile_bb16_in(A,B,C,D,E,F,G,H)],[]).
+eq(loop_cont_eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H),0,[eval_lame_decode_fromfile_NewDefault_in(A,B,C,D,E,F,G,H)],[]).
+eq(loop_cont_eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H),0,[eval_lame_decode_fromfile_bb15_in(A,B,C,D,E,F,G,H)],[]).
+eq(loop_cont_eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H),0,[eval_lame_decode_fromfile_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_lame_decode_fromfile_bb7_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(loop_cont_eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H),0,[eval_lame_decode_fromfile_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_lame_decode_fromfile_bb7_in(A,B,C,D,E,F,G,H),0,[eval_lame_decode_fromfile_bb15_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile__critedge_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_lame_decode_fromfile_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_bb8_in(A,B,C,D,E,F,0,H,R,S,T,U,V,W,X,Y,Z),loop_cont_eval_lame_decode_fromfile_bb8_in(S,T,U,V,W,X,Y,Z,I,J,K,L,M,N,O,P,Q)],[R=0,H<D]).
+eq(eval_lame_decode_fromfile_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_bb8_in(A,B,C,D,E,F,0,H,R,S,T,U,V,W,X,Y,Z)],[I=1,R=1,H<D]).
+eq(eval_lame_decode_fromfile_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_bb12_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[G<E]).
+eq(eval_lame_decode_fromfile__critedge_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_8(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(loop_cont_eval_lame_decode_fromfile_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),0,[eval_lame_decode_fromfile_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_lame_decode_fromfile_bb12_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_bb8_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_lame_decode_fromfile_8(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_9(A,R,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_lame_decode_fromfile_9(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_11(A,B,B,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_lame_decode_fromfile_11(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_12(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_lame_decode_fromfile_12(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_lame_decode_fromfile_9(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,J,K,F,G,0),1,[],[I=0,L=0,K=0]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,J,K,F,G,0),1,[],[I=0,2*J=1,K=L]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,J,K,F,G,0),1,[],[I=0,2*J= -1,K= -L]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,J,K,F,G,0),1,[],[I=0,2*J>1,L>0,K>=0,K<L]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,J,K,F,G,0),1,[],[I=0,2*J>1,L<0,K=<0,K>L]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,J,K,F,G,0),1,[],[I=0,2*J< -1,L>0,K=<0,K> -L]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,J,K,F,G,0),1,[],[I=0,2*J< -1,L<0,K>=0,K< -L]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J=0,K=0]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,2*J=1,K=L]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,2*J= -1,K= -L]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,2*J>1,K>0,L>=0,L<K]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,2*J>1,K<0,L=<0,L>K]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,2*J< -1,K>0,L=<0,L> -K]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,2*J< -1,K<0,L>=0,L< -K]).
+eq(eval_lame_decode_fromfile_bb2_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0]).
+eq(eval_lame_decode_fromfile_bb7_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,H>=D]).
+eq(eval_lame_decode_fromfile_bb7_in(A,B,C,D+1,E,F,G,H,I,A,B,C,D+1,E,F,G,H),0,[],[I=1,D>=H]).
+eq(eval_lame_decode_fromfile_bb8_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H+1),1,[],[I=0,G>=E]).
+eq(eval_lame_decode_fromfile_bb8_in(A,B,C,D,E+1,F,G,H,I,A,B,C,D,E+1,F,G,H),0,[],[I=1,E>=G]).

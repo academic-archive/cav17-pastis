@@ -1,0 +1,35 @@
+eq(eval_fastsieve_start(A,B),1,[eval_fastsieve_bb0_in(A,B)],[]).
+eq(eval_fastsieve_bb4_in(A,B),1,[eval_fastsieve_stop(A,B)],[]).
+eq(eval_fastsieve_bb0_in(A,B),1,[eval_fastsieve_bb1_in(B,B,C,D,E),loop_cont_eval_fastsieve_bb1_in(D,E)],[C=0]).
+eq(eval_fastsieve_bb0_in(A,B),1,[eval_fastsieve_bb1_in(B,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_fastsieve_bb1_in(A,B),0,[eval_fastsieve_bb4_in(A,B)],[]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F<0,A+G=0,H=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F<0,G=1,H=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F<0,G= -1,H=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F<0,G>1,A+H>0,I>=0,I<G]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F<0,G>1,A+H<0,I=<0,I> -G]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F<0,G< -1,A+H>0,I>=0,I< -G]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F<0,G< -1,A+H<0,I=<0,I>G]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F>0,A+G=0,H=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F>0,G=1,H=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F>0,G= -1,H=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F>0,G>1,A+H>0,I>=0,I<G]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F>0,G>1,A+H<0,I=<0,I> -G]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F>0,G< -1,A+H>0,I>=0,I< -G]).
+eq(eval_fastsieve_bb1_in(A,B,C,D,E),1,[eval_fastsieve_bb1_in(A,B,C,D,E)],[F>0,G< -1,A+H<0,I=<0,I>G]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D<0,A+E=0,F=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D<0,E=1,F=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D<0,E= -1,F=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D<0,E>1,A+F>0,G>=0,G<E]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D<0,E>1,A+F<0,G=<0,G> -E]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D<0,E< -1,A+F>0,G>=0,G< -E]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D<0,E< -1,A+F<0,G=<0,G>E]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D>0,A+E=0,F=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D>0,E=1,F=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D>0,E= -1,F=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D>0,E>1,A+F>0,G>=0,G<E]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D>0,E>1,A+F<0,G=<0,G> -E]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D>0,E< -1,A+F>0,G>=0,G< -E]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D>0,E< -1,A+F<0,G=<0,G>E]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),1,[],[C=0,D=0]).
+eq(eval_fastsieve_bb1_in(A,B,C,A,B),0,[],[C=1]).

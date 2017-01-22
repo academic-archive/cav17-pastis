@@ -1,0 +1,20 @@
+eq(eval_int_to_uchar_start(A,B,C,D,E,F,G,H),1,[eval_int_to_uchar_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_int_to_uchar_bb0_in(A,B,C,D,E,F,G,H),1,[eval_int_to_uchar_bb1_in(A,0,C,I,E,J,G,H,K,L,M,N,O,P,Q,R,S),loop_cont_eval_int_to_uchar_bb1_in(L,M,N,O,P,Q,R,S)],[K=0]).
+eq(eval_int_to_uchar_bb0_in(A,B,C,D,E,F,G,H),1,[eval_int_to_uchar_bb1_in(A,0,C,I,E,J,G,H,K,L,M,N,O,P,Q,R,S)],[K=1]).
+eq(loop_cont_eval_int_to_uchar_bb1_in(A,B,C,D,E,F,G,H),0,[eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_int_to_uchar_bb8_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(loop_cont_eval_int_to_uchar_bb1_in(A,B,C,D,E,F,G,H),0,[eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(eval_int_to_uchar_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb4_in(A,B,C,D,R,F,G,H,I,J,K,L,M,N,O,P,Q)],[B<H]).
+eq(eval_int_to_uchar_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb4_in(A,B,C,D,D,F,G,H,I,J,K,L,M,N,O,P,Q)],[B<H]).
+eq(eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb8_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[C<H,255*R-255*F=0,S=0]).
+eq(eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb8_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[C<H,A=1,R=255*S-255*F]).
+eq(eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb8_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[C<H,A= -1,R= -255*S+255*F]).
+eq(eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb8_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[C<H,A>1,255*R-255*F>0,S>=0,S<255*R-255*F]).
+eq(eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb8_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[C<H,A>1,255*R-255*F<0,S=<0,S>255*R-255*F]).
+eq(eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb8_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[C<H,A< -1,255*R-255*F>0,S=<0,S> -255*R+255*F]).
+eq(eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb8_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[C<H,A< -1,255*R-255*F<0,S>=0,S< -255*R+255*F]).
+eq(eval_int_to_uchar_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb6_in(A,B,C,D,E,F,R,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_int_to_uchar_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb6_in(A,B,C,D,E,F,F,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_int_to_uchar_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_int_to_uchar_bb1_in(A,B+1,C,E,E,G,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_int_to_uchar_bb1_in(A,B,C,D,E,F,G,H,I,D-F,B,0,D,E,F,G,H),1,[],[I=0,B>=H]).
+eq(eval_int_to_uchar_bb1_in(A,B,C,D,E,F,G,H+1,I,A,B,C,D,E,F,G,H+1),0,[],[I=1,H>=B]).
+eq(eval_int_to_uchar_bb8_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=1,C>=H]).

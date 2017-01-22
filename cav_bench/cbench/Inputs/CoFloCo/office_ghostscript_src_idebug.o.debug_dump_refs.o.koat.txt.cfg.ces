@@ -1,0 +1,14 @@
+eq(eval_debug_dump_refs_start(A,B,C,D,E,F),1,[eval_debug_dump_refs_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_debug_dump_refs_bb0_in(A,B,C,D,E,F),1,[eval_debug_dump_refs_1(A,B,G,D,E,F)],[]).
+eq(eval_debug_dump_refs_1(A,B,C,D,E,F),1,[eval_debug_dump_refs_2(A,B,C,D,E,F)],[]).
+eq(eval_debug_dump_refs_bb0_in(A,B,C,D,E,F),1,[eval_debug_dump_refs_bb2_in(A,B,C,D,F,F,G,H,I,J,K,L,M),loop_cont_eval_debug_dump_refs_bb2_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_debug_dump_refs_bb0_in(A,B,C,D,E,F),1,[eval_debug_dump_refs_bb2_in(A,B,C,D,F,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_debug_dump_refs_2(A,B,C,D,E,F),1,[eval_debug_dump_refs_bb2_in(A,B,C,D,F,F,G,H,I,J,K,L,M),loop_cont_eval_debug_dump_refs_bb2_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_debug_dump_refs_2(A,B,C,D,E,F),1,[eval_debug_dump_refs_bb2_in(A,B,C,D,F,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_debug_dump_refs_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_debug_dump_refs_10(N,O,C,E-1,E,F,G,H,I,J,K,L,M)],[E<0]).
+eq(eval_debug_dump_refs_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_debug_dump_refs_10(N,O,C,E-1,E,F,G,H,I,J,K,L,M)],[E>0]).
+eq(eval_debug_dump_refs_10(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_debug_dump_refs_11(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_debug_dump_refs_11(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_debug_dump_refs_12(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_debug_dump_refs_12(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_debug_dump_refs_13(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_debug_dump_refs_13(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_debug_dump_refs_bb2_in(A,B,C,D,D,F,G,H,I,J,K,L,M)],[]).
+eq(eval_debug_dump_refs_bb2_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,E=0]).

@@ -1,0 +1,20 @@
+eq(eval_mad_decoder_finish_start(A,B,C,D),1,[eval_mad_decoder_finish_bb0_in(A,B,C,D)],[]).
+eq(eval_mad_decoder_finish_bb0_in(A,B,C,D),1,[eval_mad_decoder_finish_5(E,B,C,D)],[]).
+eq(eval_mad_decoder_finish_bb0_in(A,B,C,D),1,[eval_mad_decoder_finish_bb8_in(A,B,C,D)],[]).
+eq(eval_mad_decoder_finish_5(A,B,C,D),1,[eval_mad_decoder_finish_6(A,B,C,D)],[]).
+eq(eval_mad_decoder_finish_6(A,B,C,D),1,[eval_mad_decoder_finish_7(A,B,C,D)],[]).
+eq(eval_mad_decoder_finish__critedge_in(A,B,C,D),1,[eval_mad_decoder_finish_16(A,B,C,E)],[]).
+eq(eval_mad_decoder_finish_16(A,B,C,D),1,[eval_mad_decoder_finish_17(A,B,C,D)],[]).
+eq(eval_mad_decoder_finish_17(A,B,C,D),1,[eval_mad_decoder_finish_bb8_in(A,B,C,D)],[]).
+eq(eval_mad_decoder_finish_bb8_in(A,B,C,D),1,[eval_mad_decoder_finish_stop(A,B,C,D)],[]).
+eq(eval_mad_decoder_finish_7(A,B,C,D),1,[eval_mad_decoder_finish_bb3_in(A,B,C,D,E,F,G,H,I),loop_cont_eval_mad_decoder_finish_bb3_in(F,G,H,I)],[E=0]).
+eq(eval_mad_decoder_finish_7(A,B,C,D),1,[eval_mad_decoder_finish_bb3_in(A,B,C,D,E,F,G,H,I)],[E=1]).
+eq(loop_cont_eval_mad_decoder_finish_bb3_in(A,B,C,D),0,[eval_mad_decoder_finish__critedge_in(A,B,C,D)],[]).
+eq(eval_mad_decoder_finish_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_mad_decoder_finish_10(A,J,C,D,E,F,G,H,I)],[]).
+eq(eval_mad_decoder_finish_10(A,B,C,D,E,F,G,H,I),1,[eval_mad_decoder_finish_11(A,B,J,D,E,F,G,H,I)],[]).
+eq(eval_mad_decoder_finish_11(A,B,C,D,E,F,G,H,I),1,[eval_mad_decoder_finish_bb3_in(A,B,C,D,E,F,G,H,I)],[C= -1,J=4]).
+eq(eval_mad_decoder_finish_11(A,B,C,D,E,A,B,C,D),1,[],[E=0,C= -1,F<4]).
+eq(eval_mad_decoder_finish_11(A,B,C,D,E,A,B,C,D),0,[],[E=1]).
+eq(eval_mad_decoder_finish_11(A,B,C,D,E,A,B,C,D),1,[],[E=0,C= -1,F>4]).
+eq(eval_mad_decoder_finish_11(A,B,C,D,E,A,B,C,D),1,[],[E=0,C< -1]).
+eq(eval_mad_decoder_finish_11(A,B,C,D,E,A,B,C,D),1,[],[E=0,C> -1]).

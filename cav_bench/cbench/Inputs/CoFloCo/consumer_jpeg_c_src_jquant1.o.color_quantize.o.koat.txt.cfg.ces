@@ -1,0 +1,15 @@
+eq(eval_color_quantize_start(A,B,C,D,E,F),1,[eval_color_quantize_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_color_quantize_bb0_in(A,B,C,D,E,F),1,[eval_color_quantize_bb1_in(G,H,C,D,E,0,I,J,K,L,M,N,O),loop_cont_eval_color_quantize_bb1_in(J,K,L,M,N,O)],[I=0]).
+eq(eval_color_quantize_bb0_in(A,B,C,D,E,F),1,[eval_color_quantize_bb1_in(G,H,C,D,E,0,I,J,K,L,M,N,O)],[I=1]).
+eq(eval_color_quantize_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_color_quantize_bb3_in(A,B,C,A,E,F,N,O,P,Q,R,S,T),loop_cont_eval_color_quantize_bb3_in(O,P,Q,R,S,T,G,H,I,J,K,L,M)],[N=0,F<E]).
+eq(eval_color_quantize_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_color_quantize_bb3_in(A,B,C,A,E,F,N,O,P,Q,R,S,T)],[G=1,N=1,F<E]).
+eq(eval_color_quantize_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_color_quantize_bb4_in(A,B,0,D,E,F,N,O,P,Q,R,S,T),loop_cont_eval_color_quantize_bb4_in(O,P,Q,R,S,T,G,H,I,J,K,L,M)],[N=0,D>0]).
+eq(eval_color_quantize_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_color_quantize_bb4_in(A,B,0,D,E,F,N,O,P,Q,R,S,T)],[G=1,N=1,D>0]).
+eq(eval_color_quantize_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_color_quantize_bb4_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M)],[C<B]).
+eq(loop_cont_eval_color_quantize_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),0,[eval_color_quantize_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(loop_cont_eval_color_quantize_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M),0,[eval_color_quantize_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_color_quantize_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,F>=E]).
+eq(eval_color_quantize_bb3_in(A,B,C,D,E,F,G,A,B,C,D,E,F+1),1,[],[G=0,D=<0]).
+eq(eval_color_quantize_bb3_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,D>=0+1]).
+eq(eval_color_quantize_bb4_in(A,B,C,D,E,F,G,A,B,C,D-1,E,F),1,[],[G=0,C>=B]).
+eq(eval_color_quantize_bb4_in(A,B+1,C,D,E,F,G,A,B+1,C,D,E,F),0,[],[G=1,B>=C]).

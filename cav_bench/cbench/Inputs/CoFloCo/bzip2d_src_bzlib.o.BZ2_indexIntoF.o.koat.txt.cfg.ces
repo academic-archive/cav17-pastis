@@ -1,0 +1,6 @@
+eq(eval_BZ2_indexIntoF_start(A,B),1,[eval_BZ2_indexIntoF_bb0_in(A,B)],[]).
+eq(eval_BZ2_indexIntoF_bb0_in(A,B),1,[eval_BZ2_indexIntoF_bb1_in(A,256,C,D,E),loop_cont_eval_BZ2_indexIntoF_bb1_in(D,E)],[C=0]).
+eq(eval_BZ2_indexIntoF_bb0_in(A,B),1,[eval_BZ2_indexIntoF_bb1_in(A,256,C,D,E)],[C=1]).
+eq(eval_BZ2_indexIntoF_bb1_in(A,B,C,D,E),1,[eval_BZ2_indexIntoF_bb1_in(A,B,C,D,E)],[B-F<1]).
+eq(eval_BZ2_indexIntoF_bb1_in(A,B,C,D,E),1,[eval_BZ2_indexIntoF_bb1_in(A,B,C,D,E)],[B-F>1]).
+eq(eval_BZ2_indexIntoF_bb1_in(A,B,C,A,B),1,[],[C=1,B-D=1]).

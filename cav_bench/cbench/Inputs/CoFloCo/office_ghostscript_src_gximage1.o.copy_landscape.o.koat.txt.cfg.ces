@@ -1,0 +1,15 @@
+eq(eval_copy_landscape_start(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L)],[]).
+eq(eval_copy_landscape_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L)],[]).
+eq(eval_copy_landscape_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_bb5_in(A,B,C,K-J,M,N,G,H,I,J,K,L)],[]).
+eq(eval_copy_landscape_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_27(-D,K,E-F,D,E,F,M,H,I,J,K,L)],[]).
+eq(eval_copy_landscape_27(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_28(A,B,C,D,E,F,G,H,I,J,K,L)],[]).
+eq(eval_copy_landscape_28(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L)],[]).
+eq(eval_copy_landscape_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_stop(A,B,C,D,E,F,G,H,I,J,K,L)],[]).
+eq(eval_copy_landscape_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_bb3_in(A,B,C,K-J,M,N,G,O,P,J,K,L,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1),loop_cont_eval_copy_landscape_bb3_in(R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[Q=0]).
+eq(eval_copy_landscape_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L),1,[eval_copy_landscape_bb3_in(A,B,C,K-J,M,N,G,O,P,J,K,L,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1)],[Q=1]).
+eq(loop_cont_eval_copy_landscape_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L),0,[eval_copy_landscape_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L)],[]).
+eq(eval_copy_landscape_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y),1,[eval_copy_landscape_18(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y)],[I>=0]).
+eq(eval_copy_landscape_18(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y),1,[eval_copy_landscape_19(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y)],[]).
+eq(eval_copy_landscape_19(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y),1,[eval_copy_landscape_bb3_in(A,B,C,D,E,F,G,H,I-1,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y)],[]).
+eq(eval_copy_landscape_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,A,B,C,D,E,F,G,H,I,J,K,L),1,[],[M=0,I<0]).
+eq(eval_copy_landscape_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,A,B,C,D,E,F,G,H,I,J,K,L),0,[],[M=1]).

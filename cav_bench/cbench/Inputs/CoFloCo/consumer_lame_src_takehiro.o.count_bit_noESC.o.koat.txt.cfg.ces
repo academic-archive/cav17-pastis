@@ -1,0 +1,6 @@
+eq(eval_count_bit_noESC_start(A,B),1,[eval_count_bit_noESC_bb0_in(A,B)],[]).
+eq(eval_count_bit_noESC_bb0_in(A,B),1,[eval_count_bit_noESC_bb1_in(A,B,C,D,E),loop_cont_eval_count_bit_noESC_bb1_in(D,E)],[C=0]).
+eq(eval_count_bit_noESC_bb0_in(A,B),1,[eval_count_bit_noESC_bb1_in(A,B,C,D,E)],[C=1]).
+eq(eval_count_bit_noESC_bb1_in(A,B,C,D,E),1,[eval_count_bit_noESC_bb3_in(A,B,C,D,E)],[]).
+eq(eval_count_bit_noESC_bb3_in(A,B,C,D,E),1,[eval_count_bit_noESC_bb1_in(A,B,C,D,E)],[]).
+eq(eval_count_bit_noESC_bb3_in(A,B,C,A,B),1,[],[C=1]).

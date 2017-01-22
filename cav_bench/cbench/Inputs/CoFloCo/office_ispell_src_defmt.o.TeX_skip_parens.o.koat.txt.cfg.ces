@@ -1,0 +1,11 @@
+eq(eval_TeX_skip_parens_start,1,[eval_TeX_skip_parens_bb0_in],[]).
+eq(eval_TeX_skip_parens__critedge_in,1,[eval_TeX_skip_parens_stop],[]).
+eq(eval_TeX_skip_parens_bb0_in,1,[eval_TeX_skip_parens_bb1_in(A),loop_cont_eval_TeX_skip_parens_bb1_in],[A=0]).
+eq(eval_TeX_skip_parens_bb0_in,1,[eval_TeX_skip_parens_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_TeX_skip_parens_bb1_in,0,[eval_TeX_skip_parens__critedge_in],[]).
+eq(eval_TeX_skip_parens_bb1_in(A),1,[eval_TeX_skip_parens_bb1_in(A)],[B<0]).
+eq(eval_TeX_skip_parens_bb1_in(A),1,[eval_TeX_skip_parens_bb1_in(A)],[B>0]).
+eq(eval_TeX_skip_parens_bb1_in(A),1,[],[A=0,B<0]).
+eq(eval_TeX_skip_parens_bb1_in(A),1,[],[A=0,B>0]).
+eq(eval_TeX_skip_parens_bb1_in(A),1,[],[A=0,B=0]).
+eq(eval_TeX_skip_parens_bb1_in(A),0,[],[A=1]).

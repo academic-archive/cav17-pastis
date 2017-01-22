@@ -1,0 +1,14 @@
+eq(eval_copyout_start(A,B,C,D,E,F),1,[eval_copyout_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_copyout_bb6_in(A,B,C,D,E,F),1,[eval_copyout_stop(A,B,C,D,E,F)],[]).
+eq(eval_copyout_bb0_in(A,B,C,D,E,F),1,[eval_copyout_bb1_in(A,B,F,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_copyout_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_copyout_bb0_in(A,B,C,D,E,F),1,[eval_copyout_bb1_in(A,B,F,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_copyout_bb1_in(A,B,C,D,E,F),0,[eval_copyout_bb6_in(A,B,C,D,E,F)],[]).
+eq(eval_copyout_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_copyout_bb5_in(A,B,C,C-1,E,F,G,H,I,J,K,L,M)],[C-1>=0]).
+eq(eval_copyout_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_copyout_10(A,B,C,C-1,N,F,G,H,I,J,K,L,M)],[C-1>=0]).
+eq(eval_copyout_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_copyout_bb1_in(N,O,D,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_copyout_10(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_copyout_11(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_copyout_11(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_copyout_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_copyout_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,C-1>=0]).
+eq(eval_copyout_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,0>=C-1+1]).
+eq(eval_copyout_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,C-1<0]).
+eq(eval_copyout_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1]).

@@ -1,0 +1,11 @@
+eq(eval_gs_purge_font_from_char_caches_start(A,B),1,[eval_gs_purge_font_from_char_caches_bb0_in(A,B)],[]).
+eq(eval_gs_purge_font_from_char_caches_bb0_in(A,B),1,[eval_gs_purge_font_from_char_caches_bb1_in(A,C,D,E,F),loop_cont_eval_gs_purge_font_from_char_caches_bb1_in(E,F)],[D=0]).
+eq(eval_gs_purge_font_from_char_caches_bb0_in(A,B),1,[eval_gs_purge_font_from_char_caches_bb1_in(A,C,D,E,F)],[D=1]).
+eq(eval_gs_purge_font_from_char_caches_bb1_in(A,B,C,D,E),1,[eval_gs_purge_font_from_char_caches_bb6_in(B-1,B,C,D,E)],[B<0]).
+eq(eval_gs_purge_font_from_char_caches_bb1_in(A,B,C,D,E),1,[eval_gs_purge_font_from_char_caches_bb6_in(B-1,B,C,D,E)],[B>0]).
+eq(eval_gs_purge_font_from_char_caches_bb1_in(A,B,C,D,E),1,[eval_gs_purge_font_from_char_caches_8(B-1,B,C,D,E)],[B<0]).
+eq(eval_gs_purge_font_from_char_caches_bb1_in(A,B,C,D,E),1,[eval_gs_purge_font_from_char_caches_8(B-1,B,C,D,E)],[B>0]).
+eq(eval_gs_purge_font_from_char_caches_bb6_in(A,B,C,D,E),1,[eval_gs_purge_font_from_char_caches_bb1_in(A,A,C,D,E)],[]).
+eq(eval_gs_purge_font_from_char_caches_8(A,B,C,D,E),1,[eval_gs_purge_font_from_char_caches_9(A,B,C,D,E)],[]).
+eq(eval_gs_purge_font_from_char_caches_9(A,B,C,D,E),1,[eval_gs_purge_font_from_char_caches_bb6_in(A,B,C,D,E)],[]).
+eq(eval_gs_purge_font_from_char_caches_bb1_in(A,B,C,A,B),1,[],[C=1,B=0]).

@@ -1,0 +1,9 @@
+eq(eval_line_size_start(A,B,C,D),1,[eval_line_size_bb0_in(A,B,C,D)],[]).
+eq(eval_line_size__critedge_in(A,B,C,D),1,[eval_line_size_stop(A,B,C,D)],[]).
+eq(eval_line_size_bb0_in(A,B,C,D),1,[eval_line_size_bb1_in(E,B,C,0,F,G,H,I,J),loop_cont_eval_line_size_bb1_in(G,H,I,J)],[F=0]).
+eq(eval_line_size_bb0_in(A,B,C,D),1,[eval_line_size_bb1_in(E,B,C,0,F,G,H,I,J)],[F=1]).
+eq(loop_cont_eval_line_size_bb1_in(A,B,C,D),0,[eval_line_size__critedge_in(A,B,C,D)],[]).
+eq(eval_line_size_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_line_size_9(A,A-J,C,D,E,F,G,H,I)],[]).
+eq(eval_line_size_9(A,B,C,D,E,F,G,H,I),1,[eval_line_size_10(A,B,J,D,E,F,G,H,I)],[]).
+eq(eval_line_size_10(A,B,C,D,E,F,G,H,I),1,[eval_line_size_bb1_in(A,B,C,D+C,E,F,G,H,I)],[]).
+eq(eval_line_size_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=0]).

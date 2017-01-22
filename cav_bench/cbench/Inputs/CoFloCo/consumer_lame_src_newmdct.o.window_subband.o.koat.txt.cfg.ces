@@ -1,0 +1,15 @@
+eq(eval_window_subband_start(A,B,C),1,[eval_window_subband_bb0_in(A,B,C)],[]).
+eq(eval_window_subband_bb0_in(A,B,C),1,[eval_window_subband_bb1_in(14,B,C,D,E,F,G),loop_cont_eval_window_subband_bb1_in(E,F,G)],[D=0]).
+eq(eval_window_subband_bb0_in(A,B,C),1,[eval_window_subband_bb1_in(14,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_window_subband_bb1_in(A,B,C),0,[eval_window_subband_bb4_in(A,B,C,D,E,F,G),loop_cont_eval_window_subband_bb4_in(E,F,G)],[D=0]).
+eq(loop_cont_eval_window_subband_bb1_in(A,B,C),0,[eval_window_subband_bb4_in(A,B,C,D,E,F,G)],[D=1]).
+eq(eval_window_subband_bb1_in(A,B,C,D,E,F,G),1,[eval_window_subband_bb1_in(A-1,B,C,D,E,F,G)],[A>=0]).
+eq(eval_window_subband_bb4_in(A,B,C,D,E,F,G),1,[eval_window_subband_bb6_in(A,B,14,H,I,J,K),loop_cont_eval_window_subband_bb6_in(I,J,K,D,E,F,G)],[H=0,B>=0]).
+eq(eval_window_subband_bb4_in(A,B,C,D,E,F,G),1,[eval_window_subband_bb6_in(A,B,14,H,I,J,K)],[D=1,H=1,B>=0]).
+eq(eval_window_subband_bb6_in(A,B,C,D,E,F,G),1,[eval_window_subband_bb6_in(A,B,C-1,D,E,F,G)],[C>=0]).
+eq(loop_cont_eval_window_subband_bb6_in(A,B,C,D,E,F,G),0,[eval_window_subband_bb4_in(A,B,C,D,E,F,G)],[]).
+eq(eval_window_subband_bb1_in(A,B,C,D,A,15,C),1,[],[D=0,A<0]).
+eq(eval_window_subband_bb1_in(A,B,C,D,A,B,C),0,[],[D=1]).
+eq(eval_window_subband_bb4_in(A,B,C,D,A,B,C),1,[],[D=1,B<0]).
+eq(eval_window_subband_bb6_in(A,B,C,D,A,B-1,C),1,[],[D=0,C<0]).
+eq(eval_window_subband_bb6_in(A,B,C,D,A,B,C),0,[],[D=1]).

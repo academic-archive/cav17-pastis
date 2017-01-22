@@ -1,0 +1,30 @@
+eq(eval_getint_start(A),1,[eval_getint_bb0_in(A)],[]).
+eq(eval_getint_bb0_in(A),1,[eval_getint_0(A)],[]).
+eq(eval_getint_0(A),1,[eval_getint_1(A)],[]).
+eq(eval_getint_2(A),1,[eval_getint_3(A)],[]).
+eq(eval_getint_3(A),1,[eval_getint_4(A)],[]).
+eq(eval_getint_4(A),1,[eval_getint_stop(A)],[]).
+eq(eval_getint_bb5_in(A),1,[eval_getint_10(A)],[]).
+eq(eval_getint_10(A),1,[eval_getint_11(B)],[]).
+eq(eval_getint_11(A),1,[eval_getint_bb7_in(A)],[A= -1]).
+eq(eval_getint_11(A),1,[eval_getint_bb7_in(A)],[A< -1,A<48]).
+eq(eval_getint_11(A),1,[eval_getint_bb7_in(A)],[A< -1,A>57]).
+eq(eval_getint_11(A),1,[eval_getint_bb7_in(A)],[A> -1,A<48]).
+eq(eval_getint_11(A),1,[eval_getint_bb7_in(A)],[A> -1,A>57]).
+eq(eval_getint_11(A),1,[eval_getint_bb5_in(A)],[A< -1,A>=48,A=<57]).
+eq(eval_getint_11(A),1,[eval_getint_bb5_in(A)],[A> -1,A>=48,A=<57]).
+eq(eval_getint_bb7_in(A),1,[eval_getint_stop(A)],[]).
+eq(eval_getint_1(A),1,[eval_getint_bb1_in(A,B,C),loop_cont_eval_getint_bb1_in(C)],[B=0]).
+eq(eval_getint_1(A),1,[eval_getint_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_getint_bb1_in(A),0,[eval_getint_bb5_in(A)],[]).
+eq(loop_cont_eval_getint_bb1_in(A),0,[eval_getint_2(A)],[]).
+eq(eval_getint_bb1_in(A,B,C),1,[eval_getint_NewDefault_in(A,B,C)],[]).
+eq(eval_getint_bb1_in(A,B,C),1,[eval_getint_5(A,B,C)],[]).
+eq(eval_getint_NewDefault_in(A,B,C),1,[eval_getint_bb4_in(A,B,C)],[]).
+eq(eval_getint_5(A,B,C),1,[eval_getint_6(A,B,C)],[]).
+eq(eval_getint_bb4_in(A,B,C),1,[eval_getint_12(A,B,C)],[]).
+eq(eval_getint_6(A,B,C),1,[eval_getint_bb4_in(A,B,C)],[]).
+eq(eval_getint_12(A,B,C),1,[eval_getint_13(A,B,C)],[]).
+eq(eval_getint_13(A,B,C),1,[eval_getint_bb1_in(A,B,C)],[]).
+eq(eval_getint_bb4_in(A,B,A),1,[],[B=0]).
+eq(eval_getint_bb1_in(A,B,A),1,[],[B=0]).

@@ -1,0 +1,84 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_zbind_start))
+(VAR nondef.1 nondef.25 nondef.5 nondef.6 v_144 v_195 v_46 v_47 v_depth.0 v_depth.1)
+(RULES
+  eval_zbind_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb0_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb0_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_5(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb0_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_NewDefault_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb0_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_7(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_5(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_6(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_6(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb3_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_7(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_8(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_8(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb3_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb3_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb44_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb3_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_12(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_12(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_13(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_13(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb6_in(v_144, v_195, v_46, v_47, 1, v_depth.1))
+  eval_zbind_bb6_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.0)) :|: v_depth.0 < 0
+  eval_zbind_bb6_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.0)) :|: v_depth.0 > 0
+  eval_zbind_bb6_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb44_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: v_depth.0 = 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_29(v_144, v_195, nondef.5, v_47, v_depth.0, v_depth.1)) :|: nondef.1 < 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_29(v_144, v_195, nondef.5, v_47, v_depth.0, v_depth.1)) :|: nondef.1 > 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb20_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 < 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb20_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 > 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb23_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 < 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb23_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 > 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 < 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 > 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_NewDefault3_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 < 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_NewDefault3_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 > 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_97(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 < 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_97(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 > 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_131(v_144, v_depth.1 - 1, v_46, v_47, v_depth.0, v_depth.1)) :|: nondef.1 = 0
+  eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb6_in(v_144, v_195, v_46, v_47, v_depth.1 - 1, v_depth.1)) :|: nondef.1 = 0
+  eval_zbind_29(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_name_index_ref_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_30(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_30(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_name_index_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_31(v_144, v_195, v_46, nondef.6, v_depth.0, v_depth.1))
+  eval_zbind_31(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_dict_find_name_by_index_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_32(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_32(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb13_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_32(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb20_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb13_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb15_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb13_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb20_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb15_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_49(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb15_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb19_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb15_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb20_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_49(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_op_find_index_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_50(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_50(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb19_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb19_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb20_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb20_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb23_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_81(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb23_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_89(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb23_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_81(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_82(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_82(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_83(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_83(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_ref_stack_push_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_84(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_84(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_85(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_84(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_87(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_85(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_ref_stack_pop_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_86(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_86(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb44_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_87(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_88(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_88(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb29_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_89(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_90(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_90(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb29_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb29_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1 + 1))
+  eval_zbind_97(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_name_index_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_98(nondef.25, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_98(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_dict_find_name_by_index_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_99(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_99(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb34_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_99(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb34_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb36_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb34_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb36_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_118(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb36_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb39_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb36_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_118(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_alloc_save_change_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_119(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_119(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb39_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb39_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_120(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_120(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_llvm.memcpy.p0i8.p0i8.i64_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_121(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_121(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_NewDefault3_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb7_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_131(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_ref_stack_pop_block_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_132(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_132(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb6_in(v_144, v_195, v_46, v_47, v_195, v_depth.1))
+  eval_zbind_NewDefault_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_135(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_135(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_2(eval_check_type_failed_start(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1), eval_zbind_136(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_136(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_bb44_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+  eval_zbind_bb44_in(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1) -> Com_1(eval_zbind_stop(v_144, v_195, v_46, v_47, v_depth.0, v_depth.1))
+)

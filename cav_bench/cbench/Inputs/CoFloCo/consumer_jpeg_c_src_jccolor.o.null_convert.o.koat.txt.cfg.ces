@@ -1,0 +1,15 @@
+eq(eval_null_convert_start(A,B,C,D,E,F,G,H),1,[eval_null_convert_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_null_convert_bb0_in(A,B,C,D,E,F,G,H),1,[eval_null_convert_bb1_in(G,I,J,D,E,F,G,H,K,L,M,N,O,P,Q,R,S),loop_cont_eval_null_convert_bb1_in(L,M,N,O,P,Q,R,S)],[K=0]).
+eq(eval_null_convert_bb0_in(A,B,C,D,E,F,G,H),1,[eval_null_convert_bb1_in(G,I,J,D,E,F,G,H,K,L,M,N,O,P,Q,R,S)],[K=1]).
+eq(eval_null_convert_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_null_convert_bb3_in(A,B,C,A-1,0,F,G,H,R,S,T,U,V,W,X,Y,Z),loop_cont_eval_null_convert_bb3_in(S,T,U,V,W,X,Y,Z,I,J,K,L,M,N,O,P,Q)],[R=0,A-1>=0]).
+eq(eval_null_convert_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_null_convert_bb3_in(A,B,C,A-1,0,F,G,H,R,S,T,U,V,W,X,Y,Z)],[I=1,R=1,A-1>=0]).
+eq(eval_null_convert_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_null_convert_bb5_in(A,B,C,D,E,0,G,H,R,S,T,U,V,W,X,Y,Z),loop_cont_eval_null_convert_bb5_in(S,T,U,V,W,X,Y,Z,I,J,K,L,M,N,O,P,Q)],[R=0,E<B]).
+eq(eval_null_convert_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_null_convert_bb5_in(A,B,C,D,E,0,G,H,R,S,T,U,V,W,X,Y,Z)],[I=1,R=1,E<B]).
+eq(eval_null_convert_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_null_convert_bb5_in(A,B,C,D,E,F+1,G,H,I,J,K,L,M,N,O,P,Q)],[F<C]).
+eq(loop_cont_eval_null_convert_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),0,[eval_null_convert_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(loop_cont_eval_null_convert_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),0,[eval_null_convert_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_null_convert_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=1,A-1<0]).
+eq(eval_null_convert_bb3_in(A,B,C,D,E,F,G,H,I,D,B,C,D,E,F,G,H),1,[],[I=0,E>=B]).
+eq(eval_null_convert_bb3_in(A,B+1,C,D,E,F,G,H,I,A,B+1,C,D,E,F,G,H),0,[],[I=1,B>=E]).
+eq(eval_null_convert_bb5_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E+1,F,G,H),1,[],[I=0,F>=C]).
+eq(eval_null_convert_bb5_in(A,B,C+1,D,E,F,G,H,I,A,B,C+1,D,E,F,G,H),0,[],[I=1,C>=F]).

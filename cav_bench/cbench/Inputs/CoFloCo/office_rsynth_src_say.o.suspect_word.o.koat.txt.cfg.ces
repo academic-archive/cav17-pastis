@@ -1,0 +1,16 @@
+eq(eval_suspect_word_start(A,B,C,D),1,[eval_suspect_word_bb0_in(A,B,C,D)],[]).
+eq(eval_suspect_word_bb0_in(A,B,C,D),1,[eval_suspect_word_0(A,B,C,D)],[]).
+eq(eval_suspect_word_0(A,B,C,D),1,[eval_suspect_word_1(A,B,C,D)],[]).
+eq(eval_suspect_word_1(A,B,C,D),1,[eval_suspect_word_2(A,B,C,D)],[]).
+eq(eval_suspect_word_bb11_in(A,B,C,D),1,[eval_suspect_word_stop(A,B,C,D)],[]).
+eq(eval_suspect_word_2(A,B,C,D),1,[eval_suspect_word_bb1_in(A,B,0,D,E,F,G,H,I),loop_cont_eval_suspect_word_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_suspect_word_2(A,B,C,D),1,[eval_suspect_word_bb1_in(A,B,0,D,E,F,G,H,I)],[E=1]).
+eq(loop_cont_eval_suspect_word_bb1_in(A,B,C,D),0,[eval_suspect_word_bb11_in(A,B,C,D)],[]).
+eq(eval_suspect_word_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_suspect_word_bb5_in(A,J,C,D,E,F,G,H,I)],[C<D]).
+eq(eval_suspect_word_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_suspect_word_18(B,B,C,D,E,F,G,H,I)],[]).
+eq(eval_suspect_word_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_suspect_word_bb7_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_suspect_word_18(A,B,C,D,E,F,G,H,I),1,[eval_suspect_word_19(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_suspect_word_bb7_in(A,B,C,D,E,F,G,H,I),1,[eval_suspect_word_bb1_in(A,B,C+1,D,E,F,G,H,I)],[]).
+eq(eval_suspect_word_19(A,B,C,D,E,F,G,H,I),1,[eval_suspect_word_bb7_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_suspect_word_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,C>=D]).
+eq(eval_suspect_word_bb1_in(A,B,C,D+1,E,A,B,C,D+1),0,[],[E=1,D>=C]).

@@ -1,0 +1,7 @@
+eq(eval_TIFFSwabArrayOfDouble_start(A,B,C),1,[eval_TIFFSwabArrayOfDouble_bb0_in(A,B,C)],[]).
+eq(eval_TIFFSwabArrayOfDouble_bb0_in(A,B,C),1,[eval_TIFFSwabArrayOfDouble_1(A,2*C,C)],[]).
+eq(eval_TIFFSwabArrayOfDouble_1(A,B,C),1,[eval_TIFFSwabArrayOfDouble_2(A,B,C)],[]).
+eq(eval_TIFFSwabArrayOfDouble_2(A,B,C),1,[eval_TIFFSwabArrayOfDouble_bb1_in(C,B,C,D,E,F,G),loop_cont_eval_TIFFSwabArrayOfDouble_bb1_in(E,F,G)],[D=0]).
+eq(eval_TIFFSwabArrayOfDouble_2(A,B,C),1,[eval_TIFFSwabArrayOfDouble_bb1_in(C,B,C,D,E,F,G)],[D=1]).
+eq(eval_TIFFSwabArrayOfDouble_bb1_in(A,B,C,D,E,F,G),1,[eval_TIFFSwabArrayOfDouble_bb1_in(A-1,B,C,D,E,F,G)],[A>0]).
+eq(eval_TIFFSwabArrayOfDouble_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,A=<0]).

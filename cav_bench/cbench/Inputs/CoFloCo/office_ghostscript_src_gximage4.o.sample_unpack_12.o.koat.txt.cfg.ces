@@ -1,0 +1,14 @@
+eq(eval_sample_unpack_12_start(A,B,C,D,E,F),1,[eval_sample_unpack_12_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_sample_unpack_12_bb0_in(A,B,C,D,E,F),1,[eval_sample_unpack_12_bb4_in(A,B,C,0,E,F)],[]).
+eq(eval_sample_unpack_12_bb0_in(A,B,C,D,E,F),1,[eval_sample_unpack_12_NewDefault_in(C-3*G,B,C,D,E,F)],[]).
+eq(eval_sample_unpack_12_bb0_in(A,B,C,D,E,F),1,[eval_sample_unpack_12_bb4_in(A,B,C,C-3*G,E,F)],[]).
+eq(eval_sample_unpack_12_NewDefault_in(A,B,C,D,E,F),1,[eval_sample_unpack_12_bb4_in(A,B,C,A-3,E,F)],[]).
+eq(eval_sample_unpack_12_NewDefault3_in(A,B,C,D,E,F),1,[eval_sample_unpack_12_bb10_in(A,B,C,D,E,F)],[]).
+eq(eval_sample_unpack_12_bb10_in(A,B,C,D,E,F),1,[eval_sample_unpack_12_stop(A,B,C,D,E,F)],[]).
+eq(eval_sample_unpack_12_bb4_in(A,B,C,D,E,F),1,[eval_sample_unpack_12_bb5_in(A,B,C,D,D,F,G,H,I,J,K,L,M),loop_cont_eval_sample_unpack_12_bb5_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_sample_unpack_12_bb4_in(A,B,C,D,E,F),1,[eval_sample_unpack_12_bb5_in(A,B,C,D,D,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_sample_unpack_12_bb5_in(A,B,C,D,E,F),0,[eval_sample_unpack_12_bb10_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_sample_unpack_12_bb5_in(A,B,C,D,E,F),0,[eval_sample_unpack_12_NewDefault3_in(A,B,C,D,E,F)],[]).
+eq(eval_sample_unpack_12_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_sample_unpack_12_bb5_in(A,B,C,D,E-3,F,G,H,I,J,K,L,M)],[E>=3]).
+eq(eval_sample_unpack_12_bb5_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,E<3]).
+eq(eval_sample_unpack_12_bb5_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1]).

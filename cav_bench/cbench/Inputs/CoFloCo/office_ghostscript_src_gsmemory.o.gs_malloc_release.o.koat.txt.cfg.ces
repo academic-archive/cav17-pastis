@@ -1,0 +1,11 @@
+eq(eval_gs_malloc_release_start(A,B,C),1,[eval_gs_malloc_release_bb0_in(A,B,C)],[]).
+eq(eval_gs_malloc_release_bb0_in(A,B,C),1,[eval_gs_malloc_release_bb1_in(A,B,C,D,E,F,G),loop_cont_eval_gs_malloc_release_bb1_in(E,F,G)],[D=0]).
+eq(eval_gs_malloc_release_bb0_in(A,B,C),1,[eval_gs_malloc_release_bb1_in(A,B,C,D,E,F,G)],[D=1]).
+eq(eval_gs_malloc_release_bb1_in(A,B,C,D,E,F,G),1,[eval_gs_malloc_release_8(A,H,I,D,E,F,G)],[]).
+eq(eval_gs_malloc_release_bb1_in(A,B,C,D,E,F,G),1,[eval_gs_malloc_release_bb4_in(A,B,C,D,E,F,G)],[]).
+eq(eval_gs_malloc_release_8(A,B,C,D,E,F,G),1,[eval_gs_malloc_release_9(A,B,C,D,E,F,G)],[]).
+eq(eval_gs_malloc_release_bb4_in(A,B,C,D,E,F,G),1,[eval_gs_malloc_release_10(A,B,C,D,E,F,G)],[]).
+eq(eval_gs_malloc_release_9(A,B,C,D,E,F,G),1,[eval_gs_malloc_release_bb4_in(A,B,C,D,E,F,G)],[]).
+eq(eval_gs_malloc_release_10(A,B,C,D,E,F,G),1,[eval_gs_malloc_release_11(A,B,C,D,E,F,G)],[]).
+eq(eval_gs_malloc_release_11(A,B,C,D,E,F,G),1,[eval_gs_malloc_release_bb1_in(A,B,C,D,E,F,G)],[]).
+eq(eval_gs_malloc_release_bb1_in(A,B,C,D,A,B,C),1,[],[D=1]).

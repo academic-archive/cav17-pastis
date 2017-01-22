@@ -1,0 +1,27 @@
+eq(eval_jinit_d_main_controller_start(A,B),1,[eval_jinit_d_main_controller_bb0_in(A,B)],[]).
+eq(eval_jinit_d_main_controller_bb0_in(A,B),1,[eval_jinit_d_main_controller_0(A,B)],[]).
+eq(eval_jinit_d_main_controller_0(A,B),1,[eval_jinit_d_main_controller_1(A,B)],[]).
+eq(eval_jinit_d_main_controller_1(A,B),1,[eval_jinit_d_main_controller_5(A,B)],[]).
+eq(eval_jinit_d_main_controller_1(A,B),1,[eval_jinit_d_main_controller_bb2_in(A,B)],[]).
+eq(eval_jinit_d_main_controller_5(A,B),1,[eval_jinit_d_main_controller_6(A,B)],[]).
+eq(eval_jinit_d_main_controller_6(A,B),1,[eval_jinit_d_main_controller_bb2_in(A,B)],[]).
+eq(eval_jinit_d_main_controller_bb2_in(A,B),1,[eval_jinit_d_main_controller_11(A,B)],[]).
+eq(eval_jinit_d_main_controller_bb2_in(A,B),1,[eval_jinit_d_main_controller_bb5_in(A,B)],[]).
+eq(eval_jinit_d_main_controller_bb2_in(A,B),1,[eval_jinit_d_main_controller_bb6_in(A,B)],[]).
+eq(eval_jinit_d_main_controller_11(A,B),1,[eval_jinit_d_main_controller_12(A,B)],[]).
+eq(eval_jinit_d_main_controller_12(A,B),1,[eval_jinit_d_main_controller_bb5_in(A,B)],[]).
+eq(eval_jinit_d_main_controller_bb5_in(A,B),1,[eval_jinit_d_main_controller_13(A,B)],[]).
+eq(eval_jinit_d_main_controller_13(A,B),1,[eval_jinit_d_main_controller_14(A,B)],[]).
+eq(eval_jinit_d_main_controller_14(A,B),1,[eval_jinit_d_main_controller_bb6_in(A,B)],[]).
+eq(eval_jinit_d_main_controller_bb6_in(A,B),1,[eval_jinit_d_main_controller_bb7_in(0,B,C,D,E),loop_cont_eval_jinit_d_main_controller_bb7_in(D,E)],[C=0]).
+eq(eval_jinit_d_main_controller_bb6_in(A,B),1,[eval_jinit_d_main_controller_bb7_in(0,B,C,D,E)],[C=1]).
+eq(eval_jinit_d_main_controller_bb7_in(A,B,C,D,E),1,[eval_jinit_d_main_controller_28(A,B,C,D,E)],[A<F,G*H=0,I=0]).
+eq(eval_jinit_d_main_controller_bb7_in(A,B,C,D,E),1,[eval_jinit_d_main_controller_28(A,B,C,D,E)],[A<F,G=1,H=I*J]).
+eq(eval_jinit_d_main_controller_bb7_in(A,B,C,D,E),1,[eval_jinit_d_main_controller_28(A,B,C,D,E)],[A<F,G= -1,H= -I*J]).
+eq(eval_jinit_d_main_controller_bb7_in(A,B,C,D,E),1,[eval_jinit_d_main_controller_28(A,B,C,D,E)],[A<F,G>1,H*I>0,J>=0,J<H*I]).
+eq(eval_jinit_d_main_controller_bb7_in(A,B,C,D,E),1,[eval_jinit_d_main_controller_28(A,B,C,D,E)],[A<F,G>1,H*I<0,J=<0,J>H*I]).
+eq(eval_jinit_d_main_controller_bb7_in(A,B,C,D,E),1,[eval_jinit_d_main_controller_28(A,B,C,D,E)],[A<F,G< -1,H*I>0,J=<0,J> -H*I]).
+eq(eval_jinit_d_main_controller_bb7_in(A,B,C,D,E),1,[eval_jinit_d_main_controller_28(A,B,C,D,E)],[A<F,G< -1,H*I<0,J>=0,J< -H*I]).
+eq(eval_jinit_d_main_controller_28(A,B,C,D,E),1,[eval_jinit_d_main_controller_29(A,B,C,D,E)],[]).
+eq(eval_jinit_d_main_controller_29(A,B,C,D,E),1,[eval_jinit_d_main_controller_bb7_in(A+1,B,C,D,E)],[]).
+eq(eval_jinit_d_main_controller_bb7_in(A,B,C,A,B),1,[],[C=1,A>=D]).

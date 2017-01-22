@@ -1,0 +1,7 @@
+eq(eval_synth_1to1_mono_start(A),1,[eval_synth_1to1_mono_bb0_in(A)],[]).
+eq(eval_synth_1to1_mono_bb0_in(A),1,[eval_synth_1to1_mono_1(A)],[]).
+eq(eval_synth_1to1_mono_1(A),1,[eval_synth_1to1_mono_2(A)],[]).
+eq(eval_synth_1to1_mono_2(A),1,[eval_synth_1to1_mono_bb1_in(0,B,C),loop_cont_eval_synth_1to1_mono_bb1_in(C)],[B=0]).
+eq(eval_synth_1to1_mono_2(A),1,[eval_synth_1to1_mono_bb1_in(0,B,C)],[B=1]).
+eq(eval_synth_1to1_mono_bb1_in(A,B,C),1,[eval_synth_1to1_mono_bb1_in(A+1,B,C)],[A<32]).
+eq(eval_synth_1to1_mono_bb1_in(A,B,A),1,[],[B=1,A>=32]).

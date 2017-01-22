@@ -1,0 +1,16 @@
+eq(eval_inflate_entry_start(A,B,C,D,E,F),1,[eval_inflate_entry_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_inflate_entry_13(A,B,C,D,E,F),1,[eval_inflate_entry_14(A,B,C,D,E,F)],[]).
+eq(eval_inflate_entry_14(A,B,C,D,E,F),1,[eval_inflate_entry_bb4_in(A,B,C,D,E,F)],[]).
+eq(eval_inflate_entry_bb4_in(A,B,C,D,E,F),1,[eval_inflate_entry_stop(A,B,C,D,E,F)],[]).
+eq(eval_inflate_entry_bb0_in(A,B,C,D,E,F),1,[eval_inflate_entry_bb1_in(0,0,C,0,E,F,G,H,I,J,K,L,M),loop_cont_eval_inflate_entry_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_inflate_entry_bb0_in(A,B,C,D,E,F),1,[eval_inflate_entry_bb1_in(0,0,C,0,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_inflate_entry_bb1_in(A,B,C,D,E,F),0,[eval_inflate_entry_bb4_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_inflate_entry_bb1_in(A,B,C,D,E,F),0,[eval_inflate_entry_13(A,B,C,D,E,F)],[]).
+eq(eval_inflate_entry_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_inflate_entry_5(A,B,0,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_inflate_entry_5(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_inflate_entry_6(A,B,C,D,N,F,G,H,I,J,K,L,M)],[]).
+eq(eval_inflate_entry_6(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_inflate_entry_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[E=0,N=0]).
+eq(eval_inflate_entry_6(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,E<0]).
+eq(eval_inflate_entry_6(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1]).
+eq(eval_inflate_entry_6(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,E>0]).
+eq(eval_inflate_entry_6(A,B,C,D,E,F,G,A,B,C,D,E,D),1,[],[G=0,E=0,H<0]).
+eq(eval_inflate_entry_6(A,B,C,D,E,F,G,A,B,C,D,E,D),1,[],[G=0,E=0,H>0]).

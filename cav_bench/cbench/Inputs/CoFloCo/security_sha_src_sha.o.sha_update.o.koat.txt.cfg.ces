@@ -1,0 +1,14 @@
+eq(eval_sha_update_start(A,B,C),1,[eval_sha_update_bb0_in(A,B,C)],[]).
+eq(eval_sha_update_bb0_in(A,B,C),1,[eval_sha_update_bb2_in(A,B,C)],[]).
+eq(eval_sha_update_27(A,B,C),1,[eval_sha_update_28(A,B,C)],[]).
+eq(eval_sha_update_28(A,B,C),1,[eval_sha_update_stop(A,B,C)],[]).
+eq(eval_sha_update_bb2_in(A,B,C),1,[eval_sha_update_bb3_in(C,B,C,D,E,F,G),loop_cont_eval_sha_update_bb3_in(E,F,G)],[D=0]).
+eq(eval_sha_update_bb2_in(A,B,C),1,[eval_sha_update_bb3_in(C,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_sha_update_bb3_in(A,B,C),0,[eval_sha_update_27(A,B,C)],[]).
+eq(eval_sha_update_bb3_in(A,B,C,D,E,F,G),1,[eval_sha_update_21(A,B,C,D,E,F,G)],[A>=64]).
+eq(eval_sha_update_21(A,B,C,D,E,F,G),1,[eval_sha_update_22(A,B,C,D,E,F,G)],[]).
+eq(eval_sha_update_22(A,B,C,D,E,F,G),1,[eval_sha_update_23(A,B,C,D,E,F,G)],[]).
+eq(eval_sha_update_23(A,B,C,D,E,F,G),1,[eval_sha_update_24(A,B,C,D,E,F,G)],[]).
+eq(eval_sha_update_24(A,B,C,D,E,F,G),1,[eval_sha_update_bb3_in(A-64,B,C,D,E,F,G)],[]).
+eq(eval_sha_update_bb3_in(A,B,C,D,A,A,C),1,[],[D=0,A<64]).
+eq(eval_sha_update_bb3_in(A,B,C,D,A,B,C),0,[],[D=1]).

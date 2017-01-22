@@ -1,0 +1,15 @@
+eq(eval_mad_stream_sync_start,1,[eval_mad_stream_sync_bb0_in],[]).
+eq(eval_mad_stream_sync_bb0_in,1,[eval_mad_stream_sync_0],[]).
+eq(eval_mad_stream_sync_0,1,[eval_mad_stream_sync_1],[]).
+eq(eval_mad_stream_sync__critedge_in,1,[eval_mad_stream_sync_bb7_in],[]).
+eq(eval_mad_stream_sync__critedge_in,1,[eval_mad_stream_sync_13],[]).
+eq(eval_mad_stream_sync_13,1,[eval_mad_stream_sync_14],[]).
+eq(eval_mad_stream_sync_14,1,[eval_mad_stream_sync_bb7_in],[]).
+eq(eval_mad_stream_sync_bb7_in,1,[eval_mad_stream_sync_stop],[]).
+eq(eval_mad_stream_sync_1,1,[eval_mad_stream_sync_bb1_in(A),loop_cont_eval_mad_stream_sync_bb1_in],[A=0]).
+eq(eval_mad_stream_sync_1,1,[eval_mad_stream_sync_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_mad_stream_sync_bb1_in,0,[eval_mad_stream_sync__critedge_in],[]).
+eq(eval_mad_stream_sync_bb1_in(A),1,[eval_mad_stream_sync_bb4_in(A)],[]).
+eq(eval_mad_stream_sync_bb4_in(A),1,[eval_mad_stream_sync_bb1_in(A)],[]).
+eq(eval_mad_stream_sync_bb4_in(A),1,[],[A=0]).
+eq(eval_mad_stream_sync_bb1_in(A),1,[],[A=0]).
