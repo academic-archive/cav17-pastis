@@ -1,0 +1,5 @@
+.lia.cache
+coq/
+*.vo
+*.glob
+*.vo.aux
