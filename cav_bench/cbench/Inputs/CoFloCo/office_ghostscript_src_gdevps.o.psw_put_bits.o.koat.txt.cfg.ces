@@ -1,0 +1,7 @@
+eq(eval_psw_put_bits_start(A,B,C,D,E,F),1,[eval_psw_put_bits_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_psw_put_bits_bb0_in(A,B,C,D,E,F),1,[eval_psw_put_bits_bb1_in(A,B,C,D,E,0,G,H,I,J,K,L,M),loop_cont_eval_psw_put_bits_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_psw_put_bits_bb0_in(A,B,C,D,E,F),1,[eval_psw_put_bits_bb1_in(A,B,C,D,E,0,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_psw_put_bits_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_psw_put_bits_7(N,B,C,D,E,F,G,H,I,J,K,L,M)],[F<C]).
+eq(eval_psw_put_bits_7(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_psw_put_bits_8(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_psw_put_bits_8(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_psw_put_bits_bb1_in(A,B,C,D,E,F+1,G,H,I,J,K,L,M)],[]).
+eq(eval_psw_put_bits_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,F>=C]).

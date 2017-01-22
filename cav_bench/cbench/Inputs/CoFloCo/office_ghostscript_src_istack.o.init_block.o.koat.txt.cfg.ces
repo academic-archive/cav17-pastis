@@ -1,0 +1,17 @@
+eq(eval_init_block_start(A,B,C),1,[eval_init_block_bb0_in(A,B,C)],[]).
+eq(eval_init_block_13(A,B,C),1,[eval_init_block_14(A,B,C)],[]).
+eq(eval_init_block_14(A,B,C),1,[eval_init_block_bb5_in(A,B,C)],[]).
+eq(eval_init_block_bb5_in(A,B,C),1,[eval_init_block_15(A,B,C)],[]).
+eq(eval_init_block_15(A,B,C),1,[eval_init_block_16(A,B,C)],[]).
+eq(eval_init_block_16(A,B,C),1,[eval_init_block_stop(A,B,C)],[]).
+eq(eval_init_block_bb0_in(A,B,C),1,[eval_init_block_bb1_in(A,D,C,E,F,G,H),loop_cont_eval_init_block_bb1_in(F,G,H)],[E=0]).
+eq(eval_init_block_bb0_in(A,B,C),1,[eval_init_block_bb1_in(A,D,C,E,F,G,H)],[E=1]).
+eq(loop_cont_eval_init_block_bb1_in(A,B,C),0,[eval_init_block_13(A,B,C)],[]).
+eq(loop_cont_eval_init_block_bb1_in(A,B,C),0,[eval_init_block_bb5_in(A,B,C)],[]).
+eq(eval_init_block_bb1_in(A,B,C,D,E,F,G),1,[eval_init_block_2(A,B,C,D,E,F,G)],[B<0]).
+eq(eval_init_block_bb1_in(A,B,C,D,E,F,G),1,[eval_init_block_2(A,B,C,D,E,F,G)],[B>0]).
+eq(eval_init_block_2(A,B,C,D,E,F,G),1,[eval_init_block_3(A,B,C,D,E,F,G)],[]).
+eq(eval_init_block_3(A,B,C,D,E,F,G),1,[eval_init_block_bb1_in(A,B-1,C,D,E,F,G)],[]).
+eq(eval_init_block_bb1_in(A,B,C,D,E,B,C),1,[],[D=0,B=0]).
+eq(eval_init_block_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,B=0]).
+eq(eval_init_block_bb1_in(A,B,C,D,A,B,C),0,[],[D=1]).

@@ -1,0 +1,10 @@
+eq(eval_swap_start(A,B),1,[eval_swap_bb0_in(A,B)],[]).
+eq(eval_swap_bb0_in(A,B),1,[eval_swap_bb3_in(A,B)],[]).
+eq(eval_swap_bb3_in(A,B),1,[eval_swap_stop(A,B)],[]).
+eq(eval_swap_bb0_in(A,B),1,[eval_swap_bb1_in(B,B,C,D,E),loop_cont_eval_swap_bb1_in(D,E)],[C=0]).
+eq(eval_swap_bb0_in(A,B),1,[eval_swap_bb1_in(B,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_swap_bb1_in(A,B),0,[eval_swap_bb3_in(A,B)],[]).
+eq(eval_swap_bb1_in(A,B,C,D,E),1,[eval_swap_bb1_in(A-1,B,C,D,E)],[A<0]).
+eq(eval_swap_bb1_in(A,B,C,D,E),1,[eval_swap_bb1_in(A-1,B,C,D,E)],[A>0]).
+eq(eval_swap_bb1_in(A,B,C,A,B),1,[],[C=0,A=0]).
+eq(eval_swap_bb1_in(A,B,C,A,B),0,[],[C=1]).

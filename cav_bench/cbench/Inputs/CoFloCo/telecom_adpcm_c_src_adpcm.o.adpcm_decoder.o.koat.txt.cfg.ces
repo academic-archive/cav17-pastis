@@ -1,0 +1,11 @@
+eq(eval_adpcm_decoder_start(A,B,C,D),1,[eval_adpcm_decoder_bb0_in(A,B,C,D)],[]).
+eq(eval_adpcm_decoder_bb0_in(A,B,C,D),1,[eval_adpcm_decoder_bb1_in(D,B,0,D,E,F,G,H,I),loop_cont_eval_adpcm_decoder_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_adpcm_decoder_bb0_in(A,B,C,D),1,[eval_adpcm_decoder_bb1_in(D,B,0,D,E,F,G,H,I)],[E=1]).
+eq(eval_adpcm_decoder_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_adpcm_decoder_bb5_in(A,B,C,D,E,F,G,H,I)],[A>0]).
+eq(eval_adpcm_decoder_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_adpcm_decoder_bb7_in(A,0,C,D,E,F,G,H,I)],[C<0]).
+eq(eval_adpcm_decoder_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_adpcm_decoder_bb7_in(A,0,C,D,E,F,G,H,I)],[C>0]).
+eq(eval_adpcm_decoder_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_adpcm_decoder_bb7_in(A,1,C,D,E,F,G,H,I)],[C=0]).
+eq(eval_adpcm_decoder_bb7_in(A,B,C,D,E,F,G,H,I),1,[eval_adpcm_decoder_bb9_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_adpcm_decoder_bb9_in(A,B,C,D,E,F,G,H,I),1,[eval_adpcm_decoder_bb11_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_adpcm_decoder_bb11_in(A,B,C,D,E,F,G,H,I),1,[eval_adpcm_decoder_bb1_in(A-1,B,B,D,E,F,G,H,I)],[]).
+eq(eval_adpcm_decoder_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,A=<0]).

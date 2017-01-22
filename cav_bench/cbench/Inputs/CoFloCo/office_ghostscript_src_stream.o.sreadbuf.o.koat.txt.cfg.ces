@@ -1,0 +1,20 @@
+eq(eval_sreadbuf_start,1,[eval_sreadbuf_bb0_in],[]).
+eq(eval_sreadbuf_bb0_in,1,[eval_sreadbuf_bb1_in(A),loop_cont_eval_sreadbuf_bb1_in],[A=0]).
+eq(eval_sreadbuf_bb0_in,1,[eval_sreadbuf_bb1_in(A)],[A=1]).
+eq(eval_sreadbuf_bb1_in(A),1,[eval_sreadbuf_bb4_in(A)],[]).
+eq(eval_sreadbuf_bb1_in(A),1,[eval_sreadbuf_bb4_in(A)],[B< -1]).
+eq(eval_sreadbuf_bb1_in(A),1,[eval_sreadbuf_bb4_in(A)],[B> -1]).
+eq(eval_sreadbuf_bb1_in(A),1,[eval_sreadbuf_bb4_in(A)],[B= -1]).
+eq(eval_sreadbuf_bb4_in(A),1,[eval_sreadbuf_bb6_in(A)],[]).
+eq(eval_sreadbuf_bb6_in(A),1,[eval_sreadbuf_7(A)],[]).
+eq(eval_sreadbuf_7(A),1,[eval_sreadbuf_8(A)],[]).
+eq(eval_sreadbuf_8(A),1,[eval_sreadbuf_bb8_in(A)],[]).
+eq(eval_sreadbuf_8(A),1,[eval_sreadbuf_22(A)],[]).
+eq(eval_sreadbuf_bb8_in(A),1,[eval_sreadbuf_12(A)],[]).
+eq(eval_sreadbuf_bb8_in(A),1,[eval_sreadbuf_bb11_in(A)],[]).
+eq(eval_sreadbuf_22(A),1,[eval_sreadbuf_23(A)],[]).
+eq(eval_sreadbuf_12(A),1,[eval_sreadbuf_13(A)],[]).
+eq(eval_sreadbuf_bb11_in(A),1,[eval_sreadbuf_bb1_in(A)],[]).
+eq(eval_sreadbuf_23(A),1,[eval_sreadbuf_bb1_in(A)],[]).
+eq(eval_sreadbuf_13(A),1,[eval_sreadbuf_bb11_in(A)],[]).
+eq(eval_sreadbuf_bb11_in(A),1,[],[A=1]).

@@ -1,0 +1,17 @@
+eq(eval_id3_latin1_serialize_start(A,B,C),1,[eval_id3_latin1_serialize_bb0_in(A,B,C)],[]).
+eq(eval_id3_latin1_serialize_9(A,B,C),1,[eval_id3_latin1_serialize_10(A,B,C)],[]).
+eq(eval_id3_latin1_serialize_10(A,B,C),1,[eval_id3_latin1_serialize_bb6_in(A,B,C)],[]).
+eq(eval_id3_latin1_serialize_bb6_in(A,B,C),1,[eval_id3_latin1_serialize_stop(A,B,C)],[]).
+eq(eval_id3_latin1_serialize_bb0_in(A,B,C),1,[eval_id3_latin1_serialize_bb1_in(A,B,C,D,E,F,G),loop_cont_eval_id3_latin1_serialize_bb1_in(E,F,G)],[D=0]).
+eq(eval_id3_latin1_serialize_bb0_in(A,B,C),1,[eval_id3_latin1_serialize_bb1_in(A,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_id3_latin1_serialize_bb1_in(A,B,C),0,[eval_id3_latin1_serialize_9(A,B,C)],[]).
+eq(loop_cont_eval_id3_latin1_serialize_bb1_in(A,B,C),0,[eval_id3_latin1_serialize_bb6_in(A,B,C)],[]).
+eq(eval_id3_latin1_serialize_bb1_in(A,B,C,D,E,F,G),1,[eval_id3_latin1_serialize_3(H,B,C,D,E,F,G)],[I<0]).
+eq(eval_id3_latin1_serialize_bb1_in(A,B,C,D,E,F,G),1,[eval_id3_latin1_serialize_3(H,B,C,D,E,F,G)],[I>0]).
+eq(eval_id3_latin1_serialize_3(A,B,C,D,E,F,G),1,[eval_id3_latin1_serialize_4(A,B,C,D,E,F,G)],[]).
+eq(eval_id3_latin1_serialize_4(A,B,C,D,E,F,G),1,[eval_id3_latin1_serialize_6(A,H,C,D,E,F,G)],[]).
+eq(eval_id3_latin1_serialize_4(A,B,C,D,E,F,G),1,[eval_id3_latin1_serialize_bb1_in(A,B,C,D,E,F,G)],[]).
+eq(eval_id3_latin1_serialize_6(A,B,C,D,E,F,G),1,[eval_id3_latin1_serialize_7(A,B,C,D,E,F,G)],[]).
+eq(eval_id3_latin1_serialize_7(A,B,C,D,E,F,G),1,[eval_id3_latin1_serialize_bb1_in(A,B,C,D,E,F,G)],[]).
+eq(eval_id3_latin1_serialize_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,E=0]).
+eq(eval_id3_latin1_serialize_bb1_in(A,B,C,D,A,B,C),0,[],[D=1]).

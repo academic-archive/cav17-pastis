@@ -1,0 +1,15 @@
+eq(eval_randombits_start(A,B),1,[eval_randombits_bb0_in(A,B)],[]).
+eq(eval_randombits_bb0_in(A,B),1,[eval_randombits_0(A,B)],[]).
+eq(eval_randombits_0(A,B),1,[eval_randombits_1(A,B)],[]).
+eq(eval_randombits_10(A,B),1,[eval_randombits_11(A,B)],[]).
+eq(eval_randombits_11(A,B),1,[eval_randombits_bb5_in(A,B)],[]).
+eq(eval_randombits_bb5_in(A,B),1,[eval_randombits_stop(A,B)],[]).
+eq(eval_randombits_1(A,B),1,[eval_randombits_bb1_in(B,B,C,D,E),loop_cont_eval_randombits_bb1_in(D,E)],[C=0]).
+eq(eval_randombits_1(A,B),1,[eval_randombits_bb1_in(B,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_randombits_bb1_in(A,B),0,[eval_randombits_10(A,B)],[]).
+eq(loop_cont_eval_randombits_bb1_in(A,B),0,[eval_randombits_bb5_in(A,B)],[]).
+eq(eval_randombits_bb1_in(A,B,C,D,E),1,[eval_randombits_4(A,B,C,D,E)],[A>=16]).
+eq(eval_randombits_4(A,B,C,D,E),1,[eval_randombits_5(A,B,C,D,E)],[]).
+eq(eval_randombits_5(A,B,C,D,E),1,[eval_randombits_bb1_in(A-16,B,C,D,E)],[]).
+eq(eval_randombits_bb1_in(A,B,C,A,B),1,[],[C=0,A<16]).
+eq(eval_randombits_bb1_in(A,B,C,A,B),0,[],[C=1]).

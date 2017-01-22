@@ -1,0 +1,12 @@
+eq(eval_print_emulators_start,1,[eval_print_emulators_bb0_in],[]).
+eq(eval_print_emulators_bb0_in,1,[eval_print_emulators_0],[]).
+eq(eval_print_emulators_0,1,[eval_print_emulators_1],[]).
+eq(eval_print_emulators_4,1,[eval_print_emulators_5],[]).
+eq(eval_print_emulators_5,1,[eval_print_emulators_stop],[]).
+eq(eval_print_emulators_1,1,[eval_print_emulators_bb1_in(A),loop_cont_eval_print_emulators_bb1_in],[A=0]).
+eq(eval_print_emulators_1,1,[eval_print_emulators_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_print_emulators_bb1_in,0,[eval_print_emulators_4],[]).
+eq(eval_print_emulators_bb1_in(A),1,[eval_print_emulators_2(A)],[]).
+eq(eval_print_emulators_2(A),1,[eval_print_emulators_3(A)],[]).
+eq(eval_print_emulators_3(A),1,[eval_print_emulators_bb1_in(A)],[]).
+eq(eval_print_emulators_bb1_in(A),1,[],[A=0]).

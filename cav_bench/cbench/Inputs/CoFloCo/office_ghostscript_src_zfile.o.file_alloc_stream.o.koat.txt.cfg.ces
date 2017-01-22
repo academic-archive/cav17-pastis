@@ -1,0 +1,16 @@
+eq(eval_file_alloc_stream_start,1,[eval_file_alloc_stream_bb0_in],[]).
+eq(eval_file_alloc_stream__critedge_in,1,[eval_file_alloc_stream_10],[]).
+eq(eval_file_alloc_stream_10,1,[eval_file_alloc_stream_11],[]).
+eq(eval_file_alloc_stream_11,1,[eval_file_alloc_stream_bb11_in],[]).
+eq(eval_file_alloc_stream_11,1,[eval_file_alloc_stream_15],[]).
+eq(eval_file_alloc_stream_15,1,[eval_file_alloc_stream_16],[]).
+eq(eval_file_alloc_stream_16,1,[eval_file_alloc_stream_bb10_in],[]).
+eq(eval_file_alloc_stream_bb10_in,1,[eval_file_alloc_stream_bb11_in],[]).
+eq(eval_file_alloc_stream_bb11_in,1,[eval_file_alloc_stream_stop],[]).
+eq(eval_file_alloc_stream_bb0_in,1,[eval_file_alloc_stream_bb1_in(A),loop_cont_eval_file_alloc_stream_bb1_in],[A=0]).
+eq(eval_file_alloc_stream_bb0_in,1,[eval_file_alloc_stream_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_file_alloc_stream_bb1_in,0,[eval_file_alloc_stream_bb11_in],[]).
+eq(loop_cont_eval_file_alloc_stream_bb1_in,0,[eval_file_alloc_stream__critedge_in],[]).
+eq(eval_file_alloc_stream_bb1_in(A),1,[eval_file_alloc_stream_bb7_in(A)],[]).
+eq(eval_file_alloc_stream_bb7_in(A),1,[eval_file_alloc_stream_bb1_in(A)],[]).
+eq(eval_file_alloc_stream_bb1_in(A),1,[],[A=0]).

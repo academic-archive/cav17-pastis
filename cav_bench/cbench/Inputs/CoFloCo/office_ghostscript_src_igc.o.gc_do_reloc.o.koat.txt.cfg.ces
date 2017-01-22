@@ -1,0 +1,13 @@
+eq(eval_gc_do_reloc_start,1,[eval_gc_do_reloc_bb0_in],[]).
+eq(eval_gc_do_reloc_bb0_in,1,[eval_gc_do_reloc_bb1_in(A),loop_cont_eval_gc_do_reloc_bb1_in],[A=0]).
+eq(eval_gc_do_reloc_bb0_in,1,[eval_gc_do_reloc_bb1_in(A)],[A=1]).
+eq(eval_gc_do_reloc_bb1_in(A),1,[eval_gc_do_reloc_bb10_in(A)],[]).
+eq(eval_gc_do_reloc_bb1_in(A),1,[eval_gc_do_reloc_bb5_in(A)],[]).
+eq(eval_gc_do_reloc_bb10_in(A),1,[eval_gc_do_reloc_33(A)],[]).
+eq(eval_gc_do_reloc_bb10_in(A),1,[eval_gc_do_reloc_bb12_in(A)],[]).
+eq(eval_gc_do_reloc_bb5_in(A),1,[eval_gc_do_reloc_bb12_in(A)],[]).
+eq(eval_gc_do_reloc_bb5_in(A),1,[eval_gc_do_reloc_bb10_in(A)],[]).
+eq(eval_gc_do_reloc_33(A),1,[eval_gc_do_reloc_34(A)],[]).
+eq(eval_gc_do_reloc_bb12_in(A),1,[eval_gc_do_reloc_bb1_in(A)],[]).
+eq(eval_gc_do_reloc_34(A),1,[eval_gc_do_reloc_bb12_in(A)],[]).
+eq(eval_gc_do_reloc_bb1_in(A),1,[],[A=1]).

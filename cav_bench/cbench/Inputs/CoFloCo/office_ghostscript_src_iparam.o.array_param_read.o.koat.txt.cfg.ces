@@ -1,0 +1,11 @@
+eq(eval_array_param_read_start,1,[eval_array_param_read_bb0_in],[]).
+eq(eval_array_param_read_bb6_in,1,[eval_array_param_read_stop],[]).
+eq(eval_array_param_read_bb0_in,1,[eval_array_param_read_bb1_in(A),loop_cont_eval_array_param_read_bb1_in],[A=0]).
+eq(eval_array_param_read_bb0_in,1,[eval_array_param_read_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_array_param_read_bb1_in,0,[eval_array_param_read_bb6_in],[]).
+eq(eval_array_param_read_bb1_in(A),1,[eval_array_param_read_bb5_in(A)],[]).
+eq(eval_array_param_read_bb5_in(A),1,[eval_array_param_read_bb1_in(A)],[]).
+eq(eval_array_param_read_bb1_in(A),1,[],[A=0,B-C=0,D=0]).
+eq(eval_array_param_read_bb1_in(A),1,[],[A=0,B-C>0,D>=0,D<B-C]).
+eq(eval_array_param_read_bb1_in(A),1,[],[A=0,B-C<0,D=<0,D>B-C]).
+eq(eval_array_param_read_bb1_in(A),1,[],[A=0]).

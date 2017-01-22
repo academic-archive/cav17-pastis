@@ -1,0 +1,13 @@
+eq(eval_scan_bos_resize_start(A,B,C),1,[eval_scan_bos_resize_bb0_in(A,B,C)],[]).
+eq(eval_scan_bos_resize_bb0_in(A,B,C),1,[eval_scan_bos_resize_4(A,B,C)],[]).
+eq(eval_scan_bos_resize_4(A,B,C),1,[eval_scan_bos_resize_5(A,B,C)],[]).
+eq(eval_scan_bos_resize_5(A,B,C),1,[eval_scan_bos_resize_bb8_in(A,B,C)],[]).
+eq(eval_scan_bos_resize_bb8_in(A,B,C),1,[eval_scan_bos_resize_stop(A,B,C)],[]).
+eq(eval_scan_bos_resize_5(A,B,C),1,[eval_scan_bos_resize_bb3_in(B,B,C,D,E,F,G),loop_cont_eval_scan_bos_resize_bb3_in(E,F,G)],[D=0]).
+eq(eval_scan_bos_resize_5(A,B,C),1,[eval_scan_bos_resize_bb3_in(B,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_scan_bos_resize_bb3_in(A,B,C),0,[eval_scan_bos_resize_bb8_in(A,B,C)],[]).
+eq(eval_scan_bos_resize_bb3_in(A,B,C,D,E,F,G),1,[eval_scan_bos_resize_bb7_in(A,B,C,D,E,F,G)],[A<0]).
+eq(eval_scan_bos_resize_bb3_in(A,B,C,D,E,F,G),1,[eval_scan_bos_resize_bb7_in(A,B,C,D,E,F,G)],[A>0]).
+eq(eval_scan_bos_resize_bb7_in(A,B,C,D,E,F,G),1,[eval_scan_bos_resize_bb3_in(A-1,B,C,D,E,F,G)],[]).
+eq(eval_scan_bos_resize_bb3_in(A,B,C,D,A,B,C),1,[],[D=0,A=0]).
+eq(eval_scan_bos_resize_bb3_in(A,B,C,D,A,B,C),0,[],[D=1]).

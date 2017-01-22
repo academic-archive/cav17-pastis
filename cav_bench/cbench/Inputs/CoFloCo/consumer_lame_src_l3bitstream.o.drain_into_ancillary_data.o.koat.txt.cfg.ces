@@ -1,0 +1,29 @@
+eq(eval_drain_into_ancillary_data_start(A,B,C,D),1,[eval_drain_into_ancillary_data_bb0_in(A,B,C,D)],[]).
+eq(eval_drain_into_ancillary_data_8(A,B,C,D),1,[eval_drain_into_ancillary_data_9(A,B,C,D)],[]).
+eq(eval_drain_into_ancillary_data_9(A,B,C,D),1,[eval_drain_into_ancillary_data_bb5_in(A,B,C,D)],[]).
+eq(eval_drain_into_ancillary_data_bb5_in(A,B,C,D),1,[eval_drain_into_ancillary_data_stop(A,B,C,D)],[]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D=0,E=0,D=0,F=0]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D=0,E=0,D=0,F=0]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D=0,E=0,D>0,F>=0,F<32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D=0,E=0,D>0,F>=0,F<32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D=0,E=0,D<0,F=<0,F> -32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D=0,E=0,D<0,F=<0,F> -32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D>0,E>=0,E<D,D=0,F=0]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D>0,E>=0,E<D,D=0,F=0]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D>0,E>=0,E<D,D>0,F>=0,F<32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D>0,E>=0,E<D,D>0,F>=0,F<32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D>0,E>=0,E<D,D<0,F=<0,F> -32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D>0,E>=0,E<D,D<0,F=<0,F> -32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D<0,E=<0,E>D,D=0,F=0]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D<0,E=<0,E>D,D=0,F=0]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D<0,E=<0,E>D,D>0,F>=0,F<32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D<0,E=<0,E>D,D>0,F>=0,F<32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K),loop_cont_eval_drain_into_ancillary_data_bb1_in(H,I,J,K)],[G=0,D<0,E=<0,E>D,D<0,F=<0,F> -32]).
+eq(eval_drain_into_ancillary_data_bb0_in(A,B,C,D),1,[eval_drain_into_ancillary_data_bb1_in(E,F,0,D,G,H,I,J,K)],[G=1,D<0,E=<0,E>D,D<0,F=<0,F> -32]).
+eq(loop_cont_eval_drain_into_ancillary_data_bb1_in(A,B,C,D),0,[eval_drain_into_ancillary_data_8(A,B,C,D)],[]).
+eq(loop_cont_eval_drain_into_ancillary_data_bb1_in(A,B,C,D),0,[eval_drain_into_ancillary_data_bb5_in(A,B,C,D)],[]).
+eq(eval_drain_into_ancillary_data_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_drain_into_ancillary_data_4(A,B,C,D,E,F,G,H,I)],[C<A]).
+eq(eval_drain_into_ancillary_data_4(A,B,C,D,E,F,G,H,I),1,[eval_drain_into_ancillary_data_5(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_drain_into_ancillary_data_5(A,B,C,D,E,F,G,H,I),1,[eval_drain_into_ancillary_data_bb1_in(A,B,C+1,D,E,F,G,H,I)],[]).
+eq(eval_drain_into_ancillary_data_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,C>=A]).
+eq(eval_drain_into_ancillary_data_bb1_in(A+1,B,C,D,E,A+1,B,C,D),0,[],[E=1,A>=C]).

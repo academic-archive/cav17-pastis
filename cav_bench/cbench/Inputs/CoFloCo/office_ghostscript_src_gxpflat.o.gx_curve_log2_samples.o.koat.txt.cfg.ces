@@ -1,0 +1,26 @@
+eq(eval_gx_curve_log2_samples_start(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E)],[]).
+eq(eval_gx_curve_log2_samples_bb7_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_stop(A,B,C,D,E)],[]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L),loop_cont_eval_gx_curve_log2_samples_bb5_in(H,I,J,K,L)],[G=0,-D+M+N-O-E+P+Q-R-S+T-1=0,F=0]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L)],[G=1,-D+M+N-O-E+P+Q-R-S+T-1=0,F=0]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L),loop_cont_eval_gx_curve_log2_samples_bb5_in(H,I,J,K,L)],[G=0,M=1,F= -D+N+O-P-E+Q+R-S-T+M-1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L)],[G=1,M=1,F= -D+N+O-P-E+Q+R-S-T+M-1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L),loop_cont_eval_gx_curve_log2_samples_bb5_in(H,I,J,K,L)],[G=0,M= -1,F=D-N-O+P+E-Q-R+S+T-M+1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L)],[G=1,M= -1,F=D-N-O+P+E-Q-R+S+T-M+1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L),loop_cont_eval_gx_curve_log2_samples_bb5_in(H,I,J,K,L)],[G=0,M>1,-D+N+O-P-E+Q+R-S-T+M-1>0,F>=0,F< -D+N+O-P-E+Q+R-S-T+M-1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L)],[G=1,M>1,-D+N+O-P-E+Q+R-S-T+M-1>0,F>=0,F< -D+N+O-P-E+Q+R-S-T+M-1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L),loop_cont_eval_gx_curve_log2_samples_bb5_in(H,I,J,K,L)],[G=0,M>1,-D+N+O-P-E+Q+R-S-T+M-1<0,F=<0,F> -D+N+O-P-E+Q+R-S-T+M-1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L)],[G=1,M>1,-D+N+O-P-E+Q+R-S-T+M-1<0,F=<0,F> -D+N+O-P-E+Q+R-S-T+M-1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L),loop_cont_eval_gx_curve_log2_samples_bb5_in(H,I,J,K,L)],[G=0,M< -1,-D+N+O-P-E+Q+R-S-T+M-1>0,F=<0,F>D-N-O+P+E-Q-R+S+T-M+1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L)],[G=1,M< -1,-D+N+O-P-E+Q+R-S-T+M-1>0,F=<0,F>D-N-O+P+E-Q-R+S+T-M+1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L),loop_cont_eval_gx_curve_log2_samples_bb5_in(H,I,J,K,L)],[G=0,M< -1,-D+N+O-P-E+Q+R-S-T+M-1<0,F>=0,F<D-N-O+P+E-Q-R+S+T-M+1]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb5_in(A,B,F,D,E,G,H,I,J,K,L)],[G=1,M< -1,-D+N+O-P-E+Q+R-S-T+M-1<0,F>=0,F<D-N-O+P+E-Q-R+S+T-M+1]).
+eq(loop_cont_eval_gx_curve_log2_samples_bb5_in(A,B,C,D,E),0,[eval_gx_curve_log2_samples_bb7_in(A,B,C,D,E)],[]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb2_in(A,-F+D,C,D,E,G,H,I,J,K,L),loop_cont_eval_gx_curve_log2_samples_bb2_in(H,I,J,K,L)],[G=0]).
+eq(eval_gx_curve_log2_samples_bb0_in(A,B,C,D,E),1,[eval_gx_curve_log2_samples_bb2_in(A,-F+D,C,D,E,G,H,I,J,K,L)],[G=1]).
+eq(loop_cont_eval_gx_curve_log2_samples_bb2_in(A,B,C,D,E),0,[eval_gx_curve_log2_samples_bb7_in(A,B,C,D,E)],[]).
+eq(eval_gx_curve_log2_samples_bb5_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gx_curve_log2_samples_bb5_in(A,B,L,D,E,F,G,H,I,J,K)],[C>1]).
+eq(eval_gx_curve_log2_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gx_curve_log2_samples_bb2_in(A,L,C,D,E,F,G,H,I,J,K)],[B>4096]).
+eq(eval_gx_curve_log2_samples_bb5_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,C=<1]).
+eq(eval_gx_curve_log2_samples_bb5_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1,C>=1+1]).
+eq(eval_gx_curve_log2_samples_bb2_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,B=<4096]).
+eq(eval_gx_curve_log2_samples_bb2_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1,B>=4096+1]).

@@ -1,0 +1,15 @@
+eq(eval_sep_upsample_start(A,B,C),1,[eval_sep_upsample_bb0_in(A,B,C)],[]).
+eq(eval_sep_upsample_bb0_in(A,B,C),1,[eval_sep_upsample_bb5_in(A,B,C)],[]).
+eq(eval_sep_upsample_bb5_in(A,B,C),1,[eval_sep_upsample_bb7_in(A,B,C)],[]).
+eq(eval_sep_upsample_bb7_in(A,B,C),1,[eval_sep_upsample_31(A,B,C)],[]).
+eq(eval_sep_upsample_31(A,B,C),1,[eval_sep_upsample_32(A,B,C)],[]).
+eq(eval_sep_upsample_32(A,B,C),1,[eval_sep_upsample_bb9_in(A,B,C)],[]).
+eq(eval_sep_upsample_bb9_in(A,B,C),1,[eval_sep_upsample_stop(A,B,C)],[]).
+eq(eval_sep_upsample_bb0_in(A,B,C),1,[eval_sep_upsample_bb2_in(0,B,C,D,E,F,G),loop_cont_eval_sep_upsample_bb2_in(E,F,G)],[D=0]).
+eq(eval_sep_upsample_bb0_in(A,B,C),1,[eval_sep_upsample_bb2_in(0,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_sep_upsample_bb2_in(A,B,C),0,[eval_sep_upsample_bb5_in(A,B,C)],[]).
+eq(eval_sep_upsample_bb2_in(A,B,C,D,E,F,G),1,[eval_sep_upsample_13(A,B,C,D,E,F,G)],[A<H]).
+eq(eval_sep_upsample_13(A,B,C,D,E,F,G),1,[eval_sep_upsample_14(A,B,C,D,E,F,G)],[]).
+eq(eval_sep_upsample_14(A,B,C,D,E,F,G),1,[eval_sep_upsample_bb2_in(A+1,B,C,D,E,F,G)],[]).
+eq(eval_sep_upsample_bb2_in(A,B,C,D,A,B,C),1,[],[D=0,A>=E]).
+eq(eval_sep_upsample_bb2_in(A,B,C,D,A,B,C),0,[],[D=1,E>=A]).

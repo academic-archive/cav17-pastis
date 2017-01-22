@@ -1,0 +1,74 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_shellescape_start))
+(VAR nondef.0 nondef.11 nondef.18 nondef.4 nondef.9 v_48 v_55 v_88)
+(RULES
+  eval_shellescape_start(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb0_in(v_48, v_55, v_88))
+  eval_shellescape_bb0_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb1_in(v_48, v_55, v_88))
+  eval_shellescape_bb1_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb2_in(v_48, v_55, v_88)) :|: nondef.0 < 0
+  eval_shellescape_bb1_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb2_in(v_48, v_55, v_88)) :|: nondef.0 > 0
+  eval_shellescape_bb1_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb11_in(v_48, v_55, v_88)) :|: nondef.0 = 0
+  eval_shellescape_bb2_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_.critedge_in(v_48, v_55, v_88))
+  eval_shellescape_bb2_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb11_in(v_48, v_55, v_88))
+  eval_shellescape_bb2_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb6_in(v_48, v_55, v_88))
+  eval_shellescape_.critedge_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb2_in(v_48, v_55, v_88))
+  eval_shellescape_bb6_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb6_in(v_48, v_55, v_88)) :|: nondef.4 < 32
+  eval_shellescape_bb6_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb6_in(v_48, v_55, v_88)) :|: nondef.4 > 32
+  eval_shellescape_bb6_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_.critedge1_in(v_48, v_55, v_88)) :|: nondef.4 < 32
+  eval_shellescape_bb6_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_.critedge1_in(v_48, v_55, v_88)) :|: nondef.4 > 32
+  eval_shellescape_bb6_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_.critedge1_in(v_48, v_55, v_88)) :|: nondef.4 = 32
+  eval_shellescape_.critedge1_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb1_in(v_48, v_55, v_88))
+  eval_shellescape_bb11_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_32(v_48, v_55, v_88))
+  eval_shellescape_32(v_48, v_55, v_88) -> Com_2(eval_tcsetattr_start(v_48, v_55, v_88), eval_shellescape_33(v_48, v_55, v_88))
+  eval_shellescape_33(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_34(v_48, v_55, v_88))
+  eval_shellescape_34(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_35(v_48, v_55, v_88))
+  eval_shellescape_35(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_36(v_48, v_55, v_88))
+  eval_shellescape_36(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_37(v_48, v_55, v_88))
+  eval_shellescape_37(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_38(v_48, v_55, v_88))
+  eval_shellescape_38(v_48, v_55, v_88) -> Com_2(eval_fork_start(v_48, v_55, v_88), eval_shellescape_39(nondef.9, v_55, v_88))
+  eval_shellescape_39(v_48, v_55, v_88) -> Com_1(eval_shellescape_40(v_48, v_55, v_88))
+  eval_shellescape_39(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb14_in(v_48, v_55, v_88))
+  eval_shellescape_39(v_48, v_55, v_88) -> Com_1(eval_shellescape_49(v_48, v_55, v_88))
+  eval_shellescape_40(v_48, v_55, v_88) -> Com_2(eval_execvp_start(v_48, v_55, v_88), eval_shellescape_41(v_48, v_55, v_88))
+  eval_shellescape_41(v_48, v_55, v_88) -> Com_2(eval__exit_start(v_48, v_55, v_88), eval_shellescape_42(v_48, v_55, v_88))
+  eval_shellescape_42(v_48, v_55, v_88) -> Com_1(eval_shellescape_stop(v_48, v_55, v_88))
+  eval_shellescape_bb14_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_43(v_48, v_55, v_88))
+  eval_shellescape_43(v_48, v_55, v_88) -> Com_2(eval_wait_start(v_48, v_55, v_88), eval_shellescape_44(v_48, nondef.11, v_88))
+  eval_shellescape_44(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb14_in(v_48, v_55, v_88)) :|: v_55 < v_48
+  eval_shellescape_44(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb14_in(v_48, v_55, v_88)) :|: v_55 > v_48
+  eval_shellescape_44(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb17_in(v_48, v_55, v_88)) :|: v_55 = v_48
+  eval_shellescape_49(v_48, v_55, v_88) -> Com_2(eval_printf_start(v_48, v_55, v_88), eval_shellescape_50(v_48, v_55, v_88))
+  eval_shellescape_50(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb17_in(v_48, v_55, v_88))
+  eval_shellescape_bb17_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_52(v_48, v_55, v_88))
+  eval_shellescape_bb17_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb19_in(v_48, v_55, v_88))
+  eval_shellescape_52(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_53(v_48, v_55, v_88))
+  eval_shellescape_53(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb19_in(v_48, v_55, v_88))
+  eval_shellescape_bb19_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_54(v_48, v_55, v_88))
+  eval_shellescape_bb19_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb21_in(v_48, v_55, v_88))
+  eval_shellescape_54(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_55(v_48, v_55, v_88))
+  eval_shellescape_55(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb21_in(v_48, v_55, v_88))
+  eval_shellescape_bb21_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_56(v_48, v_55, v_88))
+  eval_shellescape_bb21_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb23_in(v_48, v_55, v_88))
+  eval_shellescape_56(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_57(v_48, v_55, v_88))
+  eval_shellescape_57(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb23_in(v_48, v_55, v_88))
+  eval_shellescape_bb23_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_58(v_48, v_55, v_88))
+  eval_shellescape_bb23_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb25_in(v_48, v_55, v_88))
+  eval_shellescape_58(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_59(v_48, v_55, v_88))
+  eval_shellescape_59(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb25_in(v_48, v_55, v_88))
+  eval_shellescape_bb25_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_60(v_48, v_55, v_88))
+  eval_shellescape_bb25_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb27_in(v_48, v_55, v_88))
+  eval_shellescape_60(v_48, v_55, v_88) -> Com_2(eval_signal_start(v_48, v_55, v_88), eval_shellescape_61(v_48, v_55, v_88))
+  eval_shellescape_61(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb27_in(v_48, v_55, v_88))
+  eval_shellescape_bb27_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_62(v_48, v_55, v_88))
+  eval_shellescape_62(v_48, v_55, v_88) -> Com_2(eval_tcsetattr_start(v_48, v_55, v_88), eval_shellescape_63(v_48, v_55, v_88))
+  eval_shellescape_63(v_48, v_55, v_88) -> Com_1(eval_shellescape_65(v_48, v_55, v_88))
+  eval_shellescape_63(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb30_in(v_48, v_55, v_88))
+  eval_shellescape_65(v_48, v_55, v_88) -> Com_2(eval_printf_start(v_48, v_55, v_88), eval_shellescape_66(v_48, v_55, v_88))
+  eval_shellescape_66(v_48, v_55, v_88) -> Com_2(eval_fflush_start(v_48, v_55, v_88), eval_shellescape_67(v_48, v_55, v_88))
+  eval_shellescape_67(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb29_in(v_48, v_55, v_88))
+  eval_shellescape_bb29_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_68(v_48, v_55, v_88))
+  eval_shellescape_68(v_48, v_55, v_88) -> Com_2(eval_getchar_start(v_48, v_55, v_88), eval_shellescape_69(v_48, v_55, nondef.18))
+  eval_shellescape_69(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb29_in(v_48, v_55, v_88)) :|: v_88 < 32
+  eval_shellescape_69(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb29_in(v_48, v_55, v_88)) :|: v_88 > 32
+  eval_shellescape_69(v_48, v_55, v_88) -> Com_1(eval_shellescape_bb30_in(v_48, v_55, v_88)) :|: v_88 = 32
+  eval_shellescape_bb30_in(v_48, v_55, v_88) -> Com_1(eval_shellescape_stop(v_48, v_55, v_88))
+)

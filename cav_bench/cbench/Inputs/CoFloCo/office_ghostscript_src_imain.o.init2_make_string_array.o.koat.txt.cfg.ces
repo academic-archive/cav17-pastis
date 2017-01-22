@@ -1,0 +1,12 @@
+eq(eval_init2_make_string_array_start,1,[eval_init2_make_string_array_bb0_in],[]).
+eq(eval_init2_make_string_array_12,1,[eval_init2_make_string_array_13],[]).
+eq(eval_init2_make_string_array_13,1,[eval_init2_make_string_array_stop],[]).
+eq(eval_init2_make_string_array_bb0_in,1,[eval_init2_make_string_array_bb1_in(A),loop_cont_eval_init2_make_string_array_bb1_in],[A=0]).
+eq(eval_init2_make_string_array_bb0_in,1,[eval_init2_make_string_array_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_init2_make_string_array_bb1_in,0,[eval_init2_make_string_array_12],[]).
+eq(eval_init2_make_string_array_bb1_in(A),1,[eval_init2_make_string_array_0(A)],[]).
+eq(eval_init2_make_string_array_0(A),1,[eval_init2_make_string_array_1(A)],[]).
+eq(eval_init2_make_string_array_1(A),1,[eval_init2_make_string_array_bb1_in(A)],[]).
+eq(eval_init2_make_string_array_bb1_in(A),1,[],[A=0,B-C=0,D=0]).
+eq(eval_init2_make_string_array_bb1_in(A),1,[],[A=0,B-C>0,D>=0,D<B-C]).
+eq(eval_init2_make_string_array_bb1_in(A),1,[],[A=0,B-C<0,D=<0,D>B-C]).

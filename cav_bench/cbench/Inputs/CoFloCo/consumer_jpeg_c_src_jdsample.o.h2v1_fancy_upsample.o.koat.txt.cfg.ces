@@ -1,0 +1,10 @@
+eq(eval_h2v1_fancy_upsample_start(A,B),1,[eval_h2v1_fancy_upsample_bb0_in(A,B)],[]).
+eq(eval_h2v1_fancy_upsample_bb0_in(A,B),1,[eval_h2v1_fancy_upsample_bb1_in(A,0,C,D,E),loop_cont_eval_h2v1_fancy_upsample_bb1_in(D,E)],[C=0]).
+eq(eval_h2v1_fancy_upsample_bb0_in(A,B),1,[eval_h2v1_fancy_upsample_bb1_in(A,0,C,D,E)],[C=1]).
+eq(eval_h2v1_fancy_upsample_bb1_in(A,B,C,D,E),1,[eval_h2v1_fancy_upsample_bb3_in(F-2,B,G,H,I),loop_cont_eval_h2v1_fancy_upsample_bb3_in(H,I,C,D,E)],[G=0,B<J]).
+eq(eval_h2v1_fancy_upsample_bb1_in(A,B,C,D,E),1,[eval_h2v1_fancy_upsample_bb3_in(F-2,B,G,H,I)],[C=1,G=1,B<J]).
+eq(eval_h2v1_fancy_upsample_bb3_in(A,B,C,D,E),1,[eval_h2v1_fancy_upsample_bb3_in(A-1,B,C,D,E)],[A>0]).
+eq(loop_cont_eval_h2v1_fancy_upsample_bb3_in(A,B,C,D,E),0,[eval_h2v1_fancy_upsample_bb1_in(A,B,C,D,E)],[]).
+eq(eval_h2v1_fancy_upsample_bb1_in(A,B,C,A,B),1,[],[C=1,B>=D]).
+eq(eval_h2v1_fancy_upsample_bb3_in(A,B,C,A,B+1),1,[],[C=0,A=<0]).
+eq(eval_h2v1_fancy_upsample_bb3_in(A,B,C,A,B),0,[],[C=1,A>=0+1]).

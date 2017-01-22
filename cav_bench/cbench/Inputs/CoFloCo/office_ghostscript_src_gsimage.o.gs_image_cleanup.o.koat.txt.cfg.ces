@@ -1,0 +1,17 @@
+eq(eval_gs_image_cleanup_start(A),1,[eval_gs_image_cleanup_bb0_in(A)],[]).
+eq(eval_gs_image_cleanup_12(A),1,[eval_gs_image_cleanup_13(A)],[]).
+eq(eval_gs_image_cleanup_13(A),1,[eval_gs_image_cleanup_bb5_in(A)],[]).
+eq(eval_gs_image_cleanup_bb5_in(A),1,[eval_gs_image_cleanup_stop(A)],[]).
+eq(eval_gs_image_cleanup_bb0_in(A),1,[eval_gs_image_cleanup_bb1_in(0,B,C),loop_cont_eval_gs_image_cleanup_bb1_in(C)],[B=0]).
+eq(eval_gs_image_cleanup_bb0_in(A),1,[eval_gs_image_cleanup_bb1_in(0,B,C)],[B=1]).
+eq(loop_cont_eval_gs_image_cleanup_bb1_in(A),0,[eval_gs_image_cleanup_bb5_in(A)],[]).
+eq(loop_cont_eval_gs_image_cleanup_bb1_in(A),0,[eval_gs_image_cleanup_12(A)],[]).
+eq(eval_gs_image_cleanup_bb1_in(A,B,C),1,[eval_gs_image_cleanup_5(A,B,C)],[A<D]).
+eq(eval_gs_image_cleanup_5(A,B,C),1,[eval_gs_image_cleanup_6(A,B,C)],[]).
+eq(eval_gs_image_cleanup_6(A,B,C),1,[eval_gs_image_cleanup_bb1_in(A+1,B,C)],[]).
+eq(eval_gs_image_cleanup_bb1_in(A,B,A),1,[],[B=0,A>=C]).
+eq(eval_gs_image_cleanup_bb1_in(A,B,A),0,[],[B=1,C>=A]).
+eq(eval_gs_image_cleanup_bb1_in(A,B,A),1,[],[B=0,A>=C,D<0]).
+eq(eval_gs_image_cleanup_bb1_in(A,B,A),0,[],[B=1]).
+eq(eval_gs_image_cleanup_bb1_in(A,B,A),1,[],[B=0,A>=C,D>0]).
+eq(eval_gs_image_cleanup_bb1_in(A,B,A),1,[],[B=0,A>=C,D=0]).

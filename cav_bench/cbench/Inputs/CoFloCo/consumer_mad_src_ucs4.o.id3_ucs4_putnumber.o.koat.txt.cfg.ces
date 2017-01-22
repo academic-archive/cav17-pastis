@@ -1,0 +1,35 @@
+eq(eval_id3_ucs4_putnumber_start(A,B),1,[eval_id3_ucs4_putnumber_bb0_in(A,B)],[]).
+eq(eval_id3_ucs4_putnumber_bb0_in(A,B),1,[eval_id3_ucs4_putnumber_bb1_in(B,B,C,D,E),loop_cont_eval_id3_ucs4_putnumber_bb1_in(D,E)],[C=0]).
+eq(eval_id3_ucs4_putnumber_bb0_in(A,B),1,[eval_id3_ucs4_putnumber_bb1_in(B,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_id3_ucs4_putnumber_bb1_in(A,B),0,[eval_id3_ucs4_putnumber_bb3_in(A,B,C,D,E),loop_cont_eval_id3_ucs4_putnumber_bb3_in(D,E)],[C=0]).
+eq(loop_cont_eval_id3_ucs4_putnumber_bb1_in(A,B),0,[eval_id3_ucs4_putnumber_bb3_in(A,B,C,D,E)],[C=1]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A=0,G=0,A=0,F=0,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A=0,G=0,A=0,F=0,F>0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A=0,G=0,A>0,F>=0,F<A,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A=0,G=0,A>0,F>=0,F<A,F>0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A=0,G=0,A<0,F=<0,F>A,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A=0,G=0,A<0,F=<0,F>A,F>0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A>0,G>=0,G<10,A=0,F=0,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A>0,G>=0,G<10,A=0,F=0,F>0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A>0,G>=0,G<10,A>0,F>=0,F<A,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A>0,G>=0,G<10,A>0,F>=0,F<A,F>0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A>0,G>=0,G<10,A<0,F=<0,F>A,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A>0,G>=0,G<10,A<0,F=<0,F>A,F>0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A<0,G=<0,G> -10,A=0,F=0,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A<0,G=<0,G> -10,A=0,F=0,F>0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A<0,G=<0,G> -10,A>0,F>=0,F<A,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A<0,G=<0,G> -10,A>0,F>=0,F<A,F>0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A<0,G=<0,G> -10,A<0,F=<0,F>A,F<0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb1_in(F,B,C,D,E)],[A<0,G=<0,G> -10,A<0,F=<0,F>A,F>0]).
+eq(eval_id3_ucs4_putnumber_bb3_in(A,B,C,D,E),1,[eval_id3_ucs4_putnumber_bb3_in(A,B,C,D,E)],[]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A=0,D=0,A=0,E=0,E=0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),0,[],[C=1]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A=0,D=0,A>0,E>=0,E<A,E=0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A=0,D=0,A<0,E=<0,E>A,E=0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A>0,D>=0,D<10,A=0,E=0,E=0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A>0,D>=0,D<10,A>0,E>=0,E<A,E=0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A>0,D>=0,D<10,A<0,E=<0,E>A,E=0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A<0,D=<0,D> -10,A=0,E=0,E=0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A<0,D=<0,D> -10,A>0,E>=0,E<A,E=0]).
+eq(eval_id3_ucs4_putnumber_bb1_in(A,B,C,A,B),1,[],[C=0,A<0,D=<0,D> -10,A<0,E=<0,E>A,E=0]).
+eq(eval_id3_ucs4_putnumber_bb3_in(A,B,C,A,B),1,[],[C=1]).

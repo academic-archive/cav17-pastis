@@ -1,0 +1,11 @@
+eq(eval_debug_print_string_start(A,B,C),1,[eval_debug_print_string_bb0_in(A,B,C)],[]).
+eq(eval_debug_print_string_6(A,B,C),1,[eval_debug_print_string_7(A,B,C)],[]).
+eq(eval_debug_print_string_7(A,B,C),1,[eval_debug_print_string_stop(A,B,C)],[]).
+eq(eval_debug_print_string_bb0_in(A,B,C),1,[eval_debug_print_string_bb1_in(A,0,C,D,E,F,G),loop_cont_eval_debug_print_string_bb1_in(E,F,G)],[D=0]).
+eq(eval_debug_print_string_bb0_in(A,B,C),1,[eval_debug_print_string_bb1_in(A,0,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_debug_print_string_bb1_in(A,B,C),0,[eval_debug_print_string_6(A,B,C)],[]).
+eq(eval_debug_print_string_bb1_in(A,B,C,D,E,F,G),1,[eval_debug_print_string_3(H,B,C,D,E,F,G)],[B<C]).
+eq(eval_debug_print_string_3(A,B,C,D,E,F,G),1,[eval_debug_print_string_4(A,B,C,D,E,F,G)],[]).
+eq(eval_debug_print_string_4(A,B,C,D,E,F,G),1,[eval_debug_print_string_bb1_in(A,B+1,C,D,E,F,G)],[]).
+eq(eval_debug_print_string_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,B>=C]).
+eq(eval_debug_print_string_bb1_in(A,B,C+1,D,A,B,C+1),0,[],[D=1,C>=B]).

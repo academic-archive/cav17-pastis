@@ -1,0 +1,7 @@
+eq(eval_name_table_reloc_ptrs_start(A,B,C),1,[eval_name_table_reloc_ptrs_bb0_in(A,B,C)],[]).
+eq(eval_name_table_reloc_ptrs_bb0_in(A,B,C),1,[eval_name_table_reloc_ptrs_bb1_in(D,0,C,E,F,G,H),loop_cont_eval_name_table_reloc_ptrs_bb1_in(F,G,H)],[E=0]).
+eq(eval_name_table_reloc_ptrs_bb0_in(A,B,C),1,[eval_name_table_reloc_ptrs_bb1_in(D,0,C,E,F,G,H)],[E=1]).
+eq(eval_name_table_reloc_ptrs_bb1_in(A,B,C,D,E,F,G),1,[eval_name_table_reloc_ptrs_2(A,B,C,D,E,F,G)],[B<A]).
+eq(eval_name_table_reloc_ptrs_2(A,B,C,D,E,F,G),1,[eval_name_table_reloc_ptrs_3(A,B,C,D,E,F,G)],[]).
+eq(eval_name_table_reloc_ptrs_3(A,B,C,D,E,F,G),1,[eval_name_table_reloc_ptrs_bb1_in(A,B+1,C,D,E,F,G)],[]).
+eq(eval_name_table_reloc_ptrs_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,B>=A]).

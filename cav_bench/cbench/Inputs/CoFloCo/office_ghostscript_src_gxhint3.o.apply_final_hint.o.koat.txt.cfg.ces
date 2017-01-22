@@ -1,0 +1,12 @@
+eq(eval_apply_final_hint_start,1,[eval_apply_final_hint_bb0_in],[]).
+eq(eval_apply_final_hint_32,1,[eval_apply_final_hint_33],[]).
+eq(eval_apply_final_hint_33,1,[eval_apply_final_hint_bb5_in],[]).
+eq(eval_apply_final_hint_NewDefault_in,1,[eval_apply_final_hint_bb5_in],[]).
+eq(eval_apply_final_hint_bb5_in,1,[eval_apply_final_hint_stop],[]).
+eq(eval_apply_final_hint_bb0_in,1,[eval_apply_final_hint_bb1_in(A),loop_cont_eval_apply_final_hint_bb1_in],[A=0]).
+eq(eval_apply_final_hint_bb0_in,1,[eval_apply_final_hint_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_apply_final_hint_bb1_in,0,[eval_apply_final_hint_bb5_in],[]).
+eq(loop_cont_eval_apply_final_hint_bb1_in,0,[eval_apply_final_hint_NewDefault_in],[]).
+eq(loop_cont_eval_apply_final_hint_bb1_in,0,[eval_apply_final_hint_32],[]).
+eq(eval_apply_final_hint_bb1_in(A),1,[eval_apply_final_hint_bb1_in(A)],[]).
+eq(eval_apply_final_hint_bb1_in(A),1,[],[A=0]).

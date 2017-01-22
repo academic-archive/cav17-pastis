@@ -1,0 +1,34 @@
+eq(eval_zmatch_page_size_start(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_bb0_in(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb4_in(G,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_bb0_in(A,B,C,D,E,F),1,[eval_zmatch_page_size_NewDefault_in(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_bb0_in(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb11_in(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_bb0_in(A,B,C,D,E,F),1,[eval_zmatch_page_size_32(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_bb0_in(A,B,C,D,E,F),1,[eval_zmatch_page_size_34(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_bb4_in(A,B,C,D,E,F),1,[eval_zmatch_page_size_12(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_12(A,B,C,D,E,F),1,[eval_zmatch_page_size_13(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_13(A,B,C,D,E,F),1,[eval_zmatch_page_size_14(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_22(A,B,C,D,E,F),1,[eval_zmatch_page_size_23(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_23(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb11_in(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_23(A,B,C,D,E,F),1,[eval_zmatch_page_size_30(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_30(A,B,C,D,E,F),1,[eval_zmatch_page_size_31(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_31(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb11_in(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_NewDefault_in(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb11_in(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_32(A,B,C,D,E,F),1,[eval_zmatch_page_size_33(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_33(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb11_in(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_34(A,B,C,D,E,F),1,[eval_zmatch_page_size_35(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_35(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb11_in(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_bb11_in(A,B,C,D,E,F),1,[eval_zmatch_page_size_stop(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_14(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb5_in(A,B,0,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_zmatch_page_size_bb5_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_zmatch_page_size_14(A,B,C,D,E,F),1,[eval_zmatch_page_size_bb5_in(A,B,0,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_zmatch_page_size_bb5_in(A,B,C,D,E,F),0,[eval_zmatch_page_size_22(A,B,C,D,E,F)],[]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_19(A,N,C,D,E,F,G,H,I,J,K,L,M)],[C<4,C=0,N=0]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_19(A,N,C,D,E,F,G,H,I,J,K,L,M)],[C<4,A=1,N=0]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_19(A,N,C,D,E,F,G,H,I,J,K,L,M)],[C<4,A= -1,N=0]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_19(A,N,C,D,E,F,G,H,I,J,K,L,M)],[C<4,A>1,C>0,N>=0,N<A]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_19(A,N,C,D,E,F,G,H,I,J,K,L,M)],[C<4,A>1,C<0,N=<0,N> -A]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_19(A,N,C,D,E,F,G,H,I,J,K,L,M)],[C<4,A< -1,C>0,N>=0,N< -A]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_19(A,N,C,D,E,F,G,H,I,J,K,L,M)],[C<4,A< -1,C<0,N=<0,N>A]).
+eq(eval_zmatch_page_size_19(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_20(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zmatch_page_size_20(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zmatch_page_size_bb5_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,C>=4]).
+eq(eval_zmatch_page_size_bb5_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,4>=C+1]).

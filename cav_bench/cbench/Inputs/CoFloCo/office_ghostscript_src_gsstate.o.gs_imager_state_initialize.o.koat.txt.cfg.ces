@@ -1,0 +1,15 @@
+eq(eval_gs_imager_state_initialize_start(A),1,[eval_gs_imager_state_initialize_bb0_in(A)],[]).
+eq(eval_gs_imager_state_initialize_11(A),1,[eval_gs_imager_state_initialize_12(A)],[]).
+eq(eval_gs_imager_state_initialize_12(A),1,[eval_gs_imager_state_initialize_bb5_in(A)],[]).
+eq(eval_gs_imager_state_initialize_12(A),1,[eval_gs_imager_state_initialize_18(A)],[]).
+eq(eval_gs_imager_state_initialize_18(A),1,[eval_gs_imager_state_initialize_19(A)],[]).
+eq(eval_gs_imager_state_initialize_19(A),1,[eval_gs_imager_state_initialize_24(A)],[]).
+eq(eval_gs_imager_state_initialize_24(A),1,[eval_gs_imager_state_initialize_25(A)],[]).
+eq(eval_gs_imager_state_initialize_25(A),1,[eval_gs_imager_state_initialize_bb5_in(A)],[]).
+eq(eval_gs_imager_state_initialize_bb5_in(A),1,[eval_gs_imager_state_initialize_stop(A)],[]).
+eq(eval_gs_imager_state_initialize_bb0_in(A),1,[eval_gs_imager_state_initialize_bb1_in(0,B,C),loop_cont_eval_gs_imager_state_initialize_bb1_in(C)],[B=0]).
+eq(eval_gs_imager_state_initialize_bb0_in(A),1,[eval_gs_imager_state_initialize_bb1_in(0,B,C)],[B=1]).
+eq(loop_cont_eval_gs_imager_state_initialize_bb1_in(A),0,[eval_gs_imager_state_initialize_11(A)],[]).
+eq(eval_gs_imager_state_initialize_bb1_in(A,B,C),1,[eval_gs_imager_state_initialize_bb1_in(A+1,B,C)],[A<2]).
+eq(eval_gs_imager_state_initialize_bb1_in(A,B,A),1,[],[B=0,A>=2]).
+eq(eval_gs_imager_state_initialize_bb1_in(A,B,A),0,[],[B=1,2>=A+1]).

@@ -1,0 +1,9 @@
+eq(eval_trim_start,1,[eval_trim_bb0_in],[]).
+eq(eval_trim_bb0_in,1,[eval_trim_0],[]).
+eq(eval_trim_0,1,[eval_trim_1],[]).
+eq(eval_trim__critedge_in,1,[eval_trim_stop],[]).
+eq(eval_trim_1,1,[eval_trim_bb1_in(A),loop_cont_eval_trim_bb1_in],[A=0]).
+eq(eval_trim_1,1,[eval_trim_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_trim_bb1_in,0,[eval_trim__critedge_in],[]).
+eq(eval_trim_bb1_in(A),1,[eval_trim_bb1_in(A)],[]).
+eq(eval_trim_bb1_in(A),1,[],[A=0]).

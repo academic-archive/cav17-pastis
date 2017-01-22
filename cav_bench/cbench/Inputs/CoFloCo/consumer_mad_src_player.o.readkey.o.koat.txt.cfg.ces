@@ -1,0 +1,53 @@
+eq(eval_readkey_start(A,B,C,D,E,F,G),1,[eval_readkey_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_bb0_in(A,B,C,D,E,F,G),1,[eval_readkey_2(A,A,C,D,E,F,G)],[]).
+eq(eval_readkey_bb0_in(A,B,C,D,E,F,G),1,[eval_readkey_30(A,A,C,D,E,F,G)],[]).
+eq(eval_readkey_2(A,B,C,D,E,F,G),1,[eval_readkey_3(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_3(A,B,C,D,E,F,G),1,[eval_readkey_4(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_3(A,B,C,D,E,F,G),1,[eval_readkey_6(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_4(A,B,C,D,E,F,G),1,[eval_readkey_5(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_5(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_6(A,B,C,D,E,F,G),1,[eval_readkey_7(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_7(A,B,C,D,E,F,G),1,[eval_readkey_9(A,B,A,D,E,F,G)],[]).
+eq(eval_readkey_9(A,B,C,D,E,F,G),1,[eval_readkey_10(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_10(A,B,C,D,E,F,G),1,[eval_readkey_11(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_10(A,B,C,D,E,F,G),1,[eval_readkey_13(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_11(A,B,C,D,E,F,G),1,[eval_readkey_12(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_12(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_13(A,B,C,D,E,F,G),1,[eval_readkey_14(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_20(A,B,C,D,E,F,G),1,[eval_readkey_21(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_21(A,B,C,D,E,F,G),1,[eval_readkey_bb9_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_bb9_in(A,B,C,D,E,F,G),1,[eval_readkey_23(A,B,C,D,E,A,G)],[]).
+eq(eval_readkey_23(A,B,C,D,E,F,G),1,[eval_readkey_24(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_24(A,B,C,D,E,F,G),1,[eval_readkey_25(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_24(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_24(A,B,C,D,E,F,G),1,[eval_readkey_NewDefault3_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_24(A,B,C,D,E,F,G),1,[eval_readkey_bb13_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_25(A,B,C,D,E,F,G),1,[eval_readkey_26(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_26(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_NewDefault3_in(A,B,C,D,E,F,G),1,[eval_readkey_bb13_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_bb13_in(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_30(A,B,C,D,E,F,G),1,[eval_readkey_31(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_31(A,B,C,D,E,F,G),1,[eval_readkey_32(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_31(A,B,C,D,E,F,G),1,[eval_readkey_NewDefault_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_31(A,B,C,D,E,F,G),1,[eval_readkey_bb18_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_32(A,B,C,D,E,F,G),1,[eval_readkey_33(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_33(A,B,C,D,E,F,G),1,[eval_readkey_35(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_33(A,B,C,D,E,F,G),1,[eval_readkey_bb18_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_33(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_35(A,B,C,D,E,F,G),1,[eval_readkey_36(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_36(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_bb18_in(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_NewDefault_in(A,B,C,D,E,F,G),1,[eval_readkey_bb19_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_bb19_in(A,B,C,D,E,F,G),1,[eval_readkey_stop(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_14(A,B,C,D,E,F,G),1,[eval_readkey_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),loop_cont_eval_readkey_bb6_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_readkey_14(A,B,C,D,E,F,G),1,[eval_readkey_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(loop_cont_eval_readkey_bb6_in(A,B,C,D,E,F,G),0,[eval_readkey_20(A,B,C,D,E,F,G)],[]).
+eq(loop_cont_eval_readkey_bb6_in(A,B,C,D,E,F,G),0,[eval_readkey_bb9_in(A,B,C,D,E,F,G)],[]).
+eq(eval_readkey_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_readkey_16(A,B,C,A,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_readkey_16(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_readkey_17(A,B,C,D,P,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_readkey_17(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_readkey_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[E= -1,P=4]).
+eq(eval_readkey_17(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0,E= -1,I<4]).
+eq(eval_readkey_17(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1]).
+eq(eval_readkey_17(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0,E= -1,I>4]).
+eq(eval_readkey_17(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0,E< -1]).
+eq(eval_readkey_17(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0,E> -1]).

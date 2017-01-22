@@ -1,0 +1,13 @@
+eq(eval_pqdownheap_start(A,B,C),1,[eval_pqdownheap_bb0_in(A,B,C)],[]).
+eq(eval_pqdownheap_bb11_in(A,B,C),1,[eval_pqdownheap_stop(A,B,C)],[]).
+eq(eval_pqdownheap_bb0_in(A,B,C),1,[eval_pqdownheap_bb1_in(A,D,C,E,F,G,H),loop_cont_eval_pqdownheap_bb1_in(F,G,H)],[E=0]).
+eq(eval_pqdownheap_bb0_in(A,B,C),1,[eval_pqdownheap_bb1_in(A,D,C,E,F,G,H)],[E=1]).
+eq(loop_cont_eval_pqdownheap_bb1_in(A,B,C),0,[eval_pqdownheap_bb11_in(A,B,C)],[]).
+eq(eval_pqdownheap_bb1_in(A,B,C,D,E,F,G),1,[eval_pqdownheap_bb6_in(A,B,C,D,E,F,G)],[B=<A]).
+eq(eval_pqdownheap_bb1_in(A,B,C,D,E,F,G),1,[eval_pqdownheap_bb7_in(A,B,C,D,E,F,G)],[B=<A]).
+eq(eval_pqdownheap_bb6_in(A,B,C,D,E,F,G),1,[eval_pqdownheap_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_pqdownheap_bb7_in(A,B,C,D,E,F,G),1,[eval_pqdownheap_bb10_in(A,B,C,D,E,F,G)],[]).
+eq(eval_pqdownheap_bb10_in(A,B,C,D,E,F,G),1,[eval_pqdownheap_bb1_in(A,H,C,D,E,F,G)],[]).
+eq(eval_pqdownheap_bb7_in(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_pqdownheap_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,B>A]).
+eq(eval_pqdownheap_bb1_in(A,B,C,D,A,B,C),0,[],[D=1]).

@@ -1,0 +1,5 @@
+eq(eval_mp_smul_start(A,B,C),1,[eval_mp_smul_bb0_in(A,B,C)],[]).
+eq(eval_mp_smul_bb0_in(A,B,C),1,[eval_mp_smul_bb1_in(A,0,C,D,E,F,G),loop_cont_eval_mp_smul_bb1_in(E,F,G)],[D=0]).
+eq(eval_mp_smul_bb0_in(A,B,C),1,[eval_mp_smul_bb1_in(A,0,C,D,E,F,G)],[D=1]).
+eq(eval_mp_smul_bb1_in(A,B,C,D,E,F,G),1,[eval_mp_smul_bb1_in(H,B+1,C,D,E,F,G)],[B<A]).
+eq(eval_mp_smul_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,B>=A]).

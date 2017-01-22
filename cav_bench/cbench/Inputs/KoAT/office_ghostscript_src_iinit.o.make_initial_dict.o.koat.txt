@@ -1,0 +1,23 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_make_initial_dict_start))
+(VAR nondef.1 nondef.4 v_. v_12 v_26 v_i.0)
+(RULES
+  eval_make_initial_dict_start(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb0_in(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_bb0_in(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_0(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_0(v_., v_12, v_26, v_i.0) -> Com_2(eval_strcmp_start(v_., v_12, v_26, v_i.0), eval_make_initial_dict_1(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_1(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb1_in(v_., v_12, v_26, 0))
+  eval_make_initial_dict_1(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb7_in(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_bb1_in(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_7(v_., nondef.1, v_26, v_i.0)) :|: v_i.0 < 5
+  eval_make_initial_dict_bb1_in(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb7_in(v_., v_12, v_26, v_i.0)) :|: v_i.0 >= 5
+  eval_make_initial_dict_7(v_., v_12, v_26, v_i.0) -> Com_2(eval_strcmp_start(v_., v_12, v_26, v_i.0), eval_make_initial_dict_8(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_8(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb1_in(v_., v_12, v_26, v_i.0 + 1))
+  eval_make_initial_dict_8(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_19(12, v_12, nondef.4, v_i.0))
+  eval_make_initial_dict_8(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb6_in(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_19(v_., v_12, v_26, v_i.0) -> Com_2(eval_ialloc_set_space_start(v_., v_12, v_26, v_i.0), eval_make_initial_dict_20(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_20(v_., v_12, v_26, v_i.0) -> Com_2(eval_dict_create_start(v_., v_12, v_26, v_i.0), eval_make_initial_dict_21(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_21(v_., v_12, v_26, v_i.0) -> Com_2(eval_ialloc_set_space_start(v_., v_12, v_26, v_i.0), eval_make_initial_dict_22(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_22(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb7_in(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_22(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb6_in(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_bb6_in(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_bb7_in(v_., v_12, v_26, v_i.0))
+  eval_make_initial_dict_bb7_in(v_., v_12, v_26, v_i.0) -> Com_1(eval_make_initial_dict_stop(v_., v_12, v_26, v_i.0))
+)

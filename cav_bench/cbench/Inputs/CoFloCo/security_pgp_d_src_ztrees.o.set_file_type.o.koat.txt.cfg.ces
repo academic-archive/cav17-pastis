@@ -1,0 +1,15 @@
+eq(eval_set_file_type_start(A,B,C),1,[eval_set_file_type_bb0_in(A,B,C)],[]).
+eq(eval_set_file_type_bb0_in(A,B,C),1,[eval_set_file_type_bb1_in(0,B,C,D,E,F,G),loop_cont_eval_set_file_type_bb1_in(E,F,G)],[D=0]).
+eq(eval_set_file_type_bb0_in(A,B,C),1,[eval_set_file_type_bb1_in(0,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_set_file_type_bb1_in(A,B,C),0,[eval_set_file_type_bb3_in(A,B,C,D,E,F,G),loop_cont_eval_set_file_type_bb3_in(E,F,G)],[D=0]).
+eq(loop_cont_eval_set_file_type_bb1_in(A,B,C),0,[eval_set_file_type_bb3_in(A,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_set_file_type_bb3_in(A,B,C),0,[eval_set_file_type_bb5_in(A,B,C,D,E,F,G),loop_cont_eval_set_file_type_bb5_in(E,F,G)],[D=0]).
+eq(loop_cont_eval_set_file_type_bb3_in(A,B,C),0,[eval_set_file_type_bb5_in(A,B,C,D,E,F,G)],[D=1]).
+eq(eval_set_file_type_bb1_in(A,B,C,D,E,F,G),1,[eval_set_file_type_bb1_in(A+1,B,C,D,E,F,G)],[A<7]).
+eq(eval_set_file_type_bb3_in(A,B,C,D,E,F,G),1,[eval_set_file_type_bb3_in(A,B+1,C,D,E,F,G)],[B<128]).
+eq(eval_set_file_type_bb5_in(A,B,C,D,E,F,G),1,[eval_set_file_type_bb5_in(A,B,C+1,D,E,F,G)],[C<256]).
+eq(eval_set_file_type_bb1_in(A,B,C,D,A,A,C),1,[],[D=0,A>=7]).
+eq(eval_set_file_type_bb1_in(A,B,C,D,A,B,C),0,[],[D=1,7>=A+1]).
+eq(eval_set_file_type_bb3_in(A,B,C,D,A,B,B),1,[],[D=0,B>=128]).
+eq(eval_set_file_type_bb3_in(A,B,C,D,A,B,C),0,[],[D=1,128>=B+1]).
+eq(eval_set_file_type_bb5_in(A,B,C,D,A,B,C),1,[],[D=1,C>=256]).

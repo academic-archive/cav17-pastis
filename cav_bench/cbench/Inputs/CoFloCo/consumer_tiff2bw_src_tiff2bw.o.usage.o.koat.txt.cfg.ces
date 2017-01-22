@@ -1,0 +1,12 @@
+eq(eval_usage_start,1,[eval_usage_bb0_in],[]).
+eq(eval_usage_bb0_in,1,[eval_usage_0],[]).
+eq(eval_usage_0,1,[eval_usage_1],[]).
+eq(eval_usage_8,1,[eval_usage_9],[]).
+eq(eval_usage_9,1,[eval_usage_stop],[]).
+eq(eval_usage_1,1,[eval_usage_bb1_in(A),loop_cont_eval_usage_bb1_in],[A=0]).
+eq(eval_usage_1,1,[eval_usage_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_usage_bb1_in,0,[eval_usage_8],[]).
+eq(eval_usage_bb1_in(A),1,[eval_usage_5(A)],[]).
+eq(eval_usage_5(A),1,[eval_usage_6(A)],[]).
+eq(eval_usage_6(A),1,[eval_usage_bb1_in(A)],[]).
+eq(eval_usage_bb1_in(A),1,[],[A=0]).

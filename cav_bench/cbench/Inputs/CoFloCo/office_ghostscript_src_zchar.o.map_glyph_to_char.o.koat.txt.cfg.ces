@@ -1,0 +1,12 @@
+eq(eval_map_glyph_to_char_start(A,B,C),1,[eval_map_glyph_to_char_bb0_in(A,B,C)],[]).
+eq(eval_map_glyph_to_char_bb5_in(A,B,C),1,[eval_map_glyph_to_char_stop(A,B,C)],[]).
+eq(eval_map_glyph_to_char_bb0_in(A,B,C),1,[eval_map_glyph_to_char_bb1_in(D,B,0,E,F,G,H),loop_cont_eval_map_glyph_to_char_bb1_in(F,G,H)],[E=0]).
+eq(eval_map_glyph_to_char_bb0_in(A,B,C),1,[eval_map_glyph_to_char_bb1_in(D,B,0,E,F,G,H)],[E=1]).
+eq(loop_cont_eval_map_glyph_to_char_bb1_in(A,B,C),0,[eval_map_glyph_to_char_bb5_in(A,B,C)],[]).
+eq(eval_map_glyph_to_char_bb1_in(A,B,C,D,E,F,G),1,[eval_map_glyph_to_char_4(A,C,C,D,E,F,G)],[C<A]).
+eq(eval_map_glyph_to_char_4(A,B,C,D,E,F,G),1,[eval_map_glyph_to_char_5(A,B,C,D,E,F,G)],[]).
+eq(eval_map_glyph_to_char_5(A,B,C,D,E,F,G),1,[eval_map_glyph_to_char_6(A,B,C,D,E,F,G)],[]).
+eq(eval_map_glyph_to_char_6(A,B,C,D,E,F,G),1,[eval_map_glyph_to_char_bb1_in(A,B,C+1,D,E,F,G)],[]).
+eq(eval_map_glyph_to_char_6(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_map_glyph_to_char_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,C>=A]).
+eq(eval_map_glyph_to_char_bb1_in(A+1,B,C,D,A+1,B,C),0,[],[D=1,A>=C]).

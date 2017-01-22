@@ -1,0 +1,5 @@
+eq(eval_fill_scans_start(A,B,C,D,E,F),1,[eval_fill_scans_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_fill_scans_bb0_in(A,B,C,D,E,F),1,[eval_fill_scans_bb1_in(A,B,C,D,0,F,G,H,I,J,K,L,M),loop_cont_eval_fill_scans_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_fill_scans_bb0_in(A,B,C,D,E,F),1,[eval_fill_scans_bb1_in(A,B,C,D,0,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_fill_scans_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_fill_scans_bb1_in(A,B,C,D,E+1,F,G,H,I,J,K,L,M)],[E<F]).
+eq(eval_fill_scans_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,E>=F]).

@@ -1,0 +1,156 @@
+eq(eval_zbuildfont0_start(A,B,C,D,E,F),1,[eval_zbuildfont0_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb0_in(A,B,C,D,E,F),1,[eval_zbuildfont0_3(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb0_in(A,B,C,D,E,F),1,[eval_zbuildfont0_151(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_3(A,B,C,D,E,F),1,[eval_zbuildfont0_4(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_4(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_4(A,B,C,D,E,F),1,[eval_zbuildfont0_12(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_12(A,B,C,D,E,F),1,[eval_zbuildfont0_13(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_13(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_45(A,B,C,D,E,F),1,[eval_zbuildfont0_46(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[G-1=0,H=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[G=1,H=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[G= -1,H=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[G>1,H-1>0,I>=0,I<G]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[G>1,H-1<0,I=<0,I> -G]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[G< -1,H-1>0,I>=0,I< -G]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[G< -1,H-1<0,I=<0,I>G]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G-1=0,H=0,G-1=0,I=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G-1=0,H=0,I=1,J=G-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G-1=0,H=0,I= -1,J= -G+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G-1=0,H=0,I>1,G-1>0,J>=0,J<G-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G-1=0,H=0,I>1,G-1<0,J=<0,J>G-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G-1=0,H=0,I< -1,G-1>0,J=<0,J> -G+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G-1=0,H=0,I< -1,G-1<0,J>=0,J< -G+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G=1,H=0,I-1=0,J=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G=1,H=0,I=1,J=K-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G=1,H=0,I= -1,J= -K+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G=1,H=0,I>1,J-1>0,K>=0,K<J-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G=1,H=0,I>1,J-1<0,K=<0,K>J-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G=1,H=0,I< -1,J-1>0,K=<0,K> -J+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G=1,H=0,I< -1,J-1<0,K>=0,K< -J+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G= -1,H=0,I-1=0,J=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G= -1,H=0,I=1,J=K-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G= -1,H=0,I= -1,J= -K+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G= -1,H=0,I>1,J-1>0,K>=0,K<J-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G= -1,H=0,I>1,J-1<0,K=<0,K>J-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G= -1,H=0,I< -1,J-1>0,K=<0,K> -J+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G= -1,H=0,I< -1,J-1<0,K>=0,K< -J+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1>0,I>=0,I<G,H-1=0,J=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1>0,I>=0,I<G,J=1,K=H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1>0,I>=0,I<G,J= -1,K= -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1>0,I>=0,I<G,J>1,H-1>0,K>=0,K<H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1>0,I>=0,I<G,J>1,H-1<0,K=<0,K>H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1>0,I>=0,I<G,J< -1,H-1>0,K=<0,K> -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1>0,I>=0,I<G,J< -1,H-1<0,K>=0,K< -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1<0,I=<0,I> -G,H-1=0,J=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1<0,I=<0,I> -G,J=1,K=H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1<0,I=<0,I> -G,J= -1,K= -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1<0,I=<0,I> -G,J>1,H-1>0,K>=0,K<H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1<0,I=<0,I> -G,J>1,H-1<0,K=<0,K>H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1<0,I=<0,I> -G,J< -1,H-1>0,K=<0,K> -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G>1,H-1<0,I=<0,I> -G,J< -1,H-1<0,K>=0,K< -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1>0,I>=0,I< -G,H-1=0,J=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1>0,I>=0,I< -G,J=1,K=H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1>0,I>=0,I< -G,J= -1,K= -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1>0,I>=0,I< -G,J>1,H-1>0,K>=0,K<H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1>0,I>=0,I< -G,J>1,H-1<0,K=<0,K>H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1>0,I>=0,I< -G,J< -1,H-1>0,K=<0,K> -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1>0,I>=0,I< -G,J< -1,H-1<0,K>=0,K< -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1<0,I=<0,I>G,H-1=0,J=0]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1<0,I=<0,I>G,J=1,K=H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1<0,I=<0,I>G,J= -1,K= -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1<0,I=<0,I>G,J>1,H-1>0,K>=0,K<H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1<0,I=<0,I>G,J>1,H-1<0,K=<0,K>H-1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1<0,I=<0,I>G,J< -1,H-1>0,K=<0,K> -H+1]).
+eq(eval_zbuildfont0_46(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[G< -1,H-1<0,I=<0,I>G,J< -1,H-1<0,K>=0,K< -H+1]).
+eq(eval_zbuildfont0_bb22_in(A,B,C,D,E,F),1,[eval_zbuildfont0_70(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_70(A,B,C,D,E,F),1,[eval_zbuildfont0_71(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_71(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_72(A,B,C,D,E,F),1,[eval_zbuildfont0_73(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_73(A,B,C,D,E,F),1,[eval_zbuildfont0_74(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_73(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_74(A,B,C,D,E,F),1,[eval_zbuildfont0_75(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_75(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_76(A,B,C,D,E,F),1,[eval_zbuildfont0_77(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_77(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_NewDefault3_in(A,B,C,D,E,F),1,[eval_zbuildfont0_bb26_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb26_in(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb26_in(A,B,C,D,E,F),1,[eval_zbuildfont0_78(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_78(A,B,C,D,E,F),1,[eval_zbuildfont0_79(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_79(A,B,C,D,E,F),1,[eval_zbuildfont0_bb30_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_79(A,B,C,D,E,F),1,[eval_zbuildfont0_82(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_82(A,B,C,D,E,F),1,[eval_zbuildfont0_83(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_83(A,B,C,D,E,F),1,[eval_zbuildfont0_bb30_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb30_in(A,B,C,D,E,F),1,[eval_zbuildfont0_84(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_84(A,B,C,D,E,F),1,[eval_zbuildfont0_85(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_85(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_85(A,B,C,D,E,F),1,[eval_zbuildfont0_86(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_86(A,B,C,D,E,F),1,[eval_zbuildfont0_87(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_87(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_87(A,B,C,D,E,F),1,[eval_zbuildfont0_93(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_93(A,B,C,D,E,F),1,[eval_zbuildfont0_94(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_94(A,B,C,D,E,F),1,[eval_zbuildfont0_99(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_94(A,B,C,D,E,F),1,[eval_zbuildfont0_bb34_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_99(A,B,C,D,E,F),1,[eval_zbuildfont0_100(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_100(A,B,C,D,E,F),1,[eval_zbuildfont0_bb45_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_100(A,B,C,D,E,F),1,[eval_zbuildfont0_bb34_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb34_in(A,B,C,D,E,F),1,[eval_zbuildfont0_105(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_105(A,B,C,D,E,F),1,[eval_zbuildfont0_106(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_106(A,B,C,D,E,F),1,[eval_zbuildfont0_bb45_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_126(A,B,C,D,E,F),1,[eval_zbuildfont0_127(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_127(A,B,C,D,E,F),1,[eval_zbuildfont0_bb45_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_138(A,B,C,D,E,F),1,[eval_zbuildfont0_139(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_139(A,B,C,D,E,F),1,[eval_zbuildfont0_140(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_140(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_140(A,B,C,D,E,F),1,[eval_zbuildfont0_bb45_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb45_in(A,B,C,D,E,F),1,[eval_zbuildfont0_144(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb45_in(A,B,C,D,E,F),1,[eval_zbuildfont0_147(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_144(A,B,C,D,E,F),1,[eval_zbuildfont0_145(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_145(A,B,C,D,E,F),1,[eval_zbuildfont0_146(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_146(A,B,C,D,E,F),1,[eval_zbuildfont0_bb48_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_147(A,B,C,D,E,F),1,[eval_zbuildfont0_148(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_148(A,B,C,D,E,F),1,[eval_zbuildfont0_bb48_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb48_in(A,B,C,D,E,F),1,[eval_zbuildfont0_149(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_149(A,B,C,D,E,F),1,[eval_zbuildfont0_150(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_150(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_151(A,B,C,D,E,F),1,[eval_zbuildfont0_152(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_152(A,B,C,D,E,F),1,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb50_in(A,B,C,D,E,F),1,[eval_zbuildfont0_stop(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_13(A,B,C,D,E,F),1,[eval_zbuildfont0_bb8_in(A,B,C,0,E,F,G,H,I,J,K,L,M),loop_cont_eval_zbuildfont0_bb8_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_zbuildfont0_13(A,B,C,D,E,F),1,[eval_zbuildfont0_bb8_in(A,B,C,0,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_zbuildfont0_bb8_in(A,B,C,D,E,F),0,[eval_zbuildfont0_bb50_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_zbuildfont0_bb8_in(A,B,C,D,E,F),0,[eval_zbuildfont0_bb22_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_zbuildfont0_bb8_in(A,B,C,D,E,F),0,[eval_zbuildfont0_NewDefault3_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_zbuildfont0_bb8_in(A,B,C,D,E,F),0,[eval_zbuildfont0_45(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_zbuildfont0_bb8_in(A,B,C,D,E,F),0,[eval_zbuildfont0_72(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_zbuildfont0_bb8_in(A,B,C,D,E,F),0,[eval_zbuildfont0_76(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_106(A,B,C,D,E,F),1,[eval_zbuildfont0_bb36_in(A,B,C,D,0,F,G,H,I,J,K,L,M),loop_cont_eval_zbuildfont0_bb36_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_zbuildfont0_106(A,B,C,D,E,F),1,[eval_zbuildfont0_bb36_in(A,B,C,D,0,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_zbuildfont0_bb36_in(A,B,C,D,E,F),0,[eval_zbuildfont0_bb45_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_zbuildfont0_bb36_in(A,B,C,D,E,F),0,[eval_zbuildfont0_126(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_127(A,B,C,D,E,F),1,[eval_zbuildfont0_bb42_in(A,B,C,D,E,0,G,H,I,J,K,L,M),loop_cont_eval_zbuildfont0_bb42_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_zbuildfont0_127(A,B,C,D,E,F),1,[eval_zbuildfont0_bb42_in(A,B,C,D,E,0,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_zbuildfont0_bb42_in(A,B,C,D,E,F),0,[eval_zbuildfont0_138(A,B,C,D,E,F)],[]).
+eq(eval_zbuildfont0_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_28(A,B,D,D,E,F,G,H,I,J,K,L,M)],[D<N]).
+eq(eval_zbuildfont0_bb36_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_111(E,B,C,D,E,F,G,H,I,J,K,L,M)],[E<N]).
+eq(eval_zbuildfont0_bb42_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_132(A,F,C,D,E,F,G,H,I,J,K,L,M)],[F<N]).
+eq(eval_zbuildfont0_28(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_29(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_111(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_112(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_132(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_133(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_29(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_30(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_112(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_bb36_in(A,B,C,D,E+1,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_133(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_134(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_30(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_bb14_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_30(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_NewDefault_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_134(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_bb42_in(A,B,C,D,E,F+1,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_bb14_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_bb8_in(A,B,C,D+1,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_NewDefault_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_zbuildfont0_bb14_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_zbuildfont0_30(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0]).
+eq(eval_zbuildfont0_bb8_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,D>=H]).
+eq(eval_zbuildfont0_bb8_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,H>=D]).
+eq(eval_zbuildfont0_112(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0]).
+eq(eval_zbuildfont0_bb36_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,E>=H]).
+eq(eval_zbuildfont0_bb36_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,H>=E]).
+eq(eval_zbuildfont0_bb42_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,F>=H]).
+eq(eval_zbuildfont0_bb42_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,H>=F]).

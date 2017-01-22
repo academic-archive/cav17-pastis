@@ -1,0 +1,14 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_TIFFNumberOfDirectories_start))
+(VAR nondef.1)
+(RULES
+  eval_TIFFNumberOfDirectories_start() -> Com_1(eval_TIFFNumberOfDirectories_bb0_in())
+  eval_TIFFNumberOfDirectories_bb0_in() -> Com_1(eval_TIFFNumberOfDirectories_bb1_in())
+  eval_TIFFNumberOfDirectories_bb1_in() -> Com_1(eval_TIFFNumberOfDirectories_5()) :|: nondef.1 < 0
+  eval_TIFFNumberOfDirectories_bb1_in() -> Com_1(eval_TIFFNumberOfDirectories_5()) :|: nondef.1 > 0
+  eval_TIFFNumberOfDirectories_bb1_in() -> Com_1(eval_TIFFNumberOfDirectories_.critedge_in()) :|: nondef.1 = 0
+  eval_TIFFNumberOfDirectories_5() -> Com_2(eval_TIFFAdvanceDirectory_start(), eval_TIFFNumberOfDirectories_6())
+  eval_TIFFNumberOfDirectories_6() -> Com_1(eval_TIFFNumberOfDirectories_bb1_in())
+  eval_TIFFNumberOfDirectories_6() -> Com_1(eval_TIFFNumberOfDirectories_.critedge_in())
+  eval_TIFFNumberOfDirectories_.critedge_in() -> Com_1(eval_TIFFNumberOfDirectories_stop())
+)

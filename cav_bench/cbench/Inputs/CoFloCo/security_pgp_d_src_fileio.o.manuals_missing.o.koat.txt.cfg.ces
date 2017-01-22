@@ -1,0 +1,14 @@
+eq(eval_manuals_missing_start,1,[eval_manuals_missing_bb0_in],[]).
+eq(eval_manuals_missing_bb5_in,1,[eval_manuals_missing_stop],[]).
+eq(eval_manuals_missing_bb0_in,1,[eval_manuals_missing_bb1_in(A),loop_cont_eval_manuals_missing_bb1_in],[A=0]).
+eq(eval_manuals_missing_bb0_in,1,[eval_manuals_missing_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_manuals_missing_bb1_in,0,[eval_manuals_missing_bb5_in],[]).
+eq(eval_manuals_missing_bb1_in(A),1,[eval_manuals_missing_0(A)],[]).
+eq(eval_manuals_missing_0(A),1,[eval_manuals_missing_1(A)],[]).
+eq(eval_manuals_missing_1(A),1,[eval_manuals_missing_bb4_in(A)],[]).
+eq(eval_manuals_missing_1(A),1,[eval_manuals_missing_2(A)],[]).
+eq(eval_manuals_missing_bb4_in(A),1,[eval_manuals_missing_bb1_in(A)],[]).
+eq(eval_manuals_missing_2(A),1,[eval_manuals_missing_3(A)],[]).
+eq(eval_manuals_missing_3(A),1,[eval_manuals_missing_bb4_in(A)],[]).
+eq(eval_manuals_missing_3(A),1,[],[A=0]).
+eq(eval_manuals_missing_bb1_in(A),1,[],[A=0]).

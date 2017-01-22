@@ -1,0 +1,26 @@
+eq(eval_ok_to_replace_start(A,B,C,D,E),1,[eval_ok_to_replace_bb0_in(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_bb0_in(A,B,C,D,E),1,[eval_ok_to_replace_bb7_in(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_bb0_in(A,B,C,D,E),1,[eval_ok_to_replace_2(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_2(A,B,C,D,E),1,[eval_ok_to_replace_3(A,B,C,F,E)],[]).
+eq(eval_ok_to_replace_3(A,B,C,D,E),1,[eval_ok_to_replace_4(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_4(A,B,C,D,E),1,[eval_ok_to_replace_5(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_4(A,B,C,D,E),1,[eval_ok_to_replace_bb7_in(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_5(A,B,C,D,E),1,[eval_ok_to_replace_6(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_6(A,B,C,D,E),1,[eval_ok_to_replace_7(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_7(A,B,C,D,E),1,[eval_ok_to_replace_8(A,F,C,D,E)],[]).
+eq(eval_ok_to_replace_11(A,B,C,D,E),1,[eval_ok_to_replace_12(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_12(A,B,C,D,E),1,[eval_ok_to_replace_bb7_in(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_bb7_in(A,B,C,D,E),1,[eval_ok_to_replace_stop(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_8(A,B,C,D,E),1,[eval_ok_to_replace_bb3_in(A,B,C,D,B,F,G,H,I,J,K),loop_cont_eval_ok_to_replace_bb3_in(G,H,I,J,K)],[F=0]).
+eq(eval_ok_to_replace_8(A,B,C,D,E),1,[eval_ok_to_replace_bb3_in(A,B,C,D,B,F,G,H,I,J,K)],[F=1]).
+eq(loop_cont_eval_ok_to_replace_bb3_in(A,B,C,D,E),0,[eval_ok_to_replace_bb7_in(A,B,C,D,E)],[]).
+eq(loop_cont_eval_ok_to_replace_bb3_in(A,B,C,D,E),0,[eval_ok_to_replace_11(A,B,C,D,E)],[]).
+eq(eval_ok_to_replace_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_ok_to_replace_9(A,B,C,D,E,F,G,H,I,J,K)],[E<10,E< -1]).
+eq(eval_ok_to_replace_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_ok_to_replace_9(A,B,C,D,E,F,G,H,I,J,K)],[E<10,E> -1]).
+eq(eval_ok_to_replace_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_ok_to_replace_9(A,B,C,D,E,F,G,H,I,J,K)],[E>10,E< -1]).
+eq(eval_ok_to_replace_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_ok_to_replace_9(A,B,C,D,E,F,G,H,I,J,K)],[E>10,E> -1]).
+eq(eval_ok_to_replace_9(A,B,C,D,E,F,G,H,I,J,K),1,[eval_ok_to_replace_10(A,B,L,D,E,F,G,H,I,J,K)],[]).
+eq(eval_ok_to_replace_10(A,B,C,D,E,F,G,H,I,J,K),1,[eval_ok_to_replace_bb3_in(A,B,C,D,C,F,G,H,I,J,K)],[]).
+eq(eval_ok_to_replace_bb3_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,E=10]).
+eq(eval_ok_to_replace_bb3_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1]).
+eq(eval_ok_to_replace_bb3_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,E= -1]).

@@ -1,0 +1,69 @@
+eq(eval_II_samples_start(A,B,C,D,E,F,G),1,[eval_II_samples_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_II_samples_bb0_in(A,B,C,D,E,F,G),1,[eval_II_samples_5(A,H,C,D,E,F,G)],[]).
+eq(eval_II_samples_5(A,B,C,D,E,F,G),1,[eval_II_samples_6(A,B,H,D,E,F,G)],[]).
+eq(eval_II_samples_bb0_in(A,B,C,D,E,F,G),1,[eval_II_samples_bb4_in(A,H,C,D,E,0,G,I,J,K,L,M,N,O,P),loop_cont_eval_II_samples_bb4_in(J,K,L,M,N,O,P)],[I=0]).
+eq(eval_II_samples_bb0_in(A,B,C,D,E,F,G),1,[eval_II_samples_bb4_in(A,H,C,D,E,0,G,I,J,K,L,M,N,O,P)],[I=1]).
+eq(loop_cont_eval_II_samples_bb4_in(A,B,C,D,E,F,G),0,[eval_II_samples_bb6_in(A,B,C,D,E,F,G)],[]).
+eq(eval_II_samples_6(A,B,C,D,E,F,G),1,[eval_II_samples_bb2_in(H,B,C,C,0,F,G,I,J,K,L,M,N,O,P),loop_cont_eval_II_samples_bb2_in(J,K,L,M,N,O,P)],[I=0]).
+eq(eval_II_samples_6(A,B,C,D,E,F,G),1,[eval_II_samples_bb2_in(H,B,C,C,0,F,G,I,J,K,L,M,N,O,P)],[I=1]).
+eq(loop_cont_eval_II_samples_bb2_in(A,B,C,D,E,F,G),0,[eval_II_samples_bb6_in(A,B,C,D,E,F,G)],[]).
+eq(eval_II_samples_bb6_in(A,B,C,D,E,F,G),1,[eval_II_samples_bb7_in(A,B,C,D,E,F,0,H,I,J,K,L,M,N,O),loop_cont_eval_II_samples_bb7_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_II_samples_bb6_in(A,B,C,D,E,F,G),1,[eval_II_samples_bb7_in(A,B,C,D,E,F,0,H,I,J,K,L,M,N,O)],[H=1]).
+eq(eval_II_samples_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_16(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<3]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,D=0,Q=0,D=0,P=0]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,D=0,Q=0,A=1,P=D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,D=0,Q=0,A= -1,P= -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,D=0,Q=0,A>1,D>0,P>=0,P<D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,D=0,Q=0,A>1,D<0,P=<0,P>D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,D=0,Q=0,A< -1,D>0,P=<0,P> -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,D=0,Q=0,A< -1,D<0,P>=0,P< -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A=1,Q=0,D=0,P=0]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A=1,Q=0,A=1,P=D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A=1,Q=0,A= -1,P= -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A=1,Q=0,A>1,D>0,P>=0,P<D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A=1,Q=0,A>1,D<0,P=<0,P>D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A=1,Q=0,A< -1,D>0,P=<0,P> -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A=1,Q=0,A< -1,D<0,P>=0,P< -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A= -1,Q=0,D=0,P=0]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A= -1,Q=0,A=1,P=D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A= -1,Q=0,A= -1,P= -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A= -1,Q=0,A>1,D>0,P>=0,P<D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A= -1,Q=0,A>1,D<0,P=<0,P>D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A= -1,Q=0,A< -1,D>0,P=<0,P> -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A= -1,Q=0,A< -1,D<0,P>=0,P< -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D>0,Q>=0,Q<A,D=0,P=0]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D>0,Q>=0,Q<A,A=1,P=D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D>0,Q>=0,Q<A,A= -1,P= -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D>0,Q>=0,Q<A,A>1,D>0,P>=0,P<D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D>0,Q>=0,Q<A,A>1,D<0,P=<0,P>D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D>0,Q>=0,Q<A,A< -1,D>0,P=<0,P> -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D>0,Q>=0,Q<A,A< -1,D<0,P>=0,P< -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D<0,Q=<0,Q> -A,D=0,P=0]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D<0,Q=<0,Q> -A,A=1,P=D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D<0,Q=<0,Q> -A,A= -1,P= -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D<0,Q=<0,Q> -A,A>1,D>0,P>=0,P<D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D<0,Q=<0,Q> -A,A>1,D<0,P=<0,P>D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D<0,Q=<0,Q> -A,A< -1,D>0,P=<0,P> -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A>1,D<0,Q=<0,Q> -A,A< -1,D<0,P>=0,P< -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D>0,Q>=0,Q< -A,D=0,P=0]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D>0,Q>=0,Q< -A,A=1,P=D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D>0,Q>=0,Q< -A,A= -1,P= -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D>0,Q>=0,Q< -A,A>1,D>0,P>=0,P<D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D>0,Q>=0,Q< -A,A>1,D<0,P=<0,P>D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D>0,Q>=0,Q< -A,A< -1,D>0,P=<0,P> -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D>0,Q>=0,Q< -A,A< -1,D<0,P>=0,P< -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D<0,Q=<0,Q>A,D=0,P=0]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D<0,Q=<0,Q>A,A=1,P=D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D<0,Q=<0,Q>A,A= -1,P= -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D<0,Q=<0,Q>A,A>1,D>0,P>=0,P<D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D<0,Q=<0,Q>A,A>1,D<0,P=<0,P>D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D<0,Q=<0,Q>A,A< -1,D>0,P=<0,P> -D]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb2_in(A,B,C,P,E+1,F,G,H,I,J,K,L,M,N,O)],[E<3,A< -1,D<0,Q=<0,Q>A,A< -1,D<0,P>=0,P< -D]).
+eq(eval_II_samples_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb7_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M,N,O)],[G<3]).
+eq(eval_II_samples_16(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_17(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_II_samples_17(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_II_samples_bb4_in(A,B,C,D,E,F+1,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_II_samples_bb4_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0,F>=3]).
+eq(eval_II_samples_bb4_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,3>=F+1]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0,E>=3]).
+eq(eval_II_samples_bb2_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,3>=E+1]).
+eq(eval_II_samples_bb7_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=1,G>=3]).

@@ -1,0 +1,13 @@
+eq(eval_build_ycc_rgb_table_start(A),1,[eval_build_ycc_rgb_table_bb0_in(A)],[]).
+eq(eval_build_ycc_rgb_table_bb0_in(A),1,[eval_build_ycc_rgb_table_0(A)],[]).
+eq(eval_build_ycc_rgb_table_0(A),1,[eval_build_ycc_rgb_table_1(A)],[]).
+eq(eval_build_ycc_rgb_table_1(A),1,[eval_build_ycc_rgb_table_2(A)],[]).
+eq(eval_build_ycc_rgb_table_2(A),1,[eval_build_ycc_rgb_table_3(A)],[]).
+eq(eval_build_ycc_rgb_table_3(A),1,[eval_build_ycc_rgb_table_4(A)],[]).
+eq(eval_build_ycc_rgb_table_4(A),1,[eval_build_ycc_rgb_table_5(A)],[]).
+eq(eval_build_ycc_rgb_table_5(A),1,[eval_build_ycc_rgb_table_6(A)],[]).
+eq(eval_build_ycc_rgb_table_6(A),1,[eval_build_ycc_rgb_table_7(A)],[]).
+eq(eval_build_ycc_rgb_table_7(A),1,[eval_build_ycc_rgb_table_bb1_in(0,B,C),loop_cont_eval_build_ycc_rgb_table_bb1_in(C)],[B=0]).
+eq(eval_build_ycc_rgb_table_7(A),1,[eval_build_ycc_rgb_table_bb1_in(0,B,C)],[B=1]).
+eq(eval_build_ycc_rgb_table_bb1_in(A,B,C),1,[eval_build_ycc_rgb_table_bb1_in(A+1,B,C)],[A=<255]).
+eq(eval_build_ycc_rgb_table_bb1_in(A,B,A),1,[],[B=1,A>255]).

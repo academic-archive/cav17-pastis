@@ -1,0 +1,13 @@
+eq(eval_susan_principle_start(A,B,C,D,E,F),1,[eval_susan_principle_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_susan_principle_bb0_in(A,B,C,D,E,F),1,[eval_susan_principle_3(4*E*F,B,C,D,E,F)],[]).
+eq(eval_susan_principle_3(A,B,C,D,E,F),1,[eval_susan_principle_4(A,B,C,D,E,F)],[]).
+eq(eval_susan_principle_4(A,B,C,D,E,F),1,[eval_susan_principle_bb1_in(A,3,C,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_susan_principle_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_susan_principle_4(A,B,C,D,E,F),1,[eval_susan_principle_bb1_in(A,3,C,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_susan_principle_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_susan_principle_bb2_in(A,B,3,D,E,F,N,O,P,Q,R,S,T),loop_cont_eval_susan_principle_bb2_in(O,P,Q,R,S,T,G,H,I,J,K,L,M)],[N=0,B<F-3]).
+eq(eval_susan_principle_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_susan_principle_bb2_in(A,B,3,D,E,F,N,O,P,Q,R,S,T)],[G=1,N=1,B<F-3]).
+eq(eval_susan_principle_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_susan_principle_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<E-3]).
+eq(loop_cont_eval_susan_principle_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M),0,[eval_susan_principle_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_susan_principle_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_susan_principle_bb2_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_susan_principle_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,B>=F-3]).
+eq(eval_susan_principle_bb2_in(A,B,C,D,E,F,G,A,B+1,C,D,E,F),1,[],[G=0,C>=E-3]).
+eq(eval_susan_principle_bb2_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,E-3>=C+1]).

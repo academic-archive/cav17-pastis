@@ -1,0 +1,14 @@
+eq(eval_PackBitsEncodeChunk_start(A,B,C,D),1,[eval_PackBitsEncodeChunk_bb0_in(A,B,C,D)],[]).
+eq(eval_PackBitsEncodeChunk_bb0_in(A,B,C,D),1,[eval_PackBitsEncodeChunk_10(A,B,C,D)],[]).
+eq(eval_PackBitsEncodeChunk_bb5_in(A,B,C,D),1,[eval_PackBitsEncodeChunk_stop(A,B,C,D)],[]).
+eq(eval_PackBitsEncodeChunk_10(A,B,C,D),1,[eval_PackBitsEncodeChunk_11(A,B,C,D)],[]).
+eq(eval_PackBitsEncodeChunk_11(A,B,C,D),1,[eval_PackBitsEncodeChunk_stop(A,B,C,D)],[]).
+eq(eval_PackBitsEncodeChunk_bb0_in(A,B,C,D),1,[eval_PackBitsEncodeChunk_bb2_in(C,E,C,D,F,G,H,I,J),loop_cont_eval_PackBitsEncodeChunk_bb2_in(G,H,I,J)],[F=0]).
+eq(eval_PackBitsEncodeChunk_bb0_in(A,B,C,D),1,[eval_PackBitsEncodeChunk_bb2_in(C,E,C,D,F,G,H,I,J)],[F=1]).
+eq(loop_cont_eval_PackBitsEncodeChunk_bb2_in(A,B,C,D),0,[eval_PackBitsEncodeChunk_bb5_in(A,B,C,D)],[]).
+eq(eval_PackBitsEncodeChunk_bb2_in(A,B,C,D,E,F,G,H,I),1,[eval_PackBitsEncodeChunk_6(A,B,C,D,E,F,G,H,I)],[A>0]).
+eq(eval_PackBitsEncodeChunk_6(A,B,C,D,E,F,G,H,I),1,[eval_PackBitsEncodeChunk_7(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_PackBitsEncodeChunk_7(A,B,C,D,E,F,G,H,I),1,[eval_PackBitsEncodeChunk_bb2_in(A-B,B,C,D,E,F,G,H,I)],[]).
+eq(eval_PackBitsEncodeChunk_7(A,B,C,D,E,A,B,C,D),1,[],[E=0]).
+eq(eval_PackBitsEncodeChunk_bb2_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,A=<0]).
+eq(eval_PackBitsEncodeChunk_bb2_in(A,B,C,D,E,A,B,C,D),0,[],[E=1,A>=0+1]).

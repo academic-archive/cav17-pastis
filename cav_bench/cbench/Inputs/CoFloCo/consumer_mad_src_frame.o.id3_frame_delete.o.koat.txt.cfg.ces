@@ -1,0 +1,17 @@
+eq(eval_id3_frame_delete_start(A),1,[eval_id3_frame_delete_bb0_in(A)],[]).
+eq(eval_id3_frame_delete_bb0_in(A),1,[eval_id3_frame_delete_bb7_in(A)],[]).
+eq(eval_id3_frame_delete_8(A),1,[eval_id3_frame_delete_9(A)],[]).
+eq(eval_id3_frame_delete_9(A),1,[eval_id3_frame_delete_bb6_in(A)],[]).
+eq(eval_id3_frame_delete_bb6_in(A),1,[eval_id3_frame_delete_10(A)],[]).
+eq(eval_id3_frame_delete_10(A),1,[eval_id3_frame_delete_11(A)],[]).
+eq(eval_id3_frame_delete_11(A),1,[eval_id3_frame_delete_bb7_in(A)],[]).
+eq(eval_id3_frame_delete_bb7_in(A),1,[eval_id3_frame_delete_stop(A)],[]).
+eq(eval_id3_frame_delete_bb0_in(A),1,[eval_id3_frame_delete_bb2_in(0,B,C),loop_cont_eval_id3_frame_delete_bb2_in(C)],[B=0]).
+eq(eval_id3_frame_delete_bb0_in(A),1,[eval_id3_frame_delete_bb2_in(0,B,C)],[B=1]).
+eq(loop_cont_eval_id3_frame_delete_bb2_in(A),0,[eval_id3_frame_delete_8(A)],[]).
+eq(loop_cont_eval_id3_frame_delete_bb2_in(A),0,[eval_id3_frame_delete_bb6_in(A)],[]).
+eq(eval_id3_frame_delete_bb2_in(A,B,C),1,[eval_id3_frame_delete_5(A,B,C)],[A<D]).
+eq(eval_id3_frame_delete_5(A,B,C),1,[eval_id3_frame_delete_6(A,B,C)],[]).
+eq(eval_id3_frame_delete_6(A,B,C),1,[eval_id3_frame_delete_bb2_in(A+1,B,C)],[]).
+eq(eval_id3_frame_delete_bb2_in(A,B,A),1,[],[B=0,A>=C]).
+eq(eval_id3_frame_delete_bb2_in(A,B,A),0,[],[B=1,C>=A]).

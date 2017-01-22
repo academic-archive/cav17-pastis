@@ -1,0 +1,21 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_PackBitsDecode_start))
+(VAR nondef.0 nondef.1 nondef.3 v_10 v_23 v_28 v_29 v_45 v_cc.0 v_n.1 v_occ v_s)
+(RULES
+  eval_PackBitsDecode_start(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb0_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s))
+  eval_PackBitsDecode_bb0_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, nondef.0, v_n.1, v_occ, v_s))
+  eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, v_cc.0 - 1, v_n.1, v_occ, v_s)) :|: v_cc.0 > 0
+  eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb6_in(v_cc.0 - 1, v_cc.0 - 2, v_28, v_29, v_45, v_cc.0, -nondef.1 + 257, v_occ, v_s)) :|: v_cc.0 > 0
+  eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_26(v_cc.0 - 1, v_23, nondef.1 - 255, nondef.1 - 255, v_45, v_cc.0, v_n.1, v_occ, v_s)) :|: v_cc.0 > 0
+  eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_.critedge_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s)) :|: v_cc.0 > 0
+  eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_.critedge_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s)) :|: v_cc.0 <= 0
+  eval_PackBitsDecode_bb6_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb6_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1 - 1, v_occ, v_s)) :|: v_n.1 > 0
+  eval_PackBitsDecode_bb6_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, v_23, v_n.1, v_occ, v_s)) :|: v_n.1 <= 0
+  eval_PackBitsDecode_26(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_2(eval__TIFFmemcpy_start(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s), eval_PackBitsDecode_27(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s))
+  eval_PackBitsDecode_27(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb1_in(v_10, v_23, v_28, v_29, v_45, v_10 - v_28, v_n.1, v_occ, v_s))
+  eval_PackBitsDecode_.critedge_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_39(v_10, v_23, v_28, v_29, nondef.3, v_cc.0, v_n.1, v_occ, v_s))
+  eval_PackBitsDecode_.critedge_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb10_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s))
+  eval_PackBitsDecode_39(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_2(eval_TIFFError_start(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s), eval_PackBitsDecode_40(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s))
+  eval_PackBitsDecode_40(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_bb10_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s))
+  eval_PackBitsDecode_bb10_in(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s) -> Com_1(eval_PackBitsDecode_stop(v_10, v_23, v_28, v_29, v_45, v_cc.0, v_n.1, v_occ, v_s))
+)

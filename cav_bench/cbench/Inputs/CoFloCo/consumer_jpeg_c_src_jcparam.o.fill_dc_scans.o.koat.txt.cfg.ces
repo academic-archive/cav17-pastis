@@ -1,0 +1,11 @@
+eq(eval_fill_dc_scans_start(A,B,C,D),1,[eval_fill_dc_scans_bb0_in(A,B,C,D)],[]).
+eq(eval_fill_dc_scans_bb0_in(A,B,C,D),1,[eval_fill_dc_scans_11(A,B,C,D)],[]).
+eq(eval_fill_dc_scans_11(A,B,C,D),1,[eval_fill_dc_scans_12(A,B,C,D)],[]).
+eq(eval_fill_dc_scans_12(A,B,C,D),1,[eval_fill_dc_scans_bb6_in(A,B,C,D)],[]).
+eq(eval_fill_dc_scans_bb6_in(A,B,C,D),1,[eval_fill_dc_scans_stop(A,B,C,D)],[]).
+eq(eval_fill_dc_scans_bb0_in(A,B,C,D),1,[eval_fill_dc_scans_bb2_in(A,B,0,D,E,F,G,H,I),loop_cont_eval_fill_dc_scans_bb2_in(F,G,H,I)],[E=0]).
+eq(eval_fill_dc_scans_bb0_in(A,B,C,D),1,[eval_fill_dc_scans_bb2_in(A,B,0,D,E,F,G,H,I)],[E=1]).
+eq(loop_cont_eval_fill_dc_scans_bb2_in(A,B,C,D),0,[eval_fill_dc_scans_bb6_in(A,B,C,D)],[]).
+eq(eval_fill_dc_scans_bb2_in(A,B,C,D,E,F,G,H,I),1,[eval_fill_dc_scans_bb2_in(A,B,C+1,D,E,F,G,H,I)],[C<D]).
+eq(eval_fill_dc_scans_bb2_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,C>=D]).
+eq(eval_fill_dc_scans_bb2_in(A,B,C,D+1,E,A,B,C,D+1),0,[],[E=1,D>=C]).

@@ -1,0 +1,10 @@
+eq(eval_inner_loop_start(A,B),1,[eval_inner_loop_bb0_in(A,B)],[]).
+eq(eval_inner_loop_bb0_in(A,B),1,[eval_inner_loop_9(A,B)],[]).
+eq(eval_inner_loop_9(A,B),1,[eval_inner_loop_10(A,B)],[]).
+eq(eval_inner_loop_10(A,B),1,[eval_inner_loop_stop(A,B)],[]).
+eq(eval_inner_loop_bb0_in(A,B),1,[eval_inner_loop_bb2_in(A,B,C,D,E),loop_cont_eval_inner_loop_bb2_in(D,E)],[C=0]).
+eq(eval_inner_loop_bb0_in(A,B),1,[eval_inner_loop_bb2_in(A,B,C,D,E)],[C=1]).
+eq(eval_inner_loop_bb2_in(A,B,C,D,E),1,[eval_inner_loop_7(A,B,C,D,E)],[]).
+eq(eval_inner_loop_7(A,B,C,D,E),1,[eval_inner_loop_8(F,B,C,D,E)],[]).
+eq(eval_inner_loop_8(A,B,C,D,E),1,[eval_inner_loop_bb2_in(A,B,C,D,E)],[A>B]).
+eq(eval_inner_loop_8(A,B,C,A,B),1,[],[C=1,A=<B]).

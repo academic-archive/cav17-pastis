@@ -1,0 +1,14 @@
+eq(eval_gen_codes_start(A,B,C,D,E),1,[eval_gen_codes_bb0_in(A,B,C,D,E)],[]).
+eq(eval_gen_codes_bb0_in(A,B,C,D,E),1,[eval_gen_codes_bb1_in(A,B,1,D,E,F,G,H,I,J,K),loop_cont_eval_gen_codes_bb1_in(G,H,I,J,K)],[F=0]).
+eq(eval_gen_codes_bb0_in(A,B,C,D,E),1,[eval_gen_codes_bb1_in(A,B,1,D,E,F,G,H,I,J,K)],[F=1]).
+eq(loop_cont_eval_gen_codes_bb1_in(A,B,C,D,E),0,[eval_gen_codes_bb3_in(A,B,C,D,E,F,G,H,I,J,K),loop_cont_eval_gen_codes_bb3_in(G,H,I,J,K)],[F=0]).
+eq(loop_cont_eval_gen_codes_bb1_in(A,B,C,D,E),0,[eval_gen_codes_bb3_in(A,B,C,D,E,F,G,H,I,J,K)],[F=1]).
+eq(eval_gen_codes_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gen_codes_bb1_in(A,B,C+1,D,E,F,G,H,I,J,K)],[C=<15]).
+eq(eval_gen_codes_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gen_codes_bb6_in(L,B,C,D,E,F,G,H,I,J,K)],[E=<D]).
+eq(eval_gen_codes_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gen_codes_21(L,M,C,D,E,F,G,H,I,J,K)],[E=<D]).
+eq(eval_gen_codes_bb6_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gen_codes_bb3_in(A,B,C,D,E+1,F,G,H,I,J,K)],[]).
+eq(eval_gen_codes_21(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gen_codes_22(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_gen_codes_22(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gen_codes_bb6_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_gen_codes_bb1_in(A,B,C,D,E,F,A,B,C,D,0),1,[],[F=0,C>15]).
+eq(eval_gen_codes_bb1_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1]).
+eq(eval_gen_codes_bb3_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,E>D]).

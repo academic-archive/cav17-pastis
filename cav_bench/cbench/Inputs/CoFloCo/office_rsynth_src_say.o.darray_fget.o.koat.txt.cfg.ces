@@ -1,0 +1,18 @@
+eq(eval_darray_fget_start(A),1,[eval_darray_fget_bb0_in(A)],[]).
+eq(eval_darray_fget_bb3_in(A),1,[eval_darray_fget_4(A)],[]).
+eq(eval_darray_fget_4(A),1,[eval_darray_fget_5(A)],[]).
+eq(eval_darray_fget_5(A),1,[eval_darray_fget_stop(A)],[]).
+eq(eval_darray_fget_bb0_in(A),1,[eval_darray_fget_bb1_in(A,B,C),loop_cont_eval_darray_fget_bb1_in(C)],[B=0]).
+eq(eval_darray_fget_bb0_in(A),1,[eval_darray_fget_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_darray_fget_bb1_in(A),0,[eval_darray_fget_bb3_in(A)],[]).
+eq(eval_darray_fget_bb1_in(A,B,C),1,[eval_darray_fget_0(A,B,C)],[]).
+eq(eval_darray_fget_0(A,B,C),1,[eval_darray_fget_1(D,B,C)],[]).
+eq(eval_darray_fget_1(A,B,C),1,[eval_darray_fget_2(A,B,C)],[A< -1]).
+eq(eval_darray_fget_1(A,B,C),1,[eval_darray_fget_2(A,B,C)],[A> -1]).
+eq(eval_darray_fget_2(A,B,C),1,[eval_darray_fget_3(A,B,C)],[]).
+eq(eval_darray_fget_3(A,B,C),1,[eval_darray_fget_bb1_in(A,B,C)],[A<10]).
+eq(eval_darray_fget_3(A,B,C),1,[eval_darray_fget_bb1_in(A,B,C)],[A>10]).
+eq(eval_darray_fget_3(A,B,A),1,[],[B=0,A=10]).
+eq(eval_darray_fget_3(A,B,A),0,[],[B=1]).
+eq(eval_darray_fget_1(A,B,A),1,[],[B=0,A= -1]).
+eq(eval_darray_fget_1(A,B,A),0,[],[B=1]).

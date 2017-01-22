@@ -1,0 +1,9 @@
+eq(eval_linear2mulaw_start(A),1,[eval_linear2mulaw_bb0_in(A)],[]).
+eq(eval_linear2mulaw_bb0_in(A),1,[eval_linear2mulaw_bb5_in(A)],[]).
+eq(eval_linear2mulaw_bb5_in(A),1,[eval_linear2mulaw_stop(A)],[]).
+eq(eval_linear2mulaw_bb0_in(A),1,[eval_linear2mulaw_bb2_in(A,B,C),loop_cont_eval_linear2mulaw_bb2_in(C)],[B=0]).
+eq(eval_linear2mulaw_bb0_in(A),1,[eval_linear2mulaw_bb2_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_linear2mulaw_bb2_in(A),0,[eval_linear2mulaw_bb5_in(A)],[]).
+eq(eval_linear2mulaw_bb2_in(A,B,C),1,[eval_linear2mulaw_bb2_in(A,B,C)],[D=0]).
+eq(eval_linear2mulaw_bb2_in(A,B,A),1,[],[B=0,C<0]).
+eq(eval_linear2mulaw_bb2_in(A,B,A),1,[],[B=0,C>0]).

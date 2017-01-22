@@ -1,0 +1,16 @@
+eq(eval_select_colors_start(A,B,C),1,[eval_select_colors_bb0_in(A,B,C)],[]).
+eq(eval_select_colors_bb0_in(A,B,C),1,[eval_select_colors_2(A,B,C)],[]).
+eq(eval_select_colors_2(A,B,C),1,[eval_select_colors_3(A,B,C)],[]).
+eq(eval_select_colors_3(A,B,C),1,[eval_select_colors_9(A,B,C)],[]).
+eq(eval_select_colors_9(A,B,C),1,[eval_select_colors_10(A,B,C)],[]).
+eq(eval_select_colors_10(A,B,C),1,[eval_select_colors_11(D,B,C)],[]).
+eq(eval_select_colors_19(A,B,C),1,[eval_select_colors_20(A,B,C)],[]).
+eq(eval_select_colors_20(A,B,C),1,[eval_select_colors_stop(A,B,C)],[]).
+eq(eval_select_colors_11(A,B,C),1,[eval_select_colors_bb1_in(A,B,0,D,E,F,G),loop_cont_eval_select_colors_bb1_in(E,F,G)],[D=0]).
+eq(eval_select_colors_11(A,B,C),1,[eval_select_colors_bb1_in(A,B,0,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_select_colors_bb1_in(A,B,C),0,[eval_select_colors_19(A,B,C)],[]).
+eq(eval_select_colors_bb1_in(A,B,C,D,E,F,G),1,[eval_select_colors_13(A,B,C,D,E,F,G)],[C<A]).
+eq(eval_select_colors_13(A,B,C,D,E,F,G),1,[eval_select_colors_14(A,B,C,D,E,F,G)],[]).
+eq(eval_select_colors_14(A,B,C,D,E,F,G),1,[eval_select_colors_bb1_in(A,B,C+1,D,E,F,G)],[]).
+eq(eval_select_colors_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,C>=A]).
+eq(eval_select_colors_bb1_in(A+1,B,C,D,A+1,B,C),0,[],[D=1,A>=C]).

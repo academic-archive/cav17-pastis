@@ -1,0 +1,49 @@
+eq(eval_per_scan_setup_start(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb3_in(A,B,C,D,E,F,G)],[H=0,I=0]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb3_in(A,B,C,D,E,F,G)],[H=1,I=0]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb3_in(A,B,C,D,E,F,G)],[H= -1,I=0]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb3_in(A,B,C,D,E,F,G)],[H>1,I>0,J>=0,J<H]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb3_in(A,B,C,D,E,F,G)],[H>1,I<0,J=<0,J> -H]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb3_in(A,B,C,D,E,F,G)],[H< -1,I>0,J>=0,J< -H]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb3_in(A,B,C,D,E,F,G)],[H< -1,I<0,J=<0,J>H]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb6_in(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_bb0_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_bb3_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb18_in(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_bb6_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_29(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_29(A,B,C,D,E,F,G),1,[eval_per_scan_setup_30(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_30(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_bb7_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_36(A,H,8*I,D,E,F,G)],[]).
+eq(eval_per_scan_setup_36(A,B,C,D,E,F,G),1,[eval_per_scan_setup_37(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_37(A,B,C,D,E,F,G),1,[eval_per_scan_setup_44(A,B,C,H,8*I,F,G)],[]).
+eq(eval_per_scan_setup_44(A,B,C,D,E,F,G),1,[eval_per_scan_setup_45(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_bb18_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb20_in(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_bb20_in(A,B,C,D,E,F,G),1,[eval_per_scan_setup_stop(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_45(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb8_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O),loop_cont_eval_per_scan_setup_bb8_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_per_scan_setup_45(A,B,C,D,E,F,G),1,[eval_per_scan_setup_bb8_in(A,B,C,D,E,0,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(loop_cont_eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G),0,[eval_per_scan_setup_bb18_in(A,B,C,D,E,F,G)],[]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<P,Q=0,R=0]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<P,Q=1,R=0]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<P,Q= -1,R=0]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<P,Q>1,R>0,S>=0,S<Q]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<P,Q>1,R<0,S=<0,S> -Q]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<P,Q< -1,R>0,S>=0,S< -Q]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[F<P,Q< -1,R<0,S=<0,S>Q]).
+eq(eval_per_scan_setup_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb15_in(A,B,C,D,E,F,G-1,H,I,J,K,L,M,N,O)],[G>0]).
+eq(eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[P=0,Q=0]).
+eq(eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[P=1,Q=0]).
+eq(eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[P= -1,Q=0]).
+eq(eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[P>1,Q>0,R>=0,R<P]).
+eq(eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[P>1,Q<0,R=<0,R> -P]).
+eq(eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[P< -1,Q>0,R>=0,R< -P]).
+eq(eval_per_scan_setup_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[P< -1,Q<0,R=<0,R>P]).
+eq(eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_82(P,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb15_in(P,B,C,D,E,F,P,Q,R,S,T,U,V,W,X),loop_cont_eval_per_scan_setup_bb15_in(R,S,T,U,V,W,X,H,I,J,K,L,M,N,O)],[Q=0]).
+eq(eval_per_scan_setup_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb15_in(P,B,C,D,E,F,P,Q,R,S,T,U,V,W,X)],[H=1,Q=1]).
+eq(eval_per_scan_setup_82(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_83(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(loop_cont_eval_per_scan_setup_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),0,[eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_per_scan_setup_83(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb15_in(A,B,C,D,E,F,A,P,Q,R,S,T,U,V,W),loop_cont_eval_per_scan_setup_bb15_in(Q,R,S,T,U,V,W,H,I,J,K,L,M,N,O)],[P=0]).
+eq(eval_per_scan_setup_83(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_per_scan_setup_bb15_in(A,B,C,D,E,F,A,P,Q,R,S,T,U,V,W)],[H=1,P=1]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0,F>=I]).
+eq(eval_per_scan_setup_bb8_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,I>=F]).
+eq(eval_per_scan_setup_bb15_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F+1,G),1,[],[H=0,G=<0]).
+eq(eval_per_scan_setup_bb15_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,G>=0+1]).

@@ -1,0 +1,10 @@
+eq(eval_arg_finit_start,1,[eval_arg_finit_bb0_in],[]).
+eq(eval_arg_finit_bb0_in,1,[eval_arg_finit_bb1_in(A),loop_cont_eval_arg_finit_bb1_in],[A=0]).
+eq(eval_arg_finit_bb0_in,1,[eval_arg_finit_bb1_in(A)],[A=1]).
+eq(eval_arg_finit_bb1_in(A),1,[eval_arg_finit_10(A)],[B<0]).
+eq(eval_arg_finit_bb1_in(A),1,[eval_arg_finit_10(A)],[B>0]).
+eq(eval_arg_finit_bb1_in(A),1,[eval_arg_finit_bb1_in(A)],[B<0]).
+eq(eval_arg_finit_bb1_in(A),1,[eval_arg_finit_bb1_in(A)],[B>0]).
+eq(eval_arg_finit_10(A),1,[eval_arg_finit_11(A)],[]).
+eq(eval_arg_finit_11(A),1,[eval_arg_finit_bb1_in(A)],[]).
+eq(eval_arg_finit_bb1_in(A),1,[],[A=1,B=0]).

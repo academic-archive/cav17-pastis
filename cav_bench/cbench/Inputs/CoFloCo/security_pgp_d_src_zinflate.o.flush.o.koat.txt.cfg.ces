@@ -1,0 +1,16 @@
+eq(eval_flush_start(A,B,C,D,E),1,[eval_flush_bb0_in(A,B,C,D,E)],[]).
+eq(eval_flush_bb0_in(A,B,C,D,E),1,[eval_flush_bb1_in(A,B,E,D,E,F,G,H,I,J,K),loop_cont_eval_flush_bb1_in(G,H,I,J,K)],[F=0]).
+eq(eval_flush_bb0_in(A,B,C,D,E),1,[eval_flush_bb1_in(A,B,E,D,E,F,G,H,I,J,K)],[F=1]).
+eq(eval_flush_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_4(A,-A+8192,C,-A+8192,E,F,G,H,I,J,K)],[C<0]).
+eq(eval_flush_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_4(A,-A+8192,C,-A+8192,E,F,G,H,I,J,K)],[C>0]).
+eq(eval_flush_4(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_5(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_5(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_11(A+B,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_5(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_bb5_in(A+B,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_11(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_12(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_bb5_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_bb1_in(A,B,C-B,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_12(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_13(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_12(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_bb5_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_13(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_14(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_14(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_15(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_15(A,B,C,D,E,F,G,H,I,J,K),1,[eval_flush_bb5_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_flush_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,C=0]).

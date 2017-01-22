@@ -1,0 +1,17 @@
+eq(eval_cryptRandInit_start(A,B),1,[eval_cryptRandInit_bb0_in(A,B)],[]).
+eq(eval_cryptRandInit_8(A,B),1,[eval_cryptRandInit_9(A,B)],[]).
+eq(eval_cryptRandInit_9(A,B),1,[eval_cryptRandInit_bb5_in(A,B)],[]).
+eq(eval_cryptRandInit_bb5_in(A,B),1,[eval_cryptRandInit_10(A,B)],[]).
+eq(eval_cryptRandInit_10(A,B),1,[eval_cryptRandInit_11(A,B)],[]).
+eq(eval_cryptRandInit_11(A,B),1,[eval_cryptRandInit_12(1,B)],[]).
+eq(eval_cryptRandInit_12(A,B),1,[eval_cryptRandInit_13(A,B)],[]).
+eq(eval_cryptRandInit_13(A,B),1,[eval_cryptRandInit_stop(A,B)],[]).
+eq(eval_cryptRandInit_bb0_in(A,B),1,[eval_cryptRandInit_bb1_in(A,0,C,D,E),loop_cont_eval_cryptRandInit_bb1_in(D,E)],[C=0]).
+eq(eval_cryptRandInit_bb0_in(A,B),1,[eval_cryptRandInit_bb1_in(A,0,C,D,E)],[C=1]).
+eq(loop_cont_eval_cryptRandInit_bb1_in(A,B),0,[eval_cryptRandInit_8(A,B)],[]).
+eq(loop_cont_eval_cryptRandInit_bb1_in(A,B),0,[eval_cryptRandInit_bb5_in(A,B)],[]).
+eq(eval_cryptRandInit_bb1_in(A,B,C,D,E),1,[eval_cryptRandInit_2(A,B,C,D,E)],[B<24]).
+eq(eval_cryptRandInit_2(A,B,C,D,E),1,[eval_cryptRandInit_3(A,B,C,D,E)],[]).
+eq(eval_cryptRandInit_3(A,B,C,D,E),1,[eval_cryptRandInit_bb1_in(A,B+1,C,D,E)],[]).
+eq(eval_cryptRandInit_bb1_in(A,B,C,A,B),1,[],[C=0,B>=24]).
+eq(eval_cryptRandInit_bb1_in(A,B,C,A,B),0,[],[C=1,24>=B+1]).

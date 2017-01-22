@@ -1,0 +1,5 @@
+eq(eval_bsW_start(A,B),1,[eval_bsW_bb0_in(A,B)],[]).
+eq(eval_bsW_bb0_in(A,B),1,[eval_bsW_bb1_in(A,B,C,D,E),loop_cont_eval_bsW_bb1_in(D,E)],[C=0]).
+eq(eval_bsW_bb0_in(A,B),1,[eval_bsW_bb1_in(A,B,C,D,E)],[C=1]).
+eq(eval_bsW_bb1_in(A,B,C,D,E),1,[eval_bsW_bb1_in(A,B,C,D,E)],[F>=8]).
+eq(eval_bsW_bb1_in(A,B,C,A,B),1,[],[C=1,D<8]).

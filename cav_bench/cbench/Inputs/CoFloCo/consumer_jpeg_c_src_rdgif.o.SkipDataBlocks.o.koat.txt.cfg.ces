@@ -1,0 +1,7 @@
+eq(eval_SkipDataBlocks_start(A),1,[eval_SkipDataBlocks_bb0_in(A)],[]).
+eq(eval_SkipDataBlocks_bb0_in(A),1,[eval_SkipDataBlocks_bb1_in(A,B,C),loop_cont_eval_SkipDataBlocks_bb1_in(C)],[B=0]).
+eq(eval_SkipDataBlocks_bb0_in(A),1,[eval_SkipDataBlocks_bb1_in(A,B,C)],[B=1]).
+eq(eval_SkipDataBlocks_bb1_in(A,B,C),1,[eval_SkipDataBlocks_0(A,B,C)],[]).
+eq(eval_SkipDataBlocks_0(A,B,C),1,[eval_SkipDataBlocks_1(D,B,C)],[]).
+eq(eval_SkipDataBlocks_1(A,B,C),1,[eval_SkipDataBlocks_bb1_in(A,B,C)],[A>0]).
+eq(eval_SkipDataBlocks_1(A,B,A),1,[],[B=1,A=<0]).

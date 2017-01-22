@@ -1,0 +1,10 @@
+eq(eval_quantize3_ord_dither_start(A,B,C,D),1,[eval_quantize3_ord_dither_bb0_in(A,B,C,D)],[]).
+eq(eval_quantize3_ord_dither_bb0_in(A,B,C,D),1,[eval_quantize3_ord_dither_bb1_in(E,B,C,0,F,G,H,I,J),loop_cont_eval_quantize3_ord_dither_bb1_in(G,H,I,J)],[F=0]).
+eq(eval_quantize3_ord_dither_bb0_in(A,B,C,D),1,[eval_quantize3_ord_dither_bb1_in(E,B,C,0,F,G,H,I,J)],[F=1]).
+eq(eval_quantize3_ord_dither_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_quantize3_ord_dither_bb3_in(A,A,C,D,J,K,L,M,N),loop_cont_eval_quantize3_ord_dither_bb3_in(K,L,M,N,E,F,G,H,I)],[J=0,D<C]).
+eq(eval_quantize3_ord_dither_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_quantize3_ord_dither_bb3_in(A,A,C,D,J,K,L,M,N)],[E=1,J=1,D<C]).
+eq(eval_quantize3_ord_dither_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_quantize3_ord_dither_bb3_in(A,B-1,C,D,E,F,G,H,I)],[B>0]).
+eq(loop_cont_eval_quantize3_ord_dither_bb3_in(A,B,C,D,E,F,G,H,I),0,[eval_quantize3_ord_dither_bb1_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_quantize3_ord_dither_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,D>=C]).
+eq(eval_quantize3_ord_dither_bb3_in(A,B,C,D,E,A,B,C,D+1),1,[],[E=0,B=<0]).
+eq(eval_quantize3_ord_dither_bb3_in(A,B,C,D,E,A,B,C,D),0,[],[E=1,B>=0+1]).

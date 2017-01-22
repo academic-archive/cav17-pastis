@@ -1,0 +1,29 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_ideaCipher_start))
+(VAR nondef.15 nondef.16 nondef.17 nondef.20 nondef.21 nondef.22 nondef.23 nondef.24 nondef.25 nondef.26 nondef.27 nondef.28 nondef.29 nondef.32 nondef.33 nondef.36 nondef.37 nondef.6 v_171 v_r.0 v_x1.0 v_x3.2 v_x4.0)
+(RULES
+  eval_ideaCipher_start(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb0_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0))
+  eval_ideaCipher_bb0_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb1_in(v_171, 8, nondef.6, v_x3.2, nondef.15))
+  eval_ideaCipher_bb1_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb6_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_x1.0*nondef.16 >= nondef.17
+  eval_ideaCipher_bb1_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb6_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_x1.0*nondef.16 < nondef.17
+  eval_ideaCipher_bb1_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb6_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0))
+  eval_ideaCipher_bb6_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb11_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_x4.0*nondef.20 >= nondef.21
+  eval_ideaCipher_bb6_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb11_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_x4.0*nondef.20 < nondef.21
+  eval_ideaCipher_bb6_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb11_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0))
+  eval_ideaCipher_bb11_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb16_in(v_171, v_r.0, v_x1.0, nondef.22*nondef.23 - nondef.24, v_x4.0)) :|: nondef.22*nondef.23 >= nondef.24
+  eval_ideaCipher_bb11_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb16_in(v_171, v_r.0, v_x1.0, nondef.22*nondef.23 - nondef.24 + 1, v_x4.0)) :|: nondef.22*nondef.23 < nondef.24
+  eval_ideaCipher_bb11_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb16_in(v_171, v_r.0, v_x1.0, -nondef.23 + 1, v_x4.0))
+  eval_ideaCipher_bb11_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb16_in(v_171, v_r.0, v_x1.0, -nondef.22 + 1, v_x4.0))
+  eval_ideaCipher_bb16_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb21_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: nondef.25*nondef.26 + v_x3.2*nondef.26 >= nondef.27
+  eval_ideaCipher_bb16_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb21_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: nondef.25*nondef.26 + v_x3.2*nondef.26 < nondef.27
+  eval_ideaCipher_bb16_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb21_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0))
+  eval_ideaCipher_bb21_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb1_in(v_171, v_r.0 - 1, nondef.28, v_x3.2, nondef.29)) :|: v_r.0 - 1 < 0
+  eval_ideaCipher_bb21_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb1_in(v_171, v_r.0 - 1, nondef.28, v_x3.2, nondef.29)) :|: v_r.0 - 1 > 0
+  eval_ideaCipher_bb21_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb27_in(nondef.29, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_r.0 - 1 = 0 && nondef.28*nondef.32 >= nondef.33
+  eval_ideaCipher_bb21_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb27_in(nondef.29, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_r.0 - 1 = 0 && nondef.28*nondef.32 < nondef.33
+  eval_ideaCipher_bb21_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb27_in(nondef.29, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_r.0 - 1 = 0
+  eval_ideaCipher_bb27_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb32_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_171*nondef.36 >= nondef.37
+  eval_ideaCipher_bb27_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb32_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0)) :|: v_171*nondef.36 < nondef.37
+  eval_ideaCipher_bb27_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_bb32_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0))
+  eval_ideaCipher_bb32_in(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0) -> Com_1(eval_ideaCipher_stop(v_171, v_r.0, v_x1.0, v_x3.2, v_x4.0))
+)

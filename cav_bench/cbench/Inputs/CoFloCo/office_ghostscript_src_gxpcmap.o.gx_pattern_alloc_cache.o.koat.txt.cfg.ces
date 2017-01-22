@@ -1,0 +1,15 @@
+eq(eval_gx_pattern_alloc_cache_start(A,B,C),1,[eval_gx_pattern_alloc_cache_bb0_in(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_bb0_in(A,B,C),1,[eval_gx_pattern_alloc_cache_0(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_0(A,B,C),1,[eval_gx_pattern_alloc_cache_1(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_1(A,B,C),1,[eval_gx_pattern_alloc_cache_2(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_2(A,B,C),1,[eval_gx_pattern_alloc_cache_3(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_3(A,B,C),1,[eval_gx_pattern_alloc_cache_4(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_4(A,B,C),1,[eval_gx_pattern_alloc_cache_5(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_5(A,B,C),1,[eval_gx_pattern_alloc_cache_bb5_in(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_bb5_in(A,B,C),1,[eval_gx_pattern_alloc_cache_stop(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_2(A,B,C),1,[eval_gx_pattern_alloc_cache_bb3_in(0,B,C,D,E,F,G),loop_cont_eval_gx_pattern_alloc_cache_bb3_in(E,F,G)],[D=0]).
+eq(eval_gx_pattern_alloc_cache_2(A,B,C),1,[eval_gx_pattern_alloc_cache_bb3_in(0,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_gx_pattern_alloc_cache_bb3_in(A,B,C),0,[eval_gx_pattern_alloc_cache_bb5_in(A,B,C)],[]).
+eq(eval_gx_pattern_alloc_cache_bb3_in(A,B,C,D,E,F,G),1,[eval_gx_pattern_alloc_cache_bb3_in(A+1,B,C,D,E,F,G)],[A<C]).
+eq(eval_gx_pattern_alloc_cache_bb3_in(A,B,C,D,A,B,C),1,[],[D=0,A>=C]).
+eq(eval_gx_pattern_alloc_cache_bb3_in(A,B,C+1,D,A,B,C+1),0,[],[D=1,C>=A]).

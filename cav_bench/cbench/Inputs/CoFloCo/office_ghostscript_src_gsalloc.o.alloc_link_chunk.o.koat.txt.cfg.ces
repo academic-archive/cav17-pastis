@@ -1,0 +1,10 @@
+eq(eval_alloc_link_chunk_start,1,[eval_alloc_link_chunk_bb0_in],[]).
+eq(eval_alloc_link_chunk__critedge_in,1,[eval_alloc_link_chunk_bb6_in],[]).
+eq(eval_alloc_link_chunk_bb6_in,1,[eval_alloc_link_chunk_bb9_in],[]).
+eq(eval_alloc_link_chunk_bb9_in,1,[eval_alloc_link_chunk_bb11_in],[]).
+eq(eval_alloc_link_chunk_bb11_in,1,[eval_alloc_link_chunk_stop],[]).
+eq(eval_alloc_link_chunk_bb0_in,1,[eval_alloc_link_chunk_bb1_in(A),loop_cont_eval_alloc_link_chunk_bb1_in],[A=0]).
+eq(eval_alloc_link_chunk_bb0_in,1,[eval_alloc_link_chunk_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_alloc_link_chunk_bb1_in,0,[eval_alloc_link_chunk__critedge_in],[]).
+eq(eval_alloc_link_chunk_bb1_in(A),1,[eval_alloc_link_chunk_bb1_in(A)],[]).
+eq(eval_alloc_link_chunk_bb1_in(A),1,[],[A=0]).

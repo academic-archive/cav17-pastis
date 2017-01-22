@@ -1,0 +1,14 @@
+eq(eval_gsm_div_start(A,B,C),1,[eval_gsm_div_bb0_in(A,B,C)],[]).
+eq(eval_gsm_div_bb0_in(A,B,C),1,[eval_gsm_div_bb5_in(A,B,C)],[]).
+eq(eval_gsm_div_bb0_in(A,B,C),1,[eval_gsm_div_bb6_in(A,B,C)],[]).
+eq(eval_gsm_div_bb5_in(A,B,C),1,[eval_gsm_div_stop(A,B,C)],[]).
+eq(eval_gsm_div_bb6_in(A,B,C),1,[eval_gsm_div_20(A,B,C)],[]).
+eq(eval_gsm_div_20(A,B,C),1,[eval_gsm_div_21(A,B,C)],[]).
+eq(eval_gsm_div_21(A,B,C),1,[eval_gsm_div_stop(A,B,C)],[]).
+eq(eval_gsm_div_bb0_in(A,B,C),1,[eval_gsm_div_bb3_in(A,15,C,D,E,F,G),loop_cont_eval_gsm_div_bb3_in(E,F,G)],[D=0]).
+eq(eval_gsm_div_bb0_in(A,B,C),1,[eval_gsm_div_bb3_in(A,15,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_gsm_div_bb3_in(A,B,C),0,[eval_gsm_div_bb5_in(A,B,C)],[]).
+eq(eval_gsm_div_bb3_in(A,B,C,D,E,F,G),1,[eval_gsm_div_bb3_in(A,B-1,C,D,E,F,G)],[B<0]).
+eq(eval_gsm_div_bb3_in(A,B,C,D,E,F,G),1,[eval_gsm_div_bb3_in(A,B-1,C,D,E,F,G)],[B>0]).
+eq(eval_gsm_div_bb3_in(A,B,C,D,A,B,C),1,[],[D=0,B=0]).
+eq(eval_gsm_div_bb3_in(A,B,C,D,A,B,C),0,[],[D=1]).

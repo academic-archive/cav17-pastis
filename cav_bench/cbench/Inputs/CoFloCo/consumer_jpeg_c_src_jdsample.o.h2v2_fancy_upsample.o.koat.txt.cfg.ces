@@ -1,0 +1,16 @@
+eq(eval_h2v2_fancy_upsample_start(A,B,C,D,E),1,[eval_h2v2_fancy_upsample_bb0_in(A,B,C,D,E)],[]).
+eq(eval_h2v2_fancy_upsample_bb0_in(A,B,C,D,E),1,[eval_h2v2_fancy_upsample_bb1_in(A,B,0,D,E,F,G,H,I,J,K),loop_cont_eval_h2v2_fancy_upsample_bb1_in(G,H,I,J,K)],[F=0]).
+eq(eval_h2v2_fancy_upsample_bb0_in(A,B,C,D,E),1,[eval_h2v2_fancy_upsample_bb1_in(A,B,0,D,E,F,G,H,I,J,K)],[F=1]).
+eq(eval_h2v2_fancy_upsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_h2v2_fancy_upsample_bb3_in(A,B,C,C,0,L,M,N,O,P,Q),loop_cont_eval_h2v2_fancy_upsample_bb3_in(M,N,O,P,Q,F,G,H,I,J,K)],[L=0,C<R]).
+eq(eval_h2v2_fancy_upsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_h2v2_fancy_upsample_bb3_in(A,B,C,C,0,L,M,N,O,P,Q)],[F=1,L=1,C<R]).
+eq(eval_h2v2_fancy_upsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_h2v2_fancy_upsample_bb7_in(A,B,C,D,E,F,G,H,I,J,K)],[E<2]).
+eq(eval_h2v2_fancy_upsample_bb8_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_h2v2_fancy_upsample_bb8_in(A,B-1,C,D,E,F,G,H,I,J,K)],[B>0]).
+eq(loop_cont_eval_h2v2_fancy_upsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K),0,[eval_h2v2_fancy_upsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_h2v2_fancy_upsample_bb7_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_h2v2_fancy_upsample_bb8_in(D+1,L-2,C,D,E,M,N,O,P,Q,R),loop_cont_eval_h2v2_fancy_upsample_bb8_in(N,O,P,Q,R,F,G,H,I,J,K)],[M=0]).
+eq(eval_h2v2_fancy_upsample_bb7_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_h2v2_fancy_upsample_bb8_in(D+1,L-2,C,D,E,M,N,O,P,Q,R)],[F=1,M=1]).
+eq(loop_cont_eval_h2v2_fancy_upsample_bb8_in(A,B,C,D,E,F,G,H,I,J,K),0,[eval_h2v2_fancy_upsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_h2v2_fancy_upsample_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,C>=G]).
+eq(eval_h2v2_fancy_upsample_bb3_in(A,B,C,D,E,F,A,B,D,D,E),1,[],[F=0,E>=2]).
+eq(eval_h2v2_fancy_upsample_bb3_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1,2>=E+1]).
+eq(eval_h2v2_fancy_upsample_bb8_in(A,B,C,D,E,F,A,B,C,A,E+1),1,[],[F=0,B=<0]).
+eq(eval_h2v2_fancy_upsample_bb8_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1,B>=0+1]).

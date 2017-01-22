@@ -1,0 +1,87 @@
+eq(eval_dict_find_start(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb0_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb10_in(A,B,C,I-1,E,30503*J,0,H)],[]).
+eq(eval_dict_find_bb0_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_NewDefault_in(A,B,C,I-1,E,F,G,H)],[]).
+eq(eval_dict_find_bb0_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb6_in(A,B,C,I-1,E,F,G,J)],[]).
+eq(eval_dict_find_bb0_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb0_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_19(A,I,C,J-1,E,F,G,H)],[]).
+eq(eval_dict_find_19(A,B,C,D,E,F,G,H),1,[eval_dict_find_20(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_20(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_20(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb6_in(A,B,C,D,E,F,G,I)],[]).
+eq(eval_dict_find_bb6_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb10_in(A,B,C,D,E,H,H+49152,H)],[]).
+eq(eval_dict_find_NewDefault_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb9_in(A,B,15,D,E,F,G,H)],[]).
+eq(eval_dict_find_NewDefault_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb9_in(A,B,I,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb9_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb10_in(A,B,C,D,E,99*C,0,H)],[]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb14_in(A,B,C,D,E,F,G,H)],[F=0,I=0]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb14_in(A,B,C,D,E,F,G,H)],[D=1,I=0]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb14_in(A,B,C,D,E,F,G,H)],[D= -1,I=0]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb14_in(A,B,C,D,E,F,G,H)],[D>1,F>0,I>=0,I<D]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb14_in(A,B,C,D,E,F,G,H)],[D>1,F<0,I=<0,I> -D]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb14_in(A,B,C,D,E,F,G,H)],[D< -1,F>0,I>=0,I< -D]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb14_in(A,B,C,D,E,F,G,H)],[D< -1,F<0,I=<0,I>D]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb14_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb38_in(A,B,C,D,E,F,G,H)],[F=0,I=0]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb38_in(A,B,C,D,E,F,G,H)],[D=1,I=0]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb38_in(A,B,C,D,E,F,G,H)],[D= -1,I=0]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb38_in(A,B,C,D,E,F,G,H)],[D>1,F>0,I>=0,I<D]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb38_in(A,B,C,D,E,F,G,H)],[D>1,F<0,I=<0,I> -D]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb38_in(A,B,C,D,E,F,G,H)],[D< -1,F>0,I>=0,I< -D]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb38_in(A,B,C,D,E,F,G,H)],[D< -1,F<0,I=<0,I>D]).
+eq(eval_dict_find_bb10_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb38_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb25_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb25_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[I-J=0,K=0]).
+eq(eval_dict_find_bb25_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[I-J>0,K>=0,K<I-J]).
+eq(eval_dict_find_bb25_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[I-J<0,K=<0,K>I-J]).
+eq(eval_dict_find_bb49_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb49_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[I-J=0,K=0]).
+eq(eval_dict_find_bb49_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[I-J>0,K>=0,K<I-J]).
+eq(eval_dict_find_bb49_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[I-J<0,K=<0,K>I-J]).
+eq(eval_dict_find_bb53_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_stop(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb14_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb15_in(A,B,C,D,G,F,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_dict_find_bb15_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_dict_find_bb14_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb15_in(A,B,C,D,G,F,G,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_dict_find_bb15_in(A,B,C,D,E,F,G,H),0,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[]).
+eq(loop_cont_eval_dict_find_bb15_in(A,B,C,D,E,F,G,H),0,[eval_dict_find_bb25_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb38_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_dict_find_bb39_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_dict_find_bb38_in(A,B,C,D,E,F,G,H),1,[eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_dict_find_bb39_in(A,B,C,D,E,F,G,H),0,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[]).
+eq(loop_cont_eval_dict_find_bb39_in(A,B,C,D,E,F,G,H),0,[eval_dict_find_bb49_in(A,B,C,D,E,F,G,H)],[]).
+eq(loop_cont_eval_dict_find_bb15_in(A,B,C,D,E,F,G,H),0,[eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),loop_cont_eval_dict_find_bb21_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(loop_cont_eval_dict_find_bb15_in(A,B,C,D,E,F,G,H),0,[eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(loop_cont_eval_dict_find_bb21_in(A,B,C,D,E,F,G,H),0,[eval_dict_find_bb53_in(A,B,C,D,E,F,G,H)],[]).
+eq(loop_cont_eval_dict_find_bb21_in(A,B,C,D,E,F,G,H),0,[eval_dict_find_bb25_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_bb34_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[R<E]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_bb34_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[R>E]).
+eq(eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_141(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_bb32_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[R<A]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_bb32_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[R>A]).
+eq(eval_dict_find_bb34_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_dict_find_141(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_142(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_dict_find_bb32_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_dict_find_142(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J=E,K-L=0,M=0]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),0,[],[I=1]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J=E,K-L>0,M>=0,M<K-L]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J=E,K-L<0,M=<0,M>K-L]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J<E]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J>E]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,G,B,C,D,E,F,G,H),1,[],[I=0,J<E]).
+eq(eval_dict_find_bb15_in(A,B,C,D,E,F,G,H,I,G,B,C,D,E,F,G,H),1,[],[I=0,J>E]).
+eq(eval_dict_find_142(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J-K=0,L=0]).
+eq(eval_dict_find_142(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J-K>0,L>=0,L<J-K]).
+eq(eval_dict_find_142(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J-K<0,L=<0,L>J-K]).
+eq(eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J-K=0,L=0]).
+eq(eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J-K>0,L>=0,L<J-K]).
+eq(eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J-K<0,L=<0,L>J-K]).
+eq(eval_dict_find_bb39_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J=A,K-L=0,M=0]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),0,[],[I=1]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J=A,K-L>0,M>=0,M<K-L]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J=A,K-L<0,M=<0,M>K-L]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J<A]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J>A]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J<A,K-L=0,M=0]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J<A,K-L>0,M>=0,M<K-L]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J<A,K-L<0,M=<0,M>K-L]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J>A,K-L=0,M=0]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J>A,K-L>0,M>=0,M<K-L]).
+eq(eval_dict_find_bb21_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=0,J>A,K-L<0,M=<0,M>K-L]).

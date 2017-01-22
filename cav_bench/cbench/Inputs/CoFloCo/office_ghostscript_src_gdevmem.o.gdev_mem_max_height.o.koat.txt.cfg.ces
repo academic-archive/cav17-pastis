@@ -1,0 +1,19 @@
+eq(eval_gdev_mem_max_height_start(A,B,C,D),1,[eval_gdev_mem_max_height_bb0_in(A,B,C,D)],[]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J),loop_cont_eval_gdev_mem_max_height_bb1_in(G,H,I,J)],[F=0,C=0,E=0]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J)],[F=1,C=0,E=0]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J),loop_cont_eval_gdev_mem_max_height_bb1_in(G,H,I,J)],[F=0,K+8=1,E=C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J)],[F=1,K+8=1,E=C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J),loop_cont_eval_gdev_mem_max_height_bb1_in(G,H,I,J)],[F=0,K+8= -1,E= -C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J)],[F=1,K+8= -1,E= -C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J),loop_cont_eval_gdev_mem_max_height_bb1_in(G,H,I,J)],[F=0,K+8>1,C>0,E>=0,E<C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J)],[F=1,K+8>1,C>0,E>=0,E<C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J),loop_cont_eval_gdev_mem_max_height_bb1_in(G,H,I,J)],[F=0,K+8>1,C<0,E=<0,E>C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J)],[F=1,K+8>1,C<0,E=<0,E>C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J),loop_cont_eval_gdev_mem_max_height_bb1_in(G,H,I,J)],[F=0,K+8< -1,C>0,E=<0,E> -C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J)],[F=1,K+8< -1,C>0,E=<0,E> -C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J),loop_cont_eval_gdev_mem_max_height_bb1_in(G,H,I,J)],[F=0,K+8< -1,C<0,E>=0,E< -C]).
+eq(eval_gdev_mem_max_height_bb0_in(A,B,C,D),1,[eval_gdev_mem_max_height_bb1_in(A,E,C,D,F,G,H,I,J)],[F=1,K+8< -1,C<0,E>=0,E< -C]).
+eq(eval_gdev_mem_max_height_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_gdev_mem_max_height_11(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_gdev_mem_max_height_11(A,B,C,D,E,F,G,H,I),1,[eval_gdev_mem_max_height_12(J,B,C,D,E,F,G,H,I)],[]).
+eq(eval_gdev_mem_max_height_12(A,B,C,D,E,F,G,H,I),1,[eval_gdev_mem_max_height_bb1_in(A,B-1,C,D,E,F,G,H,I)],[A>C]).
+eq(eval_gdev_mem_max_height_12(A,B,C,D,E,A,B,C,D),1,[],[E=1,A=<C]).

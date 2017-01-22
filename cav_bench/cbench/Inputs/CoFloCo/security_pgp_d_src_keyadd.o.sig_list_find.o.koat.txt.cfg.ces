@@ -1,0 +1,7 @@
+eq(eval_sig_list_find_start(A),1,[eval_sig_list_find_bb0_in(A)],[]).
+eq(eval_sig_list_find_bb4_in(A),1,[eval_sig_list_find_stop(A)],[]).
+eq(eval_sig_list_find_bb0_in(A),1,[eval_sig_list_find_bb1_in(A,B,C),loop_cont_eval_sig_list_find_bb1_in(C)],[B=0]).
+eq(eval_sig_list_find_bb0_in(A),1,[eval_sig_list_find_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_sig_list_find_bb1_in(A),0,[eval_sig_list_find_bb4_in(A)],[]).
+eq(eval_sig_list_find_bb1_in(A,B,C),1,[eval_sig_list_find_bb1_in(A,B,C)],[]).
+eq(eval_sig_list_find_bb1_in(A,B,A),1,[],[B=0]).

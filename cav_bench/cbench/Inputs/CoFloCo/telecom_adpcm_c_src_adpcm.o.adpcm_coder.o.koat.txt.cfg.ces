@@ -1,0 +1,12 @@
+eq(eval_adpcm_coder_start(A,B,C),1,[eval_adpcm_coder_bb0_in(A,B,C)],[]).
+eq(eval_adpcm_coder_bb10_in(A,B,C),1,[eval_adpcm_coder_stop(A,B,C)],[]).
+eq(eval_adpcm_coder_bb0_in(A,B,C),1,[eval_adpcm_coder_bb1_in(C,1,C,D,E,F,G),loop_cont_eval_adpcm_coder_bb1_in(E,F,G)],[D=0]).
+eq(eval_adpcm_coder_bb0_in(A,B,C),1,[eval_adpcm_coder_bb1_in(C,1,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_adpcm_coder_bb1_in(A,B,C),0,[eval_adpcm_coder_bb10_in(A,B,C)],[]).
+eq(eval_adpcm_coder_bb1_in(A,B,C,D,E,F,G),1,[eval_adpcm_coder_bb4_in(A,B,C,D,E,F,G)],[A>0]).
+eq(eval_adpcm_coder_bb4_in(A,B,C,D,E,F,G),1,[eval_adpcm_coder_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_adpcm_coder_bb7_in(A,B,C,D,E,F,G),1,[eval_adpcm_coder_bb1_in(A-1,0,C,D,E,F,G)],[B<0]).
+eq(eval_adpcm_coder_bb7_in(A,B,C,D,E,F,G),1,[eval_adpcm_coder_bb1_in(A-1,0,C,D,E,F,G)],[B>0]).
+eq(eval_adpcm_coder_bb7_in(A,B,C,D,E,F,G),1,[eval_adpcm_coder_bb1_in(A-1,1,C,D,E,F,G)],[B=0]).
+eq(eval_adpcm_coder_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,A=<0]).
+eq(eval_adpcm_coder_bb1_in(A,B,C,D,A,B,C),0,[],[D=1,A>=0+1]).

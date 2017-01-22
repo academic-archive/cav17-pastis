@@ -1,0 +1,10 @@
+eq(eval_putRGBseparate8bitMaptile_start(A,B,C,D,E,F,G,H,I),1,[eval_putRGBseparate8bitMaptile_bb0_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_putRGBseparate8bitMaptile_bb0_in(A,B,C,D,E,F,G,H,I),1,[eval_putRGBseparate8bitMaptile_bb1_in(A,E,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),loop_cont_eval_putRGBseparate8bitMaptile_bb1_in(K,L,M,N,O,P,Q,R,S)],[J=0]).
+eq(eval_putRGBseparate8bitMaptile_bb0_in(A,B,C,D,E,F,G,H,I),1,[eval_putRGBseparate8bitMaptile_bb1_in(A,E,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[J=1]).
+eq(eval_putRGBseparate8bitMaptile_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),1,[eval_putRGBseparate8bitMaptile_bb2_in(G,B,B-1,D,E,F,G,H,I,T,U,V,W,X,Y,Z,A1,B1,C1),loop_cont_eval_putRGBseparate8bitMaptile_bb2_in(U,V,W,X,Y,Z,A1,B1,C1,J,K,L,M,N,O,P,Q,R,S)],[T=0,B>0]).
+eq(eval_putRGBseparate8bitMaptile_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),1,[eval_putRGBseparate8bitMaptile_bb2_in(G,B,B-1,D,E,F,G,H,I,T,U,V,W,X,Y,Z,A1,B1,C1)],[J=1,T=1,B>0]).
+eq(eval_putRGBseparate8bitMaptile_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),1,[eval_putRGBseparate8bitMaptile_bb2_in(A-1,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[A>0]).
+eq(loop_cont_eval_putRGBseparate8bitMaptile_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S),0,[eval_putRGBseparate8bitMaptile_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S)],[]).
+eq(eval_putRGBseparate8bitMaptile_bb1_in(A,B,C,D,E,F,G,H,I,J,A,B,C,D,E,F,G,H,I),1,[],[J=1,B=<0]).
+eq(eval_putRGBseparate8bitMaptile_bb2_in(A,B,C,D,E,F,G,H,I,J,A,C,C,D,E,F,G,H,I),1,[],[J=0,A=<0]).
+eq(eval_putRGBseparate8bitMaptile_bb2_in(A,B,C,D,E,F,G,H,I,J,A,B,C,D,E,F,G,H,I),0,[],[J=1,A>=0+1]).

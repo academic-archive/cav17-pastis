@@ -1,0 +1,15 @@
+eq(eval_getpubkey_start,1,[eval_getpubkey_bb0_in],[]).
+eq(eval_getpubkey_7,1,[eval_getpubkey_8],[]).
+eq(eval_getpubkey_8,1,[eval_getpubkey_9],[]).
+eq(eval_getpubkey_9,1,[eval_getpubkey_10],[]).
+eq(eval_getpubkey_10,1,[eval_getpubkey_bb5_in],[]).
+eq(eval_getpubkey_bb5_in,1,[eval_getpubkey_stop],[]).
+eq(eval_getpubkey_bb0_in,1,[eval_getpubkey_bb1_in(A),loop_cont_eval_getpubkey_bb1_in],[A=0]).
+eq(eval_getpubkey_bb0_in,1,[eval_getpubkey_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_getpubkey_bb1_in,0,[eval_getpubkey_bb5_in],[]).
+eq(loop_cont_eval_getpubkey_bb1_in,0,[eval_getpubkey_7],[]).
+eq(eval_getpubkey_bb1_in(A),1,[eval_getpubkey_5(A)],[]).
+eq(eval_getpubkey_5(A),1,[eval_getpubkey_6(A)],[]).
+eq(eval_getpubkey_6(A),1,[eval_getpubkey_bb1_in(A)],[]).
+eq(eval_getpubkey_6(A),1,[],[A=0]).
+eq(eval_getpubkey_bb1_in(A),1,[],[A=0]).

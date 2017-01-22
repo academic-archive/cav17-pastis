@@ -1,0 +1,54 @@
+eq(eval_strtol_start(A,B,C),1,[eval_strtol_bb0_in(A,B,C)],[]).
+eq(eval_strtol_bb0_in(A,B,C),1,[eval_strtol_0(A,B,C)],[]).
+eq(eval_strtol_0(A,B,C),1,[eval_strtol_1(A,B,C)],[]).
+eq(eval_strtol_NewDefault_in(A,B,C),1,[eval_strtol_bb5_in(A,B,C)],[]).
+eq(eval_strtol_bb5_in(A,B,C),1,[eval_strtol_bb6_in(A,B,C)],[]).
+eq(eval_strtol_bb5_in(A,B,C),1,[eval_strtol_NewDefault7_in(A,B,C)],[]).
+eq(eval_strtol_bb6_in(A,B,C),1,[eval_strtol_bb9_in(A,B,C)],[]).
+eq(eval_strtol_bb6_in(A,B,C),1,[eval_strtol_bb10_in(C,B,C)],[]).
+eq(eval_strtol_bb9_in(A,B,C),1,[eval_strtol_bb10_in(16,B,C)],[]).
+eq(eval_strtol_NewDefault7_in(A,B,C),1,[eval_strtol_bb10_in(C,B,C)],[]).
+eq(eval_strtol_bb10_in(A,B,C),1,[eval_strtol_bb12_in(A,8,C)],[]).
+eq(eval_strtol_bb10_in(A,B,C),1,[eval_strtol_bb12_in(A,A,C)],[]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B=1,D=0,B=1,E=2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B=1,D=0,B= -1,E= -2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B=1,D=0,B>1,E>=0,E<2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B=1,D=0,B< -1,E=<0,E> -2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B= -1,D=0,B=1,E=2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B= -1,D=0,B= -1,E= -2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B= -1,D=0,B>1,E>=0,E<2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B= -1,D=0,B< -1,E=<0,E> -2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B>1,D>=0,D<B,B=1,E=2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B>1,D>=0,D<B,B= -1,E= -2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B>1,D>=0,D<B,B>1,E>=0,E<2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B>1,D>=0,D<B,B< -1,E=<0,E> -2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B< -1,D>=0,D< -B,B=1,E=2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B< -1,D>=0,D< -B,B= -1,E= -2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B< -1,D>=0,D< -B,B>1,E>=0,E<2147483648]).
+eq(eval_strtol_bb12_in(A,B,C),1,[eval_strtol_32(A,B,C)],[B< -1,D>=0,D< -B,B< -1,E=<0,E> -2147483648]).
+eq(eval_strtol_32(A,B,C),1,[eval_strtol_33(A,B,C)],[]).
+eq(eval_strtol_33(A,B,C),1,[eval_strtol_34(A,B,C)],[]).
+eq(eval_strtol_34(A,B,C),1,[eval_strtol_35(A,B,C)],[]).
+eq(eval_strtol_35(A,B,C),1,[eval_strtol_36(A,B,C)],[]).
+eq(eval_strtol_bb22_in(A,B,C),1,[eval_strtol_64(A,B,C)],[]).
+eq(eval_strtol_bb22_in(A,B,C),1,[eval_strtol_bb25_in(A,B,C)],[]).
+eq(eval_strtol_64(A,B,C),1,[eval_strtol_65(A,B,C)],[]).
+eq(eval_strtol_65(A,B,C),1,[eval_strtol_bb25_in(A,B,C)],[]).
+eq(eval_strtol_bb25_in(A,B,C),1,[eval_strtol_bb27_in(A,B,C)],[]).
+eq(eval_strtol_bb27_in(A,B,C),1,[eval_strtol_stop(A,B,C)],[]).
+eq(eval_strtol_1(A,B,C),1,[eval_strtol_bb1_in(A,B,C,D,E,F,G),loop_cont_eval_strtol_bb1_in(E,F,G)],[D=0]).
+eq(eval_strtol_1(A,B,C),1,[eval_strtol_bb1_in(A,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_strtol_bb1_in(A,B,C),0,[eval_strtol_bb5_in(A,B,C)],[]).
+eq(loop_cont_eval_strtol_bb1_in(A,B,C),0,[eval_strtol_NewDefault_in(A,B,C)],[]).
+eq(eval_strtol_36(A,B,C),1,[eval_strtol_bb13_in(A,B,C,D,E,F,G),loop_cont_eval_strtol_bb13_in(E,F,G)],[D=0]).
+eq(eval_strtol_36(A,B,C),1,[eval_strtol_bb13_in(A,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_strtol_bb13_in(A,B,C),0,[eval_strtol_bb22_in(A,B,C)],[]).
+eq(eval_strtol_bb1_in(A,B,C,D,E,F,G),1,[eval_strtol_bb1_in(A,B,C,D,E,F,G)],[H<0]).
+eq(eval_strtol_bb1_in(A,B,C,D,E,F,G),1,[eval_strtol_bb1_in(A,B,C,D,E,F,G)],[H>0]).
+eq(eval_strtol_bb13_in(A,B,C,D,E,F,G),1,[eval_strtol_bb17_in(A,B,C,D,E,F,G)],[]).
+eq(eval_strtol_bb17_in(A,B,C,D,E,F,G),1,[eval_strtol_bb21_in(A,B,C,D,E,F,G)],[]).
+eq(eval_strtol_bb21_in(A,B,C,D,E,F,G),1,[eval_strtol_bb13_in(A,B,C,D,E,F,G)],[]).
+eq(eval_strtol_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,E=0]).
+eq(eval_strtol_bb1_in(A,B,C,D,A,B,C),0,[],[D=1]).
+eq(eval_strtol_bb17_in(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_strtol_bb13_in(A,B,C,D,A,B,C),1,[],[D=0]).

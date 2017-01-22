@@ -1,0 +1,8 @@
+eq(eval_Luv24toLuv48_start(A,B,C,D),1,[eval_Luv24toLuv48_bb0_in(A,B,C,D)],[]).
+eq(eval_Luv24toLuv48_bb0_in(A,B,C,D),1,[eval_Luv24toLuv48_bb1_in(D,B,C,D,E,F,G,H,I),loop_cont_eval_Luv24toLuv48_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_Luv24toLuv48_bb0_in(A,B,C,D),1,[eval_Luv24toLuv48_bb1_in(D,B,C,D,E,F,G,H,I)],[E=1]).
+eq(eval_Luv24toLuv48_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_Luv24toLuv48_10(A,J,A-1,D,E,F,G,H,I)],[A>0]).
+eq(eval_Luv24toLuv48_10(A,B,C,D,E,F,G,H,I),1,[eval_Luv24toLuv48_11(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_Luv24toLuv48_11(A,B,C,D,E,F,G,H,I),1,[eval_Luv24toLuv48_bb4_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_Luv24toLuv48_bb4_in(A,B,C,D,E,F,G,H,I),1,[eval_Luv24toLuv48_bb1_in(C,B,C,D,E,F,G,H,I)],[]).
+eq(eval_Luv24toLuv48_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,A=<0]).

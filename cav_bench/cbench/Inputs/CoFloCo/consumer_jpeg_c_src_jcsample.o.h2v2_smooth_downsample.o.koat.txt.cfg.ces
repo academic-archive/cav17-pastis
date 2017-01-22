@@ -1,0 +1,12 @@
+eq(eval_h2v2_smooth_downsample_start(A,B,C,D,E,F),1,[eval_h2v2_smooth_downsample_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_h2v2_smooth_downsample_bb0_in(A,B,C,D,E,F),1,[eval_h2v2_smooth_downsample_6(8*G,H+2,I,16*G,E,F)],[]).
+eq(eval_h2v2_smooth_downsample_6(A,B,C,D,E,F),1,[eval_h2v2_smooth_downsample_7(A,B,C,D,E,F)],[]).
+eq(eval_h2v2_smooth_downsample_7(A,B,C,D,E,F),1,[eval_h2v2_smooth_downsample_bb1_in(A,B,C,D,E,0,G,H,I,J,K,L,M),loop_cont_eval_h2v2_smooth_downsample_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_h2v2_smooth_downsample_7(A,B,C,D,E,F),1,[eval_h2v2_smooth_downsample_bb1_in(A,B,C,D,E,0,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_h2v2_smooth_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_h2v2_smooth_downsample_bb3_in(A,B,C,D,A-2,F,N,O,P,Q,R,S,T),loop_cont_eval_h2v2_smooth_downsample_bb3_in(O,P,Q,R,S,T,G,H,I,J,K,L,M)],[N=0,F<U]).
+eq(eval_h2v2_smooth_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_h2v2_smooth_downsample_bb3_in(A,B,C,D,A-2,F,N,O,P,Q,R,S,T)],[G=1,N=1,F<U]).
+eq(eval_h2v2_smooth_downsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_h2v2_smooth_downsample_bb3_in(A,B,C,D,E-1,F,G,H,I,J,K,L,M)],[E>0]).
+eq(loop_cont_eval_h2v2_smooth_downsample_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),0,[eval_h2v2_smooth_downsample_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_h2v2_smooth_downsample_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,F>=H]).
+eq(eval_h2v2_smooth_downsample_bb3_in(A,B,C,D,E,F,G,A,B,C,D,E,F+1),1,[],[G=0,E=<0]).
+eq(eval_h2v2_smooth_downsample_bb3_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,E>=0+1]).

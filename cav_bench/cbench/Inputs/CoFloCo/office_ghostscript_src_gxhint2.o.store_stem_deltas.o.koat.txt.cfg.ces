@@ -1,0 +1,15 @@
+eq(eval_store_stem_deltas_start(A,B,C,D,E,F),1,[eval_store_stem_deltas_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_store_stem_deltas_bb17_in(A,B,C,D,E,F),1,[eval_store_stem_deltas_stop(A,B,C,D,E,F)],[]).
+eq(eval_store_stem_deltas_bb0_in(A,B,C,D,E,F),1,[eval_store_stem_deltas_bb1_in(A,B,C,-G+96,E,F,H,I,J,K,L,M,N),loop_cont_eval_store_stem_deltas_bb1_in(I,J,K,L,M,N)],[H=0]).
+eq(eval_store_stem_deltas_bb0_in(A,B,C,D,E,F),1,[eval_store_stem_deltas_bb1_in(A,B,C,-G+96,E,F,H,I,J,K,L,M,N)],[H=1]).
+eq(loop_cont_eval_store_stem_deltas_bb1_in(A,B,C,D,E,F),0,[eval_store_stem_deltas_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_store_stem_deltas_bb6_in(H,I,J,K,L,M)],[G=0]).
+eq(loop_cont_eval_store_stem_deltas_bb1_in(A,B,C,D,E,F),0,[eval_store_stem_deltas_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_store_stem_deltas_bb6_in(A,B,C,D,E,F),0,[eval_store_stem_deltas_bb17_in(A,B,C,D,E,F)],[]).
+eq(eval_store_stem_deltas_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_store_stem_deltas_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[D<96]).
+eq(eval_store_stem_deltas_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_store_stem_deltas_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[E<A]).
+eq(eval_store_stem_deltas_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_store_stem_deltas_bb1_in(A,B,C,D+1,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_store_stem_deltas_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_store_stem_deltas_bb6_in(A,B,C,D,E+1,F,G,H,I,J,K,L,M)],[]).
+eq(eval_store_stem_deltas_bb1_in(A,B,C,D,E,F,G,H,B,C,D,0,F),1,[],[G=0,D>=96]).
+eq(eval_store_stem_deltas_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,96>=D+1]).
+eq(eval_store_stem_deltas_bb6_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,E>=A]).
+eq(eval_store_stem_deltas_bb6_in(A+1,B,C,D,E,F,G,A+1,B,C,D,E,F),0,[],[G=1,A>=E]).

@@ -1,0 +1,14 @@
+eq(eval_find_nearby_colors_start(A,B,C,D,E,F),1,[eval_find_nearby_colors_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_find_nearby_colors_bb0_in(A,B,C,D,E,F),1,[eval_find_nearby_colors_bb1_in(G,0,C,D,E,F,H,I,J,K,L,M,N),loop_cont_eval_find_nearby_colors_bb1_in(I,J,K,L,M,N)],[H=0]).
+eq(eval_find_nearby_colors_bb0_in(A,B,C,D,E,F),1,[eval_find_nearby_colors_bb1_in(G,0,C,D,E,F,H,I,J,K,L,M,N)],[H=1]).
+eq(loop_cont_eval_find_nearby_colors_bb1_in(A,B,C,D,E,F),0,[eval_find_nearby_colors_bb24_in(A,B,C,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_find_nearby_colors_bb24_in(H,I,J,K,L,M)],[G=0]).
+eq(loop_cont_eval_find_nearby_colors_bb1_in(A,B,C,D,E,F),0,[eval_find_nearby_colors_bb24_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_find_nearby_colors_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_find_nearby_colors_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[B<A]).
+eq(eval_find_nearby_colors_bb24_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_find_nearby_colors_bb27_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<A]).
+eq(eval_find_nearby_colors_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_find_nearby_colors_bb16_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_find_nearby_colors_bb27_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_find_nearby_colors_bb24_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_find_nearby_colors_bb16_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_find_nearby_colors_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_find_nearby_colors_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_find_nearby_colors_bb1_in(A,B+1,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_find_nearby_colors_bb1_in(A,B,C,D,E,F,G,A,B,0,D,E,F),1,[],[G=0,B>=A]).
+eq(eval_find_nearby_colors_bb1_in(A+1,B,C,D,E,F,G,A+1,B,C,D,E,F),0,[],[G=1,A>=B]).
+eq(eval_find_nearby_colors_bb24_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,C>=A]).

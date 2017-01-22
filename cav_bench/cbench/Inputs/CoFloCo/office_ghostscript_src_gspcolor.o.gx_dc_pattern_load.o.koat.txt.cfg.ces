@@ -1,0 +1,14 @@
+eq(eval_gx_dc_pattern_load_start(A,B,C),1,[eval_gx_dc_pattern_load_bb0_in(A,B,C)],[]).
+eq(eval_gx_dc_pattern_load_bb3_in(A,B,C),1,[eval_gx_dc_pattern_load_stop(A,B,C)],[]).
+eq(eval_gx_dc_pattern_load_bb0_in(A,B,C),1,[eval_gx_dc_pattern_load_bb1_in(A,B,C,D,E,F,G),loop_cont_eval_gx_dc_pattern_load_bb1_in(E,F,G)],[D=0]).
+eq(eval_gx_dc_pattern_load_bb0_in(A,B,C),1,[eval_gx_dc_pattern_load_bb1_in(A,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_gx_dc_pattern_load_bb1_in(A,B,C),0,[eval_gx_dc_pattern_load_bb3_in(A,B,C)],[]).
+eq(eval_gx_dc_pattern_load_bb1_in(A,B,C,D,E,F,G),1,[eval_gx_dc_pattern_load_0(A,B,C,D,E,F,G)],[]).
+eq(eval_gx_dc_pattern_load_0(A,B,C,D,E,F,G),1,[eval_gx_dc_pattern_load_1(H,B,C,D,E,F,G)],[]).
+eq(eval_gx_dc_pattern_load_1(A,B,C,D,E,F,G),1,[eval_gx_dc_pattern_load_2(A,B,C,D,E,F,G)],[A=0]).
+eq(eval_gx_dc_pattern_load_2(A,B,C,D,E,F,G),1,[eval_gx_dc_pattern_load_3(A,H,C,D,E,F,G)],[]).
+eq(eval_gx_dc_pattern_load_3(A,B,C,D,E,F,G),1,[eval_gx_dc_pattern_load_bb1_in(A,B,C,D,E,F,G)],[B>=0]).
+eq(eval_gx_dc_pattern_load_3(A,B,C,D,A,B,C),1,[],[D=0,B<0]).
+eq(eval_gx_dc_pattern_load_3(A,B,C,D,A,B,C),0,[],[D=1]).
+eq(eval_gx_dc_pattern_load_1(A,B,C,D,A,B,C),1,[],[D=0,A<0]).
+eq(eval_gx_dc_pattern_load_1(A,B,C,D,A,B,C),1,[],[D=0,A>0]).

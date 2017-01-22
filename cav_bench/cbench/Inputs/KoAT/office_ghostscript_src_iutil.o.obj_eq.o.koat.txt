@@ -1,0 +1,64 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_obj_eq_start))
+(VAR nondef.18 nondef.19 nondef.26 nondef.27 nondef.28 nondef.29 nondef.30 nondef.33 nondef.36 v_250 v_257 v_258 v_275 v_281 v_287 v_293)
+(RULES
+  eval_obj_eq_start(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb4_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_NewDefault_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_18(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb9_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb12_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_38(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb0_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb20_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb4_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_18(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_2(eval_name_string_ref_start(v_250, v_257, v_258, v_275, v_281, v_287, v_293), eval_obj_eq_19(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_19(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb20_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb9_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb12_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_38(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_2(eval_name_string_ref_start(v_250, v_257, v_258, v_275, v_281, v_287, v_293), eval_obj_eq_39(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_39(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb20_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_NewDefault_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb17_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb17_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb19_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb19_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb19_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb20_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb20_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: nondef.18 < nondef.19
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: nondef.18 > nondef.19
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: nondef.18 = nondef.19
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_NewDefault18_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb27_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb30_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb33_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb36_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: nondef.26 < nondef.27
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: nondef.26 > nondef.27
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: nondef.26 = nondef.27
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb46_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb22_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_107(nondef.28, nondef.29, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb27_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb30_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb33_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb36_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb36_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb36_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb38_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb38_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb38_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb38_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_107(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_2(eval_bytes_compare_start(v_250, v_257, v_258, v_275, v_281, v_287, v_293), eval_obj_eq_108(v_250, v_257, nondef.30, v_275, v_281, v_287, v_293))
+  eval_obj_eq_108(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: v_258 < 0
+  eval_obj_eq_108(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: v_258 > 0
+  eval_obj_eq_108(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: v_258 = 0
+  eval_obj_eq_bb46_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_115(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb46_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb49_in(v_250, v_257, v_258, v_275, nondef.33, v_287, v_293))
+  eval_obj_eq_115(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_2(eval_op_find_index_start(v_250, v_257, v_258, v_275, v_281, v_287, v_293), eval_obj_eq_116(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_116(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb49_in(v_250, v_257, v_258, v_275, v_275, v_287, v_293))
+  eval_obj_eq_bb49_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_124(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb49_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb52_in(v_250, v_257, v_258, v_275, v_281, v_287, nondef.36))
+  eval_obj_eq_124(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_2(eval_op_find_index_start(v_250, v_257, v_258, v_275, v_281, v_287, v_293), eval_obj_eq_125(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_125(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb52_in(v_250, v_257, v_258, v_275, v_281, v_287, v_287))
+  eval_obj_eq_bb52_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: v_281 < v_293
+  eval_obj_eq_bb52_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: v_281 > v_293
+  eval_obj_eq_bb52_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293)) :|: v_281 = v_293
+  eval_obj_eq_NewDefault18_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+  eval_obj_eq_bb54_in(v_250, v_257, v_258, v_275, v_281, v_287, v_293) -> Com_1(eval_obj_eq_stop(v_250, v_257, v_258, v_275, v_281, v_287, v_293))
+)

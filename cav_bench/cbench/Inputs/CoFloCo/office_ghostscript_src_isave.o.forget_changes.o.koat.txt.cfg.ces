@@ -1,0 +1,8 @@
+eq(eval_forget_changes_start,1,[eval_forget_changes_bb0_in],[]).
+eq(eval_forget_changes_bb0_in,1,[eval_forget_changes_bb1_in(A),loop_cont_eval_forget_changes_bb1_in],[A=0]).
+eq(eval_forget_changes_bb0_in,1,[eval_forget_changes_bb1_in(A)],[A=1]).
+eq(eval_forget_changes_bb1_in(A),1,[eval_forget_changes_bb4_in(A)],[]).
+eq(eval_forget_changes_bb4_in(A),1,[eval_forget_changes_9(A)],[]).
+eq(eval_forget_changes_9(A),1,[eval_forget_changes_10(A)],[]).
+eq(eval_forget_changes_10(A),1,[eval_forget_changes_bb1_in(A)],[]).
+eq(eval_forget_changes_bb1_in(A),1,[],[A=1]).

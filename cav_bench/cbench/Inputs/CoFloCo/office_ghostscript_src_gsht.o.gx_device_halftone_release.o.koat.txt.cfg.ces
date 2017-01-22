@@ -1,0 +1,17 @@
+eq(eval_gx_device_halftone_release_start(A),1,[eval_gx_device_halftone_release_bb0_in(A)],[]).
+eq(eval_gx_device_halftone_release_bb0_in(A),1,[eval_gx_device_halftone_release_bb7_in(A)],[]).
+eq(eval_gx_device_halftone_release_9(A),1,[eval_gx_device_halftone_release_10(A)],[]).
+eq(eval_gx_device_halftone_release_10(A),1,[eval_gx_device_halftone_release_bb7_in(A)],[]).
+eq(eval_gx_device_halftone_release_bb7_in(A),1,[eval_gx_device_halftone_release_13(A)],[]).
+eq(eval_gx_device_halftone_release_13(A),1,[eval_gx_device_halftone_release_14(A)],[]).
+eq(eval_gx_device_halftone_release_14(A),1,[eval_gx_device_halftone_release_stop(A)],[]).
+eq(eval_gx_device_halftone_release_bb0_in(A),1,[eval_gx_device_halftone_release_bb2_in(0,B,C),loop_cont_eval_gx_device_halftone_release_bb2_in(C)],[B=0]).
+eq(eval_gx_device_halftone_release_bb0_in(A),1,[eval_gx_device_halftone_release_bb2_in(0,B,C)],[B=1]).
+eq(loop_cont_eval_gx_device_halftone_release_bb2_in(A),0,[eval_gx_device_halftone_release_9(A)],[]).
+eq(eval_gx_device_halftone_release_bb2_in(A,B,C),1,[eval_gx_device_halftone_release_5(A,B,C)],[A<D]).
+eq(eval_gx_device_halftone_release_bb2_in(A,B,C),1,[eval_gx_device_halftone_release_bb5_in(A,B,C)],[A<D]).
+eq(eval_gx_device_halftone_release_5(A,B,C),1,[eval_gx_device_halftone_release_6(A,B,C)],[]).
+eq(eval_gx_device_halftone_release_bb5_in(A,B,C),1,[eval_gx_device_halftone_release_bb2_in(A+1,B,C)],[]).
+eq(eval_gx_device_halftone_release_6(A,B,C),1,[eval_gx_device_halftone_release_bb5_in(A,B,C)],[]).
+eq(eval_gx_device_halftone_release_bb2_in(A,B,A),1,[],[B=0,A>=C]).
+eq(eval_gx_device_halftone_release_bb2_in(A,B,A),0,[],[B=1,C>=A]).

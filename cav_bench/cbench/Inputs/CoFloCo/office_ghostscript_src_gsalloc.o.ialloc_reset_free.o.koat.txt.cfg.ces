@@ -1,0 +1,5 @@
+eq(eval_ialloc_reset_free_start(A),1,[eval_ialloc_reset_free_bb0_in(A)],[]).
+eq(eval_ialloc_reset_free_bb0_in(A),1,[eval_ialloc_reset_free_bb1_in(0,B,C),loop_cont_eval_ialloc_reset_free_bb1_in(C)],[B=0]).
+eq(eval_ialloc_reset_free_bb0_in(A),1,[eval_ialloc_reset_free_bb1_in(0,B,C)],[B=1]).
+eq(eval_ialloc_reset_free_bb1_in(A,B,C),1,[eval_ialloc_reset_free_bb1_in(A+1,B,C)],[A<201]).
+eq(eval_ialloc_reset_free_bb1_in(A,B,A),1,[],[B=1,A>=201]).

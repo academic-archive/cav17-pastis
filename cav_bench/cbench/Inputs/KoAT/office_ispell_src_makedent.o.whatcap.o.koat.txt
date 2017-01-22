@@ -1,0 +1,27 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_whatcap_start))
+(VAR nondef.0 nondef.10 nondef.4)
+(RULES
+  eval_whatcap_start() -> Com_1(eval_whatcap_bb0_in())
+  eval_whatcap_bb0_in() -> Com_1(eval_whatcap_bb1_in())
+  eval_whatcap_bb1_in() -> Com_1(eval_whatcap_bb4_in()) :|: nondef.0 < 0
+  eval_whatcap_bb1_in() -> Com_1(eval_whatcap_bb4_in()) :|: nondef.0 > 0
+  eval_whatcap_bb1_in() -> Com_1(eval_whatcap_bb1_in()) :|: nondef.0 < 0
+  eval_whatcap_bb1_in() -> Com_1(eval_whatcap_bb1_in()) :|: nondef.0 > 0
+  eval_whatcap_bb1_in() -> Com_1(eval_whatcap_bb4_in()) :|: nondef.0 = 0
+  eval_whatcap_bb4_in() -> Com_1(eval_whatcap_bb14_in())
+  eval_whatcap_bb4_in() -> Com_1(eval_whatcap_bb5_in())
+  eval_whatcap_bb5_in() -> Com_1(eval_whatcap_bb8_in()) :|: nondef.4 < 0
+  eval_whatcap_bb5_in() -> Com_1(eval_whatcap_bb8_in()) :|: nondef.4 > 0
+  eval_whatcap_bb5_in() -> Com_1(eval_whatcap_bb5_in()) :|: nondef.4 < 0
+  eval_whatcap_bb5_in() -> Com_1(eval_whatcap_bb5_in()) :|: nondef.4 > 0
+  eval_whatcap_bb5_in() -> Com_1(eval_whatcap_bb8_in()) :|: nondef.4 = 0
+  eval_whatcap_bb8_in() -> Com_1(eval_whatcap_bb11_in())
+  eval_whatcap_bb8_in() -> Com_1(eval_whatcap_bb14_in())
+  eval_whatcap_bb11_in() -> Com_1(eval_whatcap_bb14_in()) :|: nondef.10 < 0
+  eval_whatcap_bb11_in() -> Com_1(eval_whatcap_bb14_in()) :|: nondef.10 > 0
+  eval_whatcap_bb11_in() -> Com_1(eval_whatcap_bb11_in()) :|: nondef.10 < 0
+  eval_whatcap_bb11_in() -> Com_1(eval_whatcap_bb11_in()) :|: nondef.10 > 0
+  eval_whatcap_bb11_in() -> Com_1(eval_whatcap_bb14_in()) :|: nondef.10 = 0
+  eval_whatcap_bb14_in() -> Com_1(eval_whatcap_stop())
+)

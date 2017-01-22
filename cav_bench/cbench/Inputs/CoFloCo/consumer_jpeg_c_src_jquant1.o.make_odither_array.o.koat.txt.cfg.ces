@@ -1,0 +1,26 @@
+eq(eval_make_odither_array_start(A,B,C,D),1,[eval_make_odither_array_bb0_in(A,B,C,D)],[]).
+eq(eval_make_odither_array_bb0_in(A,B,C,D),1,[eval_make_odither_array_0(A,B,C,D)],[]).
+eq(eval_make_odither_array_0(A,B,C,D),1,[eval_make_odither_array_1(A,B,C,D)],[]).
+eq(eval_make_odither_array_1(A,B,C,D),1,[eval_make_odither_array_bb1_in(512*D-512,0,C,D,E,F,G,H,I),loop_cont_eval_make_odither_array_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_make_odither_array_1(A,B,C,D),1,[eval_make_odither_array_bb1_in(512*D-512,0,C,D,E,F,G,H,I)],[E=1]).
+eq(eval_make_odither_array_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb3_in(A,B,0,D,J,K,L,M,N),loop_cont_eval_make_odither_array_bb3_in(K,L,M,N,E,F,G,H,I)],[J=0,B<16]).
+eq(eval_make_odither_array_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb3_in(A,B,0,D,J,K,L,M,N)],[E=1,J=1,B<16]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,510*J-65025=0,K=0]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A=1,J=510*K-65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A= -1,J= -510*K+65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A>1,510*J-65025>0,K>=0,K<510*J-65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A>1,510*J-65025<0,K=<0,K>510*J-65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A< -1,510*J-65025>0,K=<0,K> -510*J+65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A< -1,510*J-65025<0,K>=0,K< -510*J+65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,-510*J+65025=0,K=0]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A=1,J= -510*K+65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A= -1,J=510*K-65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A>1,-510*J+65025>0,K>=0,K< -510*J+65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A>1,-510*J+65025<0,K=<0,K> -510*J+65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A< -1,-510*J+65025>0,K=<0,K>510*J-65025]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I)],[C<16,A< -1,-510*J+65025<0,K>=0,K<510*J-65025]).
+eq(loop_cont_eval_make_odither_array_bb3_in(A,B,C,D,E,F,G,H,I),0,[eval_make_odither_array_bb1_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_make_odither_array_bb7_in(A,B,C,D,E,F,G,H,I),1,[eval_make_odither_array_bb3_in(A,B,C+1,D,E,F,G,H,I)],[]).
+eq(eval_make_odither_array_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,B>=16]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,A,B+1,C,D),1,[],[E=0,C>=16]).
+eq(eval_make_odither_array_bb3_in(A,B,C,D,E,A,B,C,D),0,[],[E=1,16>=C+1]).

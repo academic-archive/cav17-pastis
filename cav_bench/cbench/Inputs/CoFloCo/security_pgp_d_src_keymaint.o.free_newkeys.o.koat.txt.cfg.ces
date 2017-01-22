@@ -1,0 +1,7 @@
+eq(eval_free_newkeys_start,1,[eval_free_newkeys_bb0_in],[]).
+eq(eval_free_newkeys_bb0_in,1,[eval_free_newkeys_bb1_in(A),loop_cont_eval_free_newkeys_bb1_in],[A=0]).
+eq(eval_free_newkeys_bb0_in,1,[eval_free_newkeys_bb1_in(A)],[A=1]).
+eq(eval_free_newkeys_bb1_in(A),1,[eval_free_newkeys_0(A)],[]).
+eq(eval_free_newkeys_0(A),1,[eval_free_newkeys_1(A)],[]).
+eq(eval_free_newkeys_1(A),1,[eval_free_newkeys_bb1_in(A)],[]).
+eq(eval_free_newkeys_bb1_in(A),1,[],[A=1]).

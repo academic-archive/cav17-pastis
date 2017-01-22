@@ -1,0 +1,68 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_mainGtU_start))
+(VAR nondef.0 nondef.1 nondef.10 nondef.11 nondef.12 nondef.13 nondef.14 nondef.15 nondef.16 nondef.17 nondef.18 nondef.19 nondef.2 nondef.20 nondef.21 nondef.22 nondef.23 nondef.24 nondef.25 nondef.26 nondef.27 nondef.28 nondef.29 nondef.3 nondef.30 nondef.31 nondef.32 nondef.33 nondef.34 nondef.35 nondef.36 nondef.37 nondef.38 nondef.39 nondef.4 nondef.40 nondef.41 nondef.42 nondef.43 nondef.44 nondef.45 nondef.46 nondef.47 nondef.48 nondef.49 nondef.5 nondef.50 nondef.51 nondef.52 nondef.53 nondef.54 nondef.55 nondef.6 nondef.7 nondef.8 nondef.9 v_i1 v_i2 v_k.0 v_nblock)
+(RULES
+  eval_mainGtU_start(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock))
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.0 <= nondef.1
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.0 > nondef.1
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.2 <= nondef.3
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.2 > nondef.3
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.4 <= nondef.5
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.4 > nondef.5
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.6 <= nondef.7
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.6 > nondef.7
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.8 <= nondef.9
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.8 > nondef.9
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.10 <= nondef.11
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.10 > nondef.11
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.12 <= nondef.13
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.12 > nondef.13
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.14 <= nondef.15
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.14 > nondef.15
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.16 <= nondef.17
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.16 > nondef.17
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.18 <= nondef.19
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.18 > nondef.19
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.20 <= nondef.21
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.20 > nondef.21
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.22 <= nondef.23
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.22 > nondef.23
+  eval_mainGtU_bb0_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb25_in(v_i1, v_i2, v_nblock + 8, v_nblock))
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 < nondef.25 && nondef.24 <= nondef.25
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 > nondef.25 && nondef.24 <= nondef.25
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 < nondef.25 && nondef.24 > nondef.25
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 > nondef.25 && nondef.24 > nondef.25
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.26 <= nondef.27
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.26 > nondef.27
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.28 <= nondef.29
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.28 > nondef.29
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.30 <= nondef.31
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.30 > nondef.31
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.32 <= nondef.33
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.32 > nondef.33
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.34 <= nondef.35
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.34 > nondef.35
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.36 <= nondef.37
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.36 > nondef.37
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.38 <= nondef.39
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.38 > nondef.39
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.40 <= nondef.41
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.40 > nondef.41
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.42 <= nondef.43
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.42 > nondef.43
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.44 <= nondef.45
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.44 > nondef.45
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.46 <= nondef.47
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.46 > nondef.47
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.48 <= nondef.49
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.48 > nondef.49
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.50 <= nondef.51
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.50 > nondef.51
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.52 <= nondef.53
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.52 > nondef.53
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.54 <= nondef.55
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && nondef.54 > nondef.55
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0 - 8, v_nblock)) :|: nondef.24 = nondef.25 && v_k.0 - 8 >= 0
+  eval_mainGtU_bb25_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock)) :|: nondef.24 = nondef.25 && v_k.0 - 8 < 0
+  eval_mainGtU_bb58_in(v_i1, v_i2, v_k.0, v_nblock) -> Com_1(eval_mainGtU_stop(v_i1, v_i2, v_k.0, v_nblock))
+)

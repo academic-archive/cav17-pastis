@@ -1,0 +1,17 @@
+eq(eval_jpeg_resync_to_restart_start(A),1,[eval_jpeg_resync_to_restart_bb0_in(A)],[]).
+eq(eval_jpeg_resync_to_restart_bb0_in(A),1,[eval_jpeg_resync_to_restart_4(A)],[]).
+eq(eval_jpeg_resync_to_restart_4(A),1,[eval_jpeg_resync_to_restart_5(A)],[]).
+eq(eval_jpeg_resync_to_restart_bb12_in(A),1,[eval_jpeg_resync_to_restart_stop(A)],[]).
+eq(eval_jpeg_resync_to_restart_5(A),1,[eval_jpeg_resync_to_restart_bb1_in(A,B,C),loop_cont_eval_jpeg_resync_to_restart_bb1_in(C)],[B=0]).
+eq(eval_jpeg_resync_to_restart_5(A),1,[eval_jpeg_resync_to_restart_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_jpeg_resync_to_restart_bb1_in(A),0,[eval_jpeg_resync_to_restart_bb12_in(A)],[]).
+eq(eval_jpeg_resync_to_restart_bb1_in(A,B,C),1,[eval_jpeg_resync_to_restart_bb8_in(A,B,C)],[]).
+eq(eval_jpeg_resync_to_restart_bb8_in(A,B,C),1,[eval_jpeg_resync_to_restart_25(A,B,C)],[]).
+eq(eval_jpeg_resync_to_restart_25(A,B,C),1,[eval_jpeg_resync_to_restart_26(A,B,C)],[]).
+eq(eval_jpeg_resync_to_restart_26(A,B,C),1,[eval_jpeg_resync_to_restart_NewDefault_in(A,B,C)],[]).
+eq(eval_jpeg_resync_to_restart_26(A,B,C),1,[eval_jpeg_resync_to_restart_29(A,B,C)],[]).
+eq(eval_jpeg_resync_to_restart_NewDefault_in(A,B,C),1,[eval_jpeg_resync_to_restart_bb1_in(A,B,C)],[]).
+eq(eval_jpeg_resync_to_restart_29(A,B,C),1,[eval_jpeg_resync_to_restart_30(A,B,C)],[]).
+eq(eval_jpeg_resync_to_restart_30(A,B,C),1,[eval_jpeg_resync_to_restart_bb1_in(A,B,C)],[]).
+eq(eval_jpeg_resync_to_restart_26(A,B,A),1,[],[B=0]).
+eq(eval_jpeg_resync_to_restart_30(A,B,A),1,[],[B=0]).

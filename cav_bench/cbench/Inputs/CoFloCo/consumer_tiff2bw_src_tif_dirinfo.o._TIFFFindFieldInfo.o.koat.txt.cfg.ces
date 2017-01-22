@@ -1,0 +1,16 @@
+eq(eval__TIFFFindFieldInfo_start(A,B,C,D),1,[eval__TIFFFindFieldInfo_bb0_in(A,B,C,D)],[]).
+eq(eval__TIFFFindFieldInfo_bb0_in(A,B,C,D),1,[eval__TIFFFindFieldInfo_bb4_in(A,B,C,D)],[]).
+eq(eval__TIFFFindFieldInfo_bb0_in(A,B,C,D),1,[eval__TIFFFindFieldInfo_bb5_in(A,B,C,D)],[]).
+eq(eval__TIFFFindFieldInfo_bb4_in(A,B,C,D),1,[eval__TIFFFindFieldInfo_bb12_in(A,B,C,D)],[]).
+eq(eval__TIFFFindFieldInfo_bb10_in(A,B,C,D),1,[eval__TIFFFindFieldInfo_bb12_in(A,B,C,D)],[]).
+eq(eval__TIFFFindFieldInfo_bb12_in(A,B,C,D),1,[eval__TIFFFindFieldInfo_stop(A,B,C,D)],[]).
+eq(eval__TIFFFindFieldInfo_bb5_in(A,B,C,D),1,[eval__TIFFFindFieldInfo_bb6_in(E,B,0,D,F,G,H,I,J),loop_cont_eval__TIFFFindFieldInfo_bb6_in(G,H,I,J)],[F=0]).
+eq(eval__TIFFFindFieldInfo_bb5_in(A,B,C,D),1,[eval__TIFFFindFieldInfo_bb6_in(E,B,0,D,F,G,H,I,J)],[F=1]).
+eq(loop_cont_eval__TIFFFindFieldInfo_bb6_in(A,B,C,D),0,[eval__TIFFFindFieldInfo_bb10_in(A,B,C,D)],[]).
+eq(loop_cont_eval__TIFFFindFieldInfo_bb6_in(A,B,C,D),0,[eval__TIFFFindFieldInfo_bb12_in(A,B,C,D)],[]).
+eq(eval__TIFFFindFieldInfo_bb6_in(A,B,C,D,E,F,G,H,I),1,[eval__TIFFFindFieldInfo_bb11_in(A,B,C,D,E,F,G,H,I)],[C<A]).
+eq(eval__TIFFFindFieldInfo_bb11_in(A,B,C,D,E,F,G,H,I),1,[eval__TIFFFindFieldInfo_bb6_in(A,B,C+1,D,E,F,G,H,I)],[]).
+eq(eval__TIFFFindFieldInfo_bb6_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,C<A]).
+eq(eval__TIFFFindFieldInfo_bb6_in(A,B,C,D,E,A,B,C,D),0,[],[E=1]).
+eq(eval__TIFFFindFieldInfo_bb6_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,C>=A]).
+eq(eval__TIFFFindFieldInfo_bb6_in(A+1,B,C,D,E,A+1,B,C,D),0,[],[E=1,A>=C]).

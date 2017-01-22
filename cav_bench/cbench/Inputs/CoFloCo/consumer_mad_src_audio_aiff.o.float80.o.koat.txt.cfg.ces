@@ -1,0 +1,14 @@
+eq(eval_float80_start(A,B),1,[eval_float80_bb0_in(A,B)],[]).
+eq(eval_float80_bb0_in(A,B),1,[eval_float80_0(A,B)],[]).
+eq(eval_float80_0(A,B),1,[eval_float80_1(A,B)],[]).
+eq(eval_float80_1(A,B),1,[eval_float80_bb6_in(A,B)],[]).
+eq(eval_float80_bb6_in(A,B),1,[eval_float80_stop(A,B)],[]).
+eq(eval_float80_bb0_in(A,B),1,[eval_float80_bb3_in(A,-A,C,D,E),loop_cont_eval_float80_bb3_in(D,E)],[C=0,A>=0]).
+eq(eval_float80_bb0_in(A,B),1,[eval_float80_bb3_in(A,-A,C,D,E)],[C=1,A>=0]).
+eq(eval_float80_bb0_in(A,B),1,[eval_float80_bb3_in(A,-A,C,D,E),loop_cont_eval_float80_bb3_in(D,E)],[C=0,A<0]).
+eq(eval_float80_bb0_in(A,B),1,[eval_float80_bb3_in(A,-A,C,D,E)],[C=1,A<0]).
+eq(loop_cont_eval_float80_bb3_in(A,B),0,[eval_float80_bb6_in(A,B)],[]).
+eq(eval_float80_bb3_in(A,B,C,D,E),1,[eval_float80_bb3_in(A,F,C,D,E)],[B<0]).
+eq(eval_float80_bb3_in(A,B,C,D,E),1,[eval_float80_bb3_in(A,F,C,D,E)],[B>0]).
+eq(eval_float80_bb3_in(A,B,C,A,B),1,[],[C=0,B=0]).
+eq(eval_float80_bb3_in(A,B,C,A,B),0,[],[C=1]).

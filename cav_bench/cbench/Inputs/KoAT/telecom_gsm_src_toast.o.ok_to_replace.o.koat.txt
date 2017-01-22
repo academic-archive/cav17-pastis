@@ -1,0 +1,29 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_ok_to_replace_start))
+(VAR nondef.0 nondef.4 nondef.5 v_'f_force v_11 v_15 v_3 v_c.0)
+(RULES
+  eval_ok_to_replace_start(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_bb0_in(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_bb0_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_bb7_in(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_bb0_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_2(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_2(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_2(eval_fileno_start(v_'f_force, v_11, v_15, v_3, v_c.0), eval_ok_to_replace_3(v_'f_force, v_11, v_15, nondef.0, v_c.0))
+  eval_ok_to_replace_3(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_2(eval_isatty_start(v_'f_force, v_11, v_15, v_3, v_c.0), eval_ok_to_replace_4(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_4(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_5(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_4(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_bb7_in(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_5(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_2(eval_fprintf_start(v_'f_force, v_11, v_15, v_3, v_c.0), eval_ok_to_replace_6(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_6(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_2(eval_fflush_start(v_'f_force, v_11, v_15, v_3, v_c.0), eval_ok_to_replace_7(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_7(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_2(eval_getchar_start(v_'f_force, v_11, v_15, v_3, v_c.0), eval_ok_to_replace_8(v_'f_force, nondef.4, v_15, v_3, v_c.0))
+  eval_ok_to_replace_8(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_11))
+  eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_9(v_'f_force, v_11, v_15, v_3, v_c.0)) :|: v_c.0 < 10 && v_c.0 < -1
+  eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_9(v_'f_force, v_11, v_15, v_3, v_c.0)) :|: v_c.0 < 10 && v_c.0 > -1
+  eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_9(v_'f_force, v_11, v_15, v_3, v_c.0)) :|: v_c.0 > 10 && v_c.0 < -1
+  eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_9(v_'f_force, v_11, v_15, v_3, v_c.0)) :|: v_c.0 > 10 && v_c.0 > -1
+  eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_bb7_in(v_'f_force, v_11, v_15, v_3, v_c.0)) :|: v_c.0 = 10
+  eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_bb7_in(v_'f_force, v_11, v_15, v_3, v_c.0)) :|: v_c.0 = -1
+  eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_11(v_'f_force, v_11, v_15, v_3, v_c.0)) :|: v_c.0 = 10
+  eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_11(v_'f_force, v_11, v_15, v_3, v_c.0)) :|: v_c.0 = -1
+  eval_ok_to_replace_9(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_2(eval_getchar_start(v_'f_force, v_11, v_15, v_3, v_c.0), eval_ok_to_replace_10(v_'f_force, v_11, nondef.5, v_3, v_c.0))
+  eval_ok_to_replace_10(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_bb3_in(v_'f_force, v_11, v_15, v_3, v_15))
+  eval_ok_to_replace_11(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_2(eval_fprintf_start(v_'f_force, v_11, v_15, v_3, v_c.0), eval_ok_to_replace_12(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_12(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_bb7_in(v_'f_force, v_11, v_15, v_3, v_c.0))
+  eval_ok_to_replace_bb7_in(v_'f_force, v_11, v_15, v_3, v_c.0) -> Com_1(eval_ok_to_replace_stop(v_'f_force, v_11, v_15, v_3, v_c.0))
+)

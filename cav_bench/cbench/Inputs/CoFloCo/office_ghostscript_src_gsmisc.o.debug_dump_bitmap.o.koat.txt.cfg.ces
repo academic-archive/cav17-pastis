@@ -1,0 +1,7 @@
+eq(eval_debug_dump_bitmap_start(A,B,C),1,[eval_debug_dump_bitmap_bb0_in(A,B,C)],[]).
+eq(eval_debug_dump_bitmap_bb0_in(A,B,C),1,[eval_debug_dump_bitmap_bb1_in(A,B,0,D,E,F,G),loop_cont_eval_debug_dump_bitmap_bb1_in(E,F,G)],[D=0]).
+eq(eval_debug_dump_bitmap_bb0_in(A,B,C),1,[eval_debug_dump_bitmap_bb1_in(A,B,0,D,E,F,G)],[D=1]).
+eq(eval_debug_dump_bitmap_bb1_in(A,B,C,D,E,F,G),1,[eval_debug_dump_bitmap_3(A,B,C,D,E,F,G)],[C<A]).
+eq(eval_debug_dump_bitmap_3(A,B,C,D,E,F,G),1,[eval_debug_dump_bitmap_4(A,B,C,D,E,F,G)],[]).
+eq(eval_debug_dump_bitmap_4(A,B,C,D,E,F,G),1,[eval_debug_dump_bitmap_bb1_in(A,B,C+1,D,E,F,G)],[]).
+eq(eval_debug_dump_bitmap_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,C>=A]).

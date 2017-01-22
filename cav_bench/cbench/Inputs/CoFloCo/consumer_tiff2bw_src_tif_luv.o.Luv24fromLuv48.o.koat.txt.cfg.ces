@@ -1,0 +1,12 @@
+eq(eval_Luv24fromLuv48_start(A,B,C),1,[eval_Luv24fromLuv48_bb0_in(A,B,C)],[]).
+eq(eval_Luv24fromLuv48_bb0_in(A,B,C),1,[eval_Luv24fromLuv48_bb1_in(C,B,C,D,E,F,G),loop_cont_eval_Luv24fromLuv48_bb1_in(E,F,G)],[D=0]).
+eq(eval_Luv24fromLuv48_bb0_in(A,B,C),1,[eval_Luv24fromLuv48_bb1_in(C,B,C,D,E,F,G)],[D=1]).
+eq(eval_Luv24fromLuv48_bb1_in(A,B,C,D,E,F,G),1,[eval_Luv24fromLuv48_bb5_in(A,A-1,C,D,E,F,G)],[A>0]).
+eq(eval_Luv24fromLuv48_bb5_in(A,B,C,D,E,F,G),1,[eval_Luv24fromLuv48_15(A,B,C,D,E,F,G)],[]).
+eq(eval_Luv24fromLuv48_15(A,B,C,D,E,F,G),1,[eval_Luv24fromLuv48_16(A,B,C,D,E,F,G)],[]).
+eq(eval_Luv24fromLuv48_16(A,B,C,D,E,F,G),1,[eval_Luv24fromLuv48_17(A,B,C,D,E,F,G)],[]).
+eq(eval_Luv24fromLuv48_16(A,B,C,D,E,F,G),1,[eval_Luv24fromLuv48_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_Luv24fromLuv48_17(A,B,C,D,E,F,G),1,[eval_Luv24fromLuv48_18(A,B,C,D,E,F,G)],[]).
+eq(eval_Luv24fromLuv48_bb7_in(A,B,C,D,E,F,G),1,[eval_Luv24fromLuv48_bb1_in(B,B,C,D,E,F,G)],[]).
+eq(eval_Luv24fromLuv48_18(A,B,C,D,E,F,G),1,[eval_Luv24fromLuv48_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_Luv24fromLuv48_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,A=<0]).

@@ -1,0 +1,16 @@
+eq(eval_write_any_marker_start(A,B,C,D,E,F),1,[eval_write_any_marker_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_write_any_marker_bb0_in(A,B,C,D,E,F),1,[eval_write_any_marker_0(A,B,C,D,E,F)],[]).
+eq(eval_write_any_marker_bb0_in(A,B,C,D,E,F),1,[eval_write_any_marker_bb4_in(A,B,C,D,E,F)],[]).
+eq(eval_write_any_marker_0(A,B,C,D,E,F),1,[eval_write_any_marker_1(A,B,C,D,E,F)],[]).
+eq(eval_write_any_marker_1(A,B,C,D,E,F),1,[eval_write_any_marker_2(A,E+2,C,D,E,F)],[]).
+eq(eval_write_any_marker_2(A,B,C,D,E,F),1,[eval_write_any_marker_3(A,B,C,D,E,F)],[]).
+eq(eval_write_any_marker_bb4_in(A,B,C,D,E,F),1,[eval_write_any_marker_stop(A,B,C,D,E,F)],[]).
+eq(eval_write_any_marker_3(A,B,C,D,E,F),1,[eval_write_any_marker_bb2_in(E,B,C,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_write_any_marker_bb2_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_write_any_marker_3(A,B,C,D,E,F),1,[eval_write_any_marker_bb2_in(E,B,C,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_write_any_marker_bb2_in(A,B,C,D,E,F),0,[eval_write_any_marker_bb4_in(A,B,C,D,E,F)],[]).
+eq(eval_write_any_marker_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_write_any_marker_8(A,B,A-1,N,E,F,G,H,I,J,K,L,M)],[A<0]).
+eq(eval_write_any_marker_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_write_any_marker_8(A,B,A-1,N,E,F,G,H,I,J,K,L,M)],[A>0]).
+eq(eval_write_any_marker_8(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_write_any_marker_9(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_write_any_marker_9(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_write_any_marker_bb2_in(C,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_write_any_marker_bb2_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,A=0]).
+eq(eval_write_any_marker_bb2_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1]).

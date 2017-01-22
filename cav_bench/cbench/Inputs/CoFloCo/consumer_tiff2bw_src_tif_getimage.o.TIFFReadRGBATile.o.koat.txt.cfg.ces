@@ -1,0 +1,151 @@
+eq(eval_TIFFReadRGBATile_start(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb0_in(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_bb0_in(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_0(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_0(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_1(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_1(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_2(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_1(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_89(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_2(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_3(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_3(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,J=0,L=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L=1,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L= -1,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L>1,J>0,M>=0,M<L]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L>1,J<0,M=<0,M> -L]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L< -1,J>0,M>=0,M< -L]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L< -1,J<0,M=<0,M>L]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,J=0,L=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L=1,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L= -1,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L>1,J>0,M>=0,M<L]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L>1,J<0,M=<0,M> -L]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L< -1,J>0,M>=0,M< -L]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[E=0,K=0,L< -1,J<0,M=<0,M>L]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K=1,L=0,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K= -1,L=0,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E>0,L>=0,L<K,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K>1,E<0,L=<0,L> -K,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E>0,L>=0,L< -K,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,J=0,M=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M=1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M= -1,N=0]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M>1,J>0,N>=0,N<M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M>1,J<0,N=<0,N> -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M< -1,J>0,N>=0,N< -M]).
+eq(eval_TIFFReadRGBATile_4(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J)],[K< -1,E<0,L=<0,L>K,M< -1,J<0,N=<0,N>M]).
+eq(eval_TIFFReadRGBATile_bb3_in(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_10(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_10(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_11(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_11(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_12(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_12(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb20_in(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_13(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_14(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_14(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb8_in(A,B,C,D,E,F,G,H,K-J,J)],[]).
+eq(eval_TIFFReadRGBATile_14(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb8_in(A,B,C,D,E,F,G,H,K,J)],[]).
+eq(eval_TIFFReadRGBATile_14(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_86(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_bb8_in(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb11_in(A,B,C,D,E,F,G,K-E,I,J)],[]).
+eq(eval_TIFFReadRGBATile_bb8_in(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb11_in(A,B,C,D,E,F,G,K,I,J)],[]).
+eq(eval_TIFFReadRGBATile_bb11_in(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_35(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_35(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_36(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_36(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_37(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_37(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb20_in(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_37(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb13_in(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_86(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_87(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_87(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_88(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_88(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb20_in(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_89(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_90(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_90(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_91(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_91(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb20_in(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_bb20_in(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_stop(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_bb13_in(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb14_in(H,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),loop_cont_eval_TIFFReadRGBATile_bb14_in(L,M,N,O,P,Q,R,S,T,U)],[K=0]).
+eq(eval_TIFFReadRGBATile_bb13_in(A,B,C,D,E,F,G,H,I,J),1,[eval_TIFFReadRGBATile_bb14_in(H,B,C,D,E,0,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[K=1]).
+eq(loop_cont_eval_TIFFReadRGBATile_bb14_in(A,B,C,D,E,F,G,H,I,J),0,[eval_TIFFReadRGBATile_bb16_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),loop_cont_eval_TIFFReadRGBATile_bb16_in(L,M,N,O,P,Q,R,S,T,U)],[K=0]).
+eq(loop_cont_eval_TIFFReadRGBATile_bb14_in(A,B,C,D,E,F,G,H,I,J),0,[eval_TIFFReadRGBATile_bb16_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[K=1]).
+eq(loop_cont_eval_TIFFReadRGBATile_bb16_in(A,B,C,D,E,F,G,H,I,J),0,[eval_TIFFReadRGBATile_bb20_in(A,B,C,D,E,F,G,H,I,J)],[]).
+eq(eval_TIFFReadRGBATile_bb14_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),1,[eval_TIFFReadRGBATile_56(A,4*A,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[F<I]).
+eq(eval_TIFFReadRGBATile_bb16_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),1,[eval_TIFFReadRGBATile_83(A,B,C,4*V,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[G<W]).
+eq(eval_TIFFReadRGBATile_56(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),1,[eval_TIFFReadRGBATile_57(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[]).
+eq(eval_TIFFReadRGBATile_83(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),1,[eval_TIFFReadRGBATile_84(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[]).
+eq(eval_TIFFReadRGBATile_57(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),1,[eval_TIFFReadRGBATile_68(A,B,4*V-4*H,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[]).
+eq(eval_TIFFReadRGBATile_84(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),1,[eval_TIFFReadRGBATile_bb16_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[]).
+eq(eval_TIFFReadRGBATile_68(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),1,[eval_TIFFReadRGBATile_69(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[]).
+eq(eval_TIFFReadRGBATile_69(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U),1,[eval_TIFFReadRGBATile_bb14_in(A,B,C,D,E,F+1,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U)],[]).
+eq(eval_TIFFReadRGBATile_bb14_in(A,B,C,D,E,F,G,H,I,J,K,A,B,C,D,E,F,I,H,I,J),1,[],[K=0,F>=I]).
+eq(eval_TIFFReadRGBATile_bb14_in(A,B,C,D,E,F,G,H,I+1,J,K,A,B,C,D,E,F,G,H,I+1,J),0,[],[K=1,I>=F]).
+eq(eval_TIFFReadRGBATile_bb16_in(A,B,C,D,E,F,G,H,I,J,K,A,B,C,D,E,F,G,H,I,J),1,[],[K=0,G>=L]).
+eq(eval_TIFFReadRGBATile_bb16_in(A,B,C,D,E,F,G,H,I,J,K,A,B,C,D,E,F,G,H,I,J),0,[],[K=1,L>=G]).

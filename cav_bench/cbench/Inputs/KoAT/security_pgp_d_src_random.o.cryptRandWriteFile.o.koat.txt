@@ -1,0 +1,31 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_cryptRandWriteFile_start))
+(VAR v_.01 v_18 v_7 v_8 v_bytes v_i.0)
+(RULES
+  eval_cryptRandWriteFile_start(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb0_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_bb0_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_0(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_0(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_2(eval_fopen_start(v_.01, v_18, v_7, v_8, v_bytes, v_i.0), eval_cryptRandWriteFile_1(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_1(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb1_in(v_bytes, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_1(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb12_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_bb1_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb4_in(v_.01, v_18, v_.01, v_8, v_bytes, v_i.0)) :|: v_.01 < 0
+  eval_cryptRandWriteFile_bb1_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb4_in(v_.01, v_18, v_.01, v_8, v_bytes, v_i.0)) :|: v_.01 > 0
+  eval_cryptRandWriteFile_bb1_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb4_in(v_.01, v_18, 256, v_8, v_bytes, v_i.0)) :|: v_.01 < 0
+  eval_cryptRandWriteFile_bb1_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb4_in(v_.01, v_18, 256, v_8, v_bytes, v_i.0)) :|: v_.01 > 0
+  eval_cryptRandWriteFile_bb1_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb11_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0)) :|: v_.01 = 0
+  eval_cryptRandWriteFile_bb4_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb5_in(v_.01, v_18, v_7, v_7, v_bytes, 0))
+  eval_cryptRandWriteFile_bb5_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_8(v_.01, v_18, v_7, v_8, v_bytes, v_i.0)) :|: v_i.0 < v_8
+  eval_cryptRandWriteFile_bb5_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_13(v_.01, v_18, v_7, v_8, v_bytes, v_i.0)) :|: v_i.0 >= v_8
+  eval_cryptRandWriteFile_bb5_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb9_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0)) :|: v_i.0 >= v_8
+  eval_cryptRandWriteFile_8(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_2(eval_ideaRandByte_start(v_.01, v_18, v_7, v_8, v_bytes, v_i.0), eval_cryptRandWriteFile_9(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_9(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb5_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0 + 1))
+  eval_cryptRandWriteFile_13(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_2(eval_ideaCfbEncrypt_start(v_.01, v_18, v_7, v_8, v_bytes, v_i.0), eval_cryptRandWriteFile_14(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_14(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb9_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_bb9_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_16(v_.01, v_8, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_16(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_2(eval_fwrite_start(v_.01, v_18, v_7, v_8, v_bytes, v_i.0), eval_cryptRandWriteFile_17(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_17(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb11_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_17(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb1_in(v_.01 - v_8, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_bb11_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_21(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_21(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_2(eval_fclose_start(v_.01, v_18, v_7, v_8, v_bytes, v_i.0), eval_cryptRandWriteFile_22(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_22(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_bb12_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+  eval_cryptRandWriteFile_bb12_in(v_.01, v_18, v_7, v_8, v_bytes, v_i.0) -> Com_1(eval_cryptRandWriteFile_stop(v_.01, v_18, v_7, v_8, v_bytes, v_i.0))
+)

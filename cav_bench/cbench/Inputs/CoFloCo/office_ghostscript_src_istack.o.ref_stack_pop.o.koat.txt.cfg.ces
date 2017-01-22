@@ -1,0 +1,11 @@
+eq(eval_ref_stack_pop_start(A,B,C),1,[eval_ref_stack_pop_bb0_in(A,B,C)],[]).
+eq(eval_ref_stack_pop_bb0_in(A,B,C),1,[eval_ref_stack_pop_bb1_in(C,B,C,D,E,F,G),loop_cont_eval_ref_stack_pop_bb1_in(E,F,G)],[D=0]).
+eq(eval_ref_stack_pop_bb0_in(A,B,C),1,[eval_ref_stack_pop_bb1_in(C,B,C,D,E,F,G)],[D=1]).
+eq(eval_ref_stack_pop_bb1_in(A,B,C,D,E,F,G),1,[eval_ref_stack_pop_8(A,A-H,C,D,E,F,G)],[I-J=0,H=0,H<A]).
+eq(eval_ref_stack_pop_bb1_in(A,B,C,D,E,F,G),1,[eval_ref_stack_pop_8(A,A-H,C,D,E,F,G)],[I-J>0,H>=0,H<I-J,H<A]).
+eq(eval_ref_stack_pop_bb1_in(A,B,C,D,E,F,G),1,[eval_ref_stack_pop_8(A,A-H,C,D,E,F,G)],[I-J<0,H=<0,H>I-J,H<A]).
+eq(eval_ref_stack_pop_8(A,B,C,D,E,F,G),1,[eval_ref_stack_pop_9(A,B,C,D,E,F,G)],[]).
+eq(eval_ref_stack_pop_9(A,B,C,D,E,F,G),1,[eval_ref_stack_pop_bb1_in(B,B,C,D,E,F,G)],[]).
+eq(eval_ref_stack_pop_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,E-F=0,G=0,G>=A]).
+eq(eval_ref_stack_pop_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,E-F>0,G>=0,G<E-F,G>=A]).
+eq(eval_ref_stack_pop_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,E-F<0,G=<0,G>E-F,G>=A]).

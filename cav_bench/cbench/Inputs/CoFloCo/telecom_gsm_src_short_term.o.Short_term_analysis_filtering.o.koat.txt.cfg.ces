@@ -1,0 +1,12 @@
+eq(eval_Short_term_analysis_filtering_start(A,B,C,D),1,[eval_Short_term_analysis_filtering_bb0_in(A,B,C,D)],[]).
+eq(eval_Short_term_analysis_filtering_bb0_in(A,B,C,D),1,[eval_Short_term_analysis_filtering_bb1_in(D,B,C,D,E,F,G,H,I),loop_cont_eval_Short_term_analysis_filtering_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_Short_term_analysis_filtering_bb0_in(A,B,C,D),1,[eval_Short_term_analysis_filtering_bb1_in(D,B,C,D,E,F,G,H,I)],[E=1]).
+eq(eval_Short_term_analysis_filtering_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_Short_term_analysis_filtering_bb3_in(A,A-1,0,D,J,K,L,M,N),loop_cont_eval_Short_term_analysis_filtering_bb3_in(K,L,M,N,E,F,G,H,I)],[J=0,A<0]).
+eq(eval_Short_term_analysis_filtering_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_Short_term_analysis_filtering_bb3_in(A,A-1,0,D,J,K,L,M,N),loop_cont_eval_Short_term_analysis_filtering_bb3_in(K,L,M,N,E,F,G,H,I)],[J=0,A>0]).
+eq(eval_Short_term_analysis_filtering_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_Short_term_analysis_filtering_bb6_in(A,B,C,D,E,F,G,H,I)],[C<8]).
+eq(loop_cont_eval_Short_term_analysis_filtering_bb3_in(A,B,C,D,E,F,G,H,I),0,[eval_Short_term_analysis_filtering_bb1_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_Short_term_analysis_filtering_bb6_in(A,B,C,D,E,F,G,H,I),1,[eval_Short_term_analysis_filtering_bb8_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_Short_term_analysis_filtering_bb8_in(A,B,C,D,E,F,G,H,I),1,[eval_Short_term_analysis_filtering_bb3_in(A,B,C+1,D,E,F,G,H,I)],[]).
+eq(eval_Short_term_analysis_filtering_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,A=0]).
+eq(eval_Short_term_analysis_filtering_bb3_in(A,B,C,D,E,B,B,C,D),1,[],[E=0,C>=8]).
+eq(eval_Short_term_analysis_filtering_bb3_in(A,B,C,D,E,A,B,C,D),0,[],[E=1,8>=C+1]).

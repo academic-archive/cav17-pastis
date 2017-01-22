@@ -1,0 +1,13 @@
+eq(eval_Fax4Encode_start(A,B,C,D,E),1,[eval_Fax4Encode_bb0_in(A,B,C,D,E)],[]).
+eq(eval_Fax4Encode_bb5_in(A,B,C,D,E),1,[eval_Fax4Encode_stop(A,B,C,D,E)],[]).
+eq(eval_Fax4Encode_bb0_in(A,B,C,D,E),1,[eval_Fax4Encode_bb1_in(D,B,C,D,E,F,G,H,I,J,K),loop_cont_eval_Fax4Encode_bb1_in(G,H,I,J,K)],[F=0]).
+eq(eval_Fax4Encode_bb0_in(A,B,C,D,E),1,[eval_Fax4Encode_bb1_in(D,B,C,D,E,F,G,H,I,J,K)],[F=1]).
+eq(loop_cont_eval_Fax4Encode_bb1_in(A,B,C,D,E),0,[eval_Fax4Encode_bb5_in(A,B,C,D,E)],[]).
+eq(eval_Fax4Encode_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_Fax4Encode_3(A,L,C,D,E,F,G,H,I,J,K)],[A>0]).
+eq(eval_Fax4Encode_3(A,B,C,D,E,F,G,H,I,J,K),1,[eval_Fax4Encode_4(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_Fax4Encode_4(A,B,C,D,E,F,G,H,I,J,K),1,[eval_Fax4Encode_6(A,B,L,D,E,F,G,H,I,J,K)],[]).
+eq(eval_Fax4Encode_6(A,B,C,D,E,F,G,H,I,J,K),1,[eval_Fax4Encode_7(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_Fax4Encode_7(A,B,C,D,E,F,G,H,I,J,K),1,[eval_Fax4Encode_bb1_in(A-L,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_Fax4Encode_4(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0]).
+eq(eval_Fax4Encode_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,A=<0]).
+eq(eval_Fax4Encode_bb1_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1,A>=0+1]).

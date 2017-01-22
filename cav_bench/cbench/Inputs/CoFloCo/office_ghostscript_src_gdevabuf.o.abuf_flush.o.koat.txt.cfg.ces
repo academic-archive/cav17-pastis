@@ -1,0 +1,11 @@
+eq(eval_abuf_flush_start(A,B,C),1,[eval_abuf_flush_bb0_in(A,B,C)],[]).
+eq(eval_abuf_flush_bb5_in(A,B,C),1,[eval_abuf_flush_stop(A,B,C)],[]).
+eq(eval_abuf_flush_bb0_in(A,B,C),1,[eval_abuf_flush_bb1_in(D,B,0,E,F,G,H),loop_cont_eval_abuf_flush_bb1_in(F,G,H)],[E=0]).
+eq(eval_abuf_flush_bb0_in(A,B,C),1,[eval_abuf_flush_bb1_in(D,B,0,E,F,G,H)],[E=1]).
+eq(loop_cont_eval_abuf_flush_bb1_in(A,B,C),0,[eval_abuf_flush_bb5_in(A,B,C)],[]).
+eq(eval_abuf_flush_bb1_in(A,B,C,D,E,F,G),1,[eval_abuf_flush_7(A,H+C,C,D,E,F,G)],[C<I]).
+eq(eval_abuf_flush_7(A,B,C,D,E,F,G),1,[eval_abuf_flush_8(A,B,C,D,E,F,G)],[]).
+eq(eval_abuf_flush_8(A,B,C,D,E,F,G),1,[eval_abuf_flush_bb1_in(A,B,C+A,D,E,F,G)],[]).
+eq(eval_abuf_flush_8(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_abuf_flush_bb1_in(A,B,C,D,A,B,C),1,[],[D=0,C>=E]).
+eq(eval_abuf_flush_bb1_in(A,B,C,D,A,B,C),0,[],[D=1,E>=C]).

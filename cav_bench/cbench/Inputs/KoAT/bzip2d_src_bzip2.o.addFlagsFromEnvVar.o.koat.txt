@@ -1,0 +1,32 @@
+(GOAL COMPLEXITY)
+(STARTTERM (FUNCTIONSYMBOLS eval_addFlagsFromEnvVar_start))
+(VAR nondef.0 nondef.3 nondef.4 v_j.0 v_k.0)
+(RULES
+  eval_addFlagsFromEnvVar_start(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb0_in(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_bb0_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_0(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_0(v_j.0, v_k.0) -> Com_2(eval_getenv_start(v_j.0, v_k.0), eval_addFlagsFromEnvVar_1(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_1(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_2(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_1(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb14_in(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_2(v_j.0, v_k.0) -> Com_2(eval___ctype_b_loc_start(v_j.0, v_k.0), eval_addFlagsFromEnvVar_3(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_3(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb2_in(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_bb2_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb14_in(v_j.0, v_k.0)) :|: nondef.0 = 0
+  eval_addFlagsFromEnvVar_bb2_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb4_in(v_j.0, v_k.0)) :|: nondef.0 < 0
+  eval_addFlagsFromEnvVar_bb2_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb4_in(v_j.0, v_k.0)) :|: nondef.0 > 0
+  eval_addFlagsFromEnvVar_bb4_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb4_in(v_j.0, v_k.0)) :|: nondef.3 < 0
+  eval_addFlagsFromEnvVar_bb4_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb4_in(v_j.0, v_k.0)) :|: nondef.3 > 0
+  eval_addFlagsFromEnvVar_bb4_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_17(v_j.0, v_k.0)) :|: nondef.3 = 0
+  eval_addFlagsFromEnvVar_17(v_j.0, v_k.0) -> Com_2(eval___ctype_b_loc_start(v_j.0, v_k.0), eval_addFlagsFromEnvVar_18(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_18(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb7_in(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_bb7_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb7_in(v_j.0, v_k.0)) :|: nondef.4 < 0
+  eval_addFlagsFromEnvVar_bb7_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb7_in(v_j.0, v_k.0)) :|: nondef.4 > 0
+  eval_addFlagsFromEnvVar_bb7_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_.critedge_in(v_j.0, v_k.0)) :|: nondef.4 < 0
+  eval_addFlagsFromEnvVar_bb7_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_.critedge_in(v_j.0, v_k.0)) :|: nondef.4 > 0
+  eval_addFlagsFromEnvVar_bb7_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_.critedge_in(v_j.0, v_k.0)) :|: nondef.4 = 0
+  eval_addFlagsFromEnvVar_.critedge_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb11_in(0, 1024))
+  eval_addFlagsFromEnvVar_.critedge_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb2_in(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_bb11_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb11_in(v_j.0 + 1, v_k.0)) :|: v_j.0 < v_k.0
+  eval_addFlagsFromEnvVar_bb11_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_43(v_j.0, v_k.0)) :|: v_j.0 >= v_k.0
+  eval_addFlagsFromEnvVar_43(v_j.0, v_k.0) -> Com_2(eval_snocString_start(v_j.0, v_k.0), eval_addFlagsFromEnvVar_44(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_44(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_bb2_in(v_j.0, v_k.0))
+  eval_addFlagsFromEnvVar_bb14_in(v_j.0, v_k.0) -> Com_1(eval_addFlagsFromEnvVar_stop(v_j.0, v_k.0))
+)

@@ -1,0 +1,34 @@
+eq(eval_mad_bit_crc_start(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_48(A,B,C,D,E,F),1,[eval_mad_bit_crc_49(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_49(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb5_in(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_bb5_in(A,B,C,D,E,F),1,[eval_mad_bit_crc_58(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_58(A,B,C,D,E,F),1,[eval_mad_bit_crc_59(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_59(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb6_in(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_bb6_in(A,B,C,D,E,F),1,[eval_mad_bit_crc_68(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_68(A,B,C,D,E,F),1,[eval_mad_bit_crc_69(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_bb0_in(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb1_in(F,B,C,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_mad_bit_crc_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_mad_bit_crc_bb0_in(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb1_in(F,B,C,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_mad_bit_crc_bb1_in(A,B,C,D,E,F),0,[eval_mad_bit_crc_bb6_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_mad_bit_crc_bb1_in(A,B,C,D,E,F),0,[eval_mad_bit_crc_NewDefault_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_mad_bit_crc_bb1_in(A,B,C,D,E,F),0,[eval_mad_bit_crc_bb5_in(A,B,C,D,E,F)],[]).
+eq(loop_cont_eval_mad_bit_crc_bb1_in(A,B,C,D,E,F),0,[eval_mad_bit_crc_48(A,B,C,D,E,F)],[]).
+eq(eval_mad_bit_crc_69(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb7_in(A,G,C,D,E,F,H,I,J,K,L,M,N),loop_cont_eval_mad_bit_crc_bb7_in(I,J,K,L,M,N)],[H=0,A=0,G=0]).
+eq(eval_mad_bit_crc_69(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb7_in(A,G,C,D,E,F,H,I,J,K,L,M,N)],[H=1,A=0,G=0]).
+eq(eval_mad_bit_crc_69(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb7_in(A,G,C,D,E,F,H,I,J,K,L,M,N),loop_cont_eval_mad_bit_crc_bb7_in(I,J,K,L,M,N)],[H=0,A>0,G>=0,G<8]).
+eq(eval_mad_bit_crc_69(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb7_in(A,G,C,D,E,F,H,I,J,K,L,M,N)],[H=1,A>0,G>=0,G<8]).
+eq(eval_mad_bit_crc_69(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb7_in(A,G,C,D,E,F,H,I,J,K,L,M,N),loop_cont_eval_mad_bit_crc_bb7_in(I,J,K,L,M,N)],[H=0,A<0,G=<0,G> -8]).
+eq(eval_mad_bit_crc_69(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb7_in(A,G,C,D,E,F,H,I,J,K,L,M,N)],[H=1,A<0,G=<0,G> -8]).
+eq(eval_mad_bit_crc_NewDefault_in(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb7_in(A,A,C,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_mad_bit_crc_bb7_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_mad_bit_crc_NewDefault_in(A,B,C,D,E,F),1,[eval_mad_bit_crc_bb7_in(A,A,C,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_mad_bit_crc_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_mad_bit_crc_4(A,B,C,D,E,F,G,H,I,J,K,L,M)],[A>=32]).
+eq(eval_mad_bit_crc_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_mad_bit_crc_78(A,B,B-1,D,E,F,G,H,I,J,K,L,M)],[B<0]).
+eq(eval_mad_bit_crc_bb7_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_mad_bit_crc_78(A,B,B-1,D,E,F,G,H,I,J,K,L,M)],[B>0]).
+eq(eval_mad_bit_crc_4(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_mad_bit_crc_5(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_mad_bit_crc_78(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_mad_bit_crc_79(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_mad_bit_crc_5(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_mad_bit_crc_bb1_in(A-32,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_mad_bit_crc_79(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_mad_bit_crc_bb7_in(A,C,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_mad_bit_crc_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,A<32,A=0,H=0]).
+eq(eval_mad_bit_crc_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1]).
+eq(eval_mad_bit_crc_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,A<32,A>0,H>=0,H<A]).
+eq(eval_mad_bit_crc_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,A<32,A<0,H=<0,H>A]).
+eq(eval_mad_bit_crc_bb7_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,B=0]).

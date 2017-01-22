@@ -1,0 +1,8 @@
+eq(eval_gc_free_empty_chunks_start,1,[eval_gc_free_empty_chunks_bb0_in],[]).
+eq(eval_gc_free_empty_chunks_bb0_in,1,[eval_gc_free_empty_chunks_bb1_in(A),loop_cont_eval_gc_free_empty_chunks_bb1_in],[A=0]).
+eq(eval_gc_free_empty_chunks_bb0_in,1,[eval_gc_free_empty_chunks_bb1_in(A)],[A=1]).
+eq(eval_gc_free_empty_chunks_bb1_in(A),1,[eval_gc_free_empty_chunks_2(A)],[]).
+eq(eval_gc_free_empty_chunks_bb1_in(A),1,[eval_gc_free_empty_chunks_bb1_in(A)],[]).
+eq(eval_gc_free_empty_chunks_2(A),1,[eval_gc_free_empty_chunks_3(A)],[]).
+eq(eval_gc_free_empty_chunks_3(A),1,[eval_gc_free_empty_chunks_bb1_in(A)],[]).
+eq(eval_gc_free_empty_chunks_bb1_in(A),1,[],[A=1]).

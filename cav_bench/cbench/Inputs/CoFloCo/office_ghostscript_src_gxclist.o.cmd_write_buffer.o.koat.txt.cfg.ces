@@ -1,0 +1,10 @@
+eq(eval_cmd_write_buffer_start(A,B,C,D,E,F,G,H),1,[eval_cmd_write_buffer_bb0_in(A,B,C,D,E,F,G,H)],[]).
+eq(eval_cmd_write_buffer_bb0_in(A,B,C,D,E,F,G,H),1,[eval_cmd_write_buffer_3(I,B,J,K,E,F,G,H)],[]).
+eq(eval_cmd_write_buffer_3(A,B,C,D,E,F,G,H),1,[eval_cmd_write_buffer_4(A,B,C,D,I,F,G,H)],[]).
+eq(eval_cmd_write_buffer_4(A,B,C,D,E,F,G,H),1,[eval_cmd_write_buffer_bb1_in(A,B,C,D,E,0,G,E,I,J,K,L,M,N,O,P,Q),loop_cont_eval_cmd_write_buffer_bb1_in(J,K,L,M,N,O,P,Q)],[I=0]).
+eq(eval_cmd_write_buffer_4(A,B,C,D,E,F,G,H),1,[eval_cmd_write_buffer_bb1_in(A,B,C,D,E,0,G,E,I,J,K,L,M,N,O,P,Q)],[I=1]).
+eq(eval_cmd_write_buffer_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_cmd_write_buffer_5(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[H>=0,F<A]).
+eq(eval_cmd_write_buffer_5(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_cmd_write_buffer_6(A,R,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_cmd_write_buffer_6(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q),1,[eval_cmd_write_buffer_bb1_in(A,B,C,D,E,F+1,G,B,I,J,K,L,M,N,O,P,Q)],[]).
+eq(eval_cmd_write_buffer_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=1,H<0]).
+eq(eval_cmd_write_buffer_bb1_in(A,B,C,D,E,F,G,H,I,A,B,C,D,E,F,G,H),1,[],[I=1,F>=A]).

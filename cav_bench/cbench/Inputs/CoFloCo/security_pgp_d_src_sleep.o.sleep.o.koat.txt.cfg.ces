@@ -1,0 +1,9 @@
+eq(eval_sleep_start(A,B),1,[eval_sleep_bb0_in(A,B)],[]).
+eq(eval_sleep_bb0_in(A,B),1,[eval_sleep_0(A,B)],[]).
+eq(eval_sleep_0(A,B),1,[eval_sleep_1(A,B)],[]).
+eq(eval_sleep_1(A,B),1,[eval_sleep_bb1_in(C+B,B,D,E,F),loop_cont_eval_sleep_bb1_in(E,F)],[D=0]).
+eq(eval_sleep_1(A,B),1,[eval_sleep_bb1_in(C+B,B,D,E,F)],[D=1]).
+eq(eval_sleep_bb1_in(A,B,C,D,E),1,[eval_sleep_5(A,B,C,D,E)],[]).
+eq(eval_sleep_5(A,B,C,D,E),1,[eval_sleep_6(A,B,C,D,E)],[]).
+eq(eval_sleep_6(A,B,C,D,E),1,[eval_sleep_bb1_in(A,B,C,D,E)],[F=<A]).
+eq(eval_sleep_6(A,B,C,A,B),1,[],[C=1,D>A]).

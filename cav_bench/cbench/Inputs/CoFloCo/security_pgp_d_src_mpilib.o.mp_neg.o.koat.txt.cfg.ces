@@ -1,0 +1,8 @@
+eq(eval_mp_neg_start(A,B,C),1,[eval_mp_neg_bb0_in(A,B,C)],[]).
+eq(eval_mp_neg_bb0_in(A,B,C),1,[eval_mp_neg_1(A,A,C)],[]).
+eq(eval_mp_neg_1(A,B,C),1,[eval_mp_neg_2(A,B,C)],[]).
+eq(eval_mp_neg_2(A,B,C),1,[eval_mp_neg_bb1_in(A,B,B,D,E,F,G),loop_cont_eval_mp_neg_bb1_in(E,F,G)],[D=0]).
+eq(eval_mp_neg_2(A,B,C),1,[eval_mp_neg_bb1_in(A,B,B,D,E,F,G)],[D=1]).
+eq(eval_mp_neg_bb1_in(A,B,C,D,E,F,G),1,[eval_mp_neg_bb1_in(A,B,C-1,D,E,F,G)],[C-1<0]).
+eq(eval_mp_neg_bb1_in(A,B,C,D,E,F,G),1,[eval_mp_neg_bb1_in(A,B,C-1,D,E,F,G)],[C-1>0]).
+eq(eval_mp_neg_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,C-1=0]).

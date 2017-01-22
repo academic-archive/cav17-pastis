@@ -1,0 +1,9 @@
+eq(eval_gx_sort_ht_order_start(A,B,C),1,[eval_gx_sort_ht_order_bb0_in(A,B,C)],[]).
+eq(eval_gx_sort_ht_order_5(A,B,C),1,[eval_gx_sort_ht_order_6(A,B,C)],[]).
+eq(eval_gx_sort_ht_order_6(A,B,C),1,[eval_gx_sort_ht_order_stop(A,B,C)],[]).
+eq(eval_gx_sort_ht_order_bb0_in(A,B,C),1,[eval_gx_sort_ht_order_bb1_in(A,B,0,D,E,F,G),loop_cont_eval_gx_sort_ht_order_bb1_in(E,F,G)],[D=0]).
+eq(eval_gx_sort_ht_order_bb0_in(A,B,C),1,[eval_gx_sort_ht_order_bb1_in(A,B,0,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_gx_sort_ht_order_bb1_in(A,B,C),0,[eval_gx_sort_ht_order_5(A,B,C)],[]).
+eq(eval_gx_sort_ht_order_bb1_in(A,B,C,D,E,F,G),1,[eval_gx_sort_ht_order_bb1_in(A,B,C+1,D,E,F,G)],[C<B]).
+eq(eval_gx_sort_ht_order_bb1_in(A,B,C,D,B,B,C),1,[],[D=0,C>=B]).
+eq(eval_gx_sort_ht_order_bb1_in(A,B+1,C,D,A,B+1,C),0,[],[D=1,B>=C]).

@@ -1,0 +1,8 @@
+eq(eval_gx_path_translate_start(A,B),1,[eval_gx_path_translate_bb0_in(A,B)],[]).
+eq(eval_gx_path_translate_bb0_in(A,B),1,[eval_gx_path_translate_bb2_in(A,B)],[]).
+eq(eval_gx_path_translate_bb2_in(A,B),1,[eval_gx_path_translate_bb4_in(A,B)],[]).
+eq(eval_gx_path_translate_bb4_in(A,B),1,[eval_gx_path_translate_bb5_in(A,B,C,D,E),loop_cont_eval_gx_path_translate_bb5_in(D,E)],[C=0]).
+eq(eval_gx_path_translate_bb4_in(A,B),1,[eval_gx_path_translate_bb5_in(A,B,C,D,E)],[C=1]).
+eq(eval_gx_path_translate_bb5_in(A,B,C,D,E),1,[eval_gx_path_translate_bb8_in(A,B,C,D,E)],[]).
+eq(eval_gx_path_translate_bb8_in(A,B,C,D,E),1,[eval_gx_path_translate_bb5_in(A,B,C,D,E)],[]).
+eq(eval_gx_path_translate_bb5_in(A,B,C,A,B),1,[],[C=1]).

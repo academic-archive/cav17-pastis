@@ -1,0 +1,8 @@
+eq(eval_s_xBCPE_process_start(A),1,[eval_s_xBCPE_process_bb0_in(A)],[]).
+eq(eval_s_xBCPE_process_bb8_in(A),1,[eval_s_xBCPE_process_stop(A)],[]).
+eq(eval_s_xBCPE_process_bb0_in(A),1,[eval_s_xBCPE_process_bb1_in(A,B,C),loop_cont_eval_s_xBCPE_process_bb1_in(C)],[B=0]).
+eq(eval_s_xBCPE_process_bb0_in(A),1,[eval_s_xBCPE_process_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_s_xBCPE_process_bb1_in(A),0,[eval_s_xBCPE_process_bb8_in(A)],[]).
+eq(eval_s_xBCPE_process_bb1_in(A,B,C),1,[eval_s_xBCPE_process_bb7_in(A,B,C)],[]).
+eq(eval_s_xBCPE_process_bb7_in(A,B,C),1,[eval_s_xBCPE_process_bb1_in(A,B,C)],[]).
+eq(eval_s_xBCPE_process_bb1_in(A,B,A),1,[],[B=0]).

@@ -1,0 +1,16 @@
+eq(eval_pprintf_scan_start(A),1,[eval_pprintf_scan_bb0_in(A)],[]).
+eq(eval_pprintf_scan_bb9_in(A),1,[eval_pprintf_scan_stop(A)],[]).
+eq(eval_pprintf_scan_bb0_in(A),1,[eval_pprintf_scan_bb1_in(A,B,C),loop_cont_eval_pprintf_scan_bb1_in(C)],[B=0]).
+eq(eval_pprintf_scan_bb0_in(A),1,[eval_pprintf_scan_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_pprintf_scan_bb1_in(A),0,[eval_pprintf_scan_bb9_in(A)],[]).
+eq(eval_pprintf_scan_bb1_in(A,B,C),1,[eval_pprintf_scan_bb5_in(A,B,C)],[D<0]).
+eq(eval_pprintf_scan_bb1_in(A,B,C),1,[eval_pprintf_scan_bb5_in(A,B,C)],[D>0]).
+eq(eval_pprintf_scan_bb5_in(A,B,C),1,[eval_pprintf_scan_10(D,B,C)],[]).
+eq(eval_pprintf_scan_bb5_in(A,B,C),1,[eval_pprintf_scan_bb8_in(A,B,C)],[]).
+eq(eval_pprintf_scan_10(A,B,C),1,[eval_pprintf_scan_11(A,B,C)],[]).
+eq(eval_pprintf_scan_bb8_in(A,B,C),1,[eval_pprintf_scan_bb1_in(A,B,C)],[]).
+eq(eval_pprintf_scan_11(A,B,C),1,[eval_pprintf_scan_bb8_in(A,B,C)],[]).
+eq(eval_pprintf_scan_bb1_in(A,B,A),1,[],[B=0,C<0]).
+eq(eval_pprintf_scan_bb1_in(A,B,A),1,[],[B=0,C>0]).
+eq(eval_pprintf_scan_bb1_in(A,B,A),1,[],[B=0,C=0]).
+eq(eval_pprintf_scan_bb1_in(A,B,A),0,[],[B=1]).

@@ -1,0 +1,10 @@
+eq(eval_id3_ucs4_getnumber_start,1,[eval_id3_ucs4_getnumber_bb0_in],[]).
+eq(eval_id3_ucs4_getnumber__critedge_in,1,[eval_id3_ucs4_getnumber_stop],[]).
+eq(eval_id3_ucs4_getnumber_bb0_in,1,[eval_id3_ucs4_getnumber_bb1_in(A),loop_cont_eval_id3_ucs4_getnumber_bb1_in],[A=0]).
+eq(eval_id3_ucs4_getnumber_bb0_in,1,[eval_id3_ucs4_getnumber_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_id3_ucs4_getnumber_bb1_in,0,[eval_id3_ucs4_getnumber__critedge_in],[]).
+eq(eval_id3_ucs4_getnumber_bb1_in(A),1,[eval_id3_ucs4_getnumber_bb1_in(A)],[B>=48]).
+eq(eval_id3_ucs4_getnumber_bb1_in(A),1,[],[A=0,B>=48]).
+eq(eval_id3_ucs4_getnumber_bb1_in(A),0,[],[A=1,48>=B+1]).
+eq(eval_id3_ucs4_getnumber_bb1_in(A),1,[],[A=0,B<48]).
+eq(eval_id3_ucs4_getnumber_bb1_in(A),0,[],[A=1]).

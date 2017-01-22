@@ -1,0 +1,12 @@
+eq(eval_s_MTFE_process_start(A,B),1,[eval_s_MTFE_process_bb0_in(A,B)],[]).
+eq(eval_s_MTFE_process_bb0_in(A,B),1,[eval_s_MTFE_process_bb2_in(A,B)],[]).
+eq(eval_s_MTFE_process_bb2_in(A,B),1,[eval_s_MTFE_process_bb3_in(A,B,C,D,E),loop_cont_eval_s_MTFE_process_bb3_in(D,E)],[C=0]).
+eq(eval_s_MTFE_process_bb2_in(A,B),1,[eval_s_MTFE_process_bb3_in(A,B,C,D,E)],[C=1]).
+eq(eval_s_MTFE_process_bb3_in(A,B,C,D,E),1,[eval_s_MTFE_process_bb5_in(F,B,G,H,I),loop_cont_eval_s_MTFE_process_bb5_in(H,I,C,D,E)],[G=0]).
+eq(eval_s_MTFE_process_bb3_in(A,B,C,D,E),1,[eval_s_MTFE_process_bb5_in(F,B,G,H,I)],[C=1,G=1]).
+eq(eval_s_MTFE_process_bb5_in(A,B,C,D,E),1,[eval_s_MTFE_process_bb5_in(A,B,C,D,E)],[F<A]).
+eq(eval_s_MTFE_process_bb5_in(A,B,C,D,E),1,[eval_s_MTFE_process_bb5_in(A,B,C,D,E)],[F>A]).
+eq(loop_cont_eval_s_MTFE_process_bb5_in(A,B,C,D,E),0,[eval_s_MTFE_process_bb3_in(A,B,C,D,E)],[]).
+eq(eval_s_MTFE_process_bb3_in(A,B,C,A,B),1,[],[C=1]).
+eq(eval_s_MTFE_process_bb5_in(A,B,C,A,B),1,[],[C=0,D=A]).
+eq(eval_s_MTFE_process_bb5_in(A,B,C,A,B),0,[],[C=1]).

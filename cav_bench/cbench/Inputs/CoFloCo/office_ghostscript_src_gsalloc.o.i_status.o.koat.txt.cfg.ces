@@ -1,0 +1,11 @@
+eq(eval_i_status_start,1,[eval_i_status_bb0_in],[]).
+eq(eval_i_status_bb0_in,1,[eval_i_status_3],[]).
+eq(eval_i_status_3,1,[eval_i_status_4],[]).
+eq(eval_i_status_15,1,[eval_i_status_16],[]).
+eq(eval_i_status_16,1,[eval_i_status_stop],[]).
+eq(eval_i_status_4,1,[eval_i_status_bb1_in(A),loop_cont_eval_i_status_bb1_in],[A=0]).
+eq(eval_i_status_4,1,[eval_i_status_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_i_status_bb1_in,0,[eval_i_status_15],[]).
+eq(eval_i_status_bb1_in(A),1,[eval_i_status_bb4_in(A)],[]).
+eq(eval_i_status_bb4_in(A),1,[eval_i_status_bb1_in(A)],[]).
+eq(eval_i_status_bb1_in(A),1,[],[A=0]).

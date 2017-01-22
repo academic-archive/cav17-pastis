@@ -1,0 +1,8 @@
+eq(eval_largest_box_start,1,[eval_largest_box_bb0_in],[]).
+eq(eval_largest_box_bb0_in,1,[eval_largest_box_bb1_in(A),loop_cont_eval_largest_box_bb1_in],[A=0]).
+eq(eval_largest_box_bb0_in,1,[eval_largest_box_bb1_in(A)],[A=1]).
+eq(eval_largest_box_bb1_in(A),1,[eval_largest_box_bb5_in(A)],[]).
+eq(eval_largest_box_bb1_in(A),1,[eval_largest_box_bb7_in(A)],[]).
+eq(eval_largest_box_bb5_in(A),1,[eval_largest_box_bb7_in(A)],[]).
+eq(eval_largest_box_bb7_in(A),1,[eval_largest_box_bb1_in(A)],[]).
+eq(eval_largest_box_bb1_in(A),1,[],[A=1]).

@@ -1,0 +1,441 @@
+eq(eval_III_scalefactors_lsf_start(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(eval_III_scalefactors_lsf_bb0_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_0(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(eval_III_scalefactors_lsf_0(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_1(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(eval_III_scalefactors_lsf_1(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb2_in(A,Q,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q=0,S=0,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q>0,S>=0,S<36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S=0,T=0,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S>0,T>=0,T<S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q=0,U=0,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q>0,U>=0,U<36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U>0,V>=0,V<6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,Q<0,S=<0,S> -36,S<0,T=<0,T>S,Q<0,U=<0,U> -36,U<0,V=<0,V> -6]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180=0,S=0,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180=0,S=0,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180=0,S=0,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180>0,S>=0,S<16,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180>0,S>=0,S<16,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180>0,S>=0,S<16,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180<0,S=<0,S> -16,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180<0,S=<0,S> -16,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180=0,R=0,Q-180<0,S=<0,S> -16,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180=0,S=0,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180=0,S=0,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180=0,S=0,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180>0,S>=0,S<16,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180>0,S>=0,S<16,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180>0,S>=0,S<16,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180<0,S=<0,S> -16,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180<0,S=<0,S> -16,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180>0,R>=0,R<64,Q-180<0,S=<0,S> -16,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180=0,S=0,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180=0,S=0,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180=0,S=0,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180>0,S>=0,S<16,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180>0,S>=0,S<16,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180>0,S>=0,S<16,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180<0,S=<0,S> -16,Q-180=0,T=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180<0,S=<0,S> -16,Q-180>0,T>=0,T<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-180<0,R=<0,R> -64,Q-180<0,S=<0,S> -16,Q-180<0,T=<0,T> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244=0,R=0,Q-244=0,S=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244=0,R=0,Q-244>0,S>=0,S<3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244=0,R=0,Q-244<0,S=<0,S> -3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244>0,R>=0,R<Q-244,Q-244=0,S=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244>0,R>=0,R<Q-244,Q-244>0,S>=0,S<3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244>0,R>=0,R<Q-244,Q-244<0,S=<0,S> -3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244<0,R=<0,R>Q-244,Q-244=0,S=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244<0,R=<0,R>Q-244,Q-244>0,S>=0,S<3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q-244<0,R=<0,R>Q-244,Q-244<0,S=<0,S> -3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B=0,U=0,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B=0,U=0,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B=0,U=0,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B>0,U>=0,U<16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B>0,U>=0,U<16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B>0,U>=0,U<16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B=0,V=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B>0,V>=0,V<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B<0,U=<0,U> -16,B<0,V=<0,V> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S=0,T=0,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S>0,T>=0,T<5,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q=0,R=0,S<0,T=<0,T> -5,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S=0,T=0,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S>0,T>=0,T<5,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q>0,R>=0,R<Q,S<0,T=<0,T> -5,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S=0,T=0,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S>0,T>=0,T<5,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B-400=0,U=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B-400>0,U>=0,U<4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[Q<0,R=<0,R>Q,S<0,T=<0,T> -5,B-400<0,U=<0,U> -4]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500=0,Q=0,B-500=0,R=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500=0,Q=0,B-500>0,R>=0,R<3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500=0,Q=0,B-500<0,R=<0,R> -3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500>0,Q>=0,Q<B-500,B-500=0,R=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500>0,Q>=0,Q<B-500,B-500>0,R>=0,R<3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500>0,Q>=0,Q<B-500,B-500<0,R=<0,R> -3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500<0,Q=<0,Q>B-500,B-500=0,R=0]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500<0,Q=<0,Q>B-500,B-500>0,R>=0,R<3]).
+eq(eval_III_scalefactors_lsf_bb2_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[B-500<0,Q=<0,Q>B-500,B-500<0,R=<0,R> -3]).
+eq(eval_III_scalefactors_lsf_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_137(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(eval_III_scalefactors_lsf_137(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_138(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(eval_III_scalefactors_lsf_138(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_stop(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,0,M,N,O,0,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),loop_cont_eval_III_scalefactors_lsf_bb9_in(R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[Q=0]).
+eq(eval_III_scalefactors_lsf_bb8_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,0,M,N,O,0,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[Q=1]).
+eq(eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,0,J,K,L,M,N,0,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),loop_cont_eval_III_scalefactors_lsf_bb23_in(R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[Q=0]).
+eq(eval_III_scalefactors_lsf_bb22_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,0,J,K,L,M,N,0,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[Q=1]).
+eq(loop_cont_eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[eval_III_scalefactors_lsf_bb29_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),loop_cont_eval_III_scalefactors_lsf_bb29_in(R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[Q=0]).
+eq(loop_cont_eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[eval_III_scalefactors_lsf_bb29_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[Q=1]).
+eq(loop_cont_eval_III_scalefactors_lsf_bb29_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[eval_III_scalefactors_lsf_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(loop_cont_eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[eval_III_scalefactors_lsf_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),loop_cont_eval_III_scalefactors_lsf_bb15_in(R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[Q=0]).
+eq(loop_cont_eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[eval_III_scalefactors_lsf_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[Q=1]).
+eq(loop_cont_eval_III_scalefactors_lsf_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[eval_III_scalefactors_lsf_bb31_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P)],[]).
+eq(eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb11_in(A,B,H1-1,D,E,F,0,H,I,J,K,L,L,N,O,P,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1,S1,T1,U1,V1,W1,X1,Y1),loop_cont_eval_III_scalefactors_lsf_bb11_in(J1,K1,L1,M1,N1,O1,P1,Q1,R1,S1,T1,U1,V1,W1,X1,Y1,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[I1=0,P<4]).
+eq(eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb11_in(A,B,H1-1,D,E,F,0,H,I,J,K,L,L,N,O,P,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1,S1,T1,U1,V1,W1,X1,Y1)],[Q=1,I1=1,P<4]).
+eq(eval_III_scalefactors_lsf_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_58(A,B,C,H1,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[G<I1]).
+eq(eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb25_in(A,B,C,D,E,0,G,H,I,I,K,L,M,N,O,P,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1,S1,T1,U1,V1,W1,X1),loop_cont_eval_III_scalefactors_lsf_bb25_in(I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1,S1,T1,U1,V1,W1,X1,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[H1=0,O<4]).
+eq(eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb25_in(A,B,C,D,E,0,G,H,I,I,K,L,M,N,O,P,H1,I1,J1,K1,L1,M1,N1,O1,P1,Q1,R1,S1,T1,U1,V1,W1,X1)],[Q=1,H1=1,O<4]).
+eq(eval_III_scalefactors_lsf_bb25_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_124(H1,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[F<I1]).
+eq(eval_III_scalefactors_lsf_bb29_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb29_in(A,B,C,D,E,F,G,H,I,J,K+1,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[K<39]).
+eq(eval_III_scalefactors_lsf_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N+1,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[N<39]).
+eq(loop_cont_eval_III_scalefactors_lsf_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),0,[eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[]).
+eq(eval_III_scalefactors_lsf_58(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_59(A,B,C,D,H1,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[]).
+eq(loop_cont_eval_III_scalefactors_lsf_bb25_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),0,[eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[]).
+eq(eval_III_scalefactors_lsf_124(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_125(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[]).
+eq(eval_III_scalefactors_lsf_59(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb11_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M+1,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[E<C]).
+eq(eval_III_scalefactors_lsf_59(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb11_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M+1,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[E>C]).
+eq(eval_III_scalefactors_lsf_59(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb11_in(A,B,C,D,E,F,G+1,H,I,J,K,L,M+1,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[E=C]).
+eq(eval_III_scalefactors_lsf_125(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1),1,[eval_III_scalefactors_lsf_bb25_in(A,B,C,D,E,F+1,G,H,I,J+1,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,A1,B1,C1,D1,E1,F1,G1)],[]).
+eq(eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,L,O,P),1,[],[Q=0,P>=4]).
+eq(eval_III_scalefactors_lsf_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[],[Q=1,4>=P+1]).
+eq(eval_III_scalefactors_lsf_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,M,M,N,O,P+1),1,[],[Q=0,G>=R]).
+eq(eval_III_scalefactors_lsf_bb11_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[],[Q=1,R>=G]).
+eq(eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,I,L,M,N,O,P),1,[],[Q=0,O>=4]).
+eq(eval_III_scalefactors_lsf_bb23_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[],[Q=1,4>=O+1]).
+eq(eval_III_scalefactors_lsf_bb25_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,J,J,K,L,M,N,O+1,P),1,[],[Q=0,F>=R]).
+eq(eval_III_scalefactors_lsf_bb25_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[],[Q=1,R>=F]).
+eq(eval_III_scalefactors_lsf_bb29_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[],[Q=0,K>=39]).
+eq(eval_III_scalefactors_lsf_bb29_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[],[Q=1,39>=K+1]).
+eq(eval_III_scalefactors_lsf_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),1,[],[Q=0,N>=39]).
+eq(eval_III_scalefactors_lsf_bb15_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P),0,[],[Q=1,39>=N+1]).

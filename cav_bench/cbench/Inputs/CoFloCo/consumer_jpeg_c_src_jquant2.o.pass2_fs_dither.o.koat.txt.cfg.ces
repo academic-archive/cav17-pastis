@@ -1,0 +1,15 @@
+eq(eval_pass2_fs_dither_start(A,B,C,D,E,F,G),1,[eval_pass2_fs_dither_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_pass2_fs_dither_bb0_in(A,B,C,D,E,F,G),1,[eval_pass2_fs_dither_bb1_in(A,B,C,H,E,F,0,I,J,K,L,M,N,O,P),loop_cont_eval_pass2_fs_dither_bb1_in(J,K,L,M,N,O,P)],[I=0]).
+eq(eval_pass2_fs_dither_bb0_in(A,B,C,D,E,F,G),1,[eval_pass2_fs_dither_bb1_in(A,B,C,H,E,F,0,I,J,K,L,M,N,O,P)],[I=1]).
+eq(eval_pass2_fs_dither_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_pass2_fs_dither_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[G<F]).
+eq(eval_pass2_fs_dither_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_pass2_fs_dither_79(P,Q,R,D,E,F,G,H,I,J,K,L,M,N,O)],[E>0]).
+eq(eval_pass2_fs_dither_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_pass2_fs_dither_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[E>0]).
+eq(eval_pass2_fs_dither_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_pass2_fs_dither_bb6_in(A,B,C,D,D,F,G,P,Q,R,S,T,U,V,W),loop_cont_eval_pass2_fs_dither_bb6_in(Q,R,S,T,U,V,W,H,I,J,K,L,M,N,O)],[P=0]).
+eq(eval_pass2_fs_dither_bb5_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_pass2_fs_dither_bb6_in(A,B,C,D,D,F,G,P,Q,R,S,T,U,V,W)],[H=1,P=1]).
+eq(eval_pass2_fs_dither_79(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_pass2_fs_dither_80(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_pass2_fs_dither_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_pass2_fs_dither_bb6_in(A,B,C,D,E-1,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(loop_cont_eval_pass2_fs_dither_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),0,[eval_pass2_fs_dither_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_pass2_fs_dither_80(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_pass2_fs_dither_bb9_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_pass2_fs_dither_bb1_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=1,G>=F]).
+eq(eval_pass2_fs_dither_bb6_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G+1),1,[],[H=0,E=<0]).
+eq(eval_pass2_fs_dither_bb6_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,E>=0+1]).

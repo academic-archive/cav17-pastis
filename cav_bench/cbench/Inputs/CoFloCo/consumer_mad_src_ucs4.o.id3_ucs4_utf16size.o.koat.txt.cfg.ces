@@ -1,0 +1,7 @@
+eq(eval_id3_ucs4_utf16size_start,1,[eval_id3_ucs4_utf16size_bb0_in],[]).
+eq(eval_id3_ucs4_utf16size_bb0_in,1,[eval_id3_ucs4_utf16size_bb1_in(A),loop_cont_eval_id3_ucs4_utf16size_bb1_in],[A=0]).
+eq(eval_id3_ucs4_utf16size_bb0_in,1,[eval_id3_ucs4_utf16size_bb1_in(A)],[A=1]).
+eq(eval_id3_ucs4_utf16size_bb1_in(A),1,[eval_id3_ucs4_utf16size_bb4_in(A)],[B<0]).
+eq(eval_id3_ucs4_utf16size_bb1_in(A),1,[eval_id3_ucs4_utf16size_bb4_in(A)],[B>0]).
+eq(eval_id3_ucs4_utf16size_bb4_in(A),1,[eval_id3_ucs4_utf16size_bb1_in(A)],[]).
+eq(eval_id3_ucs4_utf16size_bb1_in(A),1,[],[A=1,B=0]).

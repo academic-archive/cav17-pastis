@@ -1,0 +1,11 @@
+eq(eval_countbits_start,1,[eval_countbits_bb0_in],[]).
+eq(eval_countbits_bb0_in,1,[eval_countbits_0],[]).
+eq(eval_countbits_0,1,[eval_countbits_1],[]).
+eq(eval_countbits_1,1,[eval_countbits_bb4_in],[]).
+eq(eval_countbits_bb4_in,1,[eval_countbits_stop],[]).
+eq(eval_countbits_1,1,[eval_countbits_bb2_in(A),loop_cont_eval_countbits_bb2_in],[A=0]).
+eq(eval_countbits_1,1,[eval_countbits_bb2_in(A)],[A=1]).
+eq(loop_cont_eval_countbits_bb2_in,0,[eval_countbits_bb4_in],[]).
+eq(eval_countbits_bb2_in(A),1,[eval_countbits_bb2_in(A)],[B=0]).
+eq(eval_countbits_bb2_in(A),1,[],[A=0,B<0]).
+eq(eval_countbits_bb2_in(A),1,[],[A=0,B>0]).

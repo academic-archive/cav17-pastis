@@ -1,0 +1,15 @@
+eq(eval_uInt64_toAscii_start(A,B,C,D),1,[eval_uInt64_toAscii_bb0_in(A,B,C,D)],[]).
+eq(eval_uInt64_toAscii_bb0_in(A,B,C,D),1,[eval_uInt64_toAscii_0(A,B,C,D)],[]).
+eq(eval_uInt64_toAscii_0(A,B,C,D),1,[eval_uInt64_toAscii_1(A,B,C,D)],[]).
+eq(eval_uInt64_toAscii_1(A,B,C,D),1,[eval_uInt64_toAscii_bb1_in(A,B,C,0,E,F,G,H,I),loop_cont_eval_uInt64_toAscii_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_uInt64_toAscii_1(A,B,C,D),1,[eval_uInt64_toAscii_bb1_in(A,B,C,0,E,F,G,H,I)],[E=1]).
+eq(eval_uInt64_toAscii_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_uInt64_toAscii_bb3_in(A,B,C+1,D,E,F,G,H,I)],[C<A]).
+eq(eval_uInt64_toAscii_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_uInt64_toAscii_2(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_uInt64_toAscii_2(A,B,C,D,E,F,G,H,I),1,[eval_uInt64_toAscii_3(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_uInt64_toAscii_3(A,B,C,D,E,F,G,H,I),1,[eval_uInt64_toAscii_8(D+1,B,C,D,E,F,G,H,I)],[]).
+eq(eval_uInt64_toAscii_8(A,B,C,D,E,F,G,H,I),1,[eval_uInt64_toAscii_9(A,J,C,D,E,F,G,H,I)],[]).
+eq(eval_uInt64_toAscii_9(A,B,C,D,E,F,G,H,I),1,[eval_uInt64_toAscii_bb1_in(A,B,C,A,E,F,G,H,I)],[B=0]).
+eq(eval_uInt64_toAscii_9(A,B,C,D,E,F,G,H,I),1,[eval_uInt64_toAscii_bb3_in(A,B,0,D,J,K,L,M,N),loop_cont_eval_uInt64_toAscii_bb3_in(K,L,M,N,E,F,G,H,I)],[J=0,B<0]).
+eq(eval_uInt64_toAscii_9(A,B,C,D,E,F,G,H,I),1,[eval_uInt64_toAscii_bb3_in(A,B,0,D,J,K,L,M,N),loop_cont_eval_uInt64_toAscii_bb3_in(K,L,M,N,E,F,G,H,I)],[J=0,B>0]).
+eq(eval_uInt64_toAscii_bb3_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,C>=A]).
+eq(eval_uInt64_toAscii_bb1_in(A,B,C,D,E,A,B,C,D),0,[],[E=1]).

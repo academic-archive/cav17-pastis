@@ -1,0 +1,17 @@
+eq(eval_pbm_getc_start(A),1,[eval_pbm_getc_bb0_in(A)],[]).
+eq(eval_pbm_getc_bb0_in(A),1,[eval_pbm_getc_0(A)],[]).
+eq(eval_pbm_getc_0(A),1,[eval_pbm_getc_1(A)],[]).
+eq(eval_pbm_getc_1(A),1,[eval_pbm_getc_bb2_in(A)],[]).
+eq(eval_pbm_getc_bb2_in(A),1,[eval_pbm_getc_stop(A)],[]).
+eq(eval_pbm_getc_1(A),1,[eval_pbm_getc_bb1_in(A,B,C),loop_cont_eval_pbm_getc_bb1_in(C)],[B=0]).
+eq(eval_pbm_getc_1(A),1,[eval_pbm_getc_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_pbm_getc_bb1_in(A),0,[eval_pbm_getc_bb2_in(A)],[]).
+eq(eval_pbm_getc_bb1_in(A,B,C),1,[eval_pbm_getc_2(A,B,C)],[]).
+eq(eval_pbm_getc_2(A,B,C),1,[eval_pbm_getc_3(D,B,C)],[]).
+eq(eval_pbm_getc_3(A,B,C),1,[eval_pbm_getc_bb1_in(A,B,C)],[A<10,A< -1]).
+eq(eval_pbm_getc_3(A,B,C),1,[eval_pbm_getc_bb1_in(A,B,C)],[A<10,A> -1]).
+eq(eval_pbm_getc_3(A,B,C),1,[eval_pbm_getc_bb1_in(A,B,C)],[A>10,A< -1]).
+eq(eval_pbm_getc_3(A,B,C),1,[eval_pbm_getc_bb1_in(A,B,C)],[A>10,A> -1]).
+eq(eval_pbm_getc_3(A,B,A),1,[],[B=0,A=10]).
+eq(eval_pbm_getc_3(A,B,A),0,[],[B=1]).
+eq(eval_pbm_getc_3(A,B,A),1,[],[B=0,A= -1]).

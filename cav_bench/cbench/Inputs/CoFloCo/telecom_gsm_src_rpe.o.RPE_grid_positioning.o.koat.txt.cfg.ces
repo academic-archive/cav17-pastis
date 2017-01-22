@@ -1,0 +1,15 @@
+eq(eval_RPE_grid_positioning_start(A,B),1,[eval_RPE_grid_positioning_bb0_in(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb0_in(A,B),1,[eval_RPE_grid_positioning_bb5_in(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb0_in(A,B),1,[eval_RPE_grid_positioning_NewDefault_in(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb0_in(A,B),1,[eval_RPE_grid_positioning_bb4_in(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb0_in(A,B),1,[eval_RPE_grid_positioning_bb3_in(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb0_in(A,B),1,[eval_RPE_grid_positioning_20(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb3_in(A,B),1,[eval_RPE_grid_positioning_bb4_in(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb4_in(A,B),1,[eval_RPE_grid_positioning_bb5_in(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb5_in(A,B),1,[eval_RPE_grid_positioning_bb3_in(A,B)],[]).
+eq(eval_RPE_grid_positioning_bb5_in(A,B),1,[eval_RPE_grid_positioning_bb6_in(B,B)],[]).
+eq(eval_RPE_grid_positioning_NewDefault_in(A,B),1,[eval_RPE_grid_positioning_bb6_in(B,B)],[]).
+eq(eval_RPE_grid_positioning_bb6_in(A,B),1,[eval_RPE_grid_positioning_bb6_in(A+1,B)],[A+1<4]).
+eq(eval_RPE_grid_positioning_bb6_in(A,B),1,[eval_RPE_grid_positioning_stop(A,B)],[A+1>=4]).
+eq(eval_RPE_grid_positioning_20(A,B),1,[eval_RPE_grid_positioning_21(A,B)],[]).
+eq(eval_RPE_grid_positioning_21(A,B),1,[eval_RPE_grid_positioning_stop(A,B)],[]).

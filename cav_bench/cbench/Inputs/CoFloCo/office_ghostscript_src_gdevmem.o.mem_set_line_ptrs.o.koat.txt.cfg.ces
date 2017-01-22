@@ -1,0 +1,7 @@
+eq(eval_mem_set_line_ptrs_start,1,[eval_mem_set_line_ptrs_bb0_in],[]).
+eq(eval_mem_set_line_ptrs_bb0_in,1,[eval_mem_set_line_ptrs_4],[]).
+eq(eval_mem_set_line_ptrs_4,1,[eval_mem_set_line_ptrs_5],[]).
+eq(eval_mem_set_line_ptrs_5,1,[eval_mem_set_line_ptrs_bb1_in(A),loop_cont_eval_mem_set_line_ptrs_bb1_in],[A=0]).
+eq(eval_mem_set_line_ptrs_5,1,[eval_mem_set_line_ptrs_bb1_in(A)],[A=1]).
+eq(eval_mem_set_line_ptrs_bb1_in(A),1,[eval_mem_set_line_ptrs_bb1_in(A)],[]).
+eq(eval_mem_set_line_ptrs_bb1_in(A),1,[],[A=1]).

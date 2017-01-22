@@ -1,0 +1,17 @@
+eq(eval_dict_int_array_param_start(A,B,C),1,[eval_dict_int_array_param_bb0_in(A,B,C)],[]).
+eq(eval_dict_int_array_param_bb0_in(A,B,C),1,[eval_dict_int_array_param_bb14_in(A,B,C)],[]).
+eq(eval_dict_int_array_param_bb0_in(A,B,C),1,[eval_dict_int_array_param_0(A,B,C)],[]).
+eq(eval_dict_int_array_param_0(A,B,C),1,[eval_dict_int_array_param_1(A,B,C)],[]).
+eq(eval_dict_int_array_param_1(A,B,C),1,[eval_dict_int_array_param_bb14_in(A,B,C)],[]).
+eq(eval_dict_int_array_param_NewDefault_in(A,B,C),1,[eval_dict_int_array_param_bb14_in(A,B,C)],[]).
+eq(eval_dict_int_array_param_bb14_in(A,B,C),1,[eval_dict_int_array_param_stop(A,B,C)],[]).
+eq(eval_dict_int_array_param_1(A,B,C),1,[eval_dict_int_array_param_bb5_in(D,0,C,E,F,G,H),loop_cont_eval_dict_int_array_param_bb5_in(F,G,H)],[E=0]).
+eq(eval_dict_int_array_param_1(A,B,C),1,[eval_dict_int_array_param_bb5_in(D,0,C,E,F,G,H)],[E=1]).
+eq(loop_cont_eval_dict_int_array_param_bb5_in(A,B,C),0,[eval_dict_int_array_param_bb14_in(A,B,C)],[]).
+eq(loop_cont_eval_dict_int_array_param_bb5_in(A,B,C),0,[eval_dict_int_array_param_NewDefault_in(A,B,C)],[]).
+eq(eval_dict_int_array_param_bb5_in(A,B,C,D,E,F,G),1,[eval_dict_int_array_param_bb13_in(A,B,C,D,E,F,G)],[B<A]).
+eq(eval_dict_int_array_param_bb13_in(A,B,C,D,E,F,G),1,[eval_dict_int_array_param_bb5_in(A,B+1,C,D,E,F,G)],[]).
+eq(eval_dict_int_array_param_bb5_in(A,B,C,D,A,B,C),1,[],[D=0,B<A]).
+eq(eval_dict_int_array_param_bb5_in(A,B,C,D,A,B,C),0,[],[D=1]).
+eq(eval_dict_int_array_param_bb5_in(A,B,C,D,A,B,C),1,[],[D=0,B>=A]).
+eq(eval_dict_int_array_param_bb5_in(A+1,B,C,D,A+1,B,C),0,[],[D=1,A>=B]).

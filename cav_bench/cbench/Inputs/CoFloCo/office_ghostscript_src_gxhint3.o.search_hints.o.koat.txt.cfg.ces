@@ -1,0 +1,12 @@
+eq(eval_search_hints_start(A),1,[eval_search_hints_bb0_in(A)],[]).
+eq(eval_search_hints_bb0_in(A),1,[eval_search_hints_bb7_in(A)],[]).
+eq(eval_search_hints_bb0_in(A),1,[eval_search_hints_bb2_in(A)],[]).
+eq(eval_search_hints_bb7_in(A),1,[eval_search_hints_stop(A)],[]).
+eq(eval_search_hints_bb2_in(A),1,[eval_search_hints_bb3_in(A,B,C),loop_cont_eval_search_hints_bb3_in(C)],[B=0]).
+eq(eval_search_hints_bb2_in(A),1,[eval_search_hints_bb3_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_search_hints_bb3_in(A),0,[eval_search_hints_bb7_in(A)],[]).
+eq(eval_search_hints_bb3_in(A,B,C),1,[eval_search_hints_bb3_in(A,B,C)],[]).
+eq(eval_search_hints_bb3_in(A,B,A),1,[],[B=0,C-D=0,E=0]).
+eq(eval_search_hints_bb3_in(A,B,A),1,[],[B=0,C-D>0,E>=0,E<C-D]).
+eq(eval_search_hints_bb3_in(A,B,A),1,[],[B=0,C-D<0,E=<0,E>C-D]).
+eq(eval_search_hints_bb3_in(A,B,A),1,[],[B=0]).

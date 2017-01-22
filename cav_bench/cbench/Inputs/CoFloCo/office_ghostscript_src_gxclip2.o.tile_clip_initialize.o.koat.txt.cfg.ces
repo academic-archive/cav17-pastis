@@ -1,0 +1,28 @@
+eq(eval_tile_clip_initialize_start(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_bb0_in(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_bb0_in(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_6(A,B,H,D,E,F,G)],[I+8=1,H=300]).
+eq(eval_tile_clip_initialize_bb0_in(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_6(A,B,H,D,E,F,G)],[I+8= -1,H= -300]).
+eq(eval_tile_clip_initialize_bb0_in(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_6(A,B,H,D,E,F,G)],[I+8>1,H>=0,H<300]).
+eq(eval_tile_clip_initialize_bb0_in(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_6(A,B,H,D,E,F,G)],[I+8< -1,H=<0,H> -300]).
+eq(eval_tile_clip_initialize_6(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_7(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_7(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_11(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_11(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_12(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_12(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_13(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_13(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_14(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_14(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_15(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_15(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_bb2_in(A,B,C,H,E,F,G)],[]).
+eq(eval_tile_clip_initialize_15(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_bb2_in(A,B,C,C,E,F,G)],[]).
+eq(eval_tile_clip_initialize_bb2_in(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_19(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_19(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_20(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_30(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_31(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_31(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_bb7_in(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_stop(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_20(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_bb3_in(A,B,C,D,D,F,G,H,I,J,K,L,M,N,O),loop_cont_eval_tile_clip_initialize_bb3_in(I,J,K,L,M,N,O)],[H=0]).
+eq(eval_tile_clip_initialize_20(A,B,C,D,E,F,G),1,[eval_tile_clip_initialize_bb3_in(A,B,C,D,D,F,G,H,I,J,K,L,M,N,O)],[H=1]).
+eq(loop_cont_eval_tile_clip_initialize_bb3_in(A,B,C,D,E,F,G),0,[eval_tile_clip_initialize_30(A,B,C,D,E,F,G)],[]).
+eq(loop_cont_eval_tile_clip_initialize_bb3_in(A,B,C,D,E,F,G),0,[eval_tile_clip_initialize_bb7_in(A,B,C,D,E,F,G)],[]).
+eq(eval_tile_clip_initialize_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_tile_clip_initialize_27(P,Q,C,D,E,F,G,H,I,J,K,L,M,N,O)],[E>0]).
+eq(eval_tile_clip_initialize_27(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_tile_clip_initialize_28(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_tile_clip_initialize_28(A,B,C,D,E,F,G,H,I,J,K,L,M,N,O),1,[eval_tile_clip_initialize_bb3_in(A,B,C,D,E-1,F,G,H,I,J,K,L,M,N,O)],[]).
+eq(eval_tile_clip_initialize_28(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0]).
+eq(eval_tile_clip_initialize_bb3_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),1,[],[H=0,E=<0]).
+eq(eval_tile_clip_initialize_bb3_in(A,B,C,D,E,F,G,H,A,B,C,D,E,F,G),0,[],[H=1,E>=0+1]).

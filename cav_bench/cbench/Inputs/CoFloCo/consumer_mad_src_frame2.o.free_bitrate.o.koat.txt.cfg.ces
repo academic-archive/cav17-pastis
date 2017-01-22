@@ -1,0 +1,59 @@
+eq(eval_free_bitrate_start(A,B,C),1,[eval_free_bitrate_bb0_in(A,B,C)],[]).
+eq(eval_free_bitrate_bb0_in(A,B,C),1,[eval_free_bitrate_0(A,B,C)],[]).
+eq(eval_free_bitrate_0(A,B,C),1,[eval_free_bitrate_1(A,B,C)],[]).
+eq(eval_free_bitrate_1(A,B,C),1,[eval_free_bitrate_bb2_in(A,B,1)],[]).
+eq(eval_free_bitrate_bb12_in(A,B,C),1,[eval_free_bitrate_52(A,B,C)],[]).
+eq(eval_free_bitrate_52(A,B,C),1,[eval_free_bitrate_53(A,B,C)],[]).
+eq(eval_free_bitrate_53(A,B,C),1,[eval_free_bitrate_bb14_in(A,B,C)],[]).
+eq(eval_free_bitrate_53(A,B,C),1,[eval_free_bitrate_bb16_in(A,B,C)],[]).
+eq(eval_free_bitrate_bb14_in(A,B,C),1,[eval_free_bitrate_bb16_in(A,B,C)],[]).
+eq(eval_free_bitrate_bb16_in(A,B,C),1,[eval_free_bitrate_stop(A,B,C)],[]).
+eq(eval_free_bitrate_bb2_in(A,B,C),1,[eval_free_bitrate_bb3_in(72,B,C,D,E,F,G),loop_cont_eval_free_bitrate_bb3_in(E,F,G)],[D=0]).
+eq(eval_free_bitrate_bb2_in(A,B,C),1,[eval_free_bitrate_bb3_in(72,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_free_bitrate_bb3_in(A,B,C),0,[eval_free_bitrate_bb12_in(A,B,C)],[]).
+eq(eval_free_bitrate_bb3_in(A,B,C,D,E,F,G),1,[eval_free_bitrate_12(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_12(A,B,C,D,E,F,G),1,[eval_free_bitrate_13(A,H,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_13(A,B,C,D,E,F,G),1,[eval_free_bitrate_14(A,B,C,D,E,F,G)],[B=0]).
+eq(eval_free_bitrate_14(A,B,C,D,E,F,G),1,[eval_free_bitrate_15(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_15(A,B,C,D,E,F,G),1,[eval_free_bitrate_16(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_16(A,B,C,D,E,F,G),1,[eval_free_bitrate_17(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_17(A,B,C,D,E,F,G),1,[eval_free_bitrate_24(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_17(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb11_in(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_24(A,B,C,D,E,F,G),1,[eval_free_bitrate_25(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_bb11_in(A,B,C,D,E,F,G),1,[eval_free_bitrate_50(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C=0,K=0,K=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C=0,K=0,K>0,L>=0,L<K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C=0,K=0,K<0,L=<0,L>K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C>0,K>=0,K<H*I-H*J-4*H*C,K=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C>0,K>=0,K<H*I-H*J-4*H*C,K>0,L>=0,L<K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C>0,K>=0,K<H*I-H*J-4*H*C,K<0,L=<0,L>K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C<0,K=<0,K>H*I-H*J-4*H*C,K=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C<0,K=<0,K>H*I-H*J-4*H*C,K>0,L>=0,L<K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-4*H*C<0,K=<0,K>H*I-H*J-4*H*C,K<0,L=<0,L>K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-H*C=0,K=0,K=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-H*C=0,K=0,K>0,L>=0,L<K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[H*I-H*J-H*C=0,K=0,K<0,L=<0,L>K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A=1,H=I*J-I*K-I*C,H=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A=1,H=I*J-I*K-I*C,H>0,L>=0,L<H]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A=1,H=I*J-I*K-I*C,H<0,L=<0,L>H]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A= -1,H= -I*J+I*K+I*C,H=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A= -1,H= -I*J+I*K+I*C,H>0,L>=0,L<H]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A= -1,H= -I*J+I*K+I*C,H<0,L=<0,L>H]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A>1,H*I-H*J-H*C>0,K>=0,K<H*I-H*J-H*C,K=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A>1,H*I-H*J-H*C>0,K>=0,K<H*I-H*J-H*C,K>0,L>=0,L<K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A>1,H*I-H*J-H*C>0,K>=0,K<H*I-H*J-H*C,K<0,L=<0,L>K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A>1,H*I-H*J-H*C<0,K=<0,K>H*I-H*J-H*C,K=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A>1,H*I-H*J-H*C<0,K=<0,K>H*I-H*J-H*C,K>0,L>=0,L<K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A>1,H*I-H*J-H*C<0,K=<0,K>H*I-H*J-H*C,K<0,L=<0,L>K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A< -1,H*I-H*J-H*C>0,K=<0,K> -H*I+H*J+H*C,K=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A< -1,H*I-H*J-H*C>0,K=<0,K> -H*I+H*J+H*C,K>0,L>=0,L<K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A< -1,H*I-H*J-H*C>0,K=<0,K> -H*I+H*J+H*C,K<0,L=<0,L>K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A< -1,H*I-H*J-H*C<0,K>=0,K< -H*I+H*J+H*C,K=0,L=0]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A< -1,H*I-H*J-H*C<0,K>=0,K< -H*I+H*J+H*C,K>0,L>=0,L<K]).
+eq(eval_free_bitrate_25(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb10_in(A,B,C,D,E,F,G)],[A< -1,H*I-H*J-H*C<0,K>=0,K< -H*I+H*J+H*C,K<0,L=<0,L>K]).
+eq(eval_free_bitrate_50(A,B,C,D,E,F,G),1,[eval_free_bitrate_51(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_bb10_in(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb11_in(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_51(A,B,C,D,E,F,G),1,[eval_free_bitrate_bb3_in(A,B,C,D,E,F,G)],[]).
+eq(eval_free_bitrate_bb10_in(A,B,C,D,A,B,C),1,[],[D=0]).
+eq(eval_free_bitrate_13(A,B,C,D,A,B,C),1,[],[D=0,B<0]).
+eq(eval_free_bitrate_13(A,B,C,D,A,B,C),1,[],[D=0,B>0]).

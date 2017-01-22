@@ -1,0 +1,27 @@
+eq(eval_gdev_prn_copy_scan_lines_start(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_gdev_prn_copy_scan_lines_bb0_in(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_0(A,B,C,D,E,F)],[]).
+eq(eval_gdev_prn_copy_scan_lines_0(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_1(G,B,C,D,E,F)],[]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G,C,D,E,F)],[E=0,G=0]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G,C,D,E,F)],[A=1,G=E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G,C,D,E,F)],[A= -1,G= -E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G,C,D,E,F)],[A>1,E>0,G>=0,G<E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G,C,D,E,F)],[A>1,E<0,G=<0,G>E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G,C,D,E,F)],[A< -1,E>0,G=<0,G> -E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G,C,D,E,F)],[A< -1,E<0,G>=0,G< -E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G-F,C,D,E,F)],[E=0,H=0]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G-F,C,D,E,F)],[A=1,H=E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G-F,C,D,E,F)],[A= -1,H= -E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G-F,C,D,E,F)],[A>1,E>0,H>=0,H<E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G-F,C,D,E,F)],[A>1,E<0,H=<0,H>E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G-F,C,D,E,F)],[A< -1,E>0,H=<0,H> -E]).
+eq(eval_gdev_prn_copy_scan_lines_1(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb2_in(A,G-F,C,D,E,F)],[A< -1,E<0,H>=0,H< -E]).
+eq(eval_gdev_prn_copy_scan_lines_bb6_in(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_stop(A,B,C,D,E,F)],[]).
+eq(eval_gdev_prn_copy_scan_lines_bb2_in(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb3_in(A,B,C,0,E,F,G,H,I,J,K,L,M),loop_cont_eval_gdev_prn_copy_scan_lines_bb3_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_gdev_prn_copy_scan_lines_bb2_in(A,B,C,D,E,F),1,[eval_gdev_prn_copy_scan_lines_bb3_in(A,B,C,0,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_gdev_prn_copy_scan_lines_bb3_in(A,B,C,D,E,F),0,[eval_gdev_prn_copy_scan_lines_bb6_in(A,B,C,D,E,F)],[]).
+eq(eval_gdev_prn_copy_scan_lines_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_gdev_prn_copy_scan_lines_11(A,B,F+D,D,E,F,G,H,I,J,K,L,M)],[D<B]).
+eq(eval_gdev_prn_copy_scan_lines_11(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_gdev_prn_copy_scan_lines_12(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_gdev_prn_copy_scan_lines_12(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_gdev_prn_copy_scan_lines_bb3_in(A,B,C,D+1,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_gdev_prn_copy_scan_lines_12(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0]).
+eq(eval_gdev_prn_copy_scan_lines_bb3_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,D>=B]).
+eq(eval_gdev_prn_copy_scan_lines_bb3_in(A,B+1,C,D,E,F,G,A,B+1,C,D,E,F),0,[],[G=1,B>=D]).

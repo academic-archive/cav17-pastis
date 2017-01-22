@@ -1,0 +1,28 @@
+eq(eval_gs_copyscanlines_start(A,B,C,D,E),1,[eval_gs_copyscanlines_bb0_in(A,B,C,D,E)],[]).
+eq(eval_gs_copyscanlines_bb0_in(A,B,C,D,E),1,[eval_gs_copyscanlines_0(A,B,C,D,E)],[]).
+eq(eval_gs_copyscanlines_0(A,B,C,D,E),1,[eval_gs_copyscanlines_1(F,B,C,D,E)],[]).
+eq(eval_gs_copyscanlines_bb5_in(A,B,C,D,E),1,[eval_gs_copyscanlines_bb7_in(A,B,C,D,E)],[]).
+eq(eval_gs_copyscanlines_bb7_in(A,B,C,D,E),1,[eval_gs_copyscanlines_bb9_in(A,B,C,D,E)],[]).
+eq(eval_gs_copyscanlines_bb9_in(A,B,C,D,E),1,[eval_gs_copyscanlines_stop(A,B,C,D,E)],[]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L),loop_cont_eval_gs_copyscanlines_bb1_in(H,I,J,K,L)],[G=0,D=0,F=0]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L)],[G=1,D=0,F=0]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L),loop_cont_eval_gs_copyscanlines_bb1_in(H,I,J,K,L)],[G=0,A=1,F=D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L)],[G=1,A=1,F=D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L),loop_cont_eval_gs_copyscanlines_bb1_in(H,I,J,K,L)],[G=0,A= -1,F= -D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L)],[G=1,A= -1,F= -D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L),loop_cont_eval_gs_copyscanlines_bb1_in(H,I,J,K,L)],[G=0,A>1,D>0,F>=0,F<D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L)],[G=1,A>1,D>0,F>=0,F<D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L),loop_cont_eval_gs_copyscanlines_bb1_in(H,I,J,K,L)],[G=0,A>1,D<0,F=<0,F>D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L)],[G=1,A>1,D<0,F=<0,F>D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L),loop_cont_eval_gs_copyscanlines_bb1_in(H,I,J,K,L)],[G=0,A< -1,D>0,F=<0,F> -D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L)],[G=1,A< -1,D>0,F=<0,F> -D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L),loop_cont_eval_gs_copyscanlines_bb1_in(H,I,J,K,L)],[G=0,A< -1,D<0,F>=0,F< -D]).
+eq(eval_gs_copyscanlines_1(A,B,C,D,E),1,[eval_gs_copyscanlines_bb1_in(A,F,0,D,E,G,H,I,J,K,L)],[G=1,A< -1,D<0,F>=0,F< -D]).
+eq(loop_cont_eval_gs_copyscanlines_bb1_in(A,B,C,D,E),0,[eval_gs_copyscanlines_bb5_in(A,B,C,D,E)],[]).
+eq(loop_cont_eval_gs_copyscanlines_bb1_in(A,B,C,D,E),0,[eval_gs_copyscanlines_bb9_in(A,B,C,D,E)],[]).
+eq(eval_gs_copyscanlines_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gs_copyscanlines_5(A,B,C,D,E,F,G,H,I,J,K)],[C<B]).
+eq(eval_gs_copyscanlines_5(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gs_copyscanlines_6(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_gs_copyscanlines_6(A,B,C,D,E,F,G,H,I,J,K),1,[eval_gs_copyscanlines_bb1_in(A,B,C+1,D,E,F,G,H,I,J,K)],[]).
+eq(eval_gs_copyscanlines_6(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0]).
+eq(eval_gs_copyscanlines_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,C>=B]).
+eq(eval_gs_copyscanlines_bb1_in(A,B+1,C,D,E,F,A,B+1,C,D,E),0,[],[F=1,B>=C]).

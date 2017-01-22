@@ -1,0 +1,17 @@
+eq(eval_TIFFSetDirectory_start(A,B),1,[eval_TIFFSetDirectory_bb0_in(A,B)],[]).
+eq(eval_TIFFSetDirectory__critedge_in(A,B),1,[eval_TIFFSetDirectory_19(A,B)],[]).
+eq(eval_TIFFSetDirectory_19(A,B),1,[eval_TIFFSetDirectory_20(A,B)],[]).
+eq(eval_TIFFSetDirectory_20(A,B),1,[eval_TIFFSetDirectory_bb5_in(A,B)],[]).
+eq(eval_TIFFSetDirectory_bb5_in(A,B),1,[eval_TIFFSetDirectory_stop(A,B)],[]).
+eq(eval_TIFFSetDirectory_bb0_in(A,B),1,[eval_TIFFSetDirectory_bb1_in(A,A,C,D,E),loop_cont_eval_TIFFSetDirectory_bb1_in(D,E)],[C=0]).
+eq(eval_TIFFSetDirectory_bb0_in(A,B),1,[eval_TIFFSetDirectory_bb1_in(A,A,C,D,E)],[C=1]).
+eq(loop_cont_eval_TIFFSetDirectory_bb1_in(A,B),0,[eval_TIFFSetDirectory_bb5_in(A,B)],[]).
+eq(loop_cont_eval_TIFFSetDirectory_bb1_in(A,B),0,[eval_TIFFSetDirectory__critedge_in(A,B)],[]).
+eq(eval_TIFFSetDirectory_bb1_in(A,B,C,D,E),1,[eval_TIFFSetDirectory_7(A,B,C,D,E)],[B>0]).
+eq(eval_TIFFSetDirectory_7(A,B,C,D,E),1,[eval_TIFFSetDirectory_8(A,B,C,D,E)],[]).
+eq(eval_TIFFSetDirectory_8(A,B,C,D,E),1,[eval_TIFFSetDirectory_bb1_in(A,B-1,C,D,E)],[]).
+eq(eval_TIFFSetDirectory_8(A,B,C,A,B),1,[],[C=0]).
+eq(eval_TIFFSetDirectory_bb1_in(A,B,C,A,B),1,[],[C=0,B>0]).
+eq(eval_TIFFSetDirectory_bb1_in(A,B,C,A,B),0,[],[C=1]).
+eq(eval_TIFFSetDirectory_bb1_in(A,B,C,A,B),1,[],[C=0,B=<0]).
+eq(eval_TIFFSetDirectory_bb1_in(A,B,C,A,B),0,[],[C=1,B>=0+1]).

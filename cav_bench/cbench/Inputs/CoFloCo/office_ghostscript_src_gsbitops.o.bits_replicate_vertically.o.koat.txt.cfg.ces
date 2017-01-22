@@ -1,0 +1,7 @@
+eq(eval_bits_replicate_vertically_start(A,B,C,D,E),1,[eval_bits_replicate_vertically_bb0_in(A,B,C,D,E)],[]).
+eq(eval_bits_replicate_vertically_bb0_in(A,B,C,D,E),1,[eval_bits_replicate_vertically_bb1_in(D*C,E,C,D,E,F,G,H,I,J,K),loop_cont_eval_bits_replicate_vertically_bb1_in(G,H,I,J,K)],[F=0]).
+eq(eval_bits_replicate_vertically_bb0_in(A,B,C,D,E),1,[eval_bits_replicate_vertically_bb1_in(D*C,E,C,D,E,F,G,H,I,J,K)],[F=1]).
+eq(eval_bits_replicate_vertically_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_bits_replicate_vertically_5(A,B,C,D,E,F,G,H,I,J,K)],[B>C]).
+eq(eval_bits_replicate_vertically_5(A,B,C,D,E,F,G,H,I,J,K),1,[eval_bits_replicate_vertically_6(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_bits_replicate_vertically_6(A,B,C,D,E,F,G,H,I,J,K),1,[eval_bits_replicate_vertically_bb1_in(A,B-C,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_bits_replicate_vertically_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=1,B=<C]).

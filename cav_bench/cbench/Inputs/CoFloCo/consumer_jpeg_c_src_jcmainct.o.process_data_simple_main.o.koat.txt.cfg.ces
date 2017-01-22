@@ -1,0 +1,17 @@
+eq(eval_process_data_simple_main_start(A),1,[eval_process_data_simple_main_bb0_in(A)],[]).
+eq(eval_process_data_simple_main_bb11_in(A),1,[eval_process_data_simple_main_stop(A)],[]).
+eq(eval_process_data_simple_main_bb0_in(A),1,[eval_process_data_simple_main_bb1_in(A,B,C),loop_cont_eval_process_data_simple_main_bb1_in(C)],[B=0]).
+eq(eval_process_data_simple_main_bb0_in(A),1,[eval_process_data_simple_main_bb1_in(A,B,C)],[B=1]).
+eq(loop_cont_eval_process_data_simple_main_bb1_in(A),0,[eval_process_data_simple_main_bb11_in(A)],[]).
+eq(eval_process_data_simple_main_bb1_in(A,B,C),1,[eval_process_data_simple_main_5(A,B,C)],[D<E]).
+eq(eval_process_data_simple_main_bb1_in(A,B,C),1,[eval_process_data_simple_main_bb4_in(A,B,C)],[D<E]).
+eq(eval_process_data_simple_main_5(A,B,C),1,[eval_process_data_simple_main_6(A,B,C)],[]).
+eq(eval_process_data_simple_main_bb4_in(A,B,C),1,[eval_process_data_simple_main_9(A,B,C)],[]).
+eq(eval_process_data_simple_main_6(A,B,C),1,[eval_process_data_simple_main_bb4_in(A,B,C)],[]).
+eq(eval_process_data_simple_main_9(A,B,C),1,[eval_process_data_simple_main_10(A,B,C)],[]).
+eq(eval_process_data_simple_main_10(A,B,C),1,[eval_process_data_simple_main_bb8_in(A,B,C)],[]).
+eq(eval_process_data_simple_main_bb8_in(A,B,C),1,[eval_process_data_simple_main_bb1_in(A,B,C)],[]).
+eq(eval_process_data_simple_main_10(A,B,A),1,[],[B=0]).
+eq(eval_process_data_simple_main_bb4_in(A,B,A),1,[],[B=0]).
+eq(eval_process_data_simple_main_bb1_in(A,B,A),1,[],[B=0,C>=D]).
+eq(eval_process_data_simple_main_bb1_in(A,B,A),0,[],[B=1,C>=D]).

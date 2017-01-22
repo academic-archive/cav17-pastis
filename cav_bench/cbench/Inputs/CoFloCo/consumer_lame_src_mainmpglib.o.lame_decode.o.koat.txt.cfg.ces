@@ -1,0 +1,39 @@
+eq(eval_lame_decode_start(A,B,C,D),1,[eval_lame_decode_bb0_in(A,B,C,D)],[]).
+eq(eval_lame_decode_bb0_in(A,B,C,D),1,[eval_lame_decode_0(A,B,C,D)],[]).
+eq(eval_lame_decode_0(A,B,C,D),1,[eval_lame_decode_1(A,B,C,D)],[]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_7(A,B,C,D)],[E=0,F=0]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_7(A,B,C,D)],[2*E=1,F=G]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_7(A,B,C,D)],[2*E= -1,F= -G]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_7(A,B,C,D)],[2*E>1,F>0,G>=0,G<F]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_7(A,B,C,D)],[2*E>1,F<0,G=<0,G>F]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_7(A,B,C,D)],[2*E< -1,F>0,G=<0,G> -F]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_7(A,B,C,D)],[2*E< -1,F<0,G>=0,G< -F]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb10_in(A,B,C,D)],[]).
+eq(eval_lame_decode_7(A,B,C,D),1,[eval_lame_decode_8(A,B,C,D)],[]).
+eq(eval_lame_decode_8(A,B,C,D),1,[eval_lame_decode_9(A,B,C,D)],[]).
+eq(eval_lame_decode_9(A,B,C,D),1,[eval_lame_decode_stop(A,B,C,D)],[]).
+eq(eval_lame_decode_bb10_in(A,B,C,D),1,[eval_lame_decode_stop(A,B,C,D)],[]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J),loop_cont_eval_lame_decode_bb3_in(G,H,I,J)],[F=0,K=0,E=0]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J)],[F=1,K=0,E=0]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J),loop_cont_eval_lame_decode_bb3_in(G,H,I,J)],[F=0,2*K=1,E=L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J)],[F=1,2*K=1,E=L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J),loop_cont_eval_lame_decode_bb3_in(G,H,I,J)],[F=0,2*K= -1,E= -L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J)],[F=1,2*K= -1,E= -L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J),loop_cont_eval_lame_decode_bb3_in(G,H,I,J)],[F=0,2*K>1,L>0,E>=0,E<L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J)],[F=1,2*K>1,L>0,E>=0,E<L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J),loop_cont_eval_lame_decode_bb3_in(G,H,I,J)],[F=0,2*K>1,L<0,E=<0,E>L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J)],[F=1,2*K>1,L<0,E=<0,E>L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J),loop_cont_eval_lame_decode_bb3_in(G,H,I,J)],[F=0,2*K< -1,L>0,E=<0,E> -L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J)],[F=1,2*K< -1,L>0,E=<0,E> -L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J),loop_cont_eval_lame_decode_bb3_in(G,H,I,J)],[F=0,2*K< -1,L<0,E>=0,E< -L]).
+eq(eval_lame_decode_1(A,B,C,D),1,[eval_lame_decode_bb3_in(E,B,0,D,F,G,H,I,J)],[F=1,2*K< -1,L<0,E>=0,E< -L]).
+eq(loop_cont_eval_lame_decode_bb3_in(A,B,C,D),0,[eval_lame_decode_bb10_in(A,B,C,D)],[]).
+eq(eval_lame_decode_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_lame_decode_bb4_in(A,0,C,D,J,K,L,M,N),loop_cont_eval_lame_decode_bb4_in(K,L,M,N,E,F,G,H,I)],[J=0,C<O]).
+eq(eval_lame_decode_bb3_in(A,B,C,D,E,F,G,H,I),1,[eval_lame_decode_bb4_in(A,0,C,D,J,K,L,M,N)],[E=1,J=1,C<O]).
+eq(eval_lame_decode_bb4_in(A,B,C,D,E,F,G,H,I),1,[eval_lame_decode_bb8_in(A,B,C,D,E,F,G,H,I)],[B<A]).
+eq(loop_cont_eval_lame_decode_bb4_in(A,B,C,D,E,F,G,H,I),0,[eval_lame_decode_bb3_in(A,B,C,D,E,F,G,H,I)],[]).
+eq(eval_lame_decode_bb8_in(A,B,C,D,E,F,G,H,I),1,[eval_lame_decode_bb4_in(A,B+1,C,D,E,F,G,H,I)],[]).
+eq(eval_lame_decode_bb3_in(A,B,C,D,E,A,B,C,D),1,[],[E=0,C>=F]).
+eq(eval_lame_decode_bb3_in(A,B,C,D,E,A,B,C,D),0,[],[E=1,F>=C]).
+eq(eval_lame_decode_bb4_in(A,B,C,D,E,A,B,C+1,D),1,[],[E=0,B>=A]).
+eq(eval_lame_decode_bb4_in(A+1,B,C,D,E,A+1,B,C,D),0,[],[E=1,A>=B]).

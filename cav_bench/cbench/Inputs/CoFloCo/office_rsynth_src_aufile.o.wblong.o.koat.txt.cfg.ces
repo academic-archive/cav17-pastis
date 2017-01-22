@@ -1,0 +1,7 @@
+eq(eval_wblong_start(A,B,C),1,[eval_wblong_bb0_in(A,B,C)],[]).
+eq(eval_wblong_bb0_in(A,B,C),1,[eval_wblong_bb1_in(A,24,C,D,E,F,G),loop_cont_eval_wblong_bb1_in(E,F,G)],[D=0]).
+eq(eval_wblong_bb0_in(A,B,C),1,[eval_wblong_bb1_in(A,24,C,D,E,F,G)],[D=1]).
+eq(eval_wblong_bb1_in(A,B,C,D,E,F,G),1,[eval_wblong_5(A,B,C,D,E,F,G)],[B>=0]).
+eq(eval_wblong_5(A,B,C,D,E,F,G),1,[eval_wblong_6(A,B,C,D,E,F,G)],[]).
+eq(eval_wblong_6(A,B,C,D,E,F,G),1,[eval_wblong_bb1_in(A,B-8,C,D,E,F,G)],[]).
+eq(eval_wblong_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,B<0]).

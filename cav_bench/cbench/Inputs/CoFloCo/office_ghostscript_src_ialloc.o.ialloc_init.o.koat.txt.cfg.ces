@@ -1,0 +1,17 @@
+eq(eval_ialloc_init_start(A,B,C),1,[eval_ialloc_init_bb0_in(A,B,C)],[]).
+eq(eval_ialloc_init_bb0_in(A,B,C),1,[eval_ialloc_init_0(A,B,C)],[]).
+eq(eval_ialloc_init_0(A,B,C),1,[eval_ialloc_init_1(A,B,C)],[]).
+eq(eval_ialloc_init_1(A,B,C),1,[eval_ialloc_init_2(A,B,C)],[]).
+eq(eval_ialloc_init_1(A,B,C),1,[eval_ialloc_init_bb2_in(A,B,C)],[]).
+eq(eval_ialloc_init_2(A,B,C),1,[eval_ialloc_init_3(A,B,C)],[]).
+eq(eval_ialloc_init_3(A,B,C),1,[eval_ialloc_init_bb2_in(A,B,C)],[]).
+eq(eval_ialloc_init_bb2_in(A,B,C),1,[eval_ialloc_init_4(A,B,C)],[]).
+eq(eval_ialloc_init_4(A,B,C),1,[eval_ialloc_init_5(A,B,C)],[]).
+eq(eval_ialloc_init_21(A,B,C),1,[eval_ialloc_init_22(A,B,C)],[]).
+eq(eval_ialloc_init_22(A,B,C),1,[eval_ialloc_init_stop(A,B,C)],[]).
+eq(eval_ialloc_init_5(A,B,C),1,[eval_ialloc_init_bb3_in(A,0,C,D,E,F,G),loop_cont_eval_ialloc_init_bb3_in(E,F,G)],[D=0]).
+eq(eval_ialloc_init_5(A,B,C),1,[eval_ialloc_init_bb3_in(A,0,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_ialloc_init_bb3_in(A,B,C),0,[eval_ialloc_init_21(A,B,C)],[]).
+eq(eval_ialloc_init_bb3_in(A,B,C,D,E,F,G),1,[eval_ialloc_init_bb3_in(A,B+1,C,D,E,F,G)],[B<4]).
+eq(eval_ialloc_init_bb3_in(A,B,C,D,A,B,C),1,[],[D=0,B>=4]).
+eq(eval_ialloc_init_bb3_in(A,B,C,D,A,B,C),0,[],[D=1,4>=B+1]).

@@ -1,0 +1,9 @@
+eq(eval_byte_reverse_start(A,B,C),1,[eval_byte_reverse_bb0_in(A,B,C)],[]).
+eq(eval_byte_reverse_bb0_in(A,B,C),1,[eval_byte_reverse_bb1_in(D,B,0,E,F,G,H),loop_cont_eval_byte_reverse_bb1_in(F,G,H)],[E=0,B=0,D=0]).
+eq(eval_byte_reverse_bb0_in(A,B,C),1,[eval_byte_reverse_bb1_in(D,B,0,E,F,G,H)],[E=1,B=0,D=0]).
+eq(eval_byte_reverse_bb0_in(A,B,C),1,[eval_byte_reverse_bb1_in(D,B,0,E,F,G,H),loop_cont_eval_byte_reverse_bb1_in(F,G,H)],[E=0,B>0,D>=0,D<B]).
+eq(eval_byte_reverse_bb0_in(A,B,C),1,[eval_byte_reverse_bb1_in(D,B,0,E,F,G,H)],[E=1,B>0,D>=0,D<B]).
+eq(eval_byte_reverse_bb0_in(A,B,C),1,[eval_byte_reverse_bb1_in(D,B,0,E,F,G,H),loop_cont_eval_byte_reverse_bb1_in(F,G,H)],[E=0,B<0,D=<0,D>B]).
+eq(eval_byte_reverse_bb0_in(A,B,C),1,[eval_byte_reverse_bb1_in(D,B,0,E,F,G,H)],[E=1,B<0,D=<0,D>B]).
+eq(eval_byte_reverse_bb1_in(A,B,C,D,E,F,G),1,[eval_byte_reverse_bb1_in(A,B,C+1,D,E,F,G)],[C<A]).
+eq(eval_byte_reverse_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,C>=A]).

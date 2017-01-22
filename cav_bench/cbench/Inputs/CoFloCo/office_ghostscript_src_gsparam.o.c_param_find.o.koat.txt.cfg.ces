@@ -1,0 +1,10 @@
+eq(eval_c_param_find_start,1,[eval_c_param_find_bb0_in],[]).
+eq(eval_c_param_find_bb4_in,1,[eval_c_param_find_stop],[]).
+eq(eval_c_param_find_bb0_in,1,[eval_c_param_find_bb1_in(A),loop_cont_eval_c_param_find_bb1_in],[A=0]).
+eq(eval_c_param_find_bb0_in,1,[eval_c_param_find_bb1_in(A)],[A=1]).
+eq(loop_cont_eval_c_param_find_bb1_in,0,[eval_c_param_find_bb4_in],[]).
+eq(eval_c_param_find_bb1_in(A),1,[eval_c_param_find_0(A)],[]).
+eq(eval_c_param_find_0(A),1,[eval_c_param_find_1(A)],[]).
+eq(eval_c_param_find_1(A),1,[eval_c_param_find_bb1_in(A)],[]).
+eq(eval_c_param_find_1(A),1,[],[A=0]).
+eq(eval_c_param_find_bb1_in(A),1,[],[A=0]).

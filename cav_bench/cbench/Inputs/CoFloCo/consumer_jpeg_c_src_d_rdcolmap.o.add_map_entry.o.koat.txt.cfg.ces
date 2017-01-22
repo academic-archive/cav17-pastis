@@ -1,0 +1,16 @@
+eq(eval_add_map_entry_start(A,B,C,D,E),1,[eval_add_map_entry_bb0_in(A,B,C,D,E)],[]).
+eq(eval_add_map_entry_18(A,B,C,D,E),1,[eval_add_map_entry_19(A,B,C,D,E)],[]).
+eq(eval_add_map_entry_19(A,B,C,D,E),1,[eval_add_map_entry_bb8_in(A,B,C,D,E)],[]).
+eq(eval_add_map_entry_bb8_in(A,B,C,D,E),1,[eval_add_map_entry_bb9_in(A,B,C,D,E)],[]).
+eq(eval_add_map_entry_bb9_in(A,B,C,D,E),1,[eval_add_map_entry_stop(A,B,C,D,E)],[]).
+eq(eval_add_map_entry_bb0_in(A,B,C,D,E),1,[eval_add_map_entry_bb1_in(F,B,C,D,0,G,H,I,J,K,L),loop_cont_eval_add_map_entry_bb1_in(H,I,J,K,L)],[G=0]).
+eq(eval_add_map_entry_bb0_in(A,B,C,D,E),1,[eval_add_map_entry_bb1_in(F,B,C,D,0,G,H,I,J,K,L)],[G=1]).
+eq(loop_cont_eval_add_map_entry_bb1_in(A,B,C,D,E),0,[eval_add_map_entry_bb9_in(A,B,C,D,E)],[]).
+eq(loop_cont_eval_add_map_entry_bb1_in(A,B,C,D,E),0,[eval_add_map_entry_18(A,B,C,D,E)],[]).
+eq(loop_cont_eval_add_map_entry_bb1_in(A,B,C,D,E),0,[eval_add_map_entry_bb8_in(A,B,C,D,E)],[]).
+eq(eval_add_map_entry_bb1_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_add_map_entry_bb5_in(A,B,C,D,E,F,G,H,I,J,K)],[E<A]).
+eq(eval_add_map_entry_bb5_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_add_map_entry_bb1_in(A,B,C,D,E+1,F,G,H,I,J,K)],[]).
+eq(eval_add_map_entry_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,E<A]).
+eq(eval_add_map_entry_bb1_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1]).
+eq(eval_add_map_entry_bb1_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,E>=A]).
+eq(eval_add_map_entry_bb1_in(A+1,B,C,D,E,F,A+1,B,C,D,E),0,[],[F=1,A>=E]).

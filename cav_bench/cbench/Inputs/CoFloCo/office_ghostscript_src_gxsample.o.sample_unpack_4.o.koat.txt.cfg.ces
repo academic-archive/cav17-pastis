@@ -1,0 +1,6 @@
+eq(eval_sample_unpack_4_start(A,B,C,D),1,[eval_sample_unpack_4_bb0_in(A,B,C,D)],[]).
+eq(eval_sample_unpack_4_bb0_in(A,B,C,D),1,[eval_sample_unpack_4_bb1_in(A,B,B-E,D,F,G,H,I,J),loop_cont_eval_sample_unpack_4_bb1_in(G,H,I,J)],[F=0]).
+eq(eval_sample_unpack_4_bb0_in(A,B,C,D),1,[eval_sample_unpack_4_bb1_in(A,B,B-E,D,F,G,H,I,J)],[F=1]).
+eq(eval_sample_unpack_4_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_sample_unpack_4_bb1_in(A,B,C-1,D,E,F,G,H,I)],[C<0]).
+eq(eval_sample_unpack_4_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_sample_unpack_4_bb1_in(A,B,C-1,D,E,F,G,H,I)],[C>0]).
+eq(eval_sample_unpack_4_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,C=0]).

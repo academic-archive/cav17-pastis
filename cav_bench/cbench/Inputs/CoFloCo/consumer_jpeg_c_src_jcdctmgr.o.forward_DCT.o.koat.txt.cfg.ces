@@ -1,0 +1,34 @@
+eq(eval_forward_DCT_start(A,B,C,D,E,F),1,[eval_forward_DCT_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_forward_DCT_bb0_in(A,B,C,D,E,F),1,[eval_forward_DCT_bb1_in(0,B,C,D,E,F,G,H,I,J,K,L,M),loop_cont_eval_forward_DCT_bb1_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_forward_DCT_bb0_in(A,B,C,D,E,F),1,[eval_forward_DCT_bb1_in(0,B,C,D,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_forward_DCT_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb3_in(A,0,C,D,E,F,N,O,P,Q,R,S,T),loop_cont_eval_forward_DCT_bb3_in(O,P,Q,R,S,T,G,H,I,J,K,L,M)],[N=0,A<D]).
+eq(eval_forward_DCT_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb3_in(A,0,C,D,E,F,N,O,P,Q,R,S,T)],[G=1,N=1,A<D]).
+eq(eval_forward_DCT_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb3_in(A,B+1,C,D,E,F,G,H,I,J,K,L,M)],[B<8]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,-N+O=0,P=0]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N=1,O= -P+Q]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N= -1,O=P-Q]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N>1,-O+P>0,Q>=0,Q< -O+P]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N>1,-O+P<0,Q=<0,Q> -O+P]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N< -1,-O+P>0,Q=<0,Q>O-P]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N< -1,-O+P<0,Q>=0,Q<O-P]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N+O=0,P=0]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N=1,O=P+Q]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N= -1,O= -P-Q]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N>1,O+P>0,Q>=0,Q<O+P]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N>1,O+P<0,Q=<0,Q>O+P]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N< -1,O+P>0,Q=<0,Q> -O-P]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64,N< -1,O+P<0,Q>=0,Q< -O-P]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[C<64]).
+eq(loop_cont_eval_forward_DCT_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),0,[eval_forward_DCT_41(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_forward_DCT_bb10_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_forward_DCT_bb13_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb6_in(A,B,C+1,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_forward_DCT_41(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_42(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_forward_DCT_42(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb6_in(A,B,0,D,E,F,N,O,P,Q,R,S,T),loop_cont_eval_forward_DCT_bb6_in(O,P,Q,R,S,T,G,H,I,J,K,L,M)],[N=0]).
+eq(eval_forward_DCT_42(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_forward_DCT_bb6_in(A,B,0,D,E,F,N,O,P,Q,R,S,T)],[G=1,N=1]).
+eq(loop_cont_eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,H,I,J,K,L,M),0,[eval_forward_DCT_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_forward_DCT_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1,A>=D]).
+eq(eval_forward_DCT_bb3_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,B>=8]).
+eq(eval_forward_DCT_bb3_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,8>=B+1]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,A+1,B,C,D,E,F),1,[],[G=0,C>=64]).
+eq(eval_forward_DCT_bb6_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,64>=C+1]).

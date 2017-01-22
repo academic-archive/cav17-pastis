@@ -1,0 +1,13 @@
+eq(eval_mp_addc_start(A,B,C,D),1,[eval_mp_addc_bb0_in(A,B,C,D)],[]).
+eq(eval_mp_addc_bb0_in(A,B,C,D),1,[eval_mp_addc_bb1_in(A,B,C,A,E,F,G,H,I),loop_cont_eval_mp_addc_bb1_in(F,G,H,I)],[E=0]).
+eq(eval_mp_addc_bb0_in(A,B,C,D),1,[eval_mp_addc_bb1_in(A,B,C,A,E,F,G,H,I)],[E=1]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb5_in(A,D-1,C,D,E,F,G,H,I)],[D<0,J< -K-1]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb5_in(A,D-1,C,D,E,F,G,H,I)],[D>0,J< -K-1]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb5_in(A,D-1,C,D,E,F,G,H,I)],[D<0,J>= -K-1]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb5_in(A,D-1,C,D,E,F,G,H,I)],[D>0,J>= -K-1]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb5_in(A,D-1,C,D,E,F,G,H,I)],[D<0,J+K>=L]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb5_in(A,D-1,C,D,E,F,G,H,I)],[D>0,J+K>=L]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb5_in(A,D-1,C,D,E,F,G,H,I)],[D<0,J+K<L]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb5_in(A,D-1,C,D,E,F,G,H,I)],[D>0,J+K<L]).
+eq(eval_mp_addc_bb5_in(A,B,C,D,E,F,G,H,I),1,[eval_mp_addc_bb1_in(A,B,C,B,E,F,G,H,I)],[]).
+eq(eval_mp_addc_bb1_in(A,B,C,D,E,A,B,C,D),1,[],[E=1,D=0]).

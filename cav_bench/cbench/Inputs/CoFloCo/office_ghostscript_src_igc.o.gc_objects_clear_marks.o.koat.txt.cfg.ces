@@ -1,0 +1,10 @@
+eq(eval_gc_objects_clear_marks_start,1,[eval_gc_objects_clear_marks_bb0_in],[]).
+eq(eval_gc_objects_clear_marks_bb0_in,1,[eval_gc_objects_clear_marks_bb1_in(A),loop_cont_eval_gc_objects_clear_marks_bb1_in],[A=0]).
+eq(eval_gc_objects_clear_marks_bb0_in,1,[eval_gc_objects_clear_marks_bb1_in(A)],[A=1]).
+eq(eval_gc_objects_clear_marks_bb1_in(A),1,[eval_gc_objects_clear_marks_bb5_in(A)],[]).
+eq(eval_gc_objects_clear_marks_bb5_in(A),1,[eval_gc_objects_clear_marks_15(A)],[]).
+eq(eval_gc_objects_clear_marks_bb5_in(A),1,[eval_gc_objects_clear_marks_bb7_in(A)],[]).
+eq(eval_gc_objects_clear_marks_15(A),1,[eval_gc_objects_clear_marks_16(A)],[]).
+eq(eval_gc_objects_clear_marks_bb7_in(A),1,[eval_gc_objects_clear_marks_bb1_in(A)],[]).
+eq(eval_gc_objects_clear_marks_16(A),1,[eval_gc_objects_clear_marks_bb7_in(A)],[]).
+eq(eval_gc_objects_clear_marks_bb1_in(A),1,[],[A=1]).

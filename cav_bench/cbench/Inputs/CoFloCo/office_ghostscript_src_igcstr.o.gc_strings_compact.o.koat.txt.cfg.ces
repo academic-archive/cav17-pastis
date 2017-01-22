@@ -1,0 +1,17 @@
+eq(eval_gc_strings_compact_start,1,[eval_gc_strings_compact_bb0_in],[]).
+eq(eval_gc_strings_compact_bb0_in,1,[eval_gc_strings_compact_bb23_in],[]).
+eq(eval_gc_strings_compact_bb23_in,1,[eval_gc_strings_compact_stop],[]).
+eq(eval_gc_strings_compact_bb0_in,1,[eval_gc_strings_compact_bb2_in(A),loop_cont_eval_gc_strings_compact_bb2_in],[A=0]).
+eq(eval_gc_strings_compact_bb0_in,1,[eval_gc_strings_compact_bb2_in(A)],[A=1]).
+eq(loop_cont_eval_gc_strings_compact_bb2_in,0,[eval_gc_strings_compact_bb23_in],[]).
+eq(eval_gc_strings_compact_bb2_in(A),1,[eval_gc_strings_compact_bb2_in(A)],[]).
+eq(eval_gc_strings_compact_bb2_in(A),1,[eval_gc_strings_compact_NewDefault_in(A)],[]).
+eq(eval_gc_strings_compact_NewDefault_in(A),1,[eval_gc_strings_compact_bb8_in(A)],[]).
+eq(eval_gc_strings_compact_bb8_in(A),1,[eval_gc_strings_compact_bb10_in(A)],[]).
+eq(eval_gc_strings_compact_bb10_in(A),1,[eval_gc_strings_compact_bb12_in(A)],[]).
+eq(eval_gc_strings_compact_bb12_in(A),1,[eval_gc_strings_compact_bb14_in(A)],[]).
+eq(eval_gc_strings_compact_bb14_in(A),1,[eval_gc_strings_compact_bb16_in(A)],[]).
+eq(eval_gc_strings_compact_bb16_in(A),1,[eval_gc_strings_compact_bb18_in(A)],[]).
+eq(eval_gc_strings_compact_bb18_in(A),1,[eval_gc_strings_compact_bb20_in(A)],[]).
+eq(eval_gc_strings_compact_bb20_in(A),1,[eval_gc_strings_compact_bb2_in(A)],[]).
+eq(eval_gc_strings_compact_bb2_in(A),1,[],[A=0]).

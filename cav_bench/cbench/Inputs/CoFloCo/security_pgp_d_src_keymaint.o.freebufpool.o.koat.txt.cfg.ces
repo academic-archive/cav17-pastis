@@ -1,0 +1,13 @@
+eq(eval_freebufpool_start(A,B,C,D,E,F),1,[eval_freebufpool_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_freebufpool_bb0_in(A,B,C,D,E,F),1,[eval_freebufpool_4(A,B,C,D,E,G)],[D=0,G=0]).
+eq(eval_freebufpool_bb0_in(A,B,C,D,E,F),1,[eval_freebufpool_4(A,B,C,D,E,G)],[D>0,G>=0,G<D]).
+eq(eval_freebufpool_bb0_in(A,B,C,D,E,F),1,[eval_freebufpool_4(A,B,C,D,E,G)],[D<0,G=<0,G>D]).
+eq(eval_freebufpool_bb0_in(A,B,C,D,E,F),1,[eval_freebufpool_bb2_in(A,B,C,D,E,F)],[]).
+eq(eval_freebufpool_4(A,B,C,D,E,F),1,[eval_freebufpool_5(A,B,C,D,E,F)],[]).
+eq(eval_freebufpool_5(A,B,C,D,E,F),1,[eval_freebufpool_bb2_in(A,B,C,D,E,F)],[]).
+eq(eval_freebufpool_bb2_in(A,B,C,D,E,F),1,[eval_freebufpool_bb3_in(A,B,C,0,E,F,G,H,I,J,K,L,M),loop_cont_eval_freebufpool_bb3_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_freebufpool_bb2_in(A,B,C,D,E,F),1,[eval_freebufpool_bb3_in(A,B,C,0,E,F,G,H,I,J,K,L,M)],[G=1]).
+eq(eval_freebufpool_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_freebufpool_9(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_freebufpool_9(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_freebufpool_10(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_freebufpool_10(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_freebufpool_bb3_in(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_freebufpool_bb3_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=1]).

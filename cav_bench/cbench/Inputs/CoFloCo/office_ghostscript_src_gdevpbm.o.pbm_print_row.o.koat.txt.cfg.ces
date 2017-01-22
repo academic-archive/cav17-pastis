@@ -1,0 +1,17 @@
+eq(eval_pbm_print_row_start(A,B,C,D,E),1,[eval_pbm_print_row_bb0_in(A,B,C,D,E)],[]).
+eq(eval_pbm_print_row_bb0_in(A,B,C,D,E),1,[eval_pbm_print_row_6(A,B,F,D,E)],[]).
+eq(eval_pbm_print_row_6(A,B,C,D,E),1,[eval_pbm_print_row_7(A,B,C,D,E)],[]).
+eq(eval_pbm_print_row_7(A,B,C,D,E),1,[eval_pbm_print_row_bb7_in(A,B,C,D,E)],[]).
+eq(eval_pbm_print_row_bb7_in(A,B,C,D,E),1,[eval_pbm_print_row_stop(A,B,C,D,E)],[]).
+eq(eval_pbm_print_row_bb0_in(A,B,C,D,E),1,[eval_pbm_print_row_bb3_in(A,B,C,D,0,F,G,H,I,J,K),loop_cont_eval_pbm_print_row_bb3_in(G,H,I,J,K)],[F=0]).
+eq(eval_pbm_print_row_bb0_in(A,B,C,D,E),1,[eval_pbm_print_row_bb3_in(A,B,C,D,0,F,G,H,I,J,K)],[F=1]).
+eq(loop_cont_eval_pbm_print_row_bb3_in(A,B,C,D,E),0,[eval_pbm_print_row_bb7_in(A,B,C,D,E)],[]).
+eq(eval_pbm_print_row_bb3_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_pbm_print_row_14(49,B,C,D,E,F,G,H,I,J,K)],[E<L]).
+eq(eval_pbm_print_row_14(A,B,C,D,E,F,G,H,I,J,K),1,[eval_pbm_print_row_15(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_pbm_print_row_15(A,B,C,D,E,F,G,H,I,J,K),1,[eval_pbm_print_row_bb6_in(A,E+1,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_pbm_print_row_15(A,B,C,D,E,F,G,H,I,J,K),1,[eval_pbm_print_row_19(A,E+1,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_pbm_print_row_bb6_in(A,B,C,D,E,F,G,H,I,J,K),1,[eval_pbm_print_row_bb3_in(A,B,C,D,B,F,G,H,I,J,K)],[]).
+eq(eval_pbm_print_row_19(A,B,C,D,E,F,G,H,I,J,K),1,[eval_pbm_print_row_20(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_pbm_print_row_20(A,B,C,D,E,F,G,H,I,J,K),1,[eval_pbm_print_row_bb6_in(A,B,C,D,E,F,G,H,I,J,K)],[]).
+eq(eval_pbm_print_row_bb3_in(A,B,C,D,E,F,A,B,C,D,E),1,[],[F=0,E>=G]).
+eq(eval_pbm_print_row_bb3_in(A,B,C,D,E,F,A,B,C,D,E),0,[],[F=1,G>=E]).

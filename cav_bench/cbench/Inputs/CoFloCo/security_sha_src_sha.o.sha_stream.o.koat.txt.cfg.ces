@@ -1,0 +1,15 @@
+eq(eval_sha_stream_start(A,B),1,[eval_sha_stream_bb0_in(A,B)],[]).
+eq(eval_sha_stream_bb0_in(A,B),1,[eval_sha_stream_0(A,B)],[]).
+eq(eval_sha_stream_0(A,B),1,[eval_sha_stream_1(A,B)],[]).
+eq(eval_sha_stream_7(A,B),1,[eval_sha_stream_8(A,B)],[]).
+eq(eval_sha_stream_8(A,B),1,[eval_sha_stream_stop(A,B)],[]).
+eq(eval_sha_stream_1(A,B),1,[eval_sha_stream_bb1_in(A,B,C,D,E),loop_cont_eval_sha_stream_bb1_in(D,E)],[C=0]).
+eq(eval_sha_stream_1(A,B),1,[eval_sha_stream_bb1_in(A,B,C,D,E)],[C=1]).
+eq(loop_cont_eval_sha_stream_bb1_in(A,B),0,[eval_sha_stream_7(A,B)],[]).
+eq(eval_sha_stream_bb1_in(A,B,C,D,E),1,[eval_sha_stream_2(A,B,C,D,E)],[]).
+eq(eval_sha_stream_2(A,B,C,D,E),1,[eval_sha_stream_3(F,B,C,D,E)],[]).
+eq(eval_sha_stream_3(A,B,C,D,E),1,[eval_sha_stream_5(A,A,C,D,E)],[A>0]).
+eq(eval_sha_stream_5(A,B,C,D,E),1,[eval_sha_stream_6(A,B,C,D,E)],[]).
+eq(eval_sha_stream_6(A,B,C,D,E),1,[eval_sha_stream_bb1_in(A,B,C,D,E)],[]).
+eq(eval_sha_stream_3(A,B,C,A,B),1,[],[C=0,A=<0]).
+eq(eval_sha_stream_3(A,B,C,A,B),0,[],[C=1,A>=0+1]).

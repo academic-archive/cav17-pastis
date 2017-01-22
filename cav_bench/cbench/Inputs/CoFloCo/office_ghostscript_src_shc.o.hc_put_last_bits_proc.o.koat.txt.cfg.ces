@@ -1,0 +1,6 @@
+eq(eval_hc_put_last_bits_proc_start(A,B,C),1,[eval_hc_put_last_bits_proc_bb0_in(A,B,C)],[]).
+eq(eval_hc_put_last_bits_proc_bb0_in(A,B,C),1,[eval_hc_put_last_bits_proc_bb1_in(C,B,C,D,E,F,G),loop_cont_eval_hc_put_last_bits_proc_bb1_in(E,F,G)],[D=0]).
+eq(eval_hc_put_last_bits_proc_bb0_in(A,B,C),1,[eval_hc_put_last_bits_proc_bb1_in(C,B,C,D,E,F,G)],[D=1]).
+eq(eval_hc_put_last_bits_proc_bb1_in(A,B,C,D,E,F,G),1,[eval_hc_put_last_bits_proc_bb4_in(A,B,C,D,E,F,G)],[A<32]).
+eq(eval_hc_put_last_bits_proc_bb4_in(A,B,C,D,E,F,G),1,[eval_hc_put_last_bits_proc_bb1_in(A+8,B,C,D,E,F,G)],[]).
+eq(eval_hc_put_last_bits_proc_bb1_in(A,B,C,D,A,B,C),1,[],[D=1,A>=32]).

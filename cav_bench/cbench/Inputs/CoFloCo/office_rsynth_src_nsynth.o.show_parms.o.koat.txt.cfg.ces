@@ -1,0 +1,32 @@
+eq(eval_show_parms_start(A,B,C,D,E,F),1,[eval_show_parms_bb0_in(A,B,C,D,E,F)],[]).
+eq(eval_show_parms_9(A,B,C,D,E,F),1,[eval_show_parms_10(A,B,C,D,E,F)],[]).
+eq(eval_show_parms_19(A,B,C,D,E,F),1,[eval_show_parms_20(A,B,C,D,E,F)],[]).
+eq(eval_show_parms_20(A,B,C,D,E,F),1,[eval_show_parms_stop(A,B,C,D,E,F)],[]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb1_in(A+1,B,C,D,0,F,G,H,I,J,K,L,M),loop_cont_eval_show_parms_bb1_in(H,I,J,K,L,M)],[G=0,A=0,N=0]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb1_in(A+1,B,C,D,0,F,G,H,I,J,K,L,M)],[G=1,A=0,N=0]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb1_in(A+1,B,C,D,0,F,G,H,I,J,K,L,M),loop_cont_eval_show_parms_bb1_in(H,I,J,K,L,M)],[G=0,A>0,N>=0,N<64]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb1_in(A+1,B,C,D,0,F,G,H,I,J,K,L,M)],[G=1,A>0,N>=0,N<64]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb1_in(A+1,B,C,D,0,F,G,H,I,J,K,L,M),loop_cont_eval_show_parms_bb1_in(H,I,J,K,L,M)],[G=0,A<0,N=<0,N> -64]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb1_in(A+1,B,C,D,0,F,G,H,I,J,K,L,M)],[G=1,A<0,N=<0,N> -64]).
+eq(loop_cont_eval_show_parms_bb1_in(A,B,C,D,E,F),0,[eval_show_parms_9(A,B,C,D,E,F)],[]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb4_in(A+1,B,C,D,E,0,G,H,I,J,K,L,M),loop_cont_eval_show_parms_bb4_in(H,I,J,K,L,M)],[G=0,A=0,N=0]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb4_in(A+1,B,C,D,E,0,G,H,I,J,K,L,M)],[G=1,A=0,N=0]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb4_in(A+1,B,C,D,E,0,G,H,I,J,K,L,M),loop_cont_eval_show_parms_bb4_in(H,I,J,K,L,M)],[G=0,A>0,N>=0,N<64]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb4_in(A+1,B,C,D,E,0,G,H,I,J,K,L,M)],[G=1,A>0,N>=0,N<64]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb4_in(A+1,B,C,D,E,0,G,H,I,J,K,L,M),loop_cont_eval_show_parms_bb4_in(H,I,J,K,L,M)],[G=0,A<0,N=<0,N> -64]).
+eq(eval_show_parms_bb0_in(A,B,C,D,E,F),1,[eval_show_parms_bb4_in(A+1,B,C,D,E,0,G,H,I,J,K,L,M)],[G=1,A<0,N=<0,N> -64]).
+eq(eval_show_parms_10(A,B,C,D,E,F),1,[eval_show_parms_bb4_in(A,B,C,D,E,0,G,H,I,J,K,L,M),loop_cont_eval_show_parms_bb4_in(H,I,J,K,L,M)],[G=0]).
+eq(eval_show_parms_10(A,B,C,D,E,F),1,[eval_show_parms_bb4_in(A,B,C,D,E,0,G,H,I,J,K,L,M)],[G=1]).
+eq(loop_cont_eval_show_parms_bb4_in(A,B,C,D,E,F),0,[eval_show_parms_19(A,B,C,D,E,F)],[]).
+eq(eval_show_parms_bb1_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_show_parms_6(A,B,C,D,E,F,G,H,I,J,K,L,M)],[E<40]).
+eq(eval_show_parms_bb4_in(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_show_parms_12(A,B,C,D,E,F,G,H,I,J,K,L,M)],[F<40]).
+eq(eval_show_parms_6(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_show_parms_7(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_show_parms_12(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_show_parms_13(A,N,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_show_parms_7(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_show_parms_bb1_in(A,B,C,D,E+1,F,G,H,I,J,K,L,M)],[]).
+eq(eval_show_parms_13(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_show_parms_16(A,B,B,N,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_show_parms_16(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_show_parms_17(A,B,C,D,E,F,G,H,I,J,K,L,M)],[]).
+eq(eval_show_parms_17(A,B,C,D,E,F,G,H,I,J,K,L,M),1,[eval_show_parms_bb4_in(A,B,C,D,E,F+1,G,H,I,J,K,L,M)],[]).
+eq(eval_show_parms_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,E>=40]).
+eq(eval_show_parms_bb1_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,40>=E+1]).
+eq(eval_show_parms_bb4_in(A,B,C,D,E,F,G,A,B,C,D,E,F),1,[],[G=0,F>=40]).
+eq(eval_show_parms_bb4_in(A,B,C,D,E,F,G,A,B,C,D,E,F),0,[],[G=1,40>=F+1]).

@@ -1,0 +1,11 @@
+eq(eval_skip_input_data_start(A,B,C),1,[eval_skip_input_data_bb0_in(A,B,C)],[]).
+eq(eval_skip_input_data_bb0_in(A,B,C),1,[eval_skip_input_data_bb5_in(A,B,C)],[]).
+eq(eval_skip_input_data_bb5_in(A,B,C),1,[eval_skip_input_data_stop(A,B,C)],[]).
+eq(eval_skip_input_data_bb0_in(A,B,C),1,[eval_skip_input_data_bb2_in(C,B,C,D,E,F,G),loop_cont_eval_skip_input_data_bb2_in(E,F,G)],[D=0]).
+eq(eval_skip_input_data_bb0_in(A,B,C),1,[eval_skip_input_data_bb2_in(C,B,C,D,E,F,G)],[D=1]).
+eq(loop_cont_eval_skip_input_data_bb2_in(A,B,C),0,[eval_skip_input_data_bb5_in(A,B,C)],[]).
+eq(eval_skip_input_data_bb2_in(A,B,C,D,E,F,G),1,[eval_skip_input_data_4(A,A-H,C,D,E,F,G)],[A>I]).
+eq(eval_skip_input_data_4(A,B,C,D,E,F,G),1,[eval_skip_input_data_5(A,B,C,D,E,F,G)],[]).
+eq(eval_skip_input_data_5(A,B,C,D,E,F,G),1,[eval_skip_input_data_bb2_in(B,B,C,D,E,F,G)],[]).
+eq(eval_skip_input_data_bb2_in(A,B,C,D,A,B,C),1,[],[D=0,A=<E]).
+eq(eval_skip_input_data_bb2_in(A,B,C,D,A,B,C),0,[],[D=1,A>=E+1]).

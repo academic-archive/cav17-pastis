@@ -1,0 +1,5 @@
+eq(eval_cvtcmap_start(A),1,[eval_cvtcmap_bb0_in(A)],[]).
+eq(eval_cvtcmap_bb0_in(A),1,[eval_cvtcmap_bb1_in(B-1,C,D),loop_cont_eval_cvtcmap_bb1_in(D)],[C=0]).
+eq(eval_cvtcmap_bb0_in(A),1,[eval_cvtcmap_bb1_in(B-1,C,D)],[C=1]).
+eq(eval_cvtcmap_bb1_in(A,B,C),1,[eval_cvtcmap_bb1_in(A-1,B,C)],[A>=0]).
+eq(eval_cvtcmap_bb1_in(A,B,A),1,[],[B=1,A<0]).
