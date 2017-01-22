@@ -1,5 +1,7 @@
 tmout="5m"
 
+cd generated_coq
+
 check() {
 	pat=$1
 	out=$2
