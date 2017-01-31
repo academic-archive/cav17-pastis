@@ -4,12 +4,10 @@ open Types
 include IMP_Types
 
 let parse_file f =
-  let ic = open_in f in
-  let lexbuf = Lexing.from_channel ic in
-  lexbuf.Lexing.lex_curr_p <-
-    { lexbuf.Lexing.lex_curr_p with Lexing.pos_fname = f };
+  let lexbuf = Lexing.from_channel (open_in f) in
+  IMP_Lexer.init lexbuf f;
   try
-    let g, l = IMP_Grammar.file IMP_Lexer.token lexbuf in
+    let g, l = IMP_Grammar.file IMP_Lexer.lex lexbuf in
     g, List.map (fun f ->
       { f with fun_focus = List.map Focus.interpret f.fun_focus }) l
   with Parsing.Parse_error ->
