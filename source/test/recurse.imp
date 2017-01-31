@@ -1,165 +1,167 @@
-var arg_l, arg_h, z;
+var arg_l, arg_h, z
 
-function start() do
-  qslin();
-end
+def start():
+    qslin()
 
-function qslin() do
-  # The recursive linear part of Quicksort.
-  # This should work without any heuristics
-  # for focus functions.
-  var h, l, m;
-  focus
-    h - l,
-    arg_h, # just to have the monoms
-    arg_l;
 
-  h = arg_h;
-  l = arg_l;
-  assume h >= l;
+def qslin():
+    # The recursive linear part of Quicksort.
+    # This should work without any heuristics
+    # for focus functions.
+    var h, l, m
 
-  if h <= l then
-  else
-    z = z + 1;
-    m = random;
-    assume m >= l and m < h;
+    focus \
+      h - l,
+      arg_h, # just to have the monoms
+      arg_l
 
-    # qs(l, m)
-    arg_h = m;
-    arg_l = l;
-    qslin();
+    h = arg_h
+    l = arg_l
+    assume h >= l
 
-    # qs(m+1, h)
-    arg_h = h;
-    arg_l = m+1;
-    qslin();
+    if h <= l:
+        pass
+    else:
+        z = z + 1
+        m = random
+        assume m >= l and m < h
 
-  end
-end
+        # qs(l, m)
+        arg_h = m
+        arg_l = l
+        qslin()
 
-function simple() do
-  # The simplest example of recursion, it
-  # should work without "framing".
-  focus arg_h;
-  assume arg_h >= 0;
-  if arg_h <= 0 then
-  else
-    z = z + 1;
-    arg_h = arg_h - 1;
-    simple();
-  end
-end
+        # qs(m+1, h)
+        arg_h = h
+        arg_l = m+1
+        qslin()
 
-function qsquad() do
-  var h, l, m;
-  focus
-    binom_monotonic(2, h - l, 0),
-    h - l,
-    product(m - l, h - (m+1)),
-    h-1 - m,
-    arg_h, arg_l, arg_h * arg_h, arg_l * arg_l, arg_h * arg_l;
 
-  h = arg_h;
-  l = arg_l;
-  assume h >= l;
+def simple():
+    # The simplest example of recursion, it
+    # should work without "framing".
+    focus arg_h
+    assume arg_h >= 0
+    if arg_h <= 0:
+        pass
+    else:
+        z = z + 1
+        arg_h = arg_h - 1
+        simple()
 
-  if l < h then
-    m = l;
-    while m < h-1 and random do
-      z = z + 1;
-      m = m + 1;
-    end
-    assume m >= l and m < h;
 
-    z = z + 1;
-    arg_h = m; arg_l = l;   qsquad();
-    z = z + 1;
-    arg_h = h; arg_l = m+1; qsquad();
+def qsquad():
+    var h, l, m
+    focus \
+      binom_monotonic(2, h - l, 0),
+      h - l,
+      product(m - l, h - (m+1)),
+      h-1 - m,
+      arg_h, arg_l, arg_h * arg_h, arg_l * arg_l, arg_h * arg_l
 
-  end
-end
+    h = arg_h
+    l = arg_l
+    assume h >= l
 
-function qsint() do
-  var h, l, m;
-  focus
-    # weakening of the else branch of "if l < h"
-    binom_monotonic(2, max0_ge_0(h - l), 0),
+    if l < h:
+        m = l
+        while m < h-1 and random:
+            z = z + 1
+            m = m + 1
+        assume m >= l and m < h
 
-    # upon entry of "if l < h"
-    max0_pre_decrement(2, h - l, 1),
+        z = z + 1
+        arg_h = m
+        arg_l = l
+        qsquad()
 
-    # to turn ([l, h-1], 2) into ([l, m], 2) + ([m+1, h], 2) + (X >= 0)
-    binom_monotonic(2, max0_ge_arg(h-1 - l), h-1 - l),
-    binom_monotonic(2, max0_le_arg(h - (m+1)), max0_ge_0(h - (m+1))),
-    binom_monotonic(2, max0_le_arg(m - l), max0_ge_0(m - l)),
+        z = z + 1
+        arg_h = h
+        arg_l = m + 1
+        qsquad()
 
-    # to weaken the cross product
-    product(h - (m+1), m - l),
 
-    # inner loop
-    max0_pre_decrement(1, h-1 - m, 1),
-    max0_ge_0(h-1 - m),
+def qsint():
+    var h, l, m
+    focus \
+      # weakening of the else branch of "if l < h"
+      binom_monotonic(2, max0_ge_0(h - l), 0),
 
-    # the ones below are just for the monomials
-    binom_monotonic(2, max0_ge_0(arg_h - arg_l), 0);
+      # upon entry of "if l < h"
+      max0_pre_decrement(2, h - l, 1),
 
-  h = arg_h;
-  l = arg_l;
+      # to turn ([l, h-1], 2) into ([l, m], 2) + ([m+1, h], 2) + (X >= 0)
+      binom_monotonic(2, max0_ge_arg(h-1 - l), h-1 - l),
+      binom_monotonic(2, max0_le_arg(h - (m+1)), max0_ge_0(h - (m+1))),
+      binom_monotonic(2, max0_le_arg(m - l), max0_ge_0(m - l)),
 
-  if l < h then
+      # to weaken the cross product
+      product(h - (m+1), m - l),
 
-    m = l;
-    while m < h-1 do
-      z = z + 1;
-      m = m + 1;
-    end
-    assume l <= m and m < h;
+      # inner loop
+      max0_pre_decrement(1, h-1 - m, 1),
+      max0_ge_0(h-1 - m),
 
-    arg_h = m; arg_l = l;   qsint();
-    arg_h = h; arg_l = m+1; qsint();
+      # the ones below are just for the monomials
+      binom_monotonic(2, max0_ge_0(arg_h - arg_l), 0)
 
-  end
-end
+    h = arg_h
+    l = arg_l
 
-function qsint2() do
-  var h, l, m;
-  focus
-    # weakening of the else branch of "if l < h"
-    binom_monotonic(2, max0_ge_0(h - l), 0),
+    if l < h:
 
-    # upon entry of "if l < h"
-    max0_pre_decrement(2, h - l, 1),
+        m = l
+        while m < h-1:
+            z = z + 1
+            m = m + 1
+        assume l <= m and m < h
 
-    # inner loop invariant ([m, h-1], 2) + ([l, m], 2) + [l, m][m, h-1]
-    binom_monotonic(2, max0_ge_0(h-1 - m), 0),
-    binom_monotonic(2, max0_ge_0(m - l), 0),
-    product(max0_ge_0(h-1 - m), max0_ge_0(m - l)),
+        arg_h = m
+        arg_l = l
+        qsint()
+        arg_h = h
+        arg_l = m+1
+        qsint()
 
-    max0_pre_decrement(2, h-1 - m, 1),
-    max0_pre_increment(2, m - l, 1),
-    product(max0_ge_0(h-1 - (m+1)), max0_pre_increment(1, m - l, 1)),  # Nooooooooo...
-    product(max0_ge_0(m - l), max0_pre_decrement(1, h-1 - m, 1)),
+def qsint2():
+    var h, l, m
+    focus \
+      # weakening of the else branch of "if l < h"
+      binom_monotonic(2, max0_ge_0(h - l), 0),
 
-    # linear paying for "z = z + 1" in inner loop
-    max0_pre_decrement(1, h-1 - m, 1),
-    max0_ge_0(h-1 - m),
+      # upon entry of "if l < h"
+      max0_pre_decrement(2, h - l, 1),
 
-    # the ones below are just for the monomials
-    binom_monotonic(2, max0_ge_0(arg_h - arg_l), 0);
+      # inner loop invariant ([m, h-1], 2) + ([l, m], 2) + [l, m][m, h-1]
+      binom_monotonic(2, max0_ge_0(h-1 - m), 0),
+      binom_monotonic(2, max0_ge_0(m - l), 0),
+      product(max0_ge_0(h-1 - m), max0_ge_0(m - l)),
 
-  h = arg_h;
-  l = arg_l;
+      max0_pre_decrement(2, h-1 - m, 1),
+      max0_pre_increment(2, m - l, 1),
+      product(max0_ge_0(h-1 - (m+1)), max0_pre_increment(1, m - l, 1)),  # Nooooooooo...
+      product(max0_ge_0(m - l), max0_pre_decrement(1, h-1 - m, 1)),
 
-  if l < h then
+      # linear paying for "z = z + 1" in inner loop
+      max0_pre_decrement(1, h-1 - m, 1),
+      max0_ge_0(h-1 - m),
 
-    m = l;
-    while m < h-1 do
-      z = z + 1;
-      m = m + 1;
-    end
+      # the ones below are just for the monomials
+      binom_monotonic(2, max0_ge_0(arg_h - arg_l), 0)
 
-    arg_h = m; arg_l = l;   qsint2();
-    arg_h = h; arg_l = m+1; qsint2();
+    h = arg_h
+    l = arg_l
 
-  end
-end
+    if l < h:
+        m = l
+        while m < h-1:
+            z = z + 1
+            m = m + 1
+
+        arg_h = m
+        arg_l = l
+        qsint2()
+
+        arg_h = h
+        arg_l = m+1
+        qsint2()

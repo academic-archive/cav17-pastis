@@ -1,45 +1,40 @@
 # A compilation of Abstract Interpretation failures.
 
-function f1(N) do
-  var i, z;
+def f1():
+    var i, z, N
 
-  assume N >= 0;
-  i = 0;
-  z = 0;
-  while i < N do
-    i = i + 1;
-    z = z + 2*i + 1;
-  end
-  assume N >= 0; # polka does not get this one
+    assume N >= 0
+    i = 0
+    z = 0
+    while i < N:
+        i = i + 1
+        z = z + 2*i + 1
 
-end
+    assume N >= 0 # polka does not get this one
 
-function f2(x) do
-  var y;
 
-  assume y >= 0;
-  x = 10;
-  while x > 0 do
-    x = x - 1;
-    y = y + x;
-  end
-  assume y >= 0; # polka does not get this one
+def f2():
+    var x, y
 
-end
+    assume y >= 0
+    x = 10
+    while x > 0:
+        x = x - 1
+        y = y + x
 
-function f3(N) do
-  var i, j, z;
+    assume y >= 0 # polka does not get this one
 
-  i = 0;
-  z = 0;
-  assume N >= 0;
 
-  while i < N do
-    z = z + 2*i + 1;
-    i = i + 1;
-  end
+def f3():
+    var i, j, z, N
 
-  assume N >= 0;   # polka does not get this one
-  assume N-i >= 0; # oct does not get this one
+    i = 0
+    z = 0
+    assume N >= 0
 
-end
+    while i < N:
+        z = z + 2*i + 1
+        i = i + 1
+
+    assume N >= 0   # polka does not get this one
+    assume N-i >= 0 # oct does not get this one
