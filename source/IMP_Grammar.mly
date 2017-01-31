@@ -94,9 +94,10 @@ rinstrs1:
   | rinstrs1 instr { $2 :: $1 }
 
 block:
-  | TPASS TNL        { mkb ($1, [], $1) }
-  | simpl            { mkb (snd $1, [$1], snd $1) }
-  | TIN rinstrs1 TDE { mkb ($1, List.rev $2, $3) }
+  | TIN TPASS TNL TDE { mkb ($1, [], $4) }
+  | TPASS TNL         { mkb ($1, [], $1) }
+  | simpl             { mkb (snd $1, [$1], snd $1) }
+  | TIN rinstrs1 TDE  { mkb ($1, List.rev $2, $3) }
 
 rfrees:
     free               { [$1] }

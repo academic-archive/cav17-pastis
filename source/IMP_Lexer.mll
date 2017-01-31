@@ -81,45 +81,49 @@ let indent ?lvl' lexbuf =
 let first = ['a'-'z' 'A'-'Z' '_']
 let ident = first (first | ['0'-'9'])*
 let space = [ ' ' '\t' ]
+let eol = space* ('#' [^'\n']*)? '\n'
 
 rule line = parse
-  | space* '\n'              { newline lexbuf; line lexbuf }
-  | space* '#' [^'\n']* '\n' { newline lexbuf; line lexbuf }
-  | space* eof               { indent ~lvl':0 lexbuf; push TEOF }
-  | space*                   { indent lexbuf; token lexbuf }
+  | space* eol { newline lexbuf; line lexbuf }
+  | space* eof { indent ~lvl':0 lexbuf; push TEOF }
+  | space*     { indent lexbuf; token lexbuf }
+
+and skip = parse
+  | space* eol { newline lexbuf; skip lexbuf }
+  | space*     { token lexbuf }
 
 and token = parse
-  | '\n'             { newline lexbuf; push TNL; line lexbuf }
-  | '#' ([^'\n']*)   { token lexbuf }
-  | space            { token lexbuf }
+  | eol        { newline lexbuf; push TNL; line lexbuf }
+  | space      { token lexbuf }
+  | '\\' '\n'  { newline lexbuf; skip lexbuf }
 
-  | ['0'-'9']+       { push (TNUM (int_of_string (Lexing.lexeme lexbuf))) }
+  | ['0'-'9']+ { push (TNUM (int_of_string (Lexing.lexeme lexbuf))) }
 
-  | ":" space* '\n'  { newline lexbuf; push (TCOLON (pos lexbuf));
-                       line lexbuf }
-  | ":"              { push (TCOLON (pos lexbuf)) }
-  | "," space* '\n'  { newline lexbuf; push TCOMMA }
-  | ","              { push TCOMMA }
+  | ":" eol    { newline lexbuf; push (TCOLON (pos lexbuf));
+                 line lexbuf }
+  | ":"        { push (TCOLON (pos lexbuf)) }
+  | "," eol    { newline lexbuf; push TCOMMA; skip lexbuf }
+  | ","        { push TCOMMA }
 
-  | ";"              { push TSEMI }
-  | "("              { push (TLPAR (pos lexbuf)) }
-  | ")"              { push TRPAR }
-  | "<="             { push TLEQ }
-  | "<"              { push TLT }
-  | ">="             { push TGEQ }
-  | ">"              { push TGT }
-  | "="              { push TEQ }
-  | "!="             { push TNE }
-  | "+"              { push TADD }
-  | "-"              { push TSUB }
-  | "*"              { push TMUL }
-  | ident            { let id = Lexing.lexeme lexbuf in
-                       let p = pos lexbuf in
-                       push (
-                         try Hashtbl.find kw id with Not_found ->
-                         try Hashtbl.find kwp id p with Not_found ->
-                         TIDENT (id, p)
-                       ) }
+  | ";"        { push TSEMI }
+  | "("        { push (TLPAR (pos lexbuf)) }
+  | ")"        { push TRPAR }
+  | "<="       { push TLEQ }
+  | "<"        { push TLT }
+  | ">="       { push TGEQ }
+  | ">"        { push TGT }
+  | "="        { push TEQ }
+  | "!="       { push TNE }
+  | "+"        { push TADD }
+  | "-"        { push TSUB }
+  | "*"        { push TMUL }
+  | ident      { let id = Lexing.lexeme lexbuf in
+                 let p = pos lexbuf in
+                 push (
+                   try Hashtbl.find kw id with Not_found ->
+                   try Hashtbl.find kwp id p with Not_found ->
+                   TIDENT (id, p)
+                 ) }
 
 {
 
