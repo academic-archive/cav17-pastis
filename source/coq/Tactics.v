@@ -52,8 +52,8 @@ Ltac simplify_max0 :=
     change (max0 (Zpos x)) with (Zpos x)
   | [ |- context[ max0 Z0 ] ] =>
     change (max0 Z0) with Z0
-  | [ |- context[ max0 (Zneg ?x) ] ] =>
-    change (max0 (Zneg x)) with 0
+  | [ |- context[ max0 (Z.opp (Zpos ?x)) ] ] =>
+    change (max0 (Z.opp (Zpos x))) with Z0
   end.
 
 (* These two definitions and the lemma below allow to use
