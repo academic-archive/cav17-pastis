@@ -46,7 +46,7 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
     let ret = ref "" in
     let name = fname in
     let locs = get_locs fdesc in
-    let args = get_args fdesc in
+    let _args = get_args fdesc in
     let focus = [] in
     
     let new_node () =
@@ -81,11 +81,8 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
              new_edge s_node n_act e_node; e_node)
       | ICall (ido, id, idl) ->
          let e_node = new_node () in
-         let el = List.map (fun x -> EVar x) idl in
-         let n_act = match ido with
-           | None -> ACall ([], id, el)
-           | Some idr -> ACall ([idr], id, el)
-         in
+         let _el = List.map (fun x -> EVar x) idl in
+         let n_act = failwith "calls TODO" in
          new_edge s_node n_act e_node;
          e_node
       | ITick n ->
@@ -140,8 +137,6 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
     
     { fun_name = name;
       fun_vars = locs;
-      fun_args = args;
-      fun_rets = [!ret];
       fun_focus = focus;
       fun_body =
         { g_start = start_node;
