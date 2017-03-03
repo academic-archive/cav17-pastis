@@ -1,0 +1,11 @@
+def f():
+    var s, x, z
+    while x > 0:
+        x = x - 1
+        if random:
+            s = s + 1
+        else:
+            while s > 0:
+                s = s - 1
+                z = z + 1
+        z = z + 1

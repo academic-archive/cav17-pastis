@@ -1,0 +1,6 @@
+def f():
+    var n, N, z
+    n = 0
+    while n < N:
+        n = n + 7
+        z = z + 1

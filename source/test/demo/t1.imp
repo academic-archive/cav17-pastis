@@ -1,0 +1,5 @@
+def f():
+    var x, z
+    while x>0:
+        x = x - 1
+        z = z + 1

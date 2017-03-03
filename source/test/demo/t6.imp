@@ -1,0 +1,9 @@
+def f():
+    var x, y, N, M, z
+    x = 0
+    while x < N:
+        x = x + 1
+        y = 0
+        while y < M:
+            y = y + 1
+            z = z + 1

@@ -1,0 +1,35 @@
+var arg_h, arg_l, z
+
+def qsquad():
+    var h, l, m
+
+    # hints ------------------------------------
+    # do not compromize soundness
+    focus \
+      binom_monotonic(2, h - l, 0),
+      h - l,
+      product(m - l, h - (m+1)),
+      h-1 - m,
+      arg_h, arg_l, arg_h * arg_h, arg_l * arg_l, arg_h * arg_l
+    # ------------------------------------------
+
+    h = arg_h
+    l = arg_l
+    assume h >= l
+
+    if l < h:
+        m = l
+        while m < h-1 and random:
+            z = z + 1
+            m = m + 1
+        assume m >= l and m < h
+
+        z = z + 1
+        arg_h = m
+        arg_l = l
+        qsquad()
+
+        z = z + 1
+        arg_h = h
+        arg_l = m + 1
+        qsquad()
