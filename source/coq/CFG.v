@@ -2,41 +2,27 @@ Require Import ZArith.
 Require Import List.
 Require Import pasta.Utils.
 
-Definition id : Type := positive.
-
-(* Conceivably we could also shallowly embed these? *)
-Inductive expr :=
-(*  | ERandom *)
-  | EVar : id -> expr
-  | ENum : Z -> expr
-  | EAdd : expr -> expr -> expr
-  | ESub : expr -> expr -> expr
-  | EMul : expr -> expr -> expr.
-
-Definition node : Type := positive.
-
+Definition id: Type := positive.
+Definition node: Type := positive.
 Definition state := id -> Z.
 
 Definition update (x : id)  (v : Z) (s : state) :=
   fun y => if (Pos.eq_dec x y) then v else (s y).
 
-Inductive action :=
-  | ANone
-  | AWeaken
-  | AGuard : (state -> Prop) -> action 
-  | AAssign : id -> option expr -> action
-  | ACall  : list id -> id -> list expr -> action.
+Inductive expr :=
+| EVar : id -> expr
+| ENum : Z -> expr
+| EAdd : expr -> expr -> expr
+| ESub : expr -> expr -> expr
+| EMul : expr -> expr -> expr
+.
 
-Definition edge := (node * action * node)%type.
-
-Inductive graph :=
-  { g_start: node
-  ; g_end: node
-  ; g_edges: list edge
-  }.
-
-(* type func = (Focus.focus, graph) func_ *)
-
+Inductive action: Type :=
+| ANone
+| AWeaken
+| AGuard (guard: state -> Prop)
+| AAssign (var: id) (oexpr: option expr)
+.
 
 Fixpoint eval (e : expr) (s : state) :=
   (match e with
@@ -47,69 +33,115 @@ Fixpoint eval (e : expr) (s : state) :=
     | EMul e1 e2 => eval e1 s * eval e2 s
   end)%Z.
 
-Inductive step : state -> action -> state -> Prop :=
+Inductive step: state -> action -> state -> Prop :=
 | SNone       : forall s, step s ANone s
 | SWeaken     : forall s, step s AWeaken s
 | SGuard      : forall s (P : state -> Prop),  P s -> step s (AGuard P) s
 | SAssignExpr : forall s x e, step s (AAssign x (Some e)) (update x (eval e s) s)
 | SAssignRand : forall s x n, step s (AAssign x None) (update x n s)
-(* TODO: ACall *)
 .
 
-Inductive steps (p : node) (s : state) (es : list edge) : node -> state -> Prop :=
-| SStart : steps p s es p s
-| SStep p1 s1 a p2 s2 :
-    steps p s es p1 s1 -> In (p1,a,p2) es -> step s1 a s2 ->
-    steps p s es p2 s2.
+Inductive edge {proc: Type} :=
+| EA (n1: node) (a: action) (n2: node)
+| EC (n1: node) (P: proc) (n2: node)
+.
 
-Lemma reachable_ind' :
-  forall (g: graph) (P: node -> state -> Prop) s_i
-         (Hstep : forall p s a p' s'
-                         (PAP'EDGE:  In (p,a,p') (g_edges g))
-                         (REACHABLE: steps (g_start g) s_i (g_edges g) p s)
-                         (STEP:      step s a s')
-                         (HIND:      P p s),
-                    P p' s'),
-  forall p s, P (g_start g) s_i -> steps (g_start g) s_i (g_edges g) p s -> P p s.
-Proof.
-  intros g P s_i Hstep p s Hinit Hsteps.
-  induction Hsteps.
-  + auto.
-  + eapply Hstep; eauto.
-Qed.
+Class Program (proc: Type) :=
+  { proc_edges: proc -> list (@edge proc)
+  ; proc_start: proc -> node
+  ; proc_end:   proc -> node
+  ; var_global: id -> bool
+  }.
 
-Definition reachable_ind_VC
-           (p_i: node) (s_i: state) (es: list edge)
-           (P: node -> state -> Prop) :=
-  Forall (fun e =>
-            match e with (p,a,p') =>
-              forall s s'
-                     (REACHABLE: steps p_i s_i es p s)
-                     (STEP:      step s a s')
-                     (HIND:      P p s),
-                P p' s'
-            end)
-         es.
+Section WithProgram.
+  Context `{prog: Program}.
 
-Lemma reachable_ind_VC_spec :
-  forall p_i s_i es P, reachable_ind_VC p_i s_i es P ->
-    forall p s a p' s',
-      In (p,a,p') es ->
-      steps p_i s_i es p s ->
-      step s a s' ->
-      P p s ->
-      P p' s'.
-Proof.
-  intros p_i s_i es P REACH p s a p' s' IN.
-  now apply (Forall_In _ _ _ REACH (p,a,p') IN s s').
-Qed.
+  Definition exit (s1 s2: state) :=
+    fun x => if var_global x then s2 x else s1 x.
 
-Lemma reachable_ind :
-  forall (g : graph) (P : node -> state -> Prop) s_i
-         (STEP : reachable_ind_VC (g_start g) s_i (g_edges g) P),
-  forall p' s', P (g_start g) s_i -> steps (g_start g) s_i (g_edges g) p' s' -> P p' s'.
-Proof.
-  intros g P s_i STEP p' s' INIT STEPS.
-  refine (reachable_ind' g P s_i _ p' s' INIT STEPS).
-  apply reachable_ind_VC_spec; assumption.
-Qed.
+  Inductive steps: proc -> node -> state -> node -> state -> Prop :=
+
+  | SStart P p s:
+      steps P p s p s
+
+  | SStep P p s p1 s1 a p2 s2:
+      steps P p s p1 s1 ->
+      In (EA p1 a p2) (proc_edges P) ->
+      step s1 a s2 ->
+      steps P p s p2 s2
+
+  | SCall P p s p1 s1 Q p2 s2:
+      steps P p s p1 s1 ->
+      In (EC p1 Q p2) (proc_edges P) ->
+      steps Q (proc_start Q) s1 (proc_end Q) s2 ->
+      steps P p s p2 (exit s1 s2)
+  .
+
+  (* Procedure annotation. *)
+  Inductive PA :=
+    { pa_spec: node -> state -> Prop
+    ; pa_call: node -> nat
+    }.
+
+  (* Inter-procedural annotation. *)
+  Definition IPA :=
+    proc -> list PA.
+
+  Definition PA_VC (ipa: IPA) (P: proc) (pa: PA) :=
+    Forall (fun e =>
+              match e with
+
+              | EA n1 a n2 =>
+                forall s1 s2,
+                  pa_spec pa n1 s1 ->
+                  step s1 a s2 ->
+                  pa_spec pa n2 s2
+
+              | EC n1 Q n2 =>
+                match nth_error (ipa Q) (pa_call pa n1) with
+                | Some qpa =>
+                  forall s1,
+                    pa_spec pa n1 s1 ->
+                    pa_spec qpa (proc_start Q) s1 /\
+                    forall s2,
+                      pa_spec qpa (proc_end Q) s2 ->
+                      pa_spec pa n2 (exit s1 s2)
+                | None => False
+                end
+
+              end)
+           (proc_edges P).
+                                           
+  Definition IPA_VC (ipa: IPA) :=
+    forall (P: proc), Forall (PA_VC ipa P) (ipa P).
+
+  Transparent PA_VC IPA_VC.
+
+  Theorem ipa_sound (ipa: IPA) (VC: IPA_VC ipa):
+    forall (P: proc) p1 s1 p2 s2 (STEPS: steps P p1 s1 p2 s2),
+    forall (pa: PA) (InIPA: In pa (ipa P)), pa_spec pa p1 s1 -> pa_spec pa p2 s2.
+  Proof.
+    intros ? ? ? ? ? STEPS.
+    induction STEPS; intros ? ? INIT.
+    - assumption.
+    - assert (paVC: PA_VC ipa P pa).
+      { eapply Forall_In; eauto using VC. }
+      eapply (Forall_In _ _ _ paVC _ H).	
+      auto using IHSTEPS.
+      assumption.
+    - assert (paVC: PA_VC ipa P pa).
+      { eapply Forall_In; eauto using VC. }
+      generalize (Forall_In _ _ _ paVC _ H).
+      case_eq (nth_error (ipa Q) (pa_call pa p1)).
+      2: intros _ [].
+      intros qpa qpaInIPA.
+      apply nth_error_In in qpaInIPA.
+      intros CALL.
+      apply CALL.
+      + auto using IHSTEPS1.
+      + apply IHSTEPS2; auto.
+	apply CALL.
+	auto using IHSTEPS1.
+  Qed.
+
+End WithProgram.
