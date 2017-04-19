@@ -81,7 +81,8 @@ Section WithProgram.
 
   (* Procedure annotation. *)
   Inductive PA :=
-    { pa_spec: node -> state -> Prop
+    { pa_aux: Type
+    ; pa_spec: node -> pa_aux -> state -> Prop
     ; pa_call: node -> nat
     }.
 
@@ -90,30 +91,32 @@ Section WithProgram.
     proc -> list PA.
 
   Definition PA_VC (ipa: IPA) (P: proc) (pa: PA) :=
-    Forall (fun e =>
-              match e with
+    forall (z: pa_aux pa),
+    Forall
+      (fun e => match e with
+           
+         | EA n1 a n2 =>
+           forall s1 s2,
+             pa_spec pa n1 z s1 ->
+             step s1 a s2 ->
+             pa_spec pa n2 z s2
+                     
+         | EC n1 Q n2 =>
+           match nth_error (ipa Q) (pa_call pa n1) with
+           | Some qpa =>
+             exists z',
+             forall s1,
+               pa_spec pa n1 z s1 ->
+               pa_spec qpa (proc_start Q) z' s1 /\
+               forall s2,
+                 pa_spec qpa (proc_end Q) z' s2 ->
+                 pa_spec pa n2 z (exit s1 s2)
+           | None => False
+           end
 
-              | EA n1 a n2 =>
-                forall s1 s2,
-                  pa_spec pa n1 s1 ->
-                  step s1 a s2 ->
-                  pa_spec pa n2 s2
+         end)
+      (proc_edges P).
 
-              | EC n1 Q n2 =>
-                match nth_error (ipa Q) (pa_call pa n1) with
-                | Some qpa =>
-                  forall s1,
-                    pa_spec pa n1 s1 ->
-                    pa_spec qpa (proc_start Q) s1 /\
-                    forall s2,
-                      pa_spec qpa (proc_end Q) s2 ->
-                      pa_spec pa n2 (exit s1 s2)
-                | None => False
-                end
-
-              end)
-           (proc_edges P).
-                                           
   Definition IPA_VC (ipa: IPA) :=
     forall (P: proc), Forall (PA_VC ipa P) (ipa P).
 
@@ -121,24 +124,24 @@ Section WithProgram.
 
   Theorem ipa_sound (ipa: IPA) (VC: IPA_VC ipa):
     forall (P: proc) p1 s1 p2 s2 (STEPS: steps P p1 s1 p2 s2),
-    forall (pa: PA) (InIPA: In pa (ipa P)), pa_spec pa p1 s1 -> pa_spec pa p2 s2.
+    forall (pa: PA) z (InIPA: In pa (ipa P)), pa_spec pa p1 z s1 -> pa_spec pa p2 z s2.
   Proof.
     intros ? ? ? ? ? STEPS.
-    induction STEPS; intros ? ? INIT.
+    induction STEPS; intros ? ? ? INIT.
     - assumption.
     - assert (paVC: PA_VC ipa P pa).
       { eapply Forall_In; eauto using VC. }
-      eapply (Forall_In _ _ _ paVC _ H).	
+      eapply (Forall_In _ _ _ (paVC z) _ H).	
       auto using IHSTEPS.
       assumption.
     - assert (paVC: PA_VC ipa P pa).
       { eapply Forall_In; eauto using VC. }
-      generalize (Forall_In _ _ _ paVC _ H).
+      generalize (Forall_In _ _ _ (paVC z) _ H).
       case_eq (nth_error (ipa Q) (pa_call pa p1)).
       2: intros _ [].
       intros qpa qpaInIPA.
       apply nth_error_In in qpaInIPA.
-      intros CALL.
+      intros (z' & CALL).
       apply CALL.
       + auto using IHSTEPS1.
       + apply IHSTEPS2; auto.
