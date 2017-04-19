@@ -1,6 +1,7 @@
 Require Import List.
 Require Import ZArith.
 Require Import QArith.
+Require Import Omega.
 
 
 Section Forall.
@@ -13,7 +14,6 @@ Section Forall.
       | x :: l' => P x /\ Forall l'
       | nil => True
     end.
-  Global Implicit Arguments Forall.
 
   Theorem Forall_In:
     forall l, Forall l -> forall x, In x l -> P x.
@@ -35,6 +35,7 @@ Section Forall.
   Qed.
 
 End Forall.
+Arguments Forall {A}.
 
 
 Open Scope Z.
@@ -55,8 +56,6 @@ Fixpoint prodn (n: nat) (k l: Z) :=
    rewrite functions.
  *)
 Module ZLemmas.
-
-  Require Import Omega.
 
   Lemma lem_max0_ge_0:
     forall x, max0 x >= 0.
