@@ -8,6 +8,8 @@ Require Import pasta.RewriteF.
 Close Scope Z.
 Close Scope Q.
 
+(*
+
 (* This tactic is used to prove the bounds deduced by the 
    Presburger arithmetic abstract interpreter. It basically
    just calls Coq's lia. *)
@@ -123,3 +125,4 @@ Ltac check_lp ai_theorem rewrites :=
     end
   end.
 
+*)

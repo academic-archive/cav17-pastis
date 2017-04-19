@@ -41,13 +41,15 @@ Inductive step: state -> action -> state -> Prop :=
 | SAssignRand : forall s x n, step s (AAssign x None) (update x n s)
 .
 
-Inductive edge {proc: Type} :=
+Inductive edge (proc: Type) :=
 | EA (n1: node) (a: action) (n2: node)
 | EC (n1: node) (P: proc) (n2: node)
 .
+Global Arguments EA {proc} n1%positive a n2%positive.
+Global Arguments EC {proc} n1%positive P n2%positive.
 
 Class Program (proc: Type) :=
-  { proc_edges: proc -> list (@edge proc)
+  { proc_edges: proc -> list (edge proc)
   ; proc_start: proc -> node
   ; proc_end:   proc -> node
   ; var_global: id -> bool
