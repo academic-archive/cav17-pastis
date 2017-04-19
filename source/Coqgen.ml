@@ -5,10 +5,15 @@ open Graph_Types
 open Presburger
 open Polynom
 
-(* todo: "dump" is probably not quite the right word, what should it be called? *)
+let globs = ref []
 
-let mkvarname funname x = "ID" ^ funname ^ "_" ^ x
-let statevar s varname x = "(" ^ s ^ " " ^ varname x ^ ")"
+let procname x = "P_" ^ x
+let mkvarname funname x =
+  if List.mem x !globs
+  then "G_" ^ x
+  else "V_" ^ funname ^ "_" ^ x
+let statevar s varname x =
+  "(" ^ s ^ " " ^ varname x ^ ")"
 
 (* Assumes that we have a state s in the context. *)
 let rec dump_expr_norand varname fmt  = function
@@ -69,67 +74,98 @@ let rec dump_logic varname fmt = function
      Format.fprintf fmt "(~ %a)"
        (dump_logic varname) l
 
-let dump_action varname fmt = function
-  | ANone ->
-    Format.fprintf fmt "ANone"
-  | AWeaken ->
-    Format.fprintf fmt "AWeaken"
-  | AGuard a ->
-    Format.fprintf fmt "(AGuard@ (fun s => %a))"
-      (dump_logic varname) a
-  | AAssign (x, e) ->
-    Format.fprintf fmt "(AAssign@ %s@ %a)"
-      (varname x)
-      (dump_expr varname) e
-  | ACall f ->
-    Utils._TODO "calls"
-
-let dump_edges' varname fmt s es =
-  List.iter (fun (a,s') ->
-    Format.fprintf fmt
-      "@[<hov>(%d%%positive,@,%a,@,%d%%positive)@]::@,"
-      (s+1) (dump_action varname) a (s'+1)
-  ) es
-
 let dump_edges varname fmt es =
+  let dump_edge s s' fmt =
+    function
+    | ANone ->
+      Format.fprintf fmt "EA %d ANone %d" s s'
+    | AWeaken ->
+      Format.fprintf fmt "EA %d AWeaken %d" s s'
+    | AGuard a ->
+      Format.fprintf fmt "EA %d (AGuard@ (fun s => %a)) %d"
+        s (dump_logic varname) a s'
+    | AAssign (x, e) ->
+      Format.fprintf fmt "EA %d (AAssign@ %s@ %a) %d"
+        s (varname x) (dump_expr varname) e s'
+    | ACall f ->
+      Format.fprintf fmt "EC %d %s %d"
+        s (procname f) s'
+  in
   Format.fprintf fmt "@[<hov>";
-  Array.iteri (dump_edges' varname fmt) es;
+  Array.iteri (fun s ->
+    List.iter (fun (a,s') ->
+      Format.fprintf fmt "(%a)::@," (dump_edge (s+1) (s'+1)) a
+    )
+  ) es;
   Format.fprintf fmt "nil";
   Format.fprintf fmt "@]"
 
-let dump_func fmt f =
-  let varname = (mkvarname f.fun_name) in
-  List.iteri (fun i x ->
-    Format.fprintf fmt "Notation %s := %d%%positive.@,"
-      (varname x) (i+1)
-  ) f.fun_vars;
+let dump_program fmt (_, fs) =
+  let nglos = List.length !globs in
 
+  (* Procedures ADT and Global variables *)
   Format.fprintf fmt
-    "Definition %s : graph := {|@   @[<v>\
-         g_start := %d%%positive;@,\
-         g_end := %d%%positive;@,\
-         g_edges := %a\
-       @]@,|}.@,"
-    f.fun_name
-    (f.fun_body.g_start+1) (f.fun_body.g_end+1)
-    (dump_edges varname) f.fun_body.g_edges;
+    "Inductive proc: Type :=@,  %a.@,@,"
+    (Print.list ~first:"@[<hov>" ~sep:"@ |@ " ~last:"@]"
+      (fun fmt f -> Format.fprintf fmt "%s" (procname f.fun_name))
+    ) fs;
+  List.iteri (fun i x ->
+    Format.fprintf fmt "Notation G_%s := %d%%positive.@,"
+      x (1 + i)
+  ) !globs;
+  Format.fprintf fmt
+    "Definition var_global (v: id): bool :=@,  \
+       match v with@,  @[<v>%a| _ => false@]@,  end.@,"
+    (fun fmt ->
+      List.iter (fun v ->
+        Format.fprintf fmt "| G_%s => true@," v))
+    !globs;
 
-  Format.fprintf fmt "@]"
+  (* Edges, and entry and exit point of procedures *)
+  let dump_proc f =
+    let varname = (mkvarname f.fun_name) in
+    Format.fprintf fmt "@,@[<v>";
+    List.iteri (fun i x ->
+      Format.fprintf fmt "Notation %s := %d%%positive.@,"
+        (varname x) (1 + i + nglos)
+    ) f.fun_vars;
+    Format.fprintf fmt "Definition Pedges_%s: list (edge proc) :=@,  %a.@,"
+      f.fun_name (dump_edges varname) f.fun_body.g_edges;
+    Format.fprintf fmt "@]";
+  in
+  List.iter dump_proc fs;
 
-let dump_ai print_bound fn fmt ai_annots =
-  (* TODO: print the correct function name *)
+  (* Finally, the program Instance *)
+  let dump_match fmt m =
+    Format.fprintf fmt "@[<v>match p with@,%aend@]"
+      (fun fmt ->
+        List.iter (fun ({fun_name=fn; _} as f) ->
+          assert (f.fun_body.g_start = 0);
+          Format.fprintf fmt "| %s => %s@,"
+            (procname fn) (m f)))
+      fs
+  in
+  Format.fprintf fmt "@,Instance PROG: Program proc := {@,";
+  Format.fprintf fmt "  proc_edges := fun p =>@,    %a;@,"
+    dump_match (fun f -> "Pedges_" ^ f.fun_name);
+  Format.fprintf fmt "  proc_start := fun p => 1%%positive;@,";
+  Format.fprintf fmt "  proc_end := fun p =>@,    (%a)%%positive;@,"
+    dump_match (fun f -> string_of_int (1+f.fun_body.g_end));
+  Format.fprintf fmt "  var_global := var_global@,";
+  Format.fprintf fmt "}.@,";
+  ()
+
+let dump_ai print_bound fmt fn ai_annots =
   Format.fprintf fmt "@[<v>";
-  Format.fprintf fmt "@,Definition %s_ai (p: node) (s: state) := @," fn;
-  Format.fprintf fmt "  match p with@,";
+  Format.fprintf fmt "@,Definition ai_%s (p: node) (s: state) := @," fn;
+  Format.fprintf fmt "  (@[<v>match p with@,";
   let varname = statevar "s" (mkvarname fn) in
   let print_bound = print_bound varname in
-  Format.fprintf fmt "    @[<v>";
   Array.iteri (fun i v ->
-    Format.fprintf fmt "| %d%%positive => (%a)%%Z@,"
+    Format.fprintf fmt "| %d => (%a)%%Z@,"
       (i+1) print_bound v
   ) ai_annots;
-  Format.fprintf fmt "| _ => False@]@,  end.@,";
-  Format.fprintf fmt "@]"
+  Format.fprintf fmt "| _ => False@,end@])%%positive.@,"
 
 let eps = 1e-4
 
@@ -285,15 +321,15 @@ let dump_hints fn fmt fannot =
     Format.fprintf fmt "@[<h>(*%g %g*) %a@]" ka kb dump_ast f.ast
   in
 
-  Format.fprintf fmt "@[<v>@,Definition %s_hints (p : node) (s : state) := @," fn;
-  Format.fprintf fmt "  match p with@,";
-  Format.fprintf fmt "    @[<v>";
+  Format.fprintf fmt "@[<v>@,Definition %s_hints (p: node) (s: state) := @," fn;
+  Format.fprintf fmt "  (@[<v>match p with@,";
   Array.iteri (fun i l ->
-    List.filter (fun ((ka, kb), _) -> abs_float (ka -. kb) > fsmall) l |>
-    Format.fprintf fmt "| %d%%positive => %a@,"
-      (i+1) (Print.list dump_hint)
+    let l = List.filter (fun ((ka, kb), _) -> abs_float (ka -. kb) > fsmall) l in
+    if l <> [] then
+      Format.fprintf fmt "| %d => %a@,"
+        (i+1) (Print.list dump_hint) l
   ) fannot;
-  Format.fprintf fmt "| _ => []@]@,  end.@,";
+  Format.fprintf fmt "| _ => []@,end@])%%positive.@,";
   Format.fprintf fmt "@,@,@]";
   ()
 
@@ -315,13 +351,13 @@ let dump_theorems fn fmt =
   Format.fprintf fmt "@]";
   ()
 
-let dump fstart fs print_bound ai_results annot fannot =
+let dump fstart prog print_bound ai_results annot fannot =
+  globs := (fst prog);
   let oc = open_out "generated_coq.v" in
   let fmt = Format.formatter_of_out_channel oc in
   Format.fprintf fmt "@[<v>Require Import pasta.Pasta.@,@,";
-  dump_func fmt (List.find (fun f -> f.fun_name = fstart) fs);
-  let ai_annots = Hashtbl.find ai_results fstart in
-  dump_ai print_bound fstart fmt ai_annots;
+  dump_program fmt prog;
+  Hashtbl.iter (dump_ai print_bound fmt) ai_results;
   dump_annot fstart fmt annot;
   dump_hints fstart fmt fannot;
   dump_theorems fstart fmt;

@@ -1,6 +1,11 @@
-def start():
-    var t, z
+var g, h, z
+
+def incz():
+    z = z + 1
+
+def fn():
+    var t
     t = 1
     while not t >= 10 and t >= 0:
         t = t + 2
-        z = z + 1
+        incz()

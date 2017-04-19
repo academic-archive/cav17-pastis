@@ -162,13 +162,16 @@ let main () =
       | None ->
         Format.printf "Sorry, I could not find a bound.@.";
         1
-      | Some (annot, fannot) ->
+      | Some (annot, hint) ->
         let f = List.find (fun f -> f.Types.fun_name = fstart) g_funcl in
         let p = annot.(f.Types.fun_body.Graph.g_start) in
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
         Format.printf "Degree: %d@." (Polynom.Poly.degree p);
         begin try
-          Coqgen.dump fstart g_funcl AI.print_as_coq ai_results annot fannot
+          Coqgen.dump
+            fstart (globals, g_funcl)
+            AI.print_as_coq ai_results
+            annot hint
         with Utils.Todo what ->
           Format.eprintf "Coq extraction failure (%s)@." what
         end;
