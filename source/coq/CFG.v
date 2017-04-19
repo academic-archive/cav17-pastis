@@ -104,13 +104,13 @@ Section WithProgram.
          | EC n1 Q n2 =>
            match nth_error (ipa Q) (pa_call pa n1) with
            | Some qpa =>
-             exists z',
              forall s1,
                pa_spec pa n1 z s1 ->
-               pa_spec qpa (proc_start Q) z' s1 /\
-               forall s2,
-                 pa_spec qpa (proc_end Q) z' s2 ->
-                 pa_spec pa n2 z (exit s1 s2)
+               exists z',
+                 pa_spec qpa (proc_start Q) z' s1 /\
+                 forall s2,
+                   pa_spec qpa (proc_end Q) z' s2 ->
+                   pa_spec pa n2 z (exit s1 s2)
            | None => False
            end
 
@@ -141,12 +141,12 @@ Section WithProgram.
       2: intros _ [].
       intros qpa qpaInIPA.
       apply nth_error_In in qpaInIPA.
-      intros (z' & CALL).
-      apply CALL.
-      + auto using IHSTEPS1.
-      + apply IHSTEPS2; auto.
-	apply CALL.
-	auto using IHSTEPS1.
+      intros CALL.
+      assert (EX: pa_spec pa p1 z s1)
+        by auto using IHSTEPS1.
+      apply CALL in EX.
+      destruct EX as (z' & ENTRY & EXIT).
+      apply EXIT; auto.
   Qed.
 
 End WithProgram.
