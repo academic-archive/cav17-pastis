@@ -13,7 +13,7 @@ let mkvarname funname x =
   then "G_" ^ x
   else "V_" ^ funname ^ "_" ^ x
 let statevar s varname x =
-  "(" ^ s ^ " " ^ varname x ^ ")"
+  s ^ " " ^ varname x
 
 (* Assumes that we have a state s in the context. *)
 let rec dump_expr_norand varname fmt  = function
