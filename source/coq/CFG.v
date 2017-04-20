@@ -83,7 +83,6 @@ Section WithProgram.
   Inductive PA :=
     { pa_aux: Type
     ; pa_spec: node -> pa_aux -> state -> Prop
-    ; pa_call: node -> nat
     }.
 
   (* Inter-procedural annotation. *)
@@ -102,17 +101,16 @@ Section WithProgram.
              pa_spec pa n2 z s2
                      
          | EC n1 Q n2 =>
-           match nth_error (ipa Q) (pa_call pa n1) with
-           | Some qpa =>
-             forall s1,
-               pa_spec pa n1 z s1 ->
-               exists z',
-                 pa_spec qpa (proc_start Q) z' s1 /\
-                 forall s2,
-                   pa_spec qpa (proc_end Q) z' s2 ->
-                   pa_spec pa n2 z (exit s1 s2)
-           | None => False
-           end
+           forall s1 s2,
+             (forall n,
+                 match nth_error (ipa Q) n with
+                 | Some qpa => forall z,
+                     pa_spec qpa (proc_start Q) z s1 ->
+                     pa_spec qpa (proc_end Q) z s2
+                 | None => True
+                 end) ->
+             pa_spec pa n1 z s1 ->
+             pa_spec pa n2 z (exit s1 s2)
 
          end)
       (proc_edges P).
@@ -136,17 +134,13 @@ Section WithProgram.
       assumption.
     - assert (paVC: PA_VC ipa P pa).
       { eapply Forall_In; eauto using VC. }
-      generalize (Forall_In _ _ _ (paVC z) _ H).
-      case_eq (nth_error (ipa Q) (pa_call pa p1)).
-      2: intros _ [].
-      intros qpa qpaInIPA.
-      apply nth_error_In in qpaInIPA.
-      intros CALL.
-      assert (EX: pa_spec pa p1 z s1)
-        by auto using IHSTEPS1.
-      apply CALL in EX.
-      destruct EX as (z' & ENTRY & EXIT).
-      apply EXIT; auto.
+      apply (Forall_In _ _ _ (paVC z) _ H).
+      2: auto using IHSTEPS1.
+      intros n. case_eq (nth_error (ipa Q) n).
+      + intros qpa qpaInIPA z' ENTRY.
+        apply nth_error_In in qpaInIPA.
+        auto using IHSTEPS2.
+      + constructor.
   Qed.
 
 End WithProgram.
