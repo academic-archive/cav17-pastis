@@ -8,29 +8,7 @@ Require Import pasta.RewriteF.
 Close Scope Z.
 Close Scope Q.
 
-(*
-
-(* This tactic is used to prove the bounds deduced by the 
-   Presburger arithmetic abstract interpreter. It basically
-   just calls Coq's lia. *)
-Ltac check_ai :=
-
-  intros until 0;
-  apply reachable_ind;
-  simpl;
-
-  [ (* step case *)
-    repeat apply conj;
-    intros;
-    try (match goal with [ H : step _ _ _ |- _] => inversion H end; subst);
-    simpl;
-    try unfold update;
-    simpl in *;
-    auto;
-    try lia
-  | (* base case *)
-    auto
-  ].
+Definition hints {A B: Type} (a: A) (b: B) := b.
 
 (* This tactic simplifies goals that contain max0 terms. *)
 Ltac simplify_max0 :=
@@ -71,7 +49,7 @@ Lemma use_rewrites:
     Forall rewrite_assumptions hints ->
     Forall rewrite_conclusion hints.
 Proof.
-  induction hints.
+  induction 0.
   + tauto.
   + simpl; intuition.
     eapply ineq_ge0_semantics.
@@ -84,45 +62,90 @@ Proof.
     assumption.
 Qed.
 
-Ltac check_lp ai_theorem rewrites :=
-  
-  intros until 0;
+(* Results of the Abstract Interpretation are formulas
+   in Presburger arithmetic, so should be provable using
+   Coq's lia. *)
+Ltac prove_ai := repeat apply conj; auto; lia.
+
+Ltac prove_weak :=
   match goal with
-  | [ |- _ -> (?annots (g_start ?f) ?s >= ?annots ?p' ?s')%Q ] =>
-    apply reachable_ind with
-    (P := fun p' s' => (annots (g_start f) s >= annots p' s')%Q);
-    auto with qarith;
-      
-    repeat apply conj;
-      
-    try match goal with
-    | [ |- context[ AAssign _ _ ] ] =>
-      inversion_clear 2;
-      unfold update;
-      apply Qle_trans, Z.eq_le_incl;
-      simpl; simplify_max0;
-      ring (* Hopefully that does it... *)
-            
-    | [ |- context[ AWeaken ] ] =>
-      intros ? ? REACHABLE;
-      refine (_ (ai_theorem _ _ _ REACHABLE));
-      intro; inversion 1; subst;
-      clear REACHABLE; apply Qle_trans;
-      match goal with
-      | [ |- (_ <= _ ?n ?s)%Q ] =>
-        refine (_ (use_rewrites (rewrites n s) _));
-        unfold Qle, rewrite_conclusion, rewrite_assumptions;
-        simpl in *; simplify_max0; lia
-      end
-                
-    | [ |- context[ AGuard _ ] ] =>
-      inversion_clear 2; now apply Qle_trans, Qle_refl
-    | [ |- context[ ANone ] ] =>
-      inversion_clear 2; now apply Qle_trans, Qle_refl
-                                     
-    | [ |- True ] => constructor
-                       
-    end
+  | [ |- hints ?hintlist _ -> _ ] =>
+    apply Qle_trans; refine (_ (use_rewrites hintlist _));
+    unfold Qle, rewrite_conclusion, rewrite_assumptions;
+    simpl in *; simplify_max0; lia
+  | [ |- _ ] => apply Qle_trans, Qle_refl
   end.
 
-*)
+(* Some handy lemmas to split goals. *)
+Lemma split_conj (A B C D: Prop): (A -> C) -> (A -> B -> D) -> (A /\ B) -> (C /\ D).
+Proof. intuition. Qed.
+Lemma split_conj' (A B C D: Prop): (A -> (C /\ (B -> D))) -> (A /\ B) -> (C /\ D).
+Proof. intuition. Qed.
+
+(* When proving the VC of a call edge, we have
+   as assumption all the specifications of the
+   callee.  Here, we put them into useful form
+   for the linear arithmetic tactics. *)
+Ltac use_specs :=
+  repeat match goal with
+  | [ H: True |- _ ] => destruct H
+  | [ H: (forall _, _ -> _) /\ _ |- _ ] => destruct H
+  | [ H: forall z, ?AI /\ (?PRE <= z)%Q -> ?POST |- _ ] =>
+    let ai := fresh "AIOK" in
+    assert (ai: AI) by prove_ai;
+    specialize (H PRE (conj ai (Qle_refl _)));
+    clear ai
+  end.
+
+(* Prove the VC associated to an edge. *)
+Ltac prove_edge :=
+  match goal with
+  | [ |- True ] => exact I
+
+  (* Assignments, should be provable with ring. *)
+  | [ |- forall _ _, step _ (AAssign _ _) _ -> _ ] =>
+    inversion_clear 1; simpl; apply split_conj; intro;
+    [ prove_ai
+    | apply Qle_trans, Z.eq_le_incl;
+      simpl; simplify_max0; ring (* Hopefully that does it... *)  
+    ]
+
+  (* Weakenings. *)
+  | [ |- forall _ _, step _ AWeaken _ -> _ ] =>
+    inversion_clear 1; apply split_conj; intro;
+      [prove_ai | try prove_weak]
+
+  (* No change in the potential on guards and empty edges. *)
+  | [ |- forall _ _, step _ (AGuard _) _ -> _ ] =>
+    inversion_clear 1; apply split_conj; unfold hints; intro;
+      [prove_ai | apply Qle_trans, Qle_refl]
+  | [ |- forall _ _, step _ ANone _ -> _ ] =>
+    inversion_clear 1; apply split_conj; unfold hints; intro;
+      [prove_ai | apply Qle_trans, Qle_refl]
+
+  (* Procedure Calls. *)
+  | [ |- forall _ _, step _ _ _ -> _ ] => idtac
+  | [ |- _ ] =>
+    (* Put the abstract state of s1 in the context. *)
+    intros ? ? ?; apply split_conj'; unfold hints, exit;
+    (* Specialize the PAs of the callee to the pre-call state (s1). *)
+    simpl; intro; use_specs; split;
+    [ prove_ai
+    | apply Qle_trans; unfold Qle in *;
+      simpl in *; simplify_max0; lia
+    ]
+
+  | [ |- _ ] => idtac
+  end.
+
+(* Prove that an IPA satisfies the VC. *)
+Ltac prove_ipa_vc :=
+  let P := fresh "Proc" in
+  intro P; unfold PA_VC; destruct P; simpl;
+  repeat apply conj; (* One goal per PA. *)
+  match goal with
+  | [ |- True ] => exact I
+  | [ |- _ ] =>
+    intro; repeat apply conj; (* One goal per edge. *)
+      prove_edge
+  end.

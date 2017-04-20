@@ -8,6 +8,7 @@ Definition state := id -> Z.
 
 Definition update (x : id)  (v : Z) (s : state) :=
   fun y => if (Pos.eq_dec x y) then v else (s y).
+Arguments update / x v s.
 
 Inductive expr :=
 | EVar : id -> expr
@@ -80,7 +81,7 @@ Section WithProgram.
   .
 
   (* Procedure annotation. *)
-  Inductive PA :=
+  Inductive PA := mkPA
     { pa_aux: Type
     ; pa_spec: node -> pa_aux -> state -> Prop
     }.
@@ -96,19 +97,17 @@ Section WithProgram.
            
          | EA n1 a n2 =>
            forall s1 s2,
-             pa_spec pa n1 z s1 ->
              step s1 a s2 ->
+             pa_spec pa n1 z s1 ->
              pa_spec pa n2 z s2
                      
          | EC n1 Q n2 =>
            forall s1 s2,
-             (forall n,
-                 match nth_error (ipa Q) n with
-                 | Some qpa => forall z,
-                     pa_spec qpa (proc_start Q) z s1 ->
-                     pa_spec qpa (proc_end Q) z s2
-                 | None => True
-                 end) ->
+             Forall (fun qpa =>
+                       forall z,
+                         pa_spec qpa (proc_start Q) z s1 ->
+                         pa_spec qpa (proc_end Q) z s2
+                    ) (ipa Q) ->
              pa_spec pa n1 z s1 ->
              pa_spec pa n2 z (exit s1 s2)
 
@@ -130,17 +129,15 @@ Section WithProgram.
     - assert (paVC: PA_VC ipa P pa).
       { eapply Forall_In; eauto using VC. }
       eapply (Forall_In _ _ _ (paVC z) _ H).	
+      eassumption.
       auto using IHSTEPS.
-      assumption.
     - assert (paVC: PA_VC ipa P pa).
       { eapply Forall_In; eauto using VC. }
       apply (Forall_In _ _ _ (paVC z) _ H).
-      2: auto using IHSTEPS1.
-      intros n. case_eq (nth_error (ipa Q) n).
-      + intros qpa qpaInIPA z' ENTRY.
-        apply nth_error_In in qpaInIPA.
-        auto using IHSTEPS2.
-      + constructor.
+      apply In_Forall.
+      intros qpa qpaInIPA z' ENTRY.
+      auto using IHSTEPS2.
+      auto using IHSTEPS1.
   Qed.
 
 End WithProgram.

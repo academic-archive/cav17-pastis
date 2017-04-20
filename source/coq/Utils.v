@@ -24,6 +24,15 @@ Section Forall.
       congruence.
   Qed.
 
+  Theorem In_Forall:
+    forall l, (forall x, In x l -> P x) -> Forall l.
+  Proof.
+    induction l.
+    + intros; constructor.
+    + split. apply H. left. auto.
+      apply IHl. intros. apply H. right. auto.
+  Qed.
+
   Theorem Forall_app:
     forall l l', Forall (app l l') -> (Forall l /\ Forall l').
   Proof.

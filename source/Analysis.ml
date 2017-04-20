@@ -522,8 +522,7 @@ let run ai_results ai_is_nonneg (gl, fl) =
         let focus = find_focus fname node focus in
         let polys = polys_of_focus focus in
         let a, fa = Potential.weaken polys a in
-        hints.(node) <-
-          `HintFocus (List.combine fa focus) :: hints.(node);
+        hints.(node) <- (List.combine fa focus);
         a
       | Graph.AGuard LRandom -> debug_dumps := a :: !debug_dumps; a
       | Graph.AGuard _ | Graph.ANone -> a
@@ -532,16 +531,13 @@ let run ai_results ai_is_nonneg (gl, fl) =
         let (la, ga) = Potential.split gs a in
         let ga1 = Potential.new_annot global_monoms in
         let ga = Potential.addmul ga (-1) ga1 in
-        let id1, a = do_fun ctx f' degree ga in
+        let _, a = do_fun ctx f' degree ga in
         let (_la', ga) = Potential.split gs a in
-        let id2, a1 = do_fun [] f' (degree-1) ga1 in
+        let _, a1 = do_fun [] f' (degree-1) ga1 in
         let (_la1, ga1) = Potential.split gs a1 in
         (* Potential.constrain _la' Eq _pzero; *)
         let ga = Potential.addmul ga (+1) ga1 in
         let a = Potential.merge (la, ga) in
-        hints.(node) <- `HintCall id1 :: hints.(node);
-        if id2 >= 0 then
-          hints.(node) <- `HintCall id2 :: hints.(node);
         a
     in
 
@@ -618,18 +614,18 @@ let run ai_results ai_is_nonneg (gl, fl) =
       end !debug_dumps;
       let annots_final = Hashtbl.create 11 in
       Hashtbl.iter (fun fname (_, func_annot) ->
-        Hashtbl.add annots_final fname (
+        let func_annots =
+          try Hashtbl.find annots_final fname
+          with Not_found -> []
+        in
+        Hashtbl.replace annots_final fname (
           Array.map (fun (annot, hints) ->
             let hints =
-              List.map (function
-                | `HintFocus l ->
-                  `HintFocus
-                    (List.map (fun (fa, f) ->
-                      (Potential.focus_annot_sol sol fa, f)) l)
-                | `HintCall id -> `HintCall id
-              ) in
+              List.map (fun (fa, f) ->
+                (Potential.focus_annot_sol sol fa, f)) hints
+            in
             (make_poly annot, hints)
-          ) !func_annot
+          ) !func_annot :: func_annots
         )
       ) annots;
       Some (annots_final, make_poly start_annot)
