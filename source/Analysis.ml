@@ -423,6 +423,18 @@ let run ai_results ai_is_nonneg (gl, fl) =
   Clp.reset ();
   reset_stats ();
 
+  (* The collection of annotations for each function. *)
+  let annots = Hashtbl.create 11 in
+  let new_func_annot fn =
+    let last_id =
+      try fst (Hashtbl.find annots fn)
+      with Not_found -> -1 in
+    let id = last_id + 1 in
+    let func_annot = ref [||] in
+    Hashtbl.add annots fn (id, func_annot);
+    (id, func_annot)
+  in
+
   let gs = IdSet.of_list gl in
   let debug_dumps = ref [] in
   let _pzero = Potential.of_poly (Poly.zero ()) in
@@ -450,17 +462,18 @@ let run ai_results ai_is_nonneg (gl, fl) =
   let polys_of_focus = List.map (fun f -> f.proves) in
 
   (* Analyze the function with name fname for the query
-     query.  The return value is a triple consisting of
-     focus functions annotations, potential annotations,
-     and finally the annotation of the function start.
+     query.  The return value is a pair consisting of
+     an identifier for the given run (used to create
+     hints for function calls), and a final annotation
+     for the start point of the function.
   *)
   let rec do_fun ctx fname degree query =
 
-    if degree = 0 then [||], [||], query (* Optimization. *) else
+    if degree = 0 then (-1, query) (* Optimization. *) else
     try
-      let (mk_start_annot, end_annot) = List.assoc fname ctx in
+      let (id, mk_start_annot, end_annot) = List.assoc fname ctx in
       Potential.constrain end_annot Eq query;
-      [||], [||], mk_start_annot ()
+      (id, mk_start_annot ())
     with Not_found ->
 
     let f = List.find (fun f -> f.fun_name = fname) fl in
@@ -492,10 +505,12 @@ let run ai_results ai_is_nonneg (gl, fl) =
         rec_annot := Some annot;
         annot
     in
-    let ctx = (fname, (mk_rec_annot, query)) :: ctx in
 
-    (* The annotations that will be returned. *)
-    let fannot = Array.map (fun _ -> []) body.Graph.g_position in
+    (* Create the function annotation that will be returned. *)
+    let (id, func_annot) = new_func_annot fname in
+    let ctx = (fname, (id, mk_rec_annot, query)) :: ctx in
+
+    let hints = Array.map (fun _ -> []) body.Graph.g_position in
     let annot = Array.map (fun _ -> `Todo) body.Graph.g_position in
 
     (* Create a new potential annotation resulting from
@@ -507,7 +522,9 @@ let run ai_results ai_is_nonneg (gl, fl) =
         let focus = find_focus fname node focus in
         let polys = polys_of_focus focus in
         let a, fa = Potential.weaken polys a in
-        fannot.(node) <- List.combine fa focus; a
+        hints.(node) <-
+          `HintFocus (List.combine fa focus) :: hints.(node);
+        a
       | Graph.AGuard LRandom -> debug_dumps := a :: !debug_dumps; a
       | Graph.AGuard _ | Graph.ANone -> a
       | Graph.AAssign (v, e) -> Potential.exec_assignment (v, e) a
@@ -515,12 +532,17 @@ let run ai_results ai_is_nonneg (gl, fl) =
         let (la, ga) = Potential.split gs a in
         let ga1 = Potential.new_annot global_monoms in
         let ga = Potential.addmul ga (-1) ga1 in
-        let _, _, a = do_fun ctx f' degree ga in
+        let id1, a = do_fun ctx f' degree ga in
         let (_la', ga) = Potential.split gs a in
-        let _, _, a1 = do_fun [] f' (degree-1) ga1 in
+        let id2, a1 = do_fun [] f' (degree-1) ga1 in
         let (_la1, ga1) = Potential.split gs a1 in
         (* Potential.constrain _la' Eq _pzero; *)
-        Potential.merge (la, Potential.addmul ga (+1) ga1)
+        let ga = Potential.addmul ga (+1) ga1 in
+        let a = Potential.merge (la, ga) in
+        hints.(node) <- `HintCall id1 :: hints.(node);
+        if id2 >= 0 then
+          hints.(node) <- `HintCall id2 :: hints.(node);
+        a
     in
 
     (* Annotate all program points starting from
@@ -567,19 +589,19 @@ let run ai_results ai_is_nonneg (gl, fl) =
     | Some annot -> Potential.constrain start_annot Eq annot
     | None -> ()
     end;
-    let annot =
-      Array.map (function
-        `Done a -> a | _ -> failwith "impossible dead code"
-      ) annot
-    in
-    (fannot, annot, start_annot)
+    func_annot :=
+      Array.mapi (fun i -> function
+        | `Done a -> (a, hints.(i))
+        | _ -> failwith "impossible dead code"
+      ) annot;
+    (id, start_annot)
 
   in (* End of do_fun. *)
 
   fun start degree query ->
     let fstart = List.find (fun f -> f.fun_name = start) fl in
     let query = Potential.of_poly query in
-    let (fannot, annot, start_annot) = do_fun [] start degree query in
+    let (_, start_annot) = do_fun [] start degree query in
     Potential.constrain start_annot Ge _pzero;
     match
       let start_node = fstart.fun_body.Graph.g_start in
@@ -594,11 +616,20 @@ let run ai_results ai_is_nonneg (gl, fl) =
         Format.eprintf "Dump: %a@."
           Poly.print_ascii (make_poly a)
       end !debug_dumps;
-      let annot = Array.map make_poly annot in
-      let fannot =
-        Array.map
-          (List.map (fun (fa, f) ->
-            (Potential.focus_annot_sol sol fa, f)))
-          fannot
-      in
-      Some (annot, fannot)
+      let annots_final = Hashtbl.create 11 in
+      Hashtbl.iter (fun fname (_, func_annot) ->
+        Hashtbl.add annots_final fname (
+          Array.map (fun (annot, hints) ->
+            let hints =
+              List.map (function
+                | `HintFocus l ->
+                  `HintFocus
+                    (List.map (fun (fa, f) ->
+                      (Potential.focus_annot_sol sol fa, f)) l)
+                | `HintCall id -> `HintCall id
+              ) in
+            (make_poly annot, hints)
+          ) !func_annot
+        )
+      ) annots;
+      Some (annots_final, make_poly start_annot)
