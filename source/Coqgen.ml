@@ -328,10 +328,13 @@ let dump_annots fmt fn annots =
   List.iteri dump_annot annots;
   ()
 
-let dump_ipa fmt annots =
+let dump_ipa fmt annots flist =
   Format.fprintf fmt "@,Definition ipa: IPA := fun p =>@,  ";
   Format.fprintf fmt "@[<v>match p with@,";
-  Hashtbl.iter (fun fn l ->
+  List.iter (fun {fun_name = fn; _} ->
+    let l = try Hashtbl.find annots fn with Not_found -> [] in
+    if l = [] then
+      Format.fprintf fmt "| %s => []@," (procname fn) else
     let n = List.length l in
     Format.fprintf fmt "| %s =>@,  [@[<v>" (procname fn);
     for i = 0 to n - 1 do
@@ -342,8 +345,8 @@ let dump_ipa fmt annots =
         Format.fprintf fmt "@]]@,"
       else
         Format.fprintf fmt ";@,"
-    done
-  ) annots;
+    done;
+  ) flist;
   Format.fprintf fmt "end.@]@,@,";
   Format.fprintf fmt
     "Theorem admissible_ipa: IPA_VC ipa.@,\
@@ -376,6 +379,6 @@ let dump _fstart prog print_bound ai_results annots =
   dump_program fmt prog;
   Hashtbl.iter (dump_ai print_bound fmt) ai_results;
   Hashtbl.iter (dump_annots fmt) annots;
-  dump_ipa fmt annots;
+  dump_ipa fmt annots (snd prog);
   Format.fprintf fmt "@.@]";
   close_out oc
