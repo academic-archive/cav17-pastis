@@ -157,7 +157,7 @@ let dump_program fmt (_, fs) =
 
 let dump_ai print_bound fmt fn ai_annots =
   Format.fprintf fmt "@[<v>";
-  Format.fprintf fmt "@,Definition ai_%s (p: node) (s: state) := @," fn;
+  Format.fprintf fmt "@,Definition ai_%s (p: node) (s: state): Prop := @," fn;
   Format.fprintf fmt "  (@[<v>match p with@,";
   let varname = statevar "s" (mkvarname fn) in
   let print_bound = print_bound varname in
@@ -274,22 +274,7 @@ and dump_factor ring varname fmt = function
     Format.fprintf fmt "max0(%a)"
       (dump_poly `Z varname) p
 
-let dump_annot fn fmt annot =
-  Format.fprintf fmt "@[<v>@,Definition %s_pot (p : node) (s : state): Q := @," fn;
-  Format.fprintf fmt "  match p with@,";
-  let varname = statevar "s" (mkvarname fn) in
-  Format.fprintf fmt "    @[<v>";
-  Array.iteri (fun i v ->
-    Format.fprintf fmt "| %d%%positive => (%a)%%Q@,"
-      (i+1) (dump_poly `Q varname) v
-  ) annot;
-  Format.fprintf fmt "| _ => (0 # 1)%%Q@]@,  end.@,";
-  Format.fprintf fmt "@]";
-  ()
-
-let dump_hints fn fmt fannot =
-
-  let varname = statevar "s" (mkvarname fn) in
+let dump_hint varname fmt ((ka, kb), f) =
   let rec dump_ast fmt =
     let print s = Format.fprintf fmt s in
     let poly = dump_poly `Z varname in
@@ -317,20 +302,52 @@ let dump_hints fn fmt fannot =
       print "F_product (%a) (%a)" dump_ast f dump_ast g
     | _ -> Utils._TODO "higher degree pre_{in,de}crements"
   in
-  let dump_hint fmt ((ka, kb), f) =
-    Format.fprintf fmt "@[<h>(*%g %g*) %a@]" ka kb dump_ast f.ast
-  in
+  Format.fprintf fmt "@[<h>(*%g %g*) %a@]" ka kb dump_ast f.ast
 
-  Format.fprintf fmt "@[<v>@,Definition %s_hints (p: node) (s: state) := @," fn;
-  Format.fprintf fmt "  (@[<v>match p with@,";
-  Array.iteri (fun i l ->
-    let l = List.filter (fun ((ka, kb), _) -> abs_float (ka -. kb) > fsmall) l in
-    if l <> [] then
-      Format.fprintf fmt "| %d => %a@,"
-        (i+1) (Print.list dump_hint) l
-  ) fannot;
-  Format.fprintf fmt "| _ => []@,end@])%%positive.@,";
-  Format.fprintf fmt "@,@,@]";
+let dump_annots fmt fn annots =
+  let varname = statevar "s" (mkvarname fn) in
+  let dump_annot i annot_hints =
+    Format.fprintf fmt
+      "@[<v>@,Definition annot%d_%s \
+              (p: node) (z: Q) (s: state): Prop := @," i fn;
+    Format.fprintf fmt "  (@[<v>match p with@,";
+    Array.iteri (fun i (v, hl) ->
+      let used ((ka, kb), _) = abs_float (ka -. kb) > fsmall in
+      let hl = List.filter used hl in
+      if hl = [] then
+        Format.fprintf fmt "| %d => (%a <= z)%%Q@,"
+          (i+1) (dump_poly `Q varname) v
+      else
+        Format.fprintf fmt "| %d => hints@,  %a@,  (%a <= z)%%Q@,"
+          (i+1) (Print.list (dump_hint varname)) hl
+          (dump_poly `Q varname) v
+    ) annot_hints;
+    Format.fprintf fmt "| _ => False@,end)%%positive.@]@,";
+    Format.fprintf fmt "@]"
+  in
+  List.iteri dump_annot annots;
+  ()
+
+let dump_ipa fmt annots =
+  Format.fprintf fmt "@,Definition ipa: IPA := fun p =>@,  ";
+  Format.fprintf fmt "@[<v>match p with@,";
+  Hashtbl.iter (fun fn l ->
+    let n = List.length l in
+    Format.fprintf fmt "| %s =>@,  [@[<v>" (procname fn);
+    for i = 0 to n - 1 do
+      Format.fprintf fmt
+        "mkPA Q (fun n z s => ai_%s n s /\\ annot%d_%s n z s)"
+        fn i fn;
+      if i = n - 1 then
+        Format.fprintf fmt "@]]@,"
+      else
+        Format.fprintf fmt ";@,"
+    done
+  ) annots;
+  Format.fprintf fmt "end.@]@,@,";
+  Format.fprintf fmt
+    "Theorem admissible_ipa: IPA_VC ipa.@,\
+     Proof. prove_ipa_vc. Qed.@,";
   ()
 
 let dump_theorems fn fmt =
@@ -351,15 +368,14 @@ let dump_theorems fn fmt =
   Format.fprintf fmt "@]";
   ()
 
-let dump fstart prog print_bound ai_results annot fannot =
+let dump _fstart prog print_bound ai_results annots =
   globs := (fst prog);
   let oc = open_out "generated_coq.v" in
   let fmt = Format.formatter_of_out_channel oc in
   Format.fprintf fmt "@[<v>Require Import pasta.Pasta.@,@,";
   dump_program fmt prog;
   Hashtbl.iter (dump_ai print_bound fmt) ai_results;
-  dump_annot fstart fmt annot;
-  dump_hints fstart fmt fannot;
-  dump_theorems fstart fmt;
-  Format.fprintf fmt "@.";
+  Hashtbl.iter (dump_annots fmt) annots;
+  dump_ipa fmt annots;
+  Format.fprintf fmt "@.@]";
   close_out oc
