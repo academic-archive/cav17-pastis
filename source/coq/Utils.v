@@ -35,7 +35,7 @@ Section Forall.
   Qed.
 
 End Forall.
-Arguments Forall {A}.
+Global Arguments Forall {A} P l.
 
 
 Open Scope Z.
