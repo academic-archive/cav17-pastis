@@ -350,28 +350,10 @@ let dump_ipa fmt annots flist =
   Format.fprintf fmt "end.@]@,@,";
   Format.fprintf fmt
     "Theorem admissible_ipa: IPA_VC ipa.@,\
-     Proof. prove_ipa_vc. Qed.@,";
+     Proof.@,  prove_ipa_vc.@,Qed.@,";
   ()
 
-let dump_theorems fn fmt =
-  Format.fprintf fmt "@[<v>";
-  Format.fprintf fmt
-    "Theorem %s_ai_correct:@   \
-       forall s p' s', steps (g_start %s) s (g_edges %s) p' s' -> \
-       %s_ai p' s'.@,\
-     Proof.@,  check_ai.@,Qed.@,@,"
-    fn fn fn fn;
-  Format.fprintf fmt
-    "Theorem %s_pot_correct:@   \
-       forall s p' s',@,    \
-         steps (g_start %s) s (g_edges %s) p' s' ->@,    \
-         (%s_pot (g_start %s) s >= %s_pot p' s')%%Q.@,\
-     Proof.@,  check_lp %s_ai_correct %s_hints.@,Qed.@,"
-    fn fn fn fn fn fn fn fn;
-  Format.fprintf fmt "@]";
-  ()
-
-let dump _fstart prog print_bound ai_results annots =
+let dump fstart prog qry bnd print_bound ai_results annots =
   globs := (fst prog);
   let oc = open_out "generated_coq.v" in
   let fmt = Format.formatter_of_out_channel oc in
@@ -380,5 +362,14 @@ let dump _fstart prog print_bound ai_results annots =
   Hashtbl.iter (dump_ai print_bound fmt) ai_results;
   Hashtbl.iter (dump_annots fmt) annots;
   dump_ipa fmt annots (snd prog);
+  Format.fprintf fmt
+    "@,Theorem bound_valid:@,  \
+       forall s1 s2, steps %s (proc_start %s) s1 (proc_end %s) s2 ->@,    \
+         (%a <= %a)%%Q.@,\
+     Proof.@,  prove_bound ipa admissible_ipa %s.@,Qed."
+    (procname fstart) (procname fstart) (procname fstart)
+    (dump_poly `Q (statevar "s2" (mkvarname fstart))) qry
+    (dump_poly `Q (statevar "s1" (mkvarname fstart))) bnd
+    (procname fstart);
   Format.fprintf fmt "@.@]";
   close_out oc
