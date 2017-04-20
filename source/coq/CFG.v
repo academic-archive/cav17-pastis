@@ -117,8 +117,6 @@ Section WithProgram.
   Definition IPA_VC (ipa: IPA) :=
     forall (P: proc), Forall (PA_VC ipa P) (ipa P).
 
-  Transparent PA_VC IPA_VC.
-
   Theorem ipa_sound (ipa: IPA) (VC: IPA_VC ipa):
     forall (P: proc) p1 s1 p2 s2 (STEPS: steps P p1 s1 p2 s2),
     forall (pa: PA) z (InIPA: In pa (ipa P)), pa_spec pa p1 z s1 -> pa_spec pa p2 z s2.
