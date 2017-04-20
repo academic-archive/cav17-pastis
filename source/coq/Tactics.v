@@ -149,3 +149,12 @@ Ltac prove_ipa_vc :=
     intro; repeat apply conj; (* One goal per edge. *)
       prove_edge
   end.
+
+Ltac prove_bound ipa admissible_ipa Proc :=
+  let STEPS := fresh "STEPS" in
+  intros ? ? STEPS; set (ipa Proc); simpl in *;
+  match goal with
+  | [ _ := cons ?pa _ |- _ ] =>
+    apply (ipa_sound ipa admissible_ipa _ _ _ _ _ STEPS pa);
+    [ left; reflexivity | simpl; now auto using Qle_refl ]
+  end.

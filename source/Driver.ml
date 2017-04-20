@@ -166,7 +166,7 @@ let main () =
         Format.printf "Upper bound for %a: %a@." poly_print query poly_print p;
         Format.printf "Degree: %d@." (Polynom.Poly.degree p);
         begin try
-          Coqgen.dump fstart (globals, g_funcl) AI.print_as_coq ai_results annots
+          Coqgen.dump fstart (globals, g_funcl) query p AI.print_as_coq ai_results annots
         with Utils.Todo what ->
           Format.eprintf "Coq extraction failure (%s)@." what
         end;
