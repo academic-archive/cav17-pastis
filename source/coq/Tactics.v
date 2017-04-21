@@ -34,6 +34,8 @@ Ltac simplify_max0 :=
     change (max0 Z0) with Z0
   | [ |- context[ max0 (Z.opp (Zpos ?x)) ] ] =>
     change (max0 (Z.opp (Zpos x))) with Z0
+  | [ |- context[ max0 (Zneg ?x) ] ] =>
+    change (max0 (Zneg x)) with Z0
   end.
 
 (* These two definitions and the lemma below allow to use
@@ -151,10 +153,10 @@ Ltac prove_ipa_vc :=
   end.
 
 Ltac prove_bound ipa admissible_ipa Proc :=
-  let STEPS := fresh "STEPS" in
-  intros ? ? STEPS; set (ipa Proc); simpl in *;
-  match goal with
-  | [ _ := cons ?pa _ |- _ ] =>
+  match eval hnf in (ipa Proc) with
+  | cons ?pa _ =>
+    let STEPS := fresh "STEPS" in
+    intros ? ? STEPS;
     apply (ipa_sound ipa admissible_ipa _ _ _ _ _ STEPS pa);
     [ left; reflexivity | simpl; now auto using Qle_refl ]
   end.
