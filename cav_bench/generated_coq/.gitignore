@@ -2,4 +2,4 @@
 coq/
 *.vo
 *.glob
-*.vo.aux
+*.aux
