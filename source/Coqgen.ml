@@ -7,11 +7,22 @@ open Polynom
 
 let globs = ref []
 
+let coq_escape s =
+  let rec escape r j =
+    if j = -1 then String.concat "" r else
+    match s.[j] with
+    | '.' -> escape ("_dot_" :: r) (j-1)
+    | c -> escape (String.make 1 c :: r) (j-1)
+  in
+  if String.contains s '.'
+  then escape [] (String.length s - 1)
+  else s
+
 let procname x = "P_" ^ x
 let mkvarname funname x =
   if List.mem x !globs
-  then "G_" ^ x
-  else "V_" ^ funname ^ "_" ^ x
+  then "G_" ^ coq_escape x
+  else "V_" ^ funname ^ "_" ^ coq_escape x
 let statevar s varname x =
   s ^ " " ^ varname x
 
