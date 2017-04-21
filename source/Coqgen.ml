@@ -282,10 +282,10 @@ let dump_hint varname fmt ((ka, kb), f) =
     | F_one -> print "F_one"
     | F_check_ge (a, b) ->
       print "F_check_ge (%a) (%a)" poly a poly b
-    | F_max0_pre_decrement (1, a, b) ->
-      print "F_max0_pre_decrement (%a) (%a)" poly a poly b
-    | F_max0_pre_increment (1, a, b) ->
-      print "F_max0_pre_increment (%a) (%a)" poly a poly b
+    | F_max0_pre_decrement (k, a, b) ->
+      print "F_max0_pre_decrement %d (%a) (%a)" k poly a poly b
+    | F_max0_pre_increment (k, a, b) ->
+      print "F_max0_pre_increment %d (%a) (%a)" k poly a poly b
     | F_max0_ge_0 a ->
       print "F_max0_ge_0 (%a)" poly a
     | F_max0_ge_arg a ->
@@ -300,7 +300,6 @@ let dump_hint varname fmt ((ka, kb), f) =
       print "F_binom_monotonic %d (%a) (%a)" k dump_ast f dump_ast g
     | F_product (f, g) ->
       print "F_product (%a) (%a)" dump_ast f dump_ast g
-    | _ -> Utils._TODO "higher degree pre_{in,de}crements"
   in
   Format.fprintf fmt "@[<h>(*%g %g*) %a@]" ka kb dump_ast f.ast
 

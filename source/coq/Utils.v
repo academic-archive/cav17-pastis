@@ -98,24 +98,6 @@ Module ZLemmas.
     + generalize (lem_max0_ge_arg y). omega.
   Qed.
 
-  Lemma lem_max0_pre_decrement:
-    forall x y, x >= y -> y >= 0 -> max0 x >= y + max0 (x - y).
-  Proof.
-    intros x y Hxy Hy0. apply Z.le_ge.
-    replace (max0 x) with x
-      by (symmetry; apply Z.max_r; auto with zarith).
-    generalize (lem_max0_le_arg (x - y)).
-    omega.
-  Qed.
-
-  Lemma lem_max0_pre_increment:
-    forall x y, y >= 0 -> y + max0 x >= max0 (x + y).
-  Proof.
-    intros x y Hxy. apply Z.le_ge, Z.max_lub.
-    + generalize (lem_max0_ge_0 x). omega.
-    + generalize (lem_max0_ge_arg x). omega.
-  Qed.
-
   Lemma lem_prodn_nonneg:
     forall k x l, 0 <= l -> l <= x -> 0 <= prodn k x l.
   Proof.
@@ -149,6 +131,31 @@ Module ZLemmas.
       - apply Z.le_ge, Z.mul_le_mono_nonneg; try omega.
         apply lem_prodn_nonneg; omega.
         apply Z.ge_le, IHk; omega.
+  Qed.
+
+  Lemma lem_max0_pre_decrement:
+    forall k x y, x >= y -> y >= 0 ->
+                  prodn k (max0 x) 0 >= prodn k (y + max0 (x - y)) 0.
+  Proof.
+    intros k x y Hxy Hy0. apply lem_prodn_monotonic.
+    - apply Z.le_ge.
+      replace (max0 x) with x
+        by (symmetry; apply Z.max_r; auto with zarith).
+      generalize (lem_max0_le_arg (x - y)). omega.
+    - generalize (lem_max0_ge_0 (x - y)). omega.
+    - auto with zarith.
+  Qed.
+
+  Lemma lem_max0_pre_increment:
+    forall k x y, y >= 0 ->
+                  prodn k (y + max0 x) 0 >= prodn k (max0 (x + y)) 0.
+  Proof.
+    intros k x y Hxy. apply lem_prodn_monotonic.
+    - apply Z.le_ge, Z.max_lub.
+      + generalize (lem_max0_ge_0 x). omega.
+      + generalize (lem_max0_ge_arg x). omega.
+    - apply lem_max0_ge_0.
+    - auto with zarith.
   Qed.
 
 End ZLemmas.

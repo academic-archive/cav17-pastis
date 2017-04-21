@@ -13,8 +13,8 @@ Inductive rewrite_ast :=
   | F_max0_le_arg (p: rewrite_ast)
   | F_max0_monotonic (p: rewrite_ast)
   | F_max0_sublinear (p: rewrite_ast)
-  | F_max0_pre_decrement (x y: Z)
-  | F_max0_pre_increment (x y: Z)
+  | F_max0_pre_decrement (k: nat) (x y: Z)
+  | F_max0_pre_increment (k: nat) (x y: Z)
   | F_binom_monotonic (k: nat) (p q: rewrite_ast)
   | F_product (p q: rewrite_ast)
 .
@@ -97,13 +97,13 @@ Fixpoint interpret (p: rewrite_ast): interp :=
       let (x, y) := ineq_ge c in
       [ a |- max0 y + x - y '>= max0 x ]
 
-    | F_max0_pre_decrement x y =>
+    | F_max0_pre_decrement k x y =>
       [ [x '>= y; y '>= 0] |-
-        max0 x '>= y + max0 (x - y) ]
+        prodn k (max0 x) 0 '>= prodn k (y + max0 (x - y)) 0 ]
 
-    | F_max0_pre_increment x y =>
+    | F_max0_pre_increment k x y =>
       [ [y '>= 0] |-
-        y + max0 x '>= max0 (x + y) ]
+        prodn k (y + max0 x) 0 '>= prodn k (max0 (x + y)) 0 ]
 
     | F_binom_monotonic k q r =>
       let (aq, cq) := interpret q in
