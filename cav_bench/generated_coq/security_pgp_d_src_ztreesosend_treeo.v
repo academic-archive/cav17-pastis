@@ -1,959 +1,819 @@
 Require Import pasta.Pasta.
 
-Notation IDsend_tree_z := 1%positive.
-Notation IDsend_tree__tmp := 2%positive.
-Notation IDsend_tree_count := 3%positive.
-Notation IDsend_tree_curlen := 4%positive.
-Notation IDsend_tree_max_count := 5%positive.
-Notation IDsend_tree_min_count := 6%positive.
-Notation IDsend_tree_n := 7%positive.
-Notation IDsend_tree_nextlen := 8%positive.
-Notation IDsend_tree_prevlen := 9%positive.
-Notation IDsend_tree_tree_dref_off0_off2 := 10%positive.
-Notation IDsend_tree_max_code := 11%positive.
-Notation IDsend_tree_tree := 12%positive.
-Definition send_tree : graph := {|
-  g_start := 1%positive;
-  g_end := 20%positive;
-  g_edges := (1%positive,(AAssign IDsend_tree_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDsend_tree__tmp
-             (Some (EVar IDsend_tree_max_code))),3%positive)::
-             (3%positive,(AAssign IDsend_tree_prevlen (Some (ENum (-1)))),
-             4%positive)::
-             (4%positive,(AAssign IDsend_tree_nextlen
-             (Some (EVar IDsend_tree_tree_dref_off0_off2))),5%positive)::
-             (5%positive,(AAssign IDsend_tree_count (Some (ENum (0)))),
-             6%positive)::
-             (6%positive,(AAssign IDsend_tree_max_count (Some (ENum (7)))),
-             7%positive)::
-             (7%positive,(AAssign IDsend_tree_min_count (Some (ENum (4)))),
-             8%positive)::(8%positive,AWeaken,9%positive)::
-             (9%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_nextlen)
-             s) = (eval (ENum (0)) s))%Z)),11%positive)::
-             (9%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_nextlen)
-             s) <> (eval (ENum (0)) s))%Z)),10%positive)::
-             (10%positive,AWeaken,15%positive)::
-             (11%positive,AWeaken,12%positive)::
-             (12%positive,(AAssign IDsend_tree_max_count
-             (Some (ENum (138)))),13%positive)::
-             (13%positive,(AAssign IDsend_tree_min_count (Some (ENum (3)))),
-             14%positive)::(14%positive,ANone,15%positive)::
-             (15%positive,(AAssign IDsend_tree_n (Some (ENum (0)))),
-             16%positive)::(16%positive,ANone,17%positive)::
-             (17%positive,AWeaken,18%positive)::
-             (18%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_n) s) <=
-             (eval (EVar IDsend_tree__tmp) s))%Z)),21%positive)::
-             (18%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_n) s) >
-             (eval (EVar IDsend_tree__tmp) s))%Z)),19%positive)::
-             (19%positive,AWeaken,20%positive)::
-             (21%positive,AWeaken,22%positive)::
-             (22%positive,(AAssign IDsend_tree_curlen
-             (Some (EVar IDsend_tree_nextlen))),23%positive)::
-             (23%positive,(AAssign IDsend_tree_nextlen None),24%positive)::
-             (24%positive,(AAssign IDsend_tree_count
-             (Some (EAdd (EVar IDsend_tree_count) (ENum (1))))),25%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (26%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDsend_tree_count) (ENum (1))) s) <
-             (eval (EVar IDsend_tree_max_count) s))%Z)),28%positive)::
-             (26%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDsend_tree_count) (ENum (1)))
-             s) >= (eval (EVar IDsend_tree_max_count) s))%Z)),27%positive)::
-             (27%positive,AWeaken,31%positive)::
-             (28%positive,AWeaken,29%positive)::
-             (29%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_curlen)
-             s) = (eval (EVar IDsend_tree_nextlen) s))%Z)),81%positive)::
-             (29%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_curlen)
-             s) <> (eval (EVar IDsend_tree_nextlen) s))%Z)),30%positive)::
-             (30%positive,AWeaken,31%positive)::
-             (31%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_count)
-             s) < (eval (EVar IDsend_tree_min_count) s))%Z)),49%positive)::
-             (31%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_count)
-             s) >= (eval (EVar IDsend_tree_min_count) s))%Z)),32%positive)::
-             (32%positive,AWeaken,33%positive)::
-             (33%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_curlen)
-             s) <> (eval (ENum (0)) s))%Z)),41%positive)::
-             (33%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_curlen)
-             s) = (eval (ENum (0)) s))%Z)),34%positive)::
-             (34%positive,AWeaken,35%positive)::
-             (35%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_count)
-             s) <= (eval (ENum (10)) s))%Z)),38%positive)::
-             (35%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_count)
-             s) > (eval (ENum (10)) s))%Z)),36%positive)::
-             (36%positive,AWeaken,37%positive)::
-             (37%positive,ANone,40%positive)::
-             (38%positive,AWeaken,39%positive)::
-             (39%positive,ANone,40%positive)::
-             (40%positive,ANone,48%positive)::
-             (41%positive,AWeaken,42%positive)::
-             (42%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_curlen)
-             s) <> (eval (EVar IDsend_tree_prevlen) s))%Z)),44%positive)::
-             (42%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_curlen)
-             s) = (eval (EVar IDsend_tree_prevlen) s))%Z)),43%positive)::
-             (43%positive,AWeaken,47%positive)::
-             (44%positive,AWeaken,45%positive)::
-             (45%positive,(AAssign IDsend_tree_count
-             (Some (EAdd (EVar IDsend_tree_count) (ENum (-1))))),46%positive)::
-             (46%positive,ANone,47%positive)::
-             (47%positive,ANone,48%positive)::
-             (48%positive,ANone,57%positive)::
-             (49%positive,AWeaken,50%positive)::
-             (50%positive,ANone,51%positive)::
-             (51%positive,ANone,52%positive)::
-             (52%positive,(AAssign IDsend_tree_count
-             (Some (EAdd (EVar IDsend_tree_count) (ENum (-1))))),53%positive)::
-             (53%positive,AWeaken,54%positive)::
-             (54%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDsend_tree_count) (ENum (-1)))
-             s) <> (eval (ENum (0)) s))%Z)),78%positive)::
-             (54%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDsend_tree_count) (ENum (-1)))
-             s) = (eval (ENum (0)) s))%Z)),55%positive)::
-             (55%positive,AWeaken,56%positive)::
-             (56%positive,ANone,57%positive)::
-             (57%positive,ANone,58%positive)::
-             (58%positive,(AAssign IDsend_tree_count (Some (ENum (0)))),
-             59%positive)::
-             (59%positive,(AAssign IDsend_tree_prevlen
-             (Some (EVar IDsend_tree_curlen))),60%positive)::
-             (60%positive,AWeaken,61%positive)::
-             (61%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_nextlen)
-             s) = (eval (ENum (0)) s))%Z)),73%positive)::
-             (61%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_nextlen)
-             s) <> (eval (ENum (0)) s))%Z)),62%positive)::
-             (62%positive,AWeaken,63%positive)::
-             (63%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_curlen)
-             s) = (eval (EVar IDsend_tree_nextlen) s))%Z)),68%positive)::
-             (63%positive,(AGuard (fun s => ((eval (EVar IDsend_tree_curlen)
-             s) <> (eval (EVar IDsend_tree_nextlen) s))%Z)),64%positive)::
-             (64%positive,AWeaken,65%positive)::
-             (65%positive,(AAssign IDsend_tree_max_count (Some (ENum (7)))),
-             66%positive)::
-             (66%positive,(AAssign IDsend_tree_min_count (Some (ENum (4)))),
-             67%positive)::(67%positive,ANone,72%positive)::
-             (68%positive,AWeaken,69%positive)::
-             (69%positive,(AAssign IDsend_tree_max_count (Some (ENum (6)))),
-             70%positive)::
-             (70%positive,(AAssign IDsend_tree_min_count (Some (ENum (3)))),
-             71%positive)::(71%positive,ANone,72%positive)::
-             (72%positive,ANone,77%positive)::
-             (73%positive,AWeaken,74%positive)::
-             (74%positive,(AAssign IDsend_tree_max_count
-             (Some (ENum (138)))),75%positive)::
-             (75%positive,(AAssign IDsend_tree_min_count (Some (ENum (3)))),
-             76%positive)::(76%positive,ANone,77%positive)::
-             (77%positive,ANone,83%positive)::
-             (78%positive,AWeaken,79%positive)::
-             (79%positive,ANone,80%positive)::
-             (80%positive,(AAssign IDsend_tree_z (Some (EAdd (ENum (1))
-             (EVar IDsend_tree_z)))),51%positive)::
-             (81%positive,AWeaken,82%positive)::
-             (82%positive,ANone,83%positive)::
-             (83%positive,(AAssign IDsend_tree_n
-             (Some (EAdd (EVar IDsend_tree_n) (ENum (1))))),84%positive)::
-             (84%positive,ANone,85%positive)::
-             (85%positive,ANone,86%positive)::
-             (86%positive,(AAssign IDsend_tree_z (Some (EAdd (ENum (1))
-             (EVar IDsend_tree_z)))),87%positive)::
-             (87%positive,AWeaken,18%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_send_tree.
 
-Definition send_tree_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_z) <= 0)%Z
-    | 4%positive => (1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0)%Z
-    | 5%positive => (-1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_z) <= 0)%Z
-    | 6%positive => (1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 7%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ -1 * (s IDsend_tree_max_count) + 7 <= 0)%Z
-    | 8%positive => (-1 * (s IDsend_tree_max_count) + 7 <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 4 <= 0)%Z
-    | 9%positive => (-1 * (s IDsend_tree_min_count) + 4 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ -1 * (s IDsend_tree_max_count) + 7 <= 0)%Z
-    | 10%positive => (-1 * (s IDsend_tree_max_count) + 7 <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 4 <= 0)%Z
-    | 11%positive => (-1 * (s IDsend_tree_max_count) + 7 <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 4 <= 0 /\ 1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_nextlen) <= 0)%Z
-    | 12%positive => (-1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_min_count) + 4 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ -1 * (s IDsend_tree_max_count) + 7 <= 0)%Z
-    | 13%positive => (1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 4 <= 0 /\ 1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_max_count) + 138 <= 0)%Z
-    | 14%positive => (-1 * (s IDsend_tree_max_count) + 138 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_min_count) + -3 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0)%Z
-    | 15%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_max_count) + 7 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0)%Z
-    | 16%positive => (1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ -1 * (s IDsend_tree_max_count) + 7 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_n) <= 0)%Z
-    | 17%positive => (-1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_max_count) + 7 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_prevlen) + 1 <= 0 /\ -1 * (s IDsend_tree_prevlen) + -1 <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0)%Z
-    | 18%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 19%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree__tmp)+ -1 * (s IDsend_tree_n) + 1 <= 0)%Z
-    | 20%positive => (1 * (s IDsend_tree__tmp)+ -1 * (s IDsend_tree_n) + 1 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 21%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0)%Z
-    | 22%positive => (-1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 23%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0)%Z
-    | 24%positive => (-1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 25%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0)%Z
-    | 26%positive => (-1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 27%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_max_count) + -1 <= 0)%Z
-    | 28%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0)%Z
-    | 29%positive => (1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 30%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0)%Z
-    | 31%positive => (1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 32%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0)%Z
-    | 33%positive => (-1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 34%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_curlen) <= 0 /\ -1 * (s IDsend_tree_curlen) <= 0)%Z
-    | 35%positive => (-1 * (s IDsend_tree_curlen) <= 0 /\ 1 * (s IDsend_tree_curlen) <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 36%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_curlen) <= 0 /\ -1 * (s IDsend_tree_curlen) <= 0 /\ -1 * (s IDsend_tree_count) + 11 <= 0)%Z
-    | 37%positive => (-1 * (s IDsend_tree_count) + 11 <= 0 /\ -1 * (s IDsend_tree_curlen) <= 0 /\ 1 * (s IDsend_tree_curlen) <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 38%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_curlen) <= 0 /\ -1 * (s IDsend_tree_curlen) <= 0 /\ 1 * (s IDsend_tree_count) + -10 <= 0)%Z
-    | 39%positive => (1 * (s IDsend_tree_count) + -10 <= 0 /\ -1 * (s IDsend_tree_curlen) <= 0 /\ 1 * (s IDsend_tree_curlen) <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 40%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_curlen) <= 0 /\ -1 * (s IDsend_tree_curlen) <= 0)%Z
-    | 41%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0)%Z
-    | 42%positive => (-1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 43%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_curlen)+ -1 * (s IDsend_tree_prevlen) <= 0 /\ -1 * (s IDsend_tree_curlen)+ 1 * (s IDsend_tree_prevlen) <= 0)%Z
-    | 44%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0)%Z
-    | 45%positive => (-1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 46%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) + -1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 47%positive => (1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) + -1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 48%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count)+ 1 * (s IDsend_tree_min_count) + -1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0)%Z
-    | 49%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_min_count) + 1 <= 0)%Z
-    | 50%positive => (1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_min_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 51%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0)%Z
-    | 52%positive => (-1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 53%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0)%Z
-    | 54%positive => (-1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 55%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) + -1 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0)%Z
-    | 56%positive => (-1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count) + -1 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 57%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0)%Z
-    | 58%positive => (-1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 59%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 60%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 61%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 62%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 63%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 64%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 65%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 66%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ -1 * (s IDsend_tree_max_count) + 7 <= 0)%Z
-    | 67%positive => (-1 * (s IDsend_tree_max_count) + 7 <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 4 <= 0)%Z
-    | 68%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_curlen)+ -1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_curlen)+ 1 * (s IDsend_tree_nextlen) <= 0)%Z
-    | 69%positive => (-1 * (s IDsend_tree_curlen)+ 1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_curlen)+ -1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 70%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_curlen)+ -1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_curlen)+ 1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_max_count) + -6 <= 0 /\ -1 * (s IDsend_tree_max_count) + 6 <= 0)%Z
-    | 71%positive => (-1 * (s IDsend_tree_max_count) + 6 <= 0 /\ 1 * (s IDsend_tree_max_count) + -6 <= 0 /\ -1 * (s IDsend_tree_curlen)+ 1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_curlen)+ -1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -3 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0)%Z
-    | 72%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ 1 * (s IDsend_tree_max_count) + -7 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_max_count) + 6 <= 0)%Z
-    | 73%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_nextlen) <= 0)%Z
-    | 74%positive => (-1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0)%Z
-    | 75%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_max_count) + 138 <= 0)%Z
-    | 76%positive => (-1 * (s IDsend_tree_max_count) + 138 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -3 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0)%Z
-    | 77%positive => (-1 * (s IDsend_tree_max_count) + 6 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0)%Z
-    | 78%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0)%Z
-    | 79%positive => (-1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0)%Z
-    | 80%positive => (-1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_n) <= 0)%Z
-    | 81%positive => (1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ 1 * (s IDsend_tree_curlen)+ -1 * (s IDsend_tree_nextlen) <= 0 /\ -1 * (s IDsend_tree_curlen)+ 1 * (s IDsend_tree_nextlen) <= 0)%Z
-    | 82%positive => (-1 * (s IDsend_tree_curlen)+ 1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_curlen)+ -1 * (s IDsend_tree_nextlen) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_count) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0)%Z
-    | 83%positive => (-1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_n) <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0)%Z
-    | 84%positive => (1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) + -1 <= 0)%Z
-    | 85%positive => (-1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) + -1 <= 0 /\ -1 * (s IDsend_tree_n) + 1 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0)%Z
-    | 86%positive => (1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_z) <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ -1 * (s IDsend_tree_n) + 1 <= 0 /\ -1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) + -1 <= 0)%Z
-    | 87%positive => (-1 * (s IDsend_tree__tmp)+ 1 * (s IDsend_tree_n) + -1 <= 0 /\ -1 * (s IDsend_tree_n) + 1 <= 0 /\ -1 * (s IDsend_tree_count) <= 0 /\ 1 * (s IDsend_tree_min_count) + -4 <= 0 /\ -1 * (s IDsend_tree_min_count) + 3 <= 0 /\ 1 * (s IDsend_tree_max_count) + -138 <= 0 /\ 1 * (s IDsend_tree_count)+ -1 * (s IDsend_tree_max_count) + 2 <= 0 /\ -1 * (s IDsend_tree_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition send_tree_pot (p : node) (s : state): Q := 
+Notation V_send_tree_z := 1%positive.
+Notation V_send_tree__tmp := 2%positive.
+Notation V_send_tree_count := 3%positive.
+Notation V_send_tree_curlen := 4%positive.
+Notation V_send_tree_max_count := 5%positive.
+Notation V_send_tree_min_count := 6%positive.
+Notation V_send_tree_n := 7%positive.
+Notation V_send_tree_nextlen := 8%positive.
+Notation V_send_tree_prevlen := 9%positive.
+Notation V_send_tree_tree_dref_off0_off2 := 10%positive.
+Notation V_send_tree_max_code := 11%positive.
+Notation V_send_tree_tree := 12%positive.
+Definition Pedges_send_tree: list (edge proc) :=
+  (EA 1 (AAssign V_send_tree_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_send_tree__tmp (Some (EVar V_send_tree_max_code))) 3)::(EA 3 (AAssign
+  V_send_tree_prevlen (Some (ENum (-1)))) 4)::(EA 4 (AAssign
+  V_send_tree_nextlen (Some (EVar V_send_tree_tree_dref_off0_off2))) 5)::
+  (EA 5 (AAssign V_send_tree_count (Some (ENum (0)))) 6)::(EA 6 (AAssign
+  V_send_tree_max_count (Some (ENum (7)))) 7)::(EA 7 (AAssign
+  V_send_tree_min_count (Some (ENum (4)))) 8)::(EA 8 AWeaken 9)::
+  (EA 9 (AGuard (fun s => ((eval (EVar V_send_tree_nextlen) s) =
+  (eval (ENum (0)) s))%Z)) 11)::(EA 9 (AGuard
+  (fun s => ((eval (EVar V_send_tree_nextlen) s) <> (eval (ENum (0))
+  s))%Z)) 10)::(EA 10 AWeaken 15)::(EA 11 AWeaken 12)::(EA 12 (AAssign
+  V_send_tree_max_count (Some (ENum (138)))) 13)::(EA 13 (AAssign
+  V_send_tree_min_count (Some (ENum (3)))) 14)::(EA 14 ANone 15)::
+  (EA 15 (AAssign V_send_tree_n (Some (ENum (0)))) 16)::(EA 16 ANone 17)::
+  (EA 17 AWeaken 18)::(EA 18 (AGuard (fun s => ((eval (EVar V_send_tree_n)
+  s) <= (eval (EVar V_send_tree__tmp) s))%Z)) 21)::(EA 18 (AGuard
+  (fun s => ((eval (EVar V_send_tree_n) s) > (eval (EVar V_send_tree__tmp)
+  s))%Z)) 19)::(EA 19 AWeaken 20)::(EA 21 AWeaken 22)::(EA 22 (AAssign
+  V_send_tree_curlen (Some (EVar V_send_tree_nextlen))) 23)::(EA 23 (AAssign
+  V_send_tree_nextlen None) 24)::(EA 24 (AAssign V_send_tree_count
+  (Some (EAdd (EVar V_send_tree_count) (ENum (1))))) 25)::
+  (EA 25 AWeaken 26)::(EA 26 (AGuard
+  (fun s => ((eval (EAdd (EVar V_send_tree_count) (ENum (1))) s) <
+  (eval (EVar V_send_tree_max_count) s))%Z)) 28)::(EA 26 (AGuard
+  (fun s => ((eval (EAdd (EVar V_send_tree_count) (ENum (1))) s) >=
+  (eval (EVar V_send_tree_max_count) s))%Z)) 27)::(EA 27 AWeaken 31)::
+  (EA 28 AWeaken 29)::(EA 29 (AGuard
+  (fun s => ((eval (EVar V_send_tree_curlen) s) =
+  (eval (EVar V_send_tree_nextlen) s))%Z)) 81)::(EA 29 (AGuard
+  (fun s => ((eval (EVar V_send_tree_curlen) s) <>
+  (eval (EVar V_send_tree_nextlen) s))%Z)) 30)::(EA 30 AWeaken 31)::
+  (EA 31 (AGuard (fun s => ((eval (EVar V_send_tree_count) s) <
+  (eval (EVar V_send_tree_min_count) s))%Z)) 49)::(EA 31 (AGuard
+  (fun s => ((eval (EVar V_send_tree_count) s) >=
+  (eval (EVar V_send_tree_min_count) s))%Z)) 32)::(EA 32 AWeaken 33)::
+  (EA 33 (AGuard (fun s => ((eval (EVar V_send_tree_curlen) s) <>
+  (eval (ENum (0)) s))%Z)) 41)::(EA 33 (AGuard
+  (fun s => ((eval (EVar V_send_tree_curlen) s) = (eval (ENum (0))
+  s))%Z)) 34)::(EA 34 AWeaken 35)::(EA 35 (AGuard
+  (fun s => ((eval (EVar V_send_tree_count) s) <= (eval (ENum (10))
+  s))%Z)) 38)::(EA 35 (AGuard (fun s => ((eval (EVar V_send_tree_count) s) >
+  (eval (ENum (10)) s))%Z)) 36)::(EA 36 AWeaken 37)::(EA 37 ANone 40)::
+  (EA 38 AWeaken 39)::(EA 39 ANone 40)::(EA 40 ANone 48)::
+  (EA 41 AWeaken 42)::(EA 42 (AGuard
+  (fun s => ((eval (EVar V_send_tree_curlen) s) <>
+  (eval (EVar V_send_tree_prevlen) s))%Z)) 44)::(EA 42 (AGuard
+  (fun s => ((eval (EVar V_send_tree_curlen) s) =
+  (eval (EVar V_send_tree_prevlen) s))%Z)) 43)::(EA 43 AWeaken 47)::
+  (EA 44 AWeaken 45)::(EA 45 (AAssign V_send_tree_count
+  (Some (EAdd (EVar V_send_tree_count) (ENum (-1))))) 46)::(EA 46 ANone 47)::
+  (EA 47 ANone 48)::(EA 48 ANone 57)::(EA 49 AWeaken 50)::(EA 50 ANone 51)::
+  (EA 51 ANone 52)::(EA 52 (AAssign V_send_tree_count
+  (Some (EAdd (EVar V_send_tree_count) (ENum (-1))))) 53)::
+  (EA 53 AWeaken 54)::(EA 54 (AGuard
+  (fun s => ((eval (EAdd (EVar V_send_tree_count) (ENum (-1))) s) <>
+  (eval (ENum (0)) s))%Z)) 78)::(EA 54 (AGuard
+  (fun s => ((eval (EAdd (EVar V_send_tree_count) (ENum (-1))) s) =
+  (eval (ENum (0)) s))%Z)) 55)::(EA 55 AWeaken 56)::(EA 56 ANone 57)::
+  (EA 57 ANone 58)::(EA 58 (AAssign V_send_tree_count
+  (Some (ENum (0)))) 59)::(EA 59 (AAssign V_send_tree_prevlen
+  (Some (EVar V_send_tree_curlen))) 60)::(EA 60 AWeaken 61)::(EA 61 (AGuard
+  (fun s => ((eval (EVar V_send_tree_nextlen) s) = (eval (ENum (0))
+  s))%Z)) 73)::(EA 61 (AGuard (fun s => ((eval (EVar V_send_tree_nextlen)
+  s) <> (eval (ENum (0)) s))%Z)) 62)::(EA 62 AWeaken 63)::(EA 63 (AGuard
+  (fun s => ((eval (EVar V_send_tree_curlen) s) =
+  (eval (EVar V_send_tree_nextlen) s))%Z)) 68)::(EA 63 (AGuard
+  (fun s => ((eval (EVar V_send_tree_curlen) s) <>
+  (eval (EVar V_send_tree_nextlen) s))%Z)) 64)::(EA 64 AWeaken 65)::
+  (EA 65 (AAssign V_send_tree_max_count (Some (ENum (7)))) 66)::
+  (EA 66 (AAssign V_send_tree_min_count (Some (ENum (4)))) 67)::
+  (EA 67 ANone 72)::(EA 68 AWeaken 69)::(EA 69 (AAssign V_send_tree_max_count
+  (Some (ENum (6)))) 70)::(EA 70 (AAssign V_send_tree_min_count
+  (Some (ENum (3)))) 71)::(EA 71 ANone 72)::(EA 72 ANone 77)::
+  (EA 73 AWeaken 74)::(EA 74 (AAssign V_send_tree_max_count
+  (Some (ENum (138)))) 75)::(EA 75 (AAssign V_send_tree_min_count
+  (Some (ENum (3)))) 76)::(EA 76 ANone 77)::(EA 77 ANone 83)::
+  (EA 78 AWeaken 79)::(EA 79 ANone 80)::(EA 80 (AAssign V_send_tree_z
+  (Some (EAdd (ENum (1)) (EVar V_send_tree_z)))) 51)::(EA 81 AWeaken 82)::
+  (EA 82 ANone 83)::(EA 83 (AAssign V_send_tree_n
+  (Some (EAdd (EVar V_send_tree_n) (ENum (1))))) 84)::(EA 84 ANone 85)::
+  (EA 85 ANone 86)::(EA 86 (AAssign V_send_tree_z (Some (EAdd (ENum (1))
+  (EVar V_send_tree_z)))) 87)::(EA 87 AWeaken 18)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_send_tree => Pedges_send_tree
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_send_tree => 20
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_send_tree (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 3 => (-1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_z <= 0)%Z
+   | 4 => (1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0)%Z
+   | 5 => (-1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_z <= 0)%Z
+   | 6 => (1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 7 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ -1 * s V_send_tree_max_count + 7 <= 0)%Z
+   | 8 => (-1 * s V_send_tree_max_count + 7 <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ 1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 4 <= 0)%Z
+   | 9 => (-1 * s V_send_tree_min_count + 4 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ -1 * s V_send_tree_max_count + 7 <= 0)%Z
+   | 10 => (-1 * s V_send_tree_max_count + 7 <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ 1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 4 <= 0)%Z
+   | 11 => (-1 * s V_send_tree_max_count + 7 <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ 1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 4 <= 0 /\ 1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_nextlen <= 0)%Z
+   | 12 => (-1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_min_count + 4 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ -1 * s V_send_tree_max_count + 7 <= 0)%Z
+   | 13 => (1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 4 <= 0 /\ 1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_max_count + 138 <= 0)%Z
+   | 14 => (-1 * s V_send_tree_max_count + 138 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_min_count + -3 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0)%Z
+   | 15 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_max_count + 7 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0)%Z
+   | 16 => (1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ -1 * s V_send_tree_max_count + 7 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_n <= 0)%Z
+   | 17 => (-1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_max_count + 7 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_prevlen + 1 <= 0 /\ -1 * s V_send_tree_prevlen + -1 <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0)%Z
+   | 18 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 19 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree__tmp+ -1 * s V_send_tree_n + 1 <= 0)%Z
+   | 20 => (1 * s V_send_tree__tmp+ -1 * s V_send_tree_n + 1 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 21 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0)%Z
+   | 22 => (-1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 23 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0)%Z
+   | 24 => (-1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 25 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0)%Z
+   | 26 => (-1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 27 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_max_count + -1 <= 0)%Z
+   | 28 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0)%Z
+   | 29 => (1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 30 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0)%Z
+   | 31 => (1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 32 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0)%Z
+   | 33 => (-1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 34 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_curlen <= 0 /\ -1 * s V_send_tree_curlen <= 0)%Z
+   | 35 => (-1 * s V_send_tree_curlen <= 0 /\ 1 * s V_send_tree_curlen <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 36 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_curlen <= 0 /\ -1 * s V_send_tree_curlen <= 0 /\ -1 * s V_send_tree_count + 11 <= 0)%Z
+   | 37 => (-1 * s V_send_tree_count + 11 <= 0 /\ -1 * s V_send_tree_curlen <= 0 /\ 1 * s V_send_tree_curlen <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 38 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_curlen <= 0 /\ -1 * s V_send_tree_curlen <= 0 /\ 1 * s V_send_tree_count + -10 <= 0)%Z
+   | 39 => (1 * s V_send_tree_count + -10 <= 0 /\ -1 * s V_send_tree_curlen <= 0 /\ 1 * s V_send_tree_curlen <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 40 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_curlen <= 0 /\ -1 * s V_send_tree_curlen <= 0)%Z
+   | 41 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0)%Z
+   | 42 => (-1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 43 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_curlen+ -1 * s V_send_tree_prevlen <= 0 /\ -1 * s V_send_tree_curlen+ 1 * s V_send_tree_prevlen <= 0)%Z
+   | 44 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0)%Z
+   | 45 => (-1 * s V_send_tree_count+ 1 * s V_send_tree_min_count <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 46 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count + -1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 47 => (1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count + -1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 48 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count+ 1 * s V_send_tree_min_count + -1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0)%Z
+   | 49 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_min_count + 1 <= 0)%Z
+   | 50 => (1 * s V_send_tree_count+ -1 * s V_send_tree_min_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 51 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0)%Z
+   | 52 => (-1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 53 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0)%Z
+   | 54 => (-1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 55 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count + -1 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0)%Z
+   | 56 => (-1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count + -1 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 57 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0)%Z
+   | 58 => (-1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 59 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 60 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 61 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 62 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 63 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 64 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 65 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 66 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ -1 * s V_send_tree_max_count + 7 <= 0)%Z
+   | 67 => (-1 * s V_send_tree_max_count + 7 <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 4 <= 0)%Z
+   | 68 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_curlen+ -1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_curlen+ 1 * s V_send_tree_nextlen <= 0)%Z
+   | 69 => (-1 * s V_send_tree_curlen+ 1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_curlen+ -1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 70 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_curlen+ -1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_curlen+ 1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_max_count + -6 <= 0 /\ -1 * s V_send_tree_max_count + 6 <= 0)%Z
+   | 71 => (-1 * s V_send_tree_max_count + 6 <= 0 /\ 1 * s V_send_tree_max_count + -6 <= 0 /\ -1 * s V_send_tree_curlen+ 1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_curlen+ -1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -3 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0)%Z
+   | 72 => (1 * s V_send_tree_min_count + -4 <= 0 /\ 1 * s V_send_tree_max_count + -7 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_max_count + 6 <= 0)%Z
+   | 73 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_nextlen <= 0)%Z
+   | 74 => (-1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0)%Z
+   | 75 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_max_count + 138 <= 0)%Z
+   | 76 => (-1 * s V_send_tree_max_count + 138 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -3 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0)%Z
+   | 77 => (-1 * s V_send_tree_max_count + 6 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0)%Z
+   | 78 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0)%Z
+   | 79 => (-1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0)%Z
+   | 80 => (-1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_n <= 0)%Z
+   | 81 => (1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ 1 * s V_send_tree_curlen+ -1 * s V_send_tree_nextlen <= 0 /\ -1 * s V_send_tree_curlen+ 1 * s V_send_tree_nextlen <= 0)%Z
+   | 82 => (-1 * s V_send_tree_curlen+ 1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_curlen+ -1 * s V_send_tree_nextlen <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_count + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0)%Z
+   | 83 => (-1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_n <= 0 /\ -1 * s V_send_tree_z <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0)%Z
+   | 84 => (1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n + -1 <= 0)%Z
+   | 85 => (-1 * s V_send_tree__tmp+ 1 * s V_send_tree_n + -1 <= 0 /\ -1 * s V_send_tree_n + 1 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0)%Z
+   | 86 => (1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_z <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ -1 * s V_send_tree_n + 1 <= 0 /\ -1 * s V_send_tree__tmp+ 1 * s V_send_tree_n + -1 <= 0)%Z
+   | 87 => (-1 * s V_send_tree__tmp+ 1 * s V_send_tree_n + -1 <= 0 /\ -1 * s V_send_tree_n + 1 <= 0 /\ -1 * s V_send_tree_count <= 0 /\ 1 * s V_send_tree_min_count + -4 <= 0 /\ -1 * s V_send_tree_min_count + 3 <= 0 /\ 1 * s V_send_tree_max_count + -138 <= 0 /\ 1 * s V_send_tree_count+ -1 * s V_send_tree_max_count + 2 <= 0 /\ -1 * s V_send_tree_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_send_tree (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((4 # 3) * max0(1 + s V_send_tree_max_code) <= z)%Q
+   | 2 => (s V_send_tree_z + (4 # 3) * max0(1 + s V_send_tree_max_code) <= z)%Q
+   | 3 => (s V_send_tree_z + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 4 => (s V_send_tree_z + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 5 => (s V_send_tree_z + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 6 => ((1 # 3) + s V_send_tree_z
+           + (1 # 135) * max0(-5 + s V_send_tree_count)
+           + (1 # 135) * max0(-4 + s V_send_tree_count)
+           + (1 # 135) * max0(-1 + s V_send_tree_count)
+           + (4 # 3) * max0(1 + s V_send_tree__tmp)
+           - (1 # 3) * max0(1 - s V_send_tree_count) <= z)%Q
+   | 7 => ((1 # 2) - (2 # 85) * s V_send_tree_max_count + s V_send_tree_z
+           + (2 # 85) * max0(-7 + s V_send_tree_max_count)
+           + (1 # 135) * max0(-5 + s V_send_tree_count)
+           + (1 # 135) * max0(-4 + s V_send_tree_count)
+           + (1 # 135) * max0(-1 + s V_send_tree_count)
+           + (4 # 3) * max0(1 + s V_send_tree__tmp)
+           - (1 # 3) * max0(1 - s V_send_tree_count) <= z)%Q
+   | 8 => hints
+     [(*-0.333333 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (1
+                                                                    - s V_send_tree_count) (0))) (F_max0_ge_0 (1
+                                                                    - s V_send_tree_count));
+      (*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                          + s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-4
+                                                          + s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-5
+                                                          + s V_send_tree_count)) (F_check_ge (0) (0))]
+     ((1 # 2) - (2 # 85) * s V_send_tree_max_count + s V_send_tree_z
+      + (2 # 85) * max0(-7 + s V_send_tree_max_count)
+      + (1 # 135) * max0(-5 + s V_send_tree_count)
+      + (1 # 135) * max0(-4 + s V_send_tree_count)
+      + (1 # 135) * max0(-1 + s V_send_tree_count)
+      + (4 # 3) * max0(1 + s V_send_tree__tmp)
+      - (1 # 3) * max0(1 - s V_send_tree_count) <= z)%Q
+   | 9 => ((12 # 73) + (1 # 3) * s V_send_tree_count
+           - (2 # 85) * s V_send_tree_max_count + s V_send_tree_z
+           + (2 # 85) * max0(-7 + s V_send_tree_max_count)
+           + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 10 => hints
+     [(*-0.0234846 0*) F_binom_monotonic 1 (F_max0_ge_arg (-7
+                                                           + s V_send_tree_max_count)) (F_check_ge (-7
+                                                                    + s V_send_tree_max_count) (0))]
+     ((12 # 73) + (1 # 3) * s V_send_tree_count
+      - (2 # 85) * s V_send_tree_max_count + s V_send_tree_z
+      + (2 # 85) * max0(-7 + s V_send_tree_max_count)
+      + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 11 => hints
+     [(*0 0.0234846*) F_binom_monotonic 1 (F_max0_ge_arg (-7
+                                                          + s V_send_tree_max_count)) (F_check_ge (-7
+                                                                    + s V_send_tree_max_count) (0))]
+     ((12 # 73) + (1 # 3) * s V_send_tree_count
+      - (2 # 85) * s V_send_tree_max_count + s V_send_tree_z
+      + (2 # 85) * max0(-7 + s V_send_tree_max_count)
+      + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 12 => ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 13 => ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 14 => ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 15 => ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp) <= z)%Q
+   | 16 => ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n) <= z)%Q
+   | 17 => ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n) <= z)%Q
+   | 18 => ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n) <= z)%Q
+   | 19 => hints
+     [(*-1.33333 0*) F_max0_monotonic (F_check_ge (1 + s V_send_tree__tmp
+                                                   - s V_send_tree_n) (s V_send_tree__tmp
+                                                                    - s V_send_tree_n));
+      (*-1.33333 0*) F_max0_ge_0 (s V_send_tree__tmp - s V_send_tree_n);
+      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_send_tree_count) (0))) (F_max0_ge_0 (s V_send_tree_count))]
+     ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+      + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n) <= z)%Q
+   | 20 => (s V_send_tree_z <= z)%Q
+   | 21 => hints
+     [(*0 0.00729927*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (136
+                                                                    - s V_send_tree_count) (0))) (F_max0_ge_0 (136
+                                                                    - s V_send_tree_count))]
+     ((1 # 3) * s V_send_tree_count + s V_send_tree_z
+      + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n) <= z)%Q
+   | 22 => (-(135 # 136) + (31 # 91) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n)
+            + (1 # 136) * max0(136 - s V_send_tree_count) <= z)%Q
+   | 23 => (-(135 # 136) + (31 # 91) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n)
+            + (1 # 136) * max0(136 - s V_send_tree_count) <= z)%Q
+   | 24 => (-(135 # 136) + (31 # 91) * s V_send_tree_count + s V_send_tree_z
+            + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n)
+            + (1 # 136) * max0(136 - s V_send_tree_count) <= z)%Q
+   | 25 => hints
+     [(*-1.33333 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                         + s V_send_tree__tmp
+                                                         - s V_send_tree_n)) (F_check_ge (1
+                                                                    + s V_send_tree__tmp
+                                                                    - s V_send_tree_n) (0));
+      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count) (0))) (F_max0_ge_0 (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count))]
+     (-(4 # 3) + (31 # 91) * s V_send_tree_count + s V_send_tree_z
+      + (4 # 3) * max0(1 + s V_send_tree__tmp - s V_send_tree_n)
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 26 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 27 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 28 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 29 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 30 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 31 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 32 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 33 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 34 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 35 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (44 # 119) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 36 => hints
+     [(*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_0 (138
+                                                         - s V_send_tree_max_count)) (F_check_ge (0) (0));
+      (*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
+                                                            - s V_send_tree_count)) (F_check_ge (137
+                                                                    - s V_send_tree_count) (0));
+      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                         - s V_send_tree_count
+                                                         + s V_send_tree_max_count)) (F_check_ge (0) (0));
+      (*-0.362434 0*) F_binom_monotonic 1 (F_max0_ge_0 (-11
+                                                        + s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-0.362434 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-11
+                                                                    + s V_send_tree_count) (0))) (F_max0_ge_0 (-11
+                                                                    + s V_send_tree_count))]
+     ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+      + (44 # 119) * s V_send_tree_count
+      - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+      + s V_send_tree_z
+      + (3 # 103) * max0(-1 - s V_send_tree_count + s V_send_tree_max_count)
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 37 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 38 => hints
+     [(*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (138
+                                                           - s V_send_tree_max_count)) (F_check_ge (138
+                                                                    - s V_send_tree_max_count) (0));
+      (*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
+                                                            - s V_send_tree_count)) (F_check_ge (137
+                                                                    - s V_send_tree_count) (0));
+      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_ge_0 (1
+                                                        + s V_send_tree_count
+                                                        - s V_send_tree_min_count)) (F_check_ge (0) (0));
+      (*0 0.333333*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (1
+                                                                    + 
+                                                                    s V_send_tree_count
+                                                                    - 
+                                                                    s V_send_tree_min_count) (0))) (F_max0_ge_0 (1
+                                                                    + s V_send_tree_count
+                                                                    - s V_send_tree_min_count));
+      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                        + s V_send_tree_min_count)) (F_check_ge (0) (0));
+      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    + s V_send_tree_min_count) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_send_tree_min_count));
+      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                           - s V_send_tree_count
+                                                           + s V_send_tree_max_count)) (F_check_ge (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count) (0))]
+     ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+      + (44 # 119) * s V_send_tree_count
+      - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+      + s V_send_tree_z
+      + (3 # 103) * max0(-1 - s V_send_tree_count + s V_send_tree_max_count)
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 39 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 40 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 41 => hints
+     [(*0 0.335784*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_send_tree_count
+                                                                    - 
+                                                                    s V_send_tree_min_count) (0))) (F_max0_ge_0 (s V_send_tree_count
+                                                                    - s V_send_tree_min_count))]
+     ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+      + (44 # 119) * s V_send_tree_count
+      - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+      + s V_send_tree_z
+      + (3 # 103) * max0(-1 - s V_send_tree_count + s V_send_tree_max_count)
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 42 => ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+            + (2 # 59) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count
+            + (44 # 131) * s V_send_tree_min_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z
+            + (3 # 103) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count)
+            + (44 # 131) * max0(s V_send_tree_count - s V_send_tree_min_count) <= z)%Q
+   | 43 => hints
+     [(*-0.335784 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_send_tree_count
+                                                        - s V_send_tree_min_count)) (F_check_ge (0) (0));
+      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (138
+                                                           - s V_send_tree_max_count)) (F_check_ge (138
+                                                                    - s V_send_tree_max_count) (0));
+      (*-0.00245098 0*) F_binom_monotonic 1 (F_max0_ge_0 (137
+                                                          - s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-0.00484829 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
+                                                            - s V_send_tree_count)) (F_check_ge (137
+                                                                    - s V_send_tree_count) (0));
+      (*-0.335784 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                        + s V_send_tree_min_count)) (F_check_ge (0) (0));
+      (*-0.335784 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    + s V_send_tree_min_count) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_send_tree_min_count));
+      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                           - s V_send_tree_count
+                                                           + s V_send_tree_max_count)) (F_check_ge (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count) (0))]
+     ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+      + (2 # 59) * s V_send_tree_count - (3 # 103) * s V_send_tree_max_count
+      + (44 # 131) * s V_send_tree_min_count - (4 # 3) * s V_send_tree_n
+      + s V_send_tree_z
+      + (3 # 103) * max0(-1 - s V_send_tree_count + s V_send_tree_max_count)
+      + (1 # 136) * max0(137 - s V_send_tree_count)
+      + (44 # 131) * max0(s V_send_tree_count - s V_send_tree_min_count) <= z)%Q
+   | 44 => hints
+     [(*-0.335784 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_send_tree_count
+                                                        - s V_send_tree_min_count)) (F_check_ge (0) (0));
+      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (138
+                                                           - s V_send_tree_max_count)) (F_check_ge (138
+                                                                    - s V_send_tree_max_count) (0));
+      (*-0.00245098 0*) F_binom_monotonic 1 (F_max0_ge_0 (137
+                                                          - s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-0.00484829 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
+                                                            - s V_send_tree_count)) (F_check_ge (137
+                                                                    - s V_send_tree_count) (0));
+      (*-0.335784 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                        + s V_send_tree_min_count)) (F_check_ge (0) (0));
+      (*-0.335784 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    + s V_send_tree_min_count) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_send_tree_min_count));
+      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                           - s V_send_tree_count
+                                                           + s V_send_tree_max_count)) (F_check_ge (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count) (0))]
+     ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+      + (2 # 59) * s V_send_tree_count - (3 # 103) * s V_send_tree_max_count
+      + (44 # 131) * s V_send_tree_min_count - (4 # 3) * s V_send_tree_n
+      + s V_send_tree_z
+      + (3 # 103) * max0(-1 - s V_send_tree_count + s V_send_tree_max_count)
+      + (1 # 136) * max0(137 - s V_send_tree_count)
+      + (44 # 131) * max0(s V_send_tree_count - s V_send_tree_min_count) <= z)%Q
+   | 45 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 46 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 47 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 48 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 49 => hints
+     [(*0 0.00729927*) F_binom_monotonic 1 (F_max0_ge_arg (137
+                                                           - s V_send_tree_count)) (F_check_ge (137
+                                                                    - s V_send_tree_count) (0));
+      (*-0.666667 0*) F_binom_monotonic 1 (F_max0_ge_0 (3
+                                                        - s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-0.666667 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (3
+                                                                    - s V_send_tree_count) (0))) (F_max0_ge_0 (3
+                                                                    - s V_send_tree_count));
+      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                           - s V_send_tree_count
+                                                           + s V_send_tree_max_count)) (F_check_ge (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count) (0))]
+     ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+      + (44 # 119) * s V_send_tree_count
+      - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+      + s V_send_tree_z
+      + (3 # 103) * max0(-1 - s V_send_tree_count + s V_send_tree_max_count)
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 50 => (-(1 # 1) + (4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 51 => (-(1 # 1) + (4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 52 => (-(1 # 1) + (4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 53 => ((4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 54 => ((4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 55 => hints
+     [(*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (138
+                                                           - s V_send_tree_max_count)) (F_check_ge (138
+                                                                    - s V_send_tree_max_count) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                               + s V_send_tree_count) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_send_tree_count))]
+     ((4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+      - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 56 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 57 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 58 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 59 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z + (1 # 135) * max0(-3 + s V_send_tree_count)
+            + (1 # 135) * max0(-2 + s V_send_tree_count)
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 60 => hints
+     [(*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
+                                                          + s V_send_tree_count)) (F_check_ge (0) (0));
+      (*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-3
+                                                          + s V_send_tree_count)) (F_check_ge (0) (0))]
+     ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+      + (1 # 3) * s V_send_tree_count - (3 # 103) * s V_send_tree_max_count
+      - (4 # 3) * s V_send_tree_n + s V_send_tree_z
+      + (1 # 135) * max0(-3 + s V_send_tree_count)
+      + (1 # 135) * max0(-2 + s V_send_tree_count)
+      - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 61 => ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 62 => hints
+     [(*0 0.0291005*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (138
+                                                                    - s V_send_tree_max_count) (0))) (F_max0_ge_0 (138
+                                                                    - s V_send_tree_max_count));
+      (*0 0.00729927*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (137
+                                                                    - s V_send_tree_count) (0))) (F_max0_ge_0 (137
+                                                                    - s V_send_tree_count))]
+     ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+      + (1 # 3) * s V_send_tree_count - (3 # 103) * s V_send_tree_max_count
+      - (4 # 3) * s V_send_tree_n + s V_send_tree_z
+      - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 63 => ((4 # 3) * s V_send_tree__tmp + (31 # 91) * s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 64 => hints
+     [(*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (6
+                                                            - s V_send_tree_count)) (F_check_ge (6
+                                                                    - s V_send_tree_count) (0))]
+     ((4 # 3) * s V_send_tree__tmp + (31 # 91) * s V_send_tree_count
+      - (4 # 3) * s V_send_tree_n + s V_send_tree_z
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 65 => ((5 # 114) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z - (1 # 136) * max0(6 - s V_send_tree_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 66 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 67 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 68 => hints
+     [(*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (5
+                                                            - s V_send_tree_count)) (F_check_ge (5
+                                                                    - s V_send_tree_count) (0))]
+     ((4 # 3) * s V_send_tree__tmp + (31 # 91) * s V_send_tree_count
+      - (4 # 3) * s V_send_tree_n + s V_send_tree_z
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 69 => ((3 # 82) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z - (1 # 136) * max0(5 - s V_send_tree_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 70 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 71 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 72 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 73 => hints
+     [(*-0.0291005 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (138
+                                                                    - s V_send_tree_max_count) (0))) (F_max0_ge_0 (138
+                                                                    - s V_send_tree_max_count))]
+     ((316 # 63) + (4 # 3) * s V_send_tree__tmp
+      + (1 # 3) * s V_send_tree_count - (3 # 103) * s V_send_tree_max_count
+      - (4 # 3) * s V_send_tree_n + s V_send_tree_z
+      - (3 # 103) * max0(138 - s V_send_tree_max_count) <= z)%Q
+   | 74 => ((1 # 1) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z <= z)%Q
+   | 75 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 76 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 77 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 78 => ((4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 79 => ((4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 80 => ((4 # 3) * s V_send_tree__tmp + s V_send_tree_count
+            - (4 # 3) * s V_send_tree_n + s V_send_tree_z <= z)%Q
+   | 81 => hints
+     [(*-0.0363998 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                           - s V_send_tree_count
+                                                           + s V_send_tree_max_count)) (F_check_ge (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count) (0))]
+     ((3 # 103) + (4 # 3) * s V_send_tree__tmp
+      + (44 # 119) * s V_send_tree_count
+      - (3 # 103) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+      + s V_send_tree_z
+      + (3 # 103) * max0(-1 - s V_send_tree_count + s V_send_tree_max_count)
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 82 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 83 => (-(1 # 136) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 84 => ((61 # 46) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 85 => ((61 # 46) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 86 => ((61 # 46) + (4 # 3) * s V_send_tree__tmp
+            + (1 # 3) * s V_send_tree_count
+            + (1 # 136) * s V_send_tree_max_count - (4 # 3) * s V_send_tree_n
+            + s V_send_tree_z
+            - (1 # 136) * max0(-1 - s V_send_tree_count
+                               + s V_send_tree_max_count)
+            + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | 87 => hints
+     [(*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
+                                                            - s V_send_tree_count)) (F_check_ge (137
+                                                                    - s V_send_tree_count) (0));
+      (*0 1.33333*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (1
+                                                                    + 
+                                                                    s V_send_tree__tmp
+                                                                    - 
+                                                                    s V_send_tree_n) (0))) (F_max0_ge_0 (1
+                                                                    + s V_send_tree__tmp
+                                                                    - s V_send_tree_n));
+      (*-0.00729927 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count) (0))) (F_max0_ge_0 (-1
+                                                                    - s V_send_tree_count
+                                                                    + s V_send_tree_max_count))]
+     ((15 # 46) + (4 # 3) * s V_send_tree__tmp
+      + (1 # 3) * s V_send_tree_count + (1 # 136) * s V_send_tree_max_count
+      - (4 # 3) * s V_send_tree_n + s V_send_tree_z
+      - (1 # 136) * max0(-1 - s V_send_tree_count + s V_send_tree_max_count)
+      + (1 # 136) * max0(137 - s V_send_tree_count) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((4 # 3) * max0(1 + (s IDsend_tree_max_code)))%Q
-    | 2%positive => ((s IDsend_tree_z)
-                     + (4 # 3) * max0(1 + (s IDsend_tree_max_code)))%Q
-    | 3%positive => ((s IDsend_tree_z)
-                     + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 4%positive => ((s IDsend_tree_z)
-                     + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 5%positive => ((s IDsend_tree_z)
-                     + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 6%positive => ((1 # 3) + (s IDsend_tree_z)
-                     + (1 # 135) * max0(-5 + (s IDsend_tree_count))
-                     + (1 # 135) * max0(-4 + (s IDsend_tree_count))
-                     + (1 # 135) * max0(-1 + (s IDsend_tree_count))
-                     + (4 # 3) * max0(1 + (s IDsend_tree__tmp))
-                     - (1 # 3) * max0(1 - (s IDsend_tree_count)))%Q
-    | 7%positive => ((1 # 2) - (2 # 85) * (s IDsend_tree_max_count)
-                     + (s IDsend_tree_z)
-                     + (2 # 85) * max0(-7 + (s IDsend_tree_max_count))
-                     + (1 # 135) * max0(-5 + (s IDsend_tree_count))
-                     + (1 # 135) * max0(-4 + (s IDsend_tree_count))
-                     + (1 # 135) * max0(-1 + (s IDsend_tree_count))
-                     + (4 # 3) * max0(1 + (s IDsend_tree__tmp))
-                     - (1 # 3) * max0(1 - (s IDsend_tree_count)))%Q
-    | 8%positive => ((1 # 2) - (2 # 85) * (s IDsend_tree_max_count)
-                     + (s IDsend_tree_z)
-                     + (2 # 85) * max0(-7 + (s IDsend_tree_max_count))
-                     + (1 # 135) * max0(-5 + (s IDsend_tree_count))
-                     + (1 # 135) * max0(-4 + (s IDsend_tree_count))
-                     + (1 # 135) * max0(-1 + (s IDsend_tree_count))
-                     + (4 # 3) * max0(1 + (s IDsend_tree__tmp))
-                     - (1 # 3) * max0(1 - (s IDsend_tree_count)))%Q
-    | 9%positive => ((12 # 73) + (1 # 3) * (s IDsend_tree_count)
-                     - (2 # 85) * (s IDsend_tree_max_count)
-                     + (s IDsend_tree_z)
-                     + (2 # 85) * max0(-7 + (s IDsend_tree_max_count))
-                     + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 10%positive => ((12 # 73) + (1 # 3) * (s IDsend_tree_count)
-                      - (2 # 85) * (s IDsend_tree_max_count)
-                      + (s IDsend_tree_z)
-                      + (2 # 85) * max0(-7 + (s IDsend_tree_max_count))
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 11%positive => ((12 # 73) + (1 # 3) * (s IDsend_tree_count)
-                      - (2 # 85) * (s IDsend_tree_max_count)
-                      + (s IDsend_tree_z)
-                      + (2 # 85) * max0(-7 + (s IDsend_tree_max_count))
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 12%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 13%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 14%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 15%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)))%Q
-    | 16%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n)))%Q
-    | 17%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n)))%Q
-    | 18%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n)))%Q
-    | 19%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n)))%Q
-    | 20%positive => ((s IDsend_tree_z))%Q
-    | 21%positive => ((1 # 3) * (s IDsend_tree_count) + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n)))%Q
-    | 22%positive => (-(135 # 136) + (31 # 91) * (s IDsend_tree_count)
-                      + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n))
-                      + (1 # 136) * max0(136 - (s IDsend_tree_count)))%Q
-    | 23%positive => (-(135 # 136) + (31 # 91) * (s IDsend_tree_count)
-                      + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n))
-                      + (1 # 136) * max0(136 - (s IDsend_tree_count)))%Q
-    | 24%positive => (-(135 # 136) + (31 # 91) * (s IDsend_tree_count)
-                      + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n))
-                      + (1 # 136) * max0(136 - (s IDsend_tree_count)))%Q
-    | 25%positive => (-(4 # 3) + (31 # 91) * (s IDsend_tree_count)
-                      + (s IDsend_tree_z)
-                      + (4 # 3) * max0(1 + (s IDsend_tree__tmp)
-                                       - (s IDsend_tree_n))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 26%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 27%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 28%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 29%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 30%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 31%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 32%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 33%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 34%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 35%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 36%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 37%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 38%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 39%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 40%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 41%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 42%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (2 # 59) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      + (44 # 131) * (s IDsend_tree_min_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count))
-                      + (44 # 131) * max0((s IDsend_tree_count)
-                                          - (s IDsend_tree_min_count)))%Q
-    | 43%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (2 # 59) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      + (44 # 131) * (s IDsend_tree_min_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count))
-                      + (44 # 131) * max0((s IDsend_tree_count)
-                                          - (s IDsend_tree_min_count)))%Q
-    | 44%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (2 # 59) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      + (44 # 131) * (s IDsend_tree_min_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count))
-                      + (44 # 131) * max0((s IDsend_tree_count)
-                                          - (s IDsend_tree_min_count)))%Q
-    | 45%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 46%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 47%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 48%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 49%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 50%positive => (-(1 # 1) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (s IDsend_tree_count) - (4 # 3) * (s IDsend_tree_n)
-                      + (s IDsend_tree_z))%Q
-    | 51%positive => (-(1 # 1) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (s IDsend_tree_count) - (4 # 3) * (s IDsend_tree_n)
-                      + (s IDsend_tree_z))%Q
-    | 52%positive => (-(1 # 1) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (s IDsend_tree_count) - (4 # 3) * (s IDsend_tree_n)
-                      + (s IDsend_tree_z))%Q
-    | 53%positive => ((4 # 3) * (s IDsend_tree__tmp) + (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z))%Q
-    | 54%positive => ((4 # 3) * (s IDsend_tree__tmp) + (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z))%Q
-    | 55%positive => ((4 # 3) * (s IDsend_tree__tmp) + (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z))%Q
-    | 56%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 57%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 58%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 59%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (1 # 135) * max0(-3 + (s IDsend_tree_count))
-                      + (1 # 135) * max0(-2 + (s IDsend_tree_count))
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 60%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (1 # 135) * max0(-3 + (s IDsend_tree_count))
-                      + (1 # 135) * max0(-2 + (s IDsend_tree_count))
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 61%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 62%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 63%positive => ((4 # 3) * (s IDsend_tree__tmp)
-                      + (31 # 91) * (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 64%positive => ((4 # 3) * (s IDsend_tree__tmp)
-                      + (31 # 91) * (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 65%positive => ((5 # 114) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(6 - (s IDsend_tree_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 66%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 67%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 68%positive => ((4 # 3) * (s IDsend_tree__tmp)
-                      + (31 # 91) * (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 69%positive => ((3 # 82) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(5 - (s IDsend_tree_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 70%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 71%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 72%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 73%positive => ((316 # 63) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (3 # 103) * max0(138 - (s IDsend_tree_max_count)))%Q
-    | 74%positive => ((1 # 1) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z))%Q
-    | 75%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 76%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 77%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 78%positive => ((4 # 3) * (s IDsend_tree__tmp) + (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z))%Q
-    | 79%positive => ((4 # 3) * (s IDsend_tree__tmp) + (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z))%Q
-    | 80%positive => ((4 # 3) * (s IDsend_tree__tmp) + (s IDsend_tree_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z))%Q
-    | 81%positive => ((3 # 103) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (44 # 119) * (s IDsend_tree_count)
-                      - (3 # 103) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      + (3 # 103) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 82%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 83%positive => (-(1 # 136) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 84%positive => ((61 # 46) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 85%positive => ((61 # 46) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 86%positive => ((61 # 46) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | 87%positive => ((15 # 46) + (4 # 3) * (s IDsend_tree__tmp)
-                      + (1 # 3) * (s IDsend_tree_count)
-                      + (1 # 136) * (s IDsend_tree_max_count)
-                      - (4 # 3) * (s IDsend_tree_n) + (s IDsend_tree_z)
-                      - (1 # 136) * max0(-1 - (s IDsend_tree_count)
-                                         + (s IDsend_tree_max_count))
-                      + (1 # 136) * max0(137 - (s IDsend_tree_count)))%Q
-    | _ => (0 # 1)%Q
+  | P_send_tree =>
+    [mkPA Q (fun n z s => ai_send_tree n s /\ annot0_send_tree n z s)]
   end.
 
-Definition send_tree_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => [(*-0.333333 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (1
-                                                                    - (s IDsend_tree_count)) (0))) (F_max0_ge_0 (1
-                                                                    - (s IDsend_tree_count)));
-                     (*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDsend_tree_count))) (F_check_ge (0) (0));
-                     (*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-4
-                                                                    + (s IDsend_tree_count))) (F_check_ge (0) (0));
-                     (*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-5
-                                                                    + (s IDsend_tree_count))) (F_check_ge (0) (0))]
-    | 9%positive => []
-    | 10%positive => [(*-0.0234846 0*) F_binom_monotonic 1 (F_max0_ge_arg (-7
-                                                                    + (s IDsend_tree_max_count))) (F_check_ge (-7
-                                                                    + (s IDsend_tree_max_count)) (0))]
-    | 11%positive => [(*0 0.0234846*) F_binom_monotonic 1 (F_max0_ge_arg (-7
-                                                                    + (s IDsend_tree_max_count))) (F_check_ge (-7
-                                                                    + (s IDsend_tree_max_count)) (0))]
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => [(*-1.33333 0*) F_max0_monotonic (F_check_ge (1
-                                                                   + 
-                                                                   (s IDsend_tree__tmp)
-                                                                   - 
-                                                                   (s IDsend_tree_n)) ((s IDsend_tree__tmp)
-                                                                    - (s IDsend_tree_n)));
-                      (*-1.33333 0*) F_max0_ge_0 ((s IDsend_tree__tmp)
-                                                  - (s IDsend_tree_n));
-                      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDsend_tree_count))) (F_check_ge (0) (0));
-                      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDsend_tree_count)) (0))) (F_max0_ge_0 ((s IDsend_tree_count)))]
-    | 20%positive => []
-    | 21%positive => [(*0 0.00729927*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (136
-                                                                    - (s IDsend_tree_count)) (0))) (F_max0_ge_0 (136
-                                                                    - (s IDsend_tree_count)))]
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => [(*-1.33333 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                    + (s IDsend_tree__tmp)
-                                                                    - (s IDsend_tree_n))) (F_check_ge (1
-                                                                    + (s IDsend_tree__tmp)
-                                                                    - (s IDsend_tree_n)) (0));
-                      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)) (0))) (F_max0_ge_0 (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)))]
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => [(*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_0 (138
-                                                                    - (s IDsend_tree_max_count))) (F_check_ge (0) (0));
-                      (*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
-                                                                    - (s IDsend_tree_count))) (F_check_ge (137
-                                                                    - (s IDsend_tree_count)) (0));
-                      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count))) (F_check_ge (0) (0));
-                      (*-0.362434 0*) F_binom_monotonic 1 (F_max0_ge_0 (-11
-                                                                    + (s IDsend_tree_count))) (F_check_ge (0) (0));
-                      (*-0.362434 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-11
-                                                                    + (s IDsend_tree_count)) (0))) (F_max0_ge_0 (-11
-                                                                    + (s IDsend_tree_count)))]
-    | 37%positive => []
-    | 38%positive => [(*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (138
-                                                                    - (s IDsend_tree_max_count))) (F_check_ge (138
-                                                                    - (s IDsend_tree_max_count)) (0));
-                      (*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
-                                                                    - (s IDsend_tree_count))) (F_check_ge (137
-                                                                    - (s IDsend_tree_count)) (0));
-                      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_ge_0 (1
-                                                                    + (s IDsend_tree_count)
-                                                                    - (s IDsend_tree_min_count))) (F_check_ge (0) (0));
-                      (*0 0.333333*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (1
-                                                                    + (s IDsend_tree_count)
-                                                                    - (s IDsend_tree_min_count)) (0))) (F_max0_ge_0 (1
-                                                                    + (s IDsend_tree_count)
-                                                                    - (s IDsend_tree_min_count)));
-                      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDsend_tree_min_count))) (F_check_ge (0) (0));
-                      (*-0.333333 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDsend_tree_min_count)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDsend_tree_min_count)));
-                      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count))) (F_check_ge (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)) (0))]
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => [(*0 0.335784*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDsend_tree_count)
-                                                                    - (s IDsend_tree_min_count)) (0))) (F_max0_ge_0 ((s IDsend_tree_count)
-                                                                    - (s IDsend_tree_min_count)))]
-    | 42%positive => []
-    | 43%positive => [(*-0.335784 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDsend_tree_count)
-                                                                    - (s IDsend_tree_min_count))) (F_check_ge (0) (0));
-                      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (138
-                                                                    - (s IDsend_tree_max_count))) (F_check_ge (138
-                                                                    - (s IDsend_tree_max_count)) (0));
-                      (*-0.00245098 0*) F_binom_monotonic 1 (F_max0_ge_0 (137
-                                                                    - (s IDsend_tree_count))) (F_check_ge (0) (0));
-                      (*-0.00484829 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
-                                                                    - (s IDsend_tree_count))) (F_check_ge (137
-                                                                    - (s IDsend_tree_count)) (0));
-                      (*-0.335784 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDsend_tree_min_count))) (F_check_ge (0) (0));
-                      (*-0.335784 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDsend_tree_min_count)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDsend_tree_min_count)));
-                      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count))) (F_check_ge (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)) (0))]
-    | 44%positive => [(*-0.335784 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDsend_tree_count)
-                                                                    - (s IDsend_tree_min_count))) (F_check_ge (0) (0));
-                      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (138
-                                                                    - (s IDsend_tree_max_count))) (F_check_ge (138
-                                                                    - (s IDsend_tree_max_count)) (0));
-                      (*-0.00245098 0*) F_binom_monotonic 1 (F_max0_ge_0 (137
-                                                                    - (s IDsend_tree_count))) (F_check_ge (0) (0));
-                      (*-0.00484829 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
-                                                                    - (s IDsend_tree_count))) (F_check_ge (137
-                                                                    - (s IDsend_tree_count)) (0));
-                      (*-0.335784 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDsend_tree_min_count))) (F_check_ge (0) (0));
-                      (*-0.335784 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDsend_tree_min_count)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDsend_tree_min_count)));
-                      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count))) (F_check_ge (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)) (0))]
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => [(*0 0.00729927*) F_binom_monotonic 1 (F_max0_ge_arg (137
-                                                                    - (s IDsend_tree_count))) (F_check_ge (137
-                                                                    - (s IDsend_tree_count)) (0));
-                      (*-0.666667 0*) F_binom_monotonic 1 (F_max0_ge_0 (3
-                                                                    - (s IDsend_tree_count))) (F_check_ge (0) (0));
-                      (*-0.666667 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (3
-                                                                    - (s IDsend_tree_count)) (0))) (F_max0_ge_0 (3
-                                                                    - (s IDsend_tree_count)));
-                      (*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count))) (F_check_ge (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)) (0))]
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => [(*-0.0291005 0*) F_binom_monotonic 1 (F_max0_ge_arg (138
-                                                                    - (s IDsend_tree_max_count))) (F_check_ge (138
-                                                                    - (s IDsend_tree_max_count)) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                 + (s IDsend_tree_count))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDsend_tree_count)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDsend_tree_count)))]
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => []
-    | 59%positive => []
-    | 60%positive => [(*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
-                                                                    + (s IDsend_tree_count))) (F_check_ge (0) (0));
-                      (*-0.00735294 0*) F_binom_monotonic 1 (F_max0_ge_0 (-3
-                                                                    + (s IDsend_tree_count))) (F_check_ge (0) (0))]
-    | 61%positive => []
-    | 62%positive => [(*0 0.0291005*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (138
-                                                                    - (s IDsend_tree_max_count)) (0))) (F_max0_ge_0 (138
-                                                                    - (s IDsend_tree_max_count)));
-                      (*0 0.00729927*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (137
-                                                                    - (s IDsend_tree_count)) (0))) (F_max0_ge_0 (137
-                                                                    - (s IDsend_tree_count)))]
-    | 63%positive => []
-    | 64%positive => [(*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (6
-                                                                    - (s IDsend_tree_count))) (F_check_ge (6
-                                                                    - (s IDsend_tree_count)) (0))]
-    | 65%positive => []
-    | 66%positive => []
-    | 67%positive => []
-    | 68%positive => [(*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (5
-                                                                    - (s IDsend_tree_count))) (F_check_ge (5
-                                                                    - (s IDsend_tree_count)) (0))]
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => []
-    | 72%positive => []
-    | 73%positive => [(*-0.0291005 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (138
-                                                                    - (s IDsend_tree_max_count)) (0))) (F_max0_ge_0 (138
-                                                                    - (s IDsend_tree_max_count)))]
-    | 74%positive => []
-    | 75%positive => []
-    | 76%positive => []
-    | 77%positive => []
-    | 78%positive => []
-    | 79%positive => []
-    | 80%positive => []
-    | 81%positive => [(*-0.0363998 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count))) (F_check_ge (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)) (0))]
-    | 82%positive => []
-    | 83%positive => []
-    | 84%positive => []
-    | 85%positive => []
-    | 86%positive => []
-    | 87%positive => [(*-0.00729927 0*) F_binom_monotonic 1 (F_max0_ge_arg (137
-                                                                    - (s IDsend_tree_count))) (F_check_ge (137
-                                                                    - (s IDsend_tree_count)) (0));
-                      (*0 1.33333*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (1
-                                                                    + (s IDsend_tree__tmp)
-                                                                    - (s IDsend_tree_n)) (0))) (F_max0_ge_0 (1
-                                                                    + (s IDsend_tree__tmp)
-                                                                    - (s IDsend_tree_n)));
-                      (*-0.00729927 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)) (0))) (F_max0_ge_0 (-1
-                                                                    - (s IDsend_tree_count)
-                                                                    + (s IDsend_tree_max_count)))]
-    | _ => []
-  end.
-
-
-Theorem send_tree_ai_correct:
-  forall s p' s', steps (g_start send_tree) s (g_edges send_tree) p' s' -> send_tree_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem send_tree_pot_correct:
-  forall s p' s',
-    steps (g_start send_tree) s (g_edges send_tree) p' s' ->
-    (send_tree_pot (g_start send_tree) s >= send_tree_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_send_tree (proc_start P_send_tree) s1 (proc_end P_send_tree) s2 ->
+    (s2 V_send_tree_z <= (4 # 3) * max0(1 + s1 V_send_tree_max_code))%Q.
 Proof.
-  check_lp send_tree_ai_correct send_tree_hints.
+  prove_bound ipa admissible_ipa P_send_tree.
 Qed.
-

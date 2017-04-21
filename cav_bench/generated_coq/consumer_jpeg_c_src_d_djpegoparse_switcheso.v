@@ -1,2069 +1,1466 @@
 Require Import pasta.Pasta.
 
-Notation IDparse_switches_z := 1%positive.
-Notation IDparse_switches__tmp := 2%positive.
-Notation IDparse_switches__tmp1 := 3%positive.
-Notation IDparse_switches__tmp2 := 4%positive.
-Notation IDparse_switches_argn := 5%positive.
-Notation IDparse_switches_parse_switches.printed_version := 6%positive.
-Notation IDparse_switches_requested_fmt := 7%positive.
-Notation IDparse_switches_argc := 8%positive.
-Notation IDparse_switches_argv := 9%positive.
-Notation IDparse_switches_cinfo := 10%positive.
-Notation IDparse_switches_for_real := 11%positive.
-Notation IDparse_switches_last_file_arg_seen := 12%positive.
-Definition parse_switches : graph := {|
-  g_start := 1%positive;
-  g_end := 208%positive;
-  g_edges := (1%positive,(AAssign IDparse_switches_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDparse_switches__tmp
-             (Some (EVar IDparse_switches_argc))),3%positive)::
-             (3%positive,(AAssign IDparse_switches__tmp1
-             (Some (EVar IDparse_switches_last_file_arg_seen))),4%positive)::
-             (4%positive,(AAssign IDparse_switches__tmp2
-             (Some (EVar IDparse_switches_for_real))),5%positive)::
-             (5%positive,(AAssign IDparse_switches_requested_fmt
-             (Some (ENum (3)))),6%positive)::
-             (6%positive,(AAssign IDparse_switches_argn (Some (ENum (1)))),
-             7%positive)::(7%positive,ANone,8%positive)::
-             (8%positive,AWeaken,9%positive)::
-             (9%positive,(AGuard
-             (fun s => ((eval (EVar IDparse_switches_argn) s) <
-             (eval (EVar IDparse_switches__tmp) s))%Z)),11%positive)::
-             (9%positive,(AGuard
-             (fun s => ((eval (EVar IDparse_switches_argn) s) >=
-             (eval (EVar IDparse_switches__tmp) s))%Z)),10%positive)::
-             (10%positive,AWeaken,208%positive)::
-             (11%positive,AWeaken,12%positive)::
-             (12%positive,ANone,203%positive)::
-             (12%positive,ANone,13%positive)::
-             (13%positive,AWeaken,14%positive)::
-             (14%positive,ANone,200%positive)::
-             (14%positive,ANone,15%positive)::
-             (15%positive,AWeaken,16%positive)::
-             (16%positive,ANone,189%positive)::
-             (16%positive,ANone,17%positive)::
-             (17%positive,AWeaken,18%positive)::
-             (18%positive,ANone,189%positive)::
-             (18%positive,ANone,19%positive)::
-             (19%positive,AWeaken,20%positive)::
-             (20%positive,ANone,189%positive)::
-             (20%positive,ANone,21%positive)::
-             (21%positive,AWeaken,22%positive)::
-             (22%positive,ANone,189%positive)::
-             (22%positive,ANone,23%positive)::
-             (23%positive,AWeaken,24%positive)::
-             (24%positive,ANone,169%positive)::
-             (24%positive,ANone,25%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (26%positive,ANone,149%positive)::
-             (26%positive,ANone,27%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,ANone,141%positive)::
-             (28%positive,ANone,29%positive)::
-             (29%positive,AWeaken,30%positive)::
-             (30%positive,ANone,140%positive)::
-             (30%positive,ANone,31%positive)::
-             (31%positive,AWeaken,32%positive)::
-             (32%positive,ANone,135%positive)::
-             (32%positive,ANone,33%positive)::
-             (33%positive,AWeaken,34%positive)::
-             (34%positive,ANone,132%positive)::
-             (34%positive,ANone,35%positive)::
-             (35%positive,AWeaken,36%positive)::
-             (36%positive,ANone,130%positive)::
-             (36%positive,ANone,37%positive)::
-             (37%positive,AWeaken,38%positive)::
-             (38%positive,ANone,130%positive)::
-             (38%positive,ANone,39%positive)::
-             (39%positive,AWeaken,40%positive)::
-             (40%positive,ANone,114%positive)::
-             (40%positive,ANone,41%positive)::
-             (41%positive,AWeaken,42%positive)::
-             (42%positive,ANone,97%positive)::
-             (42%positive,ANone,43%positive)::
-             (43%positive,AWeaken,44%positive)::
-             (44%positive,ANone,95%positive)::
-             (44%positive,ANone,45%positive)::
-             (45%positive,AWeaken,46%positive)::
-             (46%positive,ANone,93%positive)::
-             (46%positive,ANone,47%positive)::
-             (47%positive,AWeaken,48%positive)::
-             (48%positive,ANone,90%positive)::
-             (48%positive,ANone,49%positive)::
-             (49%positive,AWeaken,50%positive)::
-             (50%positive,ANone,82%positive)::
-             (50%positive,ANone,51%positive)::
-             (51%positive,AWeaken,52%positive)::
-             (52%positive,ANone,79%positive)::
-             (52%positive,ANone,53%positive)::
-             (53%positive,AWeaken,54%positive)::
-             (54%positive,ANone,79%positive)::
-             (54%positive,ANone,55%positive)::
-             (55%positive,AWeaken,56%positive)::
-             (56%positive,ANone,76%positive)::
-             (56%positive,ANone,57%positive)::
-             (57%positive,AWeaken,58%positive)::
-             (58%positive,ANone,65%positive)::
-             (58%positive,ANone,59%positive)::
-             (59%positive,AWeaken,60%positive)::
-             (60%positive,ANone,62%positive)::
-             (60%positive,ANone,61%positive)::
-             (61%positive,ANone,64%positive)::
-             (62%positive,(AAssign IDparse_switches_requested_fmt
-             (Some (ENum (5)))),63%positive)::
-             (63%positive,ANone,64%positive)::
-             (64%positive,ANone,75%positive)::
-             (65%positive,(AAssign IDparse_switches_argn
-             (Some (EAdd (EVar IDparse_switches_argn) (ENum (1))))),
-             66%positive)::(66%positive,AWeaken,67%positive)::
-             (67%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) >= (eval (EVar IDparse_switches__tmp) s))%Z)),69%positive)::
-             (67%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) < (eval (EVar IDparse_switches__tmp) s))%Z)),68%positive)::
-             (68%positive,AWeaken,72%positive)::
-             (69%positive,AWeaken,70%positive)::
-             (70%positive,ANone,71%positive)::
-             (71%positive,AWeaken,72%positive)::
-             (72%positive,ANone,73%positive)::
-             (72%positive,ANone,74%positive)::
-             (73%positive,ANone,74%positive)::
-             (74%positive,ANone,75%positive)::
-             (75%positive,ANone,78%positive)::
-             (76%positive,(AAssign IDparse_switches_requested_fmt
-             (Some (ENum (4)))),77%positive)::
-             (77%positive,ANone,78%positive)::
-             (78%positive,ANone,81%positive)::
-             (79%positive,(AAssign IDparse_switches_requested_fmt
-             (Some (ENum (3)))),80%positive)::
-             (80%positive,ANone,81%positive)::
-             (81%positive,ANone,89%positive)::
-             (82%positive,(AAssign IDparse_switches_argn
-             (Some (EAdd (EVar IDparse_switches_argn) (ENum (1))))),
-             83%positive)::(83%positive,AWeaken,84%positive)::
-             (84%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) >= (eval (EVar IDparse_switches__tmp) s))%Z)),86%positive)::
-             (84%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) < (eval (EVar IDparse_switches__tmp) s))%Z)),85%positive)::
-             (85%positive,AWeaken,88%positive)::
-             (86%positive,AWeaken,87%positive)::
-             (87%positive,ANone,88%positive)::
-             (88%positive,ANone,89%positive)::
-             (89%positive,ANone,92%positive)::
-             (90%positive,(AAssign IDparse_switches_requested_fmt
-             (Some (ENum (2)))),91%positive)::
-             (91%positive,ANone,92%positive)::
-             (92%positive,ANone,94%positive)::
-             (93%positive,ANone,94%positive)::
-             (94%positive,ANone,96%positive)::
-             (95%positive,ANone,96%positive)::
-             (96%positive,ANone,113%positive)::
-             (97%positive,(AAssign IDparse_switches_argn
-             (Some (EAdd (EVar IDparse_switches_argn) (ENum (1))))),
-             98%positive)::(98%positive,AWeaken,99%positive)::
-             (99%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) >= (eval (EVar IDparse_switches__tmp) s))%Z)),101%positive)::
-             (99%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) < (eval (EVar IDparse_switches__tmp) s))%Z)),100%positive)::
-             (100%positive,AWeaken,104%positive)::
-             (101%positive,AWeaken,102%positive)::
-             (102%positive,ANone,103%positive)::
-             (103%positive,AWeaken,104%positive)::
-             (104%positive,ANone,106%positive)::
-             (104%positive,ANone,105%positive)::
-             (105%positive,AWeaken,108%positive)::
-             (106%positive,ANone,107%positive)::
-             (107%positive,AWeaken,108%positive)::
-             (108%positive,ANone,111%positive)::
-             (108%positive,ANone,109%positive)::
-             (109%positive,AWeaken,110%positive)::
-             (110%positive,ANone,111%positive)::
-             (110%positive,ANone,112%positive)::
-             (111%positive,ANone,112%positive)::
-             (112%positive,ANone,113%positive)::
-             (113%positive,ANone,127%positive)::
-             (114%positive,(AAssign IDparse_switches_argn
-             (Some (EAdd (EVar IDparse_switches_argn) (ENum (1))))),
-             115%positive)::(115%positive,AWeaken,116%positive)::
-             (116%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) >= (eval (EVar IDparse_switches__tmp) s))%Z)),118%positive)::
-             (116%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) < (eval (EVar IDparse_switches__tmp) s))%Z)),117%positive)::
-             (117%positive,AWeaken,121%positive)::
-             (118%positive,AWeaken,119%positive)::
-             (119%positive,ANone,120%positive)::
-             (120%positive,AWeaken,121%positive)::
-             (121%positive,(AGuard
-             (fun s => ((eval (EVar IDparse_switches__tmp2) s) <>
-             (eval (ENum (0)) s))%Z)),123%positive)::
-             (121%positive,(AGuard
-             (fun s => ((eval (EVar IDparse_switches__tmp2) s) =
-             (eval (ENum (0)) s))%Z)),122%positive)::
-             (122%positive,AWeaken,126%positive)::
-             (123%positive,AWeaken,124%positive)::
-             (124%positive,ANone,128%positive)::
-             (124%positive,ANone,125%positive)::
-             (125%positive,ANone,126%positive)::
-             (126%positive,ANone,127%positive)::
-             (127%positive,ANone,131%positive)::
-             (128%positive,ANone,129%positive)::
-             (129%positive,AWeaken,208%positive)::
-             (130%positive,ANone,131%positive)::
-             (131%positive,ANone,134%positive)::
-             (132%positive,(AAssign IDparse_switches_requested_fmt
-             (Some (ENum (1)))),133%positive)::
-             (133%positive,ANone,134%positive)::
-             (134%positive,ANone,139%positive)::
-             (135%positive,AWeaken,136%positive)::
-             (136%positive,ANone,138%positive)::
-             (136%positive,ANone,137%positive)::
-             (137%positive,ANone,138%positive)::
-             (138%positive,ANone,139%positive)::
-             (139%positive,ANone,148%positive)::
-             (140%positive,AWeaken,142%positive)::
-             (141%positive,AWeaken,142%positive)::
-             (142%positive,(AGuard
-             (fun s => ((eval (EVar IDparse_switches_parse_switches.printed_version)
-             s) <> (eval (ENum (0)) s))%Z)),146%positive)::
-             (142%positive,(AGuard
-             (fun s => ((eval (EVar IDparse_switches_parse_switches.printed_version)
-             s) = (eval (ENum (0)) s))%Z)),143%positive)::
-             (143%positive,AWeaken,144%positive)::
-             (144%positive,(AAssign
-             IDparse_switches_parse_switches.printed_version
-             (Some (ENum (1)))),145%positive)::
-             (145%positive,ANone,147%positive)::
-             (146%positive,AWeaken,147%positive)::
-             (147%positive,ANone,148%positive)::
-             (148%positive,ANone,168%positive)::
-             (149%positive,(AAssign IDparse_switches_argn
-             (Some (EAdd (EVar IDparse_switches_argn) (ENum (1))))),
-             150%positive)::(150%positive,AWeaken,151%positive)::
-             (151%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) >= (eval (EVar IDparse_switches__tmp) s))%Z)),153%positive)::
-             (151%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) < (eval (EVar IDparse_switches__tmp) s))%Z)),152%positive)::
-             (152%positive,AWeaken,156%positive)::
-             (153%positive,AWeaken,154%positive)::
-             (154%positive,ANone,155%positive)::
-             (155%positive,AWeaken,156%positive)::
-             (156%positive,ANone,166%positive)::
-             (156%positive,ANone,157%positive)::
-             (157%positive,AWeaken,158%positive)::
-             (158%positive,ANone,164%positive)::
-             (158%positive,ANone,159%positive)::
-             (159%positive,AWeaken,160%positive)::
-             (160%positive,ANone,162%positive)::
-             (160%positive,ANone,161%positive)::
-             (161%positive,ANone,163%positive)::
-             (162%positive,ANone,163%positive)::
-             (163%positive,ANone,165%positive)::
-             (164%positive,ANone,165%positive)::
-             (165%positive,ANone,167%positive)::
-             (166%positive,ANone,167%positive)::
-             (167%positive,ANone,168%positive)::
-             (168%positive,ANone,188%positive)::
-             (169%positive,(AAssign IDparse_switches_argn
-             (Some (EAdd (EVar IDparse_switches_argn) (ENum (1))))),
-             170%positive)::(170%positive,AWeaken,171%positive)::
-             (171%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) >= (eval (EVar IDparse_switches__tmp) s))%Z)),173%positive)::
-             (171%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) < (eval (EVar IDparse_switches__tmp) s))%Z)),172%positive)::
-             (172%positive,AWeaken,176%positive)::
-             (173%positive,AWeaken,174%positive)::
-             (174%positive,ANone,175%positive)::
-             (175%positive,AWeaken,176%positive)::
-             (176%positive,ANone,186%positive)::
-             (176%positive,ANone,177%positive)::
-             (177%positive,AWeaken,178%positive)::
-             (178%positive,ANone,184%positive)::
-             (178%positive,ANone,179%positive)::
-             (179%positive,AWeaken,180%positive)::
-             (180%positive,ANone,182%positive)::
-             (180%positive,ANone,181%positive)::
-             (181%positive,ANone,183%positive)::
-             (182%positive,ANone,183%positive)::
-             (183%positive,ANone,185%positive)::
-             (184%positive,ANone,185%positive)::
-             (185%positive,ANone,187%positive)::
-             (186%positive,ANone,187%positive)::
-             (187%positive,ANone,188%positive)::
-             (188%positive,ANone,199%positive)::
-             (189%positive,(AAssign IDparse_switches_argn
-             (Some (EAdd (EVar IDparse_switches_argn) (ENum (1))))),
-             190%positive)::(190%positive,AWeaken,191%positive)::
-             (191%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) >= (eval (EVar IDparse_switches__tmp) s))%Z)),193%positive)::
-             (191%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDparse_switches_argn) (ENum (1)))
-             s) < (eval (EVar IDparse_switches__tmp) s))%Z)),192%positive)::
-             (192%positive,AWeaken,196%positive)::
-             (193%positive,AWeaken,194%positive)::
-             (194%positive,ANone,195%positive)::
-             (195%positive,AWeaken,196%positive)::
-             (196%positive,ANone,197%positive)::
-             (196%positive,ANone,198%positive)::
-             (197%positive,ANone,198%positive)::
-             (198%positive,ANone,199%positive)::
-             (199%positive,ANone,202%positive)::
-             (200%positive,(AAssign IDparse_switches_requested_fmt
-             (Some (ENum (0)))),201%positive)::
-             (201%positive,ANone,202%positive)::
-             (202%positive,ANone,211%positive)::
-             (203%positive,AWeaken,204%positive)::
-             (204%positive,(AGuard
-             (fun s => ((eval (EVar IDparse_switches_argn) s) <=
-             (eval (EVar IDparse_switches__tmp1) s))%Z)),209%positive)::
-             (204%positive,(AGuard
-             (fun s => ((eval (EVar IDparse_switches_argn) s) >
-             (eval (EVar IDparse_switches__tmp1) s))%Z)),205%positive)::
-             (205%positive,AWeaken,206%positive)::
-             (206%positive,ANone,207%positive)::
-             (207%positive,AWeaken,208%positive)::
-             (209%positive,AWeaken,210%positive)::
-             (210%positive,ANone,211%positive)::
-             (211%positive,(AAssign IDparse_switches_argn
-             (Some (EAdd (EVar IDparse_switches_argn) (ENum (1))))),
-             212%positive)::(212%positive,ANone,213%positive)::
-             (213%positive,ANone,214%positive)::
-             (214%positive,(AAssign IDparse_switches_z (Some (EAdd (ENum (1))
-             (EVar IDparse_switches_z)))),215%positive)::
-             (215%positive,AWeaken,9%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_parse_switches.
 
-Definition parse_switches_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDparse_switches_z) <= 0 /\ 1 * (s IDparse_switches_z) <= 0)%Z
-    | 4%positive => (1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDparse_switches_z) <= 0 /\ 1 * (s IDparse_switches_z) <= 0)%Z
-    | 6%positive => (1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ 1 * (s IDparse_switches_requested_fmt) + -3 <= 0 /\ -1 * (s IDparse_switches_requested_fmt) + 3 <= 0)%Z
-    | 7%positive => (-1 * (s IDparse_switches_requested_fmt) + 3 <= 0 /\ 1 * (s IDparse_switches_requested_fmt) + -3 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ 1 * (s IDparse_switches_z) <= 0 /\ 1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 8%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_argn) + -1 <= 0 /\ 1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ 1 * (s IDparse_switches_requested_fmt) + -3 <= 0 /\ -1 * (s IDparse_switches_requested_fmt) + 3 <= 0)%Z
-    | 9%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 10%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) <= 0)%Z
-    | 11%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 12%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 13%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 14%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 15%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 16%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 17%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 18%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 19%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 20%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 21%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 22%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 23%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 24%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 25%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 26%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 27%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 28%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 29%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 30%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 31%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 32%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 33%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 34%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 35%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 36%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 37%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 38%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 39%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 40%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 41%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 42%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 43%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 44%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 45%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 46%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 47%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 48%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 49%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 50%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 51%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 52%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 53%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 54%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 55%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 56%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 57%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 58%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 59%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 60%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 61%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 62%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 63%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_requested_fmt) + -5 <= 0 /\ -1 * (s IDparse_switches_requested_fmt) + 5 <= 0)%Z
-    | 64%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 65%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 66%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 67%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 68%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 69%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 70%positive => (1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 71%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 72%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 73%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 74%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 75%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 76%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 77%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_requested_fmt) + -4 <= 0 /\ -1 * (s IDparse_switches_requested_fmt) + 4 <= 0)%Z
-    | 78%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 79%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 80%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_requested_fmt) + -3 <= 0 /\ -1 * (s IDparse_switches_requested_fmt) + 3 <= 0)%Z
-    | 81%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 82%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 83%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 84%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 85%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 86%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 87%positive => (1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 88%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 89%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 90%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 91%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_requested_fmt) + -2 <= 0 /\ -1 * (s IDparse_switches_requested_fmt) + 2 <= 0)%Z
-    | 92%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 93%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 94%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 95%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 96%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 97%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 98%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 99%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 100%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 101%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 102%positive => (1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 103%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 104%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 105%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 106%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 107%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 108%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 109%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 110%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 111%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 112%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 113%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 114%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 115%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 116%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 117%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 118%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 119%positive => (1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 120%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 121%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 122%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp2) <= 0 /\ -1 * (s IDparse_switches__tmp2) <= 0)%Z
-    | 123%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 124%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 125%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 126%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 127%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 128%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 129%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 130%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 131%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 132%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 133%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_requested_fmt) + -1 <= 0 /\ -1 * (s IDparse_switches_requested_fmt) + 1 <= 0)%Z
-    | 134%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 135%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 136%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 137%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 138%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 139%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 140%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 141%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 142%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 143%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_parse_switches.printed_version) <= 0 /\ -1 * (s IDparse_switches_parse_switches.printed_version) <= 0)%Z
-    | 144%positive => (-1 * (s IDparse_switches_parse_switches.printed_version) <= 0 /\ 1 * (s IDparse_switches_parse_switches.printed_version) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 145%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_parse_switches.printed_version) + -1 <= 0 /\ -1 * (s IDparse_switches_parse_switches.printed_version) + 1 <= 0)%Z
-    | 146%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 147%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 148%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 149%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 150%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 151%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 152%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 153%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 154%positive => (1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 155%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 156%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 157%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 158%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 159%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 160%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 161%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 162%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 163%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 164%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 165%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 166%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 167%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 168%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 169%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 170%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 171%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 172%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 173%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 174%positive => (1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 175%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 176%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 177%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 178%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 179%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 180%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 181%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 182%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 183%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 184%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 185%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 186%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 187%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 188%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 189%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 190%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 191%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 192%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 193%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 194%positive => (1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 195%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ 1 * (s IDparse_switches__tmp)+ -1 * (s IDparse_switches_argn) + -1 <= 0)%Z
-    | 196%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 197%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 198%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 199%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 200%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 201%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches_requested_fmt) <= 0 /\ -1 * (s IDparse_switches_requested_fmt) <= 0)%Z
-    | 202%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 203%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 204%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 205%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches__tmp1)+ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 206%positive => (1 * (s IDparse_switches__tmp1)+ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 207%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ 1 * (s IDparse_switches__tmp1)+ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 208%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 209%positive => (-1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches__tmp1)+ 1 * (s IDparse_switches_argn) <= 0)%Z
-    | 210%positive => (-1 * (s IDparse_switches__tmp1)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0)%Z
-    | 211%positive => (-1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) <= 0 /\ -1 * (s IDparse_switches_argn) + 1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 212%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 213%positive => (-1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches_z) <= 0)%Z
-    | 214%positive => (-1 * (s IDparse_switches_z) <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches_argn) + 2 <= 0)%Z
-    | 215%positive => (-1 * (s IDparse_switches_argn) + 2 <= 0 /\ -1 * (s IDparse_switches__tmp)+ 1 * (s IDparse_switches_argn) + -1 <= 0 /\ -1 * (s IDparse_switches_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition parse_switches_pot (p : node) (s : state): Q := 
+Notation V_parse_switches_z := 1%positive.
+Notation V_parse_switches__tmp := 2%positive.
+Notation V_parse_switches__tmp1 := 3%positive.
+Notation V_parse_switches__tmp2 := 4%positive.
+Notation V_parse_switches_argn := 5%positive.
+Notation V_parse_switches_parse_switches_dot_printed_version := 6%positive.
+Notation V_parse_switches_requested_fmt := 7%positive.
+Notation V_parse_switches_argc := 8%positive.
+Notation V_parse_switches_argv := 9%positive.
+Notation V_parse_switches_cinfo := 10%positive.
+Notation V_parse_switches_for_real := 11%positive.
+Notation V_parse_switches_last_file_arg_seen := 12%positive.
+Definition Pedges_parse_switches: list (edge proc) :=
+  (EA 1 (AAssign V_parse_switches_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_parse_switches__tmp (Some (EVar V_parse_switches_argc))) 3)::
+  (EA 3 (AAssign V_parse_switches__tmp1
+  (Some (EVar V_parse_switches_last_file_arg_seen))) 4)::(EA 4 (AAssign
+  V_parse_switches__tmp2 (Some (EVar V_parse_switches_for_real))) 5)::
+  (EA 5 (AAssign V_parse_switches_requested_fmt (Some (ENum (3)))) 6)::
+  (EA 6 (AAssign V_parse_switches_argn (Some (ENum (1)))) 7)::
+  (EA 7 ANone 8)::(EA 8 AWeaken 9)::(EA 9 (AGuard
+  (fun s => ((eval (EVar V_parse_switches_argn) s) <
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 11)::(EA 9 (AGuard
+  (fun s => ((eval (EVar V_parse_switches_argn) s) >=
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 10)::(EA 10 AWeaken 208)::
+  (EA 11 AWeaken 12)::(EA 12 ANone 203)::(EA 12 ANone 13)::
+  (EA 13 AWeaken 14)::(EA 14 ANone 200)::(EA 14 ANone 15)::
+  (EA 15 AWeaken 16)::(EA 16 ANone 189)::(EA 16 ANone 17)::
+  (EA 17 AWeaken 18)::(EA 18 ANone 189)::(EA 18 ANone 19)::
+  (EA 19 AWeaken 20)::(EA 20 ANone 189)::(EA 20 ANone 21)::
+  (EA 21 AWeaken 22)::(EA 22 ANone 189)::(EA 22 ANone 23)::
+  (EA 23 AWeaken 24)::(EA 24 ANone 169)::(EA 24 ANone 25)::
+  (EA 25 AWeaken 26)::(EA 26 ANone 149)::(EA 26 ANone 27)::
+  (EA 27 AWeaken 28)::(EA 28 ANone 141)::(EA 28 ANone 29)::
+  (EA 29 AWeaken 30)::(EA 30 ANone 140)::(EA 30 ANone 31)::
+  (EA 31 AWeaken 32)::(EA 32 ANone 135)::(EA 32 ANone 33)::
+  (EA 33 AWeaken 34)::(EA 34 ANone 132)::(EA 34 ANone 35)::
+  (EA 35 AWeaken 36)::(EA 36 ANone 130)::(EA 36 ANone 37)::
+  (EA 37 AWeaken 38)::(EA 38 ANone 130)::(EA 38 ANone 39)::
+  (EA 39 AWeaken 40)::(EA 40 ANone 114)::(EA 40 ANone 41)::
+  (EA 41 AWeaken 42)::(EA 42 ANone 97)::(EA 42 ANone 43)::
+  (EA 43 AWeaken 44)::(EA 44 ANone 95)::(EA 44 ANone 45)::
+  (EA 45 AWeaken 46)::(EA 46 ANone 93)::(EA 46 ANone 47)::
+  (EA 47 AWeaken 48)::(EA 48 ANone 90)::(EA 48 ANone 49)::
+  (EA 49 AWeaken 50)::(EA 50 ANone 82)::(EA 50 ANone 51)::
+  (EA 51 AWeaken 52)::(EA 52 ANone 79)::(EA 52 ANone 53)::
+  (EA 53 AWeaken 54)::(EA 54 ANone 79)::(EA 54 ANone 55)::
+  (EA 55 AWeaken 56)::(EA 56 ANone 76)::(EA 56 ANone 57)::
+  (EA 57 AWeaken 58)::(EA 58 ANone 65)::(EA 58 ANone 59)::
+  (EA 59 AWeaken 60)::(EA 60 ANone 62)::(EA 60 ANone 61)::(EA 61 ANone 64)::
+  (EA 62 (AAssign V_parse_switches_requested_fmt (Some (ENum (5)))) 63)::
+  (EA 63 ANone 64)::(EA 64 ANone 75)::(EA 65 (AAssign V_parse_switches_argn
+  (Some (EAdd (EVar V_parse_switches_argn) (ENum (1))))) 66)::
+  (EA 66 AWeaken 67)::(EA 67 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) >=
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 69)::(EA 67 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) <
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 68)::(EA 68 AWeaken 72)::
+  (EA 69 AWeaken 70)::(EA 70 ANone 71)::(EA 71 AWeaken 72)::
+  (EA 72 ANone 73)::(EA 72 ANone 74)::(EA 73 ANone 74)::(EA 74 ANone 75)::
+  (EA 75 ANone 78)::(EA 76 (AAssign V_parse_switches_requested_fmt
+  (Some (ENum (4)))) 77)::(EA 77 ANone 78)::(EA 78 ANone 81)::(EA 79 (AAssign
+  V_parse_switches_requested_fmt (Some (ENum (3)))) 80)::(EA 80 ANone 81)::
+  (EA 81 ANone 89)::(EA 82 (AAssign V_parse_switches_argn
+  (Some (EAdd (EVar V_parse_switches_argn) (ENum (1))))) 83)::
+  (EA 83 AWeaken 84)::(EA 84 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) >=
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 86)::(EA 84 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) <
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 85)::(EA 85 AWeaken 88)::
+  (EA 86 AWeaken 87)::(EA 87 ANone 88)::(EA 88 ANone 89)::(EA 89 ANone 92)::
+  (EA 90 (AAssign V_parse_switches_requested_fmt (Some (ENum (2)))) 91)::
+  (EA 91 ANone 92)::(EA 92 ANone 94)::(EA 93 ANone 94)::(EA 94 ANone 96)::
+  (EA 95 ANone 96)::(EA 96 ANone 113)::(EA 97 (AAssign V_parse_switches_argn
+  (Some (EAdd (EVar V_parse_switches_argn) (ENum (1))))) 98)::
+  (EA 98 AWeaken 99)::(EA 99 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) >=
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 101)::(EA 99 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) <
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 100)::(EA 100 AWeaken 104)::
+  (EA 101 AWeaken 102)::(EA 102 ANone 103)::(EA 103 AWeaken 104)::
+  (EA 104 ANone 106)::(EA 104 ANone 105)::(EA 105 AWeaken 108)::
+  (EA 106 ANone 107)::(EA 107 AWeaken 108)::(EA 108 ANone 111)::
+  (EA 108 ANone 109)::(EA 109 AWeaken 110)::(EA 110 ANone 111)::
+  (EA 110 ANone 112)::(EA 111 ANone 112)::(EA 112 ANone 113)::
+  (EA 113 ANone 127)::(EA 114 (AAssign V_parse_switches_argn
+  (Some (EAdd (EVar V_parse_switches_argn) (ENum (1))))) 115)::
+  (EA 115 AWeaken 116)::(EA 116 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) >=
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 118)::(EA 116 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) <
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 117)::(EA 117 AWeaken 121)::
+  (EA 118 AWeaken 119)::(EA 119 ANone 120)::(EA 120 AWeaken 121)::
+  (EA 121 (AGuard (fun s => ((eval (EVar V_parse_switches__tmp2) s) <>
+  (eval (ENum (0)) s))%Z)) 123)::(EA 121 (AGuard
+  (fun s => ((eval (EVar V_parse_switches__tmp2) s) = (eval (ENum (0))
+  s))%Z)) 122)::(EA 122 AWeaken 126)::(EA 123 AWeaken 124)::
+  (EA 124 ANone 128)::(EA 124 ANone 125)::(EA 125 ANone 126)::
+  (EA 126 ANone 127)::(EA 127 ANone 131)::(EA 128 ANone 129)::
+  (EA 129 AWeaken 208)::(EA 130 ANone 131)::(EA 131 ANone 134)::
+  (EA 132 (AAssign V_parse_switches_requested_fmt (Some (ENum (1)))) 133)::
+  (EA 133 ANone 134)::(EA 134 ANone 139)::(EA 135 AWeaken 136)::
+  (EA 136 ANone 138)::(EA 136 ANone 137)::(EA 137 ANone 138)::
+  (EA 138 ANone 139)::(EA 139 ANone 148)::(EA 140 AWeaken 142)::
+  (EA 141 AWeaken 142)::(EA 142 (AGuard
+  (fun s => ((eval (EVar V_parse_switches_parse_switches_dot_printed_version)
+  s) <> (eval (ENum (0)) s))%Z)) 146)::(EA 142 (AGuard
+  (fun s => ((eval (EVar V_parse_switches_parse_switches_dot_printed_version)
+  s) = (eval (ENum (0)) s))%Z)) 143)::(EA 143 AWeaken 144)::(EA 144 (AAssign
+  V_parse_switches_parse_switches_dot_printed_version
+  (Some (ENum (1)))) 145)::(EA 145 ANone 147)::(EA 146 AWeaken 147)::
+  (EA 147 ANone 148)::(EA 148 ANone 168)::(EA 149 (AAssign
+  V_parse_switches_argn (Some (EAdd (EVar V_parse_switches_argn)
+  (ENum (1))))) 150)::(EA 150 AWeaken 151)::(EA 151 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) >=
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 153)::(EA 151 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) <
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 152)::(EA 152 AWeaken 156)::
+  (EA 153 AWeaken 154)::(EA 154 ANone 155)::(EA 155 AWeaken 156)::
+  (EA 156 ANone 166)::(EA 156 ANone 157)::(EA 157 AWeaken 158)::
+  (EA 158 ANone 164)::(EA 158 ANone 159)::(EA 159 AWeaken 160)::
+  (EA 160 ANone 162)::(EA 160 ANone 161)::(EA 161 ANone 163)::
+  (EA 162 ANone 163)::(EA 163 ANone 165)::(EA 164 ANone 165)::
+  (EA 165 ANone 167)::(EA 166 ANone 167)::(EA 167 ANone 168)::
+  (EA 168 ANone 188)::(EA 169 (AAssign V_parse_switches_argn
+  (Some (EAdd (EVar V_parse_switches_argn) (ENum (1))))) 170)::
+  (EA 170 AWeaken 171)::(EA 171 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) >=
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 173)::(EA 171 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) <
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 172)::(EA 172 AWeaken 176)::
+  (EA 173 AWeaken 174)::(EA 174 ANone 175)::(EA 175 AWeaken 176)::
+  (EA 176 ANone 186)::(EA 176 ANone 177)::(EA 177 AWeaken 178)::
+  (EA 178 ANone 184)::(EA 178 ANone 179)::(EA 179 AWeaken 180)::
+  (EA 180 ANone 182)::(EA 180 ANone 181)::(EA 181 ANone 183)::
+  (EA 182 ANone 183)::(EA 183 ANone 185)::(EA 184 ANone 185)::
+  (EA 185 ANone 187)::(EA 186 ANone 187)::(EA 187 ANone 188)::
+  (EA 188 ANone 199)::(EA 189 (AAssign V_parse_switches_argn
+  (Some (EAdd (EVar V_parse_switches_argn) (ENum (1))))) 190)::
+  (EA 190 AWeaken 191)::(EA 191 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) >=
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 193)::(EA 191 (AGuard
+  (fun s => ((eval (EAdd (EVar V_parse_switches_argn) (ENum (1))) s) <
+  (eval (EVar V_parse_switches__tmp) s))%Z)) 192)::(EA 192 AWeaken 196)::
+  (EA 193 AWeaken 194)::(EA 194 ANone 195)::(EA 195 AWeaken 196)::
+  (EA 196 ANone 197)::(EA 196 ANone 198)::(EA 197 ANone 198)::
+  (EA 198 ANone 199)::(EA 199 ANone 202)::(EA 200 (AAssign
+  V_parse_switches_requested_fmt (Some (ENum (0)))) 201)::
+  (EA 201 ANone 202)::(EA 202 ANone 211)::(EA 203 AWeaken 204)::
+  (EA 204 (AGuard (fun s => ((eval (EVar V_parse_switches_argn) s) <=
+  (eval (EVar V_parse_switches__tmp1) s))%Z)) 209)::(EA 204 (AGuard
+  (fun s => ((eval (EVar V_parse_switches_argn) s) >
+  (eval (EVar V_parse_switches__tmp1) s))%Z)) 205)::(EA 205 AWeaken 206)::
+  (EA 206 ANone 207)::(EA 207 AWeaken 208)::(EA 209 AWeaken 210)::
+  (EA 210 ANone 211)::(EA 211 (AAssign V_parse_switches_argn
+  (Some (EAdd (EVar V_parse_switches_argn) (ENum (1))))) 212)::
+  (EA 212 ANone 213)::(EA 213 ANone 214)::(EA 214 (AAssign V_parse_switches_z
+  (Some (EAdd (ENum (1)) (EVar V_parse_switches_z)))) 215)::
+  (EA 215 AWeaken 9)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_parse_switches => Pedges_parse_switches
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_parse_switches => 208
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_parse_switches (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 3 => (-1 * s V_parse_switches_z <= 0 /\ 1 * s V_parse_switches_z <= 0)%Z
+   | 4 => (1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 5 => (-1 * s V_parse_switches_z <= 0 /\ 1 * s V_parse_switches_z <= 0)%Z
+   | 6 => (1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ 1 * s V_parse_switches_requested_fmt + -3 <= 0 /\ -1 * s V_parse_switches_requested_fmt + 3 <= 0)%Z
+   | 7 => (-1 * s V_parse_switches_requested_fmt + 3 <= 0 /\ 1 * s V_parse_switches_requested_fmt + -3 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ 1 * s V_parse_switches_z <= 0 /\ 1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 8 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_argn + -1 <= 0 /\ 1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ 1 * s V_parse_switches_requested_fmt + -3 <= 0 /\ -1 * s V_parse_switches_requested_fmt + 3 <= 0)%Z
+   | 9 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 10 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn <= 0)%Z
+   | 11 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 12 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 13 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 14 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 15 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 16 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 17 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 18 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 19 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 20 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 21 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 22 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 23 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 24 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 25 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 26 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 27 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 28 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 29 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 30 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 31 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 32 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 33 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 34 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 35 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 36 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 37 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 38 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 39 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 40 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 41 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 42 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 43 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 44 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 45 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 46 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 47 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 48 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 49 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 50 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 51 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 52 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 53 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 54 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 55 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 56 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 57 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 58 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 59 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 60 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 61 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 62 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 63 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_requested_fmt + -5 <= 0 /\ -1 * s V_parse_switches_requested_fmt + 5 <= 0)%Z
+   | 64 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 65 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 66 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 67 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 68 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 69 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 70 => (1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 71 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 72 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 73 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 74 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 75 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 76 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 77 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_requested_fmt + -4 <= 0 /\ -1 * s V_parse_switches_requested_fmt + 4 <= 0)%Z
+   | 78 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 79 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 80 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_requested_fmt + -3 <= 0 /\ -1 * s V_parse_switches_requested_fmt + 3 <= 0)%Z
+   | 81 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 82 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 83 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 84 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 85 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 86 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 87 => (1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 88 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 89 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 90 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 91 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_requested_fmt + -2 <= 0 /\ -1 * s V_parse_switches_requested_fmt + 2 <= 0)%Z
+   | 92 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 93 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 94 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 95 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 96 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 97 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 98 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 99 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 100 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 101 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 102 => (1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 103 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 104 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 105 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 106 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 107 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 108 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 109 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 110 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 111 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 112 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 113 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 114 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 115 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 116 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 117 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 118 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 119 => (1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 120 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 121 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 122 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp2 <= 0 /\ -1 * s V_parse_switches__tmp2 <= 0)%Z
+   | 123 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 124 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 125 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 126 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 127 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 128 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 129 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 130 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 131 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 132 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 133 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_requested_fmt + -1 <= 0 /\ -1 * s V_parse_switches_requested_fmt + 1 <= 0)%Z
+   | 134 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 135 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 136 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 137 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 138 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 139 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 140 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 141 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 142 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 143 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_parse_switches_dot_printed_version <= 0 /\ -1 * s V_parse_switches_parse_switches_dot_printed_version <= 0)%Z
+   | 144 => (-1 * s V_parse_switches_parse_switches_dot_printed_version <= 0 /\ 1 * s V_parse_switches_parse_switches_dot_printed_version <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 145 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_parse_switches_dot_printed_version + -1 <= 0 /\ -1 * s V_parse_switches_parse_switches_dot_printed_version + 1 <= 0)%Z
+   | 146 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 147 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 148 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 149 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 150 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 151 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 152 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 153 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 154 => (1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 155 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 156 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 157 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 158 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 159 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 160 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 161 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 162 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 163 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 164 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 165 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 166 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 167 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 168 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 169 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 170 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 171 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 172 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 173 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 174 => (1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 175 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 176 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 177 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 178 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 179 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 180 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 181 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 182 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 183 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 184 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 185 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 186 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 187 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 188 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 189 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 190 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 191 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 192 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 193 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 194 => (1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 195 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ 1 * s V_parse_switches__tmp+ -1 * s V_parse_switches_argn + -1 <= 0)%Z
+   | 196 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 197 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 198 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 199 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 200 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 201 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches_requested_fmt <= 0 /\ -1 * s V_parse_switches_requested_fmt <= 0)%Z
+   | 202 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 203 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 204 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 205 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches__tmp1+ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 206 => (1 * s V_parse_switches__tmp1+ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 207 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ 1 * s V_parse_switches__tmp1+ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 208 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 209 => (-1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches__tmp1+ 1 * s V_parse_switches_argn <= 0)%Z
+   | 210 => (-1 * s V_parse_switches__tmp1+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0)%Z
+   | 211 => (-1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn <= 0 /\ -1 * s V_parse_switches_argn + 1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 212 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 213 => (-1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches_z <= 0)%Z
+   | 214 => (-1 * s V_parse_switches_z <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches_argn + 2 <= 0)%Z
+   | 215 => (-1 * s V_parse_switches_argn + 2 <= 0 /\ -1 * s V_parse_switches__tmp+ 1 * s V_parse_switches_argn + -1 <= 0 /\ -1 * s V_parse_switches_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_parse_switches (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_parse_switches_argc) <= z)%Q
+   | 2 => (s V_parse_switches_z + max0(s V_parse_switches_argc) <= z)%Q
+   | 3 => (s V_parse_switches_z + max0(s V_parse_switches__tmp) <= z)%Q
+   | 4 => (s V_parse_switches_z + max0(s V_parse_switches__tmp) <= z)%Q
+   | 5 => (s V_parse_switches_z + max0(s V_parse_switches__tmp) <= z)%Q
+   | 6 => (s V_parse_switches_z + max0(s V_parse_switches__tmp) <= z)%Q
+   | 7 => (-(1 # 2) + (1 # 2) * s V_parse_switches_argn
+           + s V_parse_switches_z
+           - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+           + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 8 => (-(1 # 2) + (1 # 2) * s V_parse_switches_argn
+           + s V_parse_switches_z
+           - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+           + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 9 => (-(1 # 2) + (1 # 2) * s V_parse_switches_argn
+           + s V_parse_switches_z
+           - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+           + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 10 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (1 + s V_parse_switches__tmp
+                                             - s V_parse_switches_argn) (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-1 0*) F_max0_ge_0 (s V_parse_switches__tmp - s V_parse_switches_argn);
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_parse_switches_argn))]
+     (-(1 # 2) + (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 11 => hints
+     [(*0 0.5*) F_binom_monotonic 1 (F_max0_ge_arg (s V_parse_switches__tmp
+                                                    - s V_parse_switches_argn)) (F_check_ge (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     (-(1 # 2) + (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 12 => ((1 # 2) + (3 # 2) * s V_parse_switches__tmp
+            - s V_parse_switches_argn + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            - (1 # 2) * max0(s V_parse_switches__tmp
+                             - s V_parse_switches_argn) <= z)%Q
+   | 13 => hints
+     [(*-1.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                                 - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn))]
+     ((1 # 2) + (3 # 2) * s V_parse_switches__tmp - s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+      - (1 # 2) * max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 14 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 15 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 16 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 17 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 18 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 19 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 20 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 21 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 22 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 23 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 24 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 25 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 26 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 27 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 28 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 29 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 30 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 31 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 32 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 33 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 34 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 35 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 36 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 37 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 38 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 39 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 40 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 41 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 42 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 43 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 44 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 45 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 46 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 47 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 48 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 49 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 50 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 51 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 52 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 53 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 54 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 55 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 56 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 57 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 58 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 59 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 60 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 61 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 62 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 63 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 64 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 65 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 66 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 67 => ((1 # 1) + s V_parse_switches__tmp
+            - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+            - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 68 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 69 => ((1 # 1) + s V_parse_switches__tmp
+            - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+            - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 70 => ((1 # 1) + s V_parse_switches__tmp
+            - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+            - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 71 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 72 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 73 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 74 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 75 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 76 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 77 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 78 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 79 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 80 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 81 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 82 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 83 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 84 => ((1 # 1) + s V_parse_switches__tmp
+            - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+            - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 85 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 86 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 87 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 88 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 89 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 90 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 91 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 92 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 93 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 94 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 95 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 96 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 97 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+            + s V_parse_switches_z
+            - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+            + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 98 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+            - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+            + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 99 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+            - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+            + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 100 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (1 + s V_parse_switches__tmp
+                                             - s V_parse_switches_argn) (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 101 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 102 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 103 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 104 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 105 => hints
+     [(*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 106 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 107 => hints
+     [(*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 108 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 109 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 110 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 111 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 112 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 113 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 114 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 115 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 116 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 117 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (1 + s V_parse_switches__tmp
+                                       - s V_parse_switches_argn) (1)]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 118 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 119 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 120 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 121 => ((1 # 1) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 122 => hints
+     [(*-1 0*) F_one;
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 123 => hints
+     [(*-1 0*) F_one;
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 124 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 125 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 126 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 127 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 128 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 129 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_max0_ge_0 (s V_parse_switches__tmp - s V_parse_switches_argn);
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 2) + (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+      + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 130 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 131 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 132 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 133 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 134 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 135 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 136 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 137 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 138 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 139 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 140 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 141 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 142 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 143 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 144 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 145 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 146 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 147 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 148 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 149 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 150 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 151 => ((1 # 1) + s V_parse_switches__tmp
+             - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 152 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 153 => ((1 # 1) + s V_parse_switches__tmp
+             - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 154 => ((1 # 1) + s V_parse_switches__tmp
+             - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 155 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 156 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 157 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 158 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 159 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 160 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 161 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 162 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 163 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 164 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 165 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 166 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 167 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 168 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 169 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 170 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 171 => ((1 # 1) + s V_parse_switches__tmp
+             - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 172 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 173 => ((1 # 1) + s V_parse_switches__tmp
+             - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 174 => ((1 # 1) + s V_parse_switches__tmp
+             - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 175 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 176 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 177 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 178 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 179 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 180 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 181 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 182 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 183 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 184 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 185 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 186 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 187 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 188 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 189 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 190 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 191 => ((1 # 1) + s V_parse_switches__tmp
+             - (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 192 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 193 => hints
+     [(*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0))]
+     ((1 # 1) + s V_parse_switches__tmp - (1 # 2) * s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-2 + s V_parse_switches_argn) <= z)%Q
+   | 194 => ((1 # 2) + s V_parse_switches__tmp + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn) <= z)%Q
+   | 195 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     ((1 # 2) + s V_parse_switches__tmp + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      - (1 # 2) * max0(-1 + s V_parse_switches_argn) <= z)%Q
+   | 196 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 197 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 198 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 199 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 200 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 201 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 202 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 203 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                               + s V_parse_switches__tmp
+                                                               - s V_parse_switches_argn) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn))]
+     ((1 # 2) + (3 # 2) * s V_parse_switches__tmp - s V_parse_switches_argn
+      + s V_parse_switches_z - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+      - (1 # 2) * max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 204 => ((3 # 2) + (1 # 2) * s V_parse_switches__tmp
+             + s V_parse_switches_z
+             + max0(-1 + s V_parse_switches__tmp - s V_parse_switches_argn)
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             - (1 # 2) * max0(s V_parse_switches__tmp
+                              - s V_parse_switches_argn) <= z)%Q
+   | 205 => ((3 # 2) + (1 # 2) * s V_parse_switches__tmp
+             + s V_parse_switches_z
+             + max0(-1 + s V_parse_switches__tmp - s V_parse_switches_argn)
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             - (1 # 2) * max0(s V_parse_switches__tmp
+                              - s V_parse_switches_argn) <= z)%Q
+   | 206 => ((3 # 2) + (1 # 2) * s V_parse_switches__tmp
+             + s V_parse_switches_z
+             + max0(-1 + s V_parse_switches__tmp - s V_parse_switches_argn)
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             - (1 # 2) * max0(s V_parse_switches__tmp
+                              - s V_parse_switches_argn) <= z)%Q
+   | 207 => hints
+     [(*-2 0*) F_one;
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_parse_switches__tmp
+                                                                 - s V_parse_switches_argn) (0))) (F_max0_ge_0 (s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_parse_switches_argn));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_parse_switches__tmp
+                                                 - s V_parse_switches_argn)) (F_check_ge (0) (0))]
+     ((3 # 2) + (1 # 2) * s V_parse_switches__tmp + s V_parse_switches_z
+      + max0(-1 + s V_parse_switches__tmp - s V_parse_switches_argn)
+      - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+      - (1 # 2) * max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 208 => (s V_parse_switches_z <= z)%Q
+   | 209 => hints
+     [(*-1.5 0*) F_max0_pre_decrement 1 (1 + s V_parse_switches__tmp
+                                         - s V_parse_switches_argn) (1);
+      (*-1.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (1
+                                                                 + s V_parse_switches__tmp
+                                                                 - s V_parse_switches_argn) (0))) (F_max0_ge_0 (1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                   + s V_parse_switches__tmp
+                                                   - s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches__tmp
+                                                                    - s V_parse_switches_argn) (0))]
+     ((3 # 2) + (1 # 2) * s V_parse_switches__tmp + s V_parse_switches_z
+      + max0(-1 + s V_parse_switches__tmp - s V_parse_switches_argn)
+      - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+      - (1 # 2) * max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 210 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 211 => ((1 # 2) + (1 # 2) * s V_parse_switches_argn
+             + s V_parse_switches_z
+             - (1 # 2) * max0(-1 + s V_parse_switches_argn)
+             + max0(s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 212 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 213 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 214 => ((1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+             - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+             + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | 215 => hints
+     [(*0 0.5*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                    + s V_parse_switches_argn)) (F_check_ge (-1
+                                                                    + s V_parse_switches_argn) (0));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                                 + s V_parse_switches_argn) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_parse_switches_argn))]
+     (-(1 # 1) + (1 # 2) * s V_parse_switches_argn + s V_parse_switches_z
+      - (1 # 2) * max0(-2 + s V_parse_switches_argn)
+      + max0(1 + s V_parse_switches__tmp - s V_parse_switches_argn) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDparse_switches_argc)))%Q
-    | 2%positive => ((s IDparse_switches_z) + max0((s IDparse_switches_argc)))%Q
-    | 3%positive => ((s IDparse_switches_z) + max0((s IDparse_switches__tmp)))%Q
-    | 4%positive => ((s IDparse_switches_z) + max0((s IDparse_switches__tmp)))%Q
-    | 5%positive => ((s IDparse_switches_z) + max0((s IDparse_switches__tmp)))%Q
-    | 6%positive => ((s IDparse_switches_z) + max0((s IDparse_switches__tmp)))%Q
-    | 7%positive => (-(1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                     + (s IDparse_switches_z)
-                     - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                     + max0(1 + (s IDparse_switches__tmp)
-                            - (s IDparse_switches_argn)))%Q
-    | 8%positive => (-(1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                     + (s IDparse_switches_z)
-                     - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                     + max0(1 + (s IDparse_switches__tmp)
-                            - (s IDparse_switches_argn)))%Q
-    | 9%positive => (-(1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                     + (s IDparse_switches_z)
-                     - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                     + max0(1 + (s IDparse_switches__tmp)
-                            - (s IDparse_switches_argn)))%Q
-    | 10%positive => (-(1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0(1 + (s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 11%positive => (-(1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0(1 + (s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 12%positive => ((1 # 2) + (3 # 2) * (s IDparse_switches__tmp)
-                      - (s IDparse_switches_argn) + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      - (1 # 2) * max0((s IDparse_switches__tmp)
-                                       - (s IDparse_switches_argn)))%Q
-    | 13%positive => ((1 # 2) + (3 # 2) * (s IDparse_switches__tmp)
-                      - (s IDparse_switches_argn) + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      - (1 # 2) * max0((s IDparse_switches__tmp)
-                                       - (s IDparse_switches_argn)))%Q
-    | 14%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 15%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 16%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 17%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 18%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 19%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 20%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 21%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 22%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 23%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 24%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 25%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 26%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 27%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 28%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 29%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 30%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 31%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 32%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 33%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 34%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 35%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 36%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 37%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 38%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 39%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 40%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 41%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 42%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 43%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 44%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 45%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 46%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 47%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 48%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 49%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 50%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 51%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 52%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 53%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 54%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 55%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 56%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 57%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 58%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 59%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 60%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 61%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 62%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 63%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 64%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 65%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 66%positive => ((1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                      + max0(1 + (s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 67%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                      - (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 68%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                      - (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 69%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                      - (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 70%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                      - (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 71%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                      - (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 72%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 73%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 74%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 75%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 76%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 77%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 78%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 79%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 80%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 81%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 82%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 83%positive => ((1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                      + max0(1 + (s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 84%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                      - (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 85%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                      - (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 86%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                      - (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 87%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 88%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 89%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 90%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 91%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 92%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 93%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 94%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 95%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 96%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 97%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                      + max0((s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 98%positive => ((1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                      + max0(1 + (s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 99%positive => ((1 # 2) * (s IDparse_switches_argn)
-                      + (s IDparse_switches_z)
-                      - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                      + max0(1 + (s IDparse_switches__tmp)
-                             - (s IDparse_switches_argn)))%Q
-    | 100%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 101%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 102%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 103%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 104%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 105%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 106%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 107%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 108%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 109%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 110%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 111%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 112%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 113%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 114%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 115%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 116%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 117%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 118%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 119%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 120%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 121%positive => ((1 # 1) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 122%positive => ((1 # 1) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 123%positive => ((1 # 1) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 124%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 125%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 126%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 127%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 128%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 129%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 130%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 131%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 132%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 133%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 134%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 135%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 136%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 137%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 138%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 139%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 140%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 141%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 142%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 143%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 144%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 145%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 146%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 147%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 148%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 149%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 150%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 151%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 152%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 153%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 154%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 155%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 156%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 157%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 158%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 159%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 160%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 161%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 162%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 163%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 164%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 165%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 166%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 167%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 168%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 169%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 170%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 171%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 172%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 173%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 174%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 175%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 176%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 177%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 178%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 179%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 180%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 181%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 182%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 183%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 184%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 185%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 186%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 187%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 188%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 189%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 190%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 191%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 192%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 193%positive => ((1 # 1) + (s IDparse_switches__tmp)
-                       - (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn)))%Q
-    | 194%positive => ((1 # 2) + (s IDparse_switches__tmp)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn)))%Q
-    | 195%positive => ((1 # 2) + (s IDparse_switches__tmp)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn)))%Q
-    | 196%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 197%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 198%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 199%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 200%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 201%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 202%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 203%positive => ((1 # 2) + (3 # 2) * (s IDparse_switches__tmp)
-                       - (s IDparse_switches_argn) + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       - (1 # 2) * max0((s IDparse_switches__tmp)
-                                        - (s IDparse_switches_argn)))%Q
-    | 204%positive => ((3 # 2) + (1 # 2) * (s IDparse_switches__tmp)
-                       + (s IDparse_switches_z)
-                       + max0(-1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn))
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       - (1 # 2) * max0((s IDparse_switches__tmp)
-                                        - (s IDparse_switches_argn)))%Q
-    | 205%positive => ((3 # 2) + (1 # 2) * (s IDparse_switches__tmp)
-                       + (s IDparse_switches_z)
-                       + max0(-1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn))
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       - (1 # 2) * max0((s IDparse_switches__tmp)
-                                        - (s IDparse_switches_argn)))%Q
-    | 206%positive => ((3 # 2) + (1 # 2) * (s IDparse_switches__tmp)
-                       + (s IDparse_switches_z)
-                       + max0(-1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn))
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       - (1 # 2) * max0((s IDparse_switches__tmp)
-                                        - (s IDparse_switches_argn)))%Q
-    | 207%positive => ((3 # 2) + (1 # 2) * (s IDparse_switches__tmp)
-                       + (s IDparse_switches_z)
-                       + max0(-1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn))
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       - (1 # 2) * max0((s IDparse_switches__tmp)
-                                        - (s IDparse_switches_argn)))%Q
-    | 208%positive => ((s IDparse_switches_z))%Q
-    | 209%positive => ((3 # 2) + (1 # 2) * (s IDparse_switches__tmp)
-                       + (s IDparse_switches_z)
-                       + max0(-1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn))
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       - (1 # 2) * max0((s IDparse_switches__tmp)
-                                        - (s IDparse_switches_argn)))%Q
-    | 210%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 211%positive => ((1 # 2) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-1 + (s IDparse_switches_argn))
-                       + max0((s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 212%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 213%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 214%positive => ((1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | 215%positive => (-(1 # 1) + (1 # 2) * (s IDparse_switches_argn)
-                       + (s IDparse_switches_z)
-                       - (1 # 2) * max0(-2 + (s IDparse_switches_argn))
-                       + max0(1 + (s IDparse_switches__tmp)
-                              - (s IDparse_switches_argn)))%Q
-    | _ => (0 # 1)%Q
+  | P_parse_switches =>
+    [mkPA Q (fun n z s => ai_parse_switches n s /\ annot0_parse_switches n z s)]
   end.
 
-Definition parse_switches_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (1
-                                                             + (s IDparse_switches__tmp)
-                                                             - (s IDparse_switches_argn)) ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                      (*-1 0*) F_max0_ge_0 ((s IDparse_switches__tmp)
-                                            - (s IDparse_switches_argn));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDparse_switches_argn)))]
-    | 11%positive => [(*0 0.5*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDparse_switches__tmp)
-                                                                    - 
-                                                                    (s IDparse_switches_argn))) (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                   + 
-                                                                   (s IDparse_switches__tmp)
-                                                                   - 
-                                                                   (s IDparse_switches_argn))) (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 12%positive => []
-    | 13%positive => [(*-1.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)))]
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => []
-    | 59%positive => []
-    | 60%positive => []
-    | 61%positive => []
-    | 62%positive => []
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => []
-    | 66%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                   + 
-                                                                   (s IDparse_switches__tmp)
-                                                                   - 
-                                                                   (s IDparse_switches_argn))) (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 67%positive => []
-    | 68%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 72%positive => []
-    | 73%positive => []
-    | 74%positive => []
-    | 75%positive => []
-    | 76%positive => []
-    | 77%positive => []
-    | 78%positive => []
-    | 79%positive => []
-    | 80%positive => []
-    | 81%positive => []
-    | 82%positive => []
-    | 83%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                   + 
-                                                                   (s IDparse_switches__tmp)
-                                                                   - 
-                                                                   (s IDparse_switches_argn))) (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 84%positive => []
-    | 85%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 86%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 87%positive => []
-    | 88%positive => []
-    | 89%positive => []
-    | 90%positive => []
-    | 91%positive => []
-    | 92%positive => []
-    | 93%positive => []
-    | 94%positive => []
-    | 95%positive => []
-    | 96%positive => []
-    | 97%positive => []
-    | 98%positive => []
-    | 99%positive => []
-    | 100%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (1
-                                                              + (s IDparse_switches__tmp)
-                                                              - (s IDparse_switches_argn)) ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)))]
-    | 101%positive => []
-    | 102%positive => []
-    | 103%positive => [(*-1 0*) F_one;
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                    + 
-                                                                    (s IDparse_switches__tmp)
-                                                                    - 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 104%positive => []
-    | 105%positive => [(*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 106%positive => []
-    | 107%positive => [(*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 108%positive => []
-    | 109%positive => []
-    | 110%positive => []
-    | 111%positive => []
-    | 112%positive => []
-    | 113%positive => []
-    | 114%positive => []
-    | 115%positive => []
-    | 116%positive => []
-    | 117%positive => [(*-1 0*) F_max0_pre_decrement (1
-                                                      + (s IDparse_switches__tmp)
-                                                      - (s IDparse_switches_argn)) (1)]
-    | 118%positive => []
-    | 119%positive => []
-    | 120%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                    + 
-                                                                    (s IDparse_switches__tmp)
-                                                                    - 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 121%positive => []
-    | 122%positive => [(*-1 0*) F_one;
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 123%positive => [(*-1 0*) F_one;
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 124%positive => []
-    | 125%positive => []
-    | 126%positive => []
-    | 127%positive => []
-    | 128%positive => []
-    | 129%positive => [(*-1 0*) F_one;
-                       (*-1 0*) F_max0_ge_0 ((s IDparse_switches__tmp)
-                                             - (s IDparse_switches_argn));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDparse_switches_argn)))]
-    | 130%positive => []
-    | 131%positive => []
-    | 132%positive => []
-    | 133%positive => []
-    | 134%positive => []
-    | 135%positive => []
-    | 136%positive => []
-    | 137%positive => []
-    | 138%positive => []
-    | 139%positive => []
-    | 140%positive => []
-    | 141%positive => []
-    | 142%positive => []
-    | 143%positive => []
-    | 144%positive => []
-    | 145%positive => []
-    | 146%positive => []
-    | 147%positive => []
-    | 148%positive => []
-    | 149%positive => []
-    | 150%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                    + 
-                                                                    (s IDparse_switches__tmp)
-                                                                    - 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 151%positive => []
-    | 152%positive => [(*-1 0*) F_one;
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 153%positive => []
-    | 154%positive => []
-    | 155%positive => [(*-1 0*) F_one;
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 156%positive => []
-    | 157%positive => []
-    | 158%positive => []
-    | 159%positive => []
-    | 160%positive => []
-    | 161%positive => []
-    | 162%positive => []
-    | 163%positive => []
-    | 164%positive => []
-    | 165%positive => []
-    | 166%positive => []
-    | 167%positive => []
-    | 168%positive => []
-    | 169%positive => []
-    | 170%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                    + 
-                                                                    (s IDparse_switches__tmp)
-                                                                    - 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 171%positive => []
-    | 172%positive => [(*-1 0*) F_one;
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 173%positive => []
-    | 174%positive => []
-    | 175%positive => [(*-1 0*) F_one;
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 176%positive => []
-    | 177%positive => []
-    | 178%positive => []
-    | 179%positive => []
-    | 180%positive => []
-    | 181%positive => []
-    | 182%positive => []
-    | 183%positive => []
-    | 184%positive => []
-    | 185%positive => []
-    | 186%positive => []
-    | 187%positive => []
-    | 188%positive => []
-    | 189%positive => []
-    | 190%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                    + 
-                                                                    (s IDparse_switches__tmp)
-                                                                    - 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 191%positive => []
-    | 192%positive => [(*-1 0*) F_one;
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 193%positive => [(*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0))]
-    | 194%positive => []
-    | 195%positive => [(*-1 0*) F_one;
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | 196%positive => []
-    | 197%positive => []
-    | 198%positive => []
-    | 199%positive => []
-    | 200%positive => []
-    | 201%positive => []
-    | 202%positive => []
-    | 203%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)))]
-    | 204%positive => []
-    | 205%positive => []
-    | 206%positive => []
-    | 207%positive => [(*-2 0*) F_one;
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 ((s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDparse_switches_argn)));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                  + (s IDparse_switches__tmp)
-                                                                  - (s IDparse_switches_argn))) (F_check_ge (0) (0))]
-    | 208%positive => []
-    | 209%positive => [(*-1.5 0*) F_max0_pre_decrement (1
-                                                        + (s IDparse_switches__tmp)
-                                                        - (s IDparse_switches_argn)) (1);
-                       (*-1.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + 
-                                                                    (s IDparse_switches__tmp)
-                                                                    - 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches__tmp)
-                                                                    - (s IDparse_switches_argn)) (0))]
-    | 210%positive => []
-    | 211%positive => []
-    | 212%positive => []
-    | 213%positive => []
-    | 214%positive => []
-    | 215%positive => [(*0 0.5*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + 
-                                                                    (s IDparse_switches_argn))) (F_check_ge (-1
-                                                                    + (s IDparse_switches_argn)) (0));
-                       (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDparse_switches_argn)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDparse_switches_argn)))]
-    | _ => []
-  end.
-
-
-Theorem parse_switches_ai_correct:
-  forall s p' s', steps (g_start parse_switches) s (g_edges parse_switches) p' s' -> parse_switches_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem parse_switches_pot_correct:
-  forall s p' s',
-    steps (g_start parse_switches) s (g_edges parse_switches) p' s' ->
-    (parse_switches_pot (g_start parse_switches) s >= parse_switches_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_parse_switches (proc_start P_parse_switches) s1 (proc_end P_parse_switches) s2 ->
+    (s2 V_parse_switches_z <= max0(s1 V_parse_switches_argc))%Q.
 Proof.
-  check_lp parse_switches_ai_correct parse_switches_hints.
+  prove_bound ipa admissible_ipa P_parse_switches.
 Qed.
-

@@ -1,315 +1,253 @@
 Require Import pasta.Pasta.
 
-Notation IDarray_get_z := 1%positive.
-Notation IDarray_get__tmp := 2%positive.
-Notation IDarray_get__tmp1 := 3%positive.
-Notation IDarray_get_aref_dref_off0_off2 := 4%positive.
-Notation IDarray_get_index := 5%positive.
-Notation IDarray_get_aref := 6%positive.
-Notation IDarray_get_index_long := 7%positive.
-Notation IDarray_get_pref := 8%positive.
-Definition array_get : graph := {|
-  g_start := 1%positive;
-  g_end := 39%positive;
-  g_edges := (1%positive,(AAssign IDarray_get_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard
-             (fun s => ((eval (EVar IDarray_get_aref_dref_off0_off2) s) >=
-             (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,(AGuard (fun s => ((eval (EVar IDarray_get__tmp)
-             s) >= (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AAssign IDarray_get__tmp
-             (Some (EVar IDarray_get_index_long))),6%positive)::
-             (6%positive,AWeaken,7%positive)::
-             (7%positive,(AGuard (fun s => ((eval (EVar IDarray_get__tmp)
-             s) >= (eval (EVar IDarray_get_aref_dref_off0_off2) s))%Z)),
-             35%positive)::
-             (7%positive,(AGuard (fun s => ((eval (EVar IDarray_get__tmp)
-             s) < (eval (EVar IDarray_get_aref_dref_off0_off2) s))%Z)),
-             8%positive)::(8%positive,AWeaken,9%positive)::
-             (9%positive,ANone,32%positive)::(9%positive,ANone,29%positive)::
-             (9%positive,ANone,13%positive)::(9%positive,ANone,10%positive)::
-             (10%positive,(AAssign IDarray_get__tmp1 (Some (ENum (0)))),
-             11%positive)::(11%positive,ANone,12%positive)::
-             (12%positive,AWeaken,39%positive)::
-             (13%positive,(AAssign IDarray_get_index
-             (Some (EVar IDarray_get__tmp))),14%positive)::
-             (14%positive,ANone,15%positive)::
-             (15%positive,(AAssign IDarray_get_index
-             (Some (EAdd (EVar IDarray_get_index) (ENum (-1))))),16%positive)::
-             (16%positive,AWeaken,17%positive)::
-             (17%positive,(AGuard (fun s => ((eval (EVar IDarray_get_index)
-             s) <> (eval (ENum (0)) s))%Z)),22%positive)::
-             (17%positive,(AGuard (fun s => ((eval (EVar IDarray_get_index)
-             s) = (eval (ENum (0)) s))%Z)),18%positive)::
-             (18%positive,AWeaken,19%positive)::
-             (19%positive,(AAssign IDarray_get__tmp1 (Some (ENum (0)))),
-             20%positive)::(20%positive,ANone,21%positive)::
-             (21%positive,AWeaken,39%positive)::
-             (22%positive,AWeaken,23%positive)::
-             (23%positive,ANone,25%positive)::
-             (23%positive,ANone,24%positive)::
-             (24%positive,ANone,26%positive)::
-             (25%positive,ANone,26%positive)::
-             (26%positive,ANone,27%positive)::
-             (27%positive,ANone,28%positive)::
-             (28%positive,(AAssign IDarray_get_z (Some (EAdd (ENum (1))
-             (EVar IDarray_get_z)))),15%positive)::
-             (29%positive,(AAssign IDarray_get__tmp1 (Some (ENum (0)))),
-             30%positive)::(30%positive,ANone,31%positive)::
-             (31%positive,AWeaken,39%positive)::
-             (32%positive,(AAssign IDarray_get__tmp1 (Some (ENum (-20)))),
-             33%positive)::(33%positive,ANone,34%positive)::
-             (34%positive,AWeaken,39%positive)::
-             (35%positive,AWeaken,36%positive)::
-             (36%positive,(AAssign IDarray_get__tmp1 (Some (ENum (-15)))),
-             37%positive)::(37%positive,ANone,38%positive)::
-             (38%positive,AWeaken,39%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_array_get.
 
-Definition array_get_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 4%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get__tmp) <= 0)%Z
-    | 5%positive => (-1 * (s IDarray_get__tmp) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 6%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 8%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 9%positive => (1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 10%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 11%positive => (1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp1) <= 0 /\ -1 * (s IDarray_get__tmp1) <= 0)%Z
-    | 12%positive => (-1 * (s IDarray_get__tmp1) <= 0 /\ 1 * (s IDarray_get__tmp1) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 13%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 14%positive => (1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 1 <= 0)%Z
-    | 15%positive => (-1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 16%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0)%Z
-    | 17%positive => (-1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 18%positive => (1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0 /\ 1 * (s IDarray_get_index) <= 0 /\ -1 * (s IDarray_get_index) <= 0)%Z
-    | 19%positive => (-1 * (s IDarray_get_index) <= 0 /\ 1 * (s IDarray_get_index) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 20%positive => (1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0 /\ 1 * (s IDarray_get_index) <= 0 /\ -1 * (s IDarray_get_index) <= 0 /\ 1 * (s IDarray_get__tmp1) <= 0 /\ -1 * (s IDarray_get__tmp1) <= 0)%Z
-    | 21%positive => (-1 * (s IDarray_get__tmp1) <= 0 /\ 1 * (s IDarray_get__tmp1) <= 0 /\ -1 * (s IDarray_get_index) <= 0 /\ 1 * (s IDarray_get_index) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 22%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0)%Z
-    | 23%positive => (-1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 24%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0)%Z
-    | 25%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0)%Z
-    | 26%positive => (-1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 27%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0)%Z
-    | 28%positive => (-1 * (s IDarray_get_aref_dref_off0_off2)+ 1 * (s IDarray_get_index) + 2 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 29%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 30%positive => (1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp1) <= 0 /\ -1 * (s IDarray_get__tmp1) <= 0)%Z
-    | 31%positive => (-1 * (s IDarray_get__tmp1) <= 0 /\ 1 * (s IDarray_get__tmp1) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 32%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 33%positive => (1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp1) + 20 <= 0 /\ -1 * (s IDarray_get__tmp1) + -20 <= 0)%Z
-    | 34%positive => (-1 * (s IDarray_get__tmp1) + -20 <= 0 /\ 1 * (s IDarray_get__tmp1) + 20 <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get__tmp)+ -1 * (s IDarray_get_aref_dref_off0_off2) + 1 <= 0)%Z
-    | 35%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get__tmp)+ 1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 36%positive => (-1 * (s IDarray_get__tmp)+ 1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 37%positive => (-1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get__tmp)+ 1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ 1 * (s IDarray_get__tmp1) + 15 <= 0 /\ -1 * (s IDarray_get__tmp1) + -15 <= 0)%Z
-    | 38%positive => (-1 * (s IDarray_get__tmp1) + -15 <= 0 /\ 1 * (s IDarray_get__tmp1) + 15 <= 0 /\ -1 * (s IDarray_get__tmp)+ 1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ -1 * (s IDarray_get_z) <= 0 /\ 1 * (s IDarray_get_z) <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0)%Z
-    | 39%positive => (1 * (s IDarray_get__tmp1) <= 0 /\ -1 * (s IDarray_get__tmp1) + -20 <= 0 /\ -1 * (s IDarray_get_aref_dref_off0_off2) <= 0 /\ -1 * (s IDarray_get_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition array_get_pot (p : node) (s : state): Q := 
+Notation V_array_get_z := 1%positive.
+Notation V_array_get__tmp := 2%positive.
+Notation V_array_get__tmp1 := 3%positive.
+Notation V_array_get_aref_dref_off0_off2 := 4%positive.
+Notation V_array_get_index := 5%positive.
+Notation V_array_get_aref := 6%positive.
+Notation V_array_get_index_long := 7%positive.
+Notation V_array_get_pref := 8%positive.
+Definition Pedges_array_get: list (edge proc) :=
+  (EA 1 (AAssign V_array_get_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_array_get_aref_dref_off0_off2) s) >=
+  (eval (ENum (0)) s))%Z)) 3)::(EA 3 (AGuard
+  (fun s => ((eval (EVar V_array_get__tmp) s) >= (eval (ENum (0))
+  s))%Z)) 4)::(EA 4 AWeaken 5)::(EA 5 (AAssign V_array_get__tmp
+  (Some (EVar V_array_get_index_long))) 6)::(EA 6 AWeaken 7)::(EA 7 (AGuard
+  (fun s => ((eval (EVar V_array_get__tmp) s) >=
+  (eval (EVar V_array_get_aref_dref_off0_off2) s))%Z)) 35)::(EA 7 (AGuard
+  (fun s => ((eval (EVar V_array_get__tmp) s) <
+  (eval (EVar V_array_get_aref_dref_off0_off2) s))%Z)) 8)::(EA 8 AWeaken 9)::
+  (EA 9 ANone 32)::(EA 9 ANone 29)::(EA 9 ANone 13)::(EA 9 ANone 10)::
+  (EA 10 (AAssign V_array_get__tmp1 (Some (ENum (0)))) 11)::
+  (EA 11 ANone 12)::(EA 12 AWeaken 39)::(EA 13 (AAssign V_array_get_index
+  (Some (EVar V_array_get__tmp))) 14)::(EA 14 ANone 15)::(EA 15 (AAssign
+  V_array_get_index (Some (EAdd (EVar V_array_get_index) (ENum (-1))))) 16)::
+  (EA 16 AWeaken 17)::(EA 17 (AGuard
+  (fun s => ((eval (EVar V_array_get_index) s) <> (eval (ENum (0))
+  s))%Z)) 22)::(EA 17 (AGuard (fun s => ((eval (EVar V_array_get_index) s) =
+  (eval (ENum (0)) s))%Z)) 18)::(EA 18 AWeaken 19)::(EA 19 (AAssign
+  V_array_get__tmp1 (Some (ENum (0)))) 20)::(EA 20 ANone 21)::
+  (EA 21 AWeaken 39)::(EA 22 AWeaken 23)::(EA 23 ANone 25)::
+  (EA 23 ANone 24)::(EA 24 ANone 26)::(EA 25 ANone 26)::(EA 26 ANone 27)::
+  (EA 27 ANone 28)::(EA 28 (AAssign V_array_get_z (Some (EAdd (ENum (1))
+  (EVar V_array_get_z)))) 15)::(EA 29 (AAssign V_array_get__tmp1
+  (Some (ENum (0)))) 30)::(EA 30 ANone 31)::(EA 31 AWeaken 39)::
+  (EA 32 (AAssign V_array_get__tmp1 (Some (ENum (-20)))) 33)::
+  (EA 33 ANone 34)::(EA 34 AWeaken 39)::(EA 35 AWeaken 36)::(EA 36 (AAssign
+  V_array_get__tmp1 (Some (ENum (-15)))) 37)::(EA 37 ANone 38)::
+  (EA 38 AWeaken 39)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_array_get => Pedges_array_get
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_array_get => 39
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_array_get (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0)%Z
+   | 3 => (-1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 4 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get__tmp <= 0)%Z
+   | 5 => (-1 * s V_array_get__tmp <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 6 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0)%Z
+   | 7 => (-1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 8 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 9 => (1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 10 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 11 => (1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp1 <= 0 /\ -1 * s V_array_get__tmp1 <= 0)%Z
+   | 12 => (-1 * s V_array_get__tmp1 <= 0 /\ 1 * s V_array_get__tmp1 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 13 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 14 => (1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 1 <= 0)%Z
+   | 15 => (-1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 16 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0)%Z
+   | 17 => (-1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 18 => (1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0 /\ 1 * s V_array_get_index <= 0 /\ -1 * s V_array_get_index <= 0)%Z
+   | 19 => (-1 * s V_array_get_index <= 0 /\ 1 * s V_array_get_index <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 20 => (1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0 /\ 1 * s V_array_get_index <= 0 /\ -1 * s V_array_get_index <= 0 /\ 1 * s V_array_get__tmp1 <= 0 /\ -1 * s V_array_get__tmp1 <= 0)%Z
+   | 21 => (-1 * s V_array_get__tmp1 <= 0 /\ 1 * s V_array_get__tmp1 <= 0 /\ -1 * s V_array_get_index <= 0 /\ 1 * s V_array_get_index <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 22 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0)%Z
+   | 23 => (-1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 24 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0)%Z
+   | 25 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0)%Z
+   | 26 => (-1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 27 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0)%Z
+   | 28 => (-1 * s V_array_get_aref_dref_off0_off2+ 1 * s V_array_get_index + 2 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 29 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 30 => (1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp1 <= 0 /\ -1 * s V_array_get__tmp1 <= 0)%Z
+   | 31 => (-1 * s V_array_get__tmp1 <= 0 /\ 1 * s V_array_get__tmp1 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 32 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 33 => (1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp1 + 20 <= 0 /\ -1 * s V_array_get__tmp1 + -20 <= 0)%Z
+   | 34 => (-1 * s V_array_get__tmp1 + -20 <= 0 /\ 1 * s V_array_get__tmp1 + 20 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get__tmp+ -1 * s V_array_get_aref_dref_off0_off2 + 1 <= 0)%Z
+   | 35 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get__tmp+ 1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 36 => (-1 * s V_array_get__tmp+ 1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 37 => (-1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_z <= 0 /\ -1 * s V_array_get__tmp+ 1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ 1 * s V_array_get__tmp1 + 15 <= 0 /\ -1 * s V_array_get__tmp1 + -15 <= 0)%Z
+   | 38 => (-1 * s V_array_get__tmp1 + -15 <= 0 /\ 1 * s V_array_get__tmp1 + 15 <= 0 /\ -1 * s V_array_get__tmp+ 1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ -1 * s V_array_get_z <= 0 /\ 1 * s V_array_get_z <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0)%Z
+   | 39 => (1 * s V_array_get__tmp1 <= 0 /\ -1 * s V_array_get__tmp1 + -20 <= 0 /\ -1 * s V_array_get_aref_dref_off0_off2 <= 0 /\ -1 * s V_array_get_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_array_get (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 2 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 3 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 4 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 5 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 6 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 7 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 8 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_array_get_aref_dref_off0_off2)) (F_check_ge (s V_array_get_aref_dref_off0_off2) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                               - s V_array_get__tmp
+                                                               + s V_array_get_aref_dref_off0_off2) (0))) (F_max0_ge_0 (-1
+                                                                    - s V_array_get__tmp
+                                                                    + s V_array_get_aref_dref_off0_off2))]
+     (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 9 => ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+           + max0(-1 - s V_array_get__tmp + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 10 => ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 11 => ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 12 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_array_get_aref_dref_off0_off2)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_array_get_aref_dref_off0_off2) (0))) (F_max0_ge_0 (s V_array_get_aref_dref_off0_off2));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1 - s V_array_get__tmp
+                                                   + s V_array_get_aref_dref_off0_off2)) (F_check_ge (-1
+                                                                    - s V_array_get__tmp
+                                                                    + s V_array_get_aref_dref_off0_off2) (0))]
+     ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+      + max0(-1 - s V_array_get__tmp + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 13 => ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 14 => ((1 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 15 => ((1 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 16 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 17 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 18 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 19 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 20 => (s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2)
+            + (2 # 15) * max0(15 + s V_array_get__tmp1) <= z)%Q
+   | 21 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_array_get_index)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_array_get_index) (0))) (F_max0_ge_0 (s V_array_get_index));
+      (*-0.133333 0*) F_binom_monotonic 1 (F_max0_ge_0 (15
+                                                        + s V_array_get__tmp1)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 - s V_array_get__tmp
+                                                 + s V_array_get_aref_dref_off0_off2)) (F_check_ge (0) (0))]
+     (s V_array_get_index + s V_array_get_z
+      + max0(-1 - s V_array_get__tmp + s V_array_get_aref_dref_off0_off2)
+      + (2 # 15) * max0(15 + s V_array_get__tmp1) <= z)%Q
+   | 22 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 23 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 24 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 25 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 26 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 27 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 28 => ((2 # 1) + s V_array_get_index + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 29 => ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 30 => ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 31 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_array_get_aref_dref_off0_off2)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_array_get_aref_dref_off0_off2) (0))) (F_max0_ge_0 (s V_array_get_aref_dref_off0_off2));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1 - s V_array_get__tmp
+                                                   + s V_array_get_aref_dref_off0_off2)) (F_check_ge (-1
+                                                                    - s V_array_get__tmp
+                                                                    + s V_array_get_aref_dref_off0_off2) (0))]
+     ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+      + max0(-1 - s V_array_get__tmp + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 32 => ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 33 => ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+            + max0(-1 - s V_array_get__tmp
+                   + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 34 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_array_get_aref_dref_off0_off2)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_array_get_aref_dref_off0_off2) (0))) (F_max0_ge_0 (s V_array_get_aref_dref_off0_off2));
+      (*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (-1 - s V_array_get__tmp
+                                                  + s V_array_get_aref_dref_off0_off2)) (F_check_ge (-1
+                                                                    - s V_array_get__tmp
+                                                                    + s V_array_get_aref_dref_off0_off2) (0))]
+     ((1 # 1) + s V_array_get__tmp + s V_array_get_z
+      + max0(-1 - s V_array_get__tmp + s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 35 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 36 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 37 => (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 38 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_array_get_aref_dref_off0_off2)) (F_check_ge (0) (0))]
+     (s V_array_get_z + max0(s V_array_get_aref_dref_off0_off2) <= z)%Q
+   | 39 => (s V_array_get_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 2%positive => ((s IDarray_get_z)
-                     + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 3%positive => ((s IDarray_get_z)
-                     + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 4%positive => ((s IDarray_get_z)
-                     + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 5%positive => ((s IDarray_get_z)
-                     + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 6%positive => ((s IDarray_get_z)
-                     + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 7%positive => ((s IDarray_get_z)
-                     + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 8%positive => ((s IDarray_get_z)
-                     + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 9%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                     + max0(-1 - (s IDarray_get__tmp)
-                            + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 10%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 11%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 12%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 13%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 14%positive => ((1 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 15%positive => ((1 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 16%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 17%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 18%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 19%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 20%positive => ((s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2))
-                      + (2 # 15) * max0(15 + (s IDarray_get__tmp1)))%Q
-    | 21%positive => ((s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2))
-                      + (2 # 15) * max0(15 + (s IDarray_get__tmp1)))%Q
-    | 22%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 23%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 24%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 25%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 26%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 27%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 28%positive => ((2 # 1) + (s IDarray_get_index) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 29%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 30%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 31%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 32%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 33%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 34%positive => ((1 # 1) + (s IDarray_get__tmp) + (s IDarray_get_z)
-                      + max0(-1 - (s IDarray_get__tmp)
-                             + (s IDarray_get_aref_dref_off0_off2)))%Q
-    | 35%positive => ((s IDarray_get_z)
-                      + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 36%positive => ((s IDarray_get_z)
-                      + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 37%positive => ((s IDarray_get_z)
-                      + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 38%positive => ((s IDarray_get_z)
-                      + max0((s IDarray_get_aref_dref_off0_off2)))%Q
-    | 39%positive => ((s IDarray_get_z))%Q
-    | _ => (0 # 1)%Q
+  | P_array_get =>
+    [mkPA Q (fun n z s => ai_array_get n s /\ annot0_array_get n z s)]
   end.
 
-Definition array_get_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDarray_get_aref_dref_off0_off2))) (F_check_ge ((s IDarray_get_aref_dref_off0_off2)) (0));
-                     (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    - (s IDarray_get__tmp)
-                                                                    + (s IDarray_get_aref_dref_off0_off2)) (0))) (F_max0_ge_0 (-1
-                                                                    - (s IDarray_get__tmp)
-                                                                    + (s IDarray_get_aref_dref_off0_off2)))]
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDarray_get_aref_dref_off0_off2))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDarray_get_aref_dref_off0_off2)) (0))) (F_max0_ge_0 ((s IDarray_get_aref_dref_off0_off2)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                   - 
-                                                                   (s IDarray_get__tmp)
-                                                                   + 
-                                                                   (s IDarray_get_aref_dref_off0_off2))) (F_check_ge (-1
-                                                                    - (s IDarray_get__tmp)
-                                                                    + (s IDarray_get_aref_dref_off0_off2)) (0))]
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDarray_get_index))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDarray_get_index)) (0))) (F_max0_ge_0 ((s IDarray_get_index)));
-                      (*-0.133333 0*) F_binom_monotonic 1 (F_max0_ge_0 (15
-                                                                    + (s IDarray_get__tmp1))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                 - (s IDarray_get__tmp)
-                                                                 + (s IDarray_get_aref_dref_off0_off2))) (F_check_ge (0) (0))]
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDarray_get_aref_dref_off0_off2))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDarray_get_aref_dref_off0_off2)) (0))) (F_max0_ge_0 ((s IDarray_get_aref_dref_off0_off2)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                   - 
-                                                                   (s IDarray_get__tmp)
-                                                                   + 
-                                                                   (s IDarray_get_aref_dref_off0_off2))) (F_check_ge (-1
-                                                                    - (s IDarray_get__tmp)
-                                                                    + (s IDarray_get_aref_dref_off0_off2)) (0))]
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDarray_get_aref_dref_off0_off2))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDarray_get_aref_dref_off0_off2)) (0))) (F_max0_ge_0 ((s IDarray_get_aref_dref_off0_off2)));
-                      (*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                  - (s IDarray_get__tmp)
-                                                                  + (s IDarray_get_aref_dref_off0_off2))) (F_check_ge (-1
-                                                                    - (s IDarray_get__tmp)
-                                                                    + (s IDarray_get_aref_dref_off0_off2)) (0))]
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDarray_get_aref_dref_off0_off2))) (F_check_ge (0) (0))]
-    | 39%positive => []
-    | _ => []
-  end.
-
-
-Theorem array_get_ai_correct:
-  forall s p' s', steps (g_start array_get) s (g_edges array_get) p' s' -> array_get_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem array_get_pot_correct:
-  forall s p' s',
-    steps (g_start array_get) s (g_edges array_get) p' s' ->
-    (array_get_pot (g_start array_get) s >= array_get_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_array_get (proc_start P_array_get) s1 (proc_end P_array_get) s2 ->
+    (s2 V_array_get_z <= max0(s1 V_array_get_aref_dref_off0_off2))%Q.
 Proof.
-  check_lp array_get_ai_correct array_get_hints.
+  prove_bound ipa admissible_ipa P_array_get.
 Qed.
-

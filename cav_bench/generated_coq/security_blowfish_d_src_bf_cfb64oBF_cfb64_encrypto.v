@@ -1,426 +1,278 @@
 Require Import pasta.Pasta.
 
-Notation IDBF_cfb64_encrypt_z := 1%positive.
-Notation IDBF_cfb64_encrypt__tmp := 2%positive.
-Notation IDBF_cfb64_encrypt__tmp1 := 3%positive.
-Notation IDBF_cfb64_encrypt_c := 4%positive.
-Notation IDBF_cfb64_encrypt_cc := 5%positive.
-Notation IDBF_cfb64_encrypt_l := 6%positive.
-Notation IDBF_cfb64_encrypt_n := 7%positive.
-Notation IDBF_cfb64_encrypt_num_dref := 8%positive.
-Notation IDBF_cfb64_encrypt_t := 9%positive.
-Notation IDBF_cfb64_encrypt_v0 := 10%positive.
-Notation IDBF_cfb64_encrypt_v1 := 11%positive.
-Notation IDBF_cfb64_encrypt_encrypt := 12%positive.
-Notation IDBF_cfb64_encrypt_in := 13%positive.
-Notation IDBF_cfb64_encrypt_ivec := 14%positive.
-Notation IDBF_cfb64_encrypt_length := 15%positive.
-Notation IDBF_cfb64_encrypt_num := 16%positive.
-Notation IDBF_cfb64_encrypt_out := 17%positive.
-Notation IDBF_cfb64_encrypt_schedule := 18%positive.
-Definition BF_cfb64_encrypt : graph := {|
-  g_start := 1%positive;
-  g_end := 50%positive;
-  g_edges := (1%positive,(AAssign IDBF_cfb64_encrypt_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDBF_cfb64_encrypt__tmp1
-             (Some (EVar IDBF_cfb64_encrypt_length))),3%positive)::
-             (3%positive,(AAssign IDBF_cfb64_encrypt__tmp
-             (Some (EVar IDBF_cfb64_encrypt_encrypt))),4%positive)::
-             (4%positive,(AAssign IDBF_cfb64_encrypt_n
-             (Some (EVar IDBF_cfb64_encrypt_num_dref))),5%positive)::
-             (5%positive,(AAssign IDBF_cfb64_encrypt_l
-             (Some (EVar IDBF_cfb64_encrypt__tmp1))),6%positive)::
-             (6%positive,AWeaken,7%positive)::
-             (7%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt__tmp) s) <>
-             (eval (ENum (0)) s))%Z)),36%positive)::
-             (7%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt__tmp) s) =
-             (eval (ENum (0)) s))%Z)),8%positive)::
-             (8%positive,AWeaken,9%positive)::
-             (9%positive,ANone,10%positive)::
-             (10%positive,(AAssign IDBF_cfb64_encrypt_l
-             (Some (EAdd (EVar IDBF_cfb64_encrypt_l) (ENum (-1))))),
-             11%positive)::(11%positive,AWeaken,12%positive)::
-             (12%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt_l) s) <>
-             (eval (ENum (0)) s))%Z)),15%positive)::
-             (12%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt_l) s) =
-             (eval (ENum (0)) s))%Z)),13%positive)::
-             (13%positive,AWeaken,14%positive)::
-             (14%positive,ANone,43%positive)::
-             (15%positive,AWeaken,16%positive)::
-             (16%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt_n) s) =
-             (eval (ENum (0)) s))%Z)),18%positive)::
-             (16%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt_n) s) <>
-             (eval (ENum (0)) s))%Z)),17%positive)::
-             (17%positive,AWeaken,30%positive)::
-             (18%positive,AWeaken,19%positive)::
-             (19%positive,(AAssign IDBF_cfb64_encrypt_v0 None),20%positive)::
-             (20%positive,(AAssign IDBF_cfb64_encrypt_v0 None),21%positive)::
-             (21%positive,(AAssign IDBF_cfb64_encrypt_v0 None),22%positive)::
-             (22%positive,(AAssign IDBF_cfb64_encrypt_v0 None),23%positive)::
-             (23%positive,(AAssign IDBF_cfb64_encrypt_v1 None),24%positive)::
-             (24%positive,(AAssign IDBF_cfb64_encrypt_v1 None),25%positive)::
-             (25%positive,(AAssign IDBF_cfb64_encrypt_v1 None),26%positive)::
-             (26%positive,(AAssign IDBF_cfb64_encrypt_v1 None),27%positive)::
-             (27%positive,(AAssign IDBF_cfb64_encrypt_t None),28%positive)::
-             (28%positive,(AAssign IDBF_cfb64_encrypt_t None),29%positive)::
-             (29%positive,ANone,30%positive)::
-             (30%positive,(AAssign IDBF_cfb64_encrypt_cc None),31%positive)::
-             (31%positive,(AAssign IDBF_cfb64_encrypt_c None),32%positive)::
-             (32%positive,(AAssign IDBF_cfb64_encrypt_n None),33%positive)::
-             (33%positive,ANone,34%positive)::
-             (34%positive,ANone,35%positive)::
-             (35%positive,(AAssign IDBF_cfb64_encrypt_z
-             (Some (EAdd (ENum (1)) (EVar IDBF_cfb64_encrypt_z)))),
-             10%positive)::(36%positive,AWeaken,37%positive)::
-             (37%positive,ANone,38%positive)::
-             (38%positive,(AAssign IDBF_cfb64_encrypt_l
-             (Some (EAdd (EVar IDBF_cfb64_encrypt_l) (ENum (-1))))),
-             39%positive)::(39%positive,AWeaken,40%positive)::
-             (40%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt_l) s) <>
-             (eval (ENum (0)) s))%Z)),51%positive)::
-             (40%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt_l) s) =
-             (eval (ENum (0)) s))%Z)),41%positive)::
-             (41%positive,AWeaken,42%positive)::
-             (42%positive,ANone,43%positive)::
-             (43%positive,(AAssign IDBF_cfb64_encrypt_cc (Some (ENum (0)))),
-             44%positive)::
-             (44%positive,(AAssign IDBF_cfb64_encrypt_c (Some (ENum (0)))),
-             45%positive)::
-             (45%positive,(AAssign IDBF_cfb64_encrypt_t (Some (ENum (0)))),
-             46%positive)::
-             (46%positive,(AAssign IDBF_cfb64_encrypt_v1 (Some (ENum (0)))),
-             47%positive)::
-             (47%positive,(AAssign IDBF_cfb64_encrypt_v0 (Some (ENum (0)))),
-             48%positive)::
-             (48%positive,(AAssign IDBF_cfb64_encrypt_num_dref
-             (Some (EVar IDBF_cfb64_encrypt_n))),49%positive)::
-             (49%positive,AWeaken,50%positive)::
-             (51%positive,AWeaken,52%positive)::
-             (52%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt_n) s) =
-             (eval (ENum (0)) s))%Z)),54%positive)::
-             (52%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_cfb64_encrypt_n) s) <>
-             (eval (ENum (0)) s))%Z)),53%positive)::
-             (53%positive,AWeaken,66%positive)::
-             (54%positive,AWeaken,55%positive)::
-             (55%positive,(AAssign IDBF_cfb64_encrypt_v0 None),56%positive)::
-             (56%positive,(AAssign IDBF_cfb64_encrypt_v0 None),57%positive)::
-             (57%positive,(AAssign IDBF_cfb64_encrypt_v0 None),58%positive)::
-             (58%positive,(AAssign IDBF_cfb64_encrypt_v0 None),59%positive)::
-             (59%positive,(AAssign IDBF_cfb64_encrypt_v1 None),60%positive)::
-             (60%positive,(AAssign IDBF_cfb64_encrypt_v1 None),61%positive)::
-             (61%positive,(AAssign IDBF_cfb64_encrypt_v1 None),62%positive)::
-             (62%positive,(AAssign IDBF_cfb64_encrypt_v1 None),63%positive)::
-             (63%positive,(AAssign IDBF_cfb64_encrypt_t None),64%positive)::
-             (64%positive,(AAssign IDBF_cfb64_encrypt_t None),65%positive)::
-             (65%positive,ANone,66%positive)::
-             (66%positive,(AAssign IDBF_cfb64_encrypt_c None),67%positive)::
-             (67%positive,(AAssign IDBF_cfb64_encrypt_n None),68%positive)::
-             (68%positive,ANone,69%positive)::
-             (69%positive,ANone,70%positive)::
-             (70%positive,(AAssign IDBF_cfb64_encrypt_z
-             (Some (EAdd (ENum (1)) (EVar IDBF_cfb64_encrypt_z)))),
-             38%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_BF_cfb64_encrypt.
 
-Definition BF_cfb64_encrypt_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 4%positive => (1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 6%positive => (1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 8%positive => (1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 9%positive => (-1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 10%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 11%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 12%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 13%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0)%Z
-    | 14%positive => (-1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 15%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 16%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 17%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 18%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 19%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 20%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 21%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 22%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 23%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 24%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 25%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 26%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 27%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 28%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 29%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 30%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 31%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 32%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 33%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 34%positive => (1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 35%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt__tmp) <= 0 /\ 1 * (s IDBF_cfb64_encrypt__tmp) <= 0)%Z
-    | 36%positive => (1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 37%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 38%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 39%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 40%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 41%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0)%Z
-    | 42%positive => (-1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 43%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0)%Z
-    | 44%positive => (-1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_cc) <= 0)%Z
-    | 45%positive => (-1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_c) <= 0)%Z
-    | 46%positive => (-1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_t) <= 0)%Z
-    | 47%positive => (-1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_v1) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_v1) <= 0)%Z
-    | 48%positive => (-1 * (s IDBF_cfb64_encrypt_v1) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_v1) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_v0) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_v0) <= 0)%Z
-    | 49%positive => (-1 * (s IDBF_cfb64_encrypt_v0) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_v0) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_v1) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_v1) <= 0)%Z
-    | 50%positive => (-1 * (s IDBF_cfb64_encrypt_v1) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_v1) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_c) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_l) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_cc) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_t) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_v0) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_v0) <= 0)%Z
-    | 51%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 52%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 53%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 54%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 55%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 56%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 57%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 58%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 59%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 60%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 61%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 62%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 63%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 64%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_n) <= 0)%Z
-    | 65%positive => (-1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ 1 * (s IDBF_cfb64_encrypt_n) <= 0 /\ -1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 66%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 67%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 68%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 69%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | 70%positive => (-1 * (s IDBF_cfb64_encrypt_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition BF_cfb64_encrypt_pot (p : node) (s : state): Q := 
+Notation V_BF_cfb64_encrypt_z := 1%positive.
+Notation V_BF_cfb64_encrypt__tmp := 2%positive.
+Notation V_BF_cfb64_encrypt__tmp1 := 3%positive.
+Notation V_BF_cfb64_encrypt_c := 4%positive.
+Notation V_BF_cfb64_encrypt_cc := 5%positive.
+Notation V_BF_cfb64_encrypt_l := 6%positive.
+Notation V_BF_cfb64_encrypt_n := 7%positive.
+Notation V_BF_cfb64_encrypt_num_dref := 8%positive.
+Notation V_BF_cfb64_encrypt_t := 9%positive.
+Notation V_BF_cfb64_encrypt_v0 := 10%positive.
+Notation V_BF_cfb64_encrypt_v1 := 11%positive.
+Notation V_BF_cfb64_encrypt_encrypt := 12%positive.
+Notation V_BF_cfb64_encrypt_in := 13%positive.
+Notation V_BF_cfb64_encrypt_ivec := 14%positive.
+Notation V_BF_cfb64_encrypt_length := 15%positive.
+Notation V_BF_cfb64_encrypt_num := 16%positive.
+Notation V_BF_cfb64_encrypt_out := 17%positive.
+Notation V_BF_cfb64_encrypt_schedule := 18%positive.
+Definition Pedges_BF_cfb64_encrypt: list (edge proc) :=
+  (EA 1 (AAssign V_BF_cfb64_encrypt_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_BF_cfb64_encrypt__tmp1 (Some (EVar V_BF_cfb64_encrypt_length))) 3)::
+  (EA 3 (AAssign V_BF_cfb64_encrypt__tmp
+  (Some (EVar V_BF_cfb64_encrypt_encrypt))) 4)::(EA 4 (AAssign
+  V_BF_cfb64_encrypt_n (Some (EVar V_BF_cfb64_encrypt_num_dref))) 5)::
+  (EA 5 (AAssign V_BF_cfb64_encrypt_l
+  (Some (EVar V_BF_cfb64_encrypt__tmp1))) 6)::(EA 6 AWeaken 7)::(EA 7 (AGuard
+  (fun s => ((eval (EVar V_BF_cfb64_encrypt__tmp) s) <> (eval (ENum (0))
+  s))%Z)) 36)::(EA 7 (AGuard (fun s => ((eval (EVar V_BF_cfb64_encrypt__tmp)
+  s) = (eval (ENum (0)) s))%Z)) 8)::(EA 8 AWeaken 9)::(EA 9 ANone 10)::
+  (EA 10 (AAssign V_BF_cfb64_encrypt_l
+  (Some (EAdd (EVar V_BF_cfb64_encrypt_l) (ENum (-1))))) 11)::
+  (EA 11 AWeaken 12)::(EA 12 (AGuard
+  (fun s => ((eval (EVar V_BF_cfb64_encrypt_l) s) <> (eval (ENum (0))
+  s))%Z)) 15)::(EA 12 (AGuard (fun s => ((eval (EVar V_BF_cfb64_encrypt_l)
+  s) = (eval (ENum (0)) s))%Z)) 13)::(EA 13 AWeaken 14)::(EA 14 ANone 43)::
+  (EA 15 AWeaken 16)::(EA 16 (AGuard
+  (fun s => ((eval (EVar V_BF_cfb64_encrypt_n) s) = (eval (ENum (0))
+  s))%Z)) 18)::(EA 16 (AGuard (fun s => ((eval (EVar V_BF_cfb64_encrypt_n)
+  s) <> (eval (ENum (0)) s))%Z)) 17)::(EA 17 AWeaken 30)::
+  (EA 18 AWeaken 19)::(EA 19 (AAssign V_BF_cfb64_encrypt_v0 None) 20)::
+  (EA 20 (AAssign V_BF_cfb64_encrypt_v0 None) 21)::(EA 21 (AAssign
+  V_BF_cfb64_encrypt_v0 None) 22)::(EA 22 (AAssign V_BF_cfb64_encrypt_v0
+  None) 23)::(EA 23 (AAssign V_BF_cfb64_encrypt_v1 None) 24)::(EA 24 (AAssign
+  V_BF_cfb64_encrypt_v1 None) 25)::(EA 25 (AAssign V_BF_cfb64_encrypt_v1
+  None) 26)::(EA 26 (AAssign V_BF_cfb64_encrypt_v1 None) 27)::(EA 27 (AAssign
+  V_BF_cfb64_encrypt_t None) 28)::(EA 28 (AAssign V_BF_cfb64_encrypt_t
+  None) 29)::(EA 29 ANone 30)::(EA 30 (AAssign V_BF_cfb64_encrypt_cc
+  None) 31)::(EA 31 (AAssign V_BF_cfb64_encrypt_c None) 32)::(EA 32 (AAssign
+  V_BF_cfb64_encrypt_n None) 33)::(EA 33 ANone 34)::(EA 34 ANone 35)::
+  (EA 35 (AAssign V_BF_cfb64_encrypt_z (Some (EAdd (ENum (1))
+  (EVar V_BF_cfb64_encrypt_z)))) 10)::(EA 36 AWeaken 37)::(EA 37 ANone 38)::
+  (EA 38 (AAssign V_BF_cfb64_encrypt_l
+  (Some (EAdd (EVar V_BF_cfb64_encrypt_l) (ENum (-1))))) 39)::
+  (EA 39 AWeaken 40)::(EA 40 (AGuard
+  (fun s => ((eval (EVar V_BF_cfb64_encrypt_l) s) <> (eval (ENum (0))
+  s))%Z)) 51)::(EA 40 (AGuard (fun s => ((eval (EVar V_BF_cfb64_encrypt_l)
+  s) = (eval (ENum (0)) s))%Z)) 41)::(EA 41 AWeaken 42)::(EA 42 ANone 43)::
+  (EA 43 (AAssign V_BF_cfb64_encrypt_cc (Some (ENum (0)))) 44)::
+  (EA 44 (AAssign V_BF_cfb64_encrypt_c (Some (ENum (0)))) 45)::
+  (EA 45 (AAssign V_BF_cfb64_encrypt_t (Some (ENum (0)))) 46)::
+  (EA 46 (AAssign V_BF_cfb64_encrypt_v1 (Some (ENum (0)))) 47)::
+  (EA 47 (AAssign V_BF_cfb64_encrypt_v0 (Some (ENum (0)))) 48)::
+  (EA 48 (AAssign V_BF_cfb64_encrypt_num_dref
+  (Some (EVar V_BF_cfb64_encrypt_n))) 49)::(EA 49 AWeaken 50)::
+  (EA 51 AWeaken 52)::(EA 52 (AGuard
+  (fun s => ((eval (EVar V_BF_cfb64_encrypt_n) s) = (eval (ENum (0))
+  s))%Z)) 54)::(EA 52 (AGuard (fun s => ((eval (EVar V_BF_cfb64_encrypt_n)
+  s) <> (eval (ENum (0)) s))%Z)) 53)::(EA 53 AWeaken 66)::
+  (EA 54 AWeaken 55)::(EA 55 (AAssign V_BF_cfb64_encrypt_v0 None) 56)::
+  (EA 56 (AAssign V_BF_cfb64_encrypt_v0 None) 57)::(EA 57 (AAssign
+  V_BF_cfb64_encrypt_v0 None) 58)::(EA 58 (AAssign V_BF_cfb64_encrypt_v0
+  None) 59)::(EA 59 (AAssign V_BF_cfb64_encrypt_v1 None) 60)::(EA 60 (AAssign
+  V_BF_cfb64_encrypt_v1 None) 61)::(EA 61 (AAssign V_BF_cfb64_encrypt_v1
+  None) 62)::(EA 62 (AAssign V_BF_cfb64_encrypt_v1 None) 63)::(EA 63 (AAssign
+  V_BF_cfb64_encrypt_t None) 64)::(EA 64 (AAssign V_BF_cfb64_encrypt_t
+  None) 65)::(EA 65 ANone 66)::(EA 66 (AAssign V_BF_cfb64_encrypt_c
+  None) 67)::(EA 67 (AAssign V_BF_cfb64_encrypt_n None) 68)::
+  (EA 68 ANone 69)::(EA 69 ANone 70)::(EA 70 (AAssign V_BF_cfb64_encrypt_z
+  (Some (EAdd (ENum (1)) (EVar V_BF_cfb64_encrypt_z)))) 38)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_BF_cfb64_encrypt => Pedges_BF_cfb64_encrypt
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_BF_cfb64_encrypt => 50
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_BF_cfb64_encrypt (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 3 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 4 => (1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 5 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 6 => (1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 7 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 8 => (1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 9 => (-1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 10 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 11 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 12 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 13 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0)%Z
+   | 14 => (-1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 15 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 16 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 17 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 18 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 19 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 20 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 21 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 22 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 23 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 24 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 25 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 26 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 27 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 28 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 29 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 30 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 31 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 32 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 33 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 34 => (1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 35 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt__tmp <= 0 /\ 1 * s V_BF_cfb64_encrypt__tmp <= 0)%Z
+   | 36 => (1 * s V_BF_cfb64_encrypt_z <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 37 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 38 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 39 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 40 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 41 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0)%Z
+   | 42 => (-1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 43 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0)%Z
+   | 44 => (-1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_cc <= 0 /\ -1 * s V_BF_cfb64_encrypt_cc <= 0)%Z
+   | 45 => (-1 * s V_BF_cfb64_encrypt_cc <= 0 /\ 1 * s V_BF_cfb64_encrypt_cc <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_c <= 0 /\ -1 * s V_BF_cfb64_encrypt_c <= 0)%Z
+   | 46 => (-1 * s V_BF_cfb64_encrypt_c <= 0 /\ 1 * s V_BF_cfb64_encrypt_c <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_cc <= 0 /\ -1 * s V_BF_cfb64_encrypt_cc <= 0 /\ 1 * s V_BF_cfb64_encrypt_t <= 0 /\ -1 * s V_BF_cfb64_encrypt_t <= 0)%Z
+   | 47 => (-1 * s V_BF_cfb64_encrypt_t <= 0 /\ 1 * s V_BF_cfb64_encrypt_t <= 0 /\ -1 * s V_BF_cfb64_encrypt_cc <= 0 /\ 1 * s V_BF_cfb64_encrypt_cc <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_c <= 0 /\ -1 * s V_BF_cfb64_encrypt_c <= 0 /\ 1 * s V_BF_cfb64_encrypt_v1 <= 0 /\ -1 * s V_BF_cfb64_encrypt_v1 <= 0)%Z
+   | 48 => (-1 * s V_BF_cfb64_encrypt_v1 <= 0 /\ 1 * s V_BF_cfb64_encrypt_v1 <= 0 /\ -1 * s V_BF_cfb64_encrypt_c <= 0 /\ 1 * s V_BF_cfb64_encrypt_c <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_cc <= 0 /\ -1 * s V_BF_cfb64_encrypt_cc <= 0 /\ 1 * s V_BF_cfb64_encrypt_t <= 0 /\ -1 * s V_BF_cfb64_encrypt_t <= 0 /\ 1 * s V_BF_cfb64_encrypt_v0 <= 0 /\ -1 * s V_BF_cfb64_encrypt_v0 <= 0)%Z
+   | 49 => (-1 * s V_BF_cfb64_encrypt_v0 <= 0 /\ 1 * s V_BF_cfb64_encrypt_v0 <= 0 /\ -1 * s V_BF_cfb64_encrypt_t <= 0 /\ 1 * s V_BF_cfb64_encrypt_t <= 0 /\ -1 * s V_BF_cfb64_encrypt_cc <= 0 /\ 1 * s V_BF_cfb64_encrypt_cc <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_c <= 0 /\ -1 * s V_BF_cfb64_encrypt_c <= 0 /\ 1 * s V_BF_cfb64_encrypt_v1 <= 0 /\ -1 * s V_BF_cfb64_encrypt_v1 <= 0)%Z
+   | 50 => (-1 * s V_BF_cfb64_encrypt_v1 <= 0 /\ 1 * s V_BF_cfb64_encrypt_v1 <= 0 /\ -1 * s V_BF_cfb64_encrypt_c <= 0 /\ 1 * s V_BF_cfb64_encrypt_c <= 0 /\ -1 * s V_BF_cfb64_encrypt_l <= 0 /\ 1 * s V_BF_cfb64_encrypt_l <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_cc <= 0 /\ -1 * s V_BF_cfb64_encrypt_cc <= 0 /\ 1 * s V_BF_cfb64_encrypt_t <= 0 /\ -1 * s V_BF_cfb64_encrypt_t <= 0 /\ 1 * s V_BF_cfb64_encrypt_v0 <= 0 /\ -1 * s V_BF_cfb64_encrypt_v0 <= 0)%Z
+   | 51 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 52 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 53 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 54 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 55 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 56 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 57 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 58 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 59 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 60 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 61 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 62 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 63 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 64 => (-1 * s V_BF_cfb64_encrypt_z <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_n <= 0)%Z
+   | 65 => (-1 * s V_BF_cfb64_encrypt_n <= 0 /\ 1 * s V_BF_cfb64_encrypt_n <= 0 /\ -1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 66 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 67 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 68 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 69 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | 70 => (-1 * s V_BF_cfb64_encrypt_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_BF_cfb64_encrypt (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (s V_BF_cfb64_encrypt_length <= z)%Q
+   | 2 => (s V_BF_cfb64_encrypt_length + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 3 => (s V_BF_cfb64_encrypt__tmp1 + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 4 => (s V_BF_cfb64_encrypt__tmp1 + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 5 => (s V_BF_cfb64_encrypt__tmp1 + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 6 => (s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 7 => (s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 8 => (s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 9 => (s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 10 => (s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 11 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 12 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 13 => hints
+     [(*0 1*) F_one;
+      (*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (s V_BF_cfb64_encrypt_l)) (F_check_ge (0) (0));
+      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_BF_cfb64_encrypt_l) (0))) (F_max0_ge_0 (s V_BF_cfb64_encrypt_l))]
+     ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 14 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 15 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 16 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 17 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 18 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 19 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 20 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 21 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 22 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 23 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 24 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 25 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 26 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 27 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 28 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 29 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 30 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 31 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 32 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 33 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 34 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 35 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 36 => (s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 37 => (s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 38 => (s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 39 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 40 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 41 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_BF_cfb64_encrypt_l)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_BF_cfb64_encrypt_l) (0))) (F_max0_ge_0 (s V_BF_cfb64_encrypt_l))]
+     ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 42 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 43 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 44 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 45 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 46 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 47 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 48 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 49 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 50 => (s V_BF_cfb64_encrypt_z <= z)%Q
+   | 51 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 52 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 53 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 54 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 55 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 56 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 57 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 58 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 59 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 60 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 61 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 62 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 63 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 64 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 65 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 66 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 67 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 68 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 69 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | 70 => ((1 # 1) + s V_BF_cfb64_encrypt_l + s V_BF_cfb64_encrypt_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((s IDBF_cfb64_encrypt_length))%Q
-    | 2%positive => ((s IDBF_cfb64_encrypt_length) + (s IDBF_cfb64_encrypt_z))%Q
-    | 3%positive => ((s IDBF_cfb64_encrypt__tmp1) + (s IDBF_cfb64_encrypt_z))%Q
-    | 4%positive => ((s IDBF_cfb64_encrypt__tmp1) + (s IDBF_cfb64_encrypt_z))%Q
-    | 5%positive => ((s IDBF_cfb64_encrypt__tmp1) + (s IDBF_cfb64_encrypt_z))%Q
-    | 6%positive => ((s IDBF_cfb64_encrypt_l) + (s IDBF_cfb64_encrypt_z))%Q
-    | 7%positive => ((s IDBF_cfb64_encrypt_l) + (s IDBF_cfb64_encrypt_z))%Q
-    | 8%positive => ((s IDBF_cfb64_encrypt_l) + (s IDBF_cfb64_encrypt_z))%Q
-    | 9%positive => ((s IDBF_cfb64_encrypt_l) + (s IDBF_cfb64_encrypt_z))%Q
-    | 10%positive => ((s IDBF_cfb64_encrypt_l) + (s IDBF_cfb64_encrypt_z))%Q
-    | 11%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 12%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 13%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 14%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 15%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 16%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 17%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 18%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 19%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 20%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 21%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 22%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 23%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 24%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 25%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 26%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 27%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 28%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 29%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 30%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 31%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 32%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 33%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 34%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 35%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 36%positive => ((s IDBF_cfb64_encrypt_l) + (s IDBF_cfb64_encrypt_z))%Q
-    | 37%positive => ((s IDBF_cfb64_encrypt_l) + (s IDBF_cfb64_encrypt_z))%Q
-    | 38%positive => ((s IDBF_cfb64_encrypt_l) + (s IDBF_cfb64_encrypt_z))%Q
-    | 39%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 40%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 41%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 42%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 43%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 44%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 45%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 46%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 47%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 48%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 49%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 50%positive => ((s IDBF_cfb64_encrypt_z))%Q
-    | 51%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 52%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 53%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 54%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 55%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 56%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 57%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 58%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 59%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 60%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 61%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 62%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 63%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 64%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 65%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 66%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 67%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 68%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 69%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | 70%positive => ((1 # 1) + (s IDBF_cfb64_encrypt_l)
-                      + (s IDBF_cfb64_encrypt_z))%Q
-    | _ => (0 # 1)%Q
+  | P_BF_cfb64_encrypt =>
+    [mkPA Q (fun n z s => ai_BF_cfb64_encrypt n s /\ annot0_BF_cfb64_encrypt n z s)]
   end.
 
-Definition BF_cfb64_encrypt_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => [(*0 1*) F_one;
-                      (*0 1*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDBF_cfb64_encrypt_l))) (F_check_ge (0) (0));
-                      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDBF_cfb64_encrypt_l)) (0))) (F_max0_ge_0 ((s IDBF_cfb64_encrypt_l)))]
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDBF_cfb64_encrypt_l))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDBF_cfb64_encrypt_l)) (0))) (F_max0_ge_0 ((s IDBF_cfb64_encrypt_l)))]
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => []
-    | 59%positive => []
-    | 60%positive => []
-    | 61%positive => []
-    | 62%positive => []
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => []
-    | 66%positive => []
-    | 67%positive => []
-    | 68%positive => []
-    | 69%positive => []
-    | 70%positive => []
-    | _ => []
-  end.
-
-
-Theorem BF_cfb64_encrypt_ai_correct:
-  forall s p' s', steps (g_start BF_cfb64_encrypt) s (g_edges BF_cfb64_encrypt) p' s' -> BF_cfb64_encrypt_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem BF_cfb64_encrypt_pot_correct:
-  forall s p' s',
-    steps (g_start BF_cfb64_encrypt) s (g_edges BF_cfb64_encrypt) p' s' ->
-    (BF_cfb64_encrypt_pot (g_start BF_cfb64_encrypt) s >= BF_cfb64_encrypt_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_BF_cfb64_encrypt (proc_start P_BF_cfb64_encrypt) s1 (proc_end P_BF_cfb64_encrypt) s2 ->
+    (s2 V_BF_cfb64_encrypt_z <= s1 V_BF_cfb64_encrypt_length)%Q.
 Proof.
-  check_lp BF_cfb64_encrypt_ai_correct BF_cfb64_encrypt_hints.
+  prove_bound ipa admissible_ipa P_BF_cfb64_encrypt.
 Qed.
-

@@ -1,872 +1,707 @@
 Require Import pasta.Pasta.
 
-Notation IDencode_mcu_AC_refine_z := 1%positive.
-Notation IDencode_mcu_AC_refine_Al := 2%positive.
-Notation IDencode_mcu_AC_refine_BR := 3%positive.
-Notation IDencode_mcu_AC_refine_EOB := 4%positive.
-Notation IDencode_mcu_AC_refine_Se := 5%positive.
-Notation IDencode_mcu_AC_refine_cinfo_dref_off272 := 6%positive.
-Notation IDencode_mcu_AC_refine_cinfo_dref_off404 := 7%positive.
-Notation IDencode_mcu_AC_refine_cinfo_dref_off408 := 8%positive.
-Notation IDencode_mcu_AC_refine_cinfo_dref_off416 := 9%positive.
-Notation IDencode_mcu_AC_refine_k := 10%positive.
-Notation IDencode_mcu_AC_refine_r := 11%positive.
-Notation IDencode_mcu_AC_refine_temp := 12%positive.
-Notation IDencode_mcu_AC_refine_MCU_data := 13%positive.
-Notation IDencode_mcu_AC_refine_cinfo := 14%positive.
-Definition encode_mcu_AC_refine : graph := {|
-  g_start := 1%positive;
-  g_end := 45%positive;
-  g_edges := (1%positive,(AAssign IDencode_mcu_AC_refine_z
-             (Some (ENum (0)))),2%positive)::
-             (2%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_BR) s) >=
-             (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,AWeaken,4%positive)::
-             (4%positive,(AAssign IDencode_mcu_AC_refine_Se
-             (Some (EVar IDencode_mcu_AC_refine_cinfo_dref_off408))),
-             5%positive)::
-             (5%positive,(AAssign IDencode_mcu_AC_refine_Al
-             (Some (EVar IDencode_mcu_AC_refine_cinfo_dref_off416))),
-             6%positive)::(6%positive,AWeaken,7%positive)::
-             (7%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_cinfo_dref_off272)
-             s) <> (eval (ENum (0)) s))%Z)),9%positive)::
-             (7%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_cinfo_dref_off272)
-             s) = (eval (ENum (0)) s))%Z)),8%positive)::
-             (8%positive,AWeaken,13%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,ANone,11%positive)::
-             (10%positive,ANone,12%positive)::
-             (11%positive,ANone,12%positive)::
-             (12%positive,ANone,13%positive)::
-             (13%positive,(AAssign IDencode_mcu_AC_refine_EOB
-             (Some (ENum (0)))),14%positive)::
-             (14%positive,(AAssign IDencode_mcu_AC_refine_k
-             (Some (EVar IDencode_mcu_AC_refine_cinfo_dref_off404))),
-             15%positive)::(15%positive,ANone,16%positive)::
-             (16%positive,AWeaken,17%positive)::
-             (17%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_k) s) <=
-             (eval (EVar IDencode_mcu_AC_refine_Se) s))%Z)),82%positive)::
-             (17%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_k) s) >
-             (eval (EVar IDencode_mcu_AC_refine_Se) s))%Z)),18%positive)::
-             (18%positive,AWeaken,19%positive)::
-             (19%positive,(AAssign IDencode_mcu_AC_refine_r
-             (Some (ENum (0)))),20%positive)::
-             (20%positive,(AAssign IDencode_mcu_AC_refine_BR
-             (Some (ENum (0)))),21%positive)::
-             (21%positive,(AAssign IDencode_mcu_AC_refine_k
-             (Some (EVar IDencode_mcu_AC_refine_cinfo_dref_off404))),
-             22%positive)::(22%positive,ANone,23%positive)::
-             (23%positive,AWeaken,24%positive)::
-             (24%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_k) s) <=
-             (eval (EVar IDencode_mcu_AC_refine_Se) s))%Z)),46%positive)::
-             (24%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_k) s) >
-             (eval (EVar IDencode_mcu_AC_refine_Se) s))%Z)),25%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (26%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_r) s) >
-             (eval (ENum (0)) s))%Z)),31%positive)::
-             (26%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_r) s) <=
-             (eval (ENum (0)) s))%Z)),27%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_BR) s) >
-             (eval (ENum (0)) s))%Z)),30%positive)::
-             (28%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_BR) s) <=
-             (eval (ENum (0)) s))%Z)),29%positive)::
-             (29%positive,AWeaken,38%positive)::
-             (30%positive,AWeaken,32%positive)::
-             (31%positive,AWeaken,32%positive)::
-             (32%positive,ANone,35%positive)::
-             (32%positive,ANone,33%positive)::
-             (33%positive,AWeaken,34%positive)::
-             (34%positive,ANone,35%positive)::
-             (34%positive,ANone,36%positive)::
-             (35%positive,ANone,36%positive)::
-             (36%positive,ANone,37%positive)::
-             (37%positive,AWeaken,38%positive)::
-             (38%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_cinfo_dref_off272)
-             s) <> (eval (ENum (0)) s))%Z)),40%positive)::
-             (38%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_cinfo_dref_off272)
-             s) = (eval (ENum (0)) s))%Z)),39%positive)::
-             (39%positive,AWeaken,45%positive)::
-             (40%positive,AWeaken,41%positive)::
-             (41%positive,ANone,42%positive)::
-             (41%positive,ANone,43%positive)::
-             (42%positive,ANone,43%positive)::
-             (43%positive,ANone,44%positive)::
-             (44%positive,AWeaken,45%positive)::
-             (46%positive,AWeaken,47%positive)::
-             (47%positive,(AAssign IDencode_mcu_AC_refine_temp None),
-             48%positive)::(48%positive,AWeaken,49%positive)::
-             (49%positive,ANone,75%positive)::
-             (49%positive,ANone,50%positive)::
-             (50%positive,ANone,51%positive)::
-             (51%positive,AWeaken,52%positive)::
-             (52%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_r) s) >
-             (eval (ENum (15)) s))%Z)),54%positive)::
-             (52%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_r) s) <=
-             (eval (ENum (15)) s))%Z)),53%positive)::
-             (53%positive,AWeaken,59%positive)::
-             (54%positive,AWeaken,55%positive)::
-             (55%positive,ANone,56%positive)::
-             (56%positive,AWeaken,57%positive)::
-             (57%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_k) s) <=
-             (eval (EVar IDencode_mcu_AC_refine_EOB) s))%Z)),68%positive)::
-             (57%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_k) s) >
-             (eval (EVar IDencode_mcu_AC_refine_EOB) s))%Z)),58%positive)::
-             (58%positive,AWeaken,59%positive)::
-             (59%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_temp) s) >
-             (eval (ENum (1)) s))%Z)),65%positive)::
-             (59%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_temp) s) <=
-             (eval (ENum (1)) s))%Z)),60%positive)::
-             (60%positive,AWeaken,61%positive)::
-             (61%positive,(AAssign IDencode_mcu_AC_refine_temp None),
-             62%positive)::
-             (62%positive,(AAssign IDencode_mcu_AC_refine_BR
-             (Some (ENum (0)))),63%positive)::
-             (63%positive,(AAssign IDencode_mcu_AC_refine_r
-             (Some (ENum (0)))),64%positive)::
-             (64%positive,ANone,77%positive)::
-             (65%positive,AWeaken,66%positive)::
-             (66%positive,(AAssign IDencode_mcu_AC_refine_BR
-             (Some (EAdd (EVar IDencode_mcu_AC_refine_BR) (ENum (1))))),
-             67%positive)::(67%positive,ANone,77%positive)::
-             (68%positive,AWeaken,69%positive)::
-             (69%positive,(AAssign IDencode_mcu_AC_refine_r
-             (Some (ESub (EVar IDencode_mcu_AC_refine_r) (ENum (16))))),
-             70%positive)::
-             (70%positive,(AAssign IDencode_mcu_AC_refine_BR
-             (Some (ENum (0)))),71%positive)::
-             (71%positive,ANone,72%positive)::
-             (72%positive,ANone,73%positive)::
-             (73%positive,(AAssign IDencode_mcu_AC_refine_z
-             (Some (EAdd (ENum (1)) (EVar IDencode_mcu_AC_refine_z)))),
-             74%positive)::(74%positive,AWeaken,52%positive)::
-             (75%positive,(AAssign IDencode_mcu_AC_refine_r
-             (Some (EAdd (EVar IDencode_mcu_AC_refine_r) (ENum (1))))),
-             76%positive)::(76%positive,ANone,77%positive)::
-             (77%positive,(AAssign IDencode_mcu_AC_refine_k
-             (Some (EAdd (EVar IDencode_mcu_AC_refine_k) (ENum (1))))),
-             78%positive)::(78%positive,ANone,79%positive)::
-             (79%positive,ANone,80%positive)::
-             (80%positive,(AAssign IDencode_mcu_AC_refine_z
-             (Some (EAdd (ENum (1)) (EVar IDencode_mcu_AC_refine_z)))),
-             81%positive)::(81%positive,AWeaken,24%positive)::
-             (82%positive,AWeaken,83%positive)::
-             (83%positive,(AAssign IDencode_mcu_AC_refine_temp None),
-             84%positive)::(84%positive,AWeaken,85%positive)::
-             (85%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_temp) s) <
-             (eval (ENum (0)) s))%Z)),87%positive)::
-             (85%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_temp) s) >=
-             (eval (ENum (0)) s))%Z)),86%positive)::
-             (86%positive,AWeaken,90%positive)::
-             (87%positive,AWeaken,88%positive)::
-             (88%positive,(AAssign IDencode_mcu_AC_refine_temp
-             (Some (ESub (ENum (0)) (EVar IDencode_mcu_AC_refine_temp)))),
-             89%positive)::(89%positive,ANone,90%positive)::
-             (90%positive,(AAssign IDencode_mcu_AC_refine_temp None),
-             91%positive)::(91%positive,AWeaken,92%positive)::
-             (92%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_temp) s) =
-             (eval (ENum (1)) s))%Z)),94%positive)::
-             (92%positive,(AGuard
-             (fun s => ((eval (EVar IDencode_mcu_AC_refine_temp) s) <>
-             (eval (ENum (1)) s))%Z)),93%positive)::
-             (93%positive,AWeaken,97%positive)::
-             (94%positive,AWeaken,95%positive)::
-             (95%positive,(AAssign IDencode_mcu_AC_refine_EOB
-             (Some (EVar IDencode_mcu_AC_refine_k))),96%positive)::
-             (96%positive,ANone,97%positive)::
-             (97%positive,ANone,98%positive)::
-             (98%positive,(AAssign IDencode_mcu_AC_refine_k
-             (Some (EAdd (EVar IDencode_mcu_AC_refine_k) (ENum (1))))),
-             99%positive)::(99%positive,ANone,100%positive)::
-             (100%positive,ANone,101%positive)::
-             (101%positive,(AAssign IDencode_mcu_AC_refine_z
-             (Some (EAdd (ENum (1)) (EVar IDencode_mcu_AC_refine_z)))),
-             102%positive)::(102%positive,AWeaken,17%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_encode_mcu_AC_refine.
 
-Definition encode_mcu_AC_refine_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 4%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 6%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 8%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_cinfo_dref_off272) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_cinfo_dref_off272) <= 0)%Z
-    | 9%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 10%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 11%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 12%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 13%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 14%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_EOB) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_EOB) <= 0)%Z
-    | 15%positive => (-1 * (s IDencode_mcu_AC_refine_EOB) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_EOB) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 16%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_EOB) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_EOB) <= 0)%Z
-    | 17%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 18%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0)%Z
-    | 19%positive => (1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 20%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 21%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 22%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 23%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 24%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 25%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0)%Z
-    | 26%positive => (1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 27%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 28%positive => (1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 29%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 30%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) + 1 <= 0)%Z
-    | 31%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) + 1 <= 0)%Z
-    | 32%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 33%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 34%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 35%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 36%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 37%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 38%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 39%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_cinfo_dref_off272) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_cinfo_dref_off272) <= 0)%Z
-    | 40%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 41%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 42%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 43%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 44%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 45%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_Se)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 46%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 47%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 48%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 49%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 50%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 51%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 52%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 53%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) + -15 <= 0)%Z
-    | 54%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) + 16 <= 0)%Z
-    | 55%positive => (-1 * (s IDencode_mcu_AC_refine_r) + 16 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 56%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) + 16 <= 0)%Z
-    | 57%positive => (-1 * (s IDencode_mcu_AC_refine_r) + 16 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 58%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) + 16 <= 0 /\ 1 * (s IDencode_mcu_AC_refine_EOB)+ -1 * (s IDencode_mcu_AC_refine_k) + 1 <= 0)%Z
-    | 59%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 60%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_temp) + -1 <= 0)%Z
-    | 61%positive => (1 * (s IDencode_mcu_AC_refine_temp) + -1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 62%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 63%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 64%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 65%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_temp) + 2 <= 0)%Z
-    | 66%positive => (-1 * (s IDencode_mcu_AC_refine_temp) + 2 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 67%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_temp) + 2 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) + 1 <= 0)%Z
-    | 68%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) + 16 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_EOB)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 69%positive => (-1 * (s IDencode_mcu_AC_refine_EOB)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) + 16 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 70%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_EOB)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 71%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_EOB)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 72%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_EOB)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0)%Z
-    | 73%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_EOB)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 74%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_EOB)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) + 1 <= 0)%Z
-    | 75%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 76%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) + 1 <= 0)%Z
-    | 77%positive => (-1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 78%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) + -1 <= 0)%Z
-    | 79%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) + -1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 80%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) + -1 <= 0)%Z
-    | 81%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) + -1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_r) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) + 1 <= 0)%Z
-    | 82%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 83%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 84%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 85%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 86%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_temp) <= 0)%Z
-    | 87%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_temp) + 1 <= 0)%Z
-    | 88%positive => (1 * (s IDencode_mcu_AC_refine_temp) + 1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 89%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_temp) + 1 <= 0)%Z
-    | 90%positive => (-1 * (s IDencode_mcu_AC_refine_temp) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 91%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 92%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 93%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 94%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_temp) + -1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_temp) + 1 <= 0)%Z
-    | 95%positive => (-1 * (s IDencode_mcu_AC_refine_temp) + 1 <= 0 /\ 1 * (s IDencode_mcu_AC_refine_temp) + -1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 96%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ 1 * (s IDencode_mcu_AC_refine_temp) + -1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_temp) + 1 <= 0 /\ 1 * (s IDencode_mcu_AC_refine_EOB)+ -1 * (s IDencode_mcu_AC_refine_Se) <= 0)%Z
-    | 97%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0)%Z
-    | 98%positive => (-1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) <= 0)%Z
-    | 99%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) + -1 <= 0)%Z
-    | 100%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) + -1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) <= 0)%Z
-    | 101%positive => (-1 * (s IDencode_mcu_AC_refine_z) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) + -1 <= 0)%Z
-    | 102%positive => (-1 * (s IDencode_mcu_AC_refine_Se)+ 1 * (s IDencode_mcu_AC_refine_k) + -1 <= 0 /\ -1 * (s IDencode_mcu_AC_refine_BR) <= 0 /\ -1 * (s IDencode_mcu_AC_refine_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition encode_mcu_AC_refine_pot (p : node) (s : state): Q := 
+Notation V_encode_mcu_AC_refine_z := 1%positive.
+Notation V_encode_mcu_AC_refine_Al := 2%positive.
+Notation V_encode_mcu_AC_refine_BR := 3%positive.
+Notation V_encode_mcu_AC_refine_EOB := 4%positive.
+Notation V_encode_mcu_AC_refine_Se := 5%positive.
+Notation V_encode_mcu_AC_refine_cinfo_dref_off272 := 6%positive.
+Notation V_encode_mcu_AC_refine_cinfo_dref_off404 := 7%positive.
+Notation V_encode_mcu_AC_refine_cinfo_dref_off408 := 8%positive.
+Notation V_encode_mcu_AC_refine_cinfo_dref_off416 := 9%positive.
+Notation V_encode_mcu_AC_refine_k := 10%positive.
+Notation V_encode_mcu_AC_refine_r := 11%positive.
+Notation V_encode_mcu_AC_refine_temp := 12%positive.
+Notation V_encode_mcu_AC_refine_MCU_data := 13%positive.
+Notation V_encode_mcu_AC_refine_cinfo := 14%positive.
+Definition Pedges_encode_mcu_AC_refine: list (edge proc) :=
+  (EA 1 (AAssign V_encode_mcu_AC_refine_z (Some (ENum (0)))) 2)::
+  (EA 2 (AGuard (fun s => ((eval (EVar V_encode_mcu_AC_refine_BR) s) >=
+  (eval (ENum (0)) s))%Z)) 3)::(EA 3 AWeaken 4)::(EA 4 (AAssign
+  V_encode_mcu_AC_refine_Se
+  (Some (EVar V_encode_mcu_AC_refine_cinfo_dref_off408))) 5)::(EA 5 (AAssign
+  V_encode_mcu_AC_refine_Al
+  (Some (EVar V_encode_mcu_AC_refine_cinfo_dref_off416))) 6)::
+  (EA 6 AWeaken 7)::(EA 7 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_cinfo_dref_off272) s) <>
+  (eval (ENum (0)) s))%Z)) 9)::(EA 7 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_cinfo_dref_off272) s) =
+  (eval (ENum (0)) s))%Z)) 8)::(EA 8 AWeaken 13)::(EA 9 AWeaken 10)::
+  (EA 10 ANone 11)::(EA 10 ANone 12)::(EA 11 ANone 12)::(EA 12 ANone 13)::
+  (EA 13 (AAssign V_encode_mcu_AC_refine_EOB (Some (ENum (0)))) 14)::
+  (EA 14 (AAssign V_encode_mcu_AC_refine_k
+  (Some (EVar V_encode_mcu_AC_refine_cinfo_dref_off404))) 15)::
+  (EA 15 ANone 16)::(EA 16 AWeaken 17)::(EA 17 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_k) s) <=
+  (eval (EVar V_encode_mcu_AC_refine_Se) s))%Z)) 82)::(EA 17 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_k) s) >
+  (eval (EVar V_encode_mcu_AC_refine_Se) s))%Z)) 18)::(EA 18 AWeaken 19)::
+  (EA 19 (AAssign V_encode_mcu_AC_refine_r (Some (ENum (0)))) 20)::
+  (EA 20 (AAssign V_encode_mcu_AC_refine_BR (Some (ENum (0)))) 21)::
+  (EA 21 (AAssign V_encode_mcu_AC_refine_k
+  (Some (EVar V_encode_mcu_AC_refine_cinfo_dref_off404))) 22)::
+  (EA 22 ANone 23)::(EA 23 AWeaken 24)::(EA 24 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_k) s) <=
+  (eval (EVar V_encode_mcu_AC_refine_Se) s))%Z)) 46)::(EA 24 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_k) s) >
+  (eval (EVar V_encode_mcu_AC_refine_Se) s))%Z)) 25)::(EA 25 AWeaken 26)::
+  (EA 26 (AGuard (fun s => ((eval (EVar V_encode_mcu_AC_refine_r) s) >
+  (eval (ENum (0)) s))%Z)) 31)::(EA 26 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_r) s) <= (eval (ENum (0))
+  s))%Z)) 27)::(EA 27 AWeaken 28)::(EA 28 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_BR) s) > (eval (ENum (0))
+  s))%Z)) 30)::(EA 28 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_BR) s) <= (eval (ENum (0))
+  s))%Z)) 29)::(EA 29 AWeaken 38)::(EA 30 AWeaken 32)::(EA 31 AWeaken 32)::
+  (EA 32 ANone 35)::(EA 32 ANone 33)::(EA 33 AWeaken 34)::(EA 34 ANone 35)::
+  (EA 34 ANone 36)::(EA 35 ANone 36)::(EA 36 ANone 37)::(EA 37 AWeaken 38)::
+  (EA 38 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_cinfo_dref_off272) s) <>
+  (eval (ENum (0)) s))%Z)) 40)::(EA 38 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_cinfo_dref_off272) s) =
+  (eval (ENum (0)) s))%Z)) 39)::(EA 39 AWeaken 45)::(EA 40 AWeaken 41)::
+  (EA 41 ANone 42)::(EA 41 ANone 43)::(EA 42 ANone 43)::(EA 43 ANone 44)::
+  (EA 44 AWeaken 45)::(EA 46 AWeaken 47)::(EA 47 (AAssign
+  V_encode_mcu_AC_refine_temp None) 48)::(EA 48 AWeaken 49)::
+  (EA 49 ANone 75)::(EA 49 ANone 50)::(EA 50 ANone 51)::(EA 51 AWeaken 52)::
+  (EA 52 (AGuard (fun s => ((eval (EVar V_encode_mcu_AC_refine_r) s) >
+  (eval (ENum (15)) s))%Z)) 54)::(EA 52 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_r) s) <= (eval (ENum (15))
+  s))%Z)) 53)::(EA 53 AWeaken 59)::(EA 54 AWeaken 55)::(EA 55 ANone 56)::
+  (EA 56 AWeaken 57)::(EA 57 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_k) s) <=
+  (eval (EVar V_encode_mcu_AC_refine_EOB) s))%Z)) 68)::(EA 57 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_k) s) >
+  (eval (EVar V_encode_mcu_AC_refine_EOB) s))%Z)) 58)::(EA 58 AWeaken 59)::
+  (EA 59 (AGuard (fun s => ((eval (EVar V_encode_mcu_AC_refine_temp) s) >
+  (eval (ENum (1)) s))%Z)) 65)::(EA 59 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_temp) s) <= (eval (ENum (1))
+  s))%Z)) 60)::(EA 60 AWeaken 61)::(EA 61 (AAssign
+  V_encode_mcu_AC_refine_temp None) 62)::(EA 62 (AAssign
+  V_encode_mcu_AC_refine_BR (Some (ENum (0)))) 63)::(EA 63 (AAssign
+  V_encode_mcu_AC_refine_r (Some (ENum (0)))) 64)::(EA 64 ANone 77)::
+  (EA 65 AWeaken 66)::(EA 66 (AAssign V_encode_mcu_AC_refine_BR
+  (Some (EAdd (EVar V_encode_mcu_AC_refine_BR) (ENum (1))))) 67)::
+  (EA 67 ANone 77)::(EA 68 AWeaken 69)::(EA 69 (AAssign
+  V_encode_mcu_AC_refine_r (Some (ESub (EVar V_encode_mcu_AC_refine_r)
+  (ENum (16))))) 70)::(EA 70 (AAssign V_encode_mcu_AC_refine_BR
+  (Some (ENum (0)))) 71)::(EA 71 ANone 72)::(EA 72 ANone 73)::(EA 73 (AAssign
+  V_encode_mcu_AC_refine_z (Some (EAdd (ENum (1))
+  (EVar V_encode_mcu_AC_refine_z)))) 74)::(EA 74 AWeaken 52)::(EA 75 (AAssign
+  V_encode_mcu_AC_refine_r (Some (EAdd (EVar V_encode_mcu_AC_refine_r)
+  (ENum (1))))) 76)::(EA 76 ANone 77)::(EA 77 (AAssign
+  V_encode_mcu_AC_refine_k (Some (EAdd (EVar V_encode_mcu_AC_refine_k)
+  (ENum (1))))) 78)::(EA 78 ANone 79)::(EA 79 ANone 80)::(EA 80 (AAssign
+  V_encode_mcu_AC_refine_z (Some (EAdd (ENum (1))
+  (EVar V_encode_mcu_AC_refine_z)))) 81)::(EA 81 AWeaken 24)::
+  (EA 82 AWeaken 83)::(EA 83 (AAssign V_encode_mcu_AC_refine_temp None) 84)::
+  (EA 84 AWeaken 85)::(EA 85 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_temp) s) < (eval (ENum (0))
+  s))%Z)) 87)::(EA 85 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_temp) s) >= (eval (ENum (0))
+  s))%Z)) 86)::(EA 86 AWeaken 90)::(EA 87 AWeaken 88)::(EA 88 (AAssign
+  V_encode_mcu_AC_refine_temp (Some (ESub (ENum (0))
+  (EVar V_encode_mcu_AC_refine_temp)))) 89)::(EA 89 ANone 90)::
+  (EA 90 (AAssign V_encode_mcu_AC_refine_temp None) 91)::(EA 91 AWeaken 92)::
+  (EA 92 (AGuard (fun s => ((eval (EVar V_encode_mcu_AC_refine_temp) s) =
+  (eval (ENum (1)) s))%Z)) 94)::(EA 92 (AGuard
+  (fun s => ((eval (EVar V_encode_mcu_AC_refine_temp) s) <> (eval (ENum (1))
+  s))%Z)) 93)::(EA 93 AWeaken 97)::(EA 94 AWeaken 95)::(EA 95 (AAssign
+  V_encode_mcu_AC_refine_EOB (Some (EVar V_encode_mcu_AC_refine_k))) 96)::
+  (EA 96 ANone 97)::(EA 97 ANone 98)::(EA 98 (AAssign
+  V_encode_mcu_AC_refine_k (Some (EAdd (EVar V_encode_mcu_AC_refine_k)
+  (ENum (1))))) 99)::(EA 99 ANone 100)::(EA 100 ANone 101)::(EA 101 (AAssign
+  V_encode_mcu_AC_refine_z (Some (EAdd (ENum (1))
+  (EVar V_encode_mcu_AC_refine_z)))) 102)::(EA 102 AWeaken 17)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_encode_mcu_AC_refine => Pedges_encode_mcu_AC_refine
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_encode_mcu_AC_refine => 45
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_encode_mcu_AC_refine (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 3 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 4 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 5 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 6 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 7 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 8 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_cinfo_dref_off272 <= 0 /\ -1 * s V_encode_mcu_AC_refine_cinfo_dref_off272 <= 0)%Z
+   | 9 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 10 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 11 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 12 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 13 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 14 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_EOB <= 0 /\ -1 * s V_encode_mcu_AC_refine_EOB <= 0)%Z
+   | 15 => (-1 * s V_encode_mcu_AC_refine_EOB <= 0 /\ 1 * s V_encode_mcu_AC_refine_EOB <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 16 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_EOB <= 0 /\ -1 * s V_encode_mcu_AC_refine_EOB <= 0)%Z
+   | 17 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 18 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0)%Z
+   | 19 => (1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 20 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ 1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 21 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 22 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 23 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 24 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 25 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0)%Z
+   | 26 => (1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 27 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ 1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 28 => (1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 29 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ 1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 30 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ 1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR + 1 <= 0)%Z
+   | 31 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r + 1 <= 0)%Z
+   | 32 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 33 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 34 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 35 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 36 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 37 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 38 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 39 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_cinfo_dref_off272 <= 0 /\ -1 * s V_encode_mcu_AC_refine_cinfo_dref_off272 <= 0)%Z
+   | 40 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 41 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 42 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 43 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 44 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 45 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_Se+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 46 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 47 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 48 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 49 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 50 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 51 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 52 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 53 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_r + -15 <= 0)%Z
+   | 54 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r + 16 <= 0)%Z
+   | 55 => (-1 * s V_encode_mcu_AC_refine_r + 16 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 56 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r + 16 <= 0)%Z
+   | 57 => (-1 * s V_encode_mcu_AC_refine_r + 16 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 58 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r + 16 <= 0 /\ 1 * s V_encode_mcu_AC_refine_EOB+ -1 * s V_encode_mcu_AC_refine_k + 1 <= 0)%Z
+   | 59 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 60 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ 1 * s V_encode_mcu_AC_refine_temp + -1 <= 0)%Z
+   | 61 => (1 * s V_encode_mcu_AC_refine_temp + -1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 62 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 63 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 64 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ 1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 65 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_temp + 2 <= 0)%Z
+   | 66 => (-1 * s V_encode_mcu_AC_refine_temp + 2 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 67 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_temp + 2 <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR + 1 <= 0)%Z
+   | 68 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_r + 16 <= 0 /\ -1 * s V_encode_mcu_AC_refine_EOB+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 69 => (-1 * s V_encode_mcu_AC_refine_EOB+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_r + 16 <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 70 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_EOB+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 71 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_EOB+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 72 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_EOB+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0)%Z
+   | 73 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_EOB+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 74 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ 1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_EOB+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_z + 1 <= 0)%Z
+   | 75 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 76 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r + 1 <= 0)%Z
+   | 77 => (-1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 78 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k + -1 <= 0)%Z
+   | 79 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k + -1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 80 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k + -1 <= 0)%Z
+   | 81 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k + -1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_r <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z + 1 <= 0)%Z
+   | 82 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 83 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 84 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 85 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 86 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_temp <= 0)%Z
+   | 87 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ 1 * s V_encode_mcu_AC_refine_temp + 1 <= 0)%Z
+   | 88 => (1 * s V_encode_mcu_AC_refine_temp + 1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 89 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_temp + 1 <= 0)%Z
+   | 90 => (-1 * s V_encode_mcu_AC_refine_temp <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 91 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 92 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 93 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 94 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ 1 * s V_encode_mcu_AC_refine_temp + -1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_temp + 1 <= 0)%Z
+   | 95 => (-1 * s V_encode_mcu_AC_refine_temp + 1 <= 0 /\ 1 * s V_encode_mcu_AC_refine_temp + -1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 96 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ 1 * s V_encode_mcu_AC_refine_temp + -1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_temp + 1 <= 0 /\ 1 * s V_encode_mcu_AC_refine_EOB+ -1 * s V_encode_mcu_AC_refine_Se <= 0)%Z
+   | 97 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0)%Z
+   | 98 => (-1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k <= 0)%Z
+   | 99 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k + -1 <= 0)%Z
+   | 100 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k + -1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z <= 0)%Z
+   | 101 => (-1 * s V_encode_mcu_AC_refine_z <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k + -1 <= 0)%Z
+   | 102 => (-1 * s V_encode_mcu_AC_refine_Se+ 1 * s V_encode_mcu_AC_refine_k + -1 <= 0 /\ -1 * s V_encode_mcu_AC_refine_BR <= 0 /\ -1 * s V_encode_mcu_AC_refine_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_encode_mcu_AC_refine (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((33 # 16) * max0(1 - s V_encode_mcu_AC_refine_cinfo_dref_off404
+                            + s V_encode_mcu_AC_refine_cinfo_dref_off408) <= z)%Q
+   | 2 => (s V_encode_mcu_AC_refine_z
+           + (33 # 16) * max0(1 - s V_encode_mcu_AC_refine_cinfo_dref_off404
+                              + s V_encode_mcu_AC_refine_cinfo_dref_off408) <= z)%Q
+   | 3 => (s V_encode_mcu_AC_refine_z
+           + (33 # 16) * max0(1 - s V_encode_mcu_AC_refine_cinfo_dref_off404
+                              + s V_encode_mcu_AC_refine_cinfo_dref_off408) <= z)%Q
+   | 4 => (s V_encode_mcu_AC_refine_z
+           + (33 # 16) * max0(1 - s V_encode_mcu_AC_refine_cinfo_dref_off404
+                              + s V_encode_mcu_AC_refine_cinfo_dref_off408) <= z)%Q
+   | 5 => (s V_encode_mcu_AC_refine_z
+           + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                              - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 6 => (s V_encode_mcu_AC_refine_z
+           + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                              - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 7 => (s V_encode_mcu_AC_refine_z
+           + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                              - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 8 => (s V_encode_mcu_AC_refine_z
+           + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                              - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 9 => (s V_encode_mcu_AC_refine_z
+           + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                              - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 10 => (s V_encode_mcu_AC_refine_z
+            + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 11 => (s V_encode_mcu_AC_refine_z
+            + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 12 => (s V_encode_mcu_AC_refine_z
+            + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 13 => (s V_encode_mcu_AC_refine_z
+            + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 14 => (s V_encode_mcu_AC_refine_z
+            + (33 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404) <= z)%Q
+   | 15 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 16 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_encode_mcu_AC_refine_z) (0))) (F_max0_ge_0 (s V_encode_mcu_AC_refine_z))]
+     (s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+      + max0(1 + s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 17 => ((17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                             - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k)
+            + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 18 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (1 + s V_encode_mcu_AC_refine_Se
+                                             - s V_encode_mcu_AC_refine_k) (s V_encode_mcu_AC_refine_Se
+                                                                    - s V_encode_mcu_AC_refine_k));
+      (*-1 0*) F_max0_ge_0 (s V_encode_mcu_AC_refine_Se
+                            - s V_encode_mcu_AC_refine_k)]
+     ((17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                       - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+      + max0(1 + s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k)
+      + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 19 => ((17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                             - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 20 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 21 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 22 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k)
+            + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 23 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_encode_mcu_AC_refine_z)) (F_check_ge (s V_encode_mcu_AC_refine_z) (0))]
+     ((1 # 16) * s V_encode_mcu_AC_refine_r
+      + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k)
+      + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 24 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 25 => hints
+     [(*0 1.0625*) F_max0_monotonic (F_check_ge (1
+                                                 + s V_encode_mcu_AC_refine_Se
+                                                 - s V_encode_mcu_AC_refine_k) (s V_encode_mcu_AC_refine_Se
+                                                                    - s V_encode_mcu_AC_refine_k))]
+     ((1 # 16) * s V_encode_mcu_AC_refine_r + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 26 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 27 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 28 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 29 => hints
+     [(*-1.0625 0*) F_max0_ge_0 (s V_encode_mcu_AC_refine_Se
+                                 - s V_encode_mcu_AC_refine_k)]
+     ((1 # 16) * s V_encode_mcu_AC_refine_r + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 30 => hints
+     [(*-1.0625 0*) F_max0_ge_0 (s V_encode_mcu_AC_refine_Se
+                                 - s V_encode_mcu_AC_refine_k)]
+     ((1 # 16) * s V_encode_mcu_AC_refine_r + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 31 => hints
+     [(*-1.0625 0*) F_max0_ge_0 (s V_encode_mcu_AC_refine_Se
+                                 - s V_encode_mcu_AC_refine_k)]
+     ((1 # 16) * s V_encode_mcu_AC_refine_r + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 32 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 33 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 34 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 35 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 36 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 37 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 38 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 39 => hints
+     [(*-0.0625 0*) F_max0_monotonic (F_check_ge (s V_encode_mcu_AC_refine_r) (-16
+                                                                    + s V_encode_mcu_AC_refine_r));
+      (*-0.0625 0*) F_max0_ge_0 (-16 + s V_encode_mcu_AC_refine_r);
+      (*-0.0625 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_encode_mcu_AC_refine_r) (0))) (F_max0_ge_0 (s V_encode_mcu_AC_refine_r))]
+     ((1 # 16) * s V_encode_mcu_AC_refine_r + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 40 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 41 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 42 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 43 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 44 => hints
+     [(*-0.0625 0*) F_max0_monotonic (F_check_ge (s V_encode_mcu_AC_refine_r) (-16
+                                                                    + s V_encode_mcu_AC_refine_r));
+      (*-0.0625 0*) F_max0_ge_0 (-16 + s V_encode_mcu_AC_refine_r);
+      (*-0.0625 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_encode_mcu_AC_refine_r) (0))) (F_max0_ge_0 (s V_encode_mcu_AC_refine_r))]
+     ((1 # 16) * s V_encode_mcu_AC_refine_r + s V_encode_mcu_AC_refine_z <= z)%Q
+   | 45 => (s V_encode_mcu_AC_refine_z <= z)%Q
+   | 46 => hints
+     [(*-1.0625 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_encode_mcu_AC_refine_Se
+                                                                    - 
+                                                                    s V_encode_mcu_AC_refine_k) (0))) (F_max0_ge_0 (s V_encode_mcu_AC_refine_Se
+                                                                    - s V_encode_mcu_AC_refine_k))]
+     ((1 # 16) * s V_encode_mcu_AC_refine_r + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 47 => (-(17 # 16) * s V_encode_mcu_AC_refine_Se
+            + (17 # 16) * s V_encode_mcu_AC_refine_k
+            + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k)
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 48 => hints
+     [(*-1.0625 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
+                                                        + s V_encode_mcu_AC_refine_Se
+                                                        - s V_encode_mcu_AC_refine_k)) (F_check_ge (1
+                                                                    + s V_encode_mcu_AC_refine_Se
+                                                                    - s V_encode_mcu_AC_refine_k) (0))]
+     (-(17 # 16) * s V_encode_mcu_AC_refine_Se
+      + (17 # 16) * s V_encode_mcu_AC_refine_k
+      + (1 # 16) * s V_encode_mcu_AC_refine_r + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k)
+      + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 49 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 50 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 51 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 52 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 53 => hints
+     [(*-0.0625 0*) F_one]
+     ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+      + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 54 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 55 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 56 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 57 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 58 => hints
+     [(*-0.0625 0*) F_one]
+     ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+      + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 59 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 60 => hints
+     [(*-0.0625 0*) F_max0_monotonic (F_check_ge (s V_encode_mcu_AC_refine_r) (-16
+                                                                    + s V_encode_mcu_AC_refine_r));
+      (*-0.0625 0*) F_max0_ge_0 (-16 + s V_encode_mcu_AC_refine_r);
+      (*-0.0625 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_encode_mcu_AC_refine_r) (0))) (F_max0_ge_0 (s V_encode_mcu_AC_refine_r))]
+     ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+      + s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 61 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 62 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 63 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 64 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 65 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 66 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 67 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 68 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 69 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 70 => ((33 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 71 => ((33 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 72 => ((33 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 73 => ((33 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 74 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 75 => ((17 # 16) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 76 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 77 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 78 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 79 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 80 => ((1 # 1) + (1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 81 => ((1 # 16) * s V_encode_mcu_AC_refine_r
+            + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 82 => ((17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                             - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k)
+            + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 83 => ((17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                             - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k)
+            + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 84 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (s V_encode_mcu_AC_refine_z)) (F_check_ge (s V_encode_mcu_AC_refine_z) (0))]
+     ((17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                       - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+      + max0(1 + s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k)
+      + max0(s V_encode_mcu_AC_refine_z) <= z)%Q
+   | 85 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 86 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 87 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 88 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 89 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 90 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 91 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 92 => (s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 93 => hints
+     [(*0 1*) F_max0_pre_decrement 1 (1 + s V_encode_mcu_AC_refine_Se
+                                      - s V_encode_mcu_AC_refine_k) (1)]
+     (s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+      + max0(1 + s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 94 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (1 + s V_encode_mcu_AC_refine_Se
+                                       - s V_encode_mcu_AC_refine_k) (1)]
+     (s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+      + max0(1 + s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 95 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 96 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 97 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 98 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 99 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+            + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                               - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+            + max0(1 + s V_encode_mcu_AC_refine_Se
+                   - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 100 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+             + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                                - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+             + max0(1 + s V_encode_mcu_AC_refine_Se
+                    - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 101 => ((1 # 1) + s V_encode_mcu_AC_refine_z
+             + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                                - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+             + max0(1 + s V_encode_mcu_AC_refine_Se
+                    - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | 102 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_encode_mcu_AC_refine_z) (0))) (F_max0_ge_0 (s V_encode_mcu_AC_refine_z))]
+     (s V_encode_mcu_AC_refine_z
+      + (17 # 16) * max0(1 + s V_encode_mcu_AC_refine_Se
+                         - s V_encode_mcu_AC_refine_cinfo_dref_off404)
+      + max0(1 + s V_encode_mcu_AC_refine_Se - s V_encode_mcu_AC_refine_k) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((33 # 16) * max0(1
-                                      - (s IDencode_mcu_AC_refine_cinfo_dref_off404)
-                                      + (s IDencode_mcu_AC_refine_cinfo_dref_off408)))%Q
-    | 2%positive => ((s IDencode_mcu_AC_refine_z)
-                     + (33 # 16) * max0(1
-                                        - (s IDencode_mcu_AC_refine_cinfo_dref_off404)
-                                        + (s IDencode_mcu_AC_refine_cinfo_dref_off408)))%Q
-    | 3%positive => ((s IDencode_mcu_AC_refine_z)
-                     + (33 # 16) * max0(1
-                                        - (s IDencode_mcu_AC_refine_cinfo_dref_off404)
-                                        + (s IDencode_mcu_AC_refine_cinfo_dref_off408)))%Q
-    | 4%positive => ((s IDencode_mcu_AC_refine_z)
-                     + (33 # 16) * max0(1
-                                        - (s IDencode_mcu_AC_refine_cinfo_dref_off404)
-                                        + (s IDencode_mcu_AC_refine_cinfo_dref_off408)))%Q
-    | 5%positive => ((s IDencode_mcu_AC_refine_z)
-                     + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                        - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 6%positive => ((s IDencode_mcu_AC_refine_z)
-                     + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                        - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 7%positive => ((s IDencode_mcu_AC_refine_z)
-                     + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                        - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 8%positive => ((s IDencode_mcu_AC_refine_z)
-                     + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                        - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 9%positive => ((s IDencode_mcu_AC_refine_z)
-                     + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                        - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 10%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 11%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 12%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 13%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 14%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (33 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404)))%Q
-    | 15%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 16%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 17%positive => ((17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                       - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 18%positive => ((17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                       - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 19%positive => ((17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                       - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 20%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 21%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 22%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 23%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 24%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 25%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 26%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 27%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 28%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 29%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 30%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 31%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 32%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 33%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 34%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 35%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 36%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 37%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 38%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 39%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 40%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 41%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 42%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 43%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 44%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z))%Q
-    | 45%positive => ((s IDencode_mcu_AC_refine_z))%Q
-    | 46%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 47%positive => (-(17 # 16) * (s IDencode_mcu_AC_refine_Se)
-                      + (17 # 16) * (s IDencode_mcu_AC_refine_k)
-                      + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k))
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 48%positive => (-(17 # 16) * (s IDencode_mcu_AC_refine_Se)
-                      + (17 # 16) * (s IDencode_mcu_AC_refine_k)
-                      + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k))
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 49%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 50%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 51%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 52%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 53%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 54%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 55%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 56%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 57%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 58%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 59%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 60%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 61%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 62%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 63%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 64%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 65%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 66%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 67%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 68%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 69%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 70%positive => ((33 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 71%positive => ((33 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 72%positive => ((33 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 73%positive => ((33 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 74%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 75%positive => ((17 # 16) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 76%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 77%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0((s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 78%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 79%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 80%positive => ((1 # 1) + (1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 81%positive => ((1 # 16) * (s IDencode_mcu_AC_refine_r)
-                      + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_k)))%Q
-    | 82%positive => ((17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                       - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 83%positive => ((17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                       - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 84%positive => ((17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                       - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k))
-                      + max0((s IDencode_mcu_AC_refine_z)))%Q
-    | 85%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 86%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 87%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 88%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 89%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 90%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 91%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 92%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 93%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 94%positive => ((s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 95%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0((s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 96%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0((s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 97%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0((s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 98%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0((s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 99%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                      + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                         - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                      + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                             - (s IDencode_mcu_AC_refine_k)))%Q
-    | 100%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                       + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                          - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                       + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                              - (s IDencode_mcu_AC_refine_k)))%Q
-    | 101%positive => ((1 # 1) + (s IDencode_mcu_AC_refine_z)
-                       + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                          - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                       + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                              - (s IDencode_mcu_AC_refine_k)))%Q
-    | 102%positive => ((s IDencode_mcu_AC_refine_z)
-                       + (17 # 16) * max0(1 + (s IDencode_mcu_AC_refine_Se)
-                                          - (s IDencode_mcu_AC_refine_cinfo_dref_off404))
-                       + max0(1 + (s IDencode_mcu_AC_refine_Se)
-                              - (s IDencode_mcu_AC_refine_k)))%Q
-    | _ => (0 # 1)%Q
+  | P_encode_mcu_AC_refine =>
+    [mkPA Q (fun n z s => ai_encode_mcu_AC_refine n s /\ annot0_encode_mcu_AC_refine n z s)]
   end.
 
-Definition encode_mcu_AC_refine_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDencode_mcu_AC_refine_z)) (0))) (F_max0_ge_0 ((s IDencode_mcu_AC_refine_z)))]
-    | 17%positive => []
-    | 18%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (1
-                                                             + (s IDencode_mcu_AC_refine_Se)
-                                                             - (s IDencode_mcu_AC_refine_k)) ((s IDencode_mcu_AC_refine_Se)
-                                                                    - (s IDencode_mcu_AC_refine_k)));
-                      (*-1 0*) F_max0_ge_0 ((s IDencode_mcu_AC_refine_Se)
-                                            - (s IDencode_mcu_AC_refine_k))]
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDencode_mcu_AC_refine_z))) (F_check_ge ((s IDencode_mcu_AC_refine_z)) (0))]
-    | 24%positive => []
-    | 25%positive => [(*0 1.0625*) F_max0_monotonic (F_check_ge (1
-                                                                 + (s IDencode_mcu_AC_refine_Se)
-                                                                 - (s IDencode_mcu_AC_refine_k)) ((s IDencode_mcu_AC_refine_Se)
-                                                                    - (s IDencode_mcu_AC_refine_k)))]
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => [(*-1.0625 0*) F_max0_ge_0 ((s IDencode_mcu_AC_refine_Se)
-                                                 - (s IDencode_mcu_AC_refine_k))]
-    | 30%positive => [(*-1.0625 0*) F_max0_ge_0 ((s IDencode_mcu_AC_refine_Se)
-                                                 - (s IDencode_mcu_AC_refine_k))]
-    | 31%positive => [(*-1.0625 0*) F_max0_ge_0 ((s IDencode_mcu_AC_refine_Se)
-                                                 - (s IDencode_mcu_AC_refine_k))]
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => [(*-0.0625 0*) F_max0_monotonic (F_check_ge ((s IDencode_mcu_AC_refine_r)) (-16
-                                                                    + (s IDencode_mcu_AC_refine_r)));
-                      (*-0.0625 0*) F_max0_ge_0 (-16
-                                                 + (s IDencode_mcu_AC_refine_r));
-                      (*-0.0625 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDencode_mcu_AC_refine_r)) (0))) (F_max0_ge_0 ((s IDencode_mcu_AC_refine_r)))]
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => [(*-0.0625 0*) F_max0_monotonic (F_check_ge ((s IDencode_mcu_AC_refine_r)) (-16
-                                                                    + (s IDencode_mcu_AC_refine_r)));
-                      (*-0.0625 0*) F_max0_ge_0 (-16
-                                                 + (s IDencode_mcu_AC_refine_r));
-                      (*-0.0625 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDencode_mcu_AC_refine_r)) (0))) (F_max0_ge_0 ((s IDencode_mcu_AC_refine_r)))]
-    | 45%positive => []
-    | 46%positive => [(*-1.0625 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDencode_mcu_AC_refine_Se)
-                                                                    - (s IDencode_mcu_AC_refine_k)) (0))) (F_max0_ge_0 ((s IDencode_mcu_AC_refine_Se)
-                                                                    - (s IDencode_mcu_AC_refine_k)))]
-    | 47%positive => []
-    | 48%positive => [(*-1.0625 0*) F_binom_monotonic 1 (F_max0_ge_arg (1
-                                                                    + (s IDencode_mcu_AC_refine_Se)
-                                                                    - (s IDencode_mcu_AC_refine_k))) (F_check_ge (1
-                                                                    + (s IDencode_mcu_AC_refine_Se)
-                                                                    - (s IDencode_mcu_AC_refine_k)) (0))]
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => [(*-0.0625 0*) F_one]
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => [(*-0.0625 0*) F_one]
-    | 59%positive => []
-    | 60%positive => [(*-0.0625 0*) F_max0_monotonic (F_check_ge ((s IDencode_mcu_AC_refine_r)) (-16
-                                                                    + (s IDencode_mcu_AC_refine_r)));
-                      (*-0.0625 0*) F_max0_ge_0 (-16
-                                                 + (s IDencode_mcu_AC_refine_r));
-                      (*-0.0625 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDencode_mcu_AC_refine_r)) (0))) (F_max0_ge_0 ((s IDencode_mcu_AC_refine_r)))]
-    | 61%positive => []
-    | 62%positive => []
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => []
-    | 66%positive => []
-    | 67%positive => []
-    | 68%positive => []
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => []
-    | 72%positive => []
-    | 73%positive => []
-    | 74%positive => []
-    | 75%positive => []
-    | 76%positive => []
-    | 77%positive => []
-    | 78%positive => []
-    | 79%positive => []
-    | 80%positive => []
-    | 81%positive => []
-    | 82%positive => []
-    | 83%positive => []
-    | 84%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDencode_mcu_AC_refine_z))) (F_check_ge ((s IDencode_mcu_AC_refine_z)) (0))]
-    | 85%positive => []
-    | 86%positive => []
-    | 87%positive => []
-    | 88%positive => []
-    | 89%positive => []
-    | 90%positive => []
-    | 91%positive => []
-    | 92%positive => []
-    | 93%positive => [(*0 1*) F_max0_pre_decrement (1
-                                                    + (s IDencode_mcu_AC_refine_Se)
-                                                    - (s IDencode_mcu_AC_refine_k)) (1)]
-    | 94%positive => [(*-1 0*) F_max0_pre_decrement (1
-                                                     + (s IDencode_mcu_AC_refine_Se)
-                                                     - (s IDencode_mcu_AC_refine_k)) (1)]
-    | 95%positive => []
-    | 96%positive => []
-    | 97%positive => []
-    | 98%positive => []
-    | 99%positive => []
-    | 100%positive => []
-    | 101%positive => []
-    | 102%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDencode_mcu_AC_refine_z)) (0))) (F_max0_ge_0 ((s IDencode_mcu_AC_refine_z)))]
-    | _ => []
-  end.
-
-
-Theorem encode_mcu_AC_refine_ai_correct:
-  forall s p' s', steps (g_start encode_mcu_AC_refine) s (g_edges encode_mcu_AC_refine) p' s' -> encode_mcu_AC_refine_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem encode_mcu_AC_refine_pot_correct:
-  forall s p' s',
-    steps (g_start encode_mcu_AC_refine) s (g_edges encode_mcu_AC_refine) p' s' ->
-    (encode_mcu_AC_refine_pot (g_start encode_mcu_AC_refine) s >= encode_mcu_AC_refine_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_encode_mcu_AC_refine (proc_start P_encode_mcu_AC_refine) s1 (proc_end P_encode_mcu_AC_refine) s2 ->
+    (s2 V_encode_mcu_AC_refine_z <= (33 # 16) * max0(1
+                                                     - s1 V_encode_mcu_AC_refine_cinfo_dref_off404
+                                                     + s1 V_encode_mcu_AC_refine_cinfo_dref_off408))%Q.
 Proof.
-  check_lp encode_mcu_AC_refine_ai_correct encode_mcu_AC_refine_hints.
+  prove_bound ipa admissible_ipa P_encode_mcu_AC_refine.
 Qed.
-

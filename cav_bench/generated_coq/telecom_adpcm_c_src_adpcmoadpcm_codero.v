@@ -1,555 +1,395 @@
 Require Import pasta.Pasta.
 
-Notation IDadpcm_coder_z := 1%positive.
-Notation IDadpcm_coder__tmp := 2%positive.
-Notation IDadpcm_coder_bufferstep := 3%positive.
-Notation IDadpcm_coder_delta := 4%positive.
-Notation IDadpcm_coder_diff := 5%positive.
-Notation IDadpcm_coder_index := 6%positive.
-Notation IDadpcm_coder_outputbuffer := 7%positive.
-Notation IDadpcm_coder_sign := 8%positive.
-Notation IDadpcm_coder_state_dref_off0 := 9%positive.
-Notation IDadpcm_coder_state_dref_off2 := 10%positive.
-Notation IDadpcm_coder_step := 11%positive.
-Notation IDadpcm_coder_val := 12%positive.
-Notation IDadpcm_coder_valpred := 13%positive.
-Notation IDadpcm_coder_vpdiff := 14%positive.
-Notation IDadpcm_coder_indata := 15%positive.
-Notation IDadpcm_coder_len := 16%positive.
-Notation IDadpcm_coder_outdata := 17%positive.
-Notation IDadpcm_coder_state := 18%positive.
-Definition adpcm_coder : graph := {|
-  g_start := 1%positive;
-  g_end := 19%positive;
-  g_edges := (1%positive,(AAssign IDadpcm_coder_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDadpcm_coder__tmp
-             (Some (EVar IDadpcm_coder_len))),3%positive)::
-             (3%positive,(AAssign IDadpcm_coder_outputbuffer
-             (Some (ENum (0)))),4%positive)::
-             (4%positive,(AAssign IDadpcm_coder_valpred
-             (Some (EVar IDadpcm_coder_state_dref_off0))),5%positive)::
-             (5%positive,(AAssign IDadpcm_coder_index
-             (Some (EVar IDadpcm_coder_state_dref_off2))),6%positive)::
-             (6%positive,(AAssign IDadpcm_coder_step None),7%positive)::
-             (7%positive,(AAssign IDadpcm_coder_bufferstep
-             (Some (ENum (1)))),8%positive)::(8%positive,ANone,9%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder__tmp)
-             s) > (eval (ENum (0)) s))%Z)),20%positive)::
-             (10%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder__tmp)
-             s) <= (eval (ENum (0)) s))%Z)),11%positive)::
-             (11%positive,AWeaken,12%positive)::
-             (12%positive,(AGuard
-             (fun s => ((eval (EVar IDadpcm_coder_bufferstep) s) <>
-             (eval (ENum (0)) s))%Z)),15%positive)::
-             (12%positive,(AGuard
-             (fun s => ((eval (EVar IDadpcm_coder_bufferstep) s) =
-             (eval (ENum (0)) s))%Z)),13%positive)::
-             (13%positive,AWeaken,14%positive)::
-             (14%positive,ANone,16%positive)::
-             (15%positive,AWeaken,16%positive)::
-             (16%positive,(AAssign IDadpcm_coder_state_dref_off0
-             (Some (EVar IDadpcm_coder_valpred))),17%positive)::
-             (17%positive,(AAssign IDadpcm_coder_state_dref_off2
-             (Some (EVar IDadpcm_coder_index))),18%positive)::
-             (18%positive,AWeaken,19%positive)::
-             (20%positive,AWeaken,21%positive)::
-             (21%positive,(AAssign IDadpcm_coder_val None),22%positive)::
-             (22%positive,(AAssign IDadpcm_coder_diff
-             (Some (ESub (EVar IDadpcm_coder_val)
-             (EVar IDadpcm_coder_valpred)))),23%positive)::
-             (23%positive,(AAssign IDadpcm_coder_sign None),24%positive)::
-             (24%positive,AWeaken,25%positive)::
-             (25%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_sign)
-             s) <> (eval (ENum (0)) s))%Z)),27%positive)::
-             (25%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_sign)
-             s) = (eval (ENum (0)) s))%Z)),26%positive)::
-             (26%positive,AWeaken,30%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,(AAssign IDadpcm_coder_diff (Some (ESub (ENum (0))
-             (EVar IDadpcm_coder_diff)))),29%positive)::
-             (29%positive,ANone,30%positive)::
-             (30%positive,(AAssign IDadpcm_coder_delta (Some (ENum (0)))),
-             31%positive)::
-             (31%positive,(AAssign IDadpcm_coder_vpdiff None),32%positive)::
-             (32%positive,AWeaken,33%positive)::
-             (33%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_diff)
-             s) >= (eval (EVar IDadpcm_coder_step) s))%Z)),35%positive)::
-             (33%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_diff)
-             s) < (eval (EVar IDadpcm_coder_step) s))%Z)),34%positive)::
-             (34%positive,AWeaken,40%positive)::
-             (35%positive,AWeaken,36%positive)::
-             (36%positive,(AAssign IDadpcm_coder_delta (Some (ENum (4)))),
-             37%positive)::
-             (37%positive,(AAssign IDadpcm_coder_diff
-             (Some (ESub (EVar IDadpcm_coder_diff)
-             (EVar IDadpcm_coder_step)))),38%positive)::
-             (38%positive,(AAssign IDadpcm_coder_vpdiff
-             (Some (EAdd (EVar IDadpcm_coder_vpdiff)
-             (EVar IDadpcm_coder_step)))),39%positive)::
-             (39%positive,ANone,40%positive)::
-             (40%positive,(AAssign IDadpcm_coder_step None),41%positive)::
-             (41%positive,AWeaken,42%positive)::
-             (42%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_diff)
-             s) >= (eval (EVar IDadpcm_coder_step) s))%Z)),44%positive)::
-             (42%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_diff)
-             s) < (eval (EVar IDadpcm_coder_step) s))%Z)),43%positive)::
-             (43%positive,AWeaken,49%positive)::
-             (44%positive,AWeaken,45%positive)::
-             (45%positive,(AAssign IDadpcm_coder_delta None),46%positive)::
-             (46%positive,(AAssign IDadpcm_coder_diff
-             (Some (ESub (EVar IDadpcm_coder_diff)
-             (EVar IDadpcm_coder_step)))),47%positive)::
-             (47%positive,(AAssign IDadpcm_coder_vpdiff
-             (Some (EAdd (EVar IDadpcm_coder_vpdiff)
-             (EVar IDadpcm_coder_step)))),48%positive)::
-             (48%positive,ANone,49%positive)::
-             (49%positive,(AAssign IDadpcm_coder_step None),50%positive)::
-             (50%positive,AWeaken,51%positive)::
-             (51%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_diff)
-             s) >= (eval (EVar IDadpcm_coder_step) s))%Z)),53%positive)::
-             (51%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_diff)
-             s) < (eval (EVar IDadpcm_coder_step) s))%Z)),52%positive)::
-             (52%positive,AWeaken,58%positive)::
-             (53%positive,AWeaken,54%positive)::
-             (54%positive,(AAssign IDadpcm_coder_delta None),55%positive)::
-             (55%positive,(AAssign IDadpcm_coder_vpdiff
-             (Some (EAdd (EVar IDadpcm_coder_vpdiff)
-             (EVar IDadpcm_coder_step)))),56%positive)::
-             (56%positive,ANone,57%positive)::
-             (57%positive,AWeaken,58%positive)::
-             (58%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_sign)
-             s) <> (eval (ENum (0)) s))%Z)),63%positive)::
-             (58%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_sign)
-             s) = (eval (ENum (0)) s))%Z)),59%positive)::
-             (59%positive,AWeaken,60%positive)::
-             (60%positive,(AAssign IDadpcm_coder_valpred
-             (Some (EAdd (EVar IDadpcm_coder_valpred)
-             (EVar IDadpcm_coder_vpdiff)))),61%positive)::
-             (61%positive,ANone,62%positive)::
-             (62%positive,AWeaken,67%positive)::
-             (63%positive,AWeaken,64%positive)::
-             (64%positive,(AAssign IDadpcm_coder_valpred
-             (Some (ESub (EVar IDadpcm_coder_valpred)
-             (EVar IDadpcm_coder_vpdiff)))),65%positive)::
-             (65%positive,ANone,66%positive)::
-             (66%positive,AWeaken,67%positive)::
-             (67%positive,ANone,73%positive)::
-             (67%positive,ANone,68%positive)::
-             (68%positive,AWeaken,69%positive)::
-             (69%positive,ANone,70%positive)::
-             (69%positive,ANone,72%positive)::
-             (70%positive,(AAssign IDadpcm_coder_valpred None),71%positive)::
-             (71%positive,ANone,72%positive)::
-             (72%positive,ANone,75%positive)::
-             (73%positive,(AAssign IDadpcm_coder_valpred None),74%positive)::
-             (74%positive,ANone,75%positive)::
-             (75%positive,(AAssign IDadpcm_coder_delta None),76%positive)::
-             (76%positive,(AAssign IDadpcm_coder_index None),77%positive)::
-             (77%positive,AWeaken,78%positive)::
-             (78%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_index)
-             s) < (eval (ENum (0)) s))%Z)),80%positive)::
-             (78%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_index)
-             s) >= (eval (ENum (0)) s))%Z)),79%positive)::
-             (79%positive,AWeaken,84%positive)::
-             (80%positive,AWeaken,81%positive)::
-             (81%positive,(AAssign IDadpcm_coder_index (Some (ENum (0)))),
-             82%positive)::(82%positive,ANone,83%positive)::
-             (83%positive,AWeaken,84%positive)::
-             (84%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_index)
-             s) > (eval (ENum (88)) s))%Z)),86%positive)::
-             (84%positive,(AGuard (fun s => ((eval (EVar IDadpcm_coder_index)
-             s) <= (eval (ENum (88)) s))%Z)),85%positive)::
-             (85%positive,AWeaken,89%positive)::
-             (86%positive,AWeaken,87%positive)::
-             (87%positive,(AAssign IDadpcm_coder_index (Some (ENum (88)))),
-             88%positive)::(88%positive,ANone,89%positive)::
-             (89%positive,(AAssign IDadpcm_coder_step None),90%positive)::
-             (90%positive,AWeaken,91%positive)::
-             (91%positive,(AGuard
-             (fun s => ((eval (EVar IDadpcm_coder_bufferstep) s) <>
-             (eval (ENum (0)) s))%Z)),94%positive)::
-             (91%positive,(AGuard
-             (fun s => ((eval (EVar IDadpcm_coder_bufferstep) s) =
-             (eval (ENum (0)) s))%Z)),92%positive)::
-             (92%positive,AWeaken,93%positive)::
-             (93%positive,ANone,97%positive)::
-             (94%positive,AWeaken,95%positive)::
-             (95%positive,(AAssign IDadpcm_coder_outputbuffer None),
-             96%positive)::(96%positive,ANone,97%positive)::
-             (97%positive,(AAssign IDadpcm_coder_bufferstep None),
-             98%positive)::(98%positive,ANone,99%positive)::
-             (99%positive,(AAssign IDadpcm_coder__tmp
-             (Some (EAdd (EVar IDadpcm_coder__tmp) (ENum (-1))))),
-             100%positive)::(100%positive,ANone,101%positive)::
-             (101%positive,ANone,102%positive)::
-             (102%positive,(AAssign IDadpcm_coder_z (Some (EAdd (ENum (1))
-             (EVar IDadpcm_coder_z)))),103%positive)::
-             (103%positive,AWeaken,10%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_adpcm_coder.
 
-Definition adpcm_coder_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 4%positive => (1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ -1 * (s IDadpcm_coder_outputbuffer) <= 0)%Z
-    | 5%positive => (-1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ 1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 6%positive => (1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ -1 * (s IDadpcm_coder_outputbuffer) <= 0)%Z
-    | 7%positive => (-1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ 1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 8%positive => (1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ -1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ 1 * (s IDadpcm_coder_bufferstep) + -1 <= 0 /\ -1 * (s IDadpcm_coder_bufferstep) + 1 <= 0)%Z
-    | 9%positive => (-1 * (s IDadpcm_coder_bufferstep) + 1 <= 0 /\ 1 * (s IDadpcm_coder_bufferstep) + -1 <= 0 /\ -1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ 1 * (s IDadpcm_coder_outputbuffer) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 10%positive => (-1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder__tmp) <= 0)%Z
-    | 12%positive => (1 * (s IDadpcm_coder__tmp) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder__tmp) <= 0 /\ 1 * (s IDadpcm_coder_bufferstep) <= 0 /\ -1 * (s IDadpcm_coder_bufferstep) <= 0)%Z
-    | 14%positive => (-1 * (s IDadpcm_coder_bufferstep) <= 0 /\ 1 * (s IDadpcm_coder_bufferstep) <= 0 /\ 1 * (s IDadpcm_coder__tmp) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 15%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder__tmp) <= 0)%Z
-    | 16%positive => (1 * (s IDadpcm_coder__tmp) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 17%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder__tmp) <= 0)%Z
-    | 18%positive => (1 * (s IDadpcm_coder__tmp) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 19%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder__tmp) <= 0)%Z
-    | 20%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 21%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 22%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 23%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 24%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 25%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 26%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ 1 * (s IDadpcm_coder_sign) <= 0 /\ -1 * (s IDadpcm_coder_sign) <= 0)%Z
-    | 27%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 28%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 29%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 30%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 31%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ 1 * (s IDadpcm_coder_delta) <= 0 /\ -1 * (s IDadpcm_coder_delta) <= 0)%Z
-    | 32%positive => (-1 * (s IDadpcm_coder_delta) <= 0 /\ 1 * (s IDadpcm_coder_delta) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 33%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ 1 * (s IDadpcm_coder_delta) <= 0 /\ -1 * (s IDadpcm_coder_delta) <= 0)%Z
-    | 34%positive => (-1 * (s IDadpcm_coder_delta) <= 0 /\ 1 * (s IDadpcm_coder_delta) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_diff)+ -1 * (s IDadpcm_coder_step) + 1 <= 0)%Z
-    | 35%positive => (-1 * (s IDadpcm_coder_delta) <= 0 /\ 1 * (s IDadpcm_coder_delta) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0)%Z
-    | 36%positive => (-1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ 1 * (s IDadpcm_coder_delta) <= 0 /\ -1 * (s IDadpcm_coder_delta) <= 0)%Z
-    | 37%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_delta) + 4 <= 0)%Z
-    | 38%positive => (-1 * (s IDadpcm_coder_delta) + 4 <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_diff) <= 0)%Z
-    | 39%positive => (-1 * (s IDadpcm_coder_diff) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_delta) + 4 <= 0)%Z
-    | 40%positive => (-1 * (s IDadpcm_coder_delta) <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 41%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_delta) <= 0)%Z
-    | 42%positive => (-1 * (s IDadpcm_coder_delta) <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 43%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_delta) <= 0 /\ 1 * (s IDadpcm_coder_diff)+ -1 * (s IDadpcm_coder_step) + 1 <= 0)%Z
-    | 44%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_delta) <= 0 /\ -1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0)%Z
-    | 45%positive => (-1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0 /\ -1 * (s IDadpcm_coder_delta) <= 0 /\ 1 * (s IDadpcm_coder_delta) + -4 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 46%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0)%Z
-    | 47%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_diff) <= 0)%Z
-    | 48%positive => (-1 * (s IDadpcm_coder_diff) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 49%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 50%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 51%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 52%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_diff)+ -1 * (s IDadpcm_coder_step) + 1 <= 0)%Z
-    | 53%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0)%Z
-    | 54%positive => (-1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 55%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0)%Z
-    | 56%positive => (-1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 57%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_diff)+ 1 * (s IDadpcm_coder_step) <= 0)%Z
-    | 58%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 59%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_sign) <= 0 /\ -1 * (s IDadpcm_coder_sign) <= 0)%Z
-    | 60%positive => (-1 * (s IDadpcm_coder_sign) <= 0 /\ 1 * (s IDadpcm_coder_sign) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 61%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_sign) <= 0 /\ -1 * (s IDadpcm_coder_sign) <= 0)%Z
-    | 62%positive => (-1 * (s IDadpcm_coder_sign) <= 0 /\ 1 * (s IDadpcm_coder_sign) <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 63%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 64%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 65%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 66%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 67%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 68%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 69%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 70%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 71%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 72%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 73%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 74%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 75%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 76%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 77%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 78%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 79%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0)%Z
-    | 80%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ 1 * (s IDadpcm_coder_index) + 1 <= 0)%Z
-    | 81%positive => (1 * (s IDadpcm_coder_index) + 1 <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 82%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ 1 * (s IDadpcm_coder_index) <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0)%Z
-    | 83%positive => (-1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 84%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0)%Z
-    | 85%positive => (-1 * (s IDadpcm_coder_index) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0)%Z
-    | 86%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder_index) + 89 <= 0)%Z
-    | 87%positive => (-1 * (s IDadpcm_coder_index) + 89 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 88%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_index) + 88 <= 0)%Z
-    | 89%positive => (-1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 90%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0)%Z
-    | 91%positive => (-1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 92%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_bufferstep) <= 0 /\ -1 * (s IDadpcm_coder_bufferstep) <= 0)%Z
-    | 93%positive => (-1 * (s IDadpcm_coder_bufferstep) <= 0 /\ 1 * (s IDadpcm_coder_bufferstep) <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 94%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0)%Z
-    | 95%positive => (-1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 96%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0)%Z
-    | 97%positive => (-1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 98%positive => (-1 * (s IDadpcm_coder__tmp) + 1 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0)%Z
-    | 99%positive => (-1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0 /\ -1 * (s IDadpcm_coder__tmp) + 1 <= 0)%Z
-    | 100%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0 /\ -1 * (s IDadpcm_coder__tmp) <= 0)%Z
-    | 101%positive => (-1 * (s IDadpcm_coder__tmp) <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_z) <= 0)%Z
-    | 102%positive => (-1 * (s IDadpcm_coder_z) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0 /\ -1 * (s IDadpcm_coder__tmp) <= 0)%Z
-    | 103%positive => (-1 * (s IDadpcm_coder__tmp) <= 0 /\ -1 * (s IDadpcm_coder_index) <= 0 /\ 1 * (s IDadpcm_coder_index) + -88 <= 0 /\ -1 * (s IDadpcm_coder_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition adpcm_coder_pot (p : node) (s : state): Q := 
+Notation V_adpcm_coder_z := 1%positive.
+Notation V_adpcm_coder__tmp := 2%positive.
+Notation V_adpcm_coder_bufferstep := 3%positive.
+Notation V_adpcm_coder_delta := 4%positive.
+Notation V_adpcm_coder_diff := 5%positive.
+Notation V_adpcm_coder_index := 6%positive.
+Notation V_adpcm_coder_outputbuffer := 7%positive.
+Notation V_adpcm_coder_sign := 8%positive.
+Notation V_adpcm_coder_state_dref_off0 := 9%positive.
+Notation V_adpcm_coder_state_dref_off2 := 10%positive.
+Notation V_adpcm_coder_step := 11%positive.
+Notation V_adpcm_coder_val := 12%positive.
+Notation V_adpcm_coder_valpred := 13%positive.
+Notation V_adpcm_coder_vpdiff := 14%positive.
+Notation V_adpcm_coder_indata := 15%positive.
+Notation V_adpcm_coder_len := 16%positive.
+Notation V_adpcm_coder_outdata := 17%positive.
+Notation V_adpcm_coder_state := 18%positive.
+Definition Pedges_adpcm_coder: list (edge proc) :=
+  (EA 1 (AAssign V_adpcm_coder_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_adpcm_coder__tmp (Some (EVar V_adpcm_coder_len))) 3)::(EA 3 (AAssign
+  V_adpcm_coder_outputbuffer (Some (ENum (0)))) 4)::(EA 4 (AAssign
+  V_adpcm_coder_valpred (Some (EVar V_adpcm_coder_state_dref_off0))) 5)::
+  (EA 5 (AAssign V_adpcm_coder_index
+  (Some (EVar V_adpcm_coder_state_dref_off2))) 6)::(EA 6 (AAssign
+  V_adpcm_coder_step None) 7)::(EA 7 (AAssign V_adpcm_coder_bufferstep
+  (Some (ENum (1)))) 8)::(EA 8 ANone 9)::(EA 9 AWeaken 10)::(EA 10 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder__tmp) s) > (eval (ENum (0))
+  s))%Z)) 20)::(EA 10 (AGuard (fun s => ((eval (EVar V_adpcm_coder__tmp)
+  s) <= (eval (ENum (0)) s))%Z)) 11)::(EA 11 AWeaken 12)::(EA 12 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_bufferstep) s) <> (eval (ENum (0))
+  s))%Z)) 15)::(EA 12 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_bufferstep) s) = (eval (ENum (0))
+  s))%Z)) 13)::(EA 13 AWeaken 14)::(EA 14 ANone 16)::(EA 15 AWeaken 16)::
+  (EA 16 (AAssign V_adpcm_coder_state_dref_off0
+  (Some (EVar V_adpcm_coder_valpred))) 17)::(EA 17 (AAssign
+  V_adpcm_coder_state_dref_off2 (Some (EVar V_adpcm_coder_index))) 18)::
+  (EA 18 AWeaken 19)::(EA 20 AWeaken 21)::(EA 21 (AAssign V_adpcm_coder_val
+  None) 22)::(EA 22 (AAssign V_adpcm_coder_diff
+  (Some (ESub (EVar V_adpcm_coder_val) (EVar V_adpcm_coder_valpred)))) 23)::
+  (EA 23 (AAssign V_adpcm_coder_sign None) 24)::(EA 24 AWeaken 25)::
+  (EA 25 (AGuard (fun s => ((eval (EVar V_adpcm_coder_sign) s) <>
+  (eval (ENum (0)) s))%Z)) 27)::(EA 25 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_sign) s) = (eval (ENum (0))
+  s))%Z)) 26)::(EA 26 AWeaken 30)::(EA 27 AWeaken 28)::(EA 28 (AAssign
+  V_adpcm_coder_diff (Some (ESub (ENum (0))
+  (EVar V_adpcm_coder_diff)))) 29)::(EA 29 ANone 30)::(EA 30 (AAssign
+  V_adpcm_coder_delta (Some (ENum (0)))) 31)::(EA 31 (AAssign
+  V_adpcm_coder_vpdiff None) 32)::(EA 32 AWeaken 33)::(EA 33 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_diff) s) >=
+  (eval (EVar V_adpcm_coder_step) s))%Z)) 35)::(EA 33 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_diff) s) <
+  (eval (EVar V_adpcm_coder_step) s))%Z)) 34)::(EA 34 AWeaken 40)::
+  (EA 35 AWeaken 36)::(EA 36 (AAssign V_adpcm_coder_delta
+  (Some (ENum (4)))) 37)::(EA 37 (AAssign V_adpcm_coder_diff
+  (Some (ESub (EVar V_adpcm_coder_diff) (EVar V_adpcm_coder_step)))) 38)::
+  (EA 38 (AAssign V_adpcm_coder_vpdiff
+  (Some (EAdd (EVar V_adpcm_coder_vpdiff) (EVar V_adpcm_coder_step)))) 39)::
+  (EA 39 ANone 40)::(EA 40 (AAssign V_adpcm_coder_step None) 41)::
+  (EA 41 AWeaken 42)::(EA 42 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_diff) s) >=
+  (eval (EVar V_adpcm_coder_step) s))%Z)) 44)::(EA 42 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_diff) s) <
+  (eval (EVar V_adpcm_coder_step) s))%Z)) 43)::(EA 43 AWeaken 49)::
+  (EA 44 AWeaken 45)::(EA 45 (AAssign V_adpcm_coder_delta None) 46)::
+  (EA 46 (AAssign V_adpcm_coder_diff (Some (ESub (EVar V_adpcm_coder_diff)
+  (EVar V_adpcm_coder_step)))) 47)::(EA 47 (AAssign V_adpcm_coder_vpdiff
+  (Some (EAdd (EVar V_adpcm_coder_vpdiff) (EVar V_adpcm_coder_step)))) 48)::
+  (EA 48 ANone 49)::(EA 49 (AAssign V_adpcm_coder_step None) 50)::
+  (EA 50 AWeaken 51)::(EA 51 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_diff) s) >=
+  (eval (EVar V_adpcm_coder_step) s))%Z)) 53)::(EA 51 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_diff) s) <
+  (eval (EVar V_adpcm_coder_step) s))%Z)) 52)::(EA 52 AWeaken 58)::
+  (EA 53 AWeaken 54)::(EA 54 (AAssign V_adpcm_coder_delta None) 55)::
+  (EA 55 (AAssign V_adpcm_coder_vpdiff
+  (Some (EAdd (EVar V_adpcm_coder_vpdiff) (EVar V_adpcm_coder_step)))) 56)::
+  (EA 56 ANone 57)::(EA 57 AWeaken 58)::(EA 58 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_sign) s) <> (eval (ENum (0))
+  s))%Z)) 63)::(EA 58 (AGuard (fun s => ((eval (EVar V_adpcm_coder_sign) s) =
+  (eval (ENum (0)) s))%Z)) 59)::(EA 59 AWeaken 60)::(EA 60 (AAssign
+  V_adpcm_coder_valpred (Some (EAdd (EVar V_adpcm_coder_valpred)
+  (EVar V_adpcm_coder_vpdiff)))) 61)::(EA 61 ANone 62)::(EA 62 AWeaken 67)::
+  (EA 63 AWeaken 64)::(EA 64 (AAssign V_adpcm_coder_valpred
+  (Some (ESub (EVar V_adpcm_coder_valpred)
+  (EVar V_adpcm_coder_vpdiff)))) 65)::(EA 65 ANone 66)::(EA 66 AWeaken 67)::
+  (EA 67 ANone 73)::(EA 67 ANone 68)::(EA 68 AWeaken 69)::(EA 69 ANone 70)::
+  (EA 69 ANone 72)::(EA 70 (AAssign V_adpcm_coder_valpred None) 71)::
+  (EA 71 ANone 72)::(EA 72 ANone 75)::(EA 73 (AAssign V_adpcm_coder_valpred
+  None) 74)::(EA 74 ANone 75)::(EA 75 (AAssign V_adpcm_coder_delta
+  None) 76)::(EA 76 (AAssign V_adpcm_coder_index None) 77)::
+  (EA 77 AWeaken 78)::(EA 78 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_index) s) < (eval (ENum (0))
+  s))%Z)) 80)::(EA 78 (AGuard (fun s => ((eval (EVar V_adpcm_coder_index)
+  s) >= (eval (ENum (0)) s))%Z)) 79)::(EA 79 AWeaken 84)::
+  (EA 80 AWeaken 81)::(EA 81 (AAssign V_adpcm_coder_index
+  (Some (ENum (0)))) 82)::(EA 82 ANone 83)::(EA 83 AWeaken 84)::
+  (EA 84 (AGuard (fun s => ((eval (EVar V_adpcm_coder_index) s) >
+  (eval (ENum (88)) s))%Z)) 86)::(EA 84 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_index) s) <= (eval (ENum (88))
+  s))%Z)) 85)::(EA 85 AWeaken 89)::(EA 86 AWeaken 87)::(EA 87 (AAssign
+  V_adpcm_coder_index (Some (ENum (88)))) 88)::(EA 88 ANone 89)::
+  (EA 89 (AAssign V_adpcm_coder_step None) 90)::(EA 90 AWeaken 91)::
+  (EA 91 (AGuard (fun s => ((eval (EVar V_adpcm_coder_bufferstep) s) <>
+  (eval (ENum (0)) s))%Z)) 94)::(EA 91 (AGuard
+  (fun s => ((eval (EVar V_adpcm_coder_bufferstep) s) = (eval (ENum (0))
+  s))%Z)) 92)::(EA 92 AWeaken 93)::(EA 93 ANone 97)::(EA 94 AWeaken 95)::
+  (EA 95 (AAssign V_adpcm_coder_outputbuffer None) 96)::(EA 96 ANone 97)::
+  (EA 97 (AAssign V_adpcm_coder_bufferstep None) 98)::(EA 98 ANone 99)::
+  (EA 99 (AAssign V_adpcm_coder__tmp (Some (EAdd (EVar V_adpcm_coder__tmp)
+  (ENum (-1))))) 100)::(EA 100 ANone 101)::(EA 101 ANone 102)::
+  (EA 102 (AAssign V_adpcm_coder_z (Some (EAdd (ENum (1))
+  (EVar V_adpcm_coder_z)))) 103)::(EA 103 AWeaken 10)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_adpcm_coder => Pedges_adpcm_coder
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_adpcm_coder => 19
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_adpcm_coder (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 3 => (-1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_z <= 0)%Z
+   | 4 => (1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_outputbuffer <= 0 /\ -1 * s V_adpcm_coder_outputbuffer <= 0)%Z
+   | 5 => (-1 * s V_adpcm_coder_outputbuffer <= 0 /\ 1 * s V_adpcm_coder_outputbuffer <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_z <= 0)%Z
+   | 6 => (1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_outputbuffer <= 0 /\ -1 * s V_adpcm_coder_outputbuffer <= 0)%Z
+   | 7 => (-1 * s V_adpcm_coder_outputbuffer <= 0 /\ 1 * s V_adpcm_coder_outputbuffer <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_z <= 0)%Z
+   | 8 => (1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_outputbuffer <= 0 /\ -1 * s V_adpcm_coder_outputbuffer <= 0 /\ 1 * s V_adpcm_coder_bufferstep + -1 <= 0 /\ -1 * s V_adpcm_coder_bufferstep + 1 <= 0)%Z
+   | 9 => (-1 * s V_adpcm_coder_bufferstep + 1 <= 0 /\ 1 * s V_adpcm_coder_bufferstep + -1 <= 0 /\ -1 * s V_adpcm_coder_outputbuffer <= 0 /\ 1 * s V_adpcm_coder_outputbuffer <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_z <= 0)%Z
+   | 10 => (-1 * s V_adpcm_coder_z <= 0)%Z
+   | 11 => (-1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder__tmp <= 0)%Z
+   | 12 => (1 * s V_adpcm_coder__tmp <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 13 => (-1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder__tmp <= 0 /\ 1 * s V_adpcm_coder_bufferstep <= 0 /\ -1 * s V_adpcm_coder_bufferstep <= 0)%Z
+   | 14 => (-1 * s V_adpcm_coder_bufferstep <= 0 /\ 1 * s V_adpcm_coder_bufferstep <= 0 /\ 1 * s V_adpcm_coder__tmp <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 15 => (-1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder__tmp <= 0)%Z
+   | 16 => (1 * s V_adpcm_coder__tmp <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 17 => (-1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder__tmp <= 0)%Z
+   | 18 => (1 * s V_adpcm_coder__tmp <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 19 => (-1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder__tmp <= 0)%Z
+   | 20 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 21 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 22 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 23 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 24 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 25 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 26 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ 1 * s V_adpcm_coder_sign <= 0 /\ -1 * s V_adpcm_coder_sign <= 0)%Z
+   | 27 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 28 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 29 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 30 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 31 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ 1 * s V_adpcm_coder_delta <= 0 /\ -1 * s V_adpcm_coder_delta <= 0)%Z
+   | 32 => (-1 * s V_adpcm_coder_delta <= 0 /\ 1 * s V_adpcm_coder_delta <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 33 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ 1 * s V_adpcm_coder_delta <= 0 /\ -1 * s V_adpcm_coder_delta <= 0)%Z
+   | 34 => (-1 * s V_adpcm_coder_delta <= 0 /\ 1 * s V_adpcm_coder_delta <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_diff+ -1 * s V_adpcm_coder_step + 1 <= 0)%Z
+   | 35 => (-1 * s V_adpcm_coder_delta <= 0 /\ 1 * s V_adpcm_coder_delta <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0)%Z
+   | 36 => (-1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ 1 * s V_adpcm_coder_delta <= 0 /\ -1 * s V_adpcm_coder_delta <= 0)%Z
+   | 37 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_delta + 4 <= 0)%Z
+   | 38 => (-1 * s V_adpcm_coder_delta + 4 <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_diff <= 0)%Z
+   | 39 => (-1 * s V_adpcm_coder_diff <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_delta + 4 <= 0)%Z
+   | 40 => (-1 * s V_adpcm_coder_delta <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 41 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_delta <= 0)%Z
+   | 42 => (-1 * s V_adpcm_coder_delta <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 43 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_delta <= 0 /\ 1 * s V_adpcm_coder_diff+ -1 * s V_adpcm_coder_step + 1 <= 0)%Z
+   | 44 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_delta <= 0 /\ -1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0)%Z
+   | 45 => (-1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0 /\ -1 * s V_adpcm_coder_delta <= 0 /\ 1 * s V_adpcm_coder_delta + -4 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 46 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0)%Z
+   | 47 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_diff <= 0)%Z
+   | 48 => (-1 * s V_adpcm_coder_diff <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 49 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 50 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 51 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 52 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_diff+ -1 * s V_adpcm_coder_step + 1 <= 0)%Z
+   | 53 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0)%Z
+   | 54 => (-1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 55 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0)%Z
+   | 56 => (-1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 57 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_diff+ 1 * s V_adpcm_coder_step <= 0)%Z
+   | 58 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 59 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_sign <= 0 /\ -1 * s V_adpcm_coder_sign <= 0)%Z
+   | 60 => (-1 * s V_adpcm_coder_sign <= 0 /\ 1 * s V_adpcm_coder_sign <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 61 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_sign <= 0 /\ -1 * s V_adpcm_coder_sign <= 0)%Z
+   | 62 => (-1 * s V_adpcm_coder_sign <= 0 /\ 1 * s V_adpcm_coder_sign <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 63 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 64 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 65 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 66 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 67 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 68 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 69 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 70 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 71 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 72 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 73 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 74 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 75 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 76 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 77 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 78 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 79 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_index <= 0)%Z
+   | 80 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ 1 * s V_adpcm_coder_index + 1 <= 0)%Z
+   | 81 => (1 * s V_adpcm_coder_index + 1 <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 82 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ 1 * s V_adpcm_coder_index <= 0 /\ -1 * s V_adpcm_coder_index <= 0)%Z
+   | 83 => (-1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 84 => (-1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_index <= 0)%Z
+   | 85 => (-1 * s V_adpcm_coder_index <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0)%Z
+   | 86 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder_index + 89 <= 0)%Z
+   | 87 => (-1 * s V_adpcm_coder_index + 89 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 88 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_index + 88 <= 0)%Z
+   | 89 => (-1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 90 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_index <= 0)%Z
+   | 91 => (-1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 92 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_bufferstep <= 0 /\ -1 * s V_adpcm_coder_bufferstep <= 0)%Z
+   | 93 => (-1 * s V_adpcm_coder_bufferstep <= 0 /\ 1 * s V_adpcm_coder_bufferstep <= 0 /\ -1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 94 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_index <= 0)%Z
+   | 95 => (-1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 96 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_index <= 0)%Z
+   | 97 => (-1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 98 => (-1 * s V_adpcm_coder__tmp + 1 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_index <= 0)%Z
+   | 99 => (-1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_z <= 0 /\ -1 * s V_adpcm_coder__tmp + 1 <= 0)%Z
+   | 100 => (-1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_index <= 0 /\ -1 * s V_adpcm_coder__tmp <= 0)%Z
+   | 101 => (-1 * s V_adpcm_coder__tmp <= 0 /\ -1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_z <= 0)%Z
+   | 102 => (-1 * s V_adpcm_coder_z <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_index <= 0 /\ -1 * s V_adpcm_coder__tmp <= 0)%Z
+   | 103 => (-1 * s V_adpcm_coder__tmp <= 0 /\ -1 * s V_adpcm_coder_index <= 0 /\ 1 * s V_adpcm_coder_index + -88 <= 0 /\ -1 * s V_adpcm_coder_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_adpcm_coder (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_adpcm_coder_len) <= z)%Q
+   | 2 => (s V_adpcm_coder_z + max0(s V_adpcm_coder_len) <= z)%Q
+   | 3 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 4 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 5 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 6 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 7 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 8 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 9 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 10 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 11 => hints
+     [(*-1 0*) F_max0_ge_0 (-1 + s V_adpcm_coder__tmp)]
+     (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 12 => (s V_adpcm_coder_z - max0(-1 + s V_adpcm_coder__tmp)
+            + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 13 => hints
+     [(*0 1*) F_max0_monotonic (F_check_ge (s V_adpcm_coder__tmp) (-1
+                                                                   + 
+                                                                   s V_adpcm_coder__tmp))]
+     (s V_adpcm_coder_z - max0(-1 + s V_adpcm_coder__tmp)
+      + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 14 => (s V_adpcm_coder_z <= z)%Q
+   | 15 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (s V_adpcm_coder__tmp) (-1
+                                                                    + 
+                                                                    s V_adpcm_coder__tmp))]
+     (s V_adpcm_coder_z - max0(-1 + s V_adpcm_coder__tmp)
+      + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 16 => (s V_adpcm_coder_z <= z)%Q
+   | 17 => (s V_adpcm_coder_z <= z)%Q
+   | 18 => (s V_adpcm_coder_z <= z)%Q
+   | 19 => (s V_adpcm_coder_z <= z)%Q
+   | 20 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (s V_adpcm_coder__tmp)) (F_check_ge (s V_adpcm_coder__tmp) (0))]
+     (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 21 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 22 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 23 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 24 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 25 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 26 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 27 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 28 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 29 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 30 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 31 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 32 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 33 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 34 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 35 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 36 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 37 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 38 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 39 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 40 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 41 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 42 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 43 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 44 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 45 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 46 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 47 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 48 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 49 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 50 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 51 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 52 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 53 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 54 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 55 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 56 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 57 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 58 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 59 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 60 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 61 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 62 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 63 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 64 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 65 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 66 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 67 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 68 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 69 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 70 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 71 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 72 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 73 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 74 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 75 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 76 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 77 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 78 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 79 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 80 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 81 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 82 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 83 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 84 => (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 85 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_adpcm_coder__tmp) (1)]
+     (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 86 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_adpcm_coder__tmp) (1)]
+     (s V_adpcm_coder__tmp + s V_adpcm_coder_z <= z)%Q
+   | 87 => ((1 # 1) + s V_adpcm_coder__tmp + s V_adpcm_coder_z
+            + max0(-1 + s V_adpcm_coder__tmp) - max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 88 => ((1 # 1) + s V_adpcm_coder__tmp + s V_adpcm_coder_z
+            + max0(-1 + s V_adpcm_coder__tmp) - max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 89 => ((1 # 1) + s V_adpcm_coder__tmp + s V_adpcm_coder_z
+            + max0(-1 + s V_adpcm_coder__tmp) - max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 90 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_adpcm_coder__tmp) (0))) (F_max0_ge_0 (s V_adpcm_coder__tmp))]
+     ((1 # 1) + s V_adpcm_coder__tmp + s V_adpcm_coder_z
+      + max0(-1 + s V_adpcm_coder__tmp) - max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 91 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 92 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 93 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 94 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 95 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 96 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 97 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 98 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 99 => ((1 # 1) + s V_adpcm_coder_z + max0(-1 + s V_adpcm_coder__tmp) <= z)%Q
+   | 100 => ((1 # 1) + s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 101 => ((1 # 1) + s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 102 => ((1 # 1) + s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | 103 => (s V_adpcm_coder_z + max0(s V_adpcm_coder__tmp) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDadpcm_coder_len)))%Q
-    | 2%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder_len)))%Q
-    | 3%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 4%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 5%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 6%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 7%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 8%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 9%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 10%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 11%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 12%positive => ((s IDadpcm_coder_z) - max0(-1 + (s IDadpcm_coder__tmp))
-                      + max0((s IDadpcm_coder__tmp)))%Q
-    | 13%positive => ((s IDadpcm_coder_z) - max0(-1 + (s IDadpcm_coder__tmp))
-                      + max0((s IDadpcm_coder__tmp)))%Q
-    | 14%positive => ((s IDadpcm_coder_z))%Q
-    | 15%positive => ((s IDadpcm_coder_z) - max0(-1 + (s IDadpcm_coder__tmp))
-                      + max0((s IDadpcm_coder__tmp)))%Q
-    | 16%positive => ((s IDadpcm_coder_z))%Q
-    | 17%positive => ((s IDadpcm_coder_z))%Q
-    | 18%positive => ((s IDadpcm_coder_z))%Q
-    | 19%positive => ((s IDadpcm_coder_z))%Q
-    | 20%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | 21%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 22%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 23%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 24%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 25%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 26%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 27%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 28%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 29%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 30%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 31%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 32%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 33%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 34%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 35%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 36%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 37%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 38%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 39%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 40%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 41%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 42%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 43%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 44%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 45%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 46%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 47%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 48%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 49%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 50%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 51%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 52%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 53%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 54%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 55%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 56%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 57%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 58%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 59%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 60%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 61%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 62%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 63%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 64%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 65%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 66%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 67%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 68%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 69%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 70%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 71%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 72%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 73%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 74%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 75%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 76%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 77%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 78%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 79%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 80%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 81%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 82%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 83%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 84%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 85%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 86%positive => ((s IDadpcm_coder__tmp) + (s IDadpcm_coder_z))%Q
-    | 87%positive => ((1 # 1) + (s IDadpcm_coder__tmp) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp))
-                      - max0((s IDadpcm_coder__tmp)))%Q
-    | 88%positive => ((1 # 1) + (s IDadpcm_coder__tmp) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp))
-                      - max0((s IDadpcm_coder__tmp)))%Q
-    | 89%positive => ((1 # 1) + (s IDadpcm_coder__tmp) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp))
-                      - max0((s IDadpcm_coder__tmp)))%Q
-    | 90%positive => ((1 # 1) + (s IDadpcm_coder__tmp) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp))
-                      - max0((s IDadpcm_coder__tmp)))%Q
-    | 91%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 92%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 93%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 94%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 95%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 96%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 97%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 98%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 99%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                      + max0(-1 + (s IDadpcm_coder__tmp)))%Q
-    | 100%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                       + max0((s IDadpcm_coder__tmp)))%Q
-    | 101%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                       + max0((s IDadpcm_coder__tmp)))%Q
-    | 102%positive => ((1 # 1) + (s IDadpcm_coder_z)
-                       + max0((s IDadpcm_coder__tmp)))%Q
-    | 103%positive => ((s IDadpcm_coder_z) + max0((s IDadpcm_coder__tmp)))%Q
-    | _ => (0 # 1)%Q
+  | P_adpcm_coder =>
+    [mkPA Q (fun n z s => ai_adpcm_coder n s /\ annot0_adpcm_coder n z s)]
   end.
 
-Definition adpcm_coder_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => [(*-1 0*) F_max0_ge_0 (-1 + (s IDadpcm_coder__tmp))]
-    | 12%positive => []
-    | 13%positive => [(*0 1*) F_max0_monotonic (F_check_ge ((s IDadpcm_coder__tmp)) (-1
-                                                                    + (s IDadpcm_coder__tmp)))]
-    | 14%positive => []
-    | 15%positive => [(*-1 0*) F_max0_monotonic (F_check_ge ((s IDadpcm_coder__tmp)) (-1
-                                                                    + (s IDadpcm_coder__tmp)))]
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDadpcm_coder__tmp))) (F_check_ge ((s IDadpcm_coder__tmp)) (0))]
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => []
-    | 59%positive => []
-    | 60%positive => []
-    | 61%positive => []
-    | 62%positive => []
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => []
-    | 66%positive => []
-    | 67%positive => []
-    | 68%positive => []
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => []
-    | 72%positive => []
-    | 73%positive => []
-    | 74%positive => []
-    | 75%positive => []
-    | 76%positive => []
-    | 77%positive => []
-    | 78%positive => []
-    | 79%positive => []
-    | 80%positive => []
-    | 81%positive => []
-    | 82%positive => []
-    | 83%positive => []
-    | 84%positive => []
-    | 85%positive => [(*-1 0*) F_max0_pre_decrement ((s IDadpcm_coder__tmp)) (1)]
-    | 86%positive => [(*-1 0*) F_max0_pre_decrement ((s IDadpcm_coder__tmp)) (1)]
-    | 87%positive => []
-    | 88%positive => []
-    | 89%positive => []
-    | 90%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDadpcm_coder__tmp)) (0))) (F_max0_ge_0 ((s IDadpcm_coder__tmp)))]
-    | 91%positive => []
-    | 92%positive => []
-    | 93%positive => []
-    | 94%positive => []
-    | 95%positive => []
-    | 96%positive => []
-    | 97%positive => []
-    | 98%positive => []
-    | 99%positive => []
-    | 100%positive => []
-    | 101%positive => []
-    | 102%positive => []
-    | 103%positive => []
-    | _ => []
-  end.
-
-
-Theorem adpcm_coder_ai_correct:
-  forall s p' s', steps (g_start adpcm_coder) s (g_edges adpcm_coder) p' s' -> adpcm_coder_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem adpcm_coder_pot_correct:
-  forall s p' s',
-    steps (g_start adpcm_coder) s (g_edges adpcm_coder) p' s' ->
-    (adpcm_coder_pot (g_start adpcm_coder) s >= adpcm_coder_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_adpcm_coder (proc_start P_adpcm_coder) s1 (proc_end P_adpcm_coder) s2 ->
+    (s2 V_adpcm_coder_z <= max0(s1 V_adpcm_coder_len))%Q.
 Proof.
-  check_lp adpcm_coder_ai_correct adpcm_coder_hints.
+  prove_bound ipa admissible_ipa P_adpcm_coder.
 Qed.
-

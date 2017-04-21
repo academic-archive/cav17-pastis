@@ -1,472 +1,368 @@
 Require Import pasta.Pasta.
 
-Notation IDideaCfbEncrypt_z := 1%positive.
-Notation IDideaCfbEncrypt__tmp := 2%positive.
-Notation IDideaCfbEncrypt_bufleft := 3%positive.
-Notation IDideaCfbEncrypt_context := 4%positive.
-Notation IDideaCfbEncrypt_count := 5%positive.
-Notation IDideaCfbEncrypt_dest := 6%positive.
-Notation IDideaCfbEncrypt_src := 7%positive.
-Definition ideaCfbEncrypt : graph := {|
-  g_start := 1%positive;
-  g_end := 54%positive;
-  g_edges := (1%positive,(AAssign IDideaCfbEncrypt_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDideaCfbEncrypt__tmp
-             (Some (EVar IDideaCfbEncrypt_count))),3%positive)::
-             (3%positive,(AAssign IDideaCfbEncrypt_bufleft None),4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDideaCfbEncrypt__tmp) s) <=
-             (eval (EVar IDideaCfbEncrypt_bufleft) s))%Z)),46%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDideaCfbEncrypt__tmp) s) >
-             (eval (EVar IDideaCfbEncrypt_bufleft) s))%Z)),6%positive)::
-             (6%positive,AWeaken,7%positive)::
-             (7%positive,(AAssign IDideaCfbEncrypt__tmp
-             (Some (ESub (EVar IDideaCfbEncrypt__tmp)
-             (EVar IDideaCfbEncrypt_bufleft)))),8%positive)::
-             (8%positive,ANone,9%positive)::
-             (9%positive,(AAssign IDideaCfbEncrypt_bufleft
-             (Some (EAdd (EVar IDideaCfbEncrypt_bufleft) (ENum (-1))))),
-             10%positive)::(10%positive,AWeaken,11%positive)::
-             (11%positive,(AGuard
-             (fun s => ((eval (EVar IDideaCfbEncrypt_bufleft) s) <>
-             (eval (ENum (0)) s))%Z)),42%positive)::
-             (11%positive,(AGuard
-             (fun s => ((eval (EVar IDideaCfbEncrypt_bufleft) s) =
-             (eval (ENum (0)) s))%Z)),12%positive)::
-             (12%positive,AWeaken,13%positive)::
-             (13%positive,ANone,14%positive)::
-             (14%positive,AWeaken,15%positive)::
-             (15%positive,(AGuard
-             (fun s => ((eval (EVar IDideaCfbEncrypt__tmp) s) >
-             (eval (ENum (8)) s))%Z)),26%positive)::
-             (15%positive,(AGuard
-             (fun s => ((eval (EVar IDideaCfbEncrypt__tmp) s) <=
-             (eval (ENum (8)) s))%Z)),16%positive)::
-             (16%positive,AWeaken,17%positive)::
-             (17%positive,ANone,18%positive)::
-             (18%positive,ANone,19%positive)::
-             (19%positive,(AAssign IDideaCfbEncrypt__tmp
-             (Some (EAdd (EVar IDideaCfbEncrypt__tmp) (ENum (-1))))),
-             20%positive)::(20%positive,AWeaken,21%positive)::
-             (21%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDideaCfbEncrypt__tmp) (ENum (-1)))
-             s) <> (eval (ENum (0)) s))%Z)),23%positive)::
-             (21%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDideaCfbEncrypt__tmp) (ENum (-1)))
-             s) = (eval (ENum (0)) s))%Z)),22%positive)::
-             (22%positive,AWeaken,54%positive)::
-             (23%positive,AWeaken,24%positive)::
-             (24%positive,ANone,25%positive)::
-             (25%positive,(AAssign IDideaCfbEncrypt_z (Some (EAdd (ENum (1))
-             (EVar IDideaCfbEncrypt_z)))),18%positive)::
-             (26%positive,AWeaken,27%positive)::
-             (27%positive,(AAssign IDideaCfbEncrypt_bufleft
-             (Some (ENum (8)))),28%positive)::
-             (28%positive,(AAssign IDideaCfbEncrypt__tmp
-             (Some (ESub (EVar IDideaCfbEncrypt__tmp) (ENum (8))))),
-             29%positive)::(29%positive,ANone,30%positive)::
-             (30%positive,ANone,31%positive)::
-             (31%positive,(AAssign IDideaCfbEncrypt_bufleft
-             (Some (EAdd (EVar IDideaCfbEncrypt_bufleft) (ENum (-1))))),
-             32%positive)::(32%positive,AWeaken,33%positive)::
-             (33%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDideaCfbEncrypt_bufleft)
-             (ENum (-1))) s) <> (eval (ENum (0)) s))%Z)),39%positive)::
-             (33%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDideaCfbEncrypt_bufleft)
-             (ENum (-1))) s) = (eval (ENum (0)) s))%Z)),34%positive)::
-             (34%positive,AWeaken,35%positive)::
-             (35%positive,ANone,36%positive)::
-             (36%positive,ANone,37%positive)::
-             (37%positive,(AAssign IDideaCfbEncrypt_z (Some (EAdd (ENum (1))
-             (EVar IDideaCfbEncrypt_z)))),38%positive)::
-             (38%positive,AWeaken,15%positive)::
-             (39%positive,AWeaken,40%positive)::
-             (40%positive,ANone,41%positive)::
-             (41%positive,(AAssign IDideaCfbEncrypt_z (Some (EAdd (ENum (1))
-             (EVar IDideaCfbEncrypt_z)))),30%positive)::
-             (42%positive,AWeaken,43%positive)::
-             (43%positive,ANone,44%positive)::
-             (44%positive,ANone,45%positive)::
-             (45%positive,(AAssign IDideaCfbEncrypt_z (Some (EAdd (ENum (1))
-             (EVar IDideaCfbEncrypt_z)))),9%positive)::
-             (46%positive,AWeaken,47%positive)::
-             (47%positive,ANone,48%positive)::
-             (48%positive,(AAssign IDideaCfbEncrypt__tmp
-             (Some (EAdd (EVar IDideaCfbEncrypt__tmp) (ENum (-1))))),
-             49%positive)::(49%positive,AWeaken,50%positive)::
-             (50%positive,(AGuard
-             (fun s => ((eval (EVar IDideaCfbEncrypt__tmp) s) <>
-             (eval (ENum (0)) s))%Z)),55%positive)::
-             (50%positive,(AGuard
-             (fun s => ((eval (EVar IDideaCfbEncrypt__tmp) s) =
-             (eval (ENum (0)) s))%Z)),51%positive)::
-             (51%positive,AWeaken,52%positive)::
-             (52%positive,ANone,53%positive)::
-             (53%positive,AWeaken,54%positive)::
-             (55%positive,AWeaken,56%positive)::
-             (56%positive,ANone,57%positive)::
-             (57%positive,ANone,58%positive)::
-             (58%positive,(AAssign IDideaCfbEncrypt_z (Some (EAdd (ENum (1))
-             (EVar IDideaCfbEncrypt_z)))),48%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_ideaCfbEncrypt.
 
-Definition ideaCfbEncrypt_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 4%positive => (1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 6%positive => (1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp)+ 1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0)%Z
-    | 7%positive => (-1 * (s IDideaCfbEncrypt__tmp)+ 1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 8%positive => (1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 9%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 10%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 12%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0)%Z
-    | 13%positive => (-1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 14%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0)%Z
-    | 15%positive => (-1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 16%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) + -8 <= 0)%Z
-    | 17%positive => (1 * (s IDideaCfbEncrypt__tmp) + -8 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 18%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) + -8 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0)%Z
-    | 19%positive => (1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) + -8 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 20%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) + -7 <= 0)%Z
-    | 21%positive => (1 * (s IDideaCfbEncrypt__tmp) + -7 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 22%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 23%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) + -7 <= 0)%Z
-    | 24%positive => (1 * (s IDideaCfbEncrypt__tmp) + -7 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 25%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) + -7 <= 0)%Z
-    | 26%positive => (1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 9 <= 0)%Z
-    | 27%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 9 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0)%Z
-    | 28%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 9 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -8 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) + 8 <= 0)%Z
-    | 29%positive => (-1 * (s IDideaCfbEncrypt_bufleft) + 8 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -8 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 30%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -8 <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 31%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -8 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 32%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -7 <= 0)%Z
-    | 33%positive => (1 * (s IDideaCfbEncrypt_bufleft) + -7 <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 34%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0)%Z
-    | 35%positive => (-1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 36%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0)%Z
-    | 37%positive => (-1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 38%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) + 1 <= 0)%Z
-    | 39%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -7 <= 0)%Z
-    | 40%positive => (1 * (s IDideaCfbEncrypt_bufleft) + -7 <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 41%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt_bufleft) + -7 <= 0)%Z
-    | 42%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 43%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 44%positive => (-1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 45%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) + 1 <= 0)%Z
-    | 46%positive => (1 * (s IDideaCfbEncrypt_z) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) <= 0)%Z
-    | 47%positive => (1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 48%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) <= 0)%Z
-    | 49%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0)%Z
-    | 50%positive => (1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 51%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) <= 0)%Z
-    | 52%positive => (-1 * (s IDideaCfbEncrypt__tmp) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 53%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) <= 0)%Z
-    | 54%positive => (1 * (s IDideaCfbEncrypt__tmp) + -1 <= 0 /\ -1 * (s IDideaCfbEncrypt_bufleft) <= 0 /\ -1 * (s IDideaCfbEncrypt__tmp) <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 55%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0)%Z
-    | 56%positive => (1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | 57%positive => (-1 * (s IDideaCfbEncrypt_z) <= 0 /\ 1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0)%Z
-    | 58%positive => (1 * (s IDideaCfbEncrypt__tmp)+ -1 * (s IDideaCfbEncrypt_bufleft) + 1 <= 0 /\ -1 * (s IDideaCfbEncrypt_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition ideaCfbEncrypt_pot (p : node) (s : state): Q := 
+Notation V_ideaCfbEncrypt_z := 1%positive.
+Notation V_ideaCfbEncrypt__tmp := 2%positive.
+Notation V_ideaCfbEncrypt_bufleft := 3%positive.
+Notation V_ideaCfbEncrypt_context := 4%positive.
+Notation V_ideaCfbEncrypt_count := 5%positive.
+Notation V_ideaCfbEncrypt_dest := 6%positive.
+Notation V_ideaCfbEncrypt_src := 7%positive.
+Definition Pedges_ideaCfbEncrypt: list (edge proc) :=
+  (EA 1 (AAssign V_ideaCfbEncrypt_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_ideaCfbEncrypt__tmp (Some (EVar V_ideaCfbEncrypt_count))) 3)::
+  (EA 3 (AAssign V_ideaCfbEncrypt_bufleft None) 4)::(EA 4 AWeaken 5)::
+  (EA 5 (AGuard (fun s => ((eval (EVar V_ideaCfbEncrypt__tmp) s) <=
+  (eval (EVar V_ideaCfbEncrypt_bufleft) s))%Z)) 46)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_ideaCfbEncrypt__tmp) s) >
+  (eval (EVar V_ideaCfbEncrypt_bufleft) s))%Z)) 6)::(EA 6 AWeaken 7)::
+  (EA 7 (AAssign V_ideaCfbEncrypt__tmp
+  (Some (ESub (EVar V_ideaCfbEncrypt__tmp)
+  (EVar V_ideaCfbEncrypt_bufleft)))) 8)::(EA 8 ANone 9)::(EA 9 (AAssign
+  V_ideaCfbEncrypt_bufleft (Some (EAdd (EVar V_ideaCfbEncrypt_bufleft)
+  (ENum (-1))))) 10)::(EA 10 AWeaken 11)::(EA 11 (AGuard
+  (fun s => ((eval (EVar V_ideaCfbEncrypt_bufleft) s) <> (eval (ENum (0))
+  s))%Z)) 42)::(EA 11 (AGuard
+  (fun s => ((eval (EVar V_ideaCfbEncrypt_bufleft) s) = (eval (ENum (0))
+  s))%Z)) 12)::(EA 12 AWeaken 13)::(EA 13 ANone 14)::(EA 14 AWeaken 15)::
+  (EA 15 (AGuard (fun s => ((eval (EVar V_ideaCfbEncrypt__tmp) s) >
+  (eval (ENum (8)) s))%Z)) 26)::(EA 15 (AGuard
+  (fun s => ((eval (EVar V_ideaCfbEncrypt__tmp) s) <= (eval (ENum (8))
+  s))%Z)) 16)::(EA 16 AWeaken 17)::(EA 17 ANone 18)::(EA 18 ANone 19)::
+  (EA 19 (AAssign V_ideaCfbEncrypt__tmp
+  (Some (EAdd (EVar V_ideaCfbEncrypt__tmp) (ENum (-1))))) 20)::
+  (EA 20 AWeaken 21)::(EA 21 (AGuard
+  (fun s => ((eval (EAdd (EVar V_ideaCfbEncrypt__tmp) (ENum (-1))) s) <>
+  (eval (ENum (0)) s))%Z)) 23)::(EA 21 (AGuard
+  (fun s => ((eval (EAdd (EVar V_ideaCfbEncrypt__tmp) (ENum (-1))) s) =
+  (eval (ENum (0)) s))%Z)) 22)::(EA 22 AWeaken 54)::(EA 23 AWeaken 24)::
+  (EA 24 ANone 25)::(EA 25 (AAssign V_ideaCfbEncrypt_z (Some (EAdd (ENum (1))
+  (EVar V_ideaCfbEncrypt_z)))) 18)::(EA 26 AWeaken 27)::(EA 27 (AAssign
+  V_ideaCfbEncrypt_bufleft (Some (ENum (8)))) 28)::(EA 28 (AAssign
+  V_ideaCfbEncrypt__tmp (Some (ESub (EVar V_ideaCfbEncrypt__tmp)
+  (ENum (8))))) 29)::(EA 29 ANone 30)::(EA 30 ANone 31)::(EA 31 (AAssign
+  V_ideaCfbEncrypt_bufleft (Some (EAdd (EVar V_ideaCfbEncrypt_bufleft)
+  (ENum (-1))))) 32)::(EA 32 AWeaken 33)::(EA 33 (AGuard
+  (fun s => ((eval (EAdd (EVar V_ideaCfbEncrypt_bufleft) (ENum (-1))) s) <>
+  (eval (ENum (0)) s))%Z)) 39)::(EA 33 (AGuard
+  (fun s => ((eval (EAdd (EVar V_ideaCfbEncrypt_bufleft) (ENum (-1))) s) =
+  (eval (ENum (0)) s))%Z)) 34)::(EA 34 AWeaken 35)::(EA 35 ANone 36)::
+  (EA 36 ANone 37)::(EA 37 (AAssign V_ideaCfbEncrypt_z (Some (EAdd (ENum (1))
+  (EVar V_ideaCfbEncrypt_z)))) 38)::(EA 38 AWeaken 15)::(EA 39 AWeaken 40)::
+  (EA 40 ANone 41)::(EA 41 (AAssign V_ideaCfbEncrypt_z (Some (EAdd (ENum (1))
+  (EVar V_ideaCfbEncrypt_z)))) 30)::(EA 42 AWeaken 43)::(EA 43 ANone 44)::
+  (EA 44 ANone 45)::(EA 45 (AAssign V_ideaCfbEncrypt_z (Some (EAdd (ENum (1))
+  (EVar V_ideaCfbEncrypt_z)))) 9)::(EA 46 AWeaken 47)::(EA 47 ANone 48)::
+  (EA 48 (AAssign V_ideaCfbEncrypt__tmp
+  (Some (EAdd (EVar V_ideaCfbEncrypt__tmp) (ENum (-1))))) 49)::
+  (EA 49 AWeaken 50)::(EA 50 (AGuard
+  (fun s => ((eval (EVar V_ideaCfbEncrypt__tmp) s) <> (eval (ENum (0))
+  s))%Z)) 55)::(EA 50 (AGuard (fun s => ((eval (EVar V_ideaCfbEncrypt__tmp)
+  s) = (eval (ENum (0)) s))%Z)) 51)::(EA 51 AWeaken 52)::(EA 52 ANone 53)::
+  (EA 53 AWeaken 54)::(EA 55 AWeaken 56)::(EA 56 ANone 57)::
+  (EA 57 ANone 58)::(EA 58 (AAssign V_ideaCfbEncrypt_z (Some (EAdd (ENum (1))
+  (EVar V_ideaCfbEncrypt_z)))) 48)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_ideaCfbEncrypt => Pedges_ideaCfbEncrypt
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_ideaCfbEncrypt => 54
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_ideaCfbEncrypt (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 3 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 4 => (1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 5 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 6 => (1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp+ 1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0)%Z
+   | 7 => (-1 * s V_ideaCfbEncrypt__tmp+ 1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 8 => (1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 9 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 10 => (-1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 11 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 12 => (-1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0)%Z
+   | 13 => (-1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 14 => (-1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0)%Z
+   | 15 => (-1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 16 => (-1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp + -8 <= 0)%Z
+   | 17 => (1 * s V_ideaCfbEncrypt__tmp + -8 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 18 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp + -8 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0)%Z
+   | 19 => (1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp + -8 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 20 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp + -7 <= 0)%Z
+   | 21 => (1 * s V_ideaCfbEncrypt__tmp + -7 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 22 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 23 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp + -7 <= 0)%Z
+   | 24 => (1 * s V_ideaCfbEncrypt__tmp + -7 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 25 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp + -7 <= 0)%Z
+   | 26 => (1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 9 <= 0)%Z
+   | 27 => (-1 * s V_ideaCfbEncrypt__tmp + 9 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0)%Z
+   | 28 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 9 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -8 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft + 8 <= 0)%Z
+   | 29 => (-1 * s V_ideaCfbEncrypt_bufleft + 8 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -8 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 30 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -8 <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 31 => (-1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -8 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 32 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -7 <= 0)%Z
+   | 33 => (1 * s V_ideaCfbEncrypt_bufleft + -7 <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 34 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0)%Z
+   | 35 => (-1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 36 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0)%Z
+   | 37 => (-1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 38 => (-1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z + 1 <= 0)%Z
+   | 39 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -7 <= 0)%Z
+   | 40 => (1 * s V_ideaCfbEncrypt_bufleft + -7 <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 41 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt_bufleft + -7 <= 0)%Z
+   | 42 => (-1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 43 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 44 => (-1 * s V_ideaCfbEncrypt__tmp + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 45 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp + 1 <= 0)%Z
+   | 46 => (1 * s V_ideaCfbEncrypt_z <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft <= 0)%Z
+   | 47 => (1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 48 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft <= 0)%Z
+   | 49 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0)%Z
+   | 50 => (1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 51 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp <= 0)%Z
+   | 52 => (-1 * s V_ideaCfbEncrypt__tmp <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 53 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp <= 0)%Z
+   | 54 => (1 * s V_ideaCfbEncrypt__tmp + -1 <= 0 /\ -1 * s V_ideaCfbEncrypt_bufleft <= 0 /\ -1 * s V_ideaCfbEncrypt__tmp <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 55 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0)%Z
+   | 56 => (1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | 57 => (-1 * s V_ideaCfbEncrypt_z <= 0 /\ 1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0)%Z
+   | 58 => (1 * s V_ideaCfbEncrypt__tmp+ -1 * s V_ideaCfbEncrypt_bufleft + 1 <= 0 /\ -1 * s V_ideaCfbEncrypt_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_ideaCfbEncrypt (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (s V_ideaCfbEncrypt_count <= z)%Q
+   | 2 => (s V_ideaCfbEncrypt_count - max0(-s V_ideaCfbEncrypt_z) <= z)%Q
+   | 3 => (s V_ideaCfbEncrypt__tmp - max0(-s V_ideaCfbEncrypt_z) <= z)%Q
+   | 4 => (s V_ideaCfbEncrypt__tmp - max0(-s V_ideaCfbEncrypt_z) <= z)%Q
+   | 5 => (s V_ideaCfbEncrypt__tmp - max0(-s V_ideaCfbEncrypt_z) <= z)%Q
+   | 6 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_ideaCfbEncrypt_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_ideaCfbEncrypt_z))]
+     (s V_ideaCfbEncrypt__tmp - max0(-s V_ideaCfbEncrypt_z) <= z)%Q
+   | 7 => (s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_z <= z)%Q
+   | 8 => (s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+           + s V_ideaCfbEncrypt_z <= z)%Q
+   | 9 => (s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+           + s V_ideaCfbEncrypt_z <= z)%Q
+   | 10 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 11 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 12 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 13 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 14 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 15 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 16 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_ideaCfbEncrypt_bufleft)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_ideaCfbEncrypt_bufleft) (0))) (F_max0_ge_0 (s V_ideaCfbEncrypt_bufleft));
+      (*-0.375 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_ideaCfbEncrypt__tmp)) (F_check_ge (0) (0));
+      (*-0.375 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_ideaCfbEncrypt__tmp) (0))) (F_max0_ge_0 (s V_ideaCfbEncrypt__tmp));
+      (*-0.375 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
+                                                     - s V_ideaCfbEncrypt__tmp)) (F_check_ge (0) (0))]
+     ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+      + s V_ideaCfbEncrypt_z <= z)%Q
+   | 17 => ((1 # 1) + (5 # 8) * s V_ideaCfbEncrypt__tmp
+            + s V_ideaCfbEncrypt_z
+            - (3 # 8) * max0(8 - s V_ideaCfbEncrypt__tmp) <= z)%Q
+   | 18 => ((1 # 1) + (5 # 8) * s V_ideaCfbEncrypt__tmp
+            + s V_ideaCfbEncrypt_z
+            - (3 # 8) * max0(8 - s V_ideaCfbEncrypt__tmp) <= z)%Q
+   | 19 => ((1 # 1) + (5 # 8) * s V_ideaCfbEncrypt__tmp
+            + s V_ideaCfbEncrypt_z
+            - (3 # 8) * max0(8 - s V_ideaCfbEncrypt__tmp) <= z)%Q
+   | 20 => hints
+     [(*-0.375 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (7
+                                                                   - 
+                                                                   s V_ideaCfbEncrypt__tmp) (0))) (F_max0_ge_0 (7
+                                                                    - s V_ideaCfbEncrypt__tmp))]
+     ((13 # 8) + (5 # 8) * s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_z
+      - (3 # 8) * max0(7 - s V_ideaCfbEncrypt__tmp) <= z)%Q
+   | 21 => (-(1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_z <= z)%Q
+   | 22 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-1 + s V_ideaCfbEncrypt__tmp) (-9
+                                                                    + s V_ideaCfbEncrypt__tmp));
+      (*-1 0*) F_max0_ge_0 (-9 + s V_ideaCfbEncrypt__tmp);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                               + s V_ideaCfbEncrypt__tmp) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_ideaCfbEncrypt__tmp))]
+     (-(1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_z <= z)%Q
+   | 23 => hints
+     [(*-0.375 0*) F_binom_monotonic 1 (F_max0_ge_arg (8
+                                                       - s V_ideaCfbEncrypt__tmp)) (F_check_ge (8
+                                                                    - s V_ideaCfbEncrypt__tmp) (0))]
+     (-(1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_z <= z)%Q
+   | 24 => ((2 # 1) + (5 # 8) * s V_ideaCfbEncrypt__tmp
+            + s V_ideaCfbEncrypt_z
+            - (3 # 8) * max0(8 - s V_ideaCfbEncrypt__tmp) <= z)%Q
+   | 25 => ((2 # 1) + (5 # 8) * s V_ideaCfbEncrypt__tmp
+            + s V_ideaCfbEncrypt_z
+            - (3 # 8) * max0(8 - s V_ideaCfbEncrypt__tmp) <= z)%Q
+   | 26 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_ideaCfbEncrypt_bufleft)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_ideaCfbEncrypt_bufleft) (0))) (F_max0_ge_0 (s V_ideaCfbEncrypt_bufleft))]
+     ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+      + s V_ideaCfbEncrypt_z <= z)%Q
+   | 27 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_z <= z)%Q
+   | 28 => (-(7 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 29 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 30 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 31 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 32 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 33 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 34 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 35 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 36 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 37 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 38 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 39 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 40 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 41 => ((2 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 42 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 43 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 44 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 45 => ((1 # 1) + s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft
+            + s V_ideaCfbEncrypt_z <= z)%Q
+   | 46 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_ideaCfbEncrypt_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_ideaCfbEncrypt_z));
+      (*0 0.5*) F_binom_monotonic 1 (F_max0_ge_arg (-s V_ideaCfbEncrypt__tmp
+                                                    + s V_ideaCfbEncrypt_bufleft)) (F_check_ge (-
+                                                                    s V_ideaCfbEncrypt__tmp
+                                                                    + s V_ideaCfbEncrypt_bufleft) (0))]
+     (s V_ideaCfbEncrypt__tmp - max0(-s V_ideaCfbEncrypt_z) <= z)%Q
+   | 47 => ((1 # 2) * s V_ideaCfbEncrypt__tmp
+            + (1 # 2) * s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+            - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 48 => ((1 # 2) * s V_ideaCfbEncrypt__tmp
+            + (1 # 2) * s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+            - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 49 => hints
+     [(*0 0.5*) F_binom_monotonic 1 (F_max0_ge_arg (-s V_ideaCfbEncrypt__tmp
+                                                    + s V_ideaCfbEncrypt_bufleft)) (F_check_ge (-
+                                                                    s V_ideaCfbEncrypt__tmp
+                                                                    + s V_ideaCfbEncrypt_bufleft) (0))]
+     ((1 # 2) + (1 # 2) * s V_ideaCfbEncrypt__tmp
+      + (1 # 2) * s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+      - (1 # 2) * max0(-1 - s V_ideaCfbEncrypt__tmp
+                       + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 50 => ((1 # 2) + s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+            - (1 # 2) * max0(-1 - s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft)
+            - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 51 => ((1 # 2) + s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+            - (1 # 2) * max0(-1 - s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft)
+            - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 52 => ((1 # 2) + s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+            - (1 # 2) * max0(-1 - s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft)
+            - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 53 => hints
+     [(*-1.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_ideaCfbEncrypt__tmp)) (F_check_ge (0) (0));
+      (*-1.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_ideaCfbEncrypt__tmp) (0))) (F_max0_ge_0 (s V_ideaCfbEncrypt__tmp));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_ideaCfbEncrypt__tmp
+                                                                 + s V_ideaCfbEncrypt_bufleft) (0))) (F_max0_ge_0 (-
+                                                                    s V_ideaCfbEncrypt__tmp
+                                                                    + s V_ideaCfbEncrypt_bufleft));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
+                                                     - s V_ideaCfbEncrypt__tmp)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
+                                                                   - 
+                                                                   s V_ideaCfbEncrypt__tmp) (0))) (F_max0_ge_0 (8
+                                                                    - s V_ideaCfbEncrypt__tmp));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                 - s V_ideaCfbEncrypt__tmp
+                                                                 + s V_ideaCfbEncrypt_bufleft) (0))) (F_max0_ge_0 (-1
+                                                                    - s V_ideaCfbEncrypt__tmp
+                                                                    + s V_ideaCfbEncrypt_bufleft))]
+     ((1 # 2) + s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+      - (1 # 2) * max0(-1 - s V_ideaCfbEncrypt__tmp
+                       + s V_ideaCfbEncrypt_bufleft)
+      - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 54 => (s V_ideaCfbEncrypt_z <= z)%Q
+   | 55 => hints
+     [(*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                 - s V_ideaCfbEncrypt__tmp
+                                                                 + s V_ideaCfbEncrypt_bufleft) (0))) (F_max0_ge_0 (-1
+                                                                    - s V_ideaCfbEncrypt__tmp
+                                                                    + s V_ideaCfbEncrypt_bufleft))]
+     ((1 # 2) + s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+      - (1 # 2) * max0(-1 - s V_ideaCfbEncrypt__tmp
+                       + s V_ideaCfbEncrypt_bufleft)
+      - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 56 => ((1 # 1) + (1 # 2) * s V_ideaCfbEncrypt__tmp
+            + (1 # 2) * s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+            - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 57 => ((1 # 1) + (1 # 2) * s V_ideaCfbEncrypt__tmp
+            + (1 # 2) * s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+            - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | 58 => ((1 # 1) + (1 # 2) * s V_ideaCfbEncrypt__tmp
+            + (1 # 2) * s V_ideaCfbEncrypt_bufleft + s V_ideaCfbEncrypt_z
+            - (1 # 2) * max0(-s V_ideaCfbEncrypt__tmp
+                             + s V_ideaCfbEncrypt_bufleft) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((s IDideaCfbEncrypt_count))%Q
-    | 2%positive => ((s IDideaCfbEncrypt_count)
-                     - max0(-(s IDideaCfbEncrypt_z)))%Q
-    | 3%positive => ((s IDideaCfbEncrypt__tmp)
-                     - max0(-(s IDideaCfbEncrypt_z)))%Q
-    | 4%positive => ((s IDideaCfbEncrypt__tmp)
-                     - max0(-(s IDideaCfbEncrypt_z)))%Q
-    | 5%positive => ((s IDideaCfbEncrypt__tmp)
-                     - max0(-(s IDideaCfbEncrypt_z)))%Q
-    | 6%positive => ((s IDideaCfbEncrypt__tmp)
-                     - max0(-(s IDideaCfbEncrypt_z)))%Q
-    | 7%positive => ((s IDideaCfbEncrypt__tmp) + (s IDideaCfbEncrypt_z))%Q
-    | 8%positive => ((s IDideaCfbEncrypt__tmp) + (s IDideaCfbEncrypt_bufleft)
-                     + (s IDideaCfbEncrypt_z))%Q
-    | 9%positive => ((s IDideaCfbEncrypt__tmp) + (s IDideaCfbEncrypt_bufleft)
-                     + (s IDideaCfbEncrypt_z))%Q
-    | 10%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 11%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 12%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 13%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 14%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 15%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 16%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 17%positive => ((1 # 1) + (5 # 8) * (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z)
-                      - (3 # 8) * max0(8 - (s IDideaCfbEncrypt__tmp)))%Q
-    | 18%positive => ((1 # 1) + (5 # 8) * (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z)
-                      - (3 # 8) * max0(8 - (s IDideaCfbEncrypt__tmp)))%Q
-    | 19%positive => ((1 # 1) + (5 # 8) * (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z)
-                      - (3 # 8) * max0(8 - (s IDideaCfbEncrypt__tmp)))%Q
-    | 20%positive => ((13 # 8) + (5 # 8) * (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z)
-                      - (3 # 8) * max0(7 - (s IDideaCfbEncrypt__tmp)))%Q
-    | 21%positive => (-(1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z))%Q
-    | 22%positive => (-(1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z))%Q
-    | 23%positive => (-(1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z))%Q
-    | 24%positive => ((2 # 1) + (5 # 8) * (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z)
-                      - (3 # 8) * max0(8 - (s IDideaCfbEncrypt__tmp)))%Q
-    | 25%positive => ((2 # 1) + (5 # 8) * (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z)
-                      - (3 # 8) * max0(8 - (s IDideaCfbEncrypt__tmp)))%Q
-    | 26%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 27%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_z))%Q
-    | 28%positive => (-(7 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 29%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 30%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 31%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 32%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 33%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 34%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 35%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 36%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 37%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 38%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 39%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 40%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 41%positive => ((2 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 42%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 43%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 44%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 45%positive => ((1 # 1) + (s IDideaCfbEncrypt__tmp)
-                      + (s IDideaCfbEncrypt_bufleft) + (s IDideaCfbEncrypt_z))%Q
-    | 46%positive => ((s IDideaCfbEncrypt__tmp)
-                      - max0(-(s IDideaCfbEncrypt_z)))%Q
-    | 47%positive => ((1 # 2) * (s IDideaCfbEncrypt__tmp)
-                      + (1 # 2) * (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 48%positive => ((1 # 2) * (s IDideaCfbEncrypt__tmp)
-                      + (1 # 2) * (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 49%positive => ((1 # 2) + (1 # 2) * (s IDideaCfbEncrypt__tmp)
-                      + (1 # 2) * (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-1 - (s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 50%positive => ((1 # 2) + (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-1 - (s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft))
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 51%positive => ((1 # 2) + (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-1 - (s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft))
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 52%positive => ((1 # 2) + (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-1 - (s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft))
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 53%positive => ((1 # 2) + (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-1 - (s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft))
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 54%positive => ((s IDideaCfbEncrypt_z))%Q
-    | 55%positive => ((1 # 2) + (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-1 - (s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft))
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 56%positive => ((1 # 1) + (1 # 2) * (s IDideaCfbEncrypt__tmp)
-                      + (1 # 2) * (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 57%positive => ((1 # 1) + (1 # 2) * (s IDideaCfbEncrypt__tmp)
-                      + (1 # 2) * (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | 58%positive => ((1 # 1) + (1 # 2) * (s IDideaCfbEncrypt__tmp)
-                      + (1 # 2) * (s IDideaCfbEncrypt_bufleft)
-                      + (s IDideaCfbEncrypt_z)
-                      - (1 # 2) * max0(-(s IDideaCfbEncrypt__tmp)
-                                       + (s IDideaCfbEncrypt_bufleft)))%Q
-    | _ => (0 # 1)%Q
+  | P_ideaCfbEncrypt =>
+    [mkPA Q (fun n z s => ai_ideaCfbEncrypt n s /\ annot0_ideaCfbEncrypt n z s)]
   end.
 
-Definition ideaCfbEncrypt_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDideaCfbEncrypt_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDideaCfbEncrypt_z)))]
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDideaCfbEncrypt_bufleft))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDideaCfbEncrypt_bufleft)) (0))) (F_max0_ge_0 ((s IDideaCfbEncrypt_bufleft)));
-                      (*-0.375 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDideaCfbEncrypt__tmp))) (F_check_ge (0) (0));
-                      (*-0.375 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDideaCfbEncrypt__tmp)) (0))) (F_max0_ge_0 ((s IDideaCfbEncrypt__tmp)));
-                      (*-0.375 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    - 
-                                                                    (s IDideaCfbEncrypt__tmp))) (F_check_ge (0) (0))]
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => [(*-0.375 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (7
-                                                                    - (s IDideaCfbEncrypt__tmp)) (0))) (F_max0_ge_0 (7
-                                                                    - (s IDideaCfbEncrypt__tmp)))]
-    | 21%positive => []
-    | 22%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-1
-                                                             + (s IDideaCfbEncrypt__tmp)) (-9
-                                                                    + (s IDideaCfbEncrypt__tmp)));
-                      (*-1 0*) F_max0_ge_0 (-9 + (s IDideaCfbEncrypt__tmp));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDideaCfbEncrypt__tmp)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDideaCfbEncrypt__tmp)))]
-    | 23%positive => [(*-0.375 0*) F_binom_monotonic 1 (F_max0_ge_arg (8
-                                                                    - (s IDideaCfbEncrypt__tmp))) (F_check_ge (8
-                                                                    - (s IDideaCfbEncrypt__tmp)) (0))]
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDideaCfbEncrypt_bufleft))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDideaCfbEncrypt_bufleft)) (0))) (F_max0_ge_0 ((s IDideaCfbEncrypt_bufleft)))]
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDideaCfbEncrypt_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDideaCfbEncrypt_z)));
-                      (*0 0.5*) F_binom_monotonic 1 (F_max0_ge_arg (-
-                                                                    (s IDideaCfbEncrypt__tmp)
-                                                                    + 
-                                                                    (s IDideaCfbEncrypt_bufleft))) (F_check_ge (-
-                                                                    (s IDideaCfbEncrypt__tmp)
-                                                                    + (s IDideaCfbEncrypt_bufleft)) (0))]
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => [(*0 0.5*) F_binom_monotonic 1 (F_max0_ge_arg (-
-                                                                    (s IDideaCfbEncrypt__tmp)
-                                                                    + 
-                                                                    (s IDideaCfbEncrypt_bufleft))) (F_check_ge (-
-                                                                    (s IDideaCfbEncrypt__tmp)
-                                                                    + (s IDideaCfbEncrypt_bufleft)) (0))]
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => [(*-1.125 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDideaCfbEncrypt__tmp))) (F_check_ge (0) (0));
-                      (*-1.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDideaCfbEncrypt__tmp)) (0))) (F_max0_ge_0 ((s IDideaCfbEncrypt__tmp)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDideaCfbEncrypt__tmp)
-                                                                    + (s IDideaCfbEncrypt_bufleft)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDideaCfbEncrypt__tmp)
-                                                                    + (s IDideaCfbEncrypt_bufleft)));
-                      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    - 
-                                                                    (s IDideaCfbEncrypt__tmp))) (F_check_ge (0) (0));
-                      (*-0.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
-                                                                    - (s IDideaCfbEncrypt__tmp)) (0))) (F_max0_ge_0 (8
-                                                                    - (s IDideaCfbEncrypt__tmp)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    - (s IDideaCfbEncrypt__tmp)
-                                                                    + (s IDideaCfbEncrypt_bufleft)) (0))) (F_max0_ge_0 (-1
-                                                                    - (s IDideaCfbEncrypt__tmp)
-                                                                    + (s IDideaCfbEncrypt_bufleft)))]
-    | 54%positive => []
-    | 55%positive => [(*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    - (s IDideaCfbEncrypt__tmp)
-                                                                    + (s IDideaCfbEncrypt_bufleft)) (0))) (F_max0_ge_0 (-1
-                                                                    - (s IDideaCfbEncrypt__tmp)
-                                                                    + (s IDideaCfbEncrypt_bufleft)))]
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => []
-    | _ => []
-  end.
-
-
-Theorem ideaCfbEncrypt_ai_correct:
-  forall s p' s', steps (g_start ideaCfbEncrypt) s (g_edges ideaCfbEncrypt) p' s' -> ideaCfbEncrypt_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem ideaCfbEncrypt_pot_correct:
-  forall s p' s',
-    steps (g_start ideaCfbEncrypt) s (g_edges ideaCfbEncrypt) p' s' ->
-    (ideaCfbEncrypt_pot (g_start ideaCfbEncrypt) s >= ideaCfbEncrypt_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_ideaCfbEncrypt (proc_start P_ideaCfbEncrypt) s1 (proc_end P_ideaCfbEncrypt) s2 ->
+    (s2 V_ideaCfbEncrypt_z <= s1 V_ideaCfbEncrypt_count)%Q.
 Proof.
-  check_lp ideaCfbEncrypt_ai_correct ideaCfbEncrypt_hints.
+  prove_bound ipa admissible_ipa P_ideaCfbEncrypt.
 Qed.
-

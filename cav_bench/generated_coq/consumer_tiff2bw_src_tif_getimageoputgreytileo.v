@@ -1,367 +1,315 @@
 Require Import pasta.Pasta.
 
-Notation IDputgreytile_z := 1%positive.
-Notation IDputgreytile__tmp := 2%positive.
-Notation IDputgreytile__tmp1 := 3%positive.
-Notation IDputgreytile__tmp2 := 4%positive.
-Notation IDputgreytile__tmp3 := 5%positive.
-Notation IDputgreytile__tmp4 := 6%positive.
-Notation IDputgreytile__tmp5 := 7%positive.
-Notation IDputgreytile_cp := 8%positive.
-Notation IDputgreytile_fromskew := 9%positive.
-Notation IDputgreytile_h := 10%positive.
-Notation IDputgreytile_img := 11%positive.
-Notation IDputgreytile_pp := 12%positive.
-Notation IDputgreytile_toskew := 13%positive.
-Notation IDputgreytile_w := 14%positive.
-Notation IDputgreytile_x := 15%positive.
-Notation IDputgreytile_y := 16%positive.
-Definition putgreytile : graph := {|
-  g_start := 1%positive;
-  g_end := 16%positive;
-  g_edges := (1%positive,(AAssign IDputgreytile_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard (fun s => ((eval (EVar IDputgreytile__tmp1)
-             s) >= (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,(AGuard (fun s => ((eval (EVar IDputgreytile__tmp)
-             s) >= (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AAssign IDputgreytile__tmp1
-             (Some (EVar IDputgreytile_x))),6%positive)::
-             (6%positive,(AAssign IDputgreytile__tmp5
-             (Some (EVar IDputgreytile_y))),7%positive)::
-             (7%positive,(AAssign IDputgreytile__tmp2
-             (Some (EVar IDputgreytile_w))),8%positive)::
-             (8%positive,(AAssign IDputgreytile__tmp
-             (Some (EVar IDputgreytile_h))),9%positive)::
-             (9%positive,(AAssign IDputgreytile__tmp4
-             (Some (EVar IDputgreytile_fromskew))),10%positive)::
-             (10%positive,(AAssign IDputgreytile__tmp3
-             (Some (EVar IDputgreytile_toskew))),11%positive)::
-             (11%positive,ANone,12%positive)::
-             (12%positive,(AAssign IDputgreytile__tmp
-             (Some (EAdd (EVar IDputgreytile__tmp) (ENum (-1))))),
-             13%positive)::(13%positive,AWeaken,14%positive)::
-             (14%positive,(AGuard (fun s => ((eval (EVar IDputgreytile__tmp)
-             s) > (eval (ENum (0)) s))%Z)),17%positive)::
-             (14%positive,(AGuard (fun s => ((eval (EVar IDputgreytile__tmp)
-             s) <= (eval (ENum (0)) s))%Z)),15%positive)::
-             (15%positive,AWeaken,16%positive)::
-             (17%positive,AWeaken,18%positive)::
-             (18%positive,(AAssign IDputgreytile__tmp1
-             (Some (EVar IDputgreytile__tmp2))),19%positive)::
-             (19%positive,ANone,20%positive)::
-             (20%positive,(AAssign IDputgreytile__tmp1
-             (Some (EAdd (EVar IDputgreytile__tmp1) (ENum (-1))))),
-             21%positive)::(21%positive,AWeaken,22%positive)::
-             (22%positive,(AGuard (fun s => ((eval (EVar IDputgreytile__tmp1)
-             s) > (eval (ENum (0)) s))%Z)),27%positive)::
-             (22%positive,(AGuard (fun s => ((eval (EVar IDputgreytile__tmp1)
-             s) <= (eval (ENum (0)) s))%Z)),23%positive)::
-             (23%positive,AWeaken,24%positive)::
-             (24%positive,ANone,25%positive)::
-             (25%positive,ANone,26%positive)::
-             (26%positive,(AAssign IDputgreytile_z (Some (EAdd (ENum (1))
-             (EVar IDputgreytile_z)))),12%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,ANone,29%positive)::
-             (29%positive,ANone,30%positive)::
-             (30%positive,(AAssign IDputgreytile_z (Some (EAdd (ENum (1))
-             (EVar IDputgreytile_z)))),20%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_putgreytile.
 
-Definition putgreytile_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDputgreytile_z) <= 0 /\ 1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp1) <= 0)%Z
-    | 4%positive => (-1 * (s IDputgreytile__tmp1) <= 0 /\ 1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) <= 0)%Z
-    | 5%positive => (-1 * (s IDputgreytile__tmp) <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ 1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp1) <= 0)%Z
-    | 6%positive => (1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) <= 0)%Z
-    | 7%positive => (-1 * (s IDputgreytile__tmp) <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ 1 * (s IDputgreytile_z) <= 0)%Z
-    | 8%positive => (1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) <= 0)%Z
-    | 9%positive => (-1 * (s IDputgreytile_z) <= 0 /\ 1 * (s IDputgreytile_z) <= 0)%Z
-    | 10%positive => (1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDputgreytile_z) <= 0 /\ 1 * (s IDputgreytile_z) <= 0)%Z
-    | 12%positive => (-1 * (s IDputgreytile_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDputgreytile_z) <= 0)%Z
-    | 14%positive => (-1 * (s IDputgreytile_z) <= 0)%Z
-    | 15%positive => (-1 * (s IDputgreytile_z) <= 0 /\ 1 * (s IDputgreytile__tmp) <= 0)%Z
-    | 16%positive => (1 * (s IDputgreytile__tmp) <= 0 /\ -1 * (s IDputgreytile_z) <= 0)%Z
-    | 17%positive => (-1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) + 1 <= 0)%Z
-    | 18%positive => (-1 * (s IDputgreytile__tmp) + 1 <= 0 /\ -1 * (s IDputgreytile_z) <= 0)%Z
-    | 19%positive => (-1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) + 1 <= 0)%Z
-    | 20%positive => (-1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) + 1 <= 0)%Z
-    | 21%positive => (-1 * (s IDputgreytile__tmp) + 1 <= 0 /\ -1 * (s IDputgreytile_z) <= 0)%Z
-    | 22%positive => (-1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) + 1 <= 0)%Z
-    | 23%positive => (-1 * (s IDputgreytile__tmp) + 1 <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ 1 * (s IDputgreytile__tmp1) <= 0)%Z
-    | 24%positive => (1 * (s IDputgreytile__tmp1) <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) + 1 <= 0)%Z
-    | 25%positive => (-1 * (s IDputgreytile__tmp) + 1 <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ 1 * (s IDputgreytile__tmp1) <= 0)%Z
-    | 26%positive => (1 * (s IDputgreytile__tmp1) <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) + 1 <= 0)%Z
-    | 27%positive => (-1 * (s IDputgreytile__tmp) + 1 <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp1) + 1 <= 0)%Z
-    | 28%positive => (-1 * (s IDputgreytile__tmp1) + 1 <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) + 1 <= 0)%Z
-    | 29%positive => (-1 * (s IDputgreytile__tmp) + 1 <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp1) + 1 <= 0)%Z
-    | 30%positive => (-1 * (s IDputgreytile__tmp1) + 1 <= 0 /\ -1 * (s IDputgreytile_z) <= 0 /\ -1 * (s IDputgreytile__tmp) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition putgreytile_pot (p : node) (s : state): Q := 
+Notation V_putgreytile_z := 1%positive.
+Notation V_putgreytile__tmp := 2%positive.
+Notation V_putgreytile__tmp1 := 3%positive.
+Notation V_putgreytile__tmp2 := 4%positive.
+Notation V_putgreytile__tmp3 := 5%positive.
+Notation V_putgreytile__tmp4 := 6%positive.
+Notation V_putgreytile__tmp5 := 7%positive.
+Notation V_putgreytile_cp := 8%positive.
+Notation V_putgreytile_fromskew := 9%positive.
+Notation V_putgreytile_h := 10%positive.
+Notation V_putgreytile_img := 11%positive.
+Notation V_putgreytile_pp := 12%positive.
+Notation V_putgreytile_toskew := 13%positive.
+Notation V_putgreytile_w := 14%positive.
+Notation V_putgreytile_x := 15%positive.
+Notation V_putgreytile_y := 16%positive.
+Definition Pedges_putgreytile: list (edge proc) :=
+  (EA 1 (AAssign V_putgreytile_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_putgreytile__tmp1) s) >= (eval (ENum (0))
+  s))%Z)) 3)::(EA 3 (AGuard (fun s => ((eval (EVar V_putgreytile__tmp) s) >=
+  (eval (ENum (0)) s))%Z)) 4)::(EA 4 AWeaken 5)::(EA 5 (AAssign
+  V_putgreytile__tmp1 (Some (EVar V_putgreytile_x))) 6)::(EA 6 (AAssign
+  V_putgreytile__tmp5 (Some (EVar V_putgreytile_y))) 7)::(EA 7 (AAssign
+  V_putgreytile__tmp2 (Some (EVar V_putgreytile_w))) 8)::(EA 8 (AAssign
+  V_putgreytile__tmp (Some (EVar V_putgreytile_h))) 9)::(EA 9 (AAssign
+  V_putgreytile__tmp4 (Some (EVar V_putgreytile_fromskew))) 10)::
+  (EA 10 (AAssign V_putgreytile__tmp3
+  (Some (EVar V_putgreytile_toskew))) 11)::(EA 11 ANone 12)::(EA 12 (AAssign
+  V_putgreytile__tmp (Some (EAdd (EVar V_putgreytile__tmp)
+  (ENum (-1))))) 13)::(EA 13 AWeaken 14)::(EA 14 (AGuard
+  (fun s => ((eval (EVar V_putgreytile__tmp) s) > (eval (ENum (0))
+  s))%Z)) 17)::(EA 14 (AGuard (fun s => ((eval (EVar V_putgreytile__tmp)
+  s) <= (eval (ENum (0)) s))%Z)) 15)::(EA 15 AWeaken 16)::
+  (EA 17 AWeaken 18)::(EA 18 (AAssign V_putgreytile__tmp1
+  (Some (EVar V_putgreytile__tmp2))) 19)::(EA 19 ANone 20)::(EA 20 (AAssign
+  V_putgreytile__tmp1 (Some (EAdd (EVar V_putgreytile__tmp1)
+  (ENum (-1))))) 21)::(EA 21 AWeaken 22)::(EA 22 (AGuard
+  (fun s => ((eval (EVar V_putgreytile__tmp1) s) > (eval (ENum (0))
+  s))%Z)) 27)::(EA 22 (AGuard (fun s => ((eval (EVar V_putgreytile__tmp1)
+  s) <= (eval (ENum (0)) s))%Z)) 23)::(EA 23 AWeaken 24)::(EA 24 ANone 25)::
+  (EA 25 ANone 26)::(EA 26 (AAssign V_putgreytile_z (Some (EAdd (ENum (1))
+  (EVar V_putgreytile_z)))) 12)::(EA 27 AWeaken 28)::(EA 28 ANone 29)::
+  (EA 29 ANone 30)::(EA 30 (AAssign V_putgreytile_z (Some (EAdd (ENum (1))
+  (EVar V_putgreytile_z)))) 20)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_putgreytile => Pedges_putgreytile
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_putgreytile => 16
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_putgreytile (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile_z <= 0)%Z
+   | 3 => (-1 * s V_putgreytile_z <= 0 /\ 1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp1 <= 0)%Z
+   | 4 => (-1 * s V_putgreytile__tmp1 <= 0 /\ 1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp <= 0)%Z
+   | 5 => (-1 * s V_putgreytile__tmp <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ 1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp1 <= 0)%Z
+   | 6 => (1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp <= 0)%Z
+   | 7 => (-1 * s V_putgreytile__tmp <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ 1 * s V_putgreytile_z <= 0)%Z
+   | 8 => (1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp <= 0)%Z
+   | 9 => (-1 * s V_putgreytile_z <= 0 /\ 1 * s V_putgreytile_z <= 0)%Z
+   | 10 => (1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile_z <= 0)%Z
+   | 11 => (-1 * s V_putgreytile_z <= 0 /\ 1 * s V_putgreytile_z <= 0)%Z
+   | 12 => (-1 * s V_putgreytile_z <= 0)%Z
+   | 13 => (-1 * s V_putgreytile_z <= 0)%Z
+   | 14 => (-1 * s V_putgreytile_z <= 0)%Z
+   | 15 => (-1 * s V_putgreytile_z <= 0 /\ 1 * s V_putgreytile__tmp <= 0)%Z
+   | 16 => (1 * s V_putgreytile__tmp <= 0 /\ -1 * s V_putgreytile_z <= 0)%Z
+   | 17 => (-1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp + 1 <= 0)%Z
+   | 18 => (-1 * s V_putgreytile__tmp + 1 <= 0 /\ -1 * s V_putgreytile_z <= 0)%Z
+   | 19 => (-1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp + 1 <= 0)%Z
+   | 20 => (-1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp + 1 <= 0)%Z
+   | 21 => (-1 * s V_putgreytile__tmp + 1 <= 0 /\ -1 * s V_putgreytile_z <= 0)%Z
+   | 22 => (-1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp + 1 <= 0)%Z
+   | 23 => (-1 * s V_putgreytile__tmp + 1 <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ 1 * s V_putgreytile__tmp1 <= 0)%Z
+   | 24 => (1 * s V_putgreytile__tmp1 <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp + 1 <= 0)%Z
+   | 25 => (-1 * s V_putgreytile__tmp + 1 <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ 1 * s V_putgreytile__tmp1 <= 0)%Z
+   | 26 => (1 * s V_putgreytile__tmp1 <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp + 1 <= 0)%Z
+   | 27 => (-1 * s V_putgreytile__tmp + 1 <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp1 + 1 <= 0)%Z
+   | 28 => (-1 * s V_putgreytile__tmp1 + 1 <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp + 1 <= 0)%Z
+   | 29 => (-1 * s V_putgreytile__tmp + 1 <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp1 + 1 <= 0)%Z
+   | 30 => (-1 * s V_putgreytile__tmp1 + 1 <= 0 /\ -1 * s V_putgreytile_z <= 0 /\ -1 * s V_putgreytile__tmp + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_putgreytile (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(-1 + s V_putgreytile_h)
+           + max0(-1 + s V_putgreytile_h) * max0(-1 + s V_putgreytile_w) <= z)%Q
+   | 2 => (s V_putgreytile_z + max0(-1 + s V_putgreytile_h)
+           + max0(-1 + s V_putgreytile_h) * max0(-1 + s V_putgreytile_w) <= z)%Q
+   | 3 => (s V_putgreytile_z + max0(-1 + s V_putgreytile_h)
+           + max0(-1 + s V_putgreytile_h) * max0(-1 + s V_putgreytile_w) <= z)%Q
+   | 4 => (s V_putgreytile_z + max0(-1 + s V_putgreytile_h)
+           + max0(-1 + s V_putgreytile_h) * max0(-1 + s V_putgreytile_w) <= z)%Q
+   | 5 => (s V_putgreytile_z + max0(-1 + s V_putgreytile_h)
+           + max0(-1 + s V_putgreytile_h) * max0(-1 + s V_putgreytile_w) <= z)%Q
+   | 6 => (s V_putgreytile_z + max0(-1 + s V_putgreytile_h)
+           + max0(-1 + s V_putgreytile_h) * max0(-1 + s V_putgreytile_w) <= z)%Q
+   | 7 => (s V_putgreytile_z + max0(-1 + s V_putgreytile_h)
+           + max0(-1 + s V_putgreytile_h) * max0(-1 + s V_putgreytile_w) <= z)%Q
+   | 8 => (s V_putgreytile_z
+           + max0(-1 + s V_putgreytile__tmp2) * max0(-1 + s V_putgreytile_h)
+           + max0(-1 + s V_putgreytile_h) <= z)%Q
+   | 9 => (s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+           + max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                    + s V_putgreytile__tmp2) <= z)%Q
+   | 10 => (s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            + max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                     + s V_putgreytile__tmp2) <= z)%Q
+   | 11 => (s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            + max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                     + s V_putgreytile__tmp2) <= z)%Q
+   | 12 => (s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            + max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                     + s V_putgreytile__tmp2) <= z)%Q
+   | 13 => (s V_putgreytile_z
+            + max0(-1 + s V_putgreytile__tmp2) * max0(s V_putgreytile__tmp)
+            + max0(s V_putgreytile__tmp) <= z)%Q
+   | 14 => (s V_putgreytile_z
+            + max0(-1 + s V_putgreytile__tmp2) * max0(s V_putgreytile__tmp)
+            + max0(s V_putgreytile__tmp) <= z)%Q
+   | 15 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (s V_putgreytile__tmp) (-1
+                                                                    + 
+                                                                    s V_putgreytile__tmp));
+      (*-1 0*) F_max0_ge_0 (-1 + s V_putgreytile__tmp);
+      (*-1 0*) F_product (F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                            + s V_putgreytile__tmp2)) (F_check_ge (0) (0))) (F_binom_monotonic 1 (F_max0_ge_0 (s V_putgreytile__tmp)) (F_check_ge (0) (0)))]
+     (s V_putgreytile_z
+      + max0(-1 + s V_putgreytile__tmp2) * max0(s V_putgreytile__tmp)
+      + max0(s V_putgreytile__tmp) <= z)%Q
+   | 16 => (s V_putgreytile_z <= z)%Q
+   | 17 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_putgreytile__tmp) (1);
+      (*-1 0*) F_product (F_binom_monotonic 1 (F_max0_ge_arg (s V_putgreytile__tmp)) (F_check_ge (s V_putgreytile__tmp) (0))) (F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                                    + s V_putgreytile__tmp2)) (F_check_ge (0) (0)))]
+     (s V_putgreytile_z
+      + max0(-1 + s V_putgreytile__tmp2) * max0(s V_putgreytile__tmp)
+      + max0(s V_putgreytile__tmp) <= z)%Q
+   | 18 => ((1 # 1) + s V_putgreytile__tmp * max0(-1 + s V_putgreytile__tmp2)
+            + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp) <= z)%Q
+   | 19 => ((1 # 1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp2)
+            + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp1)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp2)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp1)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp2) <= z)%Q
+   | 20 => ((1 # 1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp2)
+            + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp1)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp2)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp1)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp2) <= z)%Q
+   | 21 => hints
+     [(*-0.5 0*) F_product (F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    + s V_putgreytile__tmp) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_putgreytile__tmp))) (F_binom_monotonic 1 (F_max0_ge_0 (s V_putgreytile__tmp1)) (F_check_ge (0) (0)));
+      (*0 0.5*) F_product (F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                               + s V_putgreytile__tmp)) (F_check_ge (-1
+                                                                    + s V_putgreytile__tmp) (0))) (F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                                    + s V_putgreytile__tmp1)) (F_check_ge (0) (0)))]
+     ((1 # 1)
+      + (1 # 2) * s V_putgreytile__tmp * max0(-1 + s V_putgreytile__tmp2)
+      + (1 # 2) * s V_putgreytile__tmp * max0(s V_putgreytile__tmp1)
+      + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+      + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                         + s V_putgreytile__tmp2)
+      - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(s V_putgreytile__tmp1)
+      - (1 # 2) * max0(-1 + s V_putgreytile__tmp2)
+      + (1 # 2) * max0(s V_putgreytile__tmp1) <= z)%Q
+   | 22 => ((1 # 1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp2)
+            + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp1)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp2)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp1)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp2)
+            + max0(s V_putgreytile__tmp1) <= z)%Q
+   | 23 => hints
+     [(*-0.5 0*) F_product (F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    + s V_putgreytile__tmp) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_putgreytile__tmp))) (F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                                    + s V_putgreytile__tmp1)) (F_check_ge (0) (0)));
+      (*-0.5 0*) F_product (F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    + s V_putgreytile__tmp) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_putgreytile__tmp))) (F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                                    + s V_putgreytile__tmp2)) (F_check_ge (0) (0)));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_putgreytile__tmp1)) (F_check_ge (0) (0))]
+     ((1 # 1)
+      + (1 # 2) * s V_putgreytile__tmp * max0(-1 + s V_putgreytile__tmp1)
+      + (1 # 2) * s V_putgreytile__tmp * max0(-1 + s V_putgreytile__tmp2)
+      + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+      - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                         + s V_putgreytile__tmp1)
+      + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                         + s V_putgreytile__tmp2)
+      - (1 # 2) * max0(-1 + s V_putgreytile__tmp1)
+      - (1 # 2) * max0(-1 + s V_putgreytile__tmp2)
+      + max0(s V_putgreytile__tmp1) <= z)%Q
+   | 24 => ((1 # 1) + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            + max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                     + s V_putgreytile__tmp2) <= z)%Q
+   | 25 => ((1 # 1) + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            + max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                     + s V_putgreytile__tmp2) <= z)%Q
+   | 26 => ((1 # 1) + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            + max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                     + s V_putgreytile__tmp2) <= z)%Q
+   | 27 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_putgreytile__tmp1) (1)]
+     ((1 # 1)
+      + (1 # 2) * s V_putgreytile__tmp * max0(-1 + s V_putgreytile__tmp1)
+      + (1 # 2) * s V_putgreytile__tmp * max0(-1 + s V_putgreytile__tmp2)
+      + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+      - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                         + s V_putgreytile__tmp1)
+      + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                         + s V_putgreytile__tmp2)
+      - (1 # 2) * max0(-1 + s V_putgreytile__tmp1)
+      - (1 # 2) * max0(-1 + s V_putgreytile__tmp2)
+      + max0(s V_putgreytile__tmp1) <= z)%Q
+   | 28 => ((2 # 1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp2)
+            + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp1)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp2)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp1)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp2) <= z)%Q
+   | 29 => ((2 # 1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp2)
+            + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp1)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp2)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp1)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp2) <= z)%Q
+   | 30 => ((2 # 1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp1)
+            + (1 # 2) * s V_putgreytile__tmp * max0(-1
+                                                    + s V_putgreytile__tmp2)
+            + s V_putgreytile_z + max0(-1 + s V_putgreytile__tmp)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp1)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp) * max0(-1
+                                                               + s V_putgreytile__tmp2)
+            + (1 # 2) * max0(-1 + s V_putgreytile__tmp1)
+            - (1 # 2) * max0(-1 + s V_putgreytile__tmp2) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0(-1 + (s IDputgreytile_h))
-                     + max0(-1 + (s IDputgreytile_h)) * max0(-1
-                                                             + (s IDputgreytile_w)))%Q
-    | 2%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile_h))
-                     + max0(-1 + (s IDputgreytile_h)) * max0(-1
-                                                             + (s IDputgreytile_w)))%Q
-    | 3%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile_h))
-                     + max0(-1 + (s IDputgreytile_h)) * max0(-1
-                                                             + (s IDputgreytile_w)))%Q
-    | 4%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile_h))
-                     + max0(-1 + (s IDputgreytile_h)) * max0(-1
-                                                             + (s IDputgreytile_w)))%Q
-    | 5%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile_h))
-                     + max0(-1 + (s IDputgreytile_h)) * max0(-1
-                                                             + (s IDputgreytile_w)))%Q
-    | 6%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile_h))
-                     + max0(-1 + (s IDputgreytile_h)) * max0(-1
-                                                             + (s IDputgreytile_w)))%Q
-    | 7%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile_h))
-                     + max0(-1 + (s IDputgreytile_h)) * max0(-1
-                                                             + (s IDputgreytile_w)))%Q
-    | 8%positive => ((s IDputgreytile_z)
-                     + max0(-1 + (s IDputgreytile__tmp2)) * max0(-1
-                                                                 + (s IDputgreytile_h))
-                     + max0(-1 + (s IDputgreytile_h)))%Q
-    | 9%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile__tmp))
-                     + max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                + (s IDputgreytile__tmp2)))%Q
-    | 10%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile__tmp))
-                      + max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                 + (s IDputgreytile__tmp2)))%Q
-    | 11%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile__tmp))
-                      + max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                 + (s IDputgreytile__tmp2)))%Q
-    | 12%positive => ((s IDputgreytile_z) + max0(-1 + (s IDputgreytile__tmp))
-                      + max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                 + (s IDputgreytile__tmp2)))%Q
-    | 13%positive => ((s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp2)) * max0((s IDputgreytile__tmp))
-                      + max0((s IDputgreytile__tmp)))%Q
-    | 14%positive => ((s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp2)) * max0((s IDputgreytile__tmp))
-                      + max0((s IDputgreytile__tmp)))%Q
-    | 15%positive => ((s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp2)) * max0((s IDputgreytile__tmp))
-                      + max0((s IDputgreytile__tmp)))%Q
-    | 16%positive => ((s IDputgreytile_z))%Q
-    | 17%positive => ((s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp2)) * max0((s IDputgreytile__tmp))
-                      + max0((s IDputgreytile__tmp)))%Q
-    | 18%positive => ((1 # 1)
-                      + (s IDputgreytile__tmp) * max0(-1
-                                                      + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp)))%Q
-    | 19%positive => ((1 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp1))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp1))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2)))%Q
-    | 20%positive => ((1 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp1))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp1))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2)))%Q
-    | 21%positive => ((1 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0((s IDputgreytile__tmp1))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0((s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2))
-                      + (1 # 2) * max0((s IDputgreytile__tmp1)))%Q
-    | 22%positive => ((1 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp1))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp1))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2))
-                      + max0((s IDputgreytile__tmp1)))%Q
-    | 23%positive => ((1 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp1))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp1))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2))
-                      + max0((s IDputgreytile__tmp1)))%Q
-    | 24%positive => ((1 # 1) + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      + max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                 + (s IDputgreytile__tmp2)))%Q
-    | 25%positive => ((1 # 1) + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      + max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                 + (s IDputgreytile__tmp2)))%Q
-    | 26%positive => ((1 # 1) + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      + max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                 + (s IDputgreytile__tmp2)))%Q
-    | 27%positive => ((1 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp1))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp1))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2))
-                      + max0((s IDputgreytile__tmp1)))%Q
-    | 28%positive => ((2 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp1))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp1))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2)))%Q
-    | 29%positive => ((2 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp1))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp1))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2)))%Q
-    | 30%positive => ((2 # 1)
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp1))
-                      + (1 # 2) * (s IDputgreytile__tmp) * max0(-1
-                                                                + (s IDputgreytile__tmp2))
-                      + (s IDputgreytile_z)
-                      + max0(-1 + (s IDputgreytile__tmp))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp1))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp)) * max0(-1
-                                                                    + (s IDputgreytile__tmp2))
-                      + (1 # 2) * max0(-1 + (s IDputgreytile__tmp1))
-                      - (1 # 2) * max0(-1 + (s IDputgreytile__tmp2)))%Q
-    | _ => (0 # 1)%Q
+  | P_putgreytile =>
+    [mkPA Q (fun n z s => ai_putgreytile n s /\ annot0_putgreytile n z s)]
   end.
 
-Definition putgreytile_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => [(*-1 0*) F_max0_monotonic (F_check_ge ((s IDputgreytile__tmp)) (-1
-                                                                    + (s IDputgreytile__tmp)));
-                      (*-1 0*) F_max0_ge_0 (-1 + (s IDputgreytile__tmp));
-                      (*-1 0*) F_product (F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDputgreytile__tmp2))) (F_check_ge (0) (0))) (F_binom_monotonic 1 (F_max0_ge_0 ((s IDputgreytile__tmp))) (F_check_ge (0) (0)))]
-    | 16%positive => []
-    | 17%positive => [(*-1 0*) F_max0_pre_decrement ((s IDputgreytile__tmp)) (1);
-                      (*-1 0*) F_product (F_binom_monotonic 1 (F_max0_ge_arg ((s IDputgreytile__tmp))) (F_check_ge ((s IDputgreytile__tmp)) (0))) (F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDputgreytile__tmp2))) (F_check_ge (0) (0)))]
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => [(*-0.5 0*) F_product (F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDputgreytile__tmp)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDputgreytile__tmp)))) (F_binom_monotonic 1 (F_max0_ge_0 ((s IDputgreytile__tmp1))) (F_check_ge (0) (0)));
-                      (*0 0.5*) F_product (F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDputgreytile__tmp))) (F_check_ge (-1
-                                                                    + (s IDputgreytile__tmp)) (0))) (F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDputgreytile__tmp1))) (F_check_ge (0) (0)))]
-    | 22%positive => []
-    | 23%positive => [(*-0.5 0*) F_product (F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDputgreytile__tmp)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDputgreytile__tmp)))) (F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDputgreytile__tmp1))) (F_check_ge (0) (0)));
-                      (*-0.5 0*) F_product (F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDputgreytile__tmp)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDputgreytile__tmp)))) (F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    + (s IDputgreytile__tmp2))) (F_check_ge (0) (0)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDputgreytile__tmp1))) (F_check_ge (0) (0))]
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => [(*-1 0*) F_max0_pre_decrement ((s IDputgreytile__tmp1)) (1)]
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | _ => []
-  end.
-
-
-Theorem putgreytile_ai_correct:
-  forall s p' s', steps (g_start putgreytile) s (g_edges putgreytile) p' s' -> putgreytile_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem putgreytile_pot_correct:
-  forall s p' s',
-    steps (g_start putgreytile) s (g_edges putgreytile) p' s' ->
-    (putgreytile_pot (g_start putgreytile) s >= putgreytile_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_putgreytile (proc_start P_putgreytile) s1 (proc_end P_putgreytile) s2 ->
+    (s2 V_putgreytile_z <= max0(-1 + s1 V_putgreytile_h)
+                           + max0(-1 + s1 V_putgreytile_h) * max0(-1
+                                                                  + s1 V_putgreytile_w))%Q.
 Proof.
-  check_lp putgreytile_ai_correct putgreytile_hints.
+  prove_bound ipa admissible_ipa P_putgreytile.
 Qed.
-

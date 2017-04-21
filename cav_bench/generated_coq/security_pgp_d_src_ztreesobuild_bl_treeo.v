@@ -1,145 +1,115 @@
 Require Import pasta.Pasta.
 
-Notation IDbuild_bl_tree_z := 1%positive.
-Notation IDbuild_bl_tree_max_blindex := 2%positive.
-Notation IDbuild_bl_tree_opt_len := 3%positive.
-Definition build_bl_tree : graph := {|
-  g_start := 1%positive;
-  g_end := 18%positive;
-  g_edges := (1%positive,(AAssign IDbuild_bl_tree_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDbuild_bl_tree_max_blindex
-             (Some (ENum (18)))),3%positive)::(3%positive,ANone,4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDbuild_bl_tree_max_blindex) s) >=
-             (eval (ENum (3)) s))%Z)),7%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDbuild_bl_tree_max_blindex) s) <
-             (eval (ENum (3)) s))%Z)),6%positive)::
-             (6%positive,AWeaken,16%positive)::
-             (7%positive,AWeaken,8%positive)::
-             (8%positive,ANone,15%positive)::(8%positive,ANone,9%positive)::
-             (9%positive,ANone,10%positive)::
-             (10%positive,(AAssign IDbuild_bl_tree_max_blindex
-             (Some (EAdd (EVar IDbuild_bl_tree_max_blindex) (ENum (-1))))),
-             11%positive)::(11%positive,ANone,12%positive)::
-             (12%positive,ANone,13%positive)::
-             (13%positive,(AAssign IDbuild_bl_tree_z (Some (EAdd (ENum (1))
-             (EVar IDbuild_bl_tree_z)))),14%positive)::
-             (14%positive,AWeaken,5%positive)::
-             (15%positive,ANone,16%positive)::
-             (16%positive,(AAssign IDbuild_bl_tree_opt_len
-             (Some (EAdd (EVar IDbuild_bl_tree_opt_len)
-             (EAdd (EAdd (EAdd (EMul (ENum (3))
-             (EAdd (EVar IDbuild_bl_tree_max_blindex) (ENum (1))))
-             (ENum (5))) (ENum (5))) (ENum (4)))))),17%positive)::
-             (17%positive,AWeaken,18%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_build_bl_tree.
 
-Definition build_bl_tree_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDbuild_bl_tree_z) <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDbuild_bl_tree_z) <= 0 /\ 1 * (s IDbuild_bl_tree_z) <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 18 <= 0)%Z
-    | 4%positive => (-1 * (s IDbuild_bl_tree_max_blindex) + 18 <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0 /\ 1 * (s IDbuild_bl_tree_z) <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDbuild_bl_tree_z) <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0)%Z
-    | 6%positive => (-1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -2 <= 0)%Z
-    | 7%positive => (1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 3 <= 0)%Z
-    | 8%positive => (-1 * (s IDbuild_bl_tree_max_blindex) + 3 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0)%Z
-    | 9%positive => (1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 3 <= 0)%Z
-    | 10%positive => (-1 * (s IDbuild_bl_tree_max_blindex) + 3 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0)%Z
-    | 11%positive => (-1 * (s IDbuild_bl_tree_z) <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -17 <= 0)%Z
-    | 12%positive => (1 * (s IDbuild_bl_tree_max_blindex) + -17 <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDbuild_bl_tree_z) <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -17 <= 0)%Z
-    | 14%positive => (1 * (s IDbuild_bl_tree_max_blindex) + -17 <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0 /\ -1 * (s IDbuild_bl_tree_z) + 1 <= 0)%Z
-    | 15%positive => (1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 3 <= 0)%Z
-    | 16%positive => (-1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0)%Z
-    | 17%positive => (1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ -1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0)%Z
-    | 18%positive => (-1 * (s IDbuild_bl_tree_max_blindex) + 2 <= 0 /\ -1 * (s IDbuild_bl_tree_z) <= 0 /\ 1 * (s IDbuild_bl_tree_max_blindex) + -18 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition build_bl_tree_pot (p : node) (s : state): Q := 
+Notation V_build_bl_tree_z := 1%positive.
+Notation V_build_bl_tree_max_blindex := 2%positive.
+Notation V_build_bl_tree_opt_len := 3%positive.
+Definition Pedges_build_bl_tree: list (edge proc) :=
+  (EA 1 (AAssign V_build_bl_tree_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_build_bl_tree_max_blindex (Some (ENum (18)))) 3)::(EA 3 ANone 4)::
+  (EA 4 AWeaken 5)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_build_bl_tree_max_blindex) s) >= (eval (ENum (3))
+  s))%Z)) 7)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_build_bl_tree_max_blindex) s) < (eval (ENum (3))
+  s))%Z)) 6)::(EA 6 AWeaken 16)::(EA 7 AWeaken 8)::(EA 8 ANone 15)::
+  (EA 8 ANone 9)::(EA 9 ANone 10)::(EA 10 (AAssign
+  V_build_bl_tree_max_blindex (Some (EAdd (EVar V_build_bl_tree_max_blindex)
+  (ENum (-1))))) 11)::(EA 11 ANone 12)::(EA 12 ANone 13)::(EA 13 (AAssign
+  V_build_bl_tree_z (Some (EAdd (ENum (1)) (EVar V_build_bl_tree_z)))) 14)::
+  (EA 14 AWeaken 5)::(EA 15 ANone 16)::(EA 16 (AAssign
+  V_build_bl_tree_opt_len (Some (EAdd (EVar V_build_bl_tree_opt_len)
+  (EAdd (EAdd (EAdd (EMul (ENum (3)) (EAdd (EVar V_build_bl_tree_max_blindex)
+  (ENum (1)))) (ENum (5))) (ENum (5))) (ENum (4)))))) 17)::
+  (EA 17 AWeaken 18)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_build_bl_tree => Pedges_build_bl_tree
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_build_bl_tree => 18
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_build_bl_tree (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_build_bl_tree_z <= 0 /\ -1 * s V_build_bl_tree_z <= 0)%Z
+   | 3 => (-1 * s V_build_bl_tree_z <= 0 /\ 1 * s V_build_bl_tree_z <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -18 <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 18 <= 0)%Z
+   | 4 => (-1 * s V_build_bl_tree_max_blindex + 18 <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -18 <= 0 /\ 1 * s V_build_bl_tree_z <= 0 /\ -1 * s V_build_bl_tree_z <= 0)%Z
+   | 5 => (-1 * s V_build_bl_tree_z <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -18 <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 2 <= 0)%Z
+   | 6 => (-1 * s V_build_bl_tree_max_blindex + 2 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -2 <= 0)%Z
+   | 7 => (1 * s V_build_bl_tree_max_blindex + -18 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 3 <= 0)%Z
+   | 8 => (-1 * s V_build_bl_tree_max_blindex + 3 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -18 <= 0)%Z
+   | 9 => (1 * s V_build_bl_tree_max_blindex + -18 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 3 <= 0)%Z
+   | 10 => (-1 * s V_build_bl_tree_max_blindex + 3 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -18 <= 0)%Z
+   | 11 => (-1 * s V_build_bl_tree_z <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 2 <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -17 <= 0)%Z
+   | 12 => (1 * s V_build_bl_tree_max_blindex + -17 <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 2 <= 0 /\ -1 * s V_build_bl_tree_z <= 0)%Z
+   | 13 => (-1 * s V_build_bl_tree_z <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 2 <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -17 <= 0)%Z
+   | 14 => (1 * s V_build_bl_tree_max_blindex + -17 <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 2 <= 0 /\ -1 * s V_build_bl_tree_z + 1 <= 0)%Z
+   | 15 => (1 * s V_build_bl_tree_max_blindex + -18 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 3 <= 0)%Z
+   | 16 => (-1 * s V_build_bl_tree_max_blindex + 2 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -18 <= 0)%Z
+   | 17 => (1 * s V_build_bl_tree_max_blindex + -18 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ -1 * s V_build_bl_tree_max_blindex + 2 <= 0)%Z
+   | 18 => (-1 * s V_build_bl_tree_max_blindex + 2 <= 0 /\ -1 * s V_build_bl_tree_z <= 0 /\ 1 * s V_build_bl_tree_max_blindex + -18 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_build_bl_tree (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((16 # 1) <= z)%Q
+   | 2 => ((16 # 1) + s V_build_bl_tree_z <= z)%Q
+   | 3 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 4 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 5 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 6 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 7 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 8 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 9 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 10 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 11 => (-(1 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 12 => (-(1 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 13 => (-(1 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 14 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 15 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 16 => (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 17 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-2
+                                             + s V_build_bl_tree_max_blindex) (-3
+                                                                    + s V_build_bl_tree_max_blindex));
+      (*-1 0*) F_max0_ge_0 (-3 + s V_build_bl_tree_max_blindex);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                               + s V_build_bl_tree_max_blindex) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_build_bl_tree_max_blindex))]
+     (-(2 # 1) + s V_build_bl_tree_max_blindex + s V_build_bl_tree_z <= z)%Q
+   | 18 => (s V_build_bl_tree_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((16 # 1))%Q
-    | 2%positive => ((16 # 1) + (s IDbuild_bl_tree_z))%Q
-    | 3%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                     + (s IDbuild_bl_tree_z))%Q
-    | 4%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                     + (s IDbuild_bl_tree_z))%Q
-    | 5%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                     + (s IDbuild_bl_tree_z))%Q
-    | 6%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                     + (s IDbuild_bl_tree_z))%Q
-    | 7%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                     + (s IDbuild_bl_tree_z))%Q
-    | 8%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                     + (s IDbuild_bl_tree_z))%Q
-    | 9%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                     + (s IDbuild_bl_tree_z))%Q
-    | 10%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                      + (s IDbuild_bl_tree_z))%Q
-    | 11%positive => (-(1 # 1) + (s IDbuild_bl_tree_max_blindex)
-                      + (s IDbuild_bl_tree_z))%Q
-    | 12%positive => (-(1 # 1) + (s IDbuild_bl_tree_max_blindex)
-                      + (s IDbuild_bl_tree_z))%Q
-    | 13%positive => (-(1 # 1) + (s IDbuild_bl_tree_max_blindex)
-                      + (s IDbuild_bl_tree_z))%Q
-    | 14%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                      + (s IDbuild_bl_tree_z))%Q
-    | 15%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                      + (s IDbuild_bl_tree_z))%Q
-    | 16%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                      + (s IDbuild_bl_tree_z))%Q
-    | 17%positive => (-(2 # 1) + (s IDbuild_bl_tree_max_blindex)
-                      + (s IDbuild_bl_tree_z))%Q
-    | 18%positive => ((s IDbuild_bl_tree_z))%Q
-    | _ => (0 # 1)%Q
+  | P_build_bl_tree =>
+    [mkPA Q (fun n z s => ai_build_bl_tree n s /\ annot0_build_bl_tree n z s)]
   end.
 
-Definition build_bl_tree_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-2
-                                                             + (s IDbuild_bl_tree_max_blindex)) (-3
-                                                                    + (s IDbuild_bl_tree_max_blindex)));
-                      (*-1 0*) F_max0_ge_0 (-3
-                                            + (s IDbuild_bl_tree_max_blindex));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDbuild_bl_tree_max_blindex)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDbuild_bl_tree_max_blindex)))]
-    | 18%positive => []
-    | _ => []
-  end.
-
-
-Theorem build_bl_tree_ai_correct:
-  forall s p' s', steps (g_start build_bl_tree) s (g_edges build_bl_tree) p' s' -> build_bl_tree_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem build_bl_tree_pot_correct:
-  forall s p' s',
-    steps (g_start build_bl_tree) s (g_edges build_bl_tree) p' s' ->
-    (build_bl_tree_pot (g_start build_bl_tree) s >= build_bl_tree_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_build_bl_tree (proc_start P_build_bl_tree) s1 (proc_end P_build_bl_tree) s2 ->
+    (s2 V_build_bl_tree_z <= (16 # 1))%Q.
 Proof.
-  check_lp build_bl_tree_ai_correct build_bl_tree_hints.
+  prove_bound ipa admissible_ipa P_build_bl_tree.
 Qed.
-

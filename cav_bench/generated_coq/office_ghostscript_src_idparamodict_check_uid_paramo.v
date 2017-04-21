@@ -1,526 +1,444 @@
 Require Import pasta.Pasta.
 
-Notation IDdict_check_uid_param_z := 1%positive.
-Notation IDdict_check_uid_param__tmp := 2%positive.
-Notation IDdict_check_uid_param_i := 3%positive.
-Notation IDdict_check_uid_param_puid_dref_off0 := 4%positive.
-Notation IDdict_check_uid_param_size := 5%positive.
-Notation IDdict_check_uid_param_pdict := 6%positive.
-Notation IDdict_check_uid_param_puid := 7%positive.
-Definition dict_check_uid_param : graph := {|
-  g_start := 1%positive;
-  g_end := 55%positive;
-  g_edges := (1%positive,(AAssign IDdict_check_uid_param_z
-             (Some (ENum (0)))),2%positive)::
-             (2%positive,(AGuard
-             (fun s => ((eval (EVar IDdict_check_uid_param_size) s) >=
-             (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,(AGuard
-             (fun s => ((eval (EVar IDdict_check_uid_param_i) s) >=
-             (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDdict_check_uid_param_puid_dref_off0)
-             s) < (eval (ENum (0)) s))%Z)),17%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDdict_check_uid_param_puid_dref_off0)
-             s) >= (eval (ENum (0)) s))%Z)),6%positive)::
-             (6%positive,AWeaken,7%positive)::
-             (7%positive,ANone,14%positive)::(7%positive,ANone,8%positive)::
-             (8%positive,AWeaken,9%positive)::
-             (9%positive,ANone,10%positive)::(9%positive,ANone,11%positive)::
-             (10%positive,ANone,11%positive)::
-             (11%positive,(AAssign IDdict_check_uid_param__tmp None),
-             12%positive)::(12%positive,ANone,13%positive)::
-             (13%positive,AWeaken,55%positive)::
-             (14%positive,(AAssign IDdict_check_uid_param__tmp
-             (Some (ENum (0)))),15%positive)::
-             (15%positive,ANone,16%positive)::
-             (16%positive,AWeaken,55%positive)::
-             (17%positive,AWeaken,18%positive)::
-             (18%positive,(AAssign IDdict_check_uid_param_size
-             (Some (ESub (ENum (0))
-             (EVar IDdict_check_uid_param_puid_dref_off0)))),19%positive)::
-             (19%positive,AWeaken,20%positive)::
-             (20%positive,ANone,52%positive)::
-             (20%positive,ANone,21%positive)::
-             (21%positive,AWeaken,22%positive)::
-             (22%positive,ANone,23%positive)::
-             (22%positive,ANone,49%positive)::
-             (23%positive,AWeaken,24%positive)::
-             (24%positive,ANone,49%positive)::
-             (24%positive,ANone,25%positive)::
-             (25%positive,(AAssign IDdict_check_uid_param_i
-             (Some (ENum (0)))),26%positive)::
-             (26%positive,ANone,27%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,(AGuard
-             (fun s => ((eval (EVar IDdict_check_uid_param_i) s) <
-             (eval (EVar IDdict_check_uid_param_size) s))%Z)),33%positive)::
-             (28%positive,(AGuard
-             (fun s => ((eval (EVar IDdict_check_uid_param_i) s) >=
-             (eval (EVar IDdict_check_uid_param_size) s))%Z)),29%positive)::
-             (29%positive,AWeaken,30%positive)::
-             (30%positive,(AAssign IDdict_check_uid_param__tmp
-             (Some (ENum (1)))),31%positive)::
-             (31%positive,ANone,32%positive)::
-             (32%positive,AWeaken,55%positive)::
-             (33%positive,AWeaken,34%positive)::
-             (34%positive,ANone,38%positive)::
-             (34%positive,ANone,35%positive)::
-             (35%positive,(AAssign IDdict_check_uid_param__tmp
-             (Some (ENum (0)))),36%positive)::
-             (36%positive,ANone,37%positive)::
-             (37%positive,AWeaken,55%positive)::
-             (38%positive,AWeaken,39%positive)::
-             (39%positive,ANone,46%positive)::
-             (39%positive,ANone,40%positive)::
-             (40%positive,ANone,41%positive)::
-             (41%positive,(AAssign IDdict_check_uid_param_i
-             (Some (EAdd (EVar IDdict_check_uid_param_i) (ENum (1))))),
-             42%positive)::(42%positive,ANone,43%positive)::
-             (43%positive,ANone,44%positive)::
-             (44%positive,(AAssign IDdict_check_uid_param_z
-             (Some (EAdd (ENum (1)) (EVar IDdict_check_uid_param_z)))),
-             45%positive)::(45%positive,AWeaken,28%positive)::
-             (46%positive,(AAssign IDdict_check_uid_param__tmp
-             (Some (ENum (0)))),47%positive)::
-             (47%positive,ANone,48%positive)::
-             (48%positive,AWeaken,55%positive)::
-             (49%positive,(AAssign IDdict_check_uid_param__tmp
-             (Some (ENum (0)))),50%positive)::
-             (50%positive,ANone,51%positive)::
-             (51%positive,AWeaken,55%positive)::
-             (52%positive,(AAssign IDdict_check_uid_param__tmp
-             (Some (ENum (0)))),53%positive)::
-             (53%positive,ANone,54%positive)::
-             (54%positive,AWeaken,55%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_dict_check_uid_param.
 
-Definition dict_check_uid_param_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 4%positive => (-1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0)%Z
-    | 5%positive => (-1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 6%positive => (-1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0)%Z
-    | 7%positive => (-1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 8%positive => (-1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0)%Z
-    | 9%positive => (-1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 10%positive => (-1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0)%Z
-    | 11%positive => (-1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 12%positive => (-1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0)%Z
-    | 13%positive => (-1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 14%positive => (-1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0)%Z
-    | 15%positive => (-1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ -1 * (s IDdict_check_uid_param__tmp) <= 0)%Z
-    | 16%positive => (-1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_puid_dref_off0) <= 0)%Z
-    | 17%positive => (-1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0)%Z
-    | 18%positive => (1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 19%positive => (1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 20%positive => (-1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0)%Z
-    | 21%positive => (1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 22%positive => (-1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0)%Z
-    | 23%positive => (1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 24%positive => (-1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0)%Z
-    | 25%positive => (1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 26%positive => (-1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0)%Z
-    | 27%positive => (-1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 28%positive => (-1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 29%positive => (1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i)+ 1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 30%positive => (-1 * (s IDdict_check_uid_param_i)+ 1 * (s IDdict_check_uid_param_size) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 31%positive => (1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i)+ 1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) + -1 <= 0 /\ -1 * (s IDdict_check_uid_param__tmp) + 1 <= 0)%Z
-    | 32%positive => (-1 * (s IDdict_check_uid_param__tmp) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) + -1 <= 0 /\ -1 * (s IDdict_check_uid_param_i)+ 1 * (s IDdict_check_uid_param_size) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0)%Z
-    | 33%positive => (1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 34%positive => (1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0)%Z
-    | 35%positive => (1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 36%positive => (1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ -1 * (s IDdict_check_uid_param__tmp) <= 0)%Z
-    | 37%positive => (-1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 38%positive => (1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 39%positive => (1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0)%Z
-    | 40%positive => (1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 41%positive => (1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0)%Z
-    | 42%positive => (1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0 /\ -1 * (s IDdict_check_uid_param_i) + 1 <= 0)%Z
-    | 43%positive => (-1 * (s IDdict_check_uid_param_i) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0)%Z
-    | 44%positive => (1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0 /\ -1 * (s IDdict_check_uid_param_i) + 1 <= 0)%Z
-    | 45%positive => (-1 * (s IDdict_check_uid_param_i) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) + 1 <= 0)%Z
-    | 46%positive => (1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 47%positive => (1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ -1 * (s IDdict_check_uid_param__tmp) <= 0)%Z
-    | 48%positive => (-1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_i)+ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 49%positive => (1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 50%positive => (-1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ -1 * (s IDdict_check_uid_param__tmp) <= 0)%Z
-    | 51%positive => (-1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 52%positive => (1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 53%positive => (-1 * (s IDdict_check_uid_param_size) + 1 <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ -1 * (s IDdict_check_uid_param__tmp) <= 0)%Z
-    | 54%positive => (-1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param__tmp) <= 0 /\ 1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ 1 * (s IDdict_check_uid_param_puid_dref_off0) + 1 <= 0 /\ -1 * (s IDdict_check_uid_param_size) + 1 <= 0)%Z
-    | 55%positive => (-1 * (s IDdict_check_uid_param_size) <= 0 /\ -1 * (s IDdict_check_uid_param_i) <= 0 /\ -1 * (s IDdict_check_uid_param_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition dict_check_uid_param_pot (p : node) (s : state): Q := 
+Notation V_dict_check_uid_param_z := 1%positive.
+Notation V_dict_check_uid_param__tmp := 2%positive.
+Notation V_dict_check_uid_param_i := 3%positive.
+Notation V_dict_check_uid_param_puid_dref_off0 := 4%positive.
+Notation V_dict_check_uid_param_size := 5%positive.
+Notation V_dict_check_uid_param_pdict := 6%positive.
+Notation V_dict_check_uid_param_puid := 7%positive.
+Definition Pedges_dict_check_uid_param: list (edge proc) :=
+  (EA 1 (AAssign V_dict_check_uid_param_z (Some (ENum (0)))) 2)::
+  (EA 2 (AGuard (fun s => ((eval (EVar V_dict_check_uid_param_size) s) >=
+  (eval (ENum (0)) s))%Z)) 3)::(EA 3 (AGuard
+  (fun s => ((eval (EVar V_dict_check_uid_param_i) s) >= (eval (ENum (0))
+  s))%Z)) 4)::(EA 4 AWeaken 5)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_dict_check_uid_param_puid_dref_off0) s) <
+  (eval (ENum (0)) s))%Z)) 17)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_dict_check_uid_param_puid_dref_off0) s) >=
+  (eval (ENum (0)) s))%Z)) 6)::(EA 6 AWeaken 7)::(EA 7 ANone 14)::
+  (EA 7 ANone 8)::(EA 8 AWeaken 9)::(EA 9 ANone 10)::(EA 9 ANone 11)::
+  (EA 10 ANone 11)::(EA 11 (AAssign V_dict_check_uid_param__tmp None) 12)::
+  (EA 12 ANone 13)::(EA 13 AWeaken 55)::(EA 14 (AAssign
+  V_dict_check_uid_param__tmp (Some (ENum (0)))) 15)::(EA 15 ANone 16)::
+  (EA 16 AWeaken 55)::(EA 17 AWeaken 18)::(EA 18 (AAssign
+  V_dict_check_uid_param_size (Some (ESub (ENum (0))
+  (EVar V_dict_check_uid_param_puid_dref_off0)))) 19)::(EA 19 AWeaken 20)::
+  (EA 20 ANone 52)::(EA 20 ANone 21)::(EA 21 AWeaken 22)::(EA 22 ANone 23)::
+  (EA 22 ANone 49)::(EA 23 AWeaken 24)::(EA 24 ANone 49)::(EA 24 ANone 25)::
+  (EA 25 (AAssign V_dict_check_uid_param_i (Some (ENum (0)))) 26)::
+  (EA 26 ANone 27)::(EA 27 AWeaken 28)::(EA 28 (AGuard
+  (fun s => ((eval (EVar V_dict_check_uid_param_i) s) <
+  (eval (EVar V_dict_check_uid_param_size) s))%Z)) 33)::(EA 28 (AGuard
+  (fun s => ((eval (EVar V_dict_check_uid_param_i) s) >=
+  (eval (EVar V_dict_check_uid_param_size) s))%Z)) 29)::(EA 29 AWeaken 30)::
+  (EA 30 (AAssign V_dict_check_uid_param__tmp (Some (ENum (1)))) 31)::
+  (EA 31 ANone 32)::(EA 32 AWeaken 55)::(EA 33 AWeaken 34)::
+  (EA 34 ANone 38)::(EA 34 ANone 35)::(EA 35 (AAssign
+  V_dict_check_uid_param__tmp (Some (ENum (0)))) 36)::(EA 36 ANone 37)::
+  (EA 37 AWeaken 55)::(EA 38 AWeaken 39)::(EA 39 ANone 46)::
+  (EA 39 ANone 40)::(EA 40 ANone 41)::(EA 41 (AAssign
+  V_dict_check_uid_param_i (Some (EAdd (EVar V_dict_check_uid_param_i)
+  (ENum (1))))) 42)::(EA 42 ANone 43)::(EA 43 ANone 44)::(EA 44 (AAssign
+  V_dict_check_uid_param_z (Some (EAdd (ENum (1))
+  (EVar V_dict_check_uid_param_z)))) 45)::(EA 45 AWeaken 28)::(EA 46 (AAssign
+  V_dict_check_uid_param__tmp (Some (ENum (0)))) 47)::(EA 47 ANone 48)::
+  (EA 48 AWeaken 55)::(EA 49 (AAssign V_dict_check_uid_param__tmp
+  (Some (ENum (0)))) 50)::(EA 50 ANone 51)::(EA 51 AWeaken 55)::
+  (EA 52 (AAssign V_dict_check_uid_param__tmp (Some (ENum (0)))) 53)::
+  (EA 53 ANone 54)::(EA 54 AWeaken 55)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_dict_check_uid_param => Pedges_dict_check_uid_param
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_dict_check_uid_param => 55
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_dict_check_uid_param (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0)%Z
+   | 3 => (-1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 4 => (-1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0)%Z
+   | 5 => (-1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 6 => (-1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_puid_dref_off0 <= 0)%Z
+   | 7 => (-1 * s V_dict_check_uid_param_puid_dref_off0 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 8 => (-1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_puid_dref_off0 <= 0)%Z
+   | 9 => (-1 * s V_dict_check_uid_param_puid_dref_off0 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 10 => (-1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_puid_dref_off0 <= 0)%Z
+   | 11 => (-1 * s V_dict_check_uid_param_puid_dref_off0 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 12 => (-1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_puid_dref_off0 <= 0)%Z
+   | 13 => (-1 * s V_dict_check_uid_param_puid_dref_off0 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 14 => (-1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_puid_dref_off0 <= 0)%Z
+   | 15 => (-1 * s V_dict_check_uid_param_puid_dref_off0 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ -1 * s V_dict_check_uid_param__tmp <= 0)%Z
+   | 16 => (-1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_puid_dref_off0 <= 0)%Z
+   | 17 => (-1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0)%Z
+   | 18 => (1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 19 => (1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 20 => (-1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0)%Z
+   | 21 => (1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 22 => (-1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0)%Z
+   | 23 => (1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 24 => (-1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0)%Z
+   | 25 => (1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 26 => (-1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0)%Z
+   | 27 => (-1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 28 => (-1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 29 => (1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i+ 1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 30 => (-1 * s V_dict_check_uid_param_i+ 1 * s V_dict_check_uid_param_size <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 31 => (1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i+ 1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param__tmp + -1 <= 0 /\ -1 * s V_dict_check_uid_param__tmp + 1 <= 0)%Z
+   | 32 => (-1 * s V_dict_check_uid_param__tmp + 1 <= 0 /\ 1 * s V_dict_check_uid_param__tmp + -1 <= 0 /\ -1 * s V_dict_check_uid_param_i+ 1 * s V_dict_check_uid_param_size <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0)%Z
+   | 33 => (1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 34 => (1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0)%Z
+   | 35 => (1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 36 => (1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ -1 * s V_dict_check_uid_param__tmp <= 0)%Z
+   | 37 => (-1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 38 => (1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 39 => (1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0)%Z
+   | 40 => (1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 41 => (1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0)%Z
+   | 42 => (1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0 /\ -1 * s V_dict_check_uid_param_i + 1 <= 0)%Z
+   | 43 => (-1 * s V_dict_check_uid_param_i + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0)%Z
+   | 44 => (1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0 /\ -1 * s V_dict_check_uid_param_i + 1 <= 0)%Z
+   | 45 => (-1 * s V_dict_check_uid_param_i + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z + 1 <= 0)%Z
+   | 46 => (1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 47 => (1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ -1 * s V_dict_check_uid_param__tmp <= 0)%Z
+   | 48 => (-1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_i+ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 49 => (1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 50 => (-1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ -1 * s V_dict_check_uid_param__tmp <= 0)%Z
+   | 51 => (-1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 52 => (1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 53 => (-1 * s V_dict_check_uid_param_size + 1 <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ -1 * s V_dict_check_uid_param__tmp <= 0)%Z
+   | 54 => (-1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param__tmp <= 0 /\ 1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ 1 * s V_dict_check_uid_param_puid_dref_off0 + 1 <= 0 /\ -1 * s V_dict_check_uid_param_size + 1 <= 0)%Z
+   | 55 => (-1 * s V_dict_check_uid_param_size <= 0 /\ -1 * s V_dict_check_uid_param_i <= 0 /\ -1 * s V_dict_check_uid_param_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_dict_check_uid_param (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 2 => (max0(-s V_dict_check_uid_param_puid_dref_off0)
+           + max0(s V_dict_check_uid_param_z) <= z)%Q
+   | 3 => (max0(-s V_dict_check_uid_param_puid_dref_off0)
+           + max0(s V_dict_check_uid_param_z) <= z)%Q
+   | 4 => (max0(-s V_dict_check_uid_param_puid_dref_off0)
+           + max0(s V_dict_check_uid_param_z) <= z)%Q
+   | 5 => (max0(-s V_dict_check_uid_param_puid_dref_off0)
+           + max0(s V_dict_check_uid_param_z) <= z)%Q
+   | 6 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_dict_check_uid_param_z)) (F_check_ge (s V_dict_check_uid_param_z) (0))]
+     (max0(-s V_dict_check_uid_param_puid_dref_off0)
+      + max0(s V_dict_check_uid_param_z) <= z)%Q
+   | 7 => (s V_dict_check_uid_param_z
+           + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 8 => (s V_dict_check_uid_param_z
+           + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 9 => (s V_dict_check_uid_param_z
+           + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 10 => (s V_dict_check_uid_param_z
+            + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 11 => (s V_dict_check_uid_param_z
+            + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 12 => (s V_dict_check_uid_param_z
+            + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 13 => hints
+     [(*-1 0*) F_max0_ge_0 (-s V_dict_check_uid_param_puid_dref_off0)]
+     (s V_dict_check_uid_param_z
+      + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 14 => (s V_dict_check_uid_param_z
+            + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 15 => (s V_dict_check_uid_param_z
+            + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 16 => hints
+     [(*-1 0*) F_max0_ge_0 (-s V_dict_check_uid_param_puid_dref_off0)]
+     (s V_dict_check_uid_param_z
+      + max0(-s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 17 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                              - s V_dict_check_uid_param_puid_dref_off0) (0))) (F_max0_ge_0 (-1
+                                                                    - s V_dict_check_uid_param_puid_dref_off0))]
+     (max0(-s V_dict_check_uid_param_puid_dref_off0)
+      + max0(s V_dict_check_uid_param_z) <= z)%Q
+   | 18 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+            + max0(-s V_dict_check_uid_param_puid_dref_off0)
+            + max0(s V_dict_check_uid_param_z) <= z)%Q
+   | 19 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (s V_dict_check_uid_param_z)) (F_check_ge (s V_dict_check_uid_param_z) (0))]
+     ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+      + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+      + max0(s V_dict_check_uid_param_size)
+      + max0(s V_dict_check_uid_param_z) <= z)%Q
+   | 20 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+            + max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 21 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (s V_dict_check_uid_param_size)) (F_check_ge (s V_dict_check_uid_param_size) (0))]
+     ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+      + s V_dict_check_uid_param_z
+      + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+      + max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 22 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 23 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 24 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 25 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 26 => ((1 # 1) - (1 # 2) * s V_dict_check_uid_param_i
+            + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 27 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                   - s V_dict_check_uid_param_puid_dref_off0)) (F_check_ge (-1
+                                                                    - s V_dict_check_uid_param_puid_dref_off0) (0))]
+     ((1 # 1) - (1 # 2) * s V_dict_check_uid_param_i
+      + s V_dict_check_uid_param_puid_dref_off0
+      + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+      + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+      + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size)
+      - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 28 => (-(1 # 2) * s V_dict_check_uid_param_i
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 29 => (-(1 # 2) * s V_dict_check_uid_param_i
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 30 => (-(1 # 2) * s V_dict_check_uid_param_i
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 31 => (-(1 # 2) * s V_dict_check_uid_param_i
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 32 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-s V_dict_check_uid_param_i
+                                             + s V_dict_check_uid_param_size) (-1
+                                                                    - s V_dict_check_uid_param_i
+                                                                    + s V_dict_check_uid_param_size));
+      (*-1 0*) F_max0_ge_0 (-1 - s V_dict_check_uid_param_i
+                            + s V_dict_check_uid_param_size);
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_dict_check_uid_param_size) (0))) (F_max0_ge_0 (s V_dict_check_uid_param_size));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_dict_check_uid_param_i
+                                                                 + s V_dict_check_uid_param_size) (0))) (F_max0_ge_0 (-
+                                                                    s V_dict_check_uid_param_i
+                                                                    + s V_dict_check_uid_param_size))]
+     (-(1 # 2) * s V_dict_check_uid_param_i + s V_dict_check_uid_param_size
+      + s V_dict_check_uid_param_z
+      + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size)
+      - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 33 => hints
+     [(*0 0.5*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                - s V_dict_check_uid_param_i
+                                                                + s V_dict_check_uid_param_size) (0))) (F_max0_ge_0 (-1
+                                                                    - s V_dict_check_uid_param_i
+                                                                    + s V_dict_check_uid_param_size))]
+     (-(1 # 2) * s V_dict_check_uid_param_i + s V_dict_check_uid_param_size
+      + s V_dict_check_uid_param_z
+      + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size)
+      - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 34 => ((1 # 2) + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 35 => ((1 # 2) + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 36 => (-(1 # 2) + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            + max0(1 - s V_dict_check_uid_param__tmp)
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size)
+            - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 37 => hints
+     [(*-0.5 0*) F_max0_pre_decrement 1 (-s V_dict_check_uid_param_i
+                                         + s V_dict_check_uid_param_size) (1);
+      (*-1 0*) F_max0_ge_0 (-1 - s V_dict_check_uid_param_i
+                            + s V_dict_check_uid_param_size);
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_dict_check_uid_param_size) (0))) (F_max0_ge_0 (s V_dict_check_uid_param_size));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (1
+                                                 - s V_dict_check_uid_param__tmp)) (F_check_ge (0) (0))]
+     (-(1 # 2) + (1 # 2) * s V_dict_check_uid_param_size
+      + s V_dict_check_uid_param_z
+      + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size)
+      + max0(1 - s V_dict_check_uid_param__tmp)
+      + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size)
+      - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 38 => hints
+     [(*0 0.5*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_dict_check_uid_param_size) (0))) (F_max0_ge_0 (s V_dict_check_uid_param_size));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-s V_dict_check_uid_param_i
+                                                     + s V_dict_check_uid_param_size)) (F_check_ge (-
+                                                                    s V_dict_check_uid_param_i
+                                                                    + s V_dict_check_uid_param_size) (0))]
+     ((1 # 2) + (1 # 2) * s V_dict_check_uid_param_size
+      + s V_dict_check_uid_param_z
+      + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size)
+      + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size)
+      - (1 # 2) * max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 39 => ((1 # 2) - (1 # 2) * s V_dict_check_uid_param_i
+            + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size) <= z)%Q
+   | 40 => ((1 # 2) - (1 # 2) * s V_dict_check_uid_param_i
+            + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size) <= z)%Q
+   | 41 => ((1 # 2) - (1 # 2) * s V_dict_check_uid_param_i
+            + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size) <= z)%Q
+   | 42 => ((1 # 1) - (1 # 2) * s V_dict_check_uid_param_i
+            + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size) <= z)%Q
+   | 43 => ((1 # 1) - (1 # 2) * s V_dict_check_uid_param_i
+            + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size) <= z)%Q
+   | 44 => ((1 # 1) - (1 # 2) * s V_dict_check_uid_param_i
+            + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size) <= z)%Q
+   | 45 => hints
+     [(*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_dict_check_uid_param_size)) (F_check_ge (s V_dict_check_uid_param_size) (0))]
+     (-(1 # 2) * s V_dict_check_uid_param_i
+      + (1 # 2) * s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+      + (1 # 2) * max0(-s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size) <= z)%Q
+   | 46 => ((1 # 2) - (1 # 2) * s V_dict_check_uid_param_i
+            + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size) <= z)%Q
+   | 47 => ((1 # 2) - (1 # 2) * s V_dict_check_uid_param_i
+            + (1 # 2) * s V_dict_check_uid_param_size
+            + s V_dict_check_uid_param_z
+            + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                             + s V_dict_check_uid_param_size) <= z)%Q
+   | 48 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-s V_dict_check_uid_param_i
+                                             + s V_dict_check_uid_param_size) (-1
+                                                                    - s V_dict_check_uid_param_i
+                                                                    + s V_dict_check_uid_param_size));
+      (*-1 0*) F_max0_ge_0 (-1 - s V_dict_check_uid_param_i
+                            + s V_dict_check_uid_param_size);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_dict_check_uid_param_i
+                                                               + s V_dict_check_uid_param_size) (0))) (F_max0_ge_0 (-
+                                                                    s V_dict_check_uid_param_i
+                                                                    + s V_dict_check_uid_param_size));
+      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                     - s V_dict_check_uid_param_i
+                                                     + s V_dict_check_uid_param_size)) (F_check_ge (-1
+                                                                    - s V_dict_check_uid_param_i
+                                                                    + s V_dict_check_uid_param_size) (0))]
+     ((1 # 2) - (1 # 2) * s V_dict_check_uid_param_i
+      + (1 # 2) * s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+      + (1 # 2) * max0(-1 - s V_dict_check_uid_param_i
+                       + s V_dict_check_uid_param_size) <= z)%Q
+   | 49 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 50 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 51 => hints
+     [(*-1 0*) F_max0_ge_0 (s V_dict_check_uid_param_size);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_dict_check_uid_param_size) (0))) (F_max0_ge_0 (s V_dict_check_uid_param_size));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                   - s V_dict_check_uid_param_puid_dref_off0)) (F_check_ge (-1
+                                                                    - s V_dict_check_uid_param_puid_dref_off0) (0))]
+     ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+      + s V_dict_check_uid_param_size + s V_dict_check_uid_param_z
+      + max0(-1 - s V_dict_check_uid_param_puid_dref_off0) <= z)%Q
+   | 52 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+            + max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 53 => ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+            + s V_dict_check_uid_param_z
+            + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+            + max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 54 => hints
+     [(*-1 0*) F_max0_ge_0 (s V_dict_check_uid_param_size);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                   - s V_dict_check_uid_param_puid_dref_off0)) (F_check_ge (-1
+                                                                    - s V_dict_check_uid_param_puid_dref_off0) (0))]
+     ((1 # 1) + s V_dict_check_uid_param_puid_dref_off0
+      + s V_dict_check_uid_param_z
+      + max0(-1 - s V_dict_check_uid_param_puid_dref_off0)
+      + max0(s V_dict_check_uid_param_size) <= z)%Q
+   | 55 => (s V_dict_check_uid_param_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 2%positive => (max0(-(s IDdict_check_uid_param_puid_dref_off0))
-                     + max0((s IDdict_check_uid_param_z)))%Q
-    | 3%positive => (max0(-(s IDdict_check_uid_param_puid_dref_off0))
-                     + max0((s IDdict_check_uid_param_z)))%Q
-    | 4%positive => (max0(-(s IDdict_check_uid_param_puid_dref_off0))
-                     + max0((s IDdict_check_uid_param_z)))%Q
-    | 5%positive => (max0(-(s IDdict_check_uid_param_puid_dref_off0))
-                     + max0((s IDdict_check_uid_param_z)))%Q
-    | 6%positive => (max0(-(s IDdict_check_uid_param_puid_dref_off0))
-                     + max0((s IDdict_check_uid_param_z)))%Q
-    | 7%positive => ((s IDdict_check_uid_param_z)
-                     + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 8%positive => ((s IDdict_check_uid_param_z)
-                     + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 9%positive => ((s IDdict_check_uid_param_z)
-                     + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 10%positive => ((s IDdict_check_uid_param_z)
-                      + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 11%positive => ((s IDdict_check_uid_param_z)
-                      + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 12%positive => ((s IDdict_check_uid_param_z)
-                      + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 13%positive => ((s IDdict_check_uid_param_z)
-                      + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 14%positive => ((s IDdict_check_uid_param_z)
-                      + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 15%positive => ((s IDdict_check_uid_param_z)
-                      + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 16%positive => ((s IDdict_check_uid_param_z)
-                      + max0(-(s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 17%positive => (max0(-(s IDdict_check_uid_param_puid_dref_off0))
-                      + max0((s IDdict_check_uid_param_z)))%Q
-    | 18%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + max0(-(s IDdict_check_uid_param_puid_dref_off0))
-                      + max0((s IDdict_check_uid_param_z)))%Q
-    | 19%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + max0((s IDdict_check_uid_param_size))
-                      + max0((s IDdict_check_uid_param_z)))%Q
-    | 20%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + max0((s IDdict_check_uid_param_size)))%Q
-    | 21%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + max0((s IDdict_check_uid_param_size)))%Q
-    | 22%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 23%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 24%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 25%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 26%positive => ((1 # 1) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 27%positive => ((1 # 1) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 28%positive => (-(1 # 2) * (s IDdict_check_uid_param_i)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 29%positive => (-(1 # 2) * (s IDdict_check_uid_param_i)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 30%positive => (-(1 # 2) * (s IDdict_check_uid_param_i)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 31%positive => (-(1 # 2) * (s IDdict_check_uid_param_i)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 32%positive => (-(1 # 2) * (s IDdict_check_uid_param_i)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 33%positive => (-(1 # 2) * (s IDdict_check_uid_param_i)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 34%positive => ((1 # 2) + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 35%positive => ((1 # 2) + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 36%positive => (-(1 # 2) + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      + max0(1 - (s IDdict_check_uid_param__tmp))
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 37%positive => (-(1 # 2) + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      + max0(1 - (s IDdict_check_uid_param__tmp))
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 38%positive => ((1 # 2) + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size))
-                      - (1 # 2) * max0((s IDdict_check_uid_param_size)))%Q
-    | 39%positive => ((1 # 2) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 40%positive => ((1 # 2) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 41%positive => ((1 # 2) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 42%positive => ((1 # 1) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 43%positive => ((1 # 1) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 44%positive => ((1 # 1) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 45%positive => (-(1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-(s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 46%positive => ((1 # 2) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 47%positive => ((1 # 2) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 48%positive => ((1 # 2) - (1 # 2) * (s IDdict_check_uid_param_i)
-                      + (1 # 2) * (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + (1 # 2) * max0(-1 - (s IDdict_check_uid_param_i)
-                                       + (s IDdict_check_uid_param_size)))%Q
-    | 49%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 50%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 51%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_size)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0)))%Q
-    | 52%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + max0((s IDdict_check_uid_param_size)))%Q
-    | 53%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + max0((s IDdict_check_uid_param_size)))%Q
-    | 54%positive => ((1 # 1) + (s IDdict_check_uid_param_puid_dref_off0)
-                      + (s IDdict_check_uid_param_z)
-                      + max0(-1 - (s IDdict_check_uid_param_puid_dref_off0))
-                      + max0((s IDdict_check_uid_param_size)))%Q
-    | 55%positive => ((s IDdict_check_uid_param_z))%Q
-    | _ => (0 # 1)%Q
+  | P_dict_check_uid_param =>
+    [mkPA Q (fun n z s => ai_dict_check_uid_param n s /\ annot0_dict_check_uid_param n z s)]
   end.
 
-Definition dict_check_uid_param_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDdict_check_uid_param_z))) (F_check_ge ((s IDdict_check_uid_param_z)) (0))]
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => [(*-1 0*) F_max0_ge_0 (-(s IDdict_check_uid_param_puid_dref_off0))]
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => [(*-1 0*) F_max0_ge_0 (-(s IDdict_check_uid_param_puid_dref_off0))]
-    | 17%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    - (s IDdict_check_uid_param_puid_dref_off0)) (0))) (F_max0_ge_0 (-1
-                                                                    - (s IDdict_check_uid_param_puid_dref_off0)))]
-    | 18%positive => []
-    | 19%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDdict_check_uid_param_z))) (F_check_ge ((s IDdict_check_uid_param_z)) (0))]
-    | 20%positive => []
-    | 21%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDdict_check_uid_param_size))) (F_check_ge ((s IDdict_check_uid_param_size)) (0))]
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                   - 
-                                                                   (s IDdict_check_uid_param_puid_dref_off0))) (F_check_ge (-1
-                                                                    - (s IDdict_check_uid_param_puid_dref_off0)) (0))]
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-(s IDdict_check_uid_param_i)
-                                                             + (s IDdict_check_uid_param_size)) (-1
-                                                                    - (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)));
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDdict_check_uid_param_i)
-                                            + (s IDdict_check_uid_param_size));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDdict_check_uid_param_size)) (0))) (F_max0_ge_0 ((s IDdict_check_uid_param_size)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)))]
-    | 33%positive => [(*0 0.5*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    - (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)) (0))) (F_max0_ge_0 (-1
-                                                                    - (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)))]
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => [(*-0.5 0*) F_max0_pre_decrement (-(s IDdict_check_uid_param_i)
-                                                       + (s IDdict_check_uid_param_size)) (1);
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDdict_check_uid_param_i)
-                                            + (s IDdict_check_uid_param_size));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDdict_check_uid_param_size)) (0))) (F_max0_ge_0 ((s IDdict_check_uid_param_size)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (1
-                                                                 - (s IDdict_check_uid_param__tmp))) (F_check_ge (0) (0))]
-    | 38%positive => [(*0 0.5*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDdict_check_uid_param_size)) (0))) (F_max0_ge_0 ((s IDdict_check_uid_param_size)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-
-                                                                    (s IDdict_check_uid_param_i)
-                                                                    + 
-                                                                    (s IDdict_check_uid_param_size))) (F_check_ge (-
-                                                                    (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)) (0))]
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => [(*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDdict_check_uid_param_size))) (F_check_ge ((s IDdict_check_uid_param_size)) (0))]
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-(s IDdict_check_uid_param_i)
-                                                             + (s IDdict_check_uid_param_size)) (-1
-                                                                    - (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)));
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDdict_check_uid_param_i)
-                                            + (s IDdict_check_uid_param_size));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)));
-                      (*-0.5 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    - 
-                                                                    (s IDdict_check_uid_param_i)
-                                                                    + 
-                                                                    (s IDdict_check_uid_param_size))) (F_check_ge (-1
-                                                                    - (s IDdict_check_uid_param_i)
-                                                                    + (s IDdict_check_uid_param_size)) (0))]
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => [(*-1 0*) F_max0_ge_0 ((s IDdict_check_uid_param_size));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDdict_check_uid_param_size)) (0))) (F_max0_ge_0 ((s IDdict_check_uid_param_size)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                   - 
-                                                                   (s IDdict_check_uid_param_puid_dref_off0))) (F_check_ge (-1
-                                                                    - (s IDdict_check_uid_param_puid_dref_off0)) (0))]
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => [(*-1 0*) F_max0_ge_0 ((s IDdict_check_uid_param_size));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                   - 
-                                                                   (s IDdict_check_uid_param_puid_dref_off0))) (F_check_ge (-1
-                                                                    - (s IDdict_check_uid_param_puid_dref_off0)) (0))]
-    | 55%positive => []
-    | _ => []
-  end.
-
-
-Theorem dict_check_uid_param_ai_correct:
-  forall s p' s', steps (g_start dict_check_uid_param) s (g_edges dict_check_uid_param) p' s' -> dict_check_uid_param_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem dict_check_uid_param_pot_correct:
-  forall s p' s',
-    steps (g_start dict_check_uid_param) s (g_edges dict_check_uid_param) p' s' ->
-    (dict_check_uid_param_pot (g_start dict_check_uid_param) s >= dict_check_uid_param_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_dict_check_uid_param (proc_start P_dict_check_uid_param) s1 (proc_end P_dict_check_uid_param) s2 ->
+    (s2 V_dict_check_uid_param_z <= max0(-s1 V_dict_check_uid_param_puid_dref_off0))%Q.
 Proof.
-  check_lp dict_check_uid_param_ai_correct dict_check_uid_param_hints.
+  prove_bound ipa admissible_ipa P_dict_check_uid_param.
 Qed.
-

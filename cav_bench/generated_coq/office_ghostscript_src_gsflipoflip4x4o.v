@@ -1,145 +1,129 @@
 Require Import pasta.Pasta.
 
-Notation IDflip4x4_z := 1%positive.
-Notation IDflip4x4__tmp := 2%positive.
-Notation IDflip4x4__tmp1 := 3%positive.
-Notation IDflip4x4_b1 := 4%positive.
-Notation IDflip4x4_b2 := 5%positive.
-Notation IDflip4x4_b3 := 6%positive.
-Notation IDflip4x4_b4 := 7%positive.
-Notation IDflip4x4_n := 8%positive.
-Notation IDflip4x4_buffer := 9%positive.
-Notation IDflip4x4_nbytes := 10%positive.
-Notation IDflip4x4_offset := 11%positive.
-Notation IDflip4x4_planes := 12%positive.
-Definition flip4x4 : graph := {|
-  g_start := 1%positive;
-  g_end := 11%positive;
-  g_edges := (1%positive,(AAssign IDflip4x4_z (Some (ENum (0)))),2%positive)::
-             (2%positive,(AGuard (fun s => ((eval (EVar IDflip4x4_n) s) >=
-             (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,AWeaken,4%positive)::
-             (4%positive,(AAssign IDflip4x4__tmp1
-             (Some (EVar IDflip4x4_offset))),5%positive)::
-             (5%positive,(AAssign IDflip4x4__tmp
-             (Some (EVar IDflip4x4_nbytes))),6%positive)::
-             (6%positive,(AAssign IDflip4x4_n (Some (EVar IDflip4x4__tmp))),
-             7%positive)::(7%positive,ANone,8%positive)::
-             (8%positive,AWeaken,9%positive)::
-             (9%positive,(AGuard (fun s => ((eval (EVar IDflip4x4_n) s) >
-             (eval (ENum (0)) s))%Z)),12%positive)::
-             (9%positive,(AGuard (fun s => ((eval (EVar IDflip4x4_n) s) <=
-             (eval (ENum (0)) s))%Z)),10%positive)::
-             (10%positive,AWeaken,11%positive)::
-             (12%positive,AWeaken,13%positive)::
-             (13%positive,(AAssign IDflip4x4_b1 None),14%positive)::
-             (14%positive,(AAssign IDflip4x4_b2 None),15%positive)::
-             (15%positive,(AAssign IDflip4x4_b3 None),16%positive)::
-             (16%positive,(AAssign IDflip4x4_b4 None),17%positive)::
-             (17%positive,ANone,18%positive)::
-             (18%positive,(AAssign IDflip4x4_n (Some (EAdd (EVar IDflip4x4_n)
-             (ENum (-1))))),19%positive)::(19%positive,ANone,20%positive)::
-             (20%positive,ANone,21%positive)::
-             (21%positive,(AAssign IDflip4x4_z (Some (EAdd (ENum (1))
-             (EVar IDflip4x4_z)))),22%positive)::
-             (22%positive,AWeaken,9%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_flip4x4.
 
-Definition flip4x4_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDflip4x4_z) <= 0 /\ 1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_n) <= 0)%Z
-    | 4%positive => (-1 * (s IDflip4x4_n) <= 0 /\ 1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDflip4x4_z) <= 0 /\ 1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_n) <= 0)%Z
-    | 6%positive => (-1 * (s IDflip4x4_n) <= 0 /\ 1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDflip4x4_z) <= 0 /\ 1 * (s IDflip4x4_z) <= 0)%Z
-    | 8%positive => (1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 9%positive => (-1 * (s IDflip4x4_z) <= 0)%Z
-    | 10%positive => (-1 * (s IDflip4x4_z) <= 0 /\ 1 * (s IDflip4x4_n) <= 0)%Z
-    | 11%positive => (1 * (s IDflip4x4_n) <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 12%positive => (-1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_n) + 1 <= 0)%Z
-    | 13%positive => (-1 * (s IDflip4x4_n) + 1 <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 14%positive => (-1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_n) + 1 <= 0)%Z
-    | 15%positive => (-1 * (s IDflip4x4_n) + 1 <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 16%positive => (-1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_n) + 1 <= 0)%Z
-    | 17%positive => (-1 * (s IDflip4x4_n) + 1 <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 18%positive => (-1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_n) + 1 <= 0)%Z
-    | 19%positive => (-1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_n) <= 0)%Z
-    | 20%positive => (-1 * (s IDflip4x4_n) <= 0 /\ -1 * (s IDflip4x4_z) <= 0)%Z
-    | 21%positive => (-1 * (s IDflip4x4_z) <= 0 /\ -1 * (s IDflip4x4_n) <= 0)%Z
-    | 22%positive => (-1 * (s IDflip4x4_n) <= 0 /\ -1 * (s IDflip4x4_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition flip4x4_pot (p : node) (s : state): Q := 
+Notation V_flip4x4_z := 1%positive.
+Notation V_flip4x4__tmp := 2%positive.
+Notation V_flip4x4__tmp1 := 3%positive.
+Notation V_flip4x4_b1 := 4%positive.
+Notation V_flip4x4_b2 := 5%positive.
+Notation V_flip4x4_b3 := 6%positive.
+Notation V_flip4x4_b4 := 7%positive.
+Notation V_flip4x4_n := 8%positive.
+Notation V_flip4x4_buffer := 9%positive.
+Notation V_flip4x4_nbytes := 10%positive.
+Notation V_flip4x4_offset := 11%positive.
+Notation V_flip4x4_planes := 12%positive.
+Definition Pedges_flip4x4: list (edge proc) :=
+  (EA 1 (AAssign V_flip4x4_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_flip4x4_n) s) >= (eval (ENum (0)) s))%Z)) 3)::
+  (EA 3 AWeaken 4)::(EA 4 (AAssign V_flip4x4__tmp1
+  (Some (EVar V_flip4x4_offset))) 5)::(EA 5 (AAssign V_flip4x4__tmp
+  (Some (EVar V_flip4x4_nbytes))) 6)::(EA 6 (AAssign V_flip4x4_n
+  (Some (EVar V_flip4x4__tmp))) 7)::(EA 7 ANone 8)::(EA 8 AWeaken 9)::
+  (EA 9 (AGuard (fun s => ((eval (EVar V_flip4x4_n) s) > (eval (ENum (0))
+  s))%Z)) 12)::(EA 9 (AGuard (fun s => ((eval (EVar V_flip4x4_n) s) <=
+  (eval (ENum (0)) s))%Z)) 10)::(EA 10 AWeaken 11)::(EA 12 AWeaken 13)::
+  (EA 13 (AAssign V_flip4x4_b1 None) 14)::(EA 14 (AAssign V_flip4x4_b2
+  None) 15)::(EA 15 (AAssign V_flip4x4_b3 None) 16)::(EA 16 (AAssign
+  V_flip4x4_b4 None) 17)::(EA 17 ANone 18)::(EA 18 (AAssign V_flip4x4_n
+  (Some (EAdd (EVar V_flip4x4_n) (ENum (-1))))) 19)::(EA 19 ANone 20)::
+  (EA 20 ANone 21)::(EA 21 (AAssign V_flip4x4_z (Some (EAdd (ENum (1))
+  (EVar V_flip4x4_z)))) 22)::(EA 22 AWeaken 9)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_flip4x4 => Pedges_flip4x4
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_flip4x4 => 11
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_flip4x4 (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 3 => (-1 * s V_flip4x4_z <= 0 /\ 1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_n <= 0)%Z
+   | 4 => (-1 * s V_flip4x4_n <= 0 /\ 1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 5 => (-1 * s V_flip4x4_z <= 0 /\ 1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_n <= 0)%Z
+   | 6 => (-1 * s V_flip4x4_n <= 0 /\ 1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 7 => (-1 * s V_flip4x4_z <= 0 /\ 1 * s V_flip4x4_z <= 0)%Z
+   | 8 => (1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 9 => (-1 * s V_flip4x4_z <= 0)%Z
+   | 10 => (-1 * s V_flip4x4_z <= 0 /\ 1 * s V_flip4x4_n <= 0)%Z
+   | 11 => (1 * s V_flip4x4_n <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 12 => (-1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_n + 1 <= 0)%Z
+   | 13 => (-1 * s V_flip4x4_n + 1 <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 14 => (-1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_n + 1 <= 0)%Z
+   | 15 => (-1 * s V_flip4x4_n + 1 <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 16 => (-1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_n + 1 <= 0)%Z
+   | 17 => (-1 * s V_flip4x4_n + 1 <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 18 => (-1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_n + 1 <= 0)%Z
+   | 19 => (-1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_n <= 0)%Z
+   | 20 => (-1 * s V_flip4x4_n <= 0 /\ -1 * s V_flip4x4_z <= 0)%Z
+   | 21 => (-1 * s V_flip4x4_z <= 0 /\ -1 * s V_flip4x4_n <= 0)%Z
+   | 22 => (-1 * s V_flip4x4_n <= 0 /\ -1 * s V_flip4x4_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_flip4x4 (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_flip4x4_nbytes) <= z)%Q
+   | 2 => (s V_flip4x4_z + max0(s V_flip4x4_nbytes) <= z)%Q
+   | 3 => (s V_flip4x4_z + max0(s V_flip4x4_nbytes) <= z)%Q
+   | 4 => (s V_flip4x4_z + max0(s V_flip4x4_nbytes) <= z)%Q
+   | 5 => (s V_flip4x4_z + max0(s V_flip4x4_nbytes) <= z)%Q
+   | 6 => (s V_flip4x4_z + max0(s V_flip4x4__tmp) <= z)%Q
+   | 7 => (s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | 8 => (s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | 9 => (s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | 10 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (s V_flip4x4_n) (-1
+                                                             + s V_flip4x4_n));
+      (*-1 0*) F_max0_ge_0 (-1 + s V_flip4x4_n)]
+     (s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | 11 => (s V_flip4x4_z <= z)%Q
+   | 12 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_flip4x4_n) (1)]
+     (s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | 13 => ((1 # 1) + s V_flip4x4_z + max0(-1 + s V_flip4x4_n) <= z)%Q
+   | 14 => ((1 # 1) + s V_flip4x4_z + max0(-1 + s V_flip4x4_n) <= z)%Q
+   | 15 => ((1 # 1) + s V_flip4x4_z + max0(-1 + s V_flip4x4_n) <= z)%Q
+   | 16 => ((1 # 1) + s V_flip4x4_z + max0(-1 + s V_flip4x4_n) <= z)%Q
+   | 17 => ((1 # 1) + s V_flip4x4_z + max0(-1 + s V_flip4x4_n) <= z)%Q
+   | 18 => ((1 # 1) + s V_flip4x4_z + max0(-1 + s V_flip4x4_n) <= z)%Q
+   | 19 => ((1 # 1) + s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | 20 => ((1 # 1) + s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | 21 => ((1 # 1) + s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | 22 => (s V_flip4x4_z + max0(s V_flip4x4_n) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDflip4x4_nbytes)))%Q
-    | 2%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_nbytes)))%Q
-    | 3%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_nbytes)))%Q
-    | 4%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_nbytes)))%Q
-    | 5%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_nbytes)))%Q
-    | 6%positive => ((s IDflip4x4_z) + max0((s IDflip4x4__tmp)))%Q
-    | 7%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | 8%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | 9%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | 10%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | 11%positive => ((s IDflip4x4_z))%Q
-    | 12%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | 13%positive => ((1 # 1) + (s IDflip4x4_z) + max0(-1 + (s IDflip4x4_n)))%Q
-    | 14%positive => ((1 # 1) + (s IDflip4x4_z) + max0(-1 + (s IDflip4x4_n)))%Q
-    | 15%positive => ((1 # 1) + (s IDflip4x4_z) + max0(-1 + (s IDflip4x4_n)))%Q
-    | 16%positive => ((1 # 1) + (s IDflip4x4_z) + max0(-1 + (s IDflip4x4_n)))%Q
-    | 17%positive => ((1 # 1) + (s IDflip4x4_z) + max0(-1 + (s IDflip4x4_n)))%Q
-    | 18%positive => ((1 # 1) + (s IDflip4x4_z) + max0(-1 + (s IDflip4x4_n)))%Q
-    | 19%positive => ((1 # 1) + (s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | 20%positive => ((1 # 1) + (s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | 21%positive => ((1 # 1) + (s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | 22%positive => ((s IDflip4x4_z) + max0((s IDflip4x4_n)))%Q
-    | _ => (0 # 1)%Q
+  | P_flip4x4 =>
+    [mkPA Q (fun n z s => ai_flip4x4 n s /\ annot0_flip4x4 n z s)]
   end.
 
-Definition flip4x4_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => [(*-1 0*) F_max0_monotonic (F_check_ge ((s IDflip4x4_n)) (-1
-                                                                    + (s IDflip4x4_n)));
-                      (*-1 0*) F_max0_ge_0 (-1 + (s IDflip4x4_n))]
-    | 11%positive => []
-    | 12%positive => [(*-1 0*) F_max0_pre_decrement ((s IDflip4x4_n)) (1)]
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | _ => []
-  end.
-
-
-Theorem flip4x4_ai_correct:
-  forall s p' s', steps (g_start flip4x4) s (g_edges flip4x4) p' s' -> flip4x4_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem flip4x4_pot_correct:
-  forall s p' s',
-    steps (g_start flip4x4) s (g_edges flip4x4) p' s' ->
-    (flip4x4_pot (g_start flip4x4) s >= flip4x4_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_flip4x4 (proc_start P_flip4x4) s1 (proc_end P_flip4x4) s2 ->
+    (s2 V_flip4x4_z <= max0(s1 V_flip4x4_nbytes))%Q.
 Proof.
-  check_lp flip4x4_ai_correct flip4x4_hints.
+  prove_bound ipa admissible_ipa P_flip4x4.
 Qed.
-

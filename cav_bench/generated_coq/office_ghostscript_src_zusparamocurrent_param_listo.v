@@ -1,712 +1,591 @@
 Require Import pasta.Pasta.
 
-Notation IDcurrent_param_list_z := 1%positive.
-Notation IDcurrent_param_list__tmp := 2%positive.
-Notation IDcurrent_param_list_code := 3%positive.
-Notation IDcurrent_param_list_code3 := 4%positive.
-Notation IDcurrent_param_list_code6 := 5%positive.
-Notation IDcurrent_param_list_i := 6%positive.
-Notation IDcurrent_param_list_pset_dref_off24 := 7%positive.
-Notation IDcurrent_param_list_pset_dref_off40 := 8%positive.
-Notation IDcurrent_param_list_pset_dref_off8 := 9%positive.
-Notation IDcurrent_param_list_op := 10%positive.
-Notation IDcurrent_param_list_pset := 11%positive.
-Notation IDcurrent_param_list_psref := 12%positive.
-Definition current_param_list : graph := {|
-  g_start := 1%positive;
-  g_end := 82%positive;
-  g_edges := (1%positive,(AAssign IDcurrent_param_list_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_pset_dref_off8)
-             s) >= (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_pset_dref_off40)
-             s) >= (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_pset_dref_off24)
-             s) >= (eval (ENum (0)) s))%Z)),5%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_i) s) >=
-             (eval (ENum (0)) s))%Z)),6%positive)::
-             (6%positive,AWeaken,7%positive)::
-             (7%positive,(AAssign IDcurrent_param_list_i (Some (ENum (0)))),
-             8%positive)::(8%positive,ANone,9%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_i) s) <
-             (eval (EVar IDcurrent_param_list_pset_dref_off8) s))%Z)),
-             63%positive)::
-             (10%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_i) s) >=
-             (eval (EVar IDcurrent_param_list_pset_dref_off8) s))%Z)),
-             11%positive)::(11%positive,AWeaken,12%positive)::
-             (12%positive,(AAssign IDcurrent_param_list_i (Some (ENum (0)))),
-             13%positive)::(13%positive,ANone,14%positive)::
-             (14%positive,AWeaken,15%positive)::
-             (15%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_i) s) <
-             (eval (EVar IDcurrent_param_list_pset_dref_off24) s))%Z)),
-             44%positive)::
-             (15%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_i) s) >=
-             (eval (EVar IDcurrent_param_list_pset_dref_off24) s))%Z)),
-             16%positive)::(16%positive,AWeaken,17%positive)::
-             (17%positive,(AAssign IDcurrent_param_list_i (Some (ENum (0)))),
-             18%positive)::(18%positive,ANone,19%positive)::
-             (19%positive,AWeaken,20%positive)::
-             (20%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_i) s) <
-             (eval (EVar IDcurrent_param_list_pset_dref_off40) s))%Z)),
-             25%positive)::
-             (20%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_i) s) >=
-             (eval (EVar IDcurrent_param_list_pset_dref_off40) s))%Z)),
-             21%positive)::(21%positive,AWeaken,22%positive)::
-             (22%positive,(AAssign IDcurrent_param_list__tmp
-             (Some (ENum (0)))),23%positive)::
-             (23%positive,ANone,24%positive)::
-             (24%positive,AWeaken,82%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (26%positive,ANone,29%positive)::
-             (26%positive,ANone,27%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,ANone,34%positive)::
-             (28%positive,ANone,29%positive)::
-             (29%positive,(AAssign IDcurrent_param_list_code6 None),
-             30%positive)::(30%positive,AWeaken,31%positive)::
-             (31%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_code6) s) <
-             (eval (ENum (0)) s))%Z)),40%positive)::
-             (31%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_code6) s) >=
-             (eval (ENum (0)) s))%Z)),32%positive)::
-             (32%positive,AWeaken,33%positive)::
-             (33%positive,ANone,34%positive)::
-             (34%positive,ANone,35%positive)::
-             (35%positive,(AAssign IDcurrent_param_list_i
-             (Some (EAdd (EVar IDcurrent_param_list_i) (ENum (1))))),
-             36%positive)::(36%positive,ANone,37%positive)::
-             (37%positive,ANone,38%positive)::
-             (38%positive,(AAssign IDcurrent_param_list_z
-             (Some (EAdd (ENum (1)) (EVar IDcurrent_param_list_z)))),
-             39%positive)::(39%positive,AWeaken,20%positive)::
-             (40%positive,AWeaken,41%positive)::
-             (41%positive,(AAssign IDcurrent_param_list__tmp
-             (Some (EVar IDcurrent_param_list_code6))),42%positive)::
-             (42%positive,ANone,43%positive)::
-             (43%positive,AWeaken,82%positive)::
-             (44%positive,AWeaken,45%positive)::
-             (45%positive,ANone,48%positive)::
-             (45%positive,ANone,46%positive)::
-             (46%positive,AWeaken,47%positive)::
-             (47%positive,ANone,53%positive)::
-             (47%positive,ANone,48%positive)::
-             (48%positive,(AAssign IDcurrent_param_list_code3 None),
-             49%positive)::(49%positive,AWeaken,50%positive)::
-             (50%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_code3) s) <
-             (eval (ENum (0)) s))%Z)),59%positive)::
-             (50%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_code3) s) >=
-             (eval (ENum (0)) s))%Z)),51%positive)::
-             (51%positive,AWeaken,52%positive)::
-             (52%positive,ANone,53%positive)::
-             (53%positive,ANone,54%positive)::
-             (54%positive,(AAssign IDcurrent_param_list_i
-             (Some (EAdd (EVar IDcurrent_param_list_i) (ENum (1))))),
-             55%positive)::(55%positive,ANone,56%positive)::
-             (56%positive,ANone,57%positive)::
-             (57%positive,(AAssign IDcurrent_param_list_z
-             (Some (EAdd (ENum (1)) (EVar IDcurrent_param_list_z)))),
-             58%positive)::(58%positive,AWeaken,15%positive)::
-             (59%positive,AWeaken,60%positive)::
-             (60%positive,(AAssign IDcurrent_param_list__tmp
-             (Some (EVar IDcurrent_param_list_code3))),61%positive)::
-             (61%positive,ANone,62%positive)::
-             (62%positive,AWeaken,82%positive)::
-             (63%positive,AWeaken,64%positive)::
-             (64%positive,ANone,67%positive)::
-             (64%positive,ANone,65%positive)::
-             (65%positive,AWeaken,66%positive)::
-             (66%positive,ANone,72%positive)::
-             (66%positive,ANone,67%positive)::
-             (67%positive,(AAssign IDcurrent_param_list_code None),
-             68%positive)::(68%positive,AWeaken,69%positive)::
-             (69%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_code) s) <
-             (eval (ENum (0)) s))%Z)),78%positive)::
-             (69%positive,(AGuard
-             (fun s => ((eval (EVar IDcurrent_param_list_code) s) >=
-             (eval (ENum (0)) s))%Z)),70%positive)::
-             (70%positive,AWeaken,71%positive)::
-             (71%positive,ANone,72%positive)::
-             (72%positive,ANone,73%positive)::
-             (73%positive,(AAssign IDcurrent_param_list_i
-             (Some (EAdd (EVar IDcurrent_param_list_i) (ENum (1))))),
-             74%positive)::(74%positive,ANone,75%positive)::
-             (75%positive,ANone,76%positive)::
-             (76%positive,(AAssign IDcurrent_param_list_z
-             (Some (EAdd (ENum (1)) (EVar IDcurrent_param_list_z)))),
-             77%positive)::(77%positive,AWeaken,10%positive)::
-             (78%positive,AWeaken,79%positive)::
-             (79%positive,(AAssign IDcurrent_param_list__tmp
-             (Some (EVar IDcurrent_param_list_code))),80%positive)::
-             (80%positive,ANone,81%positive)::
-             (81%positive,AWeaken,82%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_current_param_list.
 
-Definition current_param_list_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0)%Z
-    | 4%positive => (-1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ 1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 5%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0)%Z
-    | 6%positive => (-1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ 1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0)%Z
-    | 7%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0)%Z
-    | 8%positive => (-1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ 1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0)%Z
-    | 9%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ 1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0)%Z
-    | 10%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0)%Z
-    | 11%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i)+ 1 * (s IDcurrent_param_list_pset_dref_off8) <= 0)%Z
-    | 12%positive => (-1 * (s IDcurrent_param_list_i)+ 1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0)%Z
-    | 13%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0)%Z
-    | 14%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ 1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 15%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0)%Z
-    | 16%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i)+ 1 * (s IDcurrent_param_list_pset_dref_off24) <= 0)%Z
-    | 17%positive => (-1 * (s IDcurrent_param_list_i)+ 1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0)%Z
-    | 18%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0)%Z
-    | 19%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ 1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 20%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 21%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i)+ 1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 22%positive => (-1 * (s IDcurrent_param_list_i)+ 1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 23%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i)+ 1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list__tmp) <= 0 /\ -1 * (s IDcurrent_param_list__tmp) <= 0)%Z
-    | 24%positive => (-1 * (s IDcurrent_param_list__tmp) <= 0 /\ 1 * (s IDcurrent_param_list__tmp) <= 0 /\ -1 * (s IDcurrent_param_list_i)+ 1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 25%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0)%Z
-    | 26%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0)%Z
-    | 27%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0)%Z
-    | 28%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0)%Z
-    | 29%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0)%Z
-    | 30%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0)%Z
-    | 31%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0)%Z
-    | 32%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_code6) <= 0)%Z
-    | 33%positive => (-1 * (s IDcurrent_param_list_code6) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0)%Z
-    | 34%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0)%Z
-    | 35%positive => (-1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0)%Z
-    | 36%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 37%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0)%Z
-    | 38%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 39%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) + 1 <= 0)%Z
-    | 40%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ 1 * (s IDcurrent_param_list_code6) + 1 <= 0)%Z
-    | 41%positive => (1 * (s IDcurrent_param_list_code6) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0)%Z
-    | 42%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ 1 * (s IDcurrent_param_list_code6) + 1 <= 0 /\ 1 * (s IDcurrent_param_list__tmp) + 1 <= 0)%Z
-    | 43%positive => (1 * (s IDcurrent_param_list__tmp) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_code6) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off40) + 1 <= 0)%Z
-    | 44%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0)%Z
-    | 45%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 46%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0)%Z
-    | 47%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 48%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0)%Z
-    | 49%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 50%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0)%Z
-    | 51%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_code3) <= 0)%Z
-    | 52%positive => (-1 * (s IDcurrent_param_list_code3) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0)%Z
-    | 53%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 54%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0)%Z
-    | 55%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0)%Z
-    | 56%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0)%Z
-    | 57%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0)%Z
-    | 58%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_z) + 1 <= 0)%Z
-    | 59%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_code3) + 1 <= 0)%Z
-    | 60%positive => (1 * (s IDcurrent_param_list_code3) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0)%Z
-    | 61%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_code3) + 1 <= 0 /\ 1 * (s IDcurrent_param_list__tmp) + 1 <= 0)%Z
-    | 62%positive => (1 * (s IDcurrent_param_list__tmp) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_code3) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off24) + 1 <= 0)%Z
-    | 63%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0)%Z
-    | 64%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 65%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0)%Z
-    | 66%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 67%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0)%Z
-    | 68%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 69%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0)%Z
-    | 70%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_code) <= 0)%Z
-    | 71%positive => (-1 * (s IDcurrent_param_list_code) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0)%Z
-    | 72%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | 73%positive => (-1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0)%Z
-    | 74%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0)%Z
-    | 75%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0)%Z
-    | 76%positive => (-1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0)%Z
-    | 77%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) <= 0 /\ -1 * (s IDcurrent_param_list_i) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_z) + 1 <= 0)%Z
-    | 78%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_code) + 1 <= 0)%Z
-    | 79%positive => (1 * (s IDcurrent_param_list_code) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0)%Z
-    | 80%positive => (1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ 1 * (s IDcurrent_param_list_code) + 1 <= 0 /\ 1 * (s IDcurrent_param_list__tmp) + 1 <= 0)%Z
-    | 81%positive => (1 * (s IDcurrent_param_list__tmp) + 1 <= 0 /\ 1 * (s IDcurrent_param_list_code) + 1 <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off24) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ 1 * (s IDcurrent_param_list_i)+ -1 * (s IDcurrent_param_list_pset_dref_off8) + 1 <= 0)%Z
-    | 82%positive => (1 * (s IDcurrent_param_list__tmp) <= 0 /\ -1 * (s IDcurrent_param_list_z) <= 0 /\ -1 * (s IDcurrent_param_list_i) <= 0 /\ -1 * (s IDcurrent_param_list_pset_dref_off40) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition current_param_list_pot (p : node) (s : state): Q := 
+Notation V_current_param_list_z := 1%positive.
+Notation V_current_param_list__tmp := 2%positive.
+Notation V_current_param_list_code := 3%positive.
+Notation V_current_param_list_code3 := 4%positive.
+Notation V_current_param_list_code6 := 5%positive.
+Notation V_current_param_list_i := 6%positive.
+Notation V_current_param_list_pset_dref_off24 := 7%positive.
+Notation V_current_param_list_pset_dref_off40 := 8%positive.
+Notation V_current_param_list_pset_dref_off8 := 9%positive.
+Notation V_current_param_list_op := 10%positive.
+Notation V_current_param_list_pset := 11%positive.
+Notation V_current_param_list_psref := 12%positive.
+Definition Pedges_current_param_list: list (edge proc) :=
+  (EA 1 (AAssign V_current_param_list_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_pset_dref_off8) s) >=
+  (eval (ENum (0)) s))%Z)) 3)::(EA 3 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_pset_dref_off40) s) >=
+  (eval (ENum (0)) s))%Z)) 4)::(EA 4 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_pset_dref_off24) s) >=
+  (eval (ENum (0)) s))%Z)) 5)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_i) s) >= (eval (ENum (0))
+  s))%Z)) 6)::(EA 6 AWeaken 7)::(EA 7 (AAssign V_current_param_list_i
+  (Some (ENum (0)))) 8)::(EA 8 ANone 9)::(EA 9 AWeaken 10)::(EA 10 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_i) s) <
+  (eval (EVar V_current_param_list_pset_dref_off8) s))%Z)) 63)::
+  (EA 10 (AGuard (fun s => ((eval (EVar V_current_param_list_i) s) >=
+  (eval (EVar V_current_param_list_pset_dref_off8) s))%Z)) 11)::
+  (EA 11 AWeaken 12)::(EA 12 (AAssign V_current_param_list_i
+  (Some (ENum (0)))) 13)::(EA 13 ANone 14)::(EA 14 AWeaken 15)::
+  (EA 15 (AGuard (fun s => ((eval (EVar V_current_param_list_i) s) <
+  (eval (EVar V_current_param_list_pset_dref_off24) s))%Z)) 44)::
+  (EA 15 (AGuard (fun s => ((eval (EVar V_current_param_list_i) s) >=
+  (eval (EVar V_current_param_list_pset_dref_off24) s))%Z)) 16)::
+  (EA 16 AWeaken 17)::(EA 17 (AAssign V_current_param_list_i
+  (Some (ENum (0)))) 18)::(EA 18 ANone 19)::(EA 19 AWeaken 20)::
+  (EA 20 (AGuard (fun s => ((eval (EVar V_current_param_list_i) s) <
+  (eval (EVar V_current_param_list_pset_dref_off40) s))%Z)) 25)::
+  (EA 20 (AGuard (fun s => ((eval (EVar V_current_param_list_i) s) >=
+  (eval (EVar V_current_param_list_pset_dref_off40) s))%Z)) 21)::
+  (EA 21 AWeaken 22)::(EA 22 (AAssign V_current_param_list__tmp
+  (Some (ENum (0)))) 23)::(EA 23 ANone 24)::(EA 24 AWeaken 82)::
+  (EA 25 AWeaken 26)::(EA 26 ANone 29)::(EA 26 ANone 27)::
+  (EA 27 AWeaken 28)::(EA 28 ANone 34)::(EA 28 ANone 29)::(EA 29 (AAssign
+  V_current_param_list_code6 None) 30)::(EA 30 AWeaken 31)::(EA 31 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_code6) s) < (eval (ENum (0))
+  s))%Z)) 40)::(EA 31 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_code6) s) >= (eval (ENum (0))
+  s))%Z)) 32)::(EA 32 AWeaken 33)::(EA 33 ANone 34)::(EA 34 ANone 35)::
+  (EA 35 (AAssign V_current_param_list_i
+  (Some (EAdd (EVar V_current_param_list_i) (ENum (1))))) 36)::
+  (EA 36 ANone 37)::(EA 37 ANone 38)::(EA 38 (AAssign V_current_param_list_z
+  (Some (EAdd (ENum (1)) (EVar V_current_param_list_z)))) 39)::
+  (EA 39 AWeaken 20)::(EA 40 AWeaken 41)::(EA 41 (AAssign
+  V_current_param_list__tmp (Some (EVar V_current_param_list_code6))) 42)::
+  (EA 42 ANone 43)::(EA 43 AWeaken 82)::(EA 44 AWeaken 45)::
+  (EA 45 ANone 48)::(EA 45 ANone 46)::(EA 46 AWeaken 47)::(EA 47 ANone 53)::
+  (EA 47 ANone 48)::(EA 48 (AAssign V_current_param_list_code3 None) 49)::
+  (EA 49 AWeaken 50)::(EA 50 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_code3) s) < (eval (ENum (0))
+  s))%Z)) 59)::(EA 50 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_code3) s) >= (eval (ENum (0))
+  s))%Z)) 51)::(EA 51 AWeaken 52)::(EA 52 ANone 53)::(EA 53 ANone 54)::
+  (EA 54 (AAssign V_current_param_list_i
+  (Some (EAdd (EVar V_current_param_list_i) (ENum (1))))) 55)::
+  (EA 55 ANone 56)::(EA 56 ANone 57)::(EA 57 (AAssign V_current_param_list_z
+  (Some (EAdd (ENum (1)) (EVar V_current_param_list_z)))) 58)::
+  (EA 58 AWeaken 15)::(EA 59 AWeaken 60)::(EA 60 (AAssign
+  V_current_param_list__tmp (Some (EVar V_current_param_list_code3))) 61)::
+  (EA 61 ANone 62)::(EA 62 AWeaken 82)::(EA 63 AWeaken 64)::
+  (EA 64 ANone 67)::(EA 64 ANone 65)::(EA 65 AWeaken 66)::(EA 66 ANone 72)::
+  (EA 66 ANone 67)::(EA 67 (AAssign V_current_param_list_code None) 68)::
+  (EA 68 AWeaken 69)::(EA 69 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_code) s) < (eval (ENum (0))
+  s))%Z)) 78)::(EA 69 (AGuard
+  (fun s => ((eval (EVar V_current_param_list_code) s) >= (eval (ENum (0))
+  s))%Z)) 70)::(EA 70 AWeaken 71)::(EA 71 ANone 72)::(EA 72 ANone 73)::
+  (EA 73 (AAssign V_current_param_list_i
+  (Some (EAdd (EVar V_current_param_list_i) (ENum (1))))) 74)::
+  (EA 74 ANone 75)::(EA 75 ANone 76)::(EA 76 (AAssign V_current_param_list_z
+  (Some (EAdd (ENum (1)) (EVar V_current_param_list_z)))) 77)::
+  (EA 77 AWeaken 10)::(EA 78 AWeaken 79)::(EA 79 (AAssign
+  V_current_param_list__tmp (Some (EVar V_current_param_list_code))) 80)::
+  (EA 80 ANone 81)::(EA 81 AWeaken 82)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_current_param_list => Pedges_current_param_list
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_current_param_list => 82
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_current_param_list (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_z <= 0)%Z
+   | 3 => (-1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off8 <= 0)%Z
+   | 4 => (-1 * s V_current_param_list_pset_dref_off8 <= 0 /\ 1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 5 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off8 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0)%Z
+   | 6 => (-1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off8 <= 0 /\ 1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0)%Z
+   | 7 => (-1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off8 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0)%Z
+   | 8 => (-1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off8 <= 0 /\ 1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_i <= 0)%Z
+   | 9 => (-1 * s V_current_param_list_i <= 0 /\ 1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off8 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0)%Z
+   | 10 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 <= 0)%Z
+   | 11 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i+ 1 * s V_current_param_list_pset_dref_off8 <= 0)%Z
+   | 12 => (-1 * s V_current_param_list_i+ 1 * s V_current_param_list_pset_dref_off8 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 <= 0)%Z
+   | 13 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_i <= 0)%Z
+   | 14 => (-1 * s V_current_param_list_i <= 0 /\ 1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 15 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 <= 0)%Z
+   | 16 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i+ 1 * s V_current_param_list_pset_dref_off24 <= 0)%Z
+   | 17 => (-1 * s V_current_param_list_i+ 1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 <= 0)%Z
+   | 18 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_i <= 0)%Z
+   | 19 => (-1 * s V_current_param_list_i <= 0 /\ 1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 20 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 21 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i+ 1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 22 => (-1 * s V_current_param_list_i+ 1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 23 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i+ 1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list__tmp <= 0 /\ -1 * s V_current_param_list__tmp <= 0)%Z
+   | 24 => (-1 * s V_current_param_list__tmp <= 0 /\ 1 * s V_current_param_list__tmp <= 0 /\ -1 * s V_current_param_list_i+ 1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 25 => (-1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0)%Z
+   | 26 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0)%Z
+   | 27 => (-1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0)%Z
+   | 28 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0)%Z
+   | 29 => (-1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0)%Z
+   | 30 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0)%Z
+   | 31 => (-1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0)%Z
+   | 32 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_code6 <= 0)%Z
+   | 33 => (-1 * s V_current_param_list_code6 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0)%Z
+   | 34 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0)%Z
+   | 35 => (-1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0)%Z
+   | 36 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 37 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0)%Z
+   | 38 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 39 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ -1 * s V_current_param_list_z + 1 <= 0)%Z
+   | 40 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ 1 * s V_current_param_list_code6 + 1 <= 0)%Z
+   | 41 => (1 * s V_current_param_list_code6 + 1 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0)%Z
+   | 42 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ 1 * s V_current_param_list_code6 + 1 <= 0 /\ 1 * s V_current_param_list__tmp + 1 <= 0)%Z
+   | 43 => (1 * s V_current_param_list__tmp + 1 <= 0 /\ 1 * s V_current_param_list_code6 + 1 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off40 + 1 <= 0)%Z
+   | 44 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0)%Z
+   | 45 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 46 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0)%Z
+   | 47 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 48 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0)%Z
+   | 49 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 50 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0)%Z
+   | 51 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_code3 <= 0)%Z
+   | 52 => (-1 * s V_current_param_list_code3 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0)%Z
+   | 53 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 54 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0)%Z
+   | 55 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 <= 0)%Z
+   | 56 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_z <= 0)%Z
+   | 57 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 <= 0)%Z
+   | 58 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_z + 1 <= 0)%Z
+   | 59 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_code3 + 1 <= 0)%Z
+   | 60 => (1 * s V_current_param_list_code3 + 1 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0)%Z
+   | 61 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_code3 + 1 <= 0 /\ 1 * s V_current_param_list__tmp + 1 <= 0)%Z
+   | 62 => (1 * s V_current_param_list__tmp + 1 <= 0 /\ 1 * s V_current_param_list_code3 + 1 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off24 + 1 <= 0)%Z
+   | 63 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0)%Z
+   | 64 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 65 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0)%Z
+   | 66 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 67 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0)%Z
+   | 68 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 69 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0)%Z
+   | 70 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_code <= 0)%Z
+   | 71 => (-1 * s V_current_param_list_code <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0)%Z
+   | 72 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | 73 => (-1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0)%Z
+   | 74 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 <= 0)%Z
+   | 75 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_z <= 0)%Z
+   | 76 => (-1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 <= 0)%Z
+   | 77 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 <= 0 /\ -1 * s V_current_param_list_i + 1 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_z + 1 <= 0)%Z
+   | 78 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_code + 1 <= 0)%Z
+   | 79 => (1 * s V_current_param_list_code + 1 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0)%Z
+   | 80 => (1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ 1 * s V_current_param_list_code + 1 <= 0 /\ 1 * s V_current_param_list__tmp + 1 <= 0)%Z
+   | 81 => (1 * s V_current_param_list__tmp + 1 <= 0 /\ 1 * s V_current_param_list_code + 1 <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0 /\ -1 * s V_current_param_list_pset_dref_off24 <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ 1 * s V_current_param_list_i+ -1 * s V_current_param_list_pset_dref_off8 + 1 <= 0)%Z
+   | 82 => (1 * s V_current_param_list__tmp <= 0 /\ -1 * s V_current_param_list_z <= 0 /\ -1 * s V_current_param_list_i <= 0 /\ -1 * s V_current_param_list_pset_dref_off40 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_current_param_list (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_current_param_list_pset_dref_off24)
+           + max0(s V_current_param_list_pset_dref_off40)
+           + max0(s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 2 => (s V_current_param_list_z
+           + max0(s V_current_param_list_pset_dref_off24)
+           + max0(s V_current_param_list_pset_dref_off40)
+           + max0(s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 3 => (s V_current_param_list_z
+           + max0(s V_current_param_list_pset_dref_off24)
+           + max0(s V_current_param_list_pset_dref_off40)
+           + max0(s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 4 => (s V_current_param_list_z
+           + max0(s V_current_param_list_pset_dref_off24)
+           + max0(s V_current_param_list_pset_dref_off40)
+           + max0(s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 5 => (s V_current_param_list_z
+           + max0(s V_current_param_list_pset_dref_off24)
+           + max0(s V_current_param_list_pset_dref_off40)
+           + max0(s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 6 => (s V_current_param_list_z
+           + max0(s V_current_param_list_pset_dref_off24)
+           + max0(s V_current_param_list_pset_dref_off40)
+           + max0(s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 7 => (s V_current_param_list_z
+           + max0(s V_current_param_list_pset_dref_off24)
+           + max0(s V_current_param_list_pset_dref_off40)
+           + max0(s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 8 => (s V_current_param_list_z
+           + max0(-s V_current_param_list_i
+                  + s V_current_param_list_pset_dref_off8)
+           + max0(s V_current_param_list_pset_dref_off24)
+           + max0(s V_current_param_list_pset_dref_off40) <= z)%Q
+   | 9 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_current_param_list_pset_dref_off40)) (F_check_ge (s V_current_param_list_pset_dref_off40) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_current_param_list_pset_dref_off24)) (F_check_ge (s V_current_param_list_pset_dref_off24) (0))]
+     (s V_current_param_list_z
+      + max0(-s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off8)
+      + max0(s V_current_param_list_pset_dref_off24)
+      + max0(s V_current_param_list_pset_dref_off40) <= z)%Q
+   | 10 => (s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 11 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-s V_current_param_list_i
+                                             + s V_current_param_list_pset_dref_off8) (-1
+                                                                    - s V_current_param_list_i
+                                                                    + s V_current_param_list_pset_dref_off8));
+      (*-1 0*) F_max0_ge_0 (-1 - s V_current_param_list_i
+                            + s V_current_param_list_pset_dref_off8)]
+     (s V_current_param_list_pset_dref_off24
+      + s V_current_param_list_pset_dref_off40 + s V_current_param_list_z
+      + max0(-s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 12 => (s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 13 => (s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24)
+            - max0(s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 14 => (s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24)
+            - max0(s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 15 => (s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24)
+            - max0(s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 16 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-s V_current_param_list_i
+                                             + s V_current_param_list_pset_dref_off24) (-1
+                                                                    - s V_current_param_list_i
+                                                                    + s V_current_param_list_pset_dref_off24));
+      (*-1 0*) F_max0_ge_0 (-1 - s V_current_param_list_i
+                            + s V_current_param_list_pset_dref_off24);
+      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_current_param_list_pset_dref_off24) (0))) (F_max0_ge_0 (s V_current_param_list_pset_dref_off24))]
+     (s V_current_param_list_pset_dref_off24
+      + s V_current_param_list_pset_dref_off40 + s V_current_param_list_z
+      + max0(-s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off24)
+      - max0(s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 17 => (s V_current_param_list_pset_dref_off40 + s V_current_param_list_z <= z)%Q
+   | 18 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 19 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 20 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 21 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_current_param_list_i
+                                                              + s V_current_param_list_pset_dref_off40) (0))) (F_max0_ge_0 (-
+                                                                    s V_current_param_list_i
+                                                                    + s V_current_param_list_pset_dref_off40))]
+     (-s V_current_param_list_i + s V_current_param_list_pset_dref_off40
+      + s V_current_param_list_z <= z)%Q
+   | 22 => (s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off40) <= z)%Q
+   | 23 => (s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off40) <= z)%Q
+   | 24 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-s V_current_param_list_i
+                                             + s V_current_param_list_pset_dref_off40) (-1
+                                                                    - s V_current_param_list_i
+                                                                    + s V_current_param_list_pset_dref_off40));
+      (*-1 0*) F_max0_ge_0 (-1 - s V_current_param_list_i
+                            + s V_current_param_list_pset_dref_off40)]
+     (s V_current_param_list_z
+      + max0(-s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off40) <= z)%Q
+   | 25 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 26 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 27 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 28 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 29 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 30 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 31 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 32 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 33 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 34 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 35 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 36 => ((1 # 1) - s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 37 => ((1 # 1) - s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 38 => ((1 # 1) - s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 39 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 40 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 41 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 42 => (-s V_current_param_list_i
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 43 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_max0_pre_decrement 1 (-s V_current_param_list_i
+                                       + s V_current_param_list_pset_dref_off40) (1);
+      (*-1 0*) F_max0_ge_0 (-1 - s V_current_param_list_i
+                            + s V_current_param_list_pset_dref_off40);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_current_param_list_i
+                                                               + s V_current_param_list_pset_dref_off40) (0))) (F_max0_ge_0 (-
+                                                                    s V_current_param_list_i
+                                                                    + s V_current_param_list_pset_dref_off40))]
+     (-s V_current_param_list_i + s V_current_param_list_pset_dref_off40
+      + s V_current_param_list_z <= z)%Q
+   | 44 => hints
+     [(*0 1*) F_max0_pre_decrement 1 (-s V_current_param_list_i
+                                      + s V_current_param_list_pset_dref_off24) (1);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_current_param_list_pset_dref_off24) (0))) (F_max0_ge_0 (s V_current_param_list_pset_dref_off24))]
+     (s V_current_param_list_pset_dref_off24
+      + s V_current_param_list_pset_dref_off40 + s V_current_param_list_z
+      + max0(-s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off24)
+      - max0(s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 45 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 46 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 47 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 48 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 49 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 50 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 51 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 52 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 53 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 54 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 55 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 56 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 57 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 58 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_current_param_list_pset_dref_off24)) (F_check_ge (s V_current_param_list_pset_dref_off24) (0))]
+     (s V_current_param_list_pset_dref_off40 + s V_current_param_list_z
+      + max0(-s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 59 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-1 - s V_current_param_list_i
+                                                + s V_current_param_list_pset_dref_off24)) (F_check_ge (0) (0))]
+     ((1 # 1) + s V_current_param_list_pset_dref_off40
+      + s V_current_param_list_z
+      + max0(-1 - s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off24) <= z)%Q
+   | 60 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 61 => ((1 # 1) + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 62 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_max0_ge_0 (s V_current_param_list_pset_dref_off40);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_current_param_list_pset_dref_off40) (0))) (F_max0_ge_0 (s V_current_param_list_pset_dref_off40))]
+     ((1 # 1) + s V_current_param_list_pset_dref_off40
+      + s V_current_param_list_z <= z)%Q
+   | 63 => hints
+     [(*-8e-12 1*) F_max0_pre_decrement 1 (-s V_current_param_list_i
+                                           + s V_current_param_list_pset_dref_off8) (1)]
+     (s V_current_param_list_pset_dref_off24
+      + s V_current_param_list_pset_dref_off40 + s V_current_param_list_z
+      + max0(-s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 64 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 65 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 66 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 67 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 68 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 69 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 70 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 71 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 72 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 73 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-1 - s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 74 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 75 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 76 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z
+            + max0(-s V_current_param_list_i
+                   + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 77 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_current_param_list_z)) (F_check_ge (s V_current_param_list_z) (0));
+      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_current_param_list_z) (0))) (F_max0_ge_0 (s V_current_param_list_z))]
+     (s V_current_param_list_pset_dref_off24
+      + s V_current_param_list_pset_dref_off40 + s V_current_param_list_z
+      + max0(-s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 78 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-1 - s V_current_param_list_i
+                                                + s V_current_param_list_pset_dref_off8)) (F_check_ge (0) (0))]
+     ((1 # 1) + s V_current_param_list_pset_dref_off24
+      + s V_current_param_list_pset_dref_off40 + s V_current_param_list_z
+      + max0(-1 - s V_current_param_list_i
+             + s V_current_param_list_pset_dref_off8) <= z)%Q
+   | 79 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 80 => ((1 # 1) + s V_current_param_list_pset_dref_off24
+            + s V_current_param_list_pset_dref_off40
+            + s V_current_param_list_z <= z)%Q
+   | 81 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_max0_ge_0 (s V_current_param_list_pset_dref_off24);
+      (*-1 0*) F_max0_ge_0 (s V_current_param_list_pset_dref_off40);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_current_param_list_pset_dref_off40) (0))) (F_max0_ge_0 (s V_current_param_list_pset_dref_off40));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_current_param_list_pset_dref_off24) (0))) (F_max0_ge_0 (s V_current_param_list_pset_dref_off24))]
+     ((1 # 1) + s V_current_param_list_pset_dref_off24
+      + s V_current_param_list_pset_dref_off40 + s V_current_param_list_z <= z)%Q
+   | 82 => (s V_current_param_list_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40))
-                     + max0((s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 2%positive => ((s IDcurrent_param_list_z)
-                     + max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40))
-                     + max0((s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 3%positive => ((s IDcurrent_param_list_z)
-                     + max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40))
-                     + max0((s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 4%positive => ((s IDcurrent_param_list_z)
-                     + max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40))
-                     + max0((s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 5%positive => ((s IDcurrent_param_list_z)
-                     + max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40))
-                     + max0((s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 6%positive => ((s IDcurrent_param_list_z)
-                     + max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40))
-                     + max0((s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 7%positive => ((s IDcurrent_param_list_z)
-                     + max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40))
-                     + max0((s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 8%positive => ((s IDcurrent_param_list_z)
-                     + max0(-(s IDcurrent_param_list_i)
-                            + (s IDcurrent_param_list_pset_dref_off8))
-                     + max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40)))%Q
-    | 9%positive => ((s IDcurrent_param_list_z)
-                     + max0(-(s IDcurrent_param_list_i)
-                            + (s IDcurrent_param_list_pset_dref_off8))
-                     + max0((s IDcurrent_param_list_pset_dref_off24))
-                     + max0((s IDcurrent_param_list_pset_dref_off40)))%Q
-    | 10%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 11%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 12%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 13%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24))
-                      - max0((s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 14%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24))
-                      - max0((s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 15%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24))
-                      - max0((s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 16%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24))
-                      - max0((s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 17%positive => ((s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 18%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 19%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 20%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 21%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 22%positive => ((s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off40)))%Q
-    | 23%positive => ((s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off40)))%Q
-    | 24%positive => ((s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off40)))%Q
-    | 25%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 26%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 27%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 28%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 29%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 30%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 31%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 32%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 33%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 34%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 35%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 36%positive => ((1 # 1) - (s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 37%positive => ((1 # 1) - (s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 38%positive => ((1 # 1) - (s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 39%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 40%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 41%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 42%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 43%positive => (-(s IDcurrent_param_list_i)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 44%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24))
-                      - max0((s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 45%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 46%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 47%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 48%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 49%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 50%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 51%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 52%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 53%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 54%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 55%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 56%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 57%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 58%positive => ((s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 59%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off24)))%Q
-    | 60%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 61%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 62%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 63%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 64%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 65%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 66%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 67%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 68%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 69%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 70%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 71%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 72%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 73%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 74%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 75%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 76%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 77%positive => ((s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-(s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 78%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z)
-                      + max0(-1 - (s IDcurrent_param_list_i)
-                             + (s IDcurrent_param_list_pset_dref_off8)))%Q
-    | 79%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 80%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 81%positive => ((1 # 1) + (s IDcurrent_param_list_pset_dref_off24)
-                      + (s IDcurrent_param_list_pset_dref_off40)
-                      + (s IDcurrent_param_list_z))%Q
-    | 82%positive => ((s IDcurrent_param_list_z))%Q
-    | _ => (0 # 1)%Q
+  | P_current_param_list =>
+    [mkPA Q (fun n z s => ai_current_param_list n s /\ annot0_current_param_list n z s)]
   end.
 
-Definition current_param_list_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDcurrent_param_list_pset_dref_off40))) (F_check_ge ((s IDcurrent_param_list_pset_dref_off40)) (0));
-                     (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDcurrent_param_list_pset_dref_off24))) (F_check_ge ((s IDcurrent_param_list_pset_dref_off24)) (0))]
-    | 10%positive => []
-    | 11%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-(s IDcurrent_param_list_i)
-                                                             + (s IDcurrent_param_list_pset_dref_off8)) (-1
-                                                                    - (s IDcurrent_param_list_i)
-                                                                    + (s IDcurrent_param_list_pset_dref_off8)));
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDcurrent_param_list_i)
-                                            + (s IDcurrent_param_list_pset_dref_off8))]
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-(s IDcurrent_param_list_i)
-                                                             + (s IDcurrent_param_list_pset_dref_off24)) (-1
-                                                                    - (s IDcurrent_param_list_i)
-                                                                    + (s IDcurrent_param_list_pset_dref_off24)));
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDcurrent_param_list_i)
-                                            + (s IDcurrent_param_list_pset_dref_off24));
-                      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDcurrent_param_list_pset_dref_off24)) (0))) (F_max0_ge_0 ((s IDcurrent_param_list_pset_dref_off24)))]
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDcurrent_param_list_i)
-                                                                    + (s IDcurrent_param_list_pset_dref_off40)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDcurrent_param_list_i)
-                                                                    + (s IDcurrent_param_list_pset_dref_off40)))]
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-(s IDcurrent_param_list_i)
-                                                             + (s IDcurrent_param_list_pset_dref_off40)) (-1
-                                                                    - (s IDcurrent_param_list_i)
-                                                                    + (s IDcurrent_param_list_pset_dref_off40)));
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDcurrent_param_list_i)
-                                            + (s IDcurrent_param_list_pset_dref_off40))]
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_max0_pre_decrement (-(s IDcurrent_param_list_i)
-                                                     + (s IDcurrent_param_list_pset_dref_off40)) (1);
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDcurrent_param_list_i)
-                                            + (s IDcurrent_param_list_pset_dref_off40));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDcurrent_param_list_i)
-                                                                    + (s IDcurrent_param_list_pset_dref_off40)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDcurrent_param_list_i)
-                                                                    + (s IDcurrent_param_list_pset_dref_off40)))]
-    | 44%positive => [(*0 1*) F_max0_pre_decrement (-(s IDcurrent_param_list_i)
-                                                    + (s IDcurrent_param_list_pset_dref_off24)) (1);
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDcurrent_param_list_pset_dref_off24)) (0))) (F_max0_ge_0 ((s IDcurrent_param_list_pset_dref_off24)))]
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDcurrent_param_list_pset_dref_off24))) (F_check_ge ((s IDcurrent_param_list_pset_dref_off24)) (0))]
-    | 59%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                - (s IDcurrent_param_list_i)
-                                                                + (s IDcurrent_param_list_pset_dref_off24))) (F_check_ge (0) (0))]
-    | 60%positive => []
-    | 61%positive => []
-    | 62%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_max0_ge_0 ((s IDcurrent_param_list_pset_dref_off40));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDcurrent_param_list_pset_dref_off40)) (0))) (F_max0_ge_0 ((s IDcurrent_param_list_pset_dref_off40)))]
-    | 63%positive => [(*-8e-12 1*) F_max0_pre_decrement (-(s IDcurrent_param_list_i)
-                                                         + (s IDcurrent_param_list_pset_dref_off8)) (1)]
-    | 64%positive => []
-    | 65%positive => []
-    | 66%positive => []
-    | 67%positive => []
-    | 68%positive => []
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => []
-    | 72%positive => []
-    | 73%positive => []
-    | 74%positive => []
-    | 75%positive => []
-    | 76%positive => []
-    | 77%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDcurrent_param_list_z))) (F_check_ge ((s IDcurrent_param_list_z)) (0));
-                      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDcurrent_param_list_z)) (0))) (F_max0_ge_0 ((s IDcurrent_param_list_z)))]
-    | 78%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                - (s IDcurrent_param_list_i)
-                                                                + (s IDcurrent_param_list_pset_dref_off8))) (F_check_ge (0) (0))]
-    | 79%positive => []
-    | 80%positive => []
-    | 81%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_max0_ge_0 ((s IDcurrent_param_list_pset_dref_off24));
-                      (*-1 0*) F_max0_ge_0 ((s IDcurrent_param_list_pset_dref_off40));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDcurrent_param_list_pset_dref_off40)) (0))) (F_max0_ge_0 ((s IDcurrent_param_list_pset_dref_off40)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDcurrent_param_list_pset_dref_off24)) (0))) (F_max0_ge_0 ((s IDcurrent_param_list_pset_dref_off24)))]
-    | 82%positive => []
-    | _ => []
-  end.
-
-
-Theorem current_param_list_ai_correct:
-  forall s p' s', steps (g_start current_param_list) s (g_edges current_param_list) p' s' -> current_param_list_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem current_param_list_pot_correct:
-  forall s p' s',
-    steps (g_start current_param_list) s (g_edges current_param_list) p' s' ->
-    (current_param_list_pot (g_start current_param_list) s >= current_param_list_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_current_param_list (proc_start P_current_param_list) s1 (proc_end P_current_param_list) s2 ->
+    (s2 V_current_param_list_z <= max0(s1 V_current_param_list_pset_dref_off24)
+                                  + max0(s1 V_current_param_list_pset_dref_off40)
+                                  + max0(s1 V_current_param_list_pset_dref_off8))%Q.
 Proof.
-  check_lp current_param_list_ai_correct current_param_list_hints.
+  prove_bound ipa admissible_ipa P_current_param_list.
 Qed.
-

@@ -1,490 +1,348 @@
 Require Import pasta.Pasta.
 
-Notation IDmakepossibilities_z := 1%positive.
-Notation IDmakepossibilities_compoundflag := 2%positive.
-Notation IDmakepossibilities_easypossibilities := 3%positive.
-Notation IDmakepossibilities_i := 4%positive.
-Notation IDmakepossibilities_maxposslen := 5%positive.
-Notation IDmakepossibilities_pcount := 6%positive.
-Notation IDmakepossibilities_sortit := 7%positive.
-Notation IDmakepossibilities_tryhardflag := 8%positive.
-Notation IDmakepossibilities_word := 9%positive.
-Definition makepossibilities : graph := {|
-  g_start := 1%positive;
-  g_end := 71%positive;
-  g_edges := (1%positive,(AAssign IDmakepossibilities_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDmakepossibilities_i (Some (ENum (0)))),
-             3%positive)::(3%positive,ANone,4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_i) s) <
-             (eval (ENum (100)) s))%Z)),72%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_i) s) >=
-             (eval (ENum (100)) s))%Z)),6%positive)::
-             (6%positive,AWeaken,7%positive)::
-             (7%positive,(AAssign IDmakepossibilities_pcount
-             (Some (ENum (0)))),8%positive)::
-             (8%positive,(AAssign IDmakepossibilities_maxposslen
-             (Some (ENum (0)))),9%positive)::
-             (9%positive,(AAssign IDmakepossibilities_easypossibilities
-             (Some (ENum (0)))),10%positive)::
-             (10%positive,AWeaken,11%positive)::
-             (11%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) <
-             (eval (ENum (100)) s))%Z)),13%positive)::
-             (11%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) >=
-             (eval (ENum (100)) s))%Z)),12%positive)::
-             (12%positive,AWeaken,16%positive)::
-             (13%positive,AWeaken,14%positive)::
-             (14%positive,ANone,15%positive)::
-             (15%positive,AWeaken,16%positive)::
-             (16%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) <
-             (eval (ENum (100)) s))%Z)),18%positive)::
-             (16%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) >=
-             (eval (ENum (100)) s))%Z)),17%positive)::
-             (17%positive,AWeaken,21%positive)::
-             (18%positive,AWeaken,19%positive)::
-             (19%positive,ANone,20%positive)::
-             (20%positive,AWeaken,21%positive)::
-             (21%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) <
-             (eval (ENum (100)) s))%Z)),23%positive)::
-             (21%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) >=
-             (eval (ENum (100)) s))%Z)),22%positive)::
-             (22%positive,AWeaken,26%positive)::
-             (23%positive,AWeaken,24%positive)::
-             (24%positive,ANone,25%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (26%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) <
-             (eval (ENum (100)) s))%Z)),28%positive)::
-             (26%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) >=
-             (eval (ENum (100)) s))%Z)),27%positive)::
-             (27%positive,AWeaken,31%positive)::
-             (28%positive,AWeaken,29%positive)::
-             (29%positive,ANone,30%positive)::
-             (30%positive,AWeaken,31%positive)::
-             (31%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_compoundflag) s) <>
-             (eval (ENum (1)) s))%Z)),33%positive)::
-             (31%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_compoundflag) s) =
-             (eval (ENum (1)) s))%Z)),32%positive)::
-             (32%positive,AWeaken,38%positive)::
-             (33%positive,AWeaken,34%positive)::
-             (34%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) <
-             (eval (ENum (100)) s))%Z)),36%positive)::
-             (34%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) >=
-             (eval (ENum (100)) s))%Z)),35%positive)::
-             (35%positive,AWeaken,38%positive)::
-             (36%positive,AWeaken,37%positive)::
-             (37%positive,ANone,38%positive)::
-             (38%positive,(AAssign IDmakepossibilities_easypossibilities
-             (Some (EVar IDmakepossibilities_pcount))),39%positive)::
-             (39%positive,AWeaken,40%positive)::
-             (40%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_easypossibilities)
-             s) = (eval (ENum (0)) s))%Z)),45%positive)::
-             (40%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_easypossibilities)
-             s) <> (eval (ENum (0)) s))%Z)),41%positive)::
-             (41%positive,AWeaken,42%positive)::
-             (42%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_tryhardflag) s) <>
-             (eval (ENum (0)) s))%Z)),44%positive)::
-             (42%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_tryhardflag) s) =
-             (eval (ENum (0)) s))%Z)),43%positive)::
-             (43%positive,AWeaken,48%positive)::
-             (44%positive,AWeaken,46%positive)::
-             (45%positive,AWeaken,46%positive)::
-             (46%positive,ANone,47%positive)::
-             (47%positive,AWeaken,48%positive)::
-             (48%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_sortit) s) <>
-             (eval (ENum (0)) s))%Z)),53%positive)::
-             (48%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_sortit) s) =
-             (eval (ENum (0)) s))%Z)),49%positive)::
-             (49%positive,AWeaken,50%positive)::
-             (50%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) >
-             (eval (EVar IDmakepossibilities_easypossibilities) s))%Z)),
-             52%positive)::
-             (50%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) <=
-             (eval (EVar IDmakepossibilities_easypossibilities) s))%Z)),
-             51%positive)::(51%positive,AWeaken,71%positive)::
-             (52%positive,AWeaken,54%positive)::
-             (53%positive,AWeaken,54%positive)::
-             (54%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) <>
-             (eval (ENum (0)) s))%Z)),56%positive)::
-             (54%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) =
-             (eval (ENum (0)) s))%Z)),55%positive)::
-             (55%positive,AWeaken,71%positive)::
-             (56%positive,AWeaken,57%positive)::
-             (57%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_easypossibilities)
-             s) > (eval (ENum (0)) s))%Z)),59%positive)::
-             (57%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_easypossibilities)
-             s) <= (eval (ENum (0)) s))%Z)),58%positive)::
-             (58%positive,AWeaken,65%positive)::
-             (59%positive,AWeaken,60%positive)::
-             (60%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_sortit) s) <>
-             (eval (ENum (0)) s))%Z)),62%positive)::
-             (60%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_sortit) s) =
-             (eval (ENum (0)) s))%Z)),61%positive)::
-             (61%positive,AWeaken,65%positive)::
-             (62%positive,AWeaken,63%positive)::
-             (63%positive,ANone,64%positive)::
-             (64%positive,AWeaken,65%positive)::
-             (65%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) >
-             (eval (EVar IDmakepossibilities_easypossibilities) s))%Z)),
-             67%positive)::
-             (65%positive,(AGuard
-             (fun s => ((eval (EVar IDmakepossibilities_pcount) s) <=
-             (eval (EVar IDmakepossibilities_easypossibilities) s))%Z)),
-             66%positive)::(66%positive,AWeaken,69%positive)::
-             (67%positive,AWeaken,68%positive)::
-             (68%positive,ANone,69%positive)::
-             (69%positive,ANone,70%positive)::
-             (70%positive,AWeaken,71%positive)::
-             (72%positive,AWeaken,73%positive)::
-             (73%positive,ANone,74%positive)::
-             (74%positive,(AAssign IDmakepossibilities_i
-             (Some (EAdd (EVar IDmakepossibilities_i) (ENum (1))))),
-             75%positive)::(75%positive,ANone,76%positive)::
-             (76%positive,ANone,77%positive)::
-             (77%positive,(AAssign IDmakepossibilities_z
-             (Some (EAdd (ENum (1)) (EVar IDmakepossibilities_z)))),
-             78%positive)::(78%positive,AWeaken,5%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_makepossibilities.
 
-Definition makepossibilities_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) <= 0 /\ -1 * (s IDmakepossibilities_i) <= 0)%Z
-    | 4%positive => (-1 * (s IDmakepossibilities_i) <= 0 /\ 1 * (s IDmakepossibilities_i) <= 0 /\ 1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0)%Z
-    | 6%positive => (1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0)%Z
-    | 7%positive => (-1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0)%Z
-    | 8%positive => (1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0)%Z
-    | 9%positive => (-1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 10%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 11%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 12%positive => (False)%Z
-    | 13%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 14%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 15%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 16%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 17%positive => (False)%Z
-    | 18%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 19%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 20%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 21%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 22%positive => (False)%Z
-    | 23%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 24%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 25%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 26%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 27%positive => (False)%Z
-    | 28%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 29%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 30%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 31%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 32%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_compoundflag) + -1 <= 0 /\ -1 * (s IDmakepossibilities_compoundflag) + 1 <= 0)%Z
-    | 33%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 34%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 35%positive => (False)%Z
-    | 36%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 37%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0)%Z
-    | 38%positive => (-1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 39%positive => (-1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 40%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0)%Z
-    | 41%positive => (False)%Z
-    | 42%positive => (False)%Z
-    | 43%positive => (False)%Z
-    | 44%positive => (False)%Z
-    | 45%positive => (-1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 46%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0)%Z
-    | 47%positive => (-1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 48%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0)%Z
-    | 49%positive => (-1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_sortit) <= 0 /\ -1 * (s IDmakepossibilities_sortit) <= 0)%Z
-    | 50%positive => (-1 * (s IDmakepossibilities_sortit) <= 0 /\ 1 * (s IDmakepossibilities_sortit) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0)%Z
-    | 51%positive => (-1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_sortit) <= 0 /\ -1 * (s IDmakepossibilities_sortit) <= 0)%Z
-    | 52%positive => (False)%Z
-    | 53%positive => (-1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 54%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0)%Z
-    | 55%positive => (-1 * (s IDmakepossibilities_pcount) <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_easypossibilities) <= 0)%Z
-    | 56%positive => (False)%Z
-    | 57%positive => (False)%Z
-    | 58%positive => (False)%Z
-    | 59%positive => (False)%Z
-    | 60%positive => (False)%Z
-    | 61%positive => (False)%Z
-    | 62%positive => (False)%Z
-    | 63%positive => (False)%Z
-    | 64%positive => (False)%Z
-    | 65%positive => (False)%Z
-    | 66%positive => (False)%Z
-    | 67%positive => (False)%Z
-    | 68%positive => (False)%Z
-    | 69%positive => (False)%Z
-    | 70%positive => (False)%Z
-    | 71%positive => (-1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ 1 * (s IDmakepossibilities_easypossibilities) <= 0 /\ -1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_maxposslen) <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 100 <= 0 /\ 1 * (s IDmakepossibilities_pcount) <= 0 /\ -1 * (s IDmakepossibilities_pcount) <= 0)%Z
-    | 72%positive => (-1 * (s IDmakepossibilities_i) <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -99 <= 0)%Z
-    | 73%positive => (1 * (s IDmakepossibilities_i) + -99 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) <= 0)%Z
-    | 74%positive => (-1 * (s IDmakepossibilities_i) <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0 /\ 1 * (s IDmakepossibilities_i) + -99 <= 0)%Z
-    | 75%positive => (-1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 1 <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0)%Z
-    | 76%positive => (1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_i) + 1 <= 0 /\ -1 * (s IDmakepossibilities_z) <= 0)%Z
-    | 77%positive => (-1 * (s IDmakepossibilities_z) <= 0 /\ -1 * (s IDmakepossibilities_i) + 1 <= 0 /\ 1 * (s IDmakepossibilities_i) + -100 <= 0)%Z
-    | 78%positive => (1 * (s IDmakepossibilities_i) + -100 <= 0 /\ -1 * (s IDmakepossibilities_i) + 1 <= 0 /\ -1 * (s IDmakepossibilities_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition makepossibilities_pot (p : node) (s : state): Q := 
+Notation V_makepossibilities_z := 1%positive.
+Notation V_makepossibilities_compoundflag := 2%positive.
+Notation V_makepossibilities_easypossibilities := 3%positive.
+Notation V_makepossibilities_i := 4%positive.
+Notation V_makepossibilities_maxposslen := 5%positive.
+Notation V_makepossibilities_pcount := 6%positive.
+Notation V_makepossibilities_sortit := 7%positive.
+Notation V_makepossibilities_tryhardflag := 8%positive.
+Notation V_makepossibilities_word := 9%positive.
+Definition Pedges_makepossibilities: list (edge proc) :=
+  (EA 1 (AAssign V_makepossibilities_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_makepossibilities_i (Some (ENum (0)))) 3)::(EA 3 ANone 4)::
+  (EA 4 AWeaken 5)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_i) s) < (eval (ENum (100))
+  s))%Z)) 72)::(EA 5 (AGuard (fun s => ((eval (EVar V_makepossibilities_i)
+  s) >= (eval (ENum (100)) s))%Z)) 6)::(EA 6 AWeaken 7)::(EA 7 (AAssign
+  V_makepossibilities_pcount (Some (ENum (0)))) 8)::(EA 8 (AAssign
+  V_makepossibilities_maxposslen (Some (ENum (0)))) 9)::(EA 9 (AAssign
+  V_makepossibilities_easypossibilities (Some (ENum (0)))) 10)::
+  (EA 10 AWeaken 11)::(EA 11 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) < (eval (ENum (100))
+  s))%Z)) 13)::(EA 11 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) >= (eval (ENum (100))
+  s))%Z)) 12)::(EA 12 AWeaken 16)::(EA 13 AWeaken 14)::(EA 14 ANone 15)::
+  (EA 15 AWeaken 16)::(EA 16 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) < (eval (ENum (100))
+  s))%Z)) 18)::(EA 16 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) >= (eval (ENum (100))
+  s))%Z)) 17)::(EA 17 AWeaken 21)::(EA 18 AWeaken 19)::(EA 19 ANone 20)::
+  (EA 20 AWeaken 21)::(EA 21 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) < (eval (ENum (100))
+  s))%Z)) 23)::(EA 21 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) >= (eval (ENum (100))
+  s))%Z)) 22)::(EA 22 AWeaken 26)::(EA 23 AWeaken 24)::(EA 24 ANone 25)::
+  (EA 25 AWeaken 26)::(EA 26 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) < (eval (ENum (100))
+  s))%Z)) 28)::(EA 26 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) >= (eval (ENum (100))
+  s))%Z)) 27)::(EA 27 AWeaken 31)::(EA 28 AWeaken 29)::(EA 29 ANone 30)::
+  (EA 30 AWeaken 31)::(EA 31 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_compoundflag) s) <>
+  (eval (ENum (1)) s))%Z)) 33)::(EA 31 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_compoundflag) s) =
+  (eval (ENum (1)) s))%Z)) 32)::(EA 32 AWeaken 38)::(EA 33 AWeaken 34)::
+  (EA 34 (AGuard (fun s => ((eval (EVar V_makepossibilities_pcount) s) <
+  (eval (ENum (100)) s))%Z)) 36)::(EA 34 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) >= (eval (ENum (100))
+  s))%Z)) 35)::(EA 35 AWeaken 38)::(EA 36 AWeaken 37)::(EA 37 ANone 38)::
+  (EA 38 (AAssign V_makepossibilities_easypossibilities
+  (Some (EVar V_makepossibilities_pcount))) 39)::(EA 39 AWeaken 40)::
+  (EA 40 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_easypossibilities) s) =
+  (eval (ENum (0)) s))%Z)) 45)::(EA 40 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_easypossibilities) s) <>
+  (eval (ENum (0)) s))%Z)) 41)::(EA 41 AWeaken 42)::(EA 42 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_tryhardflag) s) <>
+  (eval (ENum (0)) s))%Z)) 44)::(EA 42 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_tryhardflag) s) =
+  (eval (ENum (0)) s))%Z)) 43)::(EA 43 AWeaken 48)::(EA 44 AWeaken 46)::
+  (EA 45 AWeaken 46)::(EA 46 ANone 47)::(EA 47 AWeaken 48)::(EA 48 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_sortit) s) <> (eval (ENum (0))
+  s))%Z)) 53)::(EA 48 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_sortit) s) = (eval (ENum (0))
+  s))%Z)) 49)::(EA 49 AWeaken 50)::(EA 50 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) >
+  (eval (EVar V_makepossibilities_easypossibilities) s))%Z)) 52)::
+  (EA 50 (AGuard (fun s => ((eval (EVar V_makepossibilities_pcount) s) <=
+  (eval (EVar V_makepossibilities_easypossibilities) s))%Z)) 51)::
+  (EA 51 AWeaken 71)::(EA 52 AWeaken 54)::(EA 53 AWeaken 54)::(EA 54 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) <> (eval (ENum (0))
+  s))%Z)) 56)::(EA 54 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) = (eval (ENum (0))
+  s))%Z)) 55)::(EA 55 AWeaken 71)::(EA 56 AWeaken 57)::(EA 57 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_easypossibilities) s) >
+  (eval (ENum (0)) s))%Z)) 59)::(EA 57 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_easypossibilities) s) <=
+  (eval (ENum (0)) s))%Z)) 58)::(EA 58 AWeaken 65)::(EA 59 AWeaken 60)::
+  (EA 60 (AGuard (fun s => ((eval (EVar V_makepossibilities_sortit) s) <>
+  (eval (ENum (0)) s))%Z)) 62)::(EA 60 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_sortit) s) = (eval (ENum (0))
+  s))%Z)) 61)::(EA 61 AWeaken 65)::(EA 62 AWeaken 63)::(EA 63 ANone 64)::
+  (EA 64 AWeaken 65)::(EA 65 (AGuard
+  (fun s => ((eval (EVar V_makepossibilities_pcount) s) >
+  (eval (EVar V_makepossibilities_easypossibilities) s))%Z)) 67)::
+  (EA 65 (AGuard (fun s => ((eval (EVar V_makepossibilities_pcount) s) <=
+  (eval (EVar V_makepossibilities_easypossibilities) s))%Z)) 66)::
+  (EA 66 AWeaken 69)::(EA 67 AWeaken 68)::(EA 68 ANone 69)::
+  (EA 69 ANone 70)::(EA 70 AWeaken 71)::(EA 72 AWeaken 73)::
+  (EA 73 ANone 74)::(EA 74 (AAssign V_makepossibilities_i
+  (Some (EAdd (EVar V_makepossibilities_i) (ENum (1))))) 75)::
+  (EA 75 ANone 76)::(EA 76 ANone 77)::(EA 77 (AAssign V_makepossibilities_z
+  (Some (EAdd (ENum (1)) (EVar V_makepossibilities_z)))) 78)::
+  (EA 78 AWeaken 5)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_makepossibilities => Pedges_makepossibilities
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_makepossibilities => 71
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_makepossibilities (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_z <= 0)%Z
+   | 3 => (-1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i <= 0 /\ -1 * s V_makepossibilities_i <= 0)%Z
+   | 4 => (-1 * s V_makepossibilities_i <= 0 /\ 1 * s V_makepossibilities_i <= 0 /\ 1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_z <= 0)%Z
+   | 5 => (-1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0)%Z
+   | 6 => (1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0)%Z
+   | 7 => (-1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0)%Z
+   | 8 => (1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0)%Z
+   | 9 => (-1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 10 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 11 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 12 => (False)%Z
+   | 13 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 14 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 15 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 16 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 17 => (False)%Z
+   | 18 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 19 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 20 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 21 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 22 => (False)%Z
+   | 23 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 24 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 25 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 26 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 27 => (False)%Z
+   | 28 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 29 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 30 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 31 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 32 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_compoundflag + -1 <= 0 /\ -1 * s V_makepossibilities_compoundflag + 1 <= 0)%Z
+   | 33 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 34 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 35 => (False)%Z
+   | 36 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 37 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0)%Z
+   | 38 => (-1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 39 => (-1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 40 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0)%Z
+   | 41 => (False)%Z
+   | 42 => (False)%Z
+   | 43 => (False)%Z
+   | 44 => (False)%Z
+   | 45 => (-1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 46 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0)%Z
+   | 47 => (-1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 48 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0)%Z
+   | 49 => (-1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_sortit <= 0 /\ -1 * s V_makepossibilities_sortit <= 0)%Z
+   | 50 => (-1 * s V_makepossibilities_sortit <= 0 /\ 1 * s V_makepossibilities_sortit <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0)%Z
+   | 51 => (-1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_sortit <= 0 /\ -1 * s V_makepossibilities_sortit <= 0)%Z
+   | 52 => (False)%Z
+   | 53 => (-1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 54 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0)%Z
+   | 55 => (-1 * s V_makepossibilities_pcount <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_easypossibilities <= 0)%Z
+   | 56 => (False)%Z
+   | 57 => (False)%Z
+   | 58 => (False)%Z
+   | 59 => (False)%Z
+   | 60 => (False)%Z
+   | 61 => (False)%Z
+   | 62 => (False)%Z
+   | 63 => (False)%Z
+   | 64 => (False)%Z
+   | 65 => (False)%Z
+   | 66 => (False)%Z
+   | 67 => (False)%Z
+   | 68 => (False)%Z
+   | 69 => (False)%Z
+   | 70 => (False)%Z
+   | 71 => (-1 * s V_makepossibilities_easypossibilities <= 0 /\ 1 * s V_makepossibilities_easypossibilities <= 0 /\ -1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_maxposslen <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 100 <= 0 /\ 1 * s V_makepossibilities_pcount <= 0 /\ -1 * s V_makepossibilities_pcount <= 0)%Z
+   | 72 => (-1 * s V_makepossibilities_i <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -99 <= 0)%Z
+   | 73 => (1 * s V_makepossibilities_i + -99 <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i <= 0)%Z
+   | 74 => (-1 * s V_makepossibilities_i <= 0 /\ -1 * s V_makepossibilities_z <= 0 /\ 1 * s V_makepossibilities_i + -99 <= 0)%Z
+   | 75 => (-1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 1 <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0)%Z
+   | 76 => (1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_i + 1 <= 0 /\ -1 * s V_makepossibilities_z <= 0)%Z
+   | 77 => (-1 * s V_makepossibilities_z <= 0 /\ -1 * s V_makepossibilities_i + 1 <= 0 /\ 1 * s V_makepossibilities_i + -100 <= 0)%Z
+   | 78 => (1 * s V_makepossibilities_i + -100 <= 0 /\ -1 * s V_makepossibilities_i + 1 <= 0 /\ -1 * s V_makepossibilities_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_makepossibilities (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((100 # 1) <= z)%Q
+   | 2 => ((100 # 1) + s V_makepossibilities_z <= z)%Q
+   | 3 => ((100 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 4 => ((100 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 5 => ((100 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 6 => hints
+     [(*0 1.0101*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (100
+                                                                   - 
+                                                                   s V_makepossibilities_i) (0))) (F_max0_ge_0 (100
+                                                                    - s V_makepossibilities_i));
+      (*0 0.010101*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    + 
+                                                                    s V_makepossibilities_i) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_makepossibilities_i))]
+     ((100 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 7 => (-(1 # 1) + s V_makepossibilities_z
+           + (1 # 99) * max0(-1 + s V_makepossibilities_i)
+           + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 8 => (-(1 # 1) + s V_makepossibilities_z
+           + (1 # 99) * max0(-1 + s V_makepossibilities_i)
+           + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 9 => (-(1 # 1) + s V_makepossibilities_z
+           + (1 # 99) * max0(-1 + s V_makepossibilities_i)
+           + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 10 => hints
+     [(*-0.010101 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                          + s V_makepossibilities_i)) (F_check_ge (-1
+                                                                    + s V_makepossibilities_i) (0))]
+     (-(1 # 1) + s V_makepossibilities_z
+      + (1 # 99) * max0(-1 + s V_makepossibilities_i)
+      + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 11 => (-(100 # 99) + (1 # 99) * s V_makepossibilities_i
+            + s V_makepossibilities_z
+            + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 12 => hints
+     [(*-1.0101 0*) F_max0_pre_decrement 1 (100 - s V_makepossibilities_i) (1);
+      (*-1.0101 0*) F_max0_ge_0 (99 - s V_makepossibilities_i);
+      (*-0.010101 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_makepossibilities_i)) (F_check_ge (0) (0));
+      (*0 0.010101*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_makepossibilities_i) (0))) (F_max0_ge_0 (s V_makepossibilities_i))]
+     (-(100 # 99) + (1 # 99) * s V_makepossibilities_i
+      + s V_makepossibilities_z
+      + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 13 => hints
+     [(*0 0.010101*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-100
+                                                                    + 
+                                                                    s V_makepossibilities_i) (0))) (F_max0_ge_0 (-100
+                                                                    + s V_makepossibilities_i))]
+     (-(100 # 99) + (1 # 99) * s V_makepossibilities_i
+      + s V_makepossibilities_z
+      + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 14 => (s V_makepossibilities_z
+            + (1 # 99) * max0(-100 + s V_makepossibilities_i)
+            + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 15 => hints
+     [(*-1.0101 0*) F_max0_monotonic (F_check_ge (100
+                                                  - s V_makepossibilities_i) (99
+                                                                    - s V_makepossibilities_i));
+      (*-1.0101 0*) F_max0_ge_0 (99 - s V_makepossibilities_i);
+      (*-0.010101 0*) F_binom_monotonic 1 (F_max0_ge_0 (-100
+                                                        + s V_makepossibilities_i)) (F_check_ge (0) (0))]
+     (s V_makepossibilities_z
+      + (1 # 99) * max0(-100 + s V_makepossibilities_i)
+      + (100 # 99) * max0(100 - s V_makepossibilities_i) <= z)%Q
+   | 16 => (s V_makepossibilities_z <= z)%Q
+   | 17 => (s V_makepossibilities_z <= z)%Q
+   | 18 => (s V_makepossibilities_z <= z)%Q
+   | 19 => (s V_makepossibilities_z <= z)%Q
+   | 20 => (s V_makepossibilities_z <= z)%Q
+   | 21 => (s V_makepossibilities_z <= z)%Q
+   | 22 => (s V_makepossibilities_z <= z)%Q
+   | 23 => (s V_makepossibilities_z <= z)%Q
+   | 24 => (s V_makepossibilities_z <= z)%Q
+   | 25 => (s V_makepossibilities_z <= z)%Q
+   | 26 => (s V_makepossibilities_z <= z)%Q
+   | 27 => (s V_makepossibilities_z <= z)%Q
+   | 28 => (s V_makepossibilities_z <= z)%Q
+   | 29 => (s V_makepossibilities_z <= z)%Q
+   | 30 => (s V_makepossibilities_z <= z)%Q
+   | 31 => (s V_makepossibilities_z <= z)%Q
+   | 32 => (s V_makepossibilities_z <= z)%Q
+   | 33 => (s V_makepossibilities_z <= z)%Q
+   | 34 => (s V_makepossibilities_z <= z)%Q
+   | 35 => (s V_makepossibilities_z <= z)%Q
+   | 36 => (s V_makepossibilities_z <= z)%Q
+   | 37 => (s V_makepossibilities_z <= z)%Q
+   | 38 => (s V_makepossibilities_z <= z)%Q
+   | 39 => (s V_makepossibilities_z <= z)%Q
+   | 40 => (s V_makepossibilities_z <= z)%Q
+   | 41 => (s V_makepossibilities_z <= z)%Q
+   | 42 => (s V_makepossibilities_z <= z)%Q
+   | 43 => (s V_makepossibilities_z <= z)%Q
+   | 44 => (s V_makepossibilities_z <= z)%Q
+   | 45 => (s V_makepossibilities_z <= z)%Q
+   | 46 => (s V_makepossibilities_z <= z)%Q
+   | 47 => (s V_makepossibilities_z <= z)%Q
+   | 48 => (s V_makepossibilities_z <= z)%Q
+   | 49 => (s V_makepossibilities_z <= z)%Q
+   | 50 => (s V_makepossibilities_z <= z)%Q
+   | 51 => (s V_makepossibilities_z <= z)%Q
+   | 52 => (s V_makepossibilities_z <= z)%Q
+   | 53 => (s V_makepossibilities_z <= z)%Q
+   | 54 => (s V_makepossibilities_z <= z)%Q
+   | 55 => (s V_makepossibilities_z <= z)%Q
+   | 56 => (s V_makepossibilities_z <= z)%Q
+   | 57 => (s V_makepossibilities_z <= z)%Q
+   | 58 => (s V_makepossibilities_z <= z)%Q
+   | 59 => (s V_makepossibilities_z <= z)%Q
+   | 60 => (s V_makepossibilities_z <= z)%Q
+   | 61 => (s V_makepossibilities_z <= z)%Q
+   | 62 => (s V_makepossibilities_z <= z)%Q
+   | 63 => (s V_makepossibilities_z <= z)%Q
+   | 64 => (s V_makepossibilities_z <= z)%Q
+   | 65 => (s V_makepossibilities_z <= z)%Q
+   | 66 => (s V_makepossibilities_z <= z)%Q
+   | 67 => (s V_makepossibilities_z <= z)%Q
+   | 68 => (s V_makepossibilities_z <= z)%Q
+   | 69 => (s V_makepossibilities_z <= z)%Q
+   | 70 => (s V_makepossibilities_z <= z)%Q
+   | 71 => (s V_makepossibilities_z <= z)%Q
+   | 72 => ((100 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 73 => ((100 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 74 => ((100 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 75 => ((101 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 76 => ((101 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 77 => ((101 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | 78 => ((100 # 1) - s V_makepossibilities_i + s V_makepossibilities_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((100 # 1))%Q
-    | 2%positive => ((100 # 1) + (s IDmakepossibilities_z))%Q
-    | 3%positive => ((100 # 1) - (s IDmakepossibilities_i)
-                     + (s IDmakepossibilities_z))%Q
-    | 4%positive => ((100 # 1) - (s IDmakepossibilities_i)
-                     + (s IDmakepossibilities_z))%Q
-    | 5%positive => ((100 # 1) - (s IDmakepossibilities_i)
-                     + (s IDmakepossibilities_z))%Q
-    | 6%positive => ((100 # 1) - (s IDmakepossibilities_i)
-                     + (s IDmakepossibilities_z))%Q
-    | 7%positive => (-(1 # 1) + (s IDmakepossibilities_z)
-                     + (1 # 99) * max0(-1 + (s IDmakepossibilities_i))
-                     + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 8%positive => (-(1 # 1) + (s IDmakepossibilities_z)
-                     + (1 # 99) * max0(-1 + (s IDmakepossibilities_i))
-                     + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 9%positive => (-(1 # 1) + (s IDmakepossibilities_z)
-                     + (1 # 99) * max0(-1 + (s IDmakepossibilities_i))
-                     + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 10%positive => (-(1 # 1) + (s IDmakepossibilities_z)
-                      + (1 # 99) * max0(-1 + (s IDmakepossibilities_i))
-                      + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 11%positive => (-(100 # 99) + (1 # 99) * (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z)
-                      + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 12%positive => (-(100 # 99) + (1 # 99) * (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z)
-                      + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 13%positive => (-(100 # 99) + (1 # 99) * (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z)
-                      + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 14%positive => ((s IDmakepossibilities_z)
-                      + (1 # 99) * max0(-100 + (s IDmakepossibilities_i))
-                      + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 15%positive => ((s IDmakepossibilities_z)
-                      + (1 # 99) * max0(-100 + (s IDmakepossibilities_i))
-                      + (100 # 99) * max0(100 - (s IDmakepossibilities_i)))%Q
-    | 16%positive => ((s IDmakepossibilities_z))%Q
-    | 17%positive => ((s IDmakepossibilities_z))%Q
-    | 18%positive => ((s IDmakepossibilities_z))%Q
-    | 19%positive => ((s IDmakepossibilities_z))%Q
-    | 20%positive => ((s IDmakepossibilities_z))%Q
-    | 21%positive => ((s IDmakepossibilities_z))%Q
-    | 22%positive => ((s IDmakepossibilities_z))%Q
-    | 23%positive => ((s IDmakepossibilities_z))%Q
-    | 24%positive => ((s IDmakepossibilities_z))%Q
-    | 25%positive => ((s IDmakepossibilities_z))%Q
-    | 26%positive => ((s IDmakepossibilities_z))%Q
-    | 27%positive => ((s IDmakepossibilities_z))%Q
-    | 28%positive => ((s IDmakepossibilities_z))%Q
-    | 29%positive => ((s IDmakepossibilities_z))%Q
-    | 30%positive => ((s IDmakepossibilities_z))%Q
-    | 31%positive => ((s IDmakepossibilities_z))%Q
-    | 32%positive => ((s IDmakepossibilities_z))%Q
-    | 33%positive => ((s IDmakepossibilities_z))%Q
-    | 34%positive => ((s IDmakepossibilities_z))%Q
-    | 35%positive => ((s IDmakepossibilities_z))%Q
-    | 36%positive => ((s IDmakepossibilities_z))%Q
-    | 37%positive => ((s IDmakepossibilities_z))%Q
-    | 38%positive => ((s IDmakepossibilities_z))%Q
-    | 39%positive => ((s IDmakepossibilities_z))%Q
-    | 40%positive => ((s IDmakepossibilities_z))%Q
-    | 41%positive => ((s IDmakepossibilities_z))%Q
-    | 42%positive => ((s IDmakepossibilities_z))%Q
-    | 43%positive => ((s IDmakepossibilities_z))%Q
-    | 44%positive => ((s IDmakepossibilities_z))%Q
-    | 45%positive => ((s IDmakepossibilities_z))%Q
-    | 46%positive => ((s IDmakepossibilities_z))%Q
-    | 47%positive => ((s IDmakepossibilities_z))%Q
-    | 48%positive => ((s IDmakepossibilities_z))%Q
-    | 49%positive => ((s IDmakepossibilities_z))%Q
-    | 50%positive => ((s IDmakepossibilities_z))%Q
-    | 51%positive => ((s IDmakepossibilities_z))%Q
-    | 52%positive => ((s IDmakepossibilities_z))%Q
-    | 53%positive => ((s IDmakepossibilities_z))%Q
-    | 54%positive => ((s IDmakepossibilities_z))%Q
-    | 55%positive => ((s IDmakepossibilities_z))%Q
-    | 56%positive => ((s IDmakepossibilities_z))%Q
-    | 57%positive => ((s IDmakepossibilities_z))%Q
-    | 58%positive => ((s IDmakepossibilities_z))%Q
-    | 59%positive => ((s IDmakepossibilities_z))%Q
-    | 60%positive => ((s IDmakepossibilities_z))%Q
-    | 61%positive => ((s IDmakepossibilities_z))%Q
-    | 62%positive => ((s IDmakepossibilities_z))%Q
-    | 63%positive => ((s IDmakepossibilities_z))%Q
-    | 64%positive => ((s IDmakepossibilities_z))%Q
-    | 65%positive => ((s IDmakepossibilities_z))%Q
-    | 66%positive => ((s IDmakepossibilities_z))%Q
-    | 67%positive => ((s IDmakepossibilities_z))%Q
-    | 68%positive => ((s IDmakepossibilities_z))%Q
-    | 69%positive => ((s IDmakepossibilities_z))%Q
-    | 70%positive => ((s IDmakepossibilities_z))%Q
-    | 71%positive => ((s IDmakepossibilities_z))%Q
-    | 72%positive => ((100 # 1) - (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z))%Q
-    | 73%positive => ((100 # 1) - (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z))%Q
-    | 74%positive => ((100 # 1) - (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z))%Q
-    | 75%positive => ((101 # 1) - (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z))%Q
-    | 76%positive => ((101 # 1) - (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z))%Q
-    | 77%positive => ((101 # 1) - (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z))%Q
-    | 78%positive => ((100 # 1) - (s IDmakepossibilities_i)
-                      + (s IDmakepossibilities_z))%Q
-    | _ => (0 # 1)%Q
+  | P_makepossibilities =>
+    [mkPA Q (fun n z s => ai_makepossibilities n s /\ annot0_makepossibilities n z s)]
   end.
 
-Definition makepossibilities_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => [(*0 1.0101*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (100
-                                                                    - (s IDmakepossibilities_i)) (0))) (F_max0_ge_0 (100
-                                                                    - (s IDmakepossibilities_i)));
-                     (*0 0.010101*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDmakepossibilities_i)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDmakepossibilities_i)))]
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => [(*-0.010101 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDmakepossibilities_i))) (F_check_ge (-1
-                                                                    + (s IDmakepossibilities_i)) (0))]
-    | 11%positive => []
-    | 12%positive => [(*-1.0101 0*) F_max0_pre_decrement (100
-                                                          - (s IDmakepossibilities_i)) (1);
-                      (*-1.0101 0*) F_max0_ge_0 (99
-                                                 - (s IDmakepossibilities_i));
-                      (*-0.010101 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDmakepossibilities_i))) (F_check_ge (0) (0));
-                      (*0 0.010101*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDmakepossibilities_i)) (0))) (F_max0_ge_0 ((s IDmakepossibilities_i)))]
-    | 13%positive => [(*0 0.010101*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-100
-                                                                    + (s IDmakepossibilities_i)) (0))) (F_max0_ge_0 (-100
-                                                                    + (s IDmakepossibilities_i)))]
-    | 14%positive => []
-    | 15%positive => [(*-1.0101 0*) F_max0_monotonic (F_check_ge (100
-                                                                  - (s IDmakepossibilities_i)) (99
-                                                                    - (s IDmakepossibilities_i)));
-                      (*-1.0101 0*) F_max0_ge_0 (99
-                                                 - (s IDmakepossibilities_i));
-                      (*-0.010101 0*) F_binom_monotonic 1 (F_max0_ge_0 (-100
-                                                                    + (s IDmakepossibilities_i))) (F_check_ge (0) (0))]
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => []
-    | 59%positive => []
-    | 60%positive => []
-    | 61%positive => []
-    | 62%positive => []
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => []
-    | 66%positive => []
-    | 67%positive => []
-    | 68%positive => []
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => []
-    | 72%positive => []
-    | 73%positive => []
-    | 74%positive => []
-    | 75%positive => []
-    | 76%positive => []
-    | 77%positive => []
-    | 78%positive => []
-    | _ => []
-  end.
-
-
-Theorem makepossibilities_ai_correct:
-  forall s p' s', steps (g_start makepossibilities) s (g_edges makepossibilities) p' s' -> makepossibilities_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem makepossibilities_pot_correct:
-  forall s p' s',
-    steps (g_start makepossibilities) s (g_edges makepossibilities) p' s' ->
-    (makepossibilities_pot (g_start makepossibilities) s >= makepossibilities_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_makepossibilities (proc_start P_makepossibilities) s1 (proc_end P_makepossibilities) s2 ->
+    (s2 V_makepossibilities_z <= (100 # 1))%Q.
 Proof.
-  check_lp makepossibilities_ai_correct makepossibilities_hints.
+  prove_bound ipa admissible_ipa P_makepossibilities.
 Qed.
-

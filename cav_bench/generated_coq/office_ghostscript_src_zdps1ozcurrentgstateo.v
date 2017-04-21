@@ -1,397 +1,272 @@
 Require Import pasta.Pasta.
 
-Notation IDzcurrentgstate_z := 1%positive.
-Notation IDzcurrentgstate__tmp := 2%positive.
-Notation IDzcurrentgstate_code := 3%positive.
-Notation IDzcurrentgstate_i := 4%positive.
-Notation IDzcurrentgstate_i2 := 5%positive.
-Notation IDzcurrentgstate_op := 6%positive.
-Definition zcurrentgstate : graph := {|
-  g_start := 1%positive;
-  g_end := 66%positive;
-  g_edges := (1%positive,(AAssign IDzcurrentgstate_z (Some (ENum (0)))),
-             2%positive)::(2%positive,AWeaken,3%positive)::
-             (3%positive,ANone,4%positive)::(3%positive,ANone,6%positive)::
-             (4%positive,AWeaken,5%positive)::(5%positive,ANone,9%positive)::
-             (5%positive,ANone,6%positive)::
-             (6%positive,(AAssign IDzcurrentgstate__tmp None),7%positive)::
-             (7%positive,ANone,8%positive)::
-             (8%positive,AWeaken,66%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,ANone,14%positive)::
-             (10%positive,ANone,11%positive)::
-             (11%positive,(AAssign IDzcurrentgstate__tmp (Some (ENum (-7)))),
-             12%positive)::(12%positive,ANone,13%positive)::
-             (13%positive,AWeaken,66%positive)::
-             (14%positive,(AAssign IDzcurrentgstate_code None),15%positive)::
-             (15%positive,AWeaken,16%positive)::
-             (16%positive,(AGuard
-             (fun s => ((eval (EVar IDzcurrentgstate_code) s) <
-             (eval (ENum (0)) s))%Z)),62%positive)::
-             (16%positive,(AGuard
-             (fun s => ((eval (EVar IDzcurrentgstate_code) s) >=
-             (eval (ENum (0)) s))%Z)),17%positive)::
-             (17%positive,AWeaken,18%positive)::
-             (18%positive,(AAssign IDzcurrentgstate_code None),19%positive)::
-             (19%positive,AWeaken,20%positive)::
-             (20%positive,(AGuard
-             (fun s => ((eval (EVar IDzcurrentgstate_code) s) <
-             (eval (ENum (0)) s))%Z)),58%positive)::
-             (20%positive,(AGuard
-             (fun s => ((eval (EVar IDzcurrentgstate_code) s) >=
-             (eval (ENum (0)) s))%Z)),21%positive)::
-             (21%positive,AWeaken,22%positive)::
-             (22%positive,(AAssign IDzcurrentgstate_i (Some (ENum (25)))),
-             23%positive)::(23%positive,ANone,24%positive)::
-             (24%positive,AWeaken,25%positive)::
-             (25%positive,ANone,27%positive)::
-             (25%positive,ANone,26%positive)::
-             (26%positive,ANone,28%positive)::
-             (27%positive,ANone,28%positive)::
-             (28%positive,ANone,29%positive)::
-             (29%positive,(AAssign IDzcurrentgstate_i
-             (Some (EAdd (EVar IDzcurrentgstate_i) (ENum (-1))))),
-             30%positive)::(30%positive,AWeaken,31%positive)::
-             (31%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDzcurrentgstate_i) (ENum (-1)))
-             s) <> (eval (ENum (0)) s))%Z)),54%positive)::
-             (31%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDzcurrentgstate_i) (ENum (-1)))
-             s) = (eval (ENum (0)) s))%Z)),32%positive)::
-             (32%positive,AWeaken,33%positive)::
-             (33%positive,(AAssign IDzcurrentgstate_code None),34%positive)::
-             (34%positive,AWeaken,35%positive)::
-             (35%positive,(AGuard
-             (fun s => ((eval (EVar IDzcurrentgstate_code) s) <
-             (eval (ENum (0)) s))%Z)),50%positive)::
-             (35%positive,(AGuard
-             (fun s => ((eval (EVar IDzcurrentgstate_code) s) >=
-             (eval (ENum (0)) s))%Z)),36%positive)::
-             (36%positive,AWeaken,37%positive)::
-             (37%positive,(AAssign IDzcurrentgstate_i2 (Some (ENum (25)))),
-             38%positive)::(38%positive,ANone,39%positive)::
-             (39%positive,ANone,40%positive)::
-             (40%positive,(AAssign IDzcurrentgstate_i2
-             (Some (EAdd (EVar IDzcurrentgstate_i2) (ENum (-1))))),
-             41%positive)::(41%positive,AWeaken,42%positive)::
-             (42%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDzcurrentgstate_i2) (ENum (-1)))
-             s) <> (eval (ENum (0)) s))%Z)),47%positive)::
-             (42%positive,(AGuard
-             (fun s => ((eval (EAdd (EVar IDzcurrentgstate_i2) (ENum (-1)))
-             s) = (eval (ENum (0)) s))%Z)),43%positive)::
-             (43%positive,AWeaken,44%positive)::
-             (44%positive,(AAssign IDzcurrentgstate__tmp (Some (ENum (0)))),
-             45%positive)::(45%positive,ANone,46%positive)::
-             (46%positive,AWeaken,66%positive)::
-             (47%positive,AWeaken,48%positive)::
-             (48%positive,ANone,49%positive)::
-             (49%positive,(AAssign IDzcurrentgstate_z (Some (EAdd (ENum (1))
-             (EVar IDzcurrentgstate_z)))),39%positive)::
-             (50%positive,AWeaken,51%positive)::
-             (51%positive,(AAssign IDzcurrentgstate__tmp
-             (Some (EVar IDzcurrentgstate_code))),52%positive)::
-             (52%positive,ANone,53%positive)::
-             (53%positive,AWeaken,66%positive)::
-             (54%positive,AWeaken,55%positive)::
-             (55%positive,ANone,56%positive)::
-             (56%positive,(AAssign IDzcurrentgstate_z (Some (EAdd (ENum (1))
-             (EVar IDzcurrentgstate_z)))),57%positive)::
-             (57%positive,AWeaken,25%positive)::
-             (58%positive,AWeaken,59%positive)::
-             (59%positive,(AAssign IDzcurrentgstate__tmp
-             (Some (EVar IDzcurrentgstate_code))),60%positive)::
-             (60%positive,ANone,61%positive)::
-             (61%positive,AWeaken,66%positive)::
-             (62%positive,AWeaken,63%positive)::
-             (63%positive,(AAssign IDzcurrentgstate__tmp
-             (Some (EVar IDzcurrentgstate_code))),64%positive)::
-             (64%positive,ANone,65%positive)::
-             (65%positive,AWeaken,66%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_zcurrentgstate.
 
-Definition zcurrentgstate_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 4%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 6%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 8%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 9%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 10%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 11%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 12%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate__tmp) + 7 <= 0 /\ -1 * (s IDzcurrentgstate__tmp) + -7 <= 0)%Z
-    | 13%positive => (-1 * (s IDzcurrentgstate__tmp) + -7 <= 0 /\ 1 * (s IDzcurrentgstate__tmp) + 7 <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 14%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 15%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 16%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 17%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0)%Z
-    | 18%positive => (-1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 19%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 20%positive => (1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 21%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0)%Z
-    | 22%positive => (-1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 23%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 25 <= 0)%Z
-    | 24%positive => (-1 * (s IDzcurrentgstate_i) + 25 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 25%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0)%Z
-    | 26%positive => (-1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 27%positive => (-1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 28%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0)%Z
-    | 29%positive => (-1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 30%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -24 <= 0)%Z
-    | 31%positive => (1 * (s IDzcurrentgstate_i) + -24 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 32%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0)%Z
-    | 33%positive => (-1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 34%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0)%Z
-    | 35%positive => (-1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 36%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0)%Z
-    | 37%positive => (-1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 38%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_i2) + 25 <= 0)%Z
-    | 39%positive => (1 * (s IDzcurrentgstate_i2) + -25 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0)%Z
-    | 40%positive => (-1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -25 <= 0)%Z
-    | 41%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -24 <= 0)%Z
-    | 42%positive => (1 * (s IDzcurrentgstate_i2) + -24 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 43%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i2) + 1 <= 0)%Z
-    | 44%positive => (-1 * (s IDzcurrentgstate_i2) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 45%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i2) + 1 <= 0 /\ 1 * (s IDzcurrentgstate__tmp) <= 0 /\ -1 * (s IDzcurrentgstate__tmp) <= 0)%Z
-    | 46%positive => (-1 * (s IDzcurrentgstate__tmp) <= 0 /\ 1 * (s IDzcurrentgstate__tmp) <= 0 /\ -1 * (s IDzcurrentgstate_i2) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 47%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -24 <= 0)%Z
-    | 48%positive => (1 * (s IDzcurrentgstate_i2) + -24 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 49%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i2) + -24 <= 0)%Z
-    | 50%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0)%Z
-    | 51%positive => (1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 52%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ 1 * (s IDzcurrentgstate__tmp) + 1 <= 0)%Z
-    | 53%positive => (1 * (s IDzcurrentgstate__tmp) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ -1 * (s IDzcurrentgstate_i) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_i) + -1 <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 54%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -24 <= 0)%Z
-    | 55%positive => (1 * (s IDzcurrentgstate_i) + -24 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 56%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ 1 * (s IDzcurrentgstate_i) + -24 <= 0)%Z
-    | 57%positive => (1 * (s IDzcurrentgstate_i) + -24 <= 0 /\ -1 * (s IDzcurrentgstate_code) <= 0 /\ -1 * (s IDzcurrentgstate_z) + 1 <= 0)%Z
-    | 58%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0)%Z
-    | 59%positive => (1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 60%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ 1 * (s IDzcurrentgstate__tmp) + 1 <= 0)%Z
-    | 61%positive => (1 * (s IDzcurrentgstate__tmp) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 62%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0)%Z
-    | 63%positive => (1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 64%positive => (-1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ 1 * (s IDzcurrentgstate__tmp) + 1 <= 0)%Z
-    | 65%positive => (1 * (s IDzcurrentgstate__tmp) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_code) + 1 <= 0 /\ 1 * (s IDzcurrentgstate_z) <= 0 /\ -1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | 66%positive => (-1 * (s IDzcurrentgstate_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition zcurrentgstate_pot (p : node) (s : state): Q := 
+Notation V_zcurrentgstate_z := 1%positive.
+Notation V_zcurrentgstate__tmp := 2%positive.
+Notation V_zcurrentgstate_code := 3%positive.
+Notation V_zcurrentgstate_i := 4%positive.
+Notation V_zcurrentgstate_i2 := 5%positive.
+Notation V_zcurrentgstate_op := 6%positive.
+Definition Pedges_zcurrentgstate: list (edge proc) :=
+  (EA 1 (AAssign V_zcurrentgstate_z (Some (ENum (0)))) 2)::(EA 2 AWeaken 3)::
+  (EA 3 ANone 4)::(EA 3 ANone 6)::(EA 4 AWeaken 5)::(EA 5 ANone 9)::
+  (EA 5 ANone 6)::(EA 6 (AAssign V_zcurrentgstate__tmp None) 7)::
+  (EA 7 ANone 8)::(EA 8 AWeaken 66)::(EA 9 AWeaken 10)::(EA 10 ANone 14)::
+  (EA 10 ANone 11)::(EA 11 (AAssign V_zcurrentgstate__tmp
+  (Some (ENum (-7)))) 12)::(EA 12 ANone 13)::(EA 13 AWeaken 66)::
+  (EA 14 (AAssign V_zcurrentgstate_code None) 15)::(EA 15 AWeaken 16)::
+  (EA 16 (AGuard (fun s => ((eval (EVar V_zcurrentgstate_code) s) <
+  (eval (ENum (0)) s))%Z)) 62)::(EA 16 (AGuard
+  (fun s => ((eval (EVar V_zcurrentgstate_code) s) >= (eval (ENum (0))
+  s))%Z)) 17)::(EA 17 AWeaken 18)::(EA 18 (AAssign V_zcurrentgstate_code
+  None) 19)::(EA 19 AWeaken 20)::(EA 20 (AGuard
+  (fun s => ((eval (EVar V_zcurrentgstate_code) s) < (eval (ENum (0))
+  s))%Z)) 58)::(EA 20 (AGuard (fun s => ((eval (EVar V_zcurrentgstate_code)
+  s) >= (eval (ENum (0)) s))%Z)) 21)::(EA 21 AWeaken 22)::(EA 22 (AAssign
+  V_zcurrentgstate_i (Some (ENum (25)))) 23)::(EA 23 ANone 24)::
+  (EA 24 AWeaken 25)::(EA 25 ANone 27)::(EA 25 ANone 26)::(EA 26 ANone 28)::
+  (EA 27 ANone 28)::(EA 28 ANone 29)::(EA 29 (AAssign V_zcurrentgstate_i
+  (Some (EAdd (EVar V_zcurrentgstate_i) (ENum (-1))))) 30)::
+  (EA 30 AWeaken 31)::(EA 31 (AGuard
+  (fun s => ((eval (EAdd (EVar V_zcurrentgstate_i) (ENum (-1))) s) <>
+  (eval (ENum (0)) s))%Z)) 54)::(EA 31 (AGuard
+  (fun s => ((eval (EAdd (EVar V_zcurrentgstate_i) (ENum (-1))) s) =
+  (eval (ENum (0)) s))%Z)) 32)::(EA 32 AWeaken 33)::(EA 33 (AAssign
+  V_zcurrentgstate_code None) 34)::(EA 34 AWeaken 35)::(EA 35 (AGuard
+  (fun s => ((eval (EVar V_zcurrentgstate_code) s) < (eval (ENum (0))
+  s))%Z)) 50)::(EA 35 (AGuard (fun s => ((eval (EVar V_zcurrentgstate_code)
+  s) >= (eval (ENum (0)) s))%Z)) 36)::(EA 36 AWeaken 37)::(EA 37 (AAssign
+  V_zcurrentgstate_i2 (Some (ENum (25)))) 38)::(EA 38 ANone 39)::
+  (EA 39 ANone 40)::(EA 40 (AAssign V_zcurrentgstate_i2
+  (Some (EAdd (EVar V_zcurrentgstate_i2) (ENum (-1))))) 41)::
+  (EA 41 AWeaken 42)::(EA 42 (AGuard
+  (fun s => ((eval (EAdd (EVar V_zcurrentgstate_i2) (ENum (-1))) s) <>
+  (eval (ENum (0)) s))%Z)) 47)::(EA 42 (AGuard
+  (fun s => ((eval (EAdd (EVar V_zcurrentgstate_i2) (ENum (-1))) s) =
+  (eval (ENum (0)) s))%Z)) 43)::(EA 43 AWeaken 44)::(EA 44 (AAssign
+  V_zcurrentgstate__tmp (Some (ENum (0)))) 45)::(EA 45 ANone 46)::
+  (EA 46 AWeaken 66)::(EA 47 AWeaken 48)::(EA 48 ANone 49)::(EA 49 (AAssign
+  V_zcurrentgstate_z (Some (EAdd (ENum (1))
+  (EVar V_zcurrentgstate_z)))) 39)::(EA 50 AWeaken 51)::(EA 51 (AAssign
+  V_zcurrentgstate__tmp (Some (EVar V_zcurrentgstate_code))) 52)::
+  (EA 52 ANone 53)::(EA 53 AWeaken 66)::(EA 54 AWeaken 55)::
+  (EA 55 ANone 56)::(EA 56 (AAssign V_zcurrentgstate_z (Some (EAdd (ENum (1))
+  (EVar V_zcurrentgstate_z)))) 57)::(EA 57 AWeaken 25)::(EA 58 AWeaken 59)::
+  (EA 59 (AAssign V_zcurrentgstate__tmp
+  (Some (EVar V_zcurrentgstate_code))) 60)::(EA 60 ANone 61)::
+  (EA 61 AWeaken 66)::(EA 62 AWeaken 63)::(EA 63 (AAssign
+  V_zcurrentgstate__tmp (Some (EVar V_zcurrentgstate_code))) 64)::
+  (EA 64 ANone 65)::(EA 65 AWeaken 66)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_zcurrentgstate => Pedges_zcurrentgstate
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_zcurrentgstate => 66
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_zcurrentgstate (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 3 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0)%Z
+   | 4 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 5 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0)%Z
+   | 6 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 7 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0)%Z
+   | 8 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 9 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 10 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0)%Z
+   | 11 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 12 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate__tmp + 7 <= 0 /\ -1 * s V_zcurrentgstate__tmp + -7 <= 0)%Z
+   | 13 => (-1 * s V_zcurrentgstate__tmp + -7 <= 0 /\ 1 * s V_zcurrentgstate__tmp + 7 <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 14 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 15 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0)%Z
+   | 16 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 17 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_code <= 0)%Z
+   | 18 => (-1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 19 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0)%Z
+   | 20 => (1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 21 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_code <= 0)%Z
+   | 22 => (-1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 23 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i + -25 <= 0 /\ -1 * s V_zcurrentgstate_i + 25 <= 0)%Z
+   | 24 => (-1 * s V_zcurrentgstate_i + 25 <= 0 /\ 1 * s V_zcurrentgstate_i + -25 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 25 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -25 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0)%Z
+   | 26 => (-1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i + -25 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 27 => (-1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i + -25 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 28 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -25 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0)%Z
+   | 29 => (-1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i + -25 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 30 => (-1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i + -24 <= 0)%Z
+   | 31 => (1 * s V_zcurrentgstate_i + -24 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 32 => (-1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0)%Z
+   | 33 => (-1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 34 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0)%Z
+   | 35 => (-1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 36 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0)%Z
+   | 37 => (-1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 38 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i2 + -25 <= 0 /\ -1 * s V_zcurrentgstate_i2 + 25 <= 0)%Z
+   | 39 => (1 * s V_zcurrentgstate_i2 + -25 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0)%Z
+   | 40 => (-1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i2 + -25 <= 0)%Z
+   | 41 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i2 + -24 <= 0)%Z
+   | 42 => (1 * s V_zcurrentgstate_i2 + -24 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 43 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i2 + -1 <= 0 /\ -1 * s V_zcurrentgstate_i2 + 1 <= 0)%Z
+   | 44 => (-1 * s V_zcurrentgstate_i2 + 1 <= 0 /\ 1 * s V_zcurrentgstate_i2 + -1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 45 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i2 + -1 <= 0 /\ -1 * s V_zcurrentgstate_i2 + 1 <= 0 /\ 1 * s V_zcurrentgstate__tmp <= 0 /\ -1 * s V_zcurrentgstate__tmp <= 0)%Z
+   | 46 => (-1 * s V_zcurrentgstate__tmp <= 0 /\ 1 * s V_zcurrentgstate__tmp <= 0 /\ -1 * s V_zcurrentgstate_i2 + 1 <= 0 /\ 1 * s V_zcurrentgstate_i2 + -1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 47 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i2 + -24 <= 0)%Z
+   | 48 => (1 * s V_zcurrentgstate_i2 + -24 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 49 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i2 + -24 <= 0)%Z
+   | 50 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0)%Z
+   | 51 => (1 * s V_zcurrentgstate_code + 1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 52 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0 /\ 1 * s V_zcurrentgstate__tmp + 1 <= 0)%Z
+   | 53 => (1 * s V_zcurrentgstate__tmp + 1 <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0 /\ -1 * s V_zcurrentgstate_i + 1 <= 0 /\ 1 * s V_zcurrentgstate_i + -1 <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 54 => (-1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i + -24 <= 0)%Z
+   | 55 => (1 * s V_zcurrentgstate_i + -24 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 56 => (-1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ 1 * s V_zcurrentgstate_i + -24 <= 0)%Z
+   | 57 => (1 * s V_zcurrentgstate_i + -24 <= 0 /\ -1 * s V_zcurrentgstate_code <= 0 /\ -1 * s V_zcurrentgstate_z + 1 <= 0)%Z
+   | 58 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0)%Z
+   | 59 => (1 * s V_zcurrentgstate_code + 1 <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 60 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0 /\ 1 * s V_zcurrentgstate__tmp + 1 <= 0)%Z
+   | 61 => (1 * s V_zcurrentgstate__tmp + 1 <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 62 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0)%Z
+   | 63 => (1 * s V_zcurrentgstate_code + 1 <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 64 => (-1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0 /\ 1 * s V_zcurrentgstate__tmp + 1 <= 0)%Z
+   | 65 => (1 * s V_zcurrentgstate__tmp + 1 <= 0 /\ 1 * s V_zcurrentgstate_code + 1 <= 0 /\ 1 * s V_zcurrentgstate_z <= 0 /\ -1 * s V_zcurrentgstate_z <= 0)%Z
+   | 66 => (-1 * s V_zcurrentgstate_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_zcurrentgstate (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((46 # 1) <= z)%Q
+   | 2 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 3 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 4 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 5 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 6 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 7 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 8 => hints
+     [(*-46 0*) F_one]
+     ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 9 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 10 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 11 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 12 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 13 => hints
+     [(*0 46*) F_one]
+     ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 14 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 15 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 16 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 17 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 18 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 19 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 20 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 21 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 22 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 23 => ((21 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 24 => ((21 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 25 => ((21 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 26 => ((21 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 27 => ((21 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 28 => ((21 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 29 => ((21 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 30 => ((22 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 31 => ((22 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 32 => ((22 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 33 => ((22 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 34 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                               + s V_zcurrentgstate_i) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_zcurrentgstate_i))]
+     ((22 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 35 => ((23 # 1) + s V_zcurrentgstate_z + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 36 => ((23 # 1) + s V_zcurrentgstate_z + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 37 => ((23 # 1) + s V_zcurrentgstate_z + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 38 => (-(2 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 39 => (-(2 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 40 => (-(2 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 41 => (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 42 => (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 43 => (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 44 => (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 45 => (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 46 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_zcurrentgstate_i2)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                               + s V_zcurrentgstate_i2) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_zcurrentgstate_i2));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_zcurrentgstate_i)) (F_check_ge (0) (0))]
+     (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+      + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 47 => (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 48 => (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 49 => (-(1 # 1) + s V_zcurrentgstate_i2 + s V_zcurrentgstate_z
+            + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 50 => ((23 # 1) + s V_zcurrentgstate_z + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 51 => ((23 # 1) + s V_zcurrentgstate_z + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 52 => ((23 # 1) + s V_zcurrentgstate_z + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 53 => hints
+     [(*-23 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_zcurrentgstate_i)) (F_check_ge (0) (0))]
+     ((23 # 1) + s V_zcurrentgstate_z + max0(-1 + s V_zcurrentgstate_i) <= z)%Q
+   | 54 => ((22 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 55 => ((22 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 56 => ((22 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 57 => ((21 # 1) + s V_zcurrentgstate_i + s V_zcurrentgstate_z <= z)%Q
+   | 58 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 59 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 60 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 61 => hints
+     [(*-46 0*) F_one]
+     ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 62 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 63 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 64 => ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 65 => hints
+     [(*-46 0*) F_one]
+     ((46 # 1) + s V_zcurrentgstate_z <= z)%Q
+   | 66 => (s V_zcurrentgstate_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((46 # 1))%Q
-    | 2%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 3%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 4%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 5%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 6%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 7%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 8%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 9%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 10%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 11%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 12%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 13%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 14%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 15%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 16%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 17%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 18%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 19%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 20%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 21%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 22%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 23%positive => ((21 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 24%positive => ((21 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 25%positive => ((21 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 26%positive => ((21 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 27%positive => ((21 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 28%positive => ((21 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 29%positive => ((21 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 30%positive => ((22 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 31%positive => ((22 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 32%positive => ((22 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 33%positive => ((22 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 34%positive => ((22 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 35%positive => ((23 # 1) + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 36%positive => ((23 # 1) + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 37%positive => ((23 # 1) + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 38%positive => (-(2 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 39%positive => (-(2 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 40%positive => (-(2 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 41%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 42%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 43%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 44%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 45%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 46%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 47%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 48%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 49%positive => (-(1 # 1) + (s IDzcurrentgstate_i2)
-                      + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 50%positive => ((23 # 1) + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 51%positive => ((23 # 1) + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 52%positive => ((23 # 1) + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 53%positive => ((23 # 1) + (s IDzcurrentgstate_z)
-                      + max0(-1 + (s IDzcurrentgstate_i)))%Q
-    | 54%positive => ((22 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 55%positive => ((22 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 56%positive => ((22 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 57%positive => ((21 # 1) + (s IDzcurrentgstate_i)
-                      + (s IDzcurrentgstate_z))%Q
-    | 58%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 59%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 60%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 61%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 62%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 63%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 64%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 65%positive => ((46 # 1) + (s IDzcurrentgstate_z))%Q
-    | 66%positive => ((s IDzcurrentgstate_z))%Q
-    | _ => (0 # 1)%Q
+  | P_zcurrentgstate =>
+    [mkPA Q (fun n z s => ai_zcurrentgstate n s /\ annot0_zcurrentgstate n z s)]
   end.
 
-Definition zcurrentgstate_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => [(*-46 0*) F_one]
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => [(*0 46*) F_one]
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDzcurrentgstate_i)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDzcurrentgstate_i)))]
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                 + (s IDzcurrentgstate_i2))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDzcurrentgstate_i2)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDzcurrentgstate_i2)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                 + (s IDzcurrentgstate_i))) (F_check_ge (0) (0))]
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => [(*-23 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                 + (s IDzcurrentgstate_i))) (F_check_ge (0) (0))]
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => []
-    | 59%positive => []
-    | 60%positive => []
-    | 61%positive => [(*-46 0*) F_one]
-    | 62%positive => []
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => [(*-46 0*) F_one]
-    | 66%positive => []
-    | _ => []
-  end.
-
-
-Theorem zcurrentgstate_ai_correct:
-  forall s p' s', steps (g_start zcurrentgstate) s (g_edges zcurrentgstate) p' s' -> zcurrentgstate_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem zcurrentgstate_pot_correct:
-  forall s p' s',
-    steps (g_start zcurrentgstate) s (g_edges zcurrentgstate) p' s' ->
-    (zcurrentgstate_pot (g_start zcurrentgstate) s >= zcurrentgstate_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_zcurrentgstate (proc_start P_zcurrentgstate) s1 (proc_end P_zcurrentgstate) s2 ->
+    (s2 V_zcurrentgstate_z <= (46 # 1))%Q.
 Proof.
-  check_lp zcurrentgstate_ai_correct zcurrentgstate_hints.
+  prove_bound ipa admissible_ipa P_zcurrentgstate.
 Qed.
-

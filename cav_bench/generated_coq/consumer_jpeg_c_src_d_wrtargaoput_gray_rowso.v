@@ -1,130 +1,114 @@
 Require Import pasta.Pasta.
 
-Notation IDput_gray_rows_z := 1%positive.
-Notation IDput_gray_rows__tmp := 2%positive.
-Notation IDput_gray_rows_cinfo_dref_off128 := 3%positive.
-Notation IDput_gray_rows_col := 4%positive.
-Notation IDput_gray_rows_cinfo := 5%positive.
-Notation IDput_gray_rows_dinfo := 6%positive.
-Notation IDput_gray_rows_rows_supplied := 7%positive.
-Definition put_gray_rows : graph := {|
-  g_start := 1%positive;
-  g_end := 10%positive;
-  g_edges := (1%positive,(AAssign IDput_gray_rows_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard (fun s => ((eval (EVar IDput_gray_rows_col)
-             s) >= (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,AWeaken,4%positive)::
-             (4%positive,(AAssign IDput_gray_rows__tmp
-             (Some (EVar IDput_gray_rows_rows_supplied))),5%positive)::
-             (5%positive,(AAssign IDput_gray_rows_col
-             (Some (EVar IDput_gray_rows_cinfo_dref_off128))),6%positive)::
-             (6%positive,ANone,7%positive)::(7%positive,AWeaken,8%positive)::
-             (8%positive,(AGuard (fun s => ((eval (EVar IDput_gray_rows_col)
-             s) > (eval (ENum (0)) s))%Z)),11%positive)::
-             (8%positive,(AGuard (fun s => ((eval (EVar IDput_gray_rows_col)
-             s) <= (eval (ENum (0)) s))%Z)),9%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (11%positive,AWeaken,12%positive)::
-             (12%positive,ANone,13%positive)::
-             (13%positive,(AAssign IDput_gray_rows_col
-             (Some (EAdd (EVar IDput_gray_rows_col) (ENum (-1))))),
-             14%positive)::(14%positive,ANone,15%positive)::
-             (15%positive,ANone,16%positive)::
-             (16%positive,(AAssign IDput_gray_rows_z (Some (EAdd (ENum (1))
-             (EVar IDput_gray_rows_z)))),17%positive)::
-             (17%positive,AWeaken,8%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_put_gray_rows.
 
-Definition put_gray_rows_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDput_gray_rows_z) <= 0 /\ 1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_col) <= 0)%Z
-    | 4%positive => (-1 * (s IDput_gray_rows_col) <= 0 /\ 1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDput_gray_rows_z) <= 0 /\ 1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_col) <= 0)%Z
-    | 6%positive => (1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDput_gray_rows_z) <= 0 /\ 1 * (s IDput_gray_rows_z) <= 0)%Z
-    | 8%positive => (-1 * (s IDput_gray_rows_z) <= 0)%Z
-    | 9%positive => (-1 * (s IDput_gray_rows_z) <= 0 /\ 1 * (s IDput_gray_rows_col) <= 0)%Z
-    | 10%positive => (1 * (s IDput_gray_rows_col) <= 0 /\ -1 * (s IDput_gray_rows_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_col) + 1 <= 0)%Z
-    | 12%positive => (-1 * (s IDput_gray_rows_col) + 1 <= 0 /\ -1 * (s IDput_gray_rows_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_col) + 1 <= 0)%Z
-    | 14%positive => (-1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_col) <= 0)%Z
-    | 15%positive => (-1 * (s IDput_gray_rows_col) <= 0 /\ -1 * (s IDput_gray_rows_z) <= 0)%Z
-    | 16%positive => (-1 * (s IDput_gray_rows_z) <= 0 /\ -1 * (s IDput_gray_rows_col) <= 0)%Z
-    | 17%positive => (-1 * (s IDput_gray_rows_col) <= 0 /\ -1 * (s IDput_gray_rows_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition put_gray_rows_pot (p : node) (s : state): Q := 
+Notation V_put_gray_rows_z := 1%positive.
+Notation V_put_gray_rows__tmp := 2%positive.
+Notation V_put_gray_rows_cinfo_dref_off128 := 3%positive.
+Notation V_put_gray_rows_col := 4%positive.
+Notation V_put_gray_rows_cinfo := 5%positive.
+Notation V_put_gray_rows_dinfo := 6%positive.
+Notation V_put_gray_rows_rows_supplied := 7%positive.
+Definition Pedges_put_gray_rows: list (edge proc) :=
+  (EA 1 (AAssign V_put_gray_rows_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_put_gray_rows_col) s) >= (eval (ENum (0))
+  s))%Z)) 3)::(EA 3 AWeaken 4)::(EA 4 (AAssign V_put_gray_rows__tmp
+  (Some (EVar V_put_gray_rows_rows_supplied))) 5)::(EA 5 (AAssign
+  V_put_gray_rows_col (Some (EVar V_put_gray_rows_cinfo_dref_off128))) 6)::
+  (EA 6 ANone 7)::(EA 7 AWeaken 8)::(EA 8 (AGuard
+  (fun s => ((eval (EVar V_put_gray_rows_col) s) > (eval (ENum (0))
+  s))%Z)) 11)::(EA 8 (AGuard (fun s => ((eval (EVar V_put_gray_rows_col)
+  s) <= (eval (ENum (0)) s))%Z)) 9)::(EA 9 AWeaken 10)::(EA 11 AWeaken 12)::
+  (EA 12 ANone 13)::(EA 13 (AAssign V_put_gray_rows_col
+  (Some (EAdd (EVar V_put_gray_rows_col) (ENum (-1))))) 14)::
+  (EA 14 ANone 15)::(EA 15 ANone 16)::(EA 16 (AAssign V_put_gray_rows_z
+  (Some (EAdd (ENum (1)) (EVar V_put_gray_rows_z)))) 17)::(EA 17 AWeaken 8)::
+  nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_put_gray_rows => Pedges_put_gray_rows
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_put_gray_rows => 10
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_put_gray_rows (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_z <= 0)%Z
+   | 3 => (-1 * s V_put_gray_rows_z <= 0 /\ 1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_col <= 0)%Z
+   | 4 => (-1 * s V_put_gray_rows_col <= 0 /\ 1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_z <= 0)%Z
+   | 5 => (-1 * s V_put_gray_rows_z <= 0 /\ 1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_col <= 0)%Z
+   | 6 => (1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_z <= 0)%Z
+   | 7 => (-1 * s V_put_gray_rows_z <= 0 /\ 1 * s V_put_gray_rows_z <= 0)%Z
+   | 8 => (-1 * s V_put_gray_rows_z <= 0)%Z
+   | 9 => (-1 * s V_put_gray_rows_z <= 0 /\ 1 * s V_put_gray_rows_col <= 0)%Z
+   | 10 => (1 * s V_put_gray_rows_col <= 0 /\ -1 * s V_put_gray_rows_z <= 0)%Z
+   | 11 => (-1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_col + 1 <= 0)%Z
+   | 12 => (-1 * s V_put_gray_rows_col + 1 <= 0 /\ -1 * s V_put_gray_rows_z <= 0)%Z
+   | 13 => (-1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_col + 1 <= 0)%Z
+   | 14 => (-1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_col <= 0)%Z
+   | 15 => (-1 * s V_put_gray_rows_col <= 0 /\ -1 * s V_put_gray_rows_z <= 0)%Z
+   | 16 => (-1 * s V_put_gray_rows_z <= 0 /\ -1 * s V_put_gray_rows_col <= 0)%Z
+   | 17 => (-1 * s V_put_gray_rows_col <= 0 /\ -1 * s V_put_gray_rows_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_put_gray_rows (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_put_gray_rows_cinfo_dref_off128) <= z)%Q
+   | 2 => (s V_put_gray_rows_z + max0(s V_put_gray_rows_cinfo_dref_off128) <= z)%Q
+   | 3 => (s V_put_gray_rows_z + max0(s V_put_gray_rows_cinfo_dref_off128) <= z)%Q
+   | 4 => (s V_put_gray_rows_z + max0(s V_put_gray_rows_cinfo_dref_off128) <= z)%Q
+   | 5 => (s V_put_gray_rows_z + max0(s V_put_gray_rows_cinfo_dref_off128) <= z)%Q
+   | 6 => (s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | 7 => (s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | 8 => (s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | 9 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (s V_put_gray_rows_col) (-1
+                                                                    + 
+                                                                    s V_put_gray_rows_col));
+      (*-1 0*) F_max0_ge_0 (-1 + s V_put_gray_rows_col)]
+     (s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | 10 => (s V_put_gray_rows_z <= z)%Q
+   | 11 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_put_gray_rows_col) (1)]
+     (s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | 12 => ((1 # 1) + s V_put_gray_rows_z + max0(-1 + s V_put_gray_rows_col) <= z)%Q
+   | 13 => ((1 # 1) + s V_put_gray_rows_z + max0(-1 + s V_put_gray_rows_col) <= z)%Q
+   | 14 => ((1 # 1) + s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | 15 => ((1 # 1) + s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | 16 => ((1 # 1) + s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | 17 => (s V_put_gray_rows_z + max0(s V_put_gray_rows_col) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDput_gray_rows_cinfo_dref_off128)))%Q
-    | 2%positive => ((s IDput_gray_rows_z)
-                     + max0((s IDput_gray_rows_cinfo_dref_off128)))%Q
-    | 3%positive => ((s IDput_gray_rows_z)
-                     + max0((s IDput_gray_rows_cinfo_dref_off128)))%Q
-    | 4%positive => ((s IDput_gray_rows_z)
-                     + max0((s IDput_gray_rows_cinfo_dref_off128)))%Q
-    | 5%positive => ((s IDput_gray_rows_z)
-                     + max0((s IDput_gray_rows_cinfo_dref_off128)))%Q
-    | 6%positive => ((s IDput_gray_rows_z) + max0((s IDput_gray_rows_col)))%Q
-    | 7%positive => ((s IDput_gray_rows_z) + max0((s IDput_gray_rows_col)))%Q
-    | 8%positive => ((s IDput_gray_rows_z) + max0((s IDput_gray_rows_col)))%Q
-    | 9%positive => ((s IDput_gray_rows_z) + max0((s IDput_gray_rows_col)))%Q
-    | 10%positive => ((s IDput_gray_rows_z))%Q
-    | 11%positive => ((s IDput_gray_rows_z) + max0((s IDput_gray_rows_col)))%Q
-    | 12%positive => ((1 # 1) + (s IDput_gray_rows_z)
-                      + max0(-1 + (s IDput_gray_rows_col)))%Q
-    | 13%positive => ((1 # 1) + (s IDput_gray_rows_z)
-                      + max0(-1 + (s IDput_gray_rows_col)))%Q
-    | 14%positive => ((1 # 1) + (s IDput_gray_rows_z)
-                      + max0((s IDput_gray_rows_col)))%Q
-    | 15%positive => ((1 # 1) + (s IDput_gray_rows_z)
-                      + max0((s IDput_gray_rows_col)))%Q
-    | 16%positive => ((1 # 1) + (s IDput_gray_rows_z)
-                      + max0((s IDput_gray_rows_col)))%Q
-    | 17%positive => ((s IDput_gray_rows_z) + max0((s IDput_gray_rows_col)))%Q
-    | _ => (0 # 1)%Q
+  | P_put_gray_rows =>
+    [mkPA Q (fun n z s => ai_put_gray_rows n s /\ annot0_put_gray_rows n z s)]
   end.
 
-Definition put_gray_rows_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => [(*-1 0*) F_max0_monotonic (F_check_ge ((s IDput_gray_rows_col)) (-1
-                                                                    + (s IDput_gray_rows_col)));
-                     (*-1 0*) F_max0_ge_0 (-1 + (s IDput_gray_rows_col))]
-    | 10%positive => []
-    | 11%positive => [(*-1 0*) F_max0_pre_decrement ((s IDput_gray_rows_col)) (1)]
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | _ => []
-  end.
-
-
-Theorem put_gray_rows_ai_correct:
-  forall s p' s', steps (g_start put_gray_rows) s (g_edges put_gray_rows) p' s' -> put_gray_rows_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem put_gray_rows_pot_correct:
-  forall s p' s',
-    steps (g_start put_gray_rows) s (g_edges put_gray_rows) p' s' ->
-    (put_gray_rows_pot (g_start put_gray_rows) s >= put_gray_rows_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_put_gray_rows (proc_start P_put_gray_rows) s1 (proc_end P_put_gray_rows) s2 ->
+    (s2 V_put_gray_rows_z <= max0(s1 V_put_gray_rows_cinfo_dref_off128))%Q.
 Proof.
-  check_lp put_gray_rows_ai_correct put_gray_rows_hints.
+  prove_bound ipa admissible_ipa P_put_gray_rows.
 Qed.
-

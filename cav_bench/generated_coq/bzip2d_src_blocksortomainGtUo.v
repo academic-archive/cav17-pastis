@@ -1,1661 +1,1141 @@
 Require Import pasta.Pasta.
 
-Notation IDmainGtU_z := 1%positive.
-Notation IDmainGtU__tmp := 2%positive.
-Notation IDmainGtU__tmp1 := 3%positive.
-Notation IDmainGtU__tmp2 := 4%positive.
-Notation IDmainGtU__tmp3 := 5%positive.
-Notation IDmainGtU_budget_dref := 6%positive.
-Notation IDmainGtU_c1 := 7%positive.
-Notation IDmainGtU_c2 := 8%positive.
-Notation IDmainGtU_k := 9%positive.
-Notation IDmainGtU_s1 := 10%positive.
-Notation IDmainGtU_s2 := 11%positive.
-Notation IDmainGtU_block := 12%positive.
-Notation IDmainGtU_budget := 13%positive.
-Notation IDmainGtU_i1 := 14%positive.
-Notation IDmainGtU_i2 := 15%positive.
-Notation IDmainGtU_nblock := 16%positive.
-Notation IDmainGtU_quadrant := 17%positive.
-Definition mainGtU : graph := {|
-  g_start := 1%positive;
-  g_end := 327%positive;
-  g_edges := (1%positive,(AAssign IDmainGtU_z (Some (ENum (0)))),2%positive)::
-             (2%positive,(AGuard (fun s => ((eval (EVar IDmainGtU__tmp3)
-             s) >= (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,(AGuard (fun s => ((eval (EVar IDmainGtU__tmp2)
-             s) >= (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,(AGuard (fun s => ((eval (EVar IDmainGtU__tmp1)
-             s) >= (eval (ENum (0)) s))%Z)),5%positive)::
-             (5%positive,AWeaken,6%positive)::
-             (6%positive,(AAssign IDmainGtU__tmp1
-             (Some (EVar IDmainGtU_i1))),7%positive)::
-             (7%positive,(AAssign IDmainGtU__tmp3
-             (Some (EVar IDmainGtU_i2))),8%positive)::
-             (8%positive,(AAssign IDmainGtU__tmp2
-             (Some (EVar IDmainGtU_nblock))),9%positive)::
-             (9%positive,(AAssign IDmainGtU_c1 None),10%positive)::
-             (10%positive,(AAssign IDmainGtU_c2 None),11%positive)::
-             (11%positive,AWeaken,12%positive)::
-             (12%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),323%positive)::
-             (12%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),13%positive)::
-             (13%positive,AWeaken,14%positive)::
-             (14%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),15%positive)::
-             (15%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),16%positive)::
-             (16%positive,(AAssign IDmainGtU_c1 None),17%positive)::
-             (17%positive,(AAssign IDmainGtU_c2 None),18%positive)::
-             (18%positive,AWeaken,19%positive)::
-             (19%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),319%positive)::
-             (19%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),20%positive)::
-             (20%positive,AWeaken,21%positive)::
-             (21%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),22%positive)::
-             (22%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),23%positive)::
-             (23%positive,(AAssign IDmainGtU_c1 None),24%positive)::
-             (24%positive,(AAssign IDmainGtU_c2 None),25%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (26%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),315%positive)::
-             (26%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),27%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),29%positive)::
-             (29%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),30%positive)::
-             (30%positive,(AAssign IDmainGtU_c1 None),31%positive)::
-             (31%positive,(AAssign IDmainGtU_c2 None),32%positive)::
-             (32%positive,AWeaken,33%positive)::
-             (33%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),311%positive)::
-             (33%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),34%positive)::
-             (34%positive,AWeaken,35%positive)::
-             (35%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),36%positive)::
-             (36%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),37%positive)::
-             (37%positive,(AAssign IDmainGtU_c1 None),38%positive)::
-             (38%positive,(AAssign IDmainGtU_c2 None),39%positive)::
-             (39%positive,AWeaken,40%positive)::
-             (40%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),307%positive)::
-             (40%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),41%positive)::
-             (41%positive,AWeaken,42%positive)::
-             (42%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),43%positive)::
-             (43%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),44%positive)::
-             (44%positive,(AAssign IDmainGtU_c1 None),45%positive)::
-             (45%positive,(AAssign IDmainGtU_c2 None),46%positive)::
-             (46%positive,AWeaken,47%positive)::
-             (47%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),303%positive)::
-             (47%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),48%positive)::
-             (48%positive,AWeaken,49%positive)::
-             (49%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),50%positive)::
-             (50%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),51%positive)::
-             (51%positive,(AAssign IDmainGtU_c1 None),52%positive)::
-             (52%positive,(AAssign IDmainGtU_c2 None),53%positive)::
-             (53%positive,AWeaken,54%positive)::
-             (54%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),299%positive)::
-             (54%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),55%positive)::
-             (55%positive,AWeaken,56%positive)::
-             (56%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),57%positive)::
-             (57%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),58%positive)::
-             (58%positive,(AAssign IDmainGtU_c1 None),59%positive)::
-             (59%positive,(AAssign IDmainGtU_c2 None),60%positive)::
-             (60%positive,AWeaken,61%positive)::
-             (61%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),295%positive)::
-             (61%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),62%positive)::
-             (62%positive,AWeaken,63%positive)::
-             (63%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),64%positive)::
-             (64%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),65%positive)::
-             (65%positive,(AAssign IDmainGtU_c1 None),66%positive)::
-             (66%positive,(AAssign IDmainGtU_c2 None),67%positive)::
-             (67%positive,AWeaken,68%positive)::
-             (68%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),291%positive)::
-             (68%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),69%positive)::
-             (69%positive,AWeaken,70%positive)::
-             (70%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),71%positive)::
-             (71%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),72%positive)::
-             (72%positive,(AAssign IDmainGtU_c1 None),73%positive)::
-             (73%positive,(AAssign IDmainGtU_c2 None),74%positive)::
-             (74%positive,AWeaken,75%positive)::
-             (75%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),287%positive)::
-             (75%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),76%positive)::
-             (76%positive,AWeaken,77%positive)::
-             (77%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),78%positive)::
-             (78%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),79%positive)::
-             (79%positive,(AAssign IDmainGtU_c1 None),80%positive)::
-             (80%positive,(AAssign IDmainGtU_c2 None),81%positive)::
-             (81%positive,AWeaken,82%positive)::
-             (82%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),283%positive)::
-             (82%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),83%positive)::
-             (83%positive,AWeaken,84%positive)::
-             (84%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),85%positive)::
-             (85%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),86%positive)::
-             (86%positive,(AAssign IDmainGtU_c1 None),87%positive)::
-             (87%positive,(AAssign IDmainGtU_c2 None),88%positive)::
-             (88%positive,AWeaken,89%positive)::
-             (89%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),279%positive)::
-             (89%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),90%positive)::
-             (90%positive,AWeaken,91%positive)::
-             (91%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),92%positive)::
-             (92%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),93%positive)::
-             (93%positive,(AAssign IDmainGtU_k
-             (Some (EAdd (EVar IDmainGtU__tmp2) (ENum (8))))),94%positive)::
-             (94%positive,ANone,95%positive)::
-             (95%positive,(AAssign IDmainGtU_c1 None),96%positive)::
-             (96%positive,(AAssign IDmainGtU_c2 None),97%positive)::
-             (97%positive,AWeaken,98%positive)::
-             (98%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),275%positive)::
-             (98%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),99%positive)::
-             (99%positive,AWeaken,100%positive)::
-             (100%positive,(AAssign IDmainGtU_s1 None),101%positive)::
-             (101%positive,(AAssign IDmainGtU_s2 None),102%positive)::
-             (102%positive,AWeaken,103%positive)::
-             (103%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) <>
-             (eval (EVar IDmainGtU_s2) s))%Z)),271%positive)::
-             (103%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) =
-             (eval (EVar IDmainGtU_s2) s))%Z)),104%positive)::
-             (104%positive,AWeaken,105%positive)::
-             (105%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),106%positive)::
-             (106%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),107%positive)::
-             (107%positive,(AAssign IDmainGtU_c1 None),108%positive)::
-             (108%positive,(AAssign IDmainGtU_c2 None),109%positive)::
-             (109%positive,AWeaken,110%positive)::
-             (110%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),267%positive)::
-             (110%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),111%positive)::
-             (111%positive,AWeaken,112%positive)::
-             (112%positive,(AAssign IDmainGtU_s1 None),113%positive)::
-             (113%positive,(AAssign IDmainGtU_s2 None),114%positive)::
-             (114%positive,AWeaken,115%positive)::
-             (115%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) <>
-             (eval (EVar IDmainGtU_s2) s))%Z)),263%positive)::
-             (115%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) =
-             (eval (EVar IDmainGtU_s2) s))%Z)),116%positive)::
-             (116%positive,AWeaken,117%positive)::
-             (117%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),118%positive)::
-             (118%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),119%positive)::
-             (119%positive,(AAssign IDmainGtU_c1 None),120%positive)::
-             (120%positive,(AAssign IDmainGtU_c2 None),121%positive)::
-             (121%positive,AWeaken,122%positive)::
-             (122%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),259%positive)::
-             (122%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),123%positive)::
-             (123%positive,AWeaken,124%positive)::
-             (124%positive,(AAssign IDmainGtU_s1 None),125%positive)::
-             (125%positive,(AAssign IDmainGtU_s2 None),126%positive)::
-             (126%positive,AWeaken,127%positive)::
-             (127%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) <>
-             (eval (EVar IDmainGtU_s2) s))%Z)),255%positive)::
-             (127%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) =
-             (eval (EVar IDmainGtU_s2) s))%Z)),128%positive)::
-             (128%positive,AWeaken,129%positive)::
-             (129%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),130%positive)::
-             (130%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),131%positive)::
-             (131%positive,(AAssign IDmainGtU_c1 None),132%positive)::
-             (132%positive,(AAssign IDmainGtU_c2 None),133%positive)::
-             (133%positive,AWeaken,134%positive)::
-             (134%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),251%positive)::
-             (134%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),135%positive)::
-             (135%positive,AWeaken,136%positive)::
-             (136%positive,(AAssign IDmainGtU_s1 None),137%positive)::
-             (137%positive,(AAssign IDmainGtU_s2 None),138%positive)::
-             (138%positive,AWeaken,139%positive)::
-             (139%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) <>
-             (eval (EVar IDmainGtU_s2) s))%Z)),247%positive)::
-             (139%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) =
-             (eval (EVar IDmainGtU_s2) s))%Z)),140%positive)::
-             (140%positive,AWeaken,141%positive)::
-             (141%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),142%positive)::
-             (142%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),143%positive)::
-             (143%positive,(AAssign IDmainGtU_c1 None),144%positive)::
-             (144%positive,(AAssign IDmainGtU_c2 None),145%positive)::
-             (145%positive,AWeaken,146%positive)::
-             (146%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),243%positive)::
-             (146%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),147%positive)::
-             (147%positive,AWeaken,148%positive)::
-             (148%positive,(AAssign IDmainGtU_s1 None),149%positive)::
-             (149%positive,(AAssign IDmainGtU_s2 None),150%positive)::
-             (150%positive,AWeaken,151%positive)::
-             (151%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) <>
-             (eval (EVar IDmainGtU_s2) s))%Z)),239%positive)::
-             (151%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) =
-             (eval (EVar IDmainGtU_s2) s))%Z)),152%positive)::
-             (152%positive,AWeaken,153%positive)::
-             (153%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),154%positive)::
-             (154%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),155%positive)::
-             (155%positive,(AAssign IDmainGtU_c1 None),156%positive)::
-             (156%positive,(AAssign IDmainGtU_c2 None),157%positive)::
-             (157%positive,AWeaken,158%positive)::
-             (158%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),235%positive)::
-             (158%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),159%positive)::
-             (159%positive,AWeaken,160%positive)::
-             (160%positive,(AAssign IDmainGtU_s1 None),161%positive)::
-             (161%positive,(AAssign IDmainGtU_s2 None),162%positive)::
-             (162%positive,AWeaken,163%positive)::
-             (163%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) <>
-             (eval (EVar IDmainGtU_s2) s))%Z)),231%positive)::
-             (163%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) =
-             (eval (EVar IDmainGtU_s2) s))%Z)),164%positive)::
-             (164%positive,AWeaken,165%positive)::
-             (165%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),166%positive)::
-             (166%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),167%positive)::
-             (167%positive,(AAssign IDmainGtU_c1 None),168%positive)::
-             (168%positive,(AAssign IDmainGtU_c2 None),169%positive)::
-             (169%positive,AWeaken,170%positive)::
-             (170%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),227%positive)::
-             (170%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),171%positive)::
-             (171%positive,AWeaken,172%positive)::
-             (172%positive,(AAssign IDmainGtU_s1 None),173%positive)::
-             (173%positive,(AAssign IDmainGtU_s2 None),174%positive)::
-             (174%positive,AWeaken,175%positive)::
-             (175%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) <>
-             (eval (EVar IDmainGtU_s2) s))%Z)),223%positive)::
-             (175%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) =
-             (eval (EVar IDmainGtU_s2) s))%Z)),176%positive)::
-             (176%positive,AWeaken,177%positive)::
-             (177%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),178%positive)::
-             (178%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),179%positive)::
-             (179%positive,(AAssign IDmainGtU_c1 None),180%positive)::
-             (180%positive,(AAssign IDmainGtU_c2 None),181%positive)::
-             (181%positive,AWeaken,182%positive)::
-             (182%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) <>
-             (eval (EVar IDmainGtU_c2) s))%Z)),219%positive)::
-             (182%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_c1) s) =
-             (eval (EVar IDmainGtU_c2) s))%Z)),183%positive)::
-             (183%positive,AWeaken,184%positive)::
-             (184%positive,(AAssign IDmainGtU_s1 None),185%positive)::
-             (185%positive,(AAssign IDmainGtU_s2 None),186%positive)::
-             (186%positive,AWeaken,187%positive)::
-             (187%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) <>
-             (eval (EVar IDmainGtU_s2) s))%Z)),215%positive)::
-             (187%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_s1) s) =
-             (eval (EVar IDmainGtU_s2) s))%Z)),188%positive)::
-             (188%positive,AWeaken,189%positive)::
-             (189%positive,(AAssign IDmainGtU__tmp1
-             (Some (EAdd (EVar IDmainGtU__tmp1) (ENum (1))))),190%positive)::
-             (190%positive,(AAssign IDmainGtU__tmp3
-             (Some (EAdd (EVar IDmainGtU__tmp3) (ENum (1))))),191%positive)::
-             (191%positive,AWeaken,192%positive)::
-             (192%positive,(AGuard (fun s => ((eval (EVar IDmainGtU__tmp1)
-             s) >= (eval (EVar IDmainGtU__tmp2) s))%Z)),194%positive)::
-             (192%positive,(AGuard (fun s => ((eval (EVar IDmainGtU__tmp1)
-             s) < (eval (EVar IDmainGtU__tmp2) s))%Z)),193%positive)::
-             (193%positive,AWeaken,198%positive)::
-             (194%positive,AWeaken,195%positive)::
-             (195%positive,(AAssign IDmainGtU__tmp1
-             (Some (ESub (EVar IDmainGtU__tmp1) (EVar IDmainGtU__tmp2)))),
-             196%positive)::(196%positive,ANone,197%positive)::
-             (197%positive,AWeaken,198%positive)::
-             (198%positive,(AGuard (fun s => ((eval (EVar IDmainGtU__tmp3)
-             s) >= (eval (EVar IDmainGtU__tmp2) s))%Z)),200%positive)::
-             (198%positive,(AGuard (fun s => ((eval (EVar IDmainGtU__tmp3)
-             s) < (eval (EVar IDmainGtU__tmp2) s))%Z)),199%positive)::
-             (199%positive,AWeaken,203%positive)::
-             (200%positive,AWeaken,201%positive)::
-             (201%positive,(AAssign IDmainGtU__tmp3
-             (Some (ESub (EVar IDmainGtU__tmp3) (EVar IDmainGtU__tmp2)))),
-             202%positive)::(202%positive,ANone,203%positive)::
-             (203%positive,(AAssign IDmainGtU_k
-             (Some (ESub (EVar IDmainGtU_k) (ENum (8))))),204%positive)::
-             (204%positive,(AAssign IDmainGtU_budget_dref
-             (Some (EAdd (EVar IDmainGtU_budget_dref) (ENum (-1))))),
-             205%positive)::(205%positive,ANone,206%positive)::
-             (206%positive,AWeaken,207%positive)::
-             (207%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_k) s) >=
-             (eval (ENum (0)) s))%Z)),212%positive)::
-             (207%positive,(AGuard (fun s => ((eval (EVar IDmainGtU_k) s) <
-             (eval (ENum (0)) s))%Z)),208%positive)::
-             (208%positive,AWeaken,209%positive)::
-             (209%positive,(AAssign IDmainGtU__tmp (Some (ENum (0)))),
-             210%positive)::(210%positive,ANone,211%positive)::
-             (211%positive,AWeaken,327%positive)::
-             (212%positive,AWeaken,213%positive)::
-             (213%positive,ANone,214%positive)::
-             (214%positive,(AAssign IDmainGtU_z (Some (EAdd (ENum (1))
-             (EVar IDmainGtU_z)))),95%positive)::
-             (215%positive,AWeaken,216%positive)::
-             (216%positive,(AAssign IDmainGtU__tmp None),217%positive)::
-             (217%positive,ANone,218%positive)::
-             (218%positive,AWeaken,327%positive)::
-             (219%positive,AWeaken,220%positive)::
-             (220%positive,(AAssign IDmainGtU__tmp None),221%positive)::
-             (221%positive,ANone,222%positive)::
-             (222%positive,AWeaken,327%positive)::
-             (223%positive,AWeaken,224%positive)::
-             (224%positive,(AAssign IDmainGtU__tmp None),225%positive)::
-             (225%positive,ANone,226%positive)::
-             (226%positive,AWeaken,327%positive)::
-             (227%positive,AWeaken,228%positive)::
-             (228%positive,(AAssign IDmainGtU__tmp None),229%positive)::
-             (229%positive,ANone,230%positive)::
-             (230%positive,AWeaken,327%positive)::
-             (231%positive,AWeaken,232%positive)::
-             (232%positive,(AAssign IDmainGtU__tmp None),233%positive)::
-             (233%positive,ANone,234%positive)::
-             (234%positive,AWeaken,327%positive)::
-             (235%positive,AWeaken,236%positive)::
-             (236%positive,(AAssign IDmainGtU__tmp None),237%positive)::
-             (237%positive,ANone,238%positive)::
-             (238%positive,AWeaken,327%positive)::
-             (239%positive,AWeaken,240%positive)::
-             (240%positive,(AAssign IDmainGtU__tmp None),241%positive)::
-             (241%positive,ANone,242%positive)::
-             (242%positive,AWeaken,327%positive)::
-             (243%positive,AWeaken,244%positive)::
-             (244%positive,(AAssign IDmainGtU__tmp None),245%positive)::
-             (245%positive,ANone,246%positive)::
-             (246%positive,AWeaken,327%positive)::
-             (247%positive,AWeaken,248%positive)::
-             (248%positive,(AAssign IDmainGtU__tmp None),249%positive)::
-             (249%positive,ANone,250%positive)::
-             (250%positive,AWeaken,327%positive)::
-             (251%positive,AWeaken,252%positive)::
-             (252%positive,(AAssign IDmainGtU__tmp None),253%positive)::
-             (253%positive,ANone,254%positive)::
-             (254%positive,AWeaken,327%positive)::
-             (255%positive,AWeaken,256%positive)::
-             (256%positive,(AAssign IDmainGtU__tmp None),257%positive)::
-             (257%positive,ANone,258%positive)::
-             (258%positive,AWeaken,327%positive)::
-             (259%positive,AWeaken,260%positive)::
-             (260%positive,(AAssign IDmainGtU__tmp None),261%positive)::
-             (261%positive,ANone,262%positive)::
-             (262%positive,AWeaken,327%positive)::
-             (263%positive,AWeaken,264%positive)::
-             (264%positive,(AAssign IDmainGtU__tmp None),265%positive)::
-             (265%positive,ANone,266%positive)::
-             (266%positive,AWeaken,327%positive)::
-             (267%positive,AWeaken,268%positive)::
-             (268%positive,(AAssign IDmainGtU__tmp None),269%positive)::
-             (269%positive,ANone,270%positive)::
-             (270%positive,AWeaken,327%positive)::
-             (271%positive,AWeaken,272%positive)::
-             (272%positive,(AAssign IDmainGtU__tmp None),273%positive)::
-             (273%positive,ANone,274%positive)::
-             (274%positive,AWeaken,327%positive)::
-             (275%positive,AWeaken,276%positive)::
-             (276%positive,(AAssign IDmainGtU__tmp None),277%positive)::
-             (277%positive,ANone,278%positive)::
-             (278%positive,AWeaken,327%positive)::
-             (279%positive,AWeaken,280%positive)::
-             (280%positive,(AAssign IDmainGtU__tmp None),281%positive)::
-             (281%positive,ANone,282%positive)::
-             (282%positive,AWeaken,327%positive)::
-             (283%positive,AWeaken,284%positive)::
-             (284%positive,(AAssign IDmainGtU__tmp None),285%positive)::
-             (285%positive,ANone,286%positive)::
-             (286%positive,AWeaken,327%positive)::
-             (287%positive,AWeaken,288%positive)::
-             (288%positive,(AAssign IDmainGtU__tmp None),289%positive)::
-             (289%positive,ANone,290%positive)::
-             (290%positive,AWeaken,327%positive)::
-             (291%positive,AWeaken,292%positive)::
-             (292%positive,(AAssign IDmainGtU__tmp None),293%positive)::
-             (293%positive,ANone,294%positive)::
-             (294%positive,AWeaken,327%positive)::
-             (295%positive,AWeaken,296%positive)::
-             (296%positive,(AAssign IDmainGtU__tmp None),297%positive)::
-             (297%positive,ANone,298%positive)::
-             (298%positive,AWeaken,327%positive)::
-             (299%positive,AWeaken,300%positive)::
-             (300%positive,(AAssign IDmainGtU__tmp None),301%positive)::
-             (301%positive,ANone,302%positive)::
-             (302%positive,AWeaken,327%positive)::
-             (303%positive,AWeaken,304%positive)::
-             (304%positive,(AAssign IDmainGtU__tmp None),305%positive)::
-             (305%positive,ANone,306%positive)::
-             (306%positive,AWeaken,327%positive)::
-             (307%positive,AWeaken,308%positive)::
-             (308%positive,(AAssign IDmainGtU__tmp None),309%positive)::
-             (309%positive,ANone,310%positive)::
-             (310%positive,AWeaken,327%positive)::
-             (311%positive,AWeaken,312%positive)::
-             (312%positive,(AAssign IDmainGtU__tmp None),313%positive)::
-             (313%positive,ANone,314%positive)::
-             (314%positive,AWeaken,327%positive)::
-             (315%positive,AWeaken,316%positive)::
-             (316%positive,(AAssign IDmainGtU__tmp None),317%positive)::
-             (317%positive,ANone,318%positive)::
-             (318%positive,AWeaken,327%positive)::
-             (319%positive,AWeaken,320%positive)::
-             (320%positive,(AAssign IDmainGtU__tmp None),321%positive)::
-             (321%positive,ANone,322%positive)::
-             (322%positive,AWeaken,327%positive)::
-             (323%positive,AWeaken,324%positive)::
-             (324%positive,(AAssign IDmainGtU__tmp None),325%positive)::
-             (325%positive,ANone,326%positive)::
-             (326%positive,AWeaken,327%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_mainGtU.
 
-Definition mainGtU_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU__tmp3) <= 0)%Z
-    | 4%positive => (-1 * (s IDmainGtU__tmp3) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU__tmp2) <= 0)%Z
-    | 5%positive => (-1 * (s IDmainGtU__tmp2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU__tmp3) <= 0 /\ -1 * (s IDmainGtU__tmp1) <= 0)%Z
-    | 6%positive => (-1 * (s IDmainGtU__tmp1) <= 0 /\ -1 * (s IDmainGtU__tmp3) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU__tmp2) <= 0)%Z
-    | 7%positive => (-1 * (s IDmainGtU__tmp2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU__tmp3) <= 0)%Z
-    | 8%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU__tmp2) <= 0)%Z
-    | 9%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 10%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 12%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 14%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 15%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 16%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 17%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 18%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 19%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 20%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 21%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 22%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 23%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 24%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 25%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 26%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 27%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 28%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 29%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 30%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 31%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 32%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 33%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 34%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 35%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 36%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 37%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 38%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 39%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 40%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 41%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 42%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 43%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 44%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 45%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 46%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 47%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 48%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 49%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 50%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 51%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 52%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 53%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 54%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 55%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 56%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 57%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 58%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 59%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 60%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 61%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 62%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 63%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 64%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 65%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 66%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 67%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 68%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 69%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 70%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 71%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 72%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 73%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 74%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 75%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 76%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 77%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 78%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 79%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 80%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 81%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 82%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 83%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 84%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 85%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 86%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 87%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 88%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 89%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 90%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 91%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 92%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 93%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 94%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 95%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 96%positive => (-1 * (s IDmainGtU_z) <= 0)%Z
-    | 97%positive => (-1 * (s IDmainGtU_z) <= 0)%Z
-    | 98%positive => (-1 * (s IDmainGtU_z) <= 0)%Z
-    | 99%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 100%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 101%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 102%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 103%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 104%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 105%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 106%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 107%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 108%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 109%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 110%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 111%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 112%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 113%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 114%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 115%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 116%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 117%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 118%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 119%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 120%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 121%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 122%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 123%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 124%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 125%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 126%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 127%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 128%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 129%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 130%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 131%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 132%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 133%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 134%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 135%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 136%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 137%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 138%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 139%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 140%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 141%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 142%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 143%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 144%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 145%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 146%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 147%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 148%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 149%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 150%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 151%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 152%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 153%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 154%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 155%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 156%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 157%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 158%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 159%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 160%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 161%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 162%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 163%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 164%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 165%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 166%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 167%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 168%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 169%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 170%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 171%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 172%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 173%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 174%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 175%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 176%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 177%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 178%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 179%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 180%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 181%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 182%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 183%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 184%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 185%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 186%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 187%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 188%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 189%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 190%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 191%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 192%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 193%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU__tmp1)+ -1 * (s IDmainGtU__tmp2) + 1 <= 0)%Z
-    | 194%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU__tmp1)+ 1 * (s IDmainGtU__tmp2) <= 0)%Z
-    | 195%positive => (-1 * (s IDmainGtU__tmp1)+ 1 * (s IDmainGtU__tmp2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 196%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU__tmp1) <= 0)%Z
-    | 197%positive => (-1 * (s IDmainGtU__tmp1) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 198%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 199%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU__tmp2)+ 1 * (s IDmainGtU__tmp3) + 1 <= 0)%Z
-    | 200%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU__tmp2)+ -1 * (s IDmainGtU__tmp3) <= 0)%Z
-    | 201%positive => (1 * (s IDmainGtU__tmp2)+ -1 * (s IDmainGtU__tmp3) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 202%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU__tmp3) <= 0)%Z
-    | 203%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 204%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 205%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 206%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 207%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 208%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_k) + 1 <= 0)%Z
-    | 209%positive => (1 * (s IDmainGtU_k) + 1 <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 210%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_k) + 1 <= 0 /\ 1 * (s IDmainGtU__tmp) <= 0 /\ -1 * (s IDmainGtU__tmp) <= 0)%Z
-    | 211%positive => (-1 * (s IDmainGtU__tmp) <= 0 /\ 1 * (s IDmainGtU__tmp) <= 0 /\ 1 * (s IDmainGtU_k) + 1 <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 212%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_k) <= 0)%Z
-    | 213%positive => (-1 * (s IDmainGtU_k) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 214%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_k) <= 0)%Z
-    | 215%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 216%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 217%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 218%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 219%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 220%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 221%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 222%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 223%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 224%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 225%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 226%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 227%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 228%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 229%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 230%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 231%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 232%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 233%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 234%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 235%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 236%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 237%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 238%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 239%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 240%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 241%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 242%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 243%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 244%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 245%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 246%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 247%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 248%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 249%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 250%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 251%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 252%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 253%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 254%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 255%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 256%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 257%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 258%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 259%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 260%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 261%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 262%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 263%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 264%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 265%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 266%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 267%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 268%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 269%positive => (-1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 270%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_s1)+ -1 * (s IDmainGtU_s2) <= 0 /\ -1 * (s IDmainGtU_s1)+ 1 * (s IDmainGtU_s2) <= 0)%Z
-    | 271%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 272%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 273%positive => (-1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 274%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_c1)+ -1 * (s IDmainGtU_c2) <= 0 /\ -1 * (s IDmainGtU_c1)+ 1 * (s IDmainGtU_c2) <= 0)%Z
-    | 275%positive => (-1 * (s IDmainGtU_z) <= 0)%Z
-    | 276%positive => (-1 * (s IDmainGtU_z) <= 0)%Z
-    | 277%positive => (-1 * (s IDmainGtU_z) <= 0)%Z
-    | 278%positive => (-1 * (s IDmainGtU_z) <= 0)%Z
-    | 279%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 280%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 281%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 282%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 283%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 284%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 285%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 286%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 287%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 288%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 289%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 290%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 291%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 292%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 293%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 294%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 295%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 296%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 297%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 298%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 299%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 300%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 301%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 302%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 303%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 304%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 305%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 306%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 307%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 308%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 309%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 310%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 311%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 312%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 313%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 314%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 315%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 316%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 317%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 318%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 319%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 320%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 321%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 322%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 323%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 324%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 325%positive => (-1 * (s IDmainGtU_z) <= 0 /\ 1 * (s IDmainGtU_z) <= 0)%Z
-    | 326%positive => (1 * (s IDmainGtU_z) <= 0 /\ -1 * (s IDmainGtU_z) <= 0)%Z
-    | 327%positive => (-1 * (s IDmainGtU_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition mainGtU_pot (p : node) (s : state): Q := 
+Notation V_mainGtU_z := 1%positive.
+Notation V_mainGtU__tmp := 2%positive.
+Notation V_mainGtU__tmp1 := 3%positive.
+Notation V_mainGtU__tmp2 := 4%positive.
+Notation V_mainGtU__tmp3 := 5%positive.
+Notation V_mainGtU_budget_dref := 6%positive.
+Notation V_mainGtU_c1 := 7%positive.
+Notation V_mainGtU_c2 := 8%positive.
+Notation V_mainGtU_k := 9%positive.
+Notation V_mainGtU_s1 := 10%positive.
+Notation V_mainGtU_s2 := 11%positive.
+Notation V_mainGtU_block := 12%positive.
+Notation V_mainGtU_budget := 13%positive.
+Notation V_mainGtU_i1 := 14%positive.
+Notation V_mainGtU_i2 := 15%positive.
+Notation V_mainGtU_nblock := 16%positive.
+Notation V_mainGtU_quadrant := 17%positive.
+Definition Pedges_mainGtU: list (edge proc) :=
+  (EA 1 (AAssign V_mainGtU_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_mainGtU__tmp3) s) >= (eval (ENum (0)) s))%Z)) 3)::
+  (EA 3 (AGuard (fun s => ((eval (EVar V_mainGtU__tmp2) s) >=
+  (eval (ENum (0)) s))%Z)) 4)::(EA 4 (AGuard
+  (fun s => ((eval (EVar V_mainGtU__tmp1) s) >= (eval (ENum (0)) s))%Z)) 5)::
+  (EA 5 AWeaken 6)::(EA 6 (AAssign V_mainGtU__tmp1
+  (Some (EVar V_mainGtU_i1))) 7)::(EA 7 (AAssign V_mainGtU__tmp3
+  (Some (EVar V_mainGtU_i2))) 8)::(EA 8 (AAssign V_mainGtU__tmp2
+  (Some (EVar V_mainGtU_nblock))) 9)::(EA 9 (AAssign V_mainGtU_c1 None) 10)::
+  (EA 10 (AAssign V_mainGtU_c2 None) 11)::(EA 11 AWeaken 12)::(EA 12 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 323)::(EA 12 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 13)::(EA 13 AWeaken 14)::(EA 14 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 15)::
+  (EA 15 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 16)::(EA 16 (AAssign V_mainGtU_c1 None) 17)::(EA 17 (AAssign
+  V_mainGtU_c2 None) 18)::(EA 18 AWeaken 19)::(EA 19 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 319)::(EA 19 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 20)::(EA 20 AWeaken 21)::(EA 21 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 22)::
+  (EA 22 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 23)::(EA 23 (AAssign V_mainGtU_c1 None) 24)::(EA 24 (AAssign
+  V_mainGtU_c2 None) 25)::(EA 25 AWeaken 26)::(EA 26 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 315)::(EA 26 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 27)::(EA 27 AWeaken 28)::(EA 28 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 29)::
+  (EA 29 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 30)::(EA 30 (AAssign V_mainGtU_c1 None) 31)::(EA 31 (AAssign
+  V_mainGtU_c2 None) 32)::(EA 32 AWeaken 33)::(EA 33 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 311)::(EA 33 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 34)::(EA 34 AWeaken 35)::(EA 35 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 36)::
+  (EA 36 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 37)::(EA 37 (AAssign V_mainGtU_c1 None) 38)::(EA 38 (AAssign
+  V_mainGtU_c2 None) 39)::(EA 39 AWeaken 40)::(EA 40 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 307)::(EA 40 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 41)::(EA 41 AWeaken 42)::(EA 42 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 43)::
+  (EA 43 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 44)::(EA 44 (AAssign V_mainGtU_c1 None) 45)::(EA 45 (AAssign
+  V_mainGtU_c2 None) 46)::(EA 46 AWeaken 47)::(EA 47 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 303)::(EA 47 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 48)::(EA 48 AWeaken 49)::(EA 49 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 50)::
+  (EA 50 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 51)::(EA 51 (AAssign V_mainGtU_c1 None) 52)::(EA 52 (AAssign
+  V_mainGtU_c2 None) 53)::(EA 53 AWeaken 54)::(EA 54 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 299)::(EA 54 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 55)::(EA 55 AWeaken 56)::(EA 56 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 57)::
+  (EA 57 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 58)::(EA 58 (AAssign V_mainGtU_c1 None) 59)::(EA 59 (AAssign
+  V_mainGtU_c2 None) 60)::(EA 60 AWeaken 61)::(EA 61 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 295)::(EA 61 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 62)::(EA 62 AWeaken 63)::(EA 63 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 64)::
+  (EA 64 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 65)::(EA 65 (AAssign V_mainGtU_c1 None) 66)::(EA 66 (AAssign
+  V_mainGtU_c2 None) 67)::(EA 67 AWeaken 68)::(EA 68 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 291)::(EA 68 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 69)::(EA 69 AWeaken 70)::(EA 70 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 71)::
+  (EA 71 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 72)::(EA 72 (AAssign V_mainGtU_c1 None) 73)::(EA 73 (AAssign
+  V_mainGtU_c2 None) 74)::(EA 74 AWeaken 75)::(EA 75 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 287)::(EA 75 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 76)::(EA 76 AWeaken 77)::(EA 77 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 78)::
+  (EA 78 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 79)::(EA 79 (AAssign V_mainGtU_c1 None) 80)::(EA 80 (AAssign
+  V_mainGtU_c2 None) 81)::(EA 81 AWeaken 82)::(EA 82 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 283)::(EA 82 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 83)::(EA 83 AWeaken 84)::(EA 84 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 85)::
+  (EA 85 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 86)::(EA 86 (AAssign V_mainGtU_c1 None) 87)::(EA 87 (AAssign
+  V_mainGtU_c2 None) 88)::(EA 88 AWeaken 89)::(EA 89 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 279)::(EA 89 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 90)::(EA 90 AWeaken 91)::(EA 91 (AAssign
+  V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 92)::
+  (EA 92 (AAssign V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3)
+  (ENum (1))))) 93)::(EA 93 (AAssign V_mainGtU_k
+  (Some (EAdd (EVar V_mainGtU__tmp2) (ENum (8))))) 94)::(EA 94 ANone 95)::
+  (EA 95 (AAssign V_mainGtU_c1 None) 96)::(EA 96 (AAssign V_mainGtU_c2
+  None) 97)::(EA 97 AWeaken 98)::(EA 98 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 275)::(EA 98 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 99)::(EA 99 AWeaken 100)::
+  (EA 100 (AAssign V_mainGtU_s1 None) 101)::(EA 101 (AAssign V_mainGtU_s2
+  None) 102)::(EA 102 AWeaken 103)::(EA 103 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_s1) s) <> (eval (EVar V_mainGtU_s2)
+  s))%Z)) 271)::(EA 103 (AGuard (fun s => ((eval (EVar V_mainGtU_s1) s) =
+  (eval (EVar V_mainGtU_s2) s))%Z)) 104)::(EA 104 AWeaken 105)::
+  (EA 105 (AAssign V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1)
+  (ENum (1))))) 106)::(EA 106 (AAssign V_mainGtU__tmp3
+  (Some (EAdd (EVar V_mainGtU__tmp3) (ENum (1))))) 107)::(EA 107 (AAssign
+  V_mainGtU_c1 None) 108)::(EA 108 (AAssign V_mainGtU_c2 None) 109)::
+  (EA 109 AWeaken 110)::(EA 110 (AGuard (fun s => ((eval (EVar V_mainGtU_c1)
+  s) <> (eval (EVar V_mainGtU_c2) s))%Z)) 267)::(EA 110 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) = (eval (EVar V_mainGtU_c2)
+  s))%Z)) 111)::(EA 111 AWeaken 112)::(EA 112 (AAssign V_mainGtU_s1
+  None) 113)::(EA 113 (AAssign V_mainGtU_s2 None) 114)::
+  (EA 114 AWeaken 115)::(EA 115 (AGuard (fun s => ((eval (EVar V_mainGtU_s1)
+  s) <> (eval (EVar V_mainGtU_s2) s))%Z)) 263)::(EA 115 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_s1) s) = (eval (EVar V_mainGtU_s2)
+  s))%Z)) 116)::(EA 116 AWeaken 117)::(EA 117 (AAssign V_mainGtU__tmp1
+  (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 118)::(EA 118 (AAssign
+  V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3) (ENum (1))))) 119)::
+  (EA 119 (AAssign V_mainGtU_c1 None) 120)::(EA 120 (AAssign V_mainGtU_c2
+  None) 121)::(EA 121 AWeaken 122)::(EA 122 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 259)::(EA 122 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 123)::(EA 123 AWeaken 124)::
+  (EA 124 (AAssign V_mainGtU_s1 None) 125)::(EA 125 (AAssign V_mainGtU_s2
+  None) 126)::(EA 126 AWeaken 127)::(EA 127 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_s1) s) <> (eval (EVar V_mainGtU_s2)
+  s))%Z)) 255)::(EA 127 (AGuard (fun s => ((eval (EVar V_mainGtU_s1) s) =
+  (eval (EVar V_mainGtU_s2) s))%Z)) 128)::(EA 128 AWeaken 129)::
+  (EA 129 (AAssign V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1)
+  (ENum (1))))) 130)::(EA 130 (AAssign V_mainGtU__tmp3
+  (Some (EAdd (EVar V_mainGtU__tmp3) (ENum (1))))) 131)::(EA 131 (AAssign
+  V_mainGtU_c1 None) 132)::(EA 132 (AAssign V_mainGtU_c2 None) 133)::
+  (EA 133 AWeaken 134)::(EA 134 (AGuard (fun s => ((eval (EVar V_mainGtU_c1)
+  s) <> (eval (EVar V_mainGtU_c2) s))%Z)) 251)::(EA 134 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) = (eval (EVar V_mainGtU_c2)
+  s))%Z)) 135)::(EA 135 AWeaken 136)::(EA 136 (AAssign V_mainGtU_s1
+  None) 137)::(EA 137 (AAssign V_mainGtU_s2 None) 138)::
+  (EA 138 AWeaken 139)::(EA 139 (AGuard (fun s => ((eval (EVar V_mainGtU_s1)
+  s) <> (eval (EVar V_mainGtU_s2) s))%Z)) 247)::(EA 139 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_s1) s) = (eval (EVar V_mainGtU_s2)
+  s))%Z)) 140)::(EA 140 AWeaken 141)::(EA 141 (AAssign V_mainGtU__tmp1
+  (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 142)::(EA 142 (AAssign
+  V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3) (ENum (1))))) 143)::
+  (EA 143 (AAssign V_mainGtU_c1 None) 144)::(EA 144 (AAssign V_mainGtU_c2
+  None) 145)::(EA 145 AWeaken 146)::(EA 146 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 243)::(EA 146 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 147)::(EA 147 AWeaken 148)::
+  (EA 148 (AAssign V_mainGtU_s1 None) 149)::(EA 149 (AAssign V_mainGtU_s2
+  None) 150)::(EA 150 AWeaken 151)::(EA 151 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_s1) s) <> (eval (EVar V_mainGtU_s2)
+  s))%Z)) 239)::(EA 151 (AGuard (fun s => ((eval (EVar V_mainGtU_s1) s) =
+  (eval (EVar V_mainGtU_s2) s))%Z)) 152)::(EA 152 AWeaken 153)::
+  (EA 153 (AAssign V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1)
+  (ENum (1))))) 154)::(EA 154 (AAssign V_mainGtU__tmp3
+  (Some (EAdd (EVar V_mainGtU__tmp3) (ENum (1))))) 155)::(EA 155 (AAssign
+  V_mainGtU_c1 None) 156)::(EA 156 (AAssign V_mainGtU_c2 None) 157)::
+  (EA 157 AWeaken 158)::(EA 158 (AGuard (fun s => ((eval (EVar V_mainGtU_c1)
+  s) <> (eval (EVar V_mainGtU_c2) s))%Z)) 235)::(EA 158 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) = (eval (EVar V_mainGtU_c2)
+  s))%Z)) 159)::(EA 159 AWeaken 160)::(EA 160 (AAssign V_mainGtU_s1
+  None) 161)::(EA 161 (AAssign V_mainGtU_s2 None) 162)::
+  (EA 162 AWeaken 163)::(EA 163 (AGuard (fun s => ((eval (EVar V_mainGtU_s1)
+  s) <> (eval (EVar V_mainGtU_s2) s))%Z)) 231)::(EA 163 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_s1) s) = (eval (EVar V_mainGtU_s2)
+  s))%Z)) 164)::(EA 164 AWeaken 165)::(EA 165 (AAssign V_mainGtU__tmp1
+  (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 166)::(EA 166 (AAssign
+  V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3) (ENum (1))))) 167)::
+  (EA 167 (AAssign V_mainGtU_c1 None) 168)::(EA 168 (AAssign V_mainGtU_c2
+  None) 169)::(EA 169 AWeaken 170)::(EA 170 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) <> (eval (EVar V_mainGtU_c2)
+  s))%Z)) 227)::(EA 170 (AGuard (fun s => ((eval (EVar V_mainGtU_c1) s) =
+  (eval (EVar V_mainGtU_c2) s))%Z)) 171)::(EA 171 AWeaken 172)::
+  (EA 172 (AAssign V_mainGtU_s1 None) 173)::(EA 173 (AAssign V_mainGtU_s2
+  None) 174)::(EA 174 AWeaken 175)::(EA 175 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_s1) s) <> (eval (EVar V_mainGtU_s2)
+  s))%Z)) 223)::(EA 175 (AGuard (fun s => ((eval (EVar V_mainGtU_s1) s) =
+  (eval (EVar V_mainGtU_s2) s))%Z)) 176)::(EA 176 AWeaken 177)::
+  (EA 177 (AAssign V_mainGtU__tmp1 (Some (EAdd (EVar V_mainGtU__tmp1)
+  (ENum (1))))) 178)::(EA 178 (AAssign V_mainGtU__tmp3
+  (Some (EAdd (EVar V_mainGtU__tmp3) (ENum (1))))) 179)::(EA 179 (AAssign
+  V_mainGtU_c1 None) 180)::(EA 180 (AAssign V_mainGtU_c2 None) 181)::
+  (EA 181 AWeaken 182)::(EA 182 (AGuard (fun s => ((eval (EVar V_mainGtU_c1)
+  s) <> (eval (EVar V_mainGtU_c2) s))%Z)) 219)::(EA 182 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_c1) s) = (eval (EVar V_mainGtU_c2)
+  s))%Z)) 183)::(EA 183 AWeaken 184)::(EA 184 (AAssign V_mainGtU_s1
+  None) 185)::(EA 185 (AAssign V_mainGtU_s2 None) 186)::
+  (EA 186 AWeaken 187)::(EA 187 (AGuard (fun s => ((eval (EVar V_mainGtU_s1)
+  s) <> (eval (EVar V_mainGtU_s2) s))%Z)) 215)::(EA 187 (AGuard
+  (fun s => ((eval (EVar V_mainGtU_s1) s) = (eval (EVar V_mainGtU_s2)
+  s))%Z)) 188)::(EA 188 AWeaken 189)::(EA 189 (AAssign V_mainGtU__tmp1
+  (Some (EAdd (EVar V_mainGtU__tmp1) (ENum (1))))) 190)::(EA 190 (AAssign
+  V_mainGtU__tmp3 (Some (EAdd (EVar V_mainGtU__tmp3) (ENum (1))))) 191)::
+  (EA 191 AWeaken 192)::(EA 192 (AGuard
+  (fun s => ((eval (EVar V_mainGtU__tmp1) s) >= (eval (EVar V_mainGtU__tmp2)
+  s))%Z)) 194)::(EA 192 (AGuard (fun s => ((eval (EVar V_mainGtU__tmp1) s) <
+  (eval (EVar V_mainGtU__tmp2) s))%Z)) 193)::(EA 193 AWeaken 198)::
+  (EA 194 AWeaken 195)::(EA 195 (AAssign V_mainGtU__tmp1
+  (Some (ESub (EVar V_mainGtU__tmp1) (EVar V_mainGtU__tmp2)))) 196)::
+  (EA 196 ANone 197)::(EA 197 AWeaken 198)::(EA 198 (AGuard
+  (fun s => ((eval (EVar V_mainGtU__tmp3) s) >= (eval (EVar V_mainGtU__tmp2)
+  s))%Z)) 200)::(EA 198 (AGuard (fun s => ((eval (EVar V_mainGtU__tmp3) s) <
+  (eval (EVar V_mainGtU__tmp2) s))%Z)) 199)::(EA 199 AWeaken 203)::
+  (EA 200 AWeaken 201)::(EA 201 (AAssign V_mainGtU__tmp3
+  (Some (ESub (EVar V_mainGtU__tmp3) (EVar V_mainGtU__tmp2)))) 202)::
+  (EA 202 ANone 203)::(EA 203 (AAssign V_mainGtU_k
+  (Some (ESub (EVar V_mainGtU_k) (ENum (8))))) 204)::(EA 204 (AAssign
+  V_mainGtU_budget_dref (Some (EAdd (EVar V_mainGtU_budget_dref)
+  (ENum (-1))))) 205)::(EA 205 ANone 206)::(EA 206 AWeaken 207)::
+  (EA 207 (AGuard (fun s => ((eval (EVar V_mainGtU_k) s) >= (eval (ENum (0))
+  s))%Z)) 212)::(EA 207 (AGuard (fun s => ((eval (EVar V_mainGtU_k) s) <
+  (eval (ENum (0)) s))%Z)) 208)::(EA 208 AWeaken 209)::(EA 209 (AAssign
+  V_mainGtU__tmp (Some (ENum (0)))) 210)::(EA 210 ANone 211)::
+  (EA 211 AWeaken 327)::(EA 212 AWeaken 213)::(EA 213 ANone 214)::
+  (EA 214 (AAssign V_mainGtU_z (Some (EAdd (ENum (1))
+  (EVar V_mainGtU_z)))) 95)::(EA 215 AWeaken 216)::(EA 216 (AAssign
+  V_mainGtU__tmp None) 217)::(EA 217 ANone 218)::(EA 218 AWeaken 327)::
+  (EA 219 AWeaken 220)::(EA 220 (AAssign V_mainGtU__tmp None) 221)::
+  (EA 221 ANone 222)::(EA 222 AWeaken 327)::(EA 223 AWeaken 224)::
+  (EA 224 (AAssign V_mainGtU__tmp None) 225)::(EA 225 ANone 226)::
+  (EA 226 AWeaken 327)::(EA 227 AWeaken 228)::(EA 228 (AAssign V_mainGtU__tmp
+  None) 229)::(EA 229 ANone 230)::(EA 230 AWeaken 327)::
+  (EA 231 AWeaken 232)::(EA 232 (AAssign V_mainGtU__tmp None) 233)::
+  (EA 233 ANone 234)::(EA 234 AWeaken 327)::(EA 235 AWeaken 236)::
+  (EA 236 (AAssign V_mainGtU__tmp None) 237)::(EA 237 ANone 238)::
+  (EA 238 AWeaken 327)::(EA 239 AWeaken 240)::(EA 240 (AAssign V_mainGtU__tmp
+  None) 241)::(EA 241 ANone 242)::(EA 242 AWeaken 327)::
+  (EA 243 AWeaken 244)::(EA 244 (AAssign V_mainGtU__tmp None) 245)::
+  (EA 245 ANone 246)::(EA 246 AWeaken 327)::(EA 247 AWeaken 248)::
+  (EA 248 (AAssign V_mainGtU__tmp None) 249)::(EA 249 ANone 250)::
+  (EA 250 AWeaken 327)::(EA 251 AWeaken 252)::(EA 252 (AAssign V_mainGtU__tmp
+  None) 253)::(EA 253 ANone 254)::(EA 254 AWeaken 327)::
+  (EA 255 AWeaken 256)::(EA 256 (AAssign V_mainGtU__tmp None) 257)::
+  (EA 257 ANone 258)::(EA 258 AWeaken 327)::(EA 259 AWeaken 260)::
+  (EA 260 (AAssign V_mainGtU__tmp None) 261)::(EA 261 ANone 262)::
+  (EA 262 AWeaken 327)::(EA 263 AWeaken 264)::(EA 264 (AAssign V_mainGtU__tmp
+  None) 265)::(EA 265 ANone 266)::(EA 266 AWeaken 327)::
+  (EA 267 AWeaken 268)::(EA 268 (AAssign V_mainGtU__tmp None) 269)::
+  (EA 269 ANone 270)::(EA 270 AWeaken 327)::(EA 271 AWeaken 272)::
+  (EA 272 (AAssign V_mainGtU__tmp None) 273)::(EA 273 ANone 274)::
+  (EA 274 AWeaken 327)::(EA 275 AWeaken 276)::(EA 276 (AAssign V_mainGtU__tmp
+  None) 277)::(EA 277 ANone 278)::(EA 278 AWeaken 327)::
+  (EA 279 AWeaken 280)::(EA 280 (AAssign V_mainGtU__tmp None) 281)::
+  (EA 281 ANone 282)::(EA 282 AWeaken 327)::(EA 283 AWeaken 284)::
+  (EA 284 (AAssign V_mainGtU__tmp None) 285)::(EA 285 ANone 286)::
+  (EA 286 AWeaken 327)::(EA 287 AWeaken 288)::(EA 288 (AAssign V_mainGtU__tmp
+  None) 289)::(EA 289 ANone 290)::(EA 290 AWeaken 327)::
+  (EA 291 AWeaken 292)::(EA 292 (AAssign V_mainGtU__tmp None) 293)::
+  (EA 293 ANone 294)::(EA 294 AWeaken 327)::(EA 295 AWeaken 296)::
+  (EA 296 (AAssign V_mainGtU__tmp None) 297)::(EA 297 ANone 298)::
+  (EA 298 AWeaken 327)::(EA 299 AWeaken 300)::(EA 300 (AAssign V_mainGtU__tmp
+  None) 301)::(EA 301 ANone 302)::(EA 302 AWeaken 327)::
+  (EA 303 AWeaken 304)::(EA 304 (AAssign V_mainGtU__tmp None) 305)::
+  (EA 305 ANone 306)::(EA 306 AWeaken 327)::(EA 307 AWeaken 308)::
+  (EA 308 (AAssign V_mainGtU__tmp None) 309)::(EA 309 ANone 310)::
+  (EA 310 AWeaken 327)::(EA 311 AWeaken 312)::(EA 312 (AAssign V_mainGtU__tmp
+  None) 313)::(EA 313 ANone 314)::(EA 314 AWeaken 327)::
+  (EA 315 AWeaken 316)::(EA 316 (AAssign V_mainGtU__tmp None) 317)::
+  (EA 317 ANone 318)::(EA 318 AWeaken 327)::(EA 319 AWeaken 320)::
+  (EA 320 (AAssign V_mainGtU__tmp None) 321)::(EA 321 ANone 322)::
+  (EA 322 AWeaken 327)::(EA 323 AWeaken 324)::(EA 324 (AAssign V_mainGtU__tmp
+  None) 325)::(EA 325 ANone 326)::(EA 326 AWeaken 327)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_mainGtU => Pedges_mainGtU
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_mainGtU => 327
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_mainGtU (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 3 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU__tmp3 <= 0)%Z
+   | 4 => (-1 * s V_mainGtU__tmp3 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU__tmp2 <= 0)%Z
+   | 5 => (-1 * s V_mainGtU__tmp2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU__tmp3 <= 0 /\ -1 * s V_mainGtU__tmp1 <= 0)%Z
+   | 6 => (-1 * s V_mainGtU__tmp1 <= 0 /\ -1 * s V_mainGtU__tmp3 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU__tmp2 <= 0)%Z
+   | 7 => (-1 * s V_mainGtU__tmp2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU__tmp3 <= 0)%Z
+   | 8 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU__tmp2 <= 0)%Z
+   | 9 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 10 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 11 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 12 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 13 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 14 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 15 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 16 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 17 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 18 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 19 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 20 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 21 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 22 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 23 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 24 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 25 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 26 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 27 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 28 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 29 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 30 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 31 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 32 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 33 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 34 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 35 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 36 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 37 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 38 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 39 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 40 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 41 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 42 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 43 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 44 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 45 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 46 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 47 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 48 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 49 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 50 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 51 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 52 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 53 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 54 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 55 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 56 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 57 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 58 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 59 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 60 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 61 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 62 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 63 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 64 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 65 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 66 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 67 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 68 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 69 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 70 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 71 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 72 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 73 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 74 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 75 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 76 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 77 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 78 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 79 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 80 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 81 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 82 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 83 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 84 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 85 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 86 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 87 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 88 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 89 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 90 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 91 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 92 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 93 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 94 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 95 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 96 => (-1 * s V_mainGtU_z <= 0)%Z
+   | 97 => (-1 * s V_mainGtU_z <= 0)%Z
+   | 98 => (-1 * s V_mainGtU_z <= 0)%Z
+   | 99 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 100 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 101 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 102 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 103 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 104 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 105 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 106 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 107 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 108 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 109 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 110 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 111 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 112 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 113 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 114 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 115 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 116 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 117 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 118 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 119 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 120 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 121 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 122 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 123 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 124 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 125 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 126 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 127 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 128 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 129 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 130 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 131 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 132 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 133 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 134 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 135 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 136 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 137 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 138 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 139 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 140 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 141 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 142 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 143 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 144 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 145 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 146 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 147 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 148 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 149 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 150 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 151 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 152 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 153 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 154 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 155 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 156 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 157 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 158 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 159 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 160 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 161 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 162 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 163 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 164 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 165 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 166 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 167 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 168 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 169 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 170 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 171 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 172 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 173 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 174 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 175 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 176 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 177 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 178 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 179 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 180 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 181 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 182 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 183 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 184 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 185 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 186 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 187 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 188 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 189 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 190 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 191 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 192 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 193 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU__tmp1+ -1 * s V_mainGtU__tmp2 + 1 <= 0)%Z
+   | 194 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU__tmp1+ 1 * s V_mainGtU__tmp2 <= 0)%Z
+   | 195 => (-1 * s V_mainGtU__tmp1+ 1 * s V_mainGtU__tmp2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 196 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU__tmp1 <= 0)%Z
+   | 197 => (-1 * s V_mainGtU__tmp1 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 198 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 199 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU__tmp2+ 1 * s V_mainGtU__tmp3 + 1 <= 0)%Z
+   | 200 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU__tmp2+ -1 * s V_mainGtU__tmp3 <= 0)%Z
+   | 201 => (1 * s V_mainGtU__tmp2+ -1 * s V_mainGtU__tmp3 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 202 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU__tmp3 <= 0)%Z
+   | 203 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 204 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 205 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 206 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 207 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 208 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_k + 1 <= 0)%Z
+   | 209 => (1 * s V_mainGtU_k + 1 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 210 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_k + 1 <= 0 /\ 1 * s V_mainGtU__tmp <= 0 /\ -1 * s V_mainGtU__tmp <= 0)%Z
+   | 211 => (-1 * s V_mainGtU__tmp <= 0 /\ 1 * s V_mainGtU__tmp <= 0 /\ 1 * s V_mainGtU_k + 1 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 212 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_k <= 0)%Z
+   | 213 => (-1 * s V_mainGtU_k <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 214 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_k <= 0)%Z
+   | 215 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 216 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 217 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 218 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 219 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 220 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 221 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 222 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 223 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 224 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 225 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 226 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 227 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 228 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 229 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 230 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 231 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 232 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 233 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 234 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 235 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 236 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 237 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 238 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 239 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 240 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 241 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 242 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 243 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 244 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 245 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 246 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 247 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 248 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 249 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 250 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 251 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 252 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 253 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 254 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 255 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 256 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 257 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 258 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 259 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 260 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 261 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 262 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 263 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 264 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 265 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 266 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 267 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 268 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 269 => (-1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 270 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_s1+ -1 * s V_mainGtU_s2 <= 0 /\ -1 * s V_mainGtU_s1+ 1 * s V_mainGtU_s2 <= 0)%Z
+   | 271 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 272 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 273 => (-1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 274 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_c1+ -1 * s V_mainGtU_c2 <= 0 /\ -1 * s V_mainGtU_c1+ 1 * s V_mainGtU_c2 <= 0)%Z
+   | 275 => (-1 * s V_mainGtU_z <= 0)%Z
+   | 276 => (-1 * s V_mainGtU_z <= 0)%Z
+   | 277 => (-1 * s V_mainGtU_z <= 0)%Z
+   | 278 => (-1 * s V_mainGtU_z <= 0)%Z
+   | 279 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 280 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 281 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 282 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 283 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 284 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 285 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 286 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 287 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 288 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 289 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 290 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 291 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 292 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 293 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 294 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 295 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 296 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 297 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 298 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 299 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 300 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 301 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 302 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 303 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 304 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 305 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 306 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 307 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 308 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 309 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 310 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 311 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 312 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 313 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 314 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 315 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 316 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 317 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 318 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 319 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 320 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 321 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 322 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 323 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 324 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 325 => (-1 * s V_mainGtU_z <= 0 /\ 1 * s V_mainGtU_z <= 0)%Z
+   | 326 => (1 * s V_mainGtU_z <= 0 /\ -1 * s V_mainGtU_z <= 0)%Z
+   | 327 => (-1 * s V_mainGtU_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_mainGtU (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((1 # 8) * max0(8 + s V_mainGtU_nblock) <= z)%Q
+   | 2 => ((1 # 8) * max0(8 + s V_mainGtU_nblock) <= z)%Q
+   | 3 => ((1 # 8) * max0(8 + s V_mainGtU_nblock) <= z)%Q
+   | 4 => ((1 # 8) * max0(8 + s V_mainGtU_nblock) <= z)%Q
+   | 5 => ((1 # 8) * max0(8 + s V_mainGtU_nblock) <= z)%Q
+   | 6 => ((1 # 8) * max0(8 + s V_mainGtU_nblock) <= z)%Q
+   | 7 => ((1 # 8) * max0(8 + s V_mainGtU_nblock) <= z)%Q
+   | 8 => ((1 # 8) * max0(8 + s V_mainGtU_nblock) <= z)%Q
+   | 9 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 10 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 11 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 12 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 13 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 14 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 15 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 16 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 17 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 18 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 19 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 20 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 21 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 22 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 23 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 24 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 25 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 26 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 27 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 28 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 29 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 30 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 31 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 32 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 33 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 34 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 35 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 36 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 37 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 38 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 39 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 40 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 41 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 42 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 43 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 44 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 45 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 46 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 47 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 48 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 49 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 50 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 51 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 52 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 53 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 54 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 55 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 56 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 57 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 58 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 59 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 60 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 61 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 62 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 63 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 64 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 65 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 66 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 67 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 68 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 69 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 70 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 71 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 72 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 73 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 74 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 75 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 76 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 77 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 78 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 79 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 80 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 81 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 82 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 83 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 84 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 85 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 86 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 87 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 88 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 89 => ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 90 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 91 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 92 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 93 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 94 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 95 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 96 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 97 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 98 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 99 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 100 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 101 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 102 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 103 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 104 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 105 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 106 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 107 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 108 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 109 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 110 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 111 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 112 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 113 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 114 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 115 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 116 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 117 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 118 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 119 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 120 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 121 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 122 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 123 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 124 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 125 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 126 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 127 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 128 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 129 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 130 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 131 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 132 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 133 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 134 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 135 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 136 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 137 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 138 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 139 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 140 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 141 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 142 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 143 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 144 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 145 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 146 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 147 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 148 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 149 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 150 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 151 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 152 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 153 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 154 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 155 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 156 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 157 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 158 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 159 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 160 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 161 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 162 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 163 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 164 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 165 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 166 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 167 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 168 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 169 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 170 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 171 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 172 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 173 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 174 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 175 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 176 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_mainGtU_z) (0))) (F_max0_ge_0 (s V_mainGtU_z))]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 177 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 178 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 179 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 180 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 181 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 182 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 183 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 184 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 185 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 186 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 187 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 188 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 189 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 190 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 191 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (s V_mainGtU_z)) (F_check_ge (s V_mainGtU_z) (0))]
+     ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 192 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 193 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 194 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 195 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 196 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 197 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 198 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 199 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 200 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 201 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 202 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 203 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 204 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 205 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 206 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 207 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 208 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 209 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 210 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 211 => hints
+     [(*-0.125 0*) F_max0_monotonic (F_check_ge (8 + s V_mainGtU_k) (s V_mainGtU_k));
+      (*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 212 => hints
+     [(*-0.125 0*) F_max0_pre_decrement 1 (8 + s V_mainGtU_k) (8)]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU_k) <= z)%Q
+   | 213 => ((1 # 1) + s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 214 => ((1 # 1) + s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 215 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 216 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 217 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 218 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_mainGtU_z)) (F_check_ge (s V_mainGtU_z) (0))]
+     ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 219 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 220 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 221 => ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 222 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_mainGtU_z)) (F_check_ge (s V_mainGtU_z) (0))]
+     ((1 # 8) * max0(s V_mainGtU_k) + max0(s V_mainGtU_z) <= z)%Q
+   | 223 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 224 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 225 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 226 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 227 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 228 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 229 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 230 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 231 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 232 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 233 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 234 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 235 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 236 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 237 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 238 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 239 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 240 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 241 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 242 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 243 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 244 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 245 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 246 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 247 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 248 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 249 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 250 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 251 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 252 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 253 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 254 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 255 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 256 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 257 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 258 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 259 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 260 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 261 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 262 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 263 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 264 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 265 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 266 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 267 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 268 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 269 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 270 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 271 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 272 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 273 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 274 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 275 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 276 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 277 => (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 278 => hints
+     [(*-0.125 0*) F_max0_ge_0 (s V_mainGtU_k)]
+     (s V_mainGtU_z + (1 # 8) * max0(s V_mainGtU_k) <= z)%Q
+   | 279 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 280 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 281 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 282 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 283 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 284 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 285 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 286 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 287 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 288 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 289 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 290 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 291 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 292 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 293 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 294 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 295 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 296 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 297 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 298 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 299 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 300 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 301 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 302 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 303 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 304 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 305 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 306 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 307 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 308 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 309 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 310 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 311 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 312 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 313 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 314 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 315 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 316 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 317 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 318 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 319 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 320 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 321 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 322 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 323 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_mainGtU_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_mainGtU_z))]
+     ((1 # 8) * max0(8 + s V_mainGtU__tmp2) <= z)%Q
+   | 324 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 325 => (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+             + max0(-s V_mainGtU_z) <= z)%Q
+   | 326 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_mainGtU_z)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8 + s V_mainGtU__tmp2)) (F_check_ge (0) (0))]
+     (s V_mainGtU_z + (1 # 8) * max0(8 + s V_mainGtU__tmp2)
+      + max0(-s V_mainGtU_z) <= z)%Q
+   | 327 => (s V_mainGtU_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((1 # 8) * max0(8 + (s IDmainGtU_nblock)))%Q
-    | 2%positive => ((1 # 8) * max0(8 + (s IDmainGtU_nblock)))%Q
-    | 3%positive => ((1 # 8) * max0(8 + (s IDmainGtU_nblock)))%Q
-    | 4%positive => ((1 # 8) * max0(8 + (s IDmainGtU_nblock)))%Q
-    | 5%positive => ((1 # 8) * max0(8 + (s IDmainGtU_nblock)))%Q
-    | 6%positive => ((1 # 8) * max0(8 + (s IDmainGtU_nblock)))%Q
-    | 7%positive => ((1 # 8) * max0(8 + (s IDmainGtU_nblock)))%Q
-    | 8%positive => ((1 # 8) * max0(8 + (s IDmainGtU_nblock)))%Q
-    | 9%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 10%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 11%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 12%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 13%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 14%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 15%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 16%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 17%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 18%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 19%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 20%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 21%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 22%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 23%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 24%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 25%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 26%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 27%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 28%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 29%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 30%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 31%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 32%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 33%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 34%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 35%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 36%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 37%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 38%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 39%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 40%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 41%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 42%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 43%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 44%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 45%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 46%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 47%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 48%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 49%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 50%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 51%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 52%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 53%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 54%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 55%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 56%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 57%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 58%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 59%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 60%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 61%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 62%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 63%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 64%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 65%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 66%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 67%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 68%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 69%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 70%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 71%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 72%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 73%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 74%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 75%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 76%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 77%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 78%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 79%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 80%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 81%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 82%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 83%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 84%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 85%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 86%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 87%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 88%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 89%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 90%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 91%positive => ((s IDmainGtU_z)
-                      + (1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 92%positive => ((s IDmainGtU_z)
-                      + (1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 93%positive => ((s IDmainGtU_z)
-                      + (1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 94%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 95%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 96%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 97%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 98%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 99%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 100%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 101%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 102%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 103%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 104%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 105%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 106%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 107%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 108%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 109%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 110%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 111%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 112%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 113%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 114%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 115%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 116%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 117%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 118%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 119%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 120%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 121%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 122%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 123%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 124%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 125%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 126%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 127%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 128%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 129%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 130%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 131%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 132%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 133%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 134%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 135%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 136%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 137%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 138%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 139%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 140%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 141%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 142%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 143%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 144%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 145%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 146%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 147%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 148%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 149%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 150%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 151%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 152%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 153%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 154%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 155%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 156%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 157%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 158%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 159%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 160%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 161%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 162%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 163%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 164%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 165%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 166%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 167%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 168%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 169%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 170%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 171%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 172%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 173%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 174%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 175%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 176%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 177%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 178%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 179%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 180%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 181%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 182%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 183%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 184%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 185%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 186%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 187%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 188%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 189%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 190%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 191%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 192%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 193%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 194%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 195%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 196%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 197%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 198%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 199%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 200%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 201%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 202%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 203%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 204%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 205%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 206%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 207%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 208%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 209%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 210%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 211%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 212%positive => ((s IDmainGtU_z) + (1 # 8) * max0(8 + (s IDmainGtU_k)))%Q
-    | 213%positive => ((1 # 1) + (s IDmainGtU_z)
-                       + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 214%positive => ((1 # 1) + (s IDmainGtU_z)
-                       + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 215%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 216%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 217%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 218%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 219%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 220%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 221%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 222%positive => ((1 # 8) * max0((s IDmainGtU_k))
-                       + max0((s IDmainGtU_z)))%Q
-    | 223%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 224%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 225%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 226%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 227%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 228%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 229%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 230%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 231%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 232%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 233%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 234%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 235%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 236%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 237%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 238%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 239%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 240%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 241%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 242%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 243%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 244%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 245%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 246%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 247%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 248%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 249%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 250%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 251%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 252%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 253%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 254%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 255%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 256%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 257%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 258%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 259%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 260%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 261%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 262%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 263%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 264%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 265%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 266%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 267%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 268%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 269%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 270%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 271%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 272%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 273%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 274%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 275%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 276%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 277%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 278%positive => ((s IDmainGtU_z) + (1 # 8) * max0((s IDmainGtU_k)))%Q
-    | 279%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 280%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 281%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 282%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 283%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 284%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 285%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 286%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 287%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 288%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 289%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 290%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 291%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 292%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 293%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 294%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 295%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 296%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 297%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 298%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 299%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 300%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 301%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 302%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 303%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 304%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 305%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 306%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 307%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 308%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 309%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 310%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 311%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 312%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 313%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 314%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 315%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 316%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 317%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 318%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 319%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 320%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 321%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 322%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 323%positive => ((1 # 8) * max0(8 + (s IDmainGtU__tmp2)))%Q
-    | 324%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 325%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 326%positive => ((s IDmainGtU_z)
-                       + (1 # 8) * max0(8 + (s IDmainGtU__tmp2))
-                       + max0(-(s IDmainGtU_z)))%Q
-    | 327%positive => ((s IDmainGtU_z))%Q
-    | _ => (0 # 1)%Q
+  | P_mainGtU =>
+    [mkPA Q (fun n z s => ai_mainGtU n s /\ annot0_mainGtU n z s)]
   end.
 
-Definition mainGtU_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => []
-    | 58%positive => []
-    | 59%positive => []
-    | 60%positive => []
-    | 61%positive => []
-    | 62%positive => []
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => []
-    | 66%positive => []
-    | 67%positive => []
-    | 68%positive => []
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => []
-    | 72%positive => []
-    | 73%positive => []
-    | 74%positive => []
-    | 75%positive => []
-    | 76%positive => []
-    | 77%positive => []
-    | 78%positive => []
-    | 79%positive => []
-    | 80%positive => []
-    | 81%positive => []
-    | 82%positive => []
-    | 83%positive => []
-    | 84%positive => []
-    | 85%positive => []
-    | 86%positive => []
-    | 87%positive => []
-    | 88%positive => []
-    | 89%positive => []
-    | 90%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 91%positive => []
-    | 92%positive => []
-    | 93%positive => []
-    | 94%positive => []
-    | 95%positive => []
-    | 96%positive => []
-    | 97%positive => []
-    | 98%positive => []
-    | 99%positive => []
-    | 100%positive => []
-    | 101%positive => []
-    | 102%positive => []
-    | 103%positive => []
-    | 104%positive => []
-    | 105%positive => []
-    | 106%positive => []
-    | 107%positive => []
-    | 108%positive => []
-    | 109%positive => []
-    | 110%positive => []
-    | 111%positive => []
-    | 112%positive => []
-    | 113%positive => []
-    | 114%positive => []
-    | 115%positive => []
-    | 116%positive => []
-    | 117%positive => []
-    | 118%positive => []
-    | 119%positive => []
-    | 120%positive => []
-    | 121%positive => []
-    | 122%positive => []
-    | 123%positive => []
-    | 124%positive => []
-    | 125%positive => []
-    | 126%positive => []
-    | 127%positive => []
-    | 128%positive => []
-    | 129%positive => []
-    | 130%positive => []
-    | 131%positive => []
-    | 132%positive => []
-    | 133%positive => []
-    | 134%positive => []
-    | 135%positive => []
-    | 136%positive => []
-    | 137%positive => []
-    | 138%positive => []
-    | 139%positive => []
-    | 140%positive => []
-    | 141%positive => []
-    | 142%positive => []
-    | 143%positive => []
-    | 144%positive => []
-    | 145%positive => []
-    | 146%positive => []
-    | 147%positive => []
-    | 148%positive => []
-    | 149%positive => []
-    | 150%positive => []
-    | 151%positive => []
-    | 152%positive => []
-    | 153%positive => []
-    | 154%positive => []
-    | 155%positive => []
-    | 156%positive => []
-    | 157%positive => []
-    | 158%positive => []
-    | 159%positive => []
-    | 160%positive => []
-    | 161%positive => []
-    | 162%positive => []
-    | 163%positive => []
-    | 164%positive => []
-    | 165%positive => []
-    | 166%positive => []
-    | 167%positive => []
-    | 168%positive => []
-    | 169%positive => []
-    | 170%positive => []
-    | 171%positive => []
-    | 172%positive => []
-    | 173%positive => []
-    | 174%positive => []
-    | 175%positive => []
-    | 176%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDmainGtU_z)) (0))) (F_max0_ge_0 ((s IDmainGtU_z)))]
-    | 177%positive => []
-    | 178%positive => []
-    | 179%positive => []
-    | 180%positive => []
-    | 181%positive => []
-    | 182%positive => []
-    | 183%positive => []
-    | 184%positive => []
-    | 185%positive => []
-    | 186%positive => []
-    | 187%positive => []
-    | 188%positive => []
-    | 189%positive => []
-    | 190%positive => []
-    | 191%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDmainGtU_z))) (F_check_ge ((s IDmainGtU_z)) (0))]
-    | 192%positive => []
-    | 193%positive => []
-    | 194%positive => []
-    | 195%positive => []
-    | 196%positive => []
-    | 197%positive => []
-    | 198%positive => []
-    | 199%positive => []
-    | 200%positive => []
-    | 201%positive => []
-    | 202%positive => []
-    | 203%positive => []
-    | 204%positive => []
-    | 205%positive => []
-    | 206%positive => []
-    | 207%positive => []
-    | 208%positive => []
-    | 209%positive => []
-    | 210%positive => []
-    | 211%positive => [(*-0.125 0*) F_max0_monotonic (F_check_ge (8
-                                                                  + (s IDmainGtU_k)) ((s IDmainGtU_k)));
-                       (*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 212%positive => [(*-0.125 0*) F_max0_pre_decrement (8 + (s IDmainGtU_k)) (8)]
-    | 213%positive => []
-    | 214%positive => []
-    | 215%positive => []
-    | 216%positive => []
-    | 217%positive => []
-    | 218%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDmainGtU_z))) (F_check_ge ((s IDmainGtU_z)) (0))]
-    | 219%positive => []
-    | 220%positive => []
-    | 221%positive => []
-    | 222%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDmainGtU_z))) (F_check_ge ((s IDmainGtU_z)) (0))]
-    | 223%positive => []
-    | 224%positive => []
-    | 225%positive => []
-    | 226%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 227%positive => []
-    | 228%positive => []
-    | 229%positive => []
-    | 230%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 231%positive => []
-    | 232%positive => []
-    | 233%positive => []
-    | 234%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 235%positive => []
-    | 236%positive => []
-    | 237%positive => []
-    | 238%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 239%positive => []
-    | 240%positive => []
-    | 241%positive => []
-    | 242%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 243%positive => []
-    | 244%positive => []
-    | 245%positive => []
-    | 246%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 247%positive => []
-    | 248%positive => []
-    | 249%positive => []
-    | 250%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 251%positive => []
-    | 252%positive => []
-    | 253%positive => []
-    | 254%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 255%positive => []
-    | 256%positive => []
-    | 257%positive => []
-    | 258%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 259%positive => []
-    | 260%positive => []
-    | 261%positive => []
-    | 262%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 263%positive => []
-    | 264%positive => []
-    | 265%positive => []
-    | 266%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 267%positive => []
-    | 268%positive => []
-    | 269%positive => []
-    | 270%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 271%positive => []
-    | 272%positive => []
-    | 273%positive => []
-    | 274%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 275%positive => []
-    | 276%positive => []
-    | 277%positive => []
-    | 278%positive => [(*-0.125 0*) F_max0_ge_0 ((s IDmainGtU_k))]
-    | 279%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 280%positive => []
-    | 281%positive => []
-    | 282%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 283%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 284%positive => []
-    | 285%positive => []
-    | 286%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 287%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 288%positive => []
-    | 289%positive => []
-    | 290%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 291%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 292%positive => []
-    | 293%positive => []
-    | 294%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 295%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 296%positive => []
-    | 297%positive => []
-    | 298%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 299%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 300%positive => []
-    | 301%positive => []
-    | 302%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 303%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 304%positive => []
-    | 305%positive => []
-    | 306%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 307%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 308%positive => []
-    | 309%positive => []
-    | 310%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 311%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 312%positive => []
-    | 313%positive => []
-    | 314%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 315%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 316%positive => []
-    | 317%positive => []
-    | 318%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 319%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 320%positive => []
-    | 321%positive => []
-    | 322%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 323%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDmainGtU_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDmainGtU_z)))]
-    | 324%positive => []
-    | 325%positive => []
-    | 326%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDmainGtU_z))) (F_check_ge (0) (0));
-                       (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (8
-                                                                    + (s IDmainGtU__tmp2))) (F_check_ge (0) (0))]
-    | 327%positive => []
-    | _ => []
-  end.
-
-
-Theorem mainGtU_ai_correct:
-  forall s p' s', steps (g_start mainGtU) s (g_edges mainGtU) p' s' -> mainGtU_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem mainGtU_pot_correct:
-  forall s p' s',
-    steps (g_start mainGtU) s (g_edges mainGtU) p' s' ->
-    (mainGtU_pot (g_start mainGtU) s >= mainGtU_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_mainGtU (proc_start P_mainGtU) s1 (proc_end P_mainGtU) s2 ->
+    (s2 V_mainGtU_z <= (1 # 8) * max0(8 + s1 V_mainGtU_nblock))%Q.
 Proof.
-  check_lp mainGtU_ai_correct mainGtU_hints.
+  prove_bound ipa admissible_ipa P_mainGtU.
 Qed.
-

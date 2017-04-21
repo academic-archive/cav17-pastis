@@ -1,134 +1,116 @@
 Require Import pasta.Pasta.
 
-Notation IDTIFFSwabArrayOfLong_z := 1%positive.
-Notation IDTIFFSwabArrayOfLong__tmp := 2%positive.
-Notation IDTIFFSwabArrayOfLong_t := 3%positive.
-Notation IDTIFFSwabArrayOfLong_lp := 4%positive.
-Notation IDTIFFSwabArrayOfLong_n := 5%positive.
-Definition TIFFSwabArrayOfLong : graph := {|
-  g_start := 1%positive;
-  g_end := 10%positive;
-  g_edges := (1%positive,(AAssign IDTIFFSwabArrayOfLong_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard
-             (fun s => ((eval (EVar IDTIFFSwabArrayOfLong__tmp) s) >=
-             (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,AWeaken,4%positive)::
-             (4%positive,(AAssign IDTIFFSwabArrayOfLong__tmp
-             (Some (EVar IDTIFFSwabArrayOfLong_n))),5%positive)::
-             (5%positive,ANone,6%positive)::
-             (6%positive,(AAssign IDTIFFSwabArrayOfLong__tmp
-             (Some (EAdd (EVar IDTIFFSwabArrayOfLong__tmp) (ENum (-1))))),
-             7%positive)::(7%positive,AWeaken,8%positive)::
-             (8%positive,(AGuard
-             (fun s => ((eval (EVar IDTIFFSwabArrayOfLong__tmp) s) >
-             (eval (ENum (0)) s))%Z)),11%positive)::
-             (8%positive,(AGuard
-             (fun s => ((eval (EVar IDTIFFSwabArrayOfLong__tmp) s) <=
-             (eval (ENum (0)) s))%Z)),9%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (11%positive,AWeaken,12%positive)::
-             (12%positive,(AAssign IDTIFFSwabArrayOfLong_t None),13%positive)::
-             (13%positive,(AAssign IDTIFFSwabArrayOfLong_t None),14%positive)::
-             (14%positive,ANone,15%positive)::
-             (15%positive,ANone,16%positive)::
-             (16%positive,(AAssign IDTIFFSwabArrayOfLong_z
-             (Some (EAdd (ENum (1)) (EVar IDTIFFSwabArrayOfLong_z)))),
-             6%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_TIFFSwabArrayOfLong.
 
-Definition TIFFSwabArrayOfLong_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ 1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong__tmp) <= 0)%Z
-    | 4%positive => (-1 * (s IDTIFFSwabArrayOfLong__tmp) <= 0 /\ 1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ 1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 6%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 8%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 9%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ 1 * (s IDTIFFSwabArrayOfLong__tmp) <= 0)%Z
-    | 10%positive => (1 * (s IDTIFFSwabArrayOfLong__tmp) <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong__tmp) + 1 <= 0)%Z
-    | 12%positive => (-1 * (s IDTIFFSwabArrayOfLong__tmp) + 1 <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong__tmp) + 1 <= 0)%Z
-    | 14%positive => (-1 * (s IDTIFFSwabArrayOfLong__tmp) + 1 <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | 15%positive => (-1 * (s IDTIFFSwabArrayOfLong_z) <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong__tmp) + 1 <= 0)%Z
-    | 16%positive => (-1 * (s IDTIFFSwabArrayOfLong__tmp) + 1 <= 0 /\ -1 * (s IDTIFFSwabArrayOfLong_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition TIFFSwabArrayOfLong_pot (p : node) (s : state): Q := 
+Notation V_TIFFSwabArrayOfLong_z := 1%positive.
+Notation V_TIFFSwabArrayOfLong__tmp := 2%positive.
+Notation V_TIFFSwabArrayOfLong_t := 3%positive.
+Notation V_TIFFSwabArrayOfLong_lp := 4%positive.
+Notation V_TIFFSwabArrayOfLong_n := 5%positive.
+Definition Pedges_TIFFSwabArrayOfLong: list (edge proc) :=
+  (EA 1 (AAssign V_TIFFSwabArrayOfLong_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_TIFFSwabArrayOfLong__tmp) s) >= (eval (ENum (0))
+  s))%Z)) 3)::(EA 3 AWeaken 4)::(EA 4 (AAssign V_TIFFSwabArrayOfLong__tmp
+  (Some (EVar V_TIFFSwabArrayOfLong_n))) 5)::(EA 5 ANone 6)::(EA 6 (AAssign
+  V_TIFFSwabArrayOfLong__tmp (Some (EAdd (EVar V_TIFFSwabArrayOfLong__tmp)
+  (ENum (-1))))) 7)::(EA 7 AWeaken 8)::(EA 8 (AGuard
+  (fun s => ((eval (EVar V_TIFFSwabArrayOfLong__tmp) s) > (eval (ENum (0))
+  s))%Z)) 11)::(EA 8 (AGuard
+  (fun s => ((eval (EVar V_TIFFSwabArrayOfLong__tmp) s) <= (eval (ENum (0))
+  s))%Z)) 9)::(EA 9 AWeaken 10)::(EA 11 AWeaken 12)::(EA 12 (AAssign
+  V_TIFFSwabArrayOfLong_t None) 13)::(EA 13 (AAssign V_TIFFSwabArrayOfLong_t
+  None) 14)::(EA 14 ANone 15)::(EA 15 ANone 16)::(EA 16 (AAssign
+  V_TIFFSwabArrayOfLong_z (Some (EAdd (ENum (1))
+  (EVar V_TIFFSwabArrayOfLong_z)))) 6)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_TIFFSwabArrayOfLong => Pedges_TIFFSwabArrayOfLong
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_TIFFSwabArrayOfLong => 10
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_TIFFSwabArrayOfLong (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ -1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 3 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ 1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ -1 * s V_TIFFSwabArrayOfLong__tmp <= 0)%Z
+   | 4 => (-1 * s V_TIFFSwabArrayOfLong__tmp <= 0 /\ 1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ -1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 5 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ 1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 6 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 7 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 8 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 9 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ 1 * s V_TIFFSwabArrayOfLong__tmp <= 0)%Z
+   | 10 => (1 * s V_TIFFSwabArrayOfLong__tmp <= 0 /\ -1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 11 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ -1 * s V_TIFFSwabArrayOfLong__tmp + 1 <= 0)%Z
+   | 12 => (-1 * s V_TIFFSwabArrayOfLong__tmp + 1 <= 0 /\ -1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 13 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ -1 * s V_TIFFSwabArrayOfLong__tmp + 1 <= 0)%Z
+   | 14 => (-1 * s V_TIFFSwabArrayOfLong__tmp + 1 <= 0 /\ -1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | 15 => (-1 * s V_TIFFSwabArrayOfLong_z <= 0 /\ -1 * s V_TIFFSwabArrayOfLong__tmp + 1 <= 0)%Z
+   | 16 => (-1 * s V_TIFFSwabArrayOfLong__tmp + 1 <= 0 /\ -1 * s V_TIFFSwabArrayOfLong_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_TIFFSwabArrayOfLong (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(-1 + s V_TIFFSwabArrayOfLong_n) <= z)%Q
+   | 2 => (s V_TIFFSwabArrayOfLong_z + max0(-1 + s V_TIFFSwabArrayOfLong_n) <= z)%Q
+   | 3 => (s V_TIFFSwabArrayOfLong_z + max0(-1 + s V_TIFFSwabArrayOfLong_n) <= z)%Q
+   | 4 => (s V_TIFFSwabArrayOfLong_z + max0(-1 + s V_TIFFSwabArrayOfLong_n) <= z)%Q
+   | 5 => (s V_TIFFSwabArrayOfLong_z
+           + max0(-1 + s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 6 => (s V_TIFFSwabArrayOfLong_z
+           + max0(-1 + s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 7 => (s V_TIFFSwabArrayOfLong_z + max0(s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 8 => (s V_TIFFSwabArrayOfLong_z + max0(s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 9 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (s V_TIFFSwabArrayOfLong__tmp) (-1
+                                                                    + s V_TIFFSwabArrayOfLong__tmp));
+      (*-1 0*) F_max0_ge_0 (-1 + s V_TIFFSwabArrayOfLong__tmp)]
+     (s V_TIFFSwabArrayOfLong_z + max0(s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 10 => (s V_TIFFSwabArrayOfLong_z <= z)%Q
+   | 11 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_TIFFSwabArrayOfLong__tmp) (1)]
+     (s V_TIFFSwabArrayOfLong_z + max0(s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 12 => ((1 # 1) + s V_TIFFSwabArrayOfLong_z
+            + max0(-1 + s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 13 => ((1 # 1) + s V_TIFFSwabArrayOfLong_z
+            + max0(-1 + s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 14 => ((1 # 1) + s V_TIFFSwabArrayOfLong_z
+            + max0(-1 + s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 15 => ((1 # 1) + s V_TIFFSwabArrayOfLong_z
+            + max0(-1 + s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | 16 => ((1 # 1) + s V_TIFFSwabArrayOfLong_z
+            + max0(-1 + s V_TIFFSwabArrayOfLong__tmp) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0(-1 + (s IDTIFFSwabArrayOfLong_n)))%Q
-    | 2%positive => ((s IDTIFFSwabArrayOfLong_z)
-                     + max0(-1 + (s IDTIFFSwabArrayOfLong_n)))%Q
-    | 3%positive => ((s IDTIFFSwabArrayOfLong_z)
-                     + max0(-1 + (s IDTIFFSwabArrayOfLong_n)))%Q
-    | 4%positive => ((s IDTIFFSwabArrayOfLong_z)
-                     + max0(-1 + (s IDTIFFSwabArrayOfLong_n)))%Q
-    | 5%positive => ((s IDTIFFSwabArrayOfLong_z)
-                     + max0(-1 + (s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 6%positive => ((s IDTIFFSwabArrayOfLong_z)
-                     + max0(-1 + (s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 7%positive => ((s IDTIFFSwabArrayOfLong_z)
-                     + max0((s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 8%positive => ((s IDTIFFSwabArrayOfLong_z)
-                     + max0((s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 9%positive => ((s IDTIFFSwabArrayOfLong_z)
-                     + max0((s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 10%positive => ((s IDTIFFSwabArrayOfLong_z))%Q
-    | 11%positive => ((s IDTIFFSwabArrayOfLong_z)
-                      + max0((s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 12%positive => ((1 # 1) + (s IDTIFFSwabArrayOfLong_z)
-                      + max0(-1 + (s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 13%positive => ((1 # 1) + (s IDTIFFSwabArrayOfLong_z)
-                      + max0(-1 + (s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 14%positive => ((1 # 1) + (s IDTIFFSwabArrayOfLong_z)
-                      + max0(-1 + (s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 15%positive => ((1 # 1) + (s IDTIFFSwabArrayOfLong_z)
-                      + max0(-1 + (s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | 16%positive => ((1 # 1) + (s IDTIFFSwabArrayOfLong_z)
-                      + max0(-1 + (s IDTIFFSwabArrayOfLong__tmp)))%Q
-    | _ => (0 # 1)%Q
+  | P_TIFFSwabArrayOfLong =>
+    [mkPA Q (fun n z s => ai_TIFFSwabArrayOfLong n s /\ annot0_TIFFSwabArrayOfLong n z s)]
   end.
 
-Definition TIFFSwabArrayOfLong_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => [(*-1 0*) F_max0_monotonic (F_check_ge ((s IDTIFFSwabArrayOfLong__tmp)) (-1
-                                                                    + (s IDTIFFSwabArrayOfLong__tmp)));
-                     (*-1 0*) F_max0_ge_0 (-1
-                                           + (s IDTIFFSwabArrayOfLong__tmp))]
-    | 10%positive => []
-    | 11%positive => [(*-1 0*) F_max0_pre_decrement ((s IDTIFFSwabArrayOfLong__tmp)) (1)]
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | _ => []
-  end.
-
-
-Theorem TIFFSwabArrayOfLong_ai_correct:
-  forall s p' s', steps (g_start TIFFSwabArrayOfLong) s (g_edges TIFFSwabArrayOfLong) p' s' -> TIFFSwabArrayOfLong_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem TIFFSwabArrayOfLong_pot_correct:
-  forall s p' s',
-    steps (g_start TIFFSwabArrayOfLong) s (g_edges TIFFSwabArrayOfLong) p' s' ->
-    (TIFFSwabArrayOfLong_pot (g_start TIFFSwabArrayOfLong) s >= TIFFSwabArrayOfLong_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_TIFFSwabArrayOfLong (proc_start P_TIFFSwabArrayOfLong) s1 (proc_end P_TIFFSwabArrayOfLong) s2 ->
+    (s2 V_TIFFSwabArrayOfLong_z <= max0(-1 + s1 V_TIFFSwabArrayOfLong_n))%Q.
 Proof.
-  check_lp TIFFSwabArrayOfLong_ai_correct TIFFSwabArrayOfLong_hints.
+  prove_bound ipa admissible_ipa P_TIFFSwabArrayOfLong.
 Qed.
-

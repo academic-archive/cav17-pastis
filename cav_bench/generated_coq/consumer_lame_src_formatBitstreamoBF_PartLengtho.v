@@ -1,163 +1,137 @@
 Require Import pasta.Pasta.
 
-Notation IDBF_PartLength_z := 1%positive.
-Notation IDBF_PartLength_bits := 2%positive.
-Notation IDBF_PartLength_i := 3%positive.
-Notation IDBF_PartLength_part_dref_off0 := 4%positive.
-Notation IDBF_PartLength_part := 5%positive.
-Definition BF_PartLength : graph := {|
-  g_start := 1%positive;
-  g_end := 11%positive;
-  g_edges := (1%positive,(AAssign IDBF_PartLength_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard
-             (fun s => ((eval (EVar IDBF_PartLength_part_dref_off0) s) >=
-             (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,(AGuard (fun s => ((eval (EVar IDBF_PartLength_i)
-             s) >= (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AAssign IDBF_PartLength_bits (Some (ENum (0)))),
-             6%positive)::
-             (6%positive,(AAssign IDBF_PartLength_i (Some (ENum (0)))),
-             7%positive)::(7%positive,ANone,8%positive)::
-             (8%positive,AWeaken,9%positive)::
-             (9%positive,(AGuard (fun s => ((eval (EVar IDBF_PartLength_i)
-             s) < (eval (EVar IDBF_PartLength_part_dref_off0) s))%Z)),
-             12%positive)::
-             (9%positive,(AGuard (fun s => ((eval (EVar IDBF_PartLength_i)
-             s) >= (eval (EVar IDBF_PartLength_part_dref_off0) s))%Z)),
-             10%positive)::(10%positive,AWeaken,11%positive)::
-             (12%positive,AWeaken,13%positive)::
-             (13%positive,(AAssign IDBF_PartLength_bits None),14%positive)::
-             (14%positive,ANone,15%positive)::
-             (15%positive,(AAssign IDBF_PartLength_i
-             (Some (EAdd (EVar IDBF_PartLength_i) (ENum (1))))),16%positive)::
-             (16%positive,ANone,17%positive)::
-             (17%positive,ANone,18%positive)::
-             (18%positive,(AAssign IDBF_PartLength_z (Some (EAdd (ENum (1))
-             (EVar IDBF_PartLength_z)))),19%positive)::
-             (19%positive,AWeaken,9%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_BF_PartLength.
 
-Definition BF_PartLength_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDBF_PartLength_z) <= 0 /\ 1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_part_dref_off0) <= 0)%Z
-    | 4%positive => (-1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ 1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_i) <= 0)%Z
-    | 5%positive => (-1 * (s IDBF_PartLength_i) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ 1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_part_dref_off0) <= 0)%Z
-    | 6%positive => (-1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ 1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_i) <= 0 /\ 1 * (s IDBF_PartLength_bits) <= 0 /\ -1 * (s IDBF_PartLength_bits) <= 0)%Z
-    | 7%positive => (-1 * (s IDBF_PartLength_bits) <= 0 /\ 1 * (s IDBF_PartLength_bits) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ 1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ 1 * (s IDBF_PartLength_i) <= 0 /\ -1 * (s IDBF_PartLength_i) <= 0)%Z
-    | 8%positive => (-1 * (s IDBF_PartLength_i) <= 0 /\ 1 * (s IDBF_PartLength_i) <= 0 /\ -1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ 1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ 1 * (s IDBF_PartLength_bits) <= 0 /\ -1 * (s IDBF_PartLength_bits) <= 0)%Z
-    | 9%positive => (-1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_i) <= 0 /\ 1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) <= 0)%Z
-    | 10%positive => (1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ -1 * (s IDBF_PartLength_i) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_i)+ 1 * (s IDBF_PartLength_part_dref_off0) <= 0)%Z
-    | 11%positive => (-1 * (s IDBF_PartLength_i)+ 1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_i) <= 0 /\ 1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) <= 0)%Z
-    | 12%positive => (-1 * (s IDBF_PartLength_i) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ 1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) + 1 <= 0)%Z
-    | 13%positive => (1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) + 1 <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_i) <= 0)%Z
-    | 14%positive => (-1 * (s IDBF_PartLength_i) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ 1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) + 1 <= 0)%Z
-    | 15%positive => (1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) + 1 <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0 /\ -1 * (s IDBF_PartLength_i) <= 0)%Z
-    | 16%positive => (-1 * (s IDBF_PartLength_z) <= 0 /\ 1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ -1 * (s IDBF_PartLength_i) + 1 <= 0)%Z
-    | 17%positive => (-1 * (s IDBF_PartLength_i) + 1 <= 0 /\ 1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ -1 * (s IDBF_PartLength_z) <= 0)%Z
-    | 18%positive => (-1 * (s IDBF_PartLength_z) <= 0 /\ 1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ -1 * (s IDBF_PartLength_i) + 1 <= 0)%Z
-    | 19%positive => (-1 * (s IDBF_PartLength_i) + 1 <= 0 /\ 1 * (s IDBF_PartLength_i)+ -1 * (s IDBF_PartLength_part_dref_off0) <= 0 /\ -1 * (s IDBF_PartLength_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition BF_PartLength_pot (p : node) (s : state): Q := 
+Notation V_BF_PartLength_z := 1%positive.
+Notation V_BF_PartLength_bits := 2%positive.
+Notation V_BF_PartLength_i := 3%positive.
+Notation V_BF_PartLength_part_dref_off0 := 4%positive.
+Notation V_BF_PartLength_part := 5%positive.
+Definition Pedges_BF_PartLength: list (edge proc) :=
+  (EA 1 (AAssign V_BF_PartLength_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_BF_PartLength_part_dref_off0) s) >=
+  (eval (ENum (0)) s))%Z)) 3)::(EA 3 (AGuard
+  (fun s => ((eval (EVar V_BF_PartLength_i) s) >= (eval (ENum (0))
+  s))%Z)) 4)::(EA 4 AWeaken 5)::(EA 5 (AAssign V_BF_PartLength_bits
+  (Some (ENum (0)))) 6)::(EA 6 (AAssign V_BF_PartLength_i
+  (Some (ENum (0)))) 7)::(EA 7 ANone 8)::(EA 8 AWeaken 9)::(EA 9 (AGuard
+  (fun s => ((eval (EVar V_BF_PartLength_i) s) <
+  (eval (EVar V_BF_PartLength_part_dref_off0) s))%Z)) 12)::(EA 9 (AGuard
+  (fun s => ((eval (EVar V_BF_PartLength_i) s) >=
+  (eval (EVar V_BF_PartLength_part_dref_off0) s))%Z)) 10)::
+  (EA 10 AWeaken 11)::(EA 12 AWeaken 13)::(EA 13 (AAssign
+  V_BF_PartLength_bits None) 14)::(EA 14 ANone 15)::(EA 15 (AAssign
+  V_BF_PartLength_i (Some (EAdd (EVar V_BF_PartLength_i) (ENum (1))))) 16)::
+  (EA 16 ANone 17)::(EA 17 ANone 18)::(EA 18 (AAssign V_BF_PartLength_z
+  (Some (EAdd (ENum (1)) (EVar V_BF_PartLength_z)))) 19)::(EA 19 AWeaken 9)::
+  nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_BF_PartLength => Pedges_BF_PartLength
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_BF_PartLength => 11
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_BF_PartLength (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_z <= 0)%Z
+   | 3 => (-1 * s V_BF_PartLength_z <= 0 /\ 1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_part_dref_off0 <= 0)%Z
+   | 4 => (-1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ 1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_i <= 0)%Z
+   | 5 => (-1 * s V_BF_PartLength_i <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ 1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_part_dref_off0 <= 0)%Z
+   | 6 => (-1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ 1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_i <= 0 /\ 1 * s V_BF_PartLength_bits <= 0 /\ -1 * s V_BF_PartLength_bits <= 0)%Z
+   | 7 => (-1 * s V_BF_PartLength_bits <= 0 /\ 1 * s V_BF_PartLength_bits <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ 1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ 1 * s V_BF_PartLength_i <= 0 /\ -1 * s V_BF_PartLength_i <= 0)%Z
+   | 8 => (-1 * s V_BF_PartLength_i <= 0 /\ 1 * s V_BF_PartLength_i <= 0 /\ -1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ 1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ 1 * s V_BF_PartLength_bits <= 0 /\ -1 * s V_BF_PartLength_bits <= 0)%Z
+   | 9 => (-1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_i <= 0 /\ 1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 <= 0)%Z
+   | 10 => (1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ -1 * s V_BF_PartLength_i <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_i+ 1 * s V_BF_PartLength_part_dref_off0 <= 0)%Z
+   | 11 => (-1 * s V_BF_PartLength_i+ 1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_i <= 0 /\ 1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 <= 0)%Z
+   | 12 => (-1 * s V_BF_PartLength_i <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ 1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 + 1 <= 0)%Z
+   | 13 => (1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 + 1 <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_i <= 0)%Z
+   | 14 => (-1 * s V_BF_PartLength_i <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ 1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 + 1 <= 0)%Z
+   | 15 => (1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 + 1 <= 0 /\ -1 * s V_BF_PartLength_z <= 0 /\ -1 * s V_BF_PartLength_i <= 0)%Z
+   | 16 => (-1 * s V_BF_PartLength_z <= 0 /\ 1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ -1 * s V_BF_PartLength_i + 1 <= 0)%Z
+   | 17 => (-1 * s V_BF_PartLength_i + 1 <= 0 /\ 1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ -1 * s V_BF_PartLength_z <= 0)%Z
+   | 18 => (-1 * s V_BF_PartLength_z <= 0 /\ 1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ -1 * s V_BF_PartLength_i + 1 <= 0)%Z
+   | 19 => (-1 * s V_BF_PartLength_i + 1 <= 0 /\ 1 * s V_BF_PartLength_i+ -1 * s V_BF_PartLength_part_dref_off0 <= 0 /\ -1 * s V_BF_PartLength_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_BF_PartLength (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 2 => (s V_BF_PartLength_z + max0(s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 3 => (s V_BF_PartLength_z + max0(s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 4 => (s V_BF_PartLength_z + max0(s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 5 => (s V_BF_PartLength_z + max0(s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 6 => (s V_BF_PartLength_z + max0(s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 7 => (s V_BF_PartLength_z
+           + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 8 => (s V_BF_PartLength_z
+           + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 9 => (s V_BF_PartLength_z
+           + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 10 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-s V_BF_PartLength_i
+                                             + s V_BF_PartLength_part_dref_off0) (-1
+                                                                    - s V_BF_PartLength_i
+                                                                    + s V_BF_PartLength_part_dref_off0));
+      (*-1 0*) F_max0_ge_0 (-1 - s V_BF_PartLength_i
+                            + s V_BF_PartLength_part_dref_off0)]
+     (s V_BF_PartLength_z
+      + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 11 => (s V_BF_PartLength_z <= z)%Q
+   | 12 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (-s V_BF_PartLength_i
+                                       + s V_BF_PartLength_part_dref_off0) (1)]
+     (s V_BF_PartLength_z
+      + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 13 => ((1 # 1) + s V_BF_PartLength_z
+            + max0(-1 - s V_BF_PartLength_i
+                   + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 14 => ((1 # 1) + s V_BF_PartLength_z
+            + max0(-1 - s V_BF_PartLength_i
+                   + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 15 => ((1 # 1) + s V_BF_PartLength_z
+            + max0(-1 - s V_BF_PartLength_i
+                   + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 16 => ((1 # 1) + s V_BF_PartLength_z
+            + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 17 => ((1 # 1) + s V_BF_PartLength_z
+            + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 18 => ((1 # 1) + s V_BF_PartLength_z
+            + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | 19 => (s V_BF_PartLength_z
+            + max0(-s V_BF_PartLength_i + s V_BF_PartLength_part_dref_off0) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDBF_PartLength_part_dref_off0)))%Q
-    | 2%positive => ((s IDBF_PartLength_z)
-                     + max0((s IDBF_PartLength_part_dref_off0)))%Q
-    | 3%positive => ((s IDBF_PartLength_z)
-                     + max0((s IDBF_PartLength_part_dref_off0)))%Q
-    | 4%positive => ((s IDBF_PartLength_z)
-                     + max0((s IDBF_PartLength_part_dref_off0)))%Q
-    | 5%positive => ((s IDBF_PartLength_z)
-                     + max0((s IDBF_PartLength_part_dref_off0)))%Q
-    | 6%positive => ((s IDBF_PartLength_z)
-                     + max0((s IDBF_PartLength_part_dref_off0)))%Q
-    | 7%positive => ((s IDBF_PartLength_z)
-                     + max0(-(s IDBF_PartLength_i)
-                            + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 8%positive => ((s IDBF_PartLength_z)
-                     + max0(-(s IDBF_PartLength_i)
-                            + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 9%positive => ((s IDBF_PartLength_z)
-                     + max0(-(s IDBF_PartLength_i)
-                            + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 10%positive => ((s IDBF_PartLength_z)
-                      + max0(-(s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 11%positive => ((s IDBF_PartLength_z))%Q
-    | 12%positive => ((s IDBF_PartLength_z)
-                      + max0(-(s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 13%positive => ((1 # 1) + (s IDBF_PartLength_z)
-                      + max0(-1 - (s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 14%positive => ((1 # 1) + (s IDBF_PartLength_z)
-                      + max0(-1 - (s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 15%positive => ((1 # 1) + (s IDBF_PartLength_z)
-                      + max0(-1 - (s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 16%positive => ((1 # 1) + (s IDBF_PartLength_z)
-                      + max0(-(s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 17%positive => ((1 # 1) + (s IDBF_PartLength_z)
-                      + max0(-(s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 18%positive => ((1 # 1) + (s IDBF_PartLength_z)
-                      + max0(-(s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | 19%positive => ((s IDBF_PartLength_z)
-                      + max0(-(s IDBF_PartLength_i)
-                             + (s IDBF_PartLength_part_dref_off0)))%Q
-    | _ => (0 # 1)%Q
+  | P_BF_PartLength =>
+    [mkPA Q (fun n z s => ai_BF_PartLength n s /\ annot0_BF_PartLength n z s)]
   end.
 
-Definition BF_PartLength_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-(s IDBF_PartLength_i)
-                                                             + (s IDBF_PartLength_part_dref_off0)) (-1
-                                                                    - (s IDBF_PartLength_i)
-                                                                    + (s IDBF_PartLength_part_dref_off0)));
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDBF_PartLength_i)
-                                            + (s IDBF_PartLength_part_dref_off0))]
-    | 11%positive => []
-    | 12%positive => [(*-1 0*) F_max0_pre_decrement (-(s IDBF_PartLength_i)
-                                                     + (s IDBF_PartLength_part_dref_off0)) (1)]
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | _ => []
-  end.
-
-
-Theorem BF_PartLength_ai_correct:
-  forall s p' s', steps (g_start BF_PartLength) s (g_edges BF_PartLength) p' s' -> BF_PartLength_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem BF_PartLength_pot_correct:
-  forall s p' s',
-    steps (g_start BF_PartLength) s (g_edges BF_PartLength) p' s' ->
-    (BF_PartLength_pot (g_start BF_PartLength) s >= BF_PartLength_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_BF_PartLength (proc_start P_BF_PartLength) s1 (proc_end P_BF_PartLength) s2 ->
+    (s2 V_BF_PartLength_z <= max0(s1 V_BF_PartLength_part_dref_off0))%Q.
 Proof.
-  check_lp BF_PartLength_ai_correct BF_PartLength_hints.
+  prove_bound ipa admissible_ipa P_BF_PartLength.
 Qed.
-

@@ -1,95 +1,93 @@
 Require Import pasta.Pasta.
 
-Notation IDigs_init_z := 1%positive.
-Notation IDigs_init_i := 2%positive.
-Definition igs_init : graph := {|
-  g_start := 1%positive;
-  g_end := 9%positive;
-  g_edges := (1%positive,(AAssign IDigs_init_z (Some (ENum (0)))),2%positive)::
-             (2%positive,(AAssign IDigs_init_i (Some (ENum (25)))),
-             3%positive)::(3%positive,ANone,4%positive)::
-             (4%positive,ANone,5%positive)::
-             (5%positive,(AAssign IDigs_init_i
-             (Some (EAdd (EVar IDigs_init_i) (ENum (-1))))),6%positive)::
-             (6%positive,AWeaken,7%positive)::
-             (7%positive,(AGuard (fun s => ((eval (EAdd (EVar IDigs_init_i)
-             (ENum (-1))) s) <> (eval (ENum (0)) s))%Z)),10%positive)::
-             (7%positive,(AGuard (fun s => ((eval (EAdd (EVar IDigs_init_i)
-             (ENum (-1))) s) = (eval (ENum (0)) s))%Z)),8%positive)::
-             (8%positive,AWeaken,9%positive)::
-             (10%positive,AWeaken,11%positive)::
-             (11%positive,ANone,12%positive)::
-             (12%positive,(AAssign IDigs_init_z (Some (EAdd (ENum (1))
-             (EVar IDigs_init_z)))),4%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_igs_init.
 
-Definition igs_init_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDigs_init_z) <= 0 /\ -1 * (s IDigs_init_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDigs_init_z) <= 0 /\ 1 * (s IDigs_init_z) <= 0 /\ 1 * (s IDigs_init_i) + -25 <= 0 /\ -1 * (s IDigs_init_i) + 25 <= 0)%Z
-    | 4%positive => (1 * (s IDigs_init_i) + -25 <= 0 /\ -1 * (s IDigs_init_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDigs_init_z) <= 0 /\ 1 * (s IDigs_init_i) + -25 <= 0)%Z
-    | 6%positive => (-1 * (s IDigs_init_z) <= 0 /\ 1 * (s IDigs_init_i) + -24 <= 0)%Z
-    | 7%positive => (1 * (s IDigs_init_i) + -24 <= 0 /\ -1 * (s IDigs_init_z) <= 0)%Z
-    | 8%positive => (-1 * (s IDigs_init_z) <= 0 /\ 1 * (s IDigs_init_i) + -1 <= 0 /\ -1 * (s IDigs_init_i) + 1 <= 0)%Z
-    | 9%positive => (-1 * (s IDigs_init_i) + 1 <= 0 /\ 1 * (s IDigs_init_i) + -1 <= 0 /\ -1 * (s IDigs_init_z) <= 0)%Z
-    | 10%positive => (-1 * (s IDigs_init_z) <= 0 /\ 1 * (s IDigs_init_i) + -24 <= 0)%Z
-    | 11%positive => (1 * (s IDigs_init_i) + -24 <= 0 /\ -1 * (s IDigs_init_z) <= 0)%Z
-    | 12%positive => (-1 * (s IDigs_init_z) <= 0 /\ 1 * (s IDigs_init_i) + -24 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition igs_init_pot (p : node) (s : state): Q := 
+Notation V_igs_init_z := 1%positive.
+Notation V_igs_init_i := 2%positive.
+Definition Pedges_igs_init: list (edge proc) :=
+  (EA 1 (AAssign V_igs_init_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_igs_init_i (Some (ENum (25)))) 3)::(EA 3 ANone 4)::(EA 4 ANone 5)::
+  (EA 5 (AAssign V_igs_init_i (Some (EAdd (EVar V_igs_init_i)
+  (ENum (-1))))) 6)::(EA 6 AWeaken 7)::(EA 7 (AGuard
+  (fun s => ((eval (EAdd (EVar V_igs_init_i) (ENum (-1))) s) <>
+  (eval (ENum (0)) s))%Z)) 10)::(EA 7 (AGuard
+  (fun s => ((eval (EAdd (EVar V_igs_init_i) (ENum (-1))) s) =
+  (eval (ENum (0)) s))%Z)) 8)::(EA 8 AWeaken 9)::(EA 10 AWeaken 11)::
+  (EA 11 ANone 12)::(EA 12 (AAssign V_igs_init_z (Some (EAdd (ENum (1))
+  (EVar V_igs_init_z)))) 4)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_igs_init => Pedges_igs_init
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_igs_init => 9
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_igs_init (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_igs_init_z <= 0 /\ -1 * s V_igs_init_z <= 0)%Z
+   | 3 => (-1 * s V_igs_init_z <= 0 /\ 1 * s V_igs_init_z <= 0 /\ 1 * s V_igs_init_i + -25 <= 0 /\ -1 * s V_igs_init_i + 25 <= 0)%Z
+   | 4 => (1 * s V_igs_init_i + -25 <= 0 /\ -1 * s V_igs_init_z <= 0)%Z
+   | 5 => (-1 * s V_igs_init_z <= 0 /\ 1 * s V_igs_init_i + -25 <= 0)%Z
+   | 6 => (-1 * s V_igs_init_z <= 0 /\ 1 * s V_igs_init_i + -24 <= 0)%Z
+   | 7 => (1 * s V_igs_init_i + -24 <= 0 /\ -1 * s V_igs_init_z <= 0)%Z
+   | 8 => (-1 * s V_igs_init_z <= 0 /\ 1 * s V_igs_init_i + -1 <= 0 /\ -1 * s V_igs_init_i + 1 <= 0)%Z
+   | 9 => (-1 * s V_igs_init_i + 1 <= 0 /\ 1 * s V_igs_init_i + -1 <= 0 /\ -1 * s V_igs_init_z <= 0)%Z
+   | 10 => (-1 * s V_igs_init_z <= 0 /\ 1 * s V_igs_init_i + -24 <= 0)%Z
+   | 11 => (1 * s V_igs_init_i + -24 <= 0 /\ -1 * s V_igs_init_z <= 0)%Z
+   | 12 => (-1 * s V_igs_init_z <= 0 /\ 1 * s V_igs_init_i + -24 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_igs_init (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((23 # 1) <= z)%Q
+   | 2 => ((23 # 1) + s V_igs_init_z <= z)%Q
+   | 3 => (-(2 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | 4 => (-(2 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | 5 => (-(2 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | 6 => (-(1 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | 7 => (-(1 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | 8 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_igs_init_i)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                               + s V_igs_init_i) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_igs_init_i))]
+     (-(1 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | 9 => (s V_igs_init_z <= z)%Q
+   | 10 => (-(1 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | 11 => (-(1 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | 12 => (-(1 # 1) + s V_igs_init_i + s V_igs_init_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((23 # 1))%Q
-    | 2%positive => ((23 # 1) + (s IDigs_init_z))%Q
-    | 3%positive => (-(2 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | 4%positive => (-(2 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | 5%positive => (-(2 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | 6%positive => (-(1 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | 7%positive => (-(1 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | 8%positive => (-(1 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | 9%positive => ((s IDigs_init_z))%Q
-    | 10%positive => (-(1 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | 11%positive => (-(1 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | 12%positive => (-(1 # 1) + (s IDigs_init_i) + (s IDigs_init_z))%Q
-    | _ => (0 # 1)%Q
+  | P_igs_init =>
+    [mkPA Q (fun n z s => ai_igs_init n s /\ annot0_igs_init n z s)]
   end.
 
-Definition igs_init_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                + (s IDigs_init_i))) (F_check_ge (0) (0));
-                     (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDigs_init_i)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDigs_init_i)))]
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | _ => []
-  end.
-
-
-Theorem igs_init_ai_correct:
-  forall s p' s', steps (g_start igs_init) s (g_edges igs_init) p' s' -> igs_init_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem igs_init_pot_correct:
-  forall s p' s',
-    steps (g_start igs_init) s (g_edges igs_init) p' s' ->
-    (igs_init_pot (g_start igs_init) s >= igs_init_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_igs_init (proc_start P_igs_init) s1 (proc_end P_igs_init) s2 ->
+    (s2 V_igs_init_z <= (23 # 1))%Q.
 Proof.
-  check_lp igs_init_ai_correct igs_init_hints.
+  prove_bound ipa admissible_ipa P_igs_init.
 Qed.
-

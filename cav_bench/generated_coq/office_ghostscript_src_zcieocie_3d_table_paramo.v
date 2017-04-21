@@ -1,371 +1,263 @@
 Require Import pasta.Pasta.
 
-Notation IDcie_3d_table_param_z := 1%positive.
-Notation IDcie_3d_table_param__tmp := 2%positive.
-Notation IDcie_3d_table_param__tmp1 := 3%positive.
-Notation IDcie_3d_table_param__tmp2 := 4%positive.
-Notation IDcie_3d_table_param_i := 5%positive.
-Notation IDcie_3d_table_param_count := 6%positive.
-Notation IDcie_3d_table_param_nbytes := 7%positive.
-Notation IDcie_3d_table_param_ptable := 8%positive.
-Notation IDcie_3d_table_param_strings := 9%positive.
-Definition cie_3d_table_param : graph := {|
-  g_start := 1%positive;
-  g_end := 51%positive;
-  g_edges := (1%positive,(AAssign IDcie_3d_table_param_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard
-             (fun s => ((eval (EVar IDcie_3d_table_param_i) s) >=
-             (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,(AGuard
-             (fun s => ((eval (EVar IDcie_3d_table_param__tmp) s) >=
-             (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AAssign IDcie_3d_table_param__tmp
-             (Some (EVar IDcie_3d_table_param_count))),6%positive)::
-             (6%positive,(AAssign IDcie_3d_table_param__tmp2
-             (Some (EVar IDcie_3d_table_param_nbytes))),7%positive)::
-             (7%positive,AWeaken,8%positive)::
-             (8%positive,ANone,17%positive)::(8%positive,ANone,9%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,ANone,15%positive)::
-             (10%positive,ANone,11%positive)::
-             (11%positive,ANone,12%positive)::
-             (12%positive,(AAssign IDcie_3d_table_param__tmp1 None),
-             13%positive)::(13%positive,ANone,14%positive)::
-             (14%positive,AWeaken,51%positive)::
-             (15%positive,ANone,16%positive)::
-             (16%positive,AWeaken,51%positive)::
-             (17%positive,AWeaken,18%positive)::
-             (18%positive,ANone,48%positive)::
-             (18%positive,ANone,19%positive)::
-             (19%positive,(AAssign IDcie_3d_table_param_i (Some (ENum (0)))),
-             20%positive)::(20%positive,ANone,21%positive)::
-             (21%positive,AWeaken,22%positive)::
-             (22%positive,(AGuard
-             (fun s => ((eval (EVar IDcie_3d_table_param_i) s) <
-             (eval (EVar IDcie_3d_table_param__tmp) s))%Z)),27%positive)::
-             (22%positive,(AGuard
-             (fun s => ((eval (EVar IDcie_3d_table_param_i) s) >=
-             (eval (EVar IDcie_3d_table_param__tmp) s))%Z)),23%positive)::
-             (23%positive,AWeaken,24%positive)::
-             (24%positive,(AAssign IDcie_3d_table_param__tmp1
-             (Some (ENum (0)))),25%positive)::
-             (25%positive,ANone,26%positive)::
-             (26%positive,AWeaken,51%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,ANone,37%positive)::
-             (28%positive,ANone,29%positive)::
-             (29%positive,AWeaken,30%positive)::
-             (30%positive,ANone,35%positive)::
-             (30%positive,ANone,31%positive)::
-             (31%positive,ANone,32%positive)::
-             (32%positive,(AAssign IDcie_3d_table_param__tmp1 None),
-             33%positive)::(33%positive,ANone,34%positive)::
-             (34%positive,AWeaken,51%positive)::
-             (35%positive,ANone,36%positive)::
-             (36%positive,AWeaken,51%positive)::
-             (37%positive,AWeaken,38%positive)::
-             (38%positive,ANone,45%positive)::
-             (38%positive,ANone,39%positive)::
-             (39%positive,ANone,40%positive)::
-             (40%positive,(AAssign IDcie_3d_table_param_i
-             (Some (EAdd (EVar IDcie_3d_table_param_i) (ENum (1))))),
-             41%positive)::(41%positive,ANone,42%positive)::
-             (42%positive,ANone,43%positive)::
-             (43%positive,(AAssign IDcie_3d_table_param_z
-             (Some (EAdd (ENum (1)) (EVar IDcie_3d_table_param_z)))),
-             44%positive)::(44%positive,AWeaken,22%positive)::
-             (45%positive,(AAssign IDcie_3d_table_param__tmp1
-             (Some (ENum (-15)))),46%positive)::
-             (46%positive,ANone,47%positive)::
-             (47%positive,AWeaken,51%positive)::
-             (48%positive,(AAssign IDcie_3d_table_param__tmp1
-             (Some (ENum (-15)))),49%positive)::
-             (49%positive,ANone,50%positive)::
-             (50%positive,AWeaken,51%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_cie_3d_table_param.
 
-Definition cie_3d_table_param_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 4%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp) <= 0)%Z
-    | 5%positive => (-1 * (s IDcie_3d_table_param__tmp) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 6%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 8%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 9%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 10%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 12%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 14%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 15%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 16%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 17%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 18%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 19%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 20%positive => (1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 21%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 22%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 23%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param__tmp)+ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 24%positive => (1 * (s IDcie_3d_table_param__tmp)+ -1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 25%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param__tmp)+ -1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param__tmp1) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp1) <= 0)%Z
-    | 26%positive => (-1 * (s IDcie_3d_table_param__tmp1) <= 0 /\ 1 * (s IDcie_3d_table_param__tmp1) <= 0 /\ 1 * (s IDcie_3d_table_param__tmp)+ -1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 27%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 28%positive => (-1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 29%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 30%positive => (-1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 31%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 32%positive => (-1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 33%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 34%positive => (-1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 35%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 36%positive => (-1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 37%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 38%positive => (-1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 39%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 40%positive => (-1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 41%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 42%positive => (-1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | 43%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 44%positive => (-1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) + 1 <= 0)%Z
-    | 45%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 46%positive => (-1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param__tmp1) + 15 <= 0 /\ -1 * (s IDcie_3d_table_param__tmp1) + -15 <= 0)%Z
-    | 47%positive => (-1 * (s IDcie_3d_table_param__tmp1) + -15 <= 0 /\ 1 * (s IDcie_3d_table_param__tmp1) + 15 <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param__tmp)+ 1 * (s IDcie_3d_table_param_i) + 1 <= 0)%Z
-    | 48%positive => (-1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 49%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param__tmp1) + 15 <= 0 /\ -1 * (s IDcie_3d_table_param__tmp1) + -15 <= 0)%Z
-    | 50%positive => (-1 * (s IDcie_3d_table_param__tmp1) + -15 <= 0 /\ 1 * (s IDcie_3d_table_param__tmp1) + 15 <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0 /\ 1 * (s IDcie_3d_table_param_z) <= 0 /\ -1 * (s IDcie_3d_table_param_i) <= 0)%Z
-    | 51%positive => (-1 * (s IDcie_3d_table_param_i) <= 0 /\ -1 * (s IDcie_3d_table_param_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition cie_3d_table_param_pot (p : node) (s : state): Q := 
+Notation V_cie_3d_table_param_z := 1%positive.
+Notation V_cie_3d_table_param__tmp := 2%positive.
+Notation V_cie_3d_table_param__tmp1 := 3%positive.
+Notation V_cie_3d_table_param__tmp2 := 4%positive.
+Notation V_cie_3d_table_param_i := 5%positive.
+Notation V_cie_3d_table_param_count := 6%positive.
+Notation V_cie_3d_table_param_nbytes := 7%positive.
+Notation V_cie_3d_table_param_ptable := 8%positive.
+Notation V_cie_3d_table_param_strings := 9%positive.
+Definition Pedges_cie_3d_table_param: list (edge proc) :=
+  (EA 1 (AAssign V_cie_3d_table_param_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_cie_3d_table_param_i) s) >= (eval (ENum (0))
+  s))%Z)) 3)::(EA 3 (AGuard (fun s => ((eval (EVar V_cie_3d_table_param__tmp)
+  s) >= (eval (ENum (0)) s))%Z)) 4)::(EA 4 AWeaken 5)::(EA 5 (AAssign
+  V_cie_3d_table_param__tmp (Some (EVar V_cie_3d_table_param_count))) 6)::
+  (EA 6 (AAssign V_cie_3d_table_param__tmp2
+  (Some (EVar V_cie_3d_table_param_nbytes))) 7)::(EA 7 AWeaken 8)::
+  (EA 8 ANone 17)::(EA 8 ANone 9)::(EA 9 AWeaken 10)::(EA 10 ANone 15)::
+  (EA 10 ANone 11)::(EA 11 ANone 12)::(EA 12 (AAssign
+  V_cie_3d_table_param__tmp1 None) 13)::(EA 13 ANone 14)::
+  (EA 14 AWeaken 51)::(EA 15 ANone 16)::(EA 16 AWeaken 51)::
+  (EA 17 AWeaken 18)::(EA 18 ANone 48)::(EA 18 ANone 19)::(EA 19 (AAssign
+  V_cie_3d_table_param_i (Some (ENum (0)))) 20)::(EA 20 ANone 21)::
+  (EA 21 AWeaken 22)::(EA 22 (AGuard
+  (fun s => ((eval (EVar V_cie_3d_table_param_i) s) <
+  (eval (EVar V_cie_3d_table_param__tmp) s))%Z)) 27)::(EA 22 (AGuard
+  (fun s => ((eval (EVar V_cie_3d_table_param_i) s) >=
+  (eval (EVar V_cie_3d_table_param__tmp) s))%Z)) 23)::(EA 23 AWeaken 24)::
+  (EA 24 (AAssign V_cie_3d_table_param__tmp1 (Some (ENum (0)))) 25)::
+  (EA 25 ANone 26)::(EA 26 AWeaken 51)::(EA 27 AWeaken 28)::
+  (EA 28 ANone 37)::(EA 28 ANone 29)::(EA 29 AWeaken 30)::(EA 30 ANone 35)::
+  (EA 30 ANone 31)::(EA 31 ANone 32)::(EA 32 (AAssign
+  V_cie_3d_table_param__tmp1 None) 33)::(EA 33 ANone 34)::
+  (EA 34 AWeaken 51)::(EA 35 ANone 36)::(EA 36 AWeaken 51)::
+  (EA 37 AWeaken 38)::(EA 38 ANone 45)::(EA 38 ANone 39)::(EA 39 ANone 40)::
+  (EA 40 (AAssign V_cie_3d_table_param_i
+  (Some (EAdd (EVar V_cie_3d_table_param_i) (ENum (1))))) 41)::
+  (EA 41 ANone 42)::(EA 42 ANone 43)::(EA 43 (AAssign V_cie_3d_table_param_z
+  (Some (EAdd (ENum (1)) (EVar V_cie_3d_table_param_z)))) 44)::
+  (EA 44 AWeaken 22)::(EA 45 (AAssign V_cie_3d_table_param__tmp1
+  (Some (ENum (-15)))) 46)::(EA 46 ANone 47)::(EA 47 AWeaken 51)::
+  (EA 48 (AAssign V_cie_3d_table_param__tmp1 (Some (ENum (-15)))) 49)::
+  (EA 49 ANone 50)::(EA 50 AWeaken 51)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_cie_3d_table_param => Pedges_cie_3d_table_param
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_cie_3d_table_param => 51
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_cie_3d_table_param (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 3 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 4 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp <= 0)%Z
+   | 5 => (-1 * s V_cie_3d_table_param__tmp <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 6 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 7 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 8 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 9 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 10 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 11 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 12 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 13 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 14 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 15 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 16 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 17 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 18 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 19 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 20 => (1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 21 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 22 => (-1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 23 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param__tmp+ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 24 => (1 * s V_cie_3d_table_param__tmp+ -1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 25 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param__tmp+ -1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param__tmp1 <= 0 /\ -1 * s V_cie_3d_table_param__tmp1 <= 0)%Z
+   | 26 => (-1 * s V_cie_3d_table_param__tmp1 <= 0 /\ 1 * s V_cie_3d_table_param__tmp1 <= 0 /\ 1 * s V_cie_3d_table_param__tmp+ -1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 27 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 28 => (-1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 29 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 30 => (-1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 31 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 32 => (-1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 33 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 34 => (-1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 35 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 36 => (-1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 37 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 38 => (-1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 39 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 40 => (-1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 41 => (-1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 42 => (-1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | 43 => (-1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 44 => (-1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z + 1 <= 0)%Z
+   | 45 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 46 => (-1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param__tmp1 + 15 <= 0 /\ -1 * s V_cie_3d_table_param__tmp1 + -15 <= 0)%Z
+   | 47 => (-1 * s V_cie_3d_table_param__tmp1 + -15 <= 0 /\ 1 * s V_cie_3d_table_param__tmp1 + 15 <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param__tmp+ 1 * s V_cie_3d_table_param_i + 1 <= 0)%Z
+   | 48 => (-1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 49 => (-1 * s V_cie_3d_table_param_i <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param__tmp1 + 15 <= 0 /\ -1 * s V_cie_3d_table_param__tmp1 + -15 <= 0)%Z
+   | 50 => (-1 * s V_cie_3d_table_param__tmp1 + -15 <= 0 /\ 1 * s V_cie_3d_table_param__tmp1 + 15 <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0 /\ 1 * s V_cie_3d_table_param_z <= 0 /\ -1 * s V_cie_3d_table_param_i <= 0)%Z
+   | 51 => (-1 * s V_cie_3d_table_param_i <= 0 /\ -1 * s V_cie_3d_table_param_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_cie_3d_table_param (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_cie_3d_table_param_count) <= z)%Q
+   | 2 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param_count) <= z)%Q
+   | 3 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param_count) <= z)%Q
+   | 4 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param_count) <= z)%Q
+   | 5 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param_count) <= z)%Q
+   | 6 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 7 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 8 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 9 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 10 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 11 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 12 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 13 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 14 => hints
+     [(*-1 0*) F_max0_ge_0 (s V_cie_3d_table_param__tmp)]
+     (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 15 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 16 => hints
+     [(*-1 0*) F_max0_ge_0 (s V_cie_3d_table_param__tmp)]
+     (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 17 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 18 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 19 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 20 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 21 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 22 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 23 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 24 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 25 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 26 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (s V_cie_3d_table_param__tmp
+                                             - s V_cie_3d_table_param_i) (-1
+                                                                    + s V_cie_3d_table_param__tmp
+                                                                    - s V_cie_3d_table_param_i));
+      (*-1 0*) F_max0_ge_0 (-1 + s V_cie_3d_table_param__tmp
+                            - s V_cie_3d_table_param_i)]
+     (s V_cie_3d_table_param_z
+      + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 27 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 28 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 29 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 30 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 31 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 32 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 33 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 34 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_max0_pre_decrement 1 (s V_cie_3d_table_param__tmp
+                                       - s V_cie_3d_table_param_i) (1);
+      (*-1 0*) F_max0_ge_0 (-1 + s V_cie_3d_table_param__tmp
+                            - s V_cie_3d_table_param_i)]
+     (s V_cie_3d_table_param_z
+      + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 35 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 36 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_max0_pre_decrement 1 (s V_cie_3d_table_param__tmp
+                                       - s V_cie_3d_table_param_i) (1);
+      (*-1 0*) F_max0_ge_0 (-1 + s V_cie_3d_table_param__tmp
+                            - s V_cie_3d_table_param_i)]
+     (s V_cie_3d_table_param_z
+      + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 37 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_cie_3d_table_param__tmp
+                                       - s V_cie_3d_table_param_i) (1)]
+     (s V_cie_3d_table_param_z
+      + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 38 => ((1 # 1) + s V_cie_3d_table_param_z
+            + max0(-1 + s V_cie_3d_table_param__tmp
+                   - s V_cie_3d_table_param_i) <= z)%Q
+   | 39 => ((1 # 1) + s V_cie_3d_table_param_z
+            + max0(-1 + s V_cie_3d_table_param__tmp
+                   - s V_cie_3d_table_param_i) <= z)%Q
+   | 40 => ((1 # 1) + s V_cie_3d_table_param_z
+            + max0(-1 + s V_cie_3d_table_param__tmp
+                   - s V_cie_3d_table_param_i) <= z)%Q
+   | 41 => ((1 # 1) + s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 42 => ((1 # 1) + s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 43 => ((1 # 1) + s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 44 => (s V_cie_3d_table_param_z
+            + max0(s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i) <= z)%Q
+   | 45 => ((1 # 1) + s V_cie_3d_table_param_z
+            + max0(-1 + s V_cie_3d_table_param__tmp
+                   - s V_cie_3d_table_param_i) <= z)%Q
+   | 46 => (s V_cie_3d_table_param_z
+            + max0(-1 + s V_cie_3d_table_param__tmp
+                   - s V_cie_3d_table_param_i)
+            + (1 # 15) * max0(-s V_cie_3d_table_param__tmp1) <= z)%Q
+   | 47 => hints
+     [(*-1 0*) F_max0_ge_0 (-1 + s V_cie_3d_table_param__tmp
+                            - s V_cie_3d_table_param_i);
+      (*-0.0666667 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_cie_3d_table_param__tmp1)) (F_check_ge (0) (0))]
+     (s V_cie_3d_table_param_z
+      + max0(-1 + s V_cie_3d_table_param__tmp - s V_cie_3d_table_param_i)
+      + (1 # 15) * max0(-s V_cie_3d_table_param__tmp1) <= z)%Q
+   | 48 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 49 => (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 50 => hints
+     [(*-1 0*) F_max0_ge_0 (s V_cie_3d_table_param__tmp)]
+     (s V_cie_3d_table_param_z + max0(s V_cie_3d_table_param__tmp) <= z)%Q
+   | 51 => (s V_cie_3d_table_param_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDcie_3d_table_param_count)))%Q
-    | 2%positive => ((s IDcie_3d_table_param_z)
-                     + max0((s IDcie_3d_table_param_count)))%Q
-    | 3%positive => ((s IDcie_3d_table_param_z)
-                     + max0((s IDcie_3d_table_param_count)))%Q
-    | 4%positive => ((s IDcie_3d_table_param_z)
-                     + max0((s IDcie_3d_table_param_count)))%Q
-    | 5%positive => ((s IDcie_3d_table_param_z)
-                     + max0((s IDcie_3d_table_param_count)))%Q
-    | 6%positive => ((s IDcie_3d_table_param_z)
-                     + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 7%positive => ((s IDcie_3d_table_param_z)
-                     + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 8%positive => ((s IDcie_3d_table_param_z)
-                     + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 9%positive => ((s IDcie_3d_table_param_z)
-                     + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 10%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 11%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 12%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 13%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 14%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 15%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 16%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 17%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 18%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 19%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 20%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 21%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 22%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 23%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 24%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 25%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 26%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 27%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 28%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 29%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 30%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 31%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 32%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 33%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 34%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 35%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 36%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 37%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 38%positive => ((1 # 1) + (s IDcie_3d_table_param_z)
-                      + max0(-1 + (s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 39%positive => ((1 # 1) + (s IDcie_3d_table_param_z)
-                      + max0(-1 + (s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 40%positive => ((1 # 1) + (s IDcie_3d_table_param_z)
-                      + max0(-1 + (s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 41%positive => ((1 # 1) + (s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 42%positive => ((1 # 1) + (s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 43%positive => ((1 # 1) + (s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 44%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 45%positive => ((1 # 1) + (s IDcie_3d_table_param_z)
-                      + max0(-1 + (s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i)))%Q
-    | 46%positive => ((s IDcie_3d_table_param_z)
-                      + max0(-1 + (s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i))
-                      + (1 # 15) * max0(-(s IDcie_3d_table_param__tmp1)))%Q
-    | 47%positive => ((s IDcie_3d_table_param_z)
-                      + max0(-1 + (s IDcie_3d_table_param__tmp)
-                             - (s IDcie_3d_table_param_i))
-                      + (1 # 15) * max0(-(s IDcie_3d_table_param__tmp1)))%Q
-    | 48%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 49%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 50%positive => ((s IDcie_3d_table_param_z)
-                      + max0((s IDcie_3d_table_param__tmp)))%Q
-    | 51%positive => ((s IDcie_3d_table_param_z))%Q
-    | _ => (0 # 1)%Q
+  | P_cie_3d_table_param =>
+    [mkPA Q (fun n z s => ai_cie_3d_table_param n s /\ annot0_cie_3d_table_param n z s)]
   end.
 
-Definition cie_3d_table_param_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => [(*-1 0*) F_max0_ge_0 ((s IDcie_3d_table_param__tmp))]
-    | 15%positive => []
-    | 16%positive => [(*-1 0*) F_max0_ge_0 ((s IDcie_3d_table_param__tmp))]
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => [(*-1 0*) F_max0_monotonic (F_check_ge ((s IDcie_3d_table_param__tmp)
-                                                             - (s IDcie_3d_table_param_i)) (-1
-                                                                    + (s IDcie_3d_table_param__tmp)
-                                                                    - (s IDcie_3d_table_param_i)));
-                      (*-1 0*) F_max0_ge_0 (-1
-                                            + (s IDcie_3d_table_param__tmp)
-                                            - (s IDcie_3d_table_param_i))]
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_max0_pre_decrement ((s IDcie_3d_table_param__tmp)
-                                                     - (s IDcie_3d_table_param_i)) (1);
-                      (*-1 0*) F_max0_ge_0 (-1
-                                            + (s IDcie_3d_table_param__tmp)
-                                            - (s IDcie_3d_table_param_i))]
-    | 35%positive => []
-    | 36%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_max0_pre_decrement ((s IDcie_3d_table_param__tmp)
-                                                     - (s IDcie_3d_table_param_i)) (1);
-                      (*-1 0*) F_max0_ge_0 (-1
-                                            + (s IDcie_3d_table_param__tmp)
-                                            - (s IDcie_3d_table_param_i))]
-    | 37%positive => [(*-1 0*) F_max0_pre_decrement ((s IDcie_3d_table_param__tmp)
-                                                     - (s IDcie_3d_table_param_i)) (1)]
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => [(*-1 0*) F_max0_ge_0 (-1
-                                            + (s IDcie_3d_table_param__tmp)
-                                            - (s IDcie_3d_table_param_i));
-                      (*-0.0666667 0*) F_binom_monotonic 1 (F_max0_ge_0 (-
-                                                                    (s IDcie_3d_table_param__tmp1))) (F_check_ge (0) (0))]
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => [(*-1 0*) F_max0_ge_0 ((s IDcie_3d_table_param__tmp))]
-    | 51%positive => []
-    | _ => []
-  end.
-
-
-Theorem cie_3d_table_param_ai_correct:
-  forall s p' s', steps (g_start cie_3d_table_param) s (g_edges cie_3d_table_param) p' s' -> cie_3d_table_param_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem cie_3d_table_param_pot_correct:
-  forall s p' s',
-    steps (g_start cie_3d_table_param) s (g_edges cie_3d_table_param) p' s' ->
-    (cie_3d_table_param_pot (g_start cie_3d_table_param) s >= cie_3d_table_param_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_cie_3d_table_param (proc_start P_cie_3d_table_param) s1 (proc_end P_cie_3d_table_param) s2 ->
+    (s2 V_cie_3d_table_param_z <= max0(s1 V_cie_3d_table_param_count))%Q.
 Proof.
-  check_lp cie_3d_table_param_ai_correct cie_3d_table_param_hints.
+  prove_bound ipa admissible_ipa P_cie_3d_table_param.
 Qed.
-

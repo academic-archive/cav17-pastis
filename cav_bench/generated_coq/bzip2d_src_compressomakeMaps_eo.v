@@ -1,132 +1,111 @@
 Require Import pasta.Pasta.
 
-Notation IDmakeMaps_e_z := 1%positive.
-Notation IDmakeMaps_e_i := 2%positive.
-Notation IDmakeMaps_e_s_dref_off124 := 3%positive.
-Notation IDmakeMaps_e_s := 4%positive.
-Definition makeMaps_e : graph := {|
-  g_start := 1%positive;
-  g_end := 8%positive;
-  g_edges := (1%positive,(AAssign IDmakeMaps_e_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDmakeMaps_e_s_dref_off124
-             (Some (ENum (0)))),3%positive)::
-             (3%positive,(AAssign IDmakeMaps_e_i (Some (ENum (0)))),
-             4%positive)::(4%positive,ANone,5%positive)::
-             (5%positive,AWeaken,6%positive)::
-             (6%positive,(AGuard (fun s => ((eval (EVar IDmakeMaps_e_i) s) <
-             (eval (ENum (256)) s))%Z)),9%positive)::
-             (6%positive,(AGuard (fun s => ((eval (EVar IDmakeMaps_e_i) s) >=
-             (eval (ENum (256)) s))%Z)),7%positive)::
-             (7%positive,AWeaken,8%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,ANone,11%positive)::
-             (10%positive,ANone,13%positive)::
-             (11%positive,(AAssign IDmakeMaps_e_s_dref_off124
-             (Some (EAdd (EVar IDmakeMaps_e_s_dref_off124) (ENum (1))))),
-             12%positive)::(12%positive,ANone,13%positive)::
-             (13%positive,ANone,14%positive)::
-             (14%positive,(AAssign IDmakeMaps_e_i
-             (Some (EAdd (EVar IDmakeMaps_e_i) (ENum (1))))),15%positive)::
-             (15%positive,ANone,16%positive)::
-             (16%positive,ANone,17%positive)::
-             (17%positive,(AAssign IDmakeMaps_e_z (Some (EAdd (ENum (1))
-             (EVar IDmakeMaps_e_z)))),18%positive)::
-             (18%positive,AWeaken,6%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_makeMaps_e.
 
-Definition makeMaps_e_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0)%Z
-    | 4%positive => (-1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ 1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ 1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_i) <= 0)%Z
-    | 5%positive => (-1 * (s IDmakeMaps_e_i) <= 0 /\ 1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0)%Z
-    | 6%positive => (-1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ 1 * (s IDmakeMaps_e_i) + -256 <= 0)%Z
-    | 7%positive => (1 * (s IDmakeMaps_e_i) + -256 <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_i) + 256 <= 0)%Z
-    | 8%positive => (-1 * (s IDmakeMaps_e_i) + 256 <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ 1 * (s IDmakeMaps_e_i) + -256 <= 0)%Z
-    | 9%positive => (-1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_i) + -255 <= 0)%Z
-    | 10%positive => (1 * (s IDmakeMaps_e_i) + -255 <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0)%Z
-    | 11%positive => (-1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_i) + -255 <= 0)%Z
-    | 12%positive => (1 * (s IDmakeMaps_e_i) + -255 <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) + 1 <= 0)%Z
-    | 13%positive => (-1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_i) + -255 <= 0)%Z
-    | 14%positive => (1 * (s IDmakeMaps_e_i) + -255 <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_i) <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0)%Z
-    | 15%positive => (-1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_i) + -256 <= 0 /\ -1 * (s IDmakeMaps_e_i) + 1 <= 0)%Z
-    | 16%positive => (-1 * (s IDmakeMaps_e_i) + 1 <= 0 /\ 1 * (s IDmakeMaps_e_i) + -256 <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0)%Z
-    | 17%positive => (-1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_z) <= 0 /\ 1 * (s IDmakeMaps_e_i) + -256 <= 0 /\ -1 * (s IDmakeMaps_e_i) + 1 <= 0)%Z
-    | 18%positive => (-1 * (s IDmakeMaps_e_i) + 1 <= 0 /\ 1 * (s IDmakeMaps_e_i) + -256 <= 0 /\ -1 * (s IDmakeMaps_e_s_dref_off124) <= 0 /\ -1 * (s IDmakeMaps_e_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition makeMaps_e_pot (p : node) (s : state): Q := 
+Notation V_makeMaps_e_z := 1%positive.
+Notation V_makeMaps_e_i := 2%positive.
+Notation V_makeMaps_e_s_dref_off124 := 3%positive.
+Notation V_makeMaps_e_s := 4%positive.
+Definition Pedges_makeMaps_e: list (edge proc) :=
+  (EA 1 (AAssign V_makeMaps_e_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_makeMaps_e_s_dref_off124 (Some (ENum (0)))) 3)::(EA 3 (AAssign
+  V_makeMaps_e_i (Some (ENum (0)))) 4)::(EA 4 ANone 5)::(EA 5 AWeaken 6)::
+  (EA 6 (AGuard (fun s => ((eval (EVar V_makeMaps_e_i) s) <
+  (eval (ENum (256)) s))%Z)) 9)::(EA 6 (AGuard
+  (fun s => ((eval (EVar V_makeMaps_e_i) s) >= (eval (ENum (256))
+  s))%Z)) 7)::(EA 7 AWeaken 8)::(EA 9 AWeaken 10)::(EA 10 ANone 11)::
+  (EA 10 ANone 13)::(EA 11 (AAssign V_makeMaps_e_s_dref_off124
+  (Some (EAdd (EVar V_makeMaps_e_s_dref_off124) (ENum (1))))) 12)::
+  (EA 12 ANone 13)::(EA 13 ANone 14)::(EA 14 (AAssign V_makeMaps_e_i
+  (Some (EAdd (EVar V_makeMaps_e_i) (ENum (1))))) 15)::(EA 15 ANone 16)::
+  (EA 16 ANone 17)::(EA 17 (AAssign V_makeMaps_e_z (Some (EAdd (ENum (1))
+  (EVar V_makeMaps_e_z)))) 18)::(EA 18 AWeaken 6)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_makeMaps_e => Pedges_makeMaps_e
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_makeMaps_e => 8
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_makeMaps_e (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_z <= 0)%Z
+   | 3 => (-1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0)%Z
+   | 4 => (-1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ 1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ 1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_i <= 0)%Z
+   | 5 => (-1 * s V_makeMaps_e_i <= 0 /\ 1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0)%Z
+   | 6 => (-1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ 1 * s V_makeMaps_e_i + -256 <= 0)%Z
+   | 7 => (1 * s V_makeMaps_e_i + -256 <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_i + 256 <= 0)%Z
+   | 8 => (-1 * s V_makeMaps_e_i + 256 <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ 1 * s V_makeMaps_e_i + -256 <= 0)%Z
+   | 9 => (-1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_i + -255 <= 0)%Z
+   | 10 => (1 * s V_makeMaps_e_i + -255 <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0)%Z
+   | 11 => (-1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_i + -255 <= 0)%Z
+   | 12 => (1 * s V_makeMaps_e_i + -255 <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 + 1 <= 0)%Z
+   | 13 => (-1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_i + -255 <= 0)%Z
+   | 14 => (1 * s V_makeMaps_e_i + -255 <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_i <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0)%Z
+   | 15 => (-1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_i + -256 <= 0 /\ -1 * s V_makeMaps_e_i + 1 <= 0)%Z
+   | 16 => (-1 * s V_makeMaps_e_i + 1 <= 0 /\ 1 * s V_makeMaps_e_i + -256 <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0)%Z
+   | 17 => (-1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_z <= 0 /\ 1 * s V_makeMaps_e_i + -256 <= 0 /\ -1 * s V_makeMaps_e_i + 1 <= 0)%Z
+   | 18 => (-1 * s V_makeMaps_e_i + 1 <= 0 /\ 1 * s V_makeMaps_e_i + -256 <= 0 /\ -1 * s V_makeMaps_e_s_dref_off124 <= 0 /\ -1 * s V_makeMaps_e_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_makeMaps_e (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((256 # 1) <= z)%Q
+   | 2 => ((256 # 1) + s V_makeMaps_e_z <= z)%Q
+   | 3 => ((256 # 1) + s V_makeMaps_e_z <= z)%Q
+   | 4 => (s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | 5 => (s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | 6 => (s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | 7 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (256 - s V_makeMaps_e_i) (255
+                                                                    - s V_makeMaps_e_i));
+      (*-1 0*) F_max0_ge_0 (255 - s V_makeMaps_e_i)]
+     (s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | 8 => (s V_makeMaps_e_z <= z)%Q
+   | 9 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (256 - s V_makeMaps_e_i) (1)]
+     (s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | 10 => ((1 # 1) + s V_makeMaps_e_z + max0(255 - s V_makeMaps_e_i) <= z)%Q
+   | 11 => ((1 # 1) + s V_makeMaps_e_z + max0(255 - s V_makeMaps_e_i) <= z)%Q
+   | 12 => ((1 # 1) + s V_makeMaps_e_z + max0(255 - s V_makeMaps_e_i) <= z)%Q
+   | 13 => ((1 # 1) + s V_makeMaps_e_z + max0(255 - s V_makeMaps_e_i) <= z)%Q
+   | 14 => ((1 # 1) + s V_makeMaps_e_z + max0(255 - s V_makeMaps_e_i) <= z)%Q
+   | 15 => ((1 # 1) + s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | 16 => ((1 # 1) + s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | 17 => ((1 # 1) + s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | 18 => (s V_makeMaps_e_z + max0(256 - s V_makeMaps_e_i) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((256 # 1))%Q
-    | 2%positive => ((256 # 1) + (s IDmakeMaps_e_z))%Q
-    | 3%positive => ((256 # 1) + (s IDmakeMaps_e_z))%Q
-    | 4%positive => ((s IDmakeMaps_e_z) + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | 5%positive => ((s IDmakeMaps_e_z) + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | 6%positive => ((s IDmakeMaps_e_z) + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | 7%positive => ((s IDmakeMaps_e_z) + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | 8%positive => ((s IDmakeMaps_e_z))%Q
-    | 9%positive => ((s IDmakeMaps_e_z) + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | 10%positive => ((1 # 1) + (s IDmakeMaps_e_z)
-                      + max0(255 - (s IDmakeMaps_e_i)))%Q
-    | 11%positive => ((1 # 1) + (s IDmakeMaps_e_z)
-                      + max0(255 - (s IDmakeMaps_e_i)))%Q
-    | 12%positive => ((1 # 1) + (s IDmakeMaps_e_z)
-                      + max0(255 - (s IDmakeMaps_e_i)))%Q
-    | 13%positive => ((1 # 1) + (s IDmakeMaps_e_z)
-                      + max0(255 - (s IDmakeMaps_e_i)))%Q
-    | 14%positive => ((1 # 1) + (s IDmakeMaps_e_z)
-                      + max0(255 - (s IDmakeMaps_e_i)))%Q
-    | 15%positive => ((1 # 1) + (s IDmakeMaps_e_z)
-                      + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | 16%positive => ((1 # 1) + (s IDmakeMaps_e_z)
-                      + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | 17%positive => ((1 # 1) + (s IDmakeMaps_e_z)
-                      + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | 18%positive => ((s IDmakeMaps_e_z) + max0(256 - (s IDmakeMaps_e_i)))%Q
-    | _ => (0 # 1)%Q
+  | P_makeMaps_e =>
+    [mkPA Q (fun n z s => ai_makeMaps_e n s /\ annot0_makeMaps_e n z s)]
   end.
 
-Definition makeMaps_e_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (256
-                                                            - (s IDmakeMaps_e_i)) (255
-                                                                    - (s IDmakeMaps_e_i)));
-                     (*-1 0*) F_max0_ge_0 (255 - (s IDmakeMaps_e_i))]
-    | 8%positive => []
-    | 9%positive => [(*-1 0*) F_max0_pre_decrement (256 - (s IDmakeMaps_e_i)) (1)]
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | _ => []
-  end.
-
-
-Theorem makeMaps_e_ai_correct:
-  forall s p' s', steps (g_start makeMaps_e) s (g_edges makeMaps_e) p' s' -> makeMaps_e_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem makeMaps_e_pot_correct:
-  forall s p' s',
-    steps (g_start makeMaps_e) s (g_edges makeMaps_e) p' s' ->
-    (makeMaps_e_pot (g_start makeMaps_e) s >= makeMaps_e_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_makeMaps_e (proc_start P_makeMaps_e) s1 (proc_end P_makeMaps_e) s2 ->
+    (s2 V_makeMaps_e_z <= (256 # 1))%Q.
 Proof.
-  check_lp makeMaps_e_ai_correct makeMaps_e_hints.
+  prove_bound ipa admissible_ipa P_makeMaps_e.
 Qed.
-

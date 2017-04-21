@@ -1,375 +1,299 @@
 Require Import pasta.Pasta.
 
-Notation IDcie_cache_joint_z := 1%positive.
-Notation IDcie_cache_joint__tmp := 2%positive.
-Notation IDcie_cache_joint_code := 3%positive.
-Notation IDcie_cache_joint_es_code_ := 4%positive.
-Notation IDcie_cache_joint_i := 5%positive.
-Notation IDcie_cache_joint_j := 6%positive.
-Notation IDcie_cache_joint_space := 7%positive.
-Notation IDcie_cache_joint_pcrprocs := 8%positive.
-Notation IDcie_cache_joint_pgs := 9%positive.
-Definition cie_cache_joint : graph := {|
-  g_start := 1%positive;
-  g_end := 58%positive;
-  g_edges := (1%positive,(AAssign IDcie_cache_joint_z (Some (ENum (0)))),
-             2%positive)::(2%positive,AWeaken,3%positive)::
-             (3%positive,ANone,55%positive)::(3%positive,ANone,4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,ANone,52%positive)::(5%positive,ANone,6%positive)::
-             (6%positive,(AAssign IDcie_cache_joint_code None),7%positive)::
-             (7%positive,AWeaken,8%positive)::
-             (8%positive,(AGuard
-             (fun s => ((eval (EVar IDcie_cache_joint_code) s) <
-             (eval (ENum (0)) s))%Z)),48%positive)::
-             (8%positive,(AGuard
-             (fun s => ((eval (EVar IDcie_cache_joint_code) s) >=
-             (eval (ENum (0)) s))%Z)),9%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,ANone,11%positive)::
-             (10%positive,ANone,16%positive)::
-             (11%positive,(AAssign IDcie_cache_joint_es_code_ None),
-             12%positive)::(12%positive,AWeaken,13%positive)::
-             (13%positive,(AGuard
-             (fun s => ((eval (EVar IDcie_cache_joint_es_code_) s) <
-             (eval (ENum (0)) s))%Z)),44%positive)::
-             (13%positive,(AGuard
-             (fun s => ((eval (EVar IDcie_cache_joint_es_code_) s) >=
-             (eval (ENum (0)) s))%Z)),14%positive)::
-             (14%positive,AWeaken,15%positive)::
-             (15%positive,ANone,16%positive)::
-             (16%positive,(AAssign IDcie_cache_joint_space None),17%positive)::
-             (17%positive,(AAssign IDcie_cache_joint_i (Some (ENum (0)))),
-             18%positive)::(18%positive,ANone,19%positive)::
-             (19%positive,AWeaken,20%positive)::
-             (20%positive,(AGuard (fun s => ((eval (EVar IDcie_cache_joint_i)
-             s) < (eval (ENum (3)) s))%Z)),25%positive)::
-             (20%positive,(AGuard (fun s => ((eval (EVar IDcie_cache_joint_i)
-             s) >= (eval (ENum (3)) s))%Z)),21%positive)::
-             (21%positive,AWeaken,22%positive)::
-             (22%positive,(AAssign IDcie_cache_joint__tmp None),23%positive)::
-             (23%positive,ANone,24%positive)::
-             (24%positive,AWeaken,58%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (26%positive,(AAssign IDcie_cache_joint_j (Some (ENum (0)))),
-             27%positive)::(27%positive,ANone,28%positive)::
-             (28%positive,AWeaken,29%positive)::
-             (29%positive,(AGuard (fun s => ((eval (EVar IDcie_cache_joint_j)
-             s) < (eval (ENum (24)) s))%Z)),37%positive)::
-             (29%positive,(AGuard (fun s => ((eval (EVar IDcie_cache_joint_j)
-             s) >= (eval (ENum (24)) s))%Z)),30%positive)::
-             (30%positive,AWeaken,31%positive)::
-             (31%positive,ANone,32%positive)::
-             (32%positive,(AAssign IDcie_cache_joint_i
-             (Some (EAdd (EVar IDcie_cache_joint_i) (ENum (1))))),
-             33%positive)::(33%positive,ANone,34%positive)::
-             (34%positive,ANone,35%positive)::
-             (35%positive,(AAssign IDcie_cache_joint_z (Some (EAdd (ENum (1))
-             (EVar IDcie_cache_joint_z)))),36%positive)::
-             (36%positive,AWeaken,20%positive)::
-             (37%positive,AWeaken,38%positive)::
-             (38%positive,ANone,39%positive)::
-             (39%positive,(AAssign IDcie_cache_joint_j
-             (Some (EAdd (EVar IDcie_cache_joint_j) (ENum (1))))),
-             40%positive)::(40%positive,ANone,41%positive)::
-             (41%positive,ANone,42%positive)::
-             (42%positive,(AAssign IDcie_cache_joint_z (Some (EAdd (ENum (1))
-             (EVar IDcie_cache_joint_z)))),43%positive)::
-             (43%positive,AWeaken,29%positive)::
-             (44%positive,AWeaken,45%positive)::
-             (45%positive,(AAssign IDcie_cache_joint__tmp
-             (Some (EVar IDcie_cache_joint_es_code_))),46%positive)::
-             (46%positive,ANone,47%positive)::
-             (47%positive,AWeaken,58%positive)::
-             (48%positive,AWeaken,49%positive)::
-             (49%positive,(AAssign IDcie_cache_joint__tmp
-             (Some (EVar IDcie_cache_joint_code))),50%positive)::
-             (50%positive,ANone,51%positive)::
-             (51%positive,AWeaken,58%positive)::
-             (52%positive,(AAssign IDcie_cache_joint__tmp
-             (Some (ENum (-25)))),53%positive)::
-             (53%positive,ANone,54%positive)::
-             (54%positive,AWeaken,58%positive)::
-             (55%positive,(AAssign IDcie_cache_joint__tmp (Some (ENum (0)))),
-             56%positive)::(56%positive,ANone,57%positive)::
-             (57%positive,AWeaken,58%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_cie_cache_joint.
 
-Definition cie_cache_joint_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 4%positive => (1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 6%positive => (1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 8%positive => (1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 9%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 10%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 12%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 14%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_es_code_) <= 0)%Z
-    | 15%positive => (-1 * (s IDcie_cache_joint_es_code_) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 16%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 17%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 18%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0)%Z
-    | 19%positive => (-1 * (s IDcie_cache_joint_i) <= 0 /\ 1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 20%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 21%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_i) + 3 <= 0)%Z
-    | 22%positive => (-1 * (s IDcie_cache_joint_i) + 3 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 23%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_i) + 3 <= 0)%Z
-    | 24%positive => (-1 * (s IDcie_cache_joint_i) + 3 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 25%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_i) + -2 <= 0)%Z
-    | 26%positive => (1 * (s IDcie_cache_joint_i) + -2 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 27%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_i) + -2 <= 0 /\ 1 * (s IDcie_cache_joint_j) <= 0 /\ -1 * (s IDcie_cache_joint_j) <= 0)%Z
-    | 28%positive => (-1 * (s IDcie_cache_joint_j) <= 0 /\ 1 * (s IDcie_cache_joint_j) <= 0 /\ 1 * (s IDcie_cache_joint_i) + -2 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 29%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_j) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_j) + -24 <= 0)%Z
-    | 30%positive => (1 * (s IDcie_cache_joint_j) + -24 <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_j) + 24 <= 0)%Z
-    | 31%positive => (-1 * (s IDcie_cache_joint_j) + 24 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_j) + -24 <= 0)%Z
-    | 32%positive => (1 * (s IDcie_cache_joint_j) + -24 <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_j) + 24 <= 0)%Z
-    | 33%positive => (-1 * (s IDcie_cache_joint_j) + 24 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_j) + -24 <= 0 /\ -1 * (s IDcie_cache_joint_i) + 1 <= 0)%Z
-    | 34%positive => (-1 * (s IDcie_cache_joint_i) + 1 <= 0 /\ 1 * (s IDcie_cache_joint_j) + -24 <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_j) + 24 <= 0)%Z
-    | 35%positive => (-1 * (s IDcie_cache_joint_j) + 24 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_j) + -24 <= 0 /\ -1 * (s IDcie_cache_joint_i) + 1 <= 0)%Z
-    | 36%positive => (-1 * (s IDcie_cache_joint_i) + 1 <= 0 /\ 1 * (s IDcie_cache_joint_j) + -24 <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_j) + 24 <= 0 /\ -1 * (s IDcie_cache_joint_z) + 1 <= 0)%Z
-    | 37%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_j) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_j) + -23 <= 0)%Z
-    | 38%positive => (1 * (s IDcie_cache_joint_j) + -23 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_j) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 39%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_j) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_j) + -23 <= 0)%Z
-    | 40%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_j) + 1 <= 0 /\ 1 * (s IDcie_cache_joint_j) + -24 <= 0)%Z
-    | 41%positive => (1 * (s IDcie_cache_joint_j) + -24 <= 0 /\ -1 * (s IDcie_cache_joint_j) + 1 <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 42%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_j) + 1 <= 0 /\ 1 * (s IDcie_cache_joint_j) + -24 <= 0)%Z
-    | 43%positive => (1 * (s IDcie_cache_joint_j) + -24 <= 0 /\ -1 * (s IDcie_cache_joint_j) + 1 <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0 /\ -1 * (s IDcie_cache_joint_i) <= 0 /\ -1 * (s IDcie_cache_joint_z) + 1 <= 0)%Z
-    | 44%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_es_code_) + 1 <= 0)%Z
-    | 45%positive => (1 * (s IDcie_cache_joint_es_code_) + 1 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 46%positive => (-1 * (s IDcie_cache_joint_code) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_es_code_) + 1 <= 0 /\ 1 * (s IDcie_cache_joint__tmp) + 1 <= 0)%Z
-    | 47%positive => (1 * (s IDcie_cache_joint__tmp) + 1 <= 0 /\ 1 * (s IDcie_cache_joint_es_code_) + 1 <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_code) <= 0)%Z
-    | 48%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_code) + 1 <= 0)%Z
-    | 49%positive => (1 * (s IDcie_cache_joint_code) + 1 <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 50%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_code) + 1 <= 0 /\ 1 * (s IDcie_cache_joint__tmp) + 1 <= 0)%Z
-    | 51%positive => (1 * (s IDcie_cache_joint__tmp) + 1 <= 0 /\ 1 * (s IDcie_cache_joint_code) + 1 <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 52%positive => (1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 53%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint__tmp) + 25 <= 0 /\ -1 * (s IDcie_cache_joint__tmp) + -25 <= 0)%Z
-    | 54%positive => (-1 * (s IDcie_cache_joint__tmp) + -25 <= 0 /\ 1 * (s IDcie_cache_joint__tmp) + 25 <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 55%positive => (1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 56%positive => (-1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ 1 * (s IDcie_cache_joint__tmp) <= 0 /\ -1 * (s IDcie_cache_joint__tmp) <= 0)%Z
-    | 57%positive => (-1 * (s IDcie_cache_joint__tmp) <= 0 /\ 1 * (s IDcie_cache_joint__tmp) <= 0 /\ 1 * (s IDcie_cache_joint_z) <= 0 /\ -1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | 58%positive => (-1 * (s IDcie_cache_joint_z) <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition cie_cache_joint_pot (p : node) (s : state): Q := 
+Notation V_cie_cache_joint_z := 1%positive.
+Notation V_cie_cache_joint__tmp := 2%positive.
+Notation V_cie_cache_joint_code := 3%positive.
+Notation V_cie_cache_joint_es_code_ := 4%positive.
+Notation V_cie_cache_joint_i := 5%positive.
+Notation V_cie_cache_joint_j := 6%positive.
+Notation V_cie_cache_joint_space := 7%positive.
+Notation V_cie_cache_joint_pcrprocs := 8%positive.
+Notation V_cie_cache_joint_pgs := 9%positive.
+Definition Pedges_cie_cache_joint: list (edge proc) :=
+  (EA 1 (AAssign V_cie_cache_joint_z (Some (ENum (0)))) 2)::
+  (EA 2 AWeaken 3)::(EA 3 ANone 55)::(EA 3 ANone 4)::(EA 4 AWeaken 5)::
+  (EA 5 ANone 52)::(EA 5 ANone 6)::(EA 6 (AAssign V_cie_cache_joint_code
+  None) 7)::(EA 7 AWeaken 8)::(EA 8 (AGuard
+  (fun s => ((eval (EVar V_cie_cache_joint_code) s) < (eval (ENum (0))
+  s))%Z)) 48)::(EA 8 (AGuard (fun s => ((eval (EVar V_cie_cache_joint_code)
+  s) >= (eval (ENum (0)) s))%Z)) 9)::(EA 9 AWeaken 10)::(EA 10 ANone 11)::
+  (EA 10 ANone 16)::(EA 11 (AAssign V_cie_cache_joint_es_code_ None) 12)::
+  (EA 12 AWeaken 13)::(EA 13 (AGuard
+  (fun s => ((eval (EVar V_cie_cache_joint_es_code_) s) < (eval (ENum (0))
+  s))%Z)) 44)::(EA 13 (AGuard
+  (fun s => ((eval (EVar V_cie_cache_joint_es_code_) s) >= (eval (ENum (0))
+  s))%Z)) 14)::(EA 14 AWeaken 15)::(EA 15 ANone 16)::(EA 16 (AAssign
+  V_cie_cache_joint_space None) 17)::(EA 17 (AAssign V_cie_cache_joint_i
+  (Some (ENum (0)))) 18)::(EA 18 ANone 19)::(EA 19 AWeaken 20)::
+  (EA 20 (AGuard (fun s => ((eval (EVar V_cie_cache_joint_i) s) <
+  (eval (ENum (3)) s))%Z)) 25)::(EA 20 (AGuard
+  (fun s => ((eval (EVar V_cie_cache_joint_i) s) >= (eval (ENum (3))
+  s))%Z)) 21)::(EA 21 AWeaken 22)::(EA 22 (AAssign V_cie_cache_joint__tmp
+  None) 23)::(EA 23 ANone 24)::(EA 24 AWeaken 58)::(EA 25 AWeaken 26)::
+  (EA 26 (AAssign V_cie_cache_joint_j (Some (ENum (0)))) 27)::
+  (EA 27 ANone 28)::(EA 28 AWeaken 29)::(EA 29 (AGuard
+  (fun s => ((eval (EVar V_cie_cache_joint_j) s) < (eval (ENum (24))
+  s))%Z)) 37)::(EA 29 (AGuard (fun s => ((eval (EVar V_cie_cache_joint_j)
+  s) >= (eval (ENum (24)) s))%Z)) 30)::(EA 30 AWeaken 31)::(EA 31 ANone 32)::
+  (EA 32 (AAssign V_cie_cache_joint_i (Some (EAdd (EVar V_cie_cache_joint_i)
+  (ENum (1))))) 33)::(EA 33 ANone 34)::(EA 34 ANone 35)::(EA 35 (AAssign
+  V_cie_cache_joint_z (Some (EAdd (ENum (1))
+  (EVar V_cie_cache_joint_z)))) 36)::(EA 36 AWeaken 20)::(EA 37 AWeaken 38)::
+  (EA 38 ANone 39)::(EA 39 (AAssign V_cie_cache_joint_j
+  (Some (EAdd (EVar V_cie_cache_joint_j) (ENum (1))))) 40)::
+  (EA 40 ANone 41)::(EA 41 ANone 42)::(EA 42 (AAssign V_cie_cache_joint_z
+  (Some (EAdd (ENum (1)) (EVar V_cie_cache_joint_z)))) 43)::
+  (EA 43 AWeaken 29)::(EA 44 AWeaken 45)::(EA 45 (AAssign
+  V_cie_cache_joint__tmp (Some (EVar V_cie_cache_joint_es_code_))) 46)::
+  (EA 46 ANone 47)::(EA 47 AWeaken 58)::(EA 48 AWeaken 49)::(EA 49 (AAssign
+  V_cie_cache_joint__tmp (Some (EVar V_cie_cache_joint_code))) 50)::
+  (EA 50 ANone 51)::(EA 51 AWeaken 58)::(EA 52 (AAssign
+  V_cie_cache_joint__tmp (Some (ENum (-25)))) 53)::(EA 53 ANone 54)::
+  (EA 54 AWeaken 58)::(EA 55 (AAssign V_cie_cache_joint__tmp
+  (Some (ENum (0)))) 56)::(EA 56 ANone 57)::(EA 57 AWeaken 58)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_cie_cache_joint => Pedges_cie_cache_joint
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_cie_cache_joint => 58
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_cie_cache_joint (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 3 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0)%Z
+   | 4 => (1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 5 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0)%Z
+   | 6 => (1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 7 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0)%Z
+   | 8 => (1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 9 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 10 => (-1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 11 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 12 => (-1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 13 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 14 => (-1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_es_code_ <= 0)%Z
+   | 15 => (-1 * s V_cie_cache_joint_es_code_ <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 16 => (-1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 17 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 18 => (-1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_i <= 0)%Z
+   | 19 => (-1 * s V_cie_cache_joint_i <= 0 /\ 1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 20 => (-1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 21 => (-1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_i + 3 <= 0)%Z
+   | 22 => (-1 * s V_cie_cache_joint_i + 3 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 23 => (-1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_i + 3 <= 0)%Z
+   | 24 => (-1 * s V_cie_cache_joint_i + 3 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 25 => (-1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_i + -2 <= 0)%Z
+   | 26 => (1 * s V_cie_cache_joint_i + -2 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 27 => (-1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_i + -2 <= 0 /\ 1 * s V_cie_cache_joint_j <= 0 /\ -1 * s V_cie_cache_joint_j <= 0)%Z
+   | 28 => (-1 * s V_cie_cache_joint_j <= 0 /\ 1 * s V_cie_cache_joint_j <= 0 /\ 1 * s V_cie_cache_joint_i + -2 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 29 => (-1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_j <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_j + -24 <= 0)%Z
+   | 30 => (1 * s V_cie_cache_joint_j + -24 <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_j + 24 <= 0)%Z
+   | 31 => (-1 * s V_cie_cache_joint_j + 24 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_j + -24 <= 0)%Z
+   | 32 => (1 * s V_cie_cache_joint_j + -24 <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_j + 24 <= 0)%Z
+   | 33 => (-1 * s V_cie_cache_joint_j + 24 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_j + -24 <= 0 /\ -1 * s V_cie_cache_joint_i + 1 <= 0)%Z
+   | 34 => (-1 * s V_cie_cache_joint_i + 1 <= 0 /\ 1 * s V_cie_cache_joint_j + -24 <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_j + 24 <= 0)%Z
+   | 35 => (-1 * s V_cie_cache_joint_j + 24 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_j + -24 <= 0 /\ -1 * s V_cie_cache_joint_i + 1 <= 0)%Z
+   | 36 => (-1 * s V_cie_cache_joint_i + 1 <= 0 /\ 1 * s V_cie_cache_joint_j + -24 <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_j + 24 <= 0 /\ -1 * s V_cie_cache_joint_z + 1 <= 0)%Z
+   | 37 => (-1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_j <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_j + -23 <= 0)%Z
+   | 38 => (1 * s V_cie_cache_joint_j + -23 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_j <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 39 => (-1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_j <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_j + -23 <= 0)%Z
+   | 40 => (-1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_j + 1 <= 0 /\ 1 * s V_cie_cache_joint_j + -24 <= 0)%Z
+   | 41 => (1 * s V_cie_cache_joint_j + -24 <= 0 /\ -1 * s V_cie_cache_joint_j + 1 <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 42 => (-1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_j + 1 <= 0 /\ 1 * s V_cie_cache_joint_j + -24 <= 0)%Z
+   | 43 => (1 * s V_cie_cache_joint_j + -24 <= 0 /\ -1 * s V_cie_cache_joint_j + 1 <= 0 /\ -1 * s V_cie_cache_joint_code <= 0 /\ -1 * s V_cie_cache_joint_i <= 0 /\ -1 * s V_cie_cache_joint_z + 1 <= 0)%Z
+   | 44 => (-1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_es_code_ + 1 <= 0)%Z
+   | 45 => (1 * s V_cie_cache_joint_es_code_ + 1 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 46 => (-1 * s V_cie_cache_joint_code <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_es_code_ + 1 <= 0 /\ 1 * s V_cie_cache_joint__tmp + 1 <= 0)%Z
+   | 47 => (1 * s V_cie_cache_joint__tmp + 1 <= 0 /\ 1 * s V_cie_cache_joint_es_code_ + 1 <= 0 /\ -1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_code <= 0)%Z
+   | 48 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_code + 1 <= 0)%Z
+   | 49 => (1 * s V_cie_cache_joint_code + 1 <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 50 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_code + 1 <= 0 /\ 1 * s V_cie_cache_joint__tmp + 1 <= 0)%Z
+   | 51 => (1 * s V_cie_cache_joint__tmp + 1 <= 0 /\ 1 * s V_cie_cache_joint_code + 1 <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 52 => (1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 53 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint__tmp + 25 <= 0 /\ -1 * s V_cie_cache_joint__tmp + -25 <= 0)%Z
+   | 54 => (-1 * s V_cie_cache_joint__tmp + -25 <= 0 /\ 1 * s V_cie_cache_joint__tmp + 25 <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 55 => (1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 56 => (-1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ 1 * s V_cie_cache_joint__tmp <= 0 /\ -1 * s V_cie_cache_joint__tmp <= 0)%Z
+   | 57 => (-1 * s V_cie_cache_joint__tmp <= 0 /\ 1 * s V_cie_cache_joint__tmp <= 0 /\ 1 * s V_cie_cache_joint_z <= 0 /\ -1 * s V_cie_cache_joint_z <= 0)%Z
+   | 58 => (-1 * s V_cie_cache_joint_z <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_cie_cache_joint (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((75 # 1) <= z)%Q
+   | 2 => ((75 # 1) + max0(s V_cie_cache_joint_z) <= z)%Q
+   | 3 => ((75 # 1) + max0(s V_cie_cache_joint_z) <= z)%Q
+   | 4 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (s V_cie_cache_joint_z)) (F_check_ge (0) (0))]
+     ((75 # 1) + max0(s V_cie_cache_joint_z) <= z)%Q
+   | 5 => ((75 # 1) <= z)%Q
+   | 6 => ((75 # 1) <= z)%Q
+   | 7 => ((75 # 1) <= z)%Q
+   | 8 => ((75 # 1) <= z)%Q
+   | 9 => ((75 # 1) <= z)%Q
+   | 10 => ((75 # 1) <= z)%Q
+   | 11 => ((75 # 1) <= z)%Q
+   | 12 => ((75 # 1) <= z)%Q
+   | 13 => ((75 # 1) <= z)%Q
+   | 14 => ((75 # 1) <= z)%Q
+   | 15 => ((75 # 1) <= z)%Q
+   | 16 => ((75 # 1) <= z)%Q
+   | 17 => ((75 # 1) <= z)%Q
+   | 18 => ((25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 19 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_cie_cache_joint_z)) (F_check_ge (0) (0));
+      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_cie_cache_joint_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_cie_cache_joint_z))]
+     ((25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 20 => (s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 21 => (s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 22 => (s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 23 => (s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 24 => hints
+     [(*-25 0*) F_max0_monotonic (F_check_ge (3 - s V_cie_cache_joint_i) (2
+                                                                    - s V_cie_cache_joint_i));
+      (*-25 0*) F_max0_ge_0 (2 - s V_cie_cache_joint_i)]
+     (s V_cie_cache_joint_z + (25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 25 => (s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 26 => (s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i) <= z)%Q
+   | 27 => (-(24 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 28 => hints
+     [(*-25 0*) F_max0_pre_decrement 1 (3 - s V_cie_cache_joint_i) (1)]
+     (-(24 # 1) + s V_cie_cache_joint_z
+      + (25 # 1) * max0(3 - s V_cie_cache_joint_i)
+      + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 29 => ((1 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 30 => ((1 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 31 => ((1 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 32 => ((1 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 33 => ((1 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 34 => ((1 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 35 => ((1 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(3 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 36 => hints
+     [(*0 1*) F_max0_monotonic (F_check_ge (24 - s V_cie_cache_joint_j) (23
+                                                                    - s V_cie_cache_joint_j));
+      (*-1 0*) F_max0_ge_0 (23 - s V_cie_cache_joint_j)]
+     (s V_cie_cache_joint_z + (25 # 1) * max0(3 - s V_cie_cache_joint_i)
+      + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 37 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (24 - s V_cie_cache_joint_j) (1)]
+     ((1 # 1) + s V_cie_cache_joint_z
+      + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+      + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 38 => ((2 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(23 - s V_cie_cache_joint_j) <= z)%Q
+   | 39 => ((2 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(23 - s V_cie_cache_joint_j) <= z)%Q
+   | 40 => ((2 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 41 => ((2 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 42 => ((2 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 43 => ((1 # 1) + s V_cie_cache_joint_z
+            + (25 # 1) * max0(2 - s V_cie_cache_joint_i)
+            + max0(24 - s V_cie_cache_joint_j) <= z)%Q
+   | 44 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_cie_cache_joint_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_cie_cache_joint_z))]
+     ((75 # 1) <= z)%Q
+   | 45 => ((75 # 1) + s V_cie_cache_joint_z + max0(-s V_cie_cache_joint_z) <= z)%Q
+   | 46 => ((75 # 1) + s V_cie_cache_joint_z + max0(-s V_cie_cache_joint_z) <= z)%Q
+   | 47 => hints
+     [(*-75 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_cie_cache_joint_z)) (F_check_ge (0) (0))]
+     ((75 # 1) + s V_cie_cache_joint_z + max0(-s V_cie_cache_joint_z) <= z)%Q
+   | 48 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_cie_cache_joint_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_cie_cache_joint_z))]
+     ((75 # 1) <= z)%Q
+   | 49 => ((75 # 1) + s V_cie_cache_joint_z + max0(-s V_cie_cache_joint_z) <= z)%Q
+   | 50 => ((75 # 1) + s V_cie_cache_joint_z + max0(-s V_cie_cache_joint_z) <= z)%Q
+   | 51 => hints
+     [(*-75 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_cie_cache_joint_z)) (F_check_ge (0) (0))]
+     ((75 # 1) + s V_cie_cache_joint_z + max0(-s V_cie_cache_joint_z) <= z)%Q
+   | 52 => ((75 # 1) <= z)%Q
+   | 53 => ((25 # 8) * max0(-1 - s V_cie_cache_joint__tmp) <= z)%Q
+   | 54 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_cie_cache_joint_z)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_cie_cache_joint_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_cie_cache_joint_z));
+      (*-3.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                     - s V_cie_cache_joint__tmp)) (F_check_ge (0) (0))]
+     ((25 # 8) * max0(-1 - s V_cie_cache_joint__tmp) <= z)%Q
+   | 55 => ((75 # 1) + max0(s V_cie_cache_joint_z) <= z)%Q
+   | 56 => ((3 # 1) * max0(25 + s V_cie_cache_joint__tmp)
+            + max0(s V_cie_cache_joint_z) <= z)%Q
+   | 57 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_cie_cache_joint_z)) (F_check_ge (s V_cie_cache_joint_z) (0));
+      (*-3 0*) F_binom_monotonic 1 (F_max0_ge_0 (25
+                                                 + s V_cie_cache_joint__tmp)) (F_check_ge (0) (0))]
+     ((3 # 1) * max0(25 + s V_cie_cache_joint__tmp)
+      + max0(s V_cie_cache_joint_z) <= z)%Q
+   | 58 => (s V_cie_cache_joint_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((75 # 1))%Q
-    | 2%positive => ((75 # 1) + max0((s IDcie_cache_joint_z)))%Q
-    | 3%positive => ((75 # 1) + max0((s IDcie_cache_joint_z)))%Q
-    | 4%positive => ((75 # 1) + max0((s IDcie_cache_joint_z)))%Q
-    | 5%positive => ((75 # 1))%Q
-    | 6%positive => ((75 # 1))%Q
-    | 7%positive => ((75 # 1))%Q
-    | 8%positive => ((75 # 1))%Q
-    | 9%positive => ((75 # 1))%Q
-    | 10%positive => ((75 # 1))%Q
-    | 11%positive => ((75 # 1))%Q
-    | 12%positive => ((75 # 1))%Q
-    | 13%positive => ((75 # 1))%Q
-    | 14%positive => ((75 # 1))%Q
-    | 15%positive => ((75 # 1))%Q
-    | 16%positive => ((75 # 1))%Q
-    | 17%positive => ((75 # 1))%Q
-    | 18%positive => ((25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 19%positive => ((25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 20%positive => ((s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 21%positive => ((s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 22%positive => ((s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 23%positive => ((s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 24%positive => ((s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 25%positive => ((s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 26%positive => ((s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i)))%Q
-    | 27%positive => (-(24 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 28%positive => (-(24 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 29%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 30%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 31%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 32%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 33%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 34%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 35%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 36%positive => ((s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(3 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 37%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 38%positive => ((2 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(23 - (s IDcie_cache_joint_j)))%Q
-    | 39%positive => ((2 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(23 - (s IDcie_cache_joint_j)))%Q
-    | 40%positive => ((2 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 41%positive => ((2 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 42%positive => ((2 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 43%positive => ((1 # 1) + (s IDcie_cache_joint_z)
-                      + (25 # 1) * max0(2 - (s IDcie_cache_joint_i))
-                      + max0(24 - (s IDcie_cache_joint_j)))%Q
-    | 44%positive => ((75 # 1))%Q
-    | 45%positive => ((75 # 1) + (s IDcie_cache_joint_z)
-                      + max0(-(s IDcie_cache_joint_z)))%Q
-    | 46%positive => ((75 # 1) + (s IDcie_cache_joint_z)
-                      + max0(-(s IDcie_cache_joint_z)))%Q
-    | 47%positive => ((75 # 1) + (s IDcie_cache_joint_z)
-                      + max0(-(s IDcie_cache_joint_z)))%Q
-    | 48%positive => ((75 # 1))%Q
-    | 49%positive => ((75 # 1) + (s IDcie_cache_joint_z)
-                      + max0(-(s IDcie_cache_joint_z)))%Q
-    | 50%positive => ((75 # 1) + (s IDcie_cache_joint_z)
-                      + max0(-(s IDcie_cache_joint_z)))%Q
-    | 51%positive => ((75 # 1) + (s IDcie_cache_joint_z)
-                      + max0(-(s IDcie_cache_joint_z)))%Q
-    | 52%positive => ((75 # 1))%Q
-    | 53%positive => ((25 # 8) * max0(-1 - (s IDcie_cache_joint__tmp)))%Q
-    | 54%positive => ((25 # 8) * max0(-1 - (s IDcie_cache_joint__tmp)))%Q
-    | 55%positive => ((75 # 1) + max0((s IDcie_cache_joint_z)))%Q
-    | 56%positive => ((3 # 1) * max0(25 + (s IDcie_cache_joint__tmp))
-                      + max0((s IDcie_cache_joint_z)))%Q
-    | 57%positive => ((3 # 1) * max0(25 + (s IDcie_cache_joint__tmp))
-                      + max0((s IDcie_cache_joint_z)))%Q
-    | 58%positive => ((s IDcie_cache_joint_z))%Q
-    | _ => (0 # 1)%Q
+  | P_cie_cache_joint =>
+    [mkPA Q (fun n z s => ai_cie_cache_joint n s /\ annot0_cie_cache_joint n z s)]
   end.
 
-Definition cie_cache_joint_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDcie_cache_joint_z))) (F_check_ge (0) (0))]
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDcie_cache_joint_z))) (F_check_ge (0) (0));
-                      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDcie_cache_joint_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDcie_cache_joint_z)))]
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => [(*-25 0*) F_max0_monotonic (F_check_ge (3
-                                                              - (s IDcie_cache_joint_i)) (2
-                                                                    - (s IDcie_cache_joint_i)));
-                      (*-25 0*) F_max0_ge_0 (2 - (s IDcie_cache_joint_i))]
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => [(*-25 0*) F_max0_pre_decrement (3
-                                                      - (s IDcie_cache_joint_i)) (1)]
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => [(*0 1*) F_max0_monotonic (F_check_ge (24
-                                                            - (s IDcie_cache_joint_j)) (23
-                                                                    - (s IDcie_cache_joint_j)));
-                      (*-1 0*) F_max0_ge_0 (23 - (s IDcie_cache_joint_j))]
-    | 37%positive => [(*-1 0*) F_max0_pre_decrement (24
-                                                     - (s IDcie_cache_joint_j)) (1)]
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => []
-    | 42%positive => []
-    | 43%positive => []
-    | 44%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDcie_cache_joint_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDcie_cache_joint_z)))]
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => [(*-75 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDcie_cache_joint_z))) (F_check_ge (0) (0))]
-    | 48%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDcie_cache_joint_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDcie_cache_joint_z)))]
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => [(*-75 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDcie_cache_joint_z))) (F_check_ge (0) (0))]
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDcie_cache_joint_z))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDcie_cache_joint_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDcie_cache_joint_z)));
-                      (*-3.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    - 
-                                                                    (s IDcie_cache_joint__tmp))) (F_check_ge (0) (0))]
-    | 55%positive => []
-    | 56%positive => []
-    | 57%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDcie_cache_joint_z))) (F_check_ge ((s IDcie_cache_joint_z)) (0));
-                      (*-3 0*) F_binom_monotonic 1 (F_max0_ge_0 (25
-                                                                 + (s IDcie_cache_joint__tmp))) (F_check_ge (0) (0))]
-    | 58%positive => []
-    | _ => []
-  end.
-
-
-Theorem cie_cache_joint_ai_correct:
-  forall s p' s', steps (g_start cie_cache_joint) s (g_edges cie_cache_joint) p' s' -> cie_cache_joint_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem cie_cache_joint_pot_correct:
-  forall s p' s',
-    steps (g_start cie_cache_joint) s (g_edges cie_cache_joint) p' s' ->
-    (cie_cache_joint_pot (g_start cie_cache_joint) s >= cie_cache_joint_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_cie_cache_joint (proc_start P_cie_cache_joint) s1 (proc_end P_cie_cache_joint) s2 ->
+    (s2 V_cie_cache_joint_z <= (75 # 1))%Q.
 Proof.
-  check_lp cie_cache_joint_ai_correct cie_cache_joint_hints.
+  prove_bound ipa admissible_ipa P_cie_cache_joint.
 Qed.
-

@@ -1,160 +1,135 @@
 Require Import pasta.Pasta.
 
-Notation IDjcopy_sample_rows_z := 1%positive.
-Notation IDjcopy_sample_rows__tmp := 2%positive.
-Notation IDjcopy_sample_rows__tmp1 := 3%positive.
-Notation IDjcopy_sample_rows__tmp2 := 4%positive.
-Notation IDjcopy_sample_rows__tmp3 := 5%positive.
-Notation IDjcopy_sample_rows_count := 6%positive.
-Notation IDjcopy_sample_rows_row := 7%positive.
-Notation IDjcopy_sample_rows_dest_row := 8%positive.
-Notation IDjcopy_sample_rows_input_array := 9%positive.
-Notation IDjcopy_sample_rows_num_cols := 10%positive.
-Notation IDjcopy_sample_rows_num_rows := 11%positive.
-Notation IDjcopy_sample_rows_output_array := 12%positive.
-Notation IDjcopy_sample_rows_source_row := 13%positive.
-Definition jcopy_sample_rows : graph := {|
-  g_start := 1%positive;
-  g_end := 12%positive;
-  g_edges := (1%positive,(AAssign IDjcopy_sample_rows_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AAssign IDjcopy_sample_rows__tmp3
-             (Some (EVar IDjcopy_sample_rows_source_row))),3%positive)::
-             (3%positive,(AAssign IDjcopy_sample_rows__tmp2
-             (Some (EVar IDjcopy_sample_rows_dest_row))),4%positive)::
-             (4%positive,(AAssign IDjcopy_sample_rows__tmp
-             (Some (EVar IDjcopy_sample_rows_num_rows))),5%positive)::
-             (5%positive,(AAssign IDjcopy_sample_rows__tmp1
-             (Some (EVar IDjcopy_sample_rows_num_cols))),6%positive)::
-             (6%positive,(AAssign IDjcopy_sample_rows_count
-             (Some (EMul (EVar IDjcopy_sample_rows__tmp1) (ENum (1))))),
-             7%positive)::
-             (7%positive,(AAssign IDjcopy_sample_rows_row
-             (Some (EVar IDjcopy_sample_rows__tmp))),8%positive)::
-             (8%positive,ANone,9%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,(AGuard
-             (fun s => ((eval (EVar IDjcopy_sample_rows_row) s) >
-             (eval (ENum (0)) s))%Z)),13%positive)::
-             (10%positive,(AGuard
-             (fun s => ((eval (EVar IDjcopy_sample_rows_row) s) <=
-             (eval (ENum (0)) s))%Z)),11%positive)::
-             (11%positive,AWeaken,12%positive)::
-             (13%positive,AWeaken,14%positive)::
-             (14%positive,ANone,15%positive)::
-             (15%positive,(AAssign IDjcopy_sample_rows_row
-             (Some (EAdd (EVar IDjcopy_sample_rows_row) (ENum (-1))))),
-             16%positive)::(16%positive,ANone,17%positive)::
-             (17%positive,ANone,18%positive)::
-             (18%positive,(AAssign IDjcopy_sample_rows_z
-             (Some (EAdd (ENum (1)) (EVar IDjcopy_sample_rows_z)))),
-             19%positive)::(19%positive,AWeaken,10%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_jcopy_sample_rows.
 
-Definition jcopy_sample_rows_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDjcopy_sample_rows_z) <= 0 /\ -1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ 1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 4%positive => (1 * (s IDjcopy_sample_rows_z) <= 0 /\ -1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ 1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 6%positive => (1 * (s IDjcopy_sample_rows_z) <= 0 /\ -1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 7%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ 1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 8%positive => (1 * (s IDjcopy_sample_rows_z) <= 0 /\ -1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 9%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ 1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 10%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 11%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ 1 * (s IDjcopy_sample_rows_row) <= 0)%Z
-    | 12%positive => (1 * (s IDjcopy_sample_rows_row) <= 0 /\ -1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 13%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ -1 * (s IDjcopy_sample_rows_row) + 1 <= 0)%Z
-    | 14%positive => (-1 * (s IDjcopy_sample_rows_row) + 1 <= 0 /\ -1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 15%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ -1 * (s IDjcopy_sample_rows_row) + 1 <= 0)%Z
-    | 16%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ -1 * (s IDjcopy_sample_rows_row) <= 0)%Z
-    | 17%positive => (-1 * (s IDjcopy_sample_rows_row) <= 0 /\ -1 * (s IDjcopy_sample_rows_z) <= 0)%Z
-    | 18%positive => (-1 * (s IDjcopy_sample_rows_z) <= 0 /\ -1 * (s IDjcopy_sample_rows_row) <= 0)%Z
-    | 19%positive => (-1 * (s IDjcopy_sample_rows_row) <= 0 /\ -1 * (s IDjcopy_sample_rows_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition jcopy_sample_rows_pot (p : node) (s : state): Q := 
+Notation V_jcopy_sample_rows_z := 1%positive.
+Notation V_jcopy_sample_rows__tmp := 2%positive.
+Notation V_jcopy_sample_rows__tmp1 := 3%positive.
+Notation V_jcopy_sample_rows__tmp2 := 4%positive.
+Notation V_jcopy_sample_rows__tmp3 := 5%positive.
+Notation V_jcopy_sample_rows_count := 6%positive.
+Notation V_jcopy_sample_rows_row := 7%positive.
+Notation V_jcopy_sample_rows_dest_row := 8%positive.
+Notation V_jcopy_sample_rows_input_array := 9%positive.
+Notation V_jcopy_sample_rows_num_cols := 10%positive.
+Notation V_jcopy_sample_rows_num_rows := 11%positive.
+Notation V_jcopy_sample_rows_output_array := 12%positive.
+Notation V_jcopy_sample_rows_source_row := 13%positive.
+Definition Pedges_jcopy_sample_rows: list (edge proc) :=
+  (EA 1 (AAssign V_jcopy_sample_rows_z (Some (ENum (0)))) 2)::(EA 2 (AAssign
+  V_jcopy_sample_rows__tmp3
+  (Some (EVar V_jcopy_sample_rows_source_row))) 3)::(EA 3 (AAssign
+  V_jcopy_sample_rows__tmp2 (Some (EVar V_jcopy_sample_rows_dest_row))) 4)::
+  (EA 4 (AAssign V_jcopy_sample_rows__tmp
+  (Some (EVar V_jcopy_sample_rows_num_rows))) 5)::(EA 5 (AAssign
+  V_jcopy_sample_rows__tmp1 (Some (EVar V_jcopy_sample_rows_num_cols))) 6)::
+  (EA 6 (AAssign V_jcopy_sample_rows_count
+  (Some (EMul (EVar V_jcopy_sample_rows__tmp1) (ENum (1))))) 7)::
+  (EA 7 (AAssign V_jcopy_sample_rows_row
+  (Some (EVar V_jcopy_sample_rows__tmp))) 8)::(EA 8 ANone 9)::
+  (EA 9 AWeaken 10)::(EA 10 (AGuard
+  (fun s => ((eval (EVar V_jcopy_sample_rows_row) s) > (eval (ENum (0))
+  s))%Z)) 13)::(EA 10 (AGuard (fun s => ((eval (EVar V_jcopy_sample_rows_row)
+  s) <= (eval (ENum (0)) s))%Z)) 11)::(EA 11 AWeaken 12)::
+  (EA 13 AWeaken 14)::(EA 14 ANone 15)::(EA 15 (AAssign
+  V_jcopy_sample_rows_row (Some (EAdd (EVar V_jcopy_sample_rows_row)
+  (ENum (-1))))) 16)::(EA 16 ANone 17)::(EA 17 ANone 18)::(EA 18 (AAssign
+  V_jcopy_sample_rows_z (Some (EAdd (ENum (1))
+  (EVar V_jcopy_sample_rows_z)))) 19)::(EA 19 AWeaken 10)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_jcopy_sample_rows => Pedges_jcopy_sample_rows
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_jcopy_sample_rows => 12
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_jcopy_sample_rows (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_jcopy_sample_rows_z <= 0 /\ -1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 3 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ 1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 4 => (1 * s V_jcopy_sample_rows_z <= 0 /\ -1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 5 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ 1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 6 => (1 * s V_jcopy_sample_rows_z <= 0 /\ -1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 7 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ 1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 8 => (1 * s V_jcopy_sample_rows_z <= 0 /\ -1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 9 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ 1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 10 => (-1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 11 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ 1 * s V_jcopy_sample_rows_row <= 0)%Z
+   | 12 => (1 * s V_jcopy_sample_rows_row <= 0 /\ -1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 13 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ -1 * s V_jcopy_sample_rows_row + 1 <= 0)%Z
+   | 14 => (-1 * s V_jcopy_sample_rows_row + 1 <= 0 /\ -1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 15 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ -1 * s V_jcopy_sample_rows_row + 1 <= 0)%Z
+   | 16 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ -1 * s V_jcopy_sample_rows_row <= 0)%Z
+   | 17 => (-1 * s V_jcopy_sample_rows_row <= 0 /\ -1 * s V_jcopy_sample_rows_z <= 0)%Z
+   | 18 => (-1 * s V_jcopy_sample_rows_z <= 0 /\ -1 * s V_jcopy_sample_rows_row <= 0)%Z
+   | 19 => (-1 * s V_jcopy_sample_rows_row <= 0 /\ -1 * s V_jcopy_sample_rows_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_jcopy_sample_rows (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_jcopy_sample_rows_num_rows) <= z)%Q
+   | 2 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_num_rows) <= z)%Q
+   | 3 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_num_rows) <= z)%Q
+   | 4 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_num_rows) <= z)%Q
+   | 5 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows__tmp) <= z)%Q
+   | 6 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows__tmp) <= z)%Q
+   | 7 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows__tmp) <= z)%Q
+   | 8 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | 9 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | 10 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | 11 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (s V_jcopy_sample_rows_row) (-1
+                                                                    + s V_jcopy_sample_rows_row));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                 + s V_jcopy_sample_rows_row)) (F_check_ge (0) (0))]
+     (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | 12 => (s V_jcopy_sample_rows_z <= z)%Q
+   | 13 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (s V_jcopy_sample_rows_row) (1)]
+     (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | 14 => ((1 # 1) + s V_jcopy_sample_rows_z
+            + max0(-1 + s V_jcopy_sample_rows_row) <= z)%Q
+   | 15 => ((1 # 1) + s V_jcopy_sample_rows_z
+            + max0(-1 + s V_jcopy_sample_rows_row) <= z)%Q
+   | 16 => ((1 # 1) + s V_jcopy_sample_rows_z
+            + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | 17 => ((1 # 1) + s V_jcopy_sample_rows_z
+            + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | 18 => ((1 # 1) + s V_jcopy_sample_rows_z
+            + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | 19 => (s V_jcopy_sample_rows_z + max0(s V_jcopy_sample_rows_row) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDjcopy_sample_rows_num_rows)))%Q
-    | 2%positive => ((s IDjcopy_sample_rows_z)
-                     + max0((s IDjcopy_sample_rows_num_rows)))%Q
-    | 3%positive => ((s IDjcopy_sample_rows_z)
-                     + max0((s IDjcopy_sample_rows_num_rows)))%Q
-    | 4%positive => ((s IDjcopy_sample_rows_z)
-                     + max0((s IDjcopy_sample_rows_num_rows)))%Q
-    | 5%positive => ((s IDjcopy_sample_rows_z)
-                     + max0((s IDjcopy_sample_rows__tmp)))%Q
-    | 6%positive => ((s IDjcopy_sample_rows_z)
-                     + max0((s IDjcopy_sample_rows__tmp)))%Q
-    | 7%positive => ((s IDjcopy_sample_rows_z)
-                     + max0((s IDjcopy_sample_rows__tmp)))%Q
-    | 8%positive => ((s IDjcopy_sample_rows_z)
-                     + max0((s IDjcopy_sample_rows_row)))%Q
-    | 9%positive => ((s IDjcopy_sample_rows_z)
-                     + max0((s IDjcopy_sample_rows_row)))%Q
-    | 10%positive => ((s IDjcopy_sample_rows_z)
-                      + max0((s IDjcopy_sample_rows_row)))%Q
-    | 11%positive => ((s IDjcopy_sample_rows_z)
-                      + max0((s IDjcopy_sample_rows_row)))%Q
-    | 12%positive => ((s IDjcopy_sample_rows_z))%Q
-    | 13%positive => ((s IDjcopy_sample_rows_z)
-                      + max0((s IDjcopy_sample_rows_row)))%Q
-    | 14%positive => ((1 # 1) + (s IDjcopy_sample_rows_z)
-                      + max0(-1 + (s IDjcopy_sample_rows_row)))%Q
-    | 15%positive => ((1 # 1) + (s IDjcopy_sample_rows_z)
-                      + max0(-1 + (s IDjcopy_sample_rows_row)))%Q
-    | 16%positive => ((1 # 1) + (s IDjcopy_sample_rows_z)
-                      + max0((s IDjcopy_sample_rows_row)))%Q
-    | 17%positive => ((1 # 1) + (s IDjcopy_sample_rows_z)
-                      + max0((s IDjcopy_sample_rows_row)))%Q
-    | 18%positive => ((1 # 1) + (s IDjcopy_sample_rows_z)
-                      + max0((s IDjcopy_sample_rows_row)))%Q
-    | 19%positive => ((s IDjcopy_sample_rows_z)
-                      + max0((s IDjcopy_sample_rows_row)))%Q
-    | _ => (0 # 1)%Q
+  | P_jcopy_sample_rows =>
+    [mkPA Q (fun n z s => ai_jcopy_sample_rows n s /\ annot0_jcopy_sample_rows n z s)]
   end.
 
-Definition jcopy_sample_rows_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => [(*-1 0*) F_max0_monotonic (F_check_ge ((s IDjcopy_sample_rows_row)) (-1
-                                                                    + (s IDjcopy_sample_rows_row)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                 + (s IDjcopy_sample_rows_row))) (F_check_ge (0) (0))]
-    | 12%positive => []
-    | 13%positive => [(*-1 0*) F_max0_pre_decrement ((s IDjcopy_sample_rows_row)) (1)]
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | _ => []
-  end.
-
-
-Theorem jcopy_sample_rows_ai_correct:
-  forall s p' s', steps (g_start jcopy_sample_rows) s (g_edges jcopy_sample_rows) p' s' -> jcopy_sample_rows_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem jcopy_sample_rows_pot_correct:
-  forall s p' s',
-    steps (g_start jcopy_sample_rows) s (g_edges jcopy_sample_rows) p' s' ->
-    (jcopy_sample_rows_pot (g_start jcopy_sample_rows) s >= jcopy_sample_rows_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_jcopy_sample_rows (proc_start P_jcopy_sample_rows) s1 (proc_end P_jcopy_sample_rows) s2 ->
+    (s2 V_jcopy_sample_rows_z <= max0(s1 V_jcopy_sample_rows_num_rows))%Q.
 Proof.
-  check_lp jcopy_sample_rows_ai_correct jcopy_sample_rows_hints.
+  prove_bound ipa admissible_ipa P_jcopy_sample_rows.
 Qed.
-

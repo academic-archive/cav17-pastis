@@ -1,1394 +1,1151 @@
 Require Import pasta.Pasta.
 
-Notation IDReflection_coefficients_z := 1%positive.
-Notation IDReflection_coefficients_L_ACF_dref_off0 := 2%positive.
-Notation IDReflection_coefficients_P_off0 := 3%positive.
-Notation IDReflection_coefficients_P_off2 := 4%positive.
-Notation IDReflection_coefficients_i := 5%positive.
-Notation IDReflection_coefficients_ltmp := 6%positive.
-Notation IDReflection_coefficients_m := 7%positive.
-Notation IDReflection_coefficients_n := 8%positive.
-Notation IDReflection_coefficients_temp := 9%positive.
-Notation IDReflection_coefficients_L_ACF := 10%positive.
-Notation IDReflection_coefficients_r := 11%positive.
-Definition Reflection_coefficients : graph := {|
-  g_start := 1%positive;
-  g_end := 161%positive;
-  g_edges := (1%positive,(AAssign IDReflection_coefficients_z
-             (Some (ENum (0)))),2%positive)::
-             (2%positive,AWeaken,3%positive)::
-             (3%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_L_ACF_dref_off0)
-             s) = (eval (ENum (0)) s))%Z)),152%positive)::
-             (3%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_L_ACF_dref_off0)
-             s) <> (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,AWeaken,5%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_L_ACF_dref_off0)
-             s) <> (eval (ENum (0)) s))%Z)),9%positive)::
-             (5%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_L_ACF_dref_off0)
-             s) = (eval (ENum (0)) s))%Z)),6%positive)::
-             (6%positive,AWeaken,7%positive)::(7%positive,ANone,8%positive)::
-             (8%positive,AWeaken,161%positive)::
-             (9%positive,AWeaken,10%positive)::
-             (10%positive,ANone,11%positive)::
-             (11%positive,(AAssign IDReflection_coefficients_temp None),
-             12%positive)::(12%positive,AWeaken,13%positive)::
-             (13%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_temp) s) >=
-             (eval (ENum (0)) s))%Z)),15%positive)::
-             (13%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_temp) s) <
-             (eval (ENum (0)) s))%Z)),14%positive)::
-             (14%positive,AWeaken,18%positive)::
-             (15%positive,AWeaken,16%positive)::
-             (16%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_temp) s) <
-             (eval (ENum (32)) s))%Z)),20%positive)::
-             (16%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_temp) s) >=
-             (eval (ENum (32)) s))%Z)),17%positive)::
-             (17%positive,AWeaken,18%positive)::
-             (18%positive,ANone,19%positive)::
-             (19%positive,AWeaken,161%positive)::
-             (20%positive,AWeaken,21%positive)::
-             (21%positive,ANone,22%positive)::
-             (22%positive,(AAssign IDReflection_coefficients_i
-             (Some (ENum (0)))),23%positive)::
-             (23%positive,ANone,24%positive)::
-             (24%positive,AWeaken,25%positive)::
-             (25%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) <=
-             (eval (ENum (8)) s))%Z)),145%positive)::
-             (25%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) >
-             (eval (ENum (8)) s))%Z)),26%positive)::
-             (26%positive,AWeaken,27%positive)::
-             (27%positive,(AAssign IDReflection_coefficients_i
-             (Some (ENum (1)))),28%positive)::
-             (28%positive,ANone,29%positive)::
-             (29%positive,AWeaken,30%positive)::
-             (30%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) <=
-             (eval (ENum (7)) s))%Z)),138%positive)::
-             (30%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) >
-             (eval (ENum (7)) s))%Z)),31%positive)::
-             (31%positive,AWeaken,32%positive)::
-             (32%positive,(AAssign IDReflection_coefficients_i
-             (Some (ENum (0)))),33%positive)::
-             (33%positive,ANone,34%positive)::
-             (34%positive,AWeaken,35%positive)::
-             (35%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) <=
-             (eval (ENum (8)) s))%Z)),131%positive)::
-             (35%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) >
-             (eval (ENum (8)) s))%Z)),36%positive)::
-             (36%positive,AWeaken,37%positive)::
-             (37%positive,(AAssign IDReflection_coefficients_n
-             (Some (ENum (1)))),38%positive)::
-             (38%positive,ANone,39%positive)::
-             (39%positive,AWeaken,40%positive)::
-             (40%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_n) s) <=
-             (eval (ENum (8)) s))%Z)),42%positive)::
-             (40%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_n) s) >
-             (eval (ENum (8)) s))%Z)),41%positive)::
-             (41%positive,AWeaken,161%positive)::
-             (42%positive,AWeaken,43%positive)::
-             (43%positive,(AAssign IDReflection_coefficients_temp
-             (Some (EVar IDReflection_coefficients_P_off2))),44%positive)::
-             (44%positive,AWeaken,45%positive)::
-             (45%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_temp) s) <
-             (eval (ENum (0)) s))%Z)),48%positive)::
-             (45%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_temp) s) >=
-             (eval (ENum (0)) s))%Z)),46%positive)::
-             (46%positive,AWeaken,47%positive)::
-             (47%positive,ANone,55%positive)::
-             (48%positive,AWeaken,49%positive)::
-             (49%positive,(AGuard (fun s => True)),53%positive)::
-             (49%positive,ANone,50%positive)::
-             (50%positive,ANone,51%positive)::
-             (51%positive,(AGuard (fun s => True)),52%positive)::
-             (52%positive,AWeaken,55%positive)::
-             (53%positive,AWeaken,54%positive)::
-             (54%positive,ANone,55%positive)::
-             (55%positive,(AAssign IDReflection_coefficients_temp None),
-             56%positive)::(56%positive,AWeaken,57%positive)::
-             (57%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_P_off0) s) <
-             (eval (EVar IDReflection_coefficients_temp) s))%Z)),
-             116%positive)::
-             (57%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_P_off0) s) >=
-             (eval (EVar IDReflection_coefficients_temp) s))%Z)),58%positive)::
-             (58%positive,AWeaken,59%positive)::
-             (59%positive,ANone,62%positive)::
-             (59%positive,ANone,60%positive)::
-             (60%positive,ANone,61%positive)::
-             (61%positive,AWeaken,161%positive)::
-             (62%positive,ANone,63%positive)::
-             (63%positive,AWeaken,64%positive)::
-             (64%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_P_off2) s) >
-             (eval (ENum (0)) s))%Z)),66%positive)::
-             (64%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_P_off2) s) <=
-             (eval (ENum (0)) s))%Z)),65%positive)::
-             (65%positive,AWeaken,69%positive)::
-             (66%positive,AWeaken,67%positive)::
-             (67%positive,ANone,68%positive)::
-             (68%positive,AWeaken,69%positive)::
-             (69%positive,ANone,72%positive)::
-             (69%positive,ANone,70%positive)::
-             (70%positive,ANone,71%positive)::
-             (71%positive,AWeaken,161%positive)::
-             (72%positive,ANone,73%positive)::
-             (73%positive,AWeaken,74%positive)::
-             (74%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_n) s) =
-             (eval (ENum (8)) s))%Z)),113%positive)::
-             (74%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_n) s) <>
-             (eval (ENum (8)) s))%Z)),75%positive)::
-             (75%positive,AWeaken,76%positive)::
-             (76%positive,(AAssign IDReflection_coefficients_temp None),
-             77%positive)::
-             (77%positive,(AAssign IDReflection_coefficients_ltmp
-             (Some (EAdd (EVar IDReflection_coefficients_P_off0)
-             (EVar IDReflection_coefficients_temp)))),78%positive)::
-             (78%positive,AWeaken,79%positive)::
-             (79%positive,ANone,81%positive)::
-             (79%positive,ANone,80%positive)::
-             (80%positive,ANone,82%positive)::
-             (81%positive,ANone,82%positive)::
-             (82%positive,(AAssign IDReflection_coefficients_P_off0 None),
-             83%positive)::
-             (83%positive,(AAssign IDReflection_coefficients_m
-             (Some (ENum (1)))),84%positive)::
-             (84%positive,ANone,85%positive)::
-             (85%positive,AWeaken,86%positive)::
-             (86%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_m) s) <=
-             (eval (ESub (ENum (8)) (EVar IDReflection_coefficients_n))
-             s))%Z)),94%positive)::
-             (86%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_m) s) >
-             (eval (ESub (ENum (8)) (EVar IDReflection_coefficients_n))
-             s))%Z)),87%positive)::(87%positive,AWeaken,88%positive)::
-             (88%positive,ANone,89%positive)::
-             (89%positive,(AAssign IDReflection_coefficients_n
-             (Some (EAdd (EVar IDReflection_coefficients_n) (ENum (1))))),
-             90%positive)::(90%positive,ANone,91%positive)::
-             (91%positive,ANone,92%positive)::
-             (92%positive,(AAssign IDReflection_coefficients_z
-             (Some (EAdd (ENum (1)) (EVar IDReflection_coefficients_z)))),
-             93%positive)::(93%positive,AWeaken,40%positive)::
-             (94%positive,AWeaken,95%positive)::
-             (95%positive,(AAssign IDReflection_coefficients_temp None),
-             96%positive)::
-             (96%positive,(AAssign IDReflection_coefficients_ltmp None),
-             97%positive)::(97%positive,AWeaken,98%positive)::
-             (98%positive,ANone,100%positive)::
-             (98%positive,ANone,99%positive)::
-             (99%positive,ANone,101%positive)::
-             (100%positive,ANone,101%positive)::
-             (101%positive,(AAssign IDReflection_coefficients_temp None),
-             102%positive)::
-             (102%positive,(AAssign IDReflection_coefficients_ltmp None),
-             103%positive)::(103%positive,AWeaken,104%positive)::
-             (104%positive,ANone,106%positive)::
-             (104%positive,ANone,105%positive)::
-             (105%positive,ANone,107%positive)::
-             (106%positive,ANone,107%positive)::
-             (107%positive,ANone,108%positive)::
-             (108%positive,(AAssign IDReflection_coefficients_m
-             (Some (EAdd (EVar IDReflection_coefficients_m) (ENum (1))))),
-             109%positive)::(109%positive,ANone,110%positive)::
-             (110%positive,ANone,111%positive)::
-             (111%positive,(AAssign IDReflection_coefficients_z
-             (Some (EAdd (ENum (1)) (EVar IDReflection_coefficients_z)))),
-             112%positive)::(112%positive,AWeaken,86%positive)::
-             (113%positive,AWeaken,114%positive)::
-             (114%positive,ANone,115%positive)::
-             (115%positive,AWeaken,161%positive)::
-             (116%positive,AWeaken,117%positive)::
-             (117%positive,(AAssign IDReflection_coefficients_i
-             (Some (EVar IDReflection_coefficients_n))),118%positive)::
-             (118%positive,ANone,119%positive)::
-             (119%positive,AWeaken,120%positive)::
-             (120%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) <=
-             (eval (ENum (8)) s))%Z)),124%positive)::
-             (120%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) >
-             (eval (ENum (8)) s))%Z)),121%positive)::
-             (121%positive,AWeaken,122%positive)::
-             (122%positive,ANone,123%positive)::
-             (123%positive,AWeaken,161%positive)::
-             (124%positive,AWeaken,125%positive)::
-             (125%positive,ANone,126%positive)::
-             (126%positive,(AAssign IDReflection_coefficients_i
-             (Some (EAdd (EVar IDReflection_coefficients_i) (ENum (1))))),
-             127%positive)::(127%positive,ANone,128%positive)::
-             (128%positive,ANone,129%positive)::
-             (129%positive,(AAssign IDReflection_coefficients_z
-             (Some (EAdd (ENum (1)) (EVar IDReflection_coefficients_z)))),
-             130%positive)::(130%positive,AWeaken,120%positive)::
-             (131%positive,AWeaken,132%positive)::
-             (132%positive,ANone,133%positive)::
-             (133%positive,(AAssign IDReflection_coefficients_i
-             (Some (EAdd (EVar IDReflection_coefficients_i) (ENum (1))))),
-             134%positive)::(134%positive,ANone,135%positive)::
-             (135%positive,ANone,136%positive)::
-             (136%positive,(AAssign IDReflection_coefficients_z
-             (Some (EAdd (ENum (1)) (EVar IDReflection_coefficients_z)))),
-             137%positive)::(137%positive,AWeaken,35%positive)::
-             (138%positive,AWeaken,139%positive)::
-             (139%positive,ANone,140%positive)::
-             (140%positive,(AAssign IDReflection_coefficients_i
-             (Some (EAdd (EVar IDReflection_coefficients_i) (ENum (1))))),
-             141%positive)::(141%positive,ANone,142%positive)::
-             (142%positive,ANone,143%positive)::
-             (143%positive,(AAssign IDReflection_coefficients_z
-             (Some (EAdd (ENum (1)) (EVar IDReflection_coefficients_z)))),
-             144%positive)::(144%positive,AWeaken,30%positive)::
-             (145%positive,AWeaken,146%positive)::
-             (146%positive,ANone,147%positive)::
-             (147%positive,(AAssign IDReflection_coefficients_i
-             (Some (EAdd (EVar IDReflection_coefficients_i) (ENum (1))))),
-             148%positive)::(148%positive,ANone,149%positive)::
-             (149%positive,ANone,150%positive)::
-             (150%positive,(AAssign IDReflection_coefficients_z
-             (Some (EAdd (ENum (1)) (EVar IDReflection_coefficients_z)))),
-             151%positive)::(151%positive,AWeaken,25%positive)::
-             (152%positive,AWeaken,153%positive)::
-             (153%positive,(AAssign IDReflection_coefficients_i
-             (Some (ENum (8)))),154%positive)::
-             (154%positive,ANone,155%positive)::
-             (155%positive,(AAssign IDReflection_coefficients_i
-             (Some (EAdd (EVar IDReflection_coefficients_i) (ENum (-1))))),
-             156%positive)::(156%positive,AWeaken,157%positive)::
-             (157%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) <>
-             (eval (ENum (0)) s))%Z)),162%positive)::
-             (157%positive,(AGuard
-             (fun s => ((eval (EVar IDReflection_coefficients_i) s) =
-             (eval (ENum (0)) s))%Z)),158%positive)::
-             (158%positive,AWeaken,159%positive)::
-             (159%positive,ANone,160%positive)::
-             (160%positive,AWeaken,161%positive)::
-             (162%positive,AWeaken,163%positive)::
-             (163%positive,ANone,164%positive)::
-             (164%positive,ANone,165%positive)::
-             (165%positive,ANone,166%positive)::
-             (166%positive,(AAssign IDReflection_coefficients_z
-             (Some (EAdd (ENum (1)) (EVar IDReflection_coefficients_z)))),
-             155%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_Reflection_coefficients.
 
-Definition Reflection_coefficients_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 4%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 6%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0)%Z
-    | 7%positive => (-1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 8%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0)%Z
-    | 9%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 10%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 11%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 12%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 13%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 14%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + 1 <= 0)%Z
-    | 15%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 16%positive => (-1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 17%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) + 32 <= 0)%Z
-    | 18%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 19%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 20%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0)%Z
-    | 21%positive => (1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 22%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0)%Z
-    | 23%positive => (1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0)%Z
-    | 24%positive => (-1 * (s IDReflection_coefficients_i) <= 0 /\ 1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0)%Z
-    | 25%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 26%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 27%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 28%positive => (-1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0)%Z
-    | 29%positive => (-1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 30%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 31%positive => (1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 8 <= 0)%Z
-    | 32%positive => (-1 * (s IDReflection_coefficients_i) + 8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 33%positive => (1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0)%Z
-    | 34%positive => (-1 * (s IDReflection_coefficients_i) <= 0 /\ 1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0)%Z
-    | 35%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 36%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 37%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 38%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -1 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0)%Z
-    | 39%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 40%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 41%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 9 <= 0)%Z
-    | 42%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 43%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 44%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 45%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 46%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 47%positive => (-1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 48%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ 1 * (s IDReflection_coefficients_temp) + 1 <= 0)%Z
-    | 49%positive => (1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 50%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ 1 * (s IDReflection_coefficients_temp) + 1 <= 0)%Z
-    | 51%positive => (1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 52%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ 1 * (s IDReflection_coefficients_temp) + 1 <= 0)%Z
-    | 53%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ 1 * (s IDReflection_coefficients_temp) + 1 <= 0)%Z
-    | 54%positive => (1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 55%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 56%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 57%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 58%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 59%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 60%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 61%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 62%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 63%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 64%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 65%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ 1 * (s IDReflection_coefficients_P_off2) <= 0)%Z
-    | 66%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_P_off2) + 1 <= 0)%Z
-    | 67%positive => (-1 * (s IDReflection_coefficients_P_off2) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 68%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_P_off2) + 1 <= 0)%Z
-    | 69%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 70%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 71%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 72%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 73%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 74%positive => (-1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 75%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0)%Z
-    | 76%positive => (1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 77%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0)%Z
-    | 78%positive => (1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 79%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0)%Z
-    | 80%positive => (1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 81%positive => (1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 82%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0)%Z
-    | 83%positive => (1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 84%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ 1 * (s IDReflection_coefficients_m) + -1 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0)%Z
-    | 85%positive => (-1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_m) + -1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 86%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -9 <= 0)%Z
-    | 87%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_m)+ -1 * (s IDReflection_coefficients_n) + 9 <= 0)%Z
-    | 88%positive => (-1 * (s IDReflection_coefficients_m)+ -1 * (s IDReflection_coefficients_n) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -9 <= 0)%Z
-    | 89%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_m)+ -1 * (s IDReflection_coefficients_n) + 9 <= 0)%Z
-    | 90%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -10 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_m)+ -1 * (s IDReflection_coefficients_n) + 10 <= 0)%Z
-    | 91%positive => (-1 * (s IDReflection_coefficients_m)+ -1 * (s IDReflection_coefficients_n) + 10 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -10 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 92%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -10 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_m)+ -1 * (s IDReflection_coefficients_n) + 10 <= 0)%Z
-    | 93%positive => (-1 * (s IDReflection_coefficients_m)+ -1 * (s IDReflection_coefficients_n) + 10 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -10 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_z) + 1 <= 0)%Z
-    | 94%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 95%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0)%Z
-    | 96%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 97%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0)%Z
-    | 98%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 99%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0)%Z
-    | 100%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0)%Z
-    | 101%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 102%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0)%Z
-    | 103%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 104%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0)%Z
-    | 105%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 106%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 107%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0)%Z
-    | 108%positive => (-1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 109%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -9 <= 0)%Z
-    | 110%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 2 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 111%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -9 <= 0)%Z
-    | 112%positive => (1 * (s IDReflection_coefficients_m)+ 1 * (s IDReflection_coefficients_n) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_m) + 2 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_z) + 1 <= 0)%Z
-    | 113%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 8 <= 0)%Z
-    | 114%positive => (-1 * (s IDReflection_coefficients_n) + 8 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 115%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_P_off0)+ 1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 8 <= 0)%Z
-    | 116%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0)%Z
-    | 117%positive => (1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 118%positive => (1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0)%Z
-    | 119%positive => (-1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0)%Z
-    | 120%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 121%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 122%positive => (-1 * (s IDReflection_coefficients_i) + 9 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 123%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 9 <= 0)%Z
-    | 124%positive => (1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 125%positive => (1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0)%Z
-    | 126%positive => (1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 127%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 128%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 129%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 130%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_P_off0)+ -1 * (s IDReflection_coefficients_temp) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_n) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_n) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) + 1 <= 0)%Z
-    | 131%positive => (-1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 132%positive => (1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 133%positive => (-1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 134%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 135%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 136%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 137%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_z) + 1 <= 0)%Z
-    | 138%positive => (1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -7 <= 0)%Z
-    | 139%positive => (1 * (s IDReflection_coefficients_i) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0)%Z
-    | 140%positive => (1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -7 <= 0)%Z
-    | 141%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 142%positive => (1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 143%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 144%positive => (1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 2 <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_z) + 1 <= 0)%Z
-    | 145%positive => (-1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 146%positive => (1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0)%Z
-    | 147%positive => (-1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0)%Z
-    | 148%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 149%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 150%positive => (-1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ 1 * (s IDReflection_coefficients_i) + -9 <= 0)%Z
-    | 151%positive => (1 * (s IDReflection_coefficients_i) + -9 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 1 <= 0 /\ -1 * (s IDReflection_coefficients_temp) <= 0 /\ 1 * (s IDReflection_coefficients_temp) + -31 <= 0 /\ -1 * (s IDReflection_coefficients_z) + 1 <= 0)%Z
-    | 152%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0)%Z
-    | 153%positive => (-1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 154%positive => (1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_i) + 8 <= 0)%Z
-    | 155%positive => (1 * (s IDReflection_coefficients_i) + -8 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0)%Z
-    | 156%positive => (1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -7 <= 0)%Z
-    | 157%positive => (1 * (s IDReflection_coefficients_i) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0)%Z
-    | 158%positive => (1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0)%Z
-    | 159%positive => (-1 * (s IDReflection_coefficients_i) <= 0 /\ 1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0)%Z
-    | 160%positive => (1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) <= 0 /\ -1 * (s IDReflection_coefficients_i) <= 0)%Z
-    | 161%positive => (-1 * (s IDReflection_coefficients_z) <= 0)%Z
-    | 162%positive => (1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -7 <= 0)%Z
-    | 163%positive => (1 * (s IDReflection_coefficients_i) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0)%Z
-    | 164%positive => (1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -7 <= 0)%Z
-    | 165%positive => (1 * (s IDReflection_coefficients_i) + -7 <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ 1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0)%Z
-    | 166%positive => (1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_L_ACF_dref_off0) <= 0 /\ -1 * (s IDReflection_coefficients_z) <= 0 /\ 1 * (s IDReflection_coefficients_i) + -7 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition Reflection_coefficients_pot (p : node) (s : state): Q := 
-  match p with
-    | 1%positive => ((82 # 1))%Q
-    | 2%positive => ((82 # 1))%Q
-    | 3%positive => ((82 # 1))%Q
-    | 4%positive => ((82 # 1))%Q
-    | 5%positive => ((82 # 1))%Q
-    | 6%positive => ((82 # 1))%Q
-    | 7%positive => ((82 # 1))%Q
-    | 8%positive => ((82 # 1))%Q
-    | 9%positive => ((82 # 1))%Q
-    | 10%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 11%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 12%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 13%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 14%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 15%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 16%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 17%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 18%positive => ((s IDReflection_coefficients_z))%Q
-    | 19%positive => ((s IDReflection_coefficients_z))%Q
-    | 20%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 21%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 22%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 23%positive => ((73 # 1) + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i))
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 24%positive => ((73 # 1) + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i))
-                      + max0(-(s IDReflection_coefficients_z)))%Q
-    | 25%positive => ((73 # 1) + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 26%positive => ((73 # 1) + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 27%positive => ((73 # 1) + (s IDReflection_coefficients_z))%Q
-    | 28%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                      + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 29%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                      + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 30%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                      + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 31%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                      + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 32%positive => ((66 # 1) + (s IDReflection_coefficients_z))%Q
-    | 33%positive => ((57 # 1) + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 34%positive => ((57 # 1) + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 35%positive => ((57 # 1) + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 36%positive => ((57 # 1) + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 37%positive => ((57 # 31) * (s IDReflection_coefficients_temp)
-                      + (s IDReflection_coefficients_z)
-                      + max0(9 - (s IDReflection_coefficients_i))
-                      + (57 # 31) * max0(31
-                                         - (s IDReflection_coefficients_temp)))%Q
-    | 38%positive => (-(393 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                      + (57 # 31) * (s IDReflection_coefficients_temp)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_i))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + (57 # 31) * max0(31
-                                         - (s IDReflection_coefficients_temp)))%Q
-    | 39%positive => (-(393 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                      + (57 # 31) * (s IDReflection_coefficients_temp)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_i))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + (57 # 31) * max0(31
-                                         - (s IDReflection_coefficients_temp)))%Q
-    | 40%positive => ((6 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0((s IDReflection_coefficients_z)))%Q
-    | 41%positive => ((6 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0((s IDReflection_coefficients_z)))%Q
-    | 42%positive => ((6 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0((s IDReflection_coefficients_z)))%Q
-    | 43%positive => (max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0((s IDReflection_coefficients_z)))%Q
-    | 44%positive => (max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0((s IDReflection_coefficients_z)))%Q
-    | 45%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 46%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 47%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 48%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 49%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 50%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 51%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 52%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 53%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 54%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 55%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 56%positive => ((s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      - (6 # 7) * max0(-1 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 57%positive => ((6 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 58%positive => ((6 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 59%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 60%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 61%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 62%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 63%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 64%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 65%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 66%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 67%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 68%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 69%positive => (-(7 # 1) + (1 # 8) * (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (9 # 8) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 70%positive => (-(7 # 1) + (1 # 8) * (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (9 # 8) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 71%positive => (-(7 # 1) + (1 # 8) * (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (9 # 8) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 72%positive => (-(7 # 1) + (1 # 8) * (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (9 # 8) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 73%positive => (-(7 # 1) + (1 # 8) * (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (9 # 8) * max0(8 - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 74%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 75%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 76%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 77%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 78%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 79%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 80%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 81%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 82%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 83%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 84%positive => ((3 # 1) - (s IDReflection_coefficients_m)
-                      - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 85%positive => ((3 # 1) - (s IDReflection_coefficients_m)
-                      - (s IDReflection_coefficients_n)
-                      + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 86%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 87%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 88%positive => ((1 # 1) + (s IDReflection_coefficients_z)
-                      + (7 # 1) * max0(8 - (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n)))%Q
-    | 89%positive => ((1 # 1) + (s IDReflection_coefficients_z)
-                      + (7 # 1) * max0(8 - (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n)))%Q
-    | 90%positive => ((1 # 1) + (s IDReflection_coefficients_z)
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0(10 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n)))%Q
-    | 91%positive => ((1 # 1) + (s IDReflection_coefficients_z)
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0(10 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n)))%Q
-    | 92%positive => ((1 # 1) + (s IDReflection_coefficients_z)
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0(10 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n)))%Q
-    | 93%positive => ((s IDReflection_coefficients_z)
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n))
-                      + max0(10 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n)))%Q
-    | 94%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 95%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 96%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 97%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 98%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 99%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                      + max0(-2 + (s IDReflection_coefficients_n))
-                      + max0(9 - (s IDReflection_coefficients_m)
-                             - (s IDReflection_coefficients_n))
-                      + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 100%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(9 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 101%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(9 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 102%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(9 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 103%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(9 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 104%positive => (-(5 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(8 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 105%positive => (-(5 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(8 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 106%positive => (-(5 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(8 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 107%positive => (-(5 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(8 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 108%positive => (-(5 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(8 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 109%positive => (-(5 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(9 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 110%positive => (-(5 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(9 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 111%positive => (-(5 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(9 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 112%positive => (-(6 # 1) + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + max0(9 - (s IDReflection_coefficients_m)
-                              - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 113%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 114%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 115%positive => ((2 # 1) - (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 116%positive => ((6 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 117%positive => ((6 # 7) - (6 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_n))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_n)))%Q
-    | 118%positive => ((6 # 7) - (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 119%positive => ((6 # 7) - (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 120%positive => ((6 # 7) - (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 121%positive => ((6 # 7) - (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 122%positive => ((2 # 1) - (s IDReflection_coefficients_i)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 123%positive => ((2 # 1) - (s IDReflection_coefficients_i)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 124%positive => ((6 # 7) - (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 125%positive => ((62 # 7) - (2 # 1) * (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-1 + (s IDReflection_coefficients_i))
-                       + (7 # 1) * max0(8 - (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n)))%Q
-    | 126%positive => ((62 # 7) - (2 # 1) * (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-1 + (s IDReflection_coefficients_i))
-                       + (7 # 1) * max0(8 - (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n)))%Q
-    | 127%positive => ((76 # 7) - (2 # 1) * (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 128%positive => ((76 # 7) - (2 # 1) * (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 129%positive => ((76 # 7) - (2 # 1) * (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 130%positive => ((69 # 7) - (2 # 1) * (s IDReflection_coefficients_i)
-                       + (1 # 7) * (s IDReflection_coefficients_n)
-                       + (s IDReflection_coefficients_z)
-                       + max0(-2 + (s IDReflection_coefficients_i))
-                       + (1 # 7) * max0(8 - (s IDReflection_coefficients_n))
-                       + (7 # 1) * max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 131%positive => ((57 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 132%positive => ((58 # 1) + (s IDReflection_coefficients_z)
-                       + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 133%positive => ((58 # 1) + (s IDReflection_coefficients_z)
-                       + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 134%positive => ((58 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 135%positive => ((58 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 136%positive => ((58 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 137%positive => ((57 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 138%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                       + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 139%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                       + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 140%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                       + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 141%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 142%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 143%positive => ((66 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 144%positive => ((65 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 145%positive => ((73 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 146%positive => ((74 # 1) + (s IDReflection_coefficients_z)
-                       + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 147%positive => ((74 # 1) + (s IDReflection_coefficients_z)
-                       + max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 148%positive => ((74 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 149%positive => ((74 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 150%positive => ((74 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 151%positive => ((73 # 1) + (s IDReflection_coefficients_z)
-                       + max0(9 - (s IDReflection_coefficients_i)))%Q
-    | 152%positive => ((82 # 1))%Q
-    | 153%positive => ((82 # 1) + (s IDReflection_coefficients_z))%Q
-    | 154%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 155%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 156%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(7 - (s IDReflection_coefficients_i)))%Q
-    | 157%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(7 - (s IDReflection_coefficients_i)))%Q
-    | 158%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(7 - (s IDReflection_coefficients_i)))%Q
-    | 159%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(7 - (s IDReflection_coefficients_i)))%Q
-    | 160%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(7 - (s IDReflection_coefficients_i)))%Q
-    | 161%positive => ((s IDReflection_coefficients_z))%Q
-    | 162%positive => ((82 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(7 - (s IDReflection_coefficients_i)))%Q
-    | 163%positive => ((83 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 164%positive => ((83 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 165%positive => ((83 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(8 - (s IDReflection_coefficients_i)))%Q
-    | 166%positive => ((83 # 1) + (s IDReflection_coefficients_z)
-                       - (82 # 7) * max0(8 - (s IDReflection_coefficients_i)))%Q
-    | _ => (0 # 1)%Q
-  end.
+Notation V_Reflection_coefficients_z := 1%positive.
+Notation V_Reflection_coefficients_L_ACF_dref_off0 := 2%positive.
+Notation V_Reflection_coefficients_P_off0 := 3%positive.
+Notation V_Reflection_coefficients_P_off2 := 4%positive.
+Notation V_Reflection_coefficients_i := 5%positive.
+Notation V_Reflection_coefficients_ltmp := 6%positive.
+Notation V_Reflection_coefficients_m := 7%positive.
+Notation V_Reflection_coefficients_n := 8%positive.
+Notation V_Reflection_coefficients_temp := 9%positive.
+Notation V_Reflection_coefficients_L_ACF := 10%positive.
+Notation V_Reflection_coefficients_r := 11%positive.
+Definition Pedges_Reflection_coefficients: list (edge proc) :=
+  (EA 1 (AAssign V_Reflection_coefficients_z (Some (ENum (0)))) 2)::
+  (EA 2 AWeaken 3)::(EA 3 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_L_ACF_dref_off0) s) =
+  (eval (ENum (0)) s))%Z)) 152)::(EA 3 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_L_ACF_dref_off0) s) <>
+  (eval (ENum (0)) s))%Z)) 4)::(EA 4 AWeaken 5)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_L_ACF_dref_off0) s) <>
+  (eval (ENum (0)) s))%Z)) 9)::(EA 5 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_L_ACF_dref_off0) s) =
+  (eval (ENum (0)) s))%Z)) 6)::(EA 6 AWeaken 7)::(EA 7 ANone 8)::
+  (EA 8 AWeaken 161)::(EA 9 AWeaken 10)::(EA 10 ANone 11)::(EA 11 (AAssign
+  V_Reflection_coefficients_temp None) 12)::(EA 12 AWeaken 13)::
+  (EA 13 (AGuard (fun s => ((eval (EVar V_Reflection_coefficients_temp) s) >=
+  (eval (ENum (0)) s))%Z)) 15)::(EA 13 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_temp) s) <
+  (eval (ENum (0)) s))%Z)) 14)::(EA 14 AWeaken 18)::(EA 15 AWeaken 16)::
+  (EA 16 (AGuard (fun s => ((eval (EVar V_Reflection_coefficients_temp) s) <
+  (eval (ENum (32)) s))%Z)) 20)::(EA 16 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_temp) s) >=
+  (eval (ENum (32)) s))%Z)) 17)::(EA 17 AWeaken 18)::(EA 18 ANone 19)::
+  (EA 19 AWeaken 161)::(EA 20 AWeaken 21)::(EA 21 ANone 22)::(EA 22 (AAssign
+  V_Reflection_coefficients_i (Some (ENum (0)))) 23)::(EA 23 ANone 24)::
+  (EA 24 AWeaken 25)::(EA 25 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) <= (eval (ENum (8))
+  s))%Z)) 145)::(EA 25 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) > (eval (ENum (8))
+  s))%Z)) 26)::(EA 26 AWeaken 27)::(EA 27 (AAssign
+  V_Reflection_coefficients_i (Some (ENum (1)))) 28)::(EA 28 ANone 29)::
+  (EA 29 AWeaken 30)::(EA 30 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) <= (eval (ENum (7))
+  s))%Z)) 138)::(EA 30 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) > (eval (ENum (7))
+  s))%Z)) 31)::(EA 31 AWeaken 32)::(EA 32 (AAssign
+  V_Reflection_coefficients_i (Some (ENum (0)))) 33)::(EA 33 ANone 34)::
+  (EA 34 AWeaken 35)::(EA 35 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) <= (eval (ENum (8))
+  s))%Z)) 131)::(EA 35 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) > (eval (ENum (8))
+  s))%Z)) 36)::(EA 36 AWeaken 37)::(EA 37 (AAssign
+  V_Reflection_coefficients_n (Some (ENum (1)))) 38)::(EA 38 ANone 39)::
+  (EA 39 AWeaken 40)::(EA 40 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_n) s) <= (eval (ENum (8))
+  s))%Z)) 42)::(EA 40 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_n) s) > (eval (ENum (8))
+  s))%Z)) 41)::(EA 41 AWeaken 161)::(EA 42 AWeaken 43)::(EA 43 (AAssign
+  V_Reflection_coefficients_temp
+  (Some (EVar V_Reflection_coefficients_P_off2))) 44)::(EA 44 AWeaken 45)::
+  (EA 45 (AGuard (fun s => ((eval (EVar V_Reflection_coefficients_temp) s) <
+  (eval (ENum (0)) s))%Z)) 48)::(EA 45 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_temp) s) >=
+  (eval (ENum (0)) s))%Z)) 46)::(EA 46 AWeaken 47)::(EA 47 ANone 55)::
+  (EA 48 AWeaken 49)::(EA 49 (AGuard (fun s => True)) 53)::(EA 49 ANone 50)::
+  (EA 50 ANone 51)::(EA 51 (AGuard (fun s => True)) 52)::(EA 52 AWeaken 55)::
+  (EA 53 AWeaken 54)::(EA 54 ANone 55)::(EA 55 (AAssign
+  V_Reflection_coefficients_temp None) 56)::(EA 56 AWeaken 57)::
+  (EA 57 (AGuard (fun s => ((eval (EVar V_Reflection_coefficients_P_off0)
+  s) < (eval (EVar V_Reflection_coefficients_temp) s))%Z)) 116)::
+  (EA 57 (AGuard (fun s => ((eval (EVar V_Reflection_coefficients_P_off0)
+  s) >= (eval (EVar V_Reflection_coefficients_temp) s))%Z)) 58)::
+  (EA 58 AWeaken 59)::(EA 59 ANone 62)::(EA 59 ANone 60)::(EA 60 ANone 61)::
+  (EA 61 AWeaken 161)::(EA 62 ANone 63)::(EA 63 AWeaken 64)::(EA 64 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_P_off2) s) >
+  (eval (ENum (0)) s))%Z)) 66)::(EA 64 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_P_off2) s) <=
+  (eval (ENum (0)) s))%Z)) 65)::(EA 65 AWeaken 69)::(EA 66 AWeaken 67)::
+  (EA 67 ANone 68)::(EA 68 AWeaken 69)::(EA 69 ANone 72)::(EA 69 ANone 70)::
+  (EA 70 ANone 71)::(EA 71 AWeaken 161)::(EA 72 ANone 73)::
+  (EA 73 AWeaken 74)::(EA 74 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_n) s) = (eval (ENum (8))
+  s))%Z)) 113)::(EA 74 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_n) s) <> (eval (ENum (8))
+  s))%Z)) 75)::(EA 75 AWeaken 76)::(EA 76 (AAssign
+  V_Reflection_coefficients_temp None) 77)::(EA 77 (AAssign
+  V_Reflection_coefficients_ltmp
+  (Some (EAdd (EVar V_Reflection_coefficients_P_off0)
+  (EVar V_Reflection_coefficients_temp)))) 78)::(EA 78 AWeaken 79)::
+  (EA 79 ANone 81)::(EA 79 ANone 80)::(EA 80 ANone 82)::(EA 81 ANone 82)::
+  (EA 82 (AAssign V_Reflection_coefficients_P_off0 None) 83)::(EA 83 (AAssign
+  V_Reflection_coefficients_m (Some (ENum (1)))) 84)::(EA 84 ANone 85)::
+  (EA 85 AWeaken 86)::(EA 86 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_m) s) <=
+  (eval (ESub (ENum (8)) (EVar V_Reflection_coefficients_n)) s))%Z)) 94)::
+  (EA 86 (AGuard (fun s => ((eval (EVar V_Reflection_coefficients_m) s) >
+  (eval (ESub (ENum (8)) (EVar V_Reflection_coefficients_n)) s))%Z)) 87)::
+  (EA 87 AWeaken 88)::(EA 88 ANone 89)::(EA 89 (AAssign
+  V_Reflection_coefficients_n (Some (EAdd (EVar V_Reflection_coefficients_n)
+  (ENum (1))))) 90)::(EA 90 ANone 91)::(EA 91 ANone 92)::(EA 92 (AAssign
+  V_Reflection_coefficients_z (Some (EAdd (ENum (1))
+  (EVar V_Reflection_coefficients_z)))) 93)::(EA 93 AWeaken 40)::
+  (EA 94 AWeaken 95)::(EA 95 (AAssign V_Reflection_coefficients_temp
+  None) 96)::(EA 96 (AAssign V_Reflection_coefficients_ltmp None) 97)::
+  (EA 97 AWeaken 98)::(EA 98 ANone 100)::(EA 98 ANone 99)::
+  (EA 99 ANone 101)::(EA 100 ANone 101)::(EA 101 (AAssign
+  V_Reflection_coefficients_temp None) 102)::(EA 102 (AAssign
+  V_Reflection_coefficients_ltmp None) 103)::(EA 103 AWeaken 104)::
+  (EA 104 ANone 106)::(EA 104 ANone 105)::(EA 105 ANone 107)::
+  (EA 106 ANone 107)::(EA 107 ANone 108)::(EA 108 (AAssign
+  V_Reflection_coefficients_m (Some (EAdd (EVar V_Reflection_coefficients_m)
+  (ENum (1))))) 109)::(EA 109 ANone 110)::(EA 110 ANone 111)::
+  (EA 111 (AAssign V_Reflection_coefficients_z (Some (EAdd (ENum (1))
+  (EVar V_Reflection_coefficients_z)))) 112)::(EA 112 AWeaken 86)::
+  (EA 113 AWeaken 114)::(EA 114 ANone 115)::(EA 115 AWeaken 161)::
+  (EA 116 AWeaken 117)::(EA 117 (AAssign V_Reflection_coefficients_i
+  (Some (EVar V_Reflection_coefficients_n))) 118)::(EA 118 ANone 119)::
+  (EA 119 AWeaken 120)::(EA 120 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) <= (eval (ENum (8))
+  s))%Z)) 124)::(EA 120 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) > (eval (ENum (8))
+  s))%Z)) 121)::(EA 121 AWeaken 122)::(EA 122 ANone 123)::
+  (EA 123 AWeaken 161)::(EA 124 AWeaken 125)::(EA 125 ANone 126)::
+  (EA 126 (AAssign V_Reflection_coefficients_i
+  (Some (EAdd (EVar V_Reflection_coefficients_i) (ENum (1))))) 127)::
+  (EA 127 ANone 128)::(EA 128 ANone 129)::(EA 129 (AAssign
+  V_Reflection_coefficients_z (Some (EAdd (ENum (1))
+  (EVar V_Reflection_coefficients_z)))) 130)::(EA 130 AWeaken 120)::
+  (EA 131 AWeaken 132)::(EA 132 ANone 133)::(EA 133 (AAssign
+  V_Reflection_coefficients_i (Some (EAdd (EVar V_Reflection_coefficients_i)
+  (ENum (1))))) 134)::(EA 134 ANone 135)::(EA 135 ANone 136)::
+  (EA 136 (AAssign V_Reflection_coefficients_z (Some (EAdd (ENum (1))
+  (EVar V_Reflection_coefficients_z)))) 137)::(EA 137 AWeaken 35)::
+  (EA 138 AWeaken 139)::(EA 139 ANone 140)::(EA 140 (AAssign
+  V_Reflection_coefficients_i (Some (EAdd (EVar V_Reflection_coefficients_i)
+  (ENum (1))))) 141)::(EA 141 ANone 142)::(EA 142 ANone 143)::
+  (EA 143 (AAssign V_Reflection_coefficients_z (Some (EAdd (ENum (1))
+  (EVar V_Reflection_coefficients_z)))) 144)::(EA 144 AWeaken 30)::
+  (EA 145 AWeaken 146)::(EA 146 ANone 147)::(EA 147 (AAssign
+  V_Reflection_coefficients_i (Some (EAdd (EVar V_Reflection_coefficients_i)
+  (ENum (1))))) 148)::(EA 148 ANone 149)::(EA 149 ANone 150)::
+  (EA 150 (AAssign V_Reflection_coefficients_z (Some (EAdd (ENum (1))
+  (EVar V_Reflection_coefficients_z)))) 151)::(EA 151 AWeaken 25)::
+  (EA 152 AWeaken 153)::(EA 153 (AAssign V_Reflection_coefficients_i
+  (Some (ENum (8)))) 154)::(EA 154 ANone 155)::(EA 155 (AAssign
+  V_Reflection_coefficients_i (Some (EAdd (EVar V_Reflection_coefficients_i)
+  (ENum (-1))))) 156)::(EA 156 AWeaken 157)::(EA 157 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) <> (eval (ENum (0))
+  s))%Z)) 162)::(EA 157 (AGuard
+  (fun s => ((eval (EVar V_Reflection_coefficients_i) s) = (eval (ENum (0))
+  s))%Z)) 158)::(EA 158 AWeaken 159)::(EA 159 ANone 160)::
+  (EA 160 AWeaken 161)::(EA 162 AWeaken 163)::(EA 163 ANone 164)::
+  (EA 164 ANone 165)::(EA 165 ANone 166)::(EA 166 (AAssign
+  V_Reflection_coefficients_z (Some (EAdd (ENum (1))
+  (EVar V_Reflection_coefficients_z)))) 155)::nil.
 
-Definition Reflection_coefficients_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => [(*-82 0*) F_one;
-                     (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDReflection_coefficients_z))) (F_check_ge (0) (0));
-                     (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDReflection_coefficients_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDReflection_coefficients_z)))]
-    | 9%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDReflection_coefficients_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDReflection_coefficients_z)))]
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => [(*0 82*) F_one;
-                      (*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDReflection_coefficients_z))) (F_check_ge (0) (0))]
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => [(*-82 0*) F_one;
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDReflection_coefficients_z))) (F_check_ge (0) (0))]
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDReflection_coefficients_z))) (F_check_ge (0) (0))]
-    | 25%positive => []
-    | 26%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (8
-                                                             - (s IDReflection_coefficients_i)) (7
-                                                                    - (s IDReflection_coefficients_i)));
-                      (*-1 0*) F_max0_ge_0 (7
-                                            - (s IDReflection_coefficients_i));
-                      (*-1 0*) F_max0_monotonic (F_check_ge (9
-                                                             - (s IDReflection_coefficients_i)) (8
-                                                                    - (s IDReflection_coefficients_i)))]
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (8
-                                                             - (s IDReflection_coefficients_i)) (7
-                                                                    - (s IDReflection_coefficients_i)));
-                      (*-1 0*) F_max0_ge_0 (7
-                                            - (s IDReflection_coefficients_i))]
-    | 32%positive => []
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => []
-    | 36%positive => [(*0 1.83871*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (31
-                                                                    - (s IDReflection_coefficients_temp)) (0))) (F_max0_ge_0 (31
-                                                                    - (s IDReflection_coefficients_temp)))]
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (8
-                                                             - (s IDReflection_coefficients_i)) (7
-                                                                    - (s IDReflection_coefficients_i)));
-                      (*-1 0*) F_max0_ge_0 (7
-                                            - (s IDReflection_coefficients_i));
-                      (*-1 0*) F_max0_monotonic (F_check_ge (9
-                                                             - (s IDReflection_coefficients_i)) (8
-                                                                    - (s IDReflection_coefficients_i)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDReflection_coefficients_z)) (0))) (F_max0_ge_0 ((s IDReflection_coefficients_z)));
-                      (*-1.83871 0*) F_binom_monotonic 1 (F_max0_ge_arg (31
-                                                                    - (s IDReflection_coefficients_temp))) (F_check_ge (31
-                                                                    - (s IDReflection_coefficients_temp)) (0))]
-    | 40%positive => []
-    | 41%positive => [(*-7.14286 0*) F_max0_monotonic (F_check_ge (8
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_Reflection_coefficients => Pedges_Reflection_coefficients
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_Reflection_coefficients => 161
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_Reflection_coefficients (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 3 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 4 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 5 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 6 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0)%Z
+   | 7 => (-1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 8 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0)%Z
+   | 9 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 10 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 11 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 12 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 13 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 14 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + 1 <= 0)%Z
+   | 15 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 16 => (-1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 17 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp + 32 <= 0)%Z
+   | 18 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 19 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 20 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0)%Z
+   | 21 => (1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 22 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0)%Z
+   | 23 => (1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0)%Z
+   | 24 => (-1 * s V_Reflection_coefficients_i <= 0 /\ 1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0)%Z
+   | 25 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 26 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 27 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 28 => (-1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0)%Z
+   | 29 => (-1 * s V_Reflection_coefficients_i + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 30 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 31 => (1 * s V_Reflection_coefficients_i + -8 <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 8 <= 0)%Z
+   | 32 => (-1 * s V_Reflection_coefficients_i + 8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 33 => (1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0)%Z
+   | 34 => (-1 * s V_Reflection_coefficients_i <= 0 /\ 1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0)%Z
+   | 35 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 36 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 37 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 38 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_n + -1 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0)%Z
+   | 39 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 40 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 41 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 9 <= 0)%Z
+   | 42 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 43 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 44 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 45 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 46 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 47 => (-1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 48 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ 1 * s V_Reflection_coefficients_temp + 1 <= 0)%Z
+   | 49 => (1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 50 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ 1 * s V_Reflection_coefficients_temp + 1 <= 0)%Z
+   | 51 => (1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 52 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ 1 * s V_Reflection_coefficients_temp + 1 <= 0)%Z
+   | 53 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ 1 * s V_Reflection_coefficients_temp + 1 <= 0)%Z
+   | 54 => (1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 55 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 56 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 57 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 58 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 59 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 60 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 61 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 62 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 63 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 64 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 65 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ 1 * s V_Reflection_coefficients_P_off2 <= 0)%Z
+   | 66 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_P_off2 + 1 <= 0)%Z
+   | 67 => (-1 * s V_Reflection_coefficients_P_off2 + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 68 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_P_off2 + 1 <= 0)%Z
+   | 69 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 70 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 71 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 72 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 73 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 74 => (-1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 75 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0)%Z
+   | 76 => (1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 77 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0)%Z
+   | 78 => (1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 79 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0)%Z
+   | 80 => (1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 81 => (1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 82 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0)%Z
+   | 83 => (1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 84 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ 1 * s V_Reflection_coefficients_m + -1 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0)%Z
+   | 85 => (-1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_m + -1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 86 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -9 <= 0)%Z
+   | 87 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_m+ -1 * s V_Reflection_coefficients_n + 9 <= 0)%Z
+   | 88 => (-1 * s V_Reflection_coefficients_m+ -1 * s V_Reflection_coefficients_n + 9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -9 <= 0)%Z
+   | 89 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_m+ -1 * s V_Reflection_coefficients_n + 9 <= 0)%Z
+   | 90 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -10 <= 0 /\ -1 * s V_Reflection_coefficients_n + 2 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_m+ -1 * s V_Reflection_coefficients_n + 10 <= 0)%Z
+   | 91 => (-1 * s V_Reflection_coefficients_m+ -1 * s V_Reflection_coefficients_n + 10 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_n + 2 <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -10 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 92 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -10 <= 0 /\ -1 * s V_Reflection_coefficients_n + 2 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_m+ -1 * s V_Reflection_coefficients_n + 10 <= 0)%Z
+   | 93 => (-1 * s V_Reflection_coefficients_m+ -1 * s V_Reflection_coefficients_n + 10 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_n + 2 <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -10 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_z + 1 <= 0)%Z
+   | 94 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 95 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0)%Z
+   | 96 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 97 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0)%Z
+   | 98 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 99 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0)%Z
+   | 100 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0)%Z
+   | 101 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 102 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0)%Z
+   | 103 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 104 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0)%Z
+   | 105 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 106 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 107 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0)%Z
+   | 108 => (-1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 109 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_m + 2 <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -9 <= 0)%Z
+   | 110 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 2 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 111 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_m + 2 <= 0 /\ 1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -9 <= 0)%Z
+   | 112 => (1 * s V_Reflection_coefficients_m+ 1 * s V_Reflection_coefficients_n + -9 <= 0 /\ -1 * s V_Reflection_coefficients_m + 2 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_z + 1 <= 0)%Z
+   | 113 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_n + 8 <= 0)%Z
+   | 114 => (-1 * s V_Reflection_coefficients_n + 8 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 115 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_P_off0+ 1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_n + 8 <= 0)%Z
+   | 116 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0)%Z
+   | 117 => (1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 118 => (1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0)%Z
+   | 119 => (-1 * s V_Reflection_coefficients_i + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0)%Z
+   | 120 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 121 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 122 => (-1 * s V_Reflection_coefficients_i + 9 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 123 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 9 <= 0)%Z
+   | 124 => (1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 125 => (1 * s V_Reflection_coefficients_i + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0)%Z
+   | 126 => (1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 127 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 2 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 128 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 2 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 129 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_i + 2 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 130 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 2 <= 0 /\ 1 * s V_Reflection_coefficients_P_off0+ -1 * s V_Reflection_coefficients_temp + 1 <= 0 /\ -1 * s V_Reflection_coefficients_n + 1 <= 0 /\ 1 * s V_Reflection_coefficients_n + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z + 1 <= 0)%Z
+   | 131 => (-1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 132 => (1 * s V_Reflection_coefficients_i + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 133 => (-1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 134 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 135 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 136 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 137 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_z + 1 <= 0)%Z
+   | 138 => (1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -7 <= 0)%Z
+   | 139 => (1 * s V_Reflection_coefficients_i + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0)%Z
+   | 140 => (1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -7 <= 0)%Z
+   | 141 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_i + 2 <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 142 => (1 * s V_Reflection_coefficients_i + -8 <= 0 /\ -1 * s V_Reflection_coefficients_i + 2 <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 143 => (-1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_i + 2 <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 144 => (1 * s V_Reflection_coefficients_i + -8 <= 0 /\ -1 * s V_Reflection_coefficients_i + 2 <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_z + 1 <= 0)%Z
+   | 145 => (-1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 146 => (1 * s V_Reflection_coefficients_i + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0)%Z
+   | 147 => (-1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0)%Z
+   | 148 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 149 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 150 => (-1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ 1 * s V_Reflection_coefficients_i + -9 <= 0)%Z
+   | 151 => (1 * s V_Reflection_coefficients_i + -9 <= 0 /\ -1 * s V_Reflection_coefficients_i + 1 <= 0 /\ -1 * s V_Reflection_coefficients_temp <= 0 /\ 1 * s V_Reflection_coefficients_temp + -31 <= 0 /\ -1 * s V_Reflection_coefficients_z + 1 <= 0)%Z
+   | 152 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0)%Z
+   | 153 => (-1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 154 => (1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ 1 * s V_Reflection_coefficients_i + -8 <= 0 /\ -1 * s V_Reflection_coefficients_i + 8 <= 0)%Z
+   | 155 => (1 * s V_Reflection_coefficients_i + -8 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0)%Z
+   | 156 => (1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -7 <= 0)%Z
+   | 157 => (1 * s V_Reflection_coefficients_i + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0)%Z
+   | 158 => (1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0)%Z
+   | 159 => (-1 * s V_Reflection_coefficients_i <= 0 /\ 1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0)%Z
+   | 160 => (1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i <= 0 /\ -1 * s V_Reflection_coefficients_i <= 0)%Z
+   | 161 => (-1 * s V_Reflection_coefficients_z <= 0)%Z
+   | 162 => (1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -7 <= 0)%Z
+   | 163 => (1 * s V_Reflection_coefficients_i + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0)%Z
+   | 164 => (1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -7 <= 0)%Z
+   | 165 => (1 * s V_Reflection_coefficients_i + -7 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ 1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0)%Z
+   | 166 => (1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_L_ACF_dref_off0 <= 0 /\ -1 * s V_Reflection_coefficients_z <= 0 /\ 1 * s V_Reflection_coefficients_i + -7 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_Reflection_coefficients (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((82 # 1) <= z)%Q
+   | 2 => ((82 # 1) <= z)%Q
+   | 3 => ((82 # 1) <= z)%Q
+   | 4 => ((82 # 1) <= z)%Q
+   | 5 => ((82 # 1) <= z)%Q
+   | 6 => ((82 # 1) <= z)%Q
+   | 7 => ((82 # 1) <= z)%Q
+   | 8 => hints
+     [(*-82 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_Reflection_coefficients_z)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_Reflection_coefficients_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_Reflection_coefficients_z))]
+     ((82 # 1) <= z)%Q
+   | 9 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_Reflection_coefficients_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_Reflection_coefficients_z))]
+     ((82 # 1) <= z)%Q
+   | 10 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 11 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 12 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 13 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 14 => hints
+     [(*0 82*) F_one;
+      (*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_Reflection_coefficients_z)) (F_check_ge (0) (0))]
+     ((82 # 1) + s V_Reflection_coefficients_z
+      + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 15 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 16 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 17 => hints
+     [(*-82 0*) F_one;
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_Reflection_coefficients_z)) (F_check_ge (0) (0))]
+     ((82 # 1) + s V_Reflection_coefficients_z
+      + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 18 => (s V_Reflection_coefficients_z <= z)%Q
+   | 19 => (s V_Reflection_coefficients_z <= z)%Q
+   | 20 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 21 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 22 => ((82 # 1) + s V_Reflection_coefficients_z
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 23 => ((73 # 1) + s V_Reflection_coefficients_z
+            + max0(9 - s V_Reflection_coefficients_i)
+            + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 24 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_Reflection_coefficients_z)) (F_check_ge (0) (0))]
+     ((73 # 1) + s V_Reflection_coefficients_z
+      + max0(9 - s V_Reflection_coefficients_i)
+      + max0(-s V_Reflection_coefficients_z) <= z)%Q
+   | 25 => ((73 # 1) + s V_Reflection_coefficients_z
+            + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 26 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (8
+                                             - s V_Reflection_coefficients_i) (7
+                                                                    - s V_Reflection_coefficients_i));
+      (*-1 0*) F_max0_ge_0 (7 - s V_Reflection_coefficients_i);
+      (*-1 0*) F_max0_monotonic (F_check_ge (9
+                                             - s V_Reflection_coefficients_i) (8
+                                                                    - s V_Reflection_coefficients_i))]
+     ((73 # 1) + s V_Reflection_coefficients_z
+      + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 27 => ((73 # 1) + s V_Reflection_coefficients_z <= z)%Q
+   | 28 => ((66 # 1) + s V_Reflection_coefficients_z
+            + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 29 => ((66 # 1) + s V_Reflection_coefficients_z
+            + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 30 => ((66 # 1) + s V_Reflection_coefficients_z
+            + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 31 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (8
+                                             - s V_Reflection_coefficients_i) (7
+                                                                    - s V_Reflection_coefficients_i));
+      (*-1 0*) F_max0_ge_0 (7 - s V_Reflection_coefficients_i)]
+     ((66 # 1) + s V_Reflection_coefficients_z
+      + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 32 => ((66 # 1) + s V_Reflection_coefficients_z <= z)%Q
+   | 33 => ((57 # 1) + s V_Reflection_coefficients_z
+            + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 34 => ((57 # 1) + s V_Reflection_coefficients_z
+            + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 35 => ((57 # 1) + s V_Reflection_coefficients_z
+            + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 36 => hints
+     [(*0 1.83871*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (31
+                                                                    - 
+                                                                    s V_Reflection_coefficients_temp) (0))) (F_max0_ge_0 (31
+                                                                    - s V_Reflection_coefficients_temp))]
+     ((57 # 1) + s V_Reflection_coefficients_z
+      + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 37 => ((57 # 31) * s V_Reflection_coefficients_temp
+            + s V_Reflection_coefficients_z
+            + max0(9 - s V_Reflection_coefficients_i)
+            + (57 # 31) * max0(31 - s V_Reflection_coefficients_temp) <= z)%Q
+   | 38 => (-(393 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+            + (57 # 31) * s V_Reflection_coefficients_temp
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_i)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+            + (57 # 31) * max0(31 - s V_Reflection_coefficients_temp) <= z)%Q
+   | 39 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (8
+                                             - s V_Reflection_coefficients_i) (7
+                                                                    - s V_Reflection_coefficients_i));
+      (*-1 0*) F_max0_ge_0 (7 - s V_Reflection_coefficients_i);
+      (*-1 0*) F_max0_monotonic (F_check_ge (9
+                                             - s V_Reflection_coefficients_i) (8
+                                                                    - s V_Reflection_coefficients_i));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_Reflection_coefficients_z) (0))) (F_max0_ge_0 (s V_Reflection_coefficients_z));
+      (*-1.83871 0*) F_binom_monotonic 1 (F_max0_ge_arg (31
+                                                         - s V_Reflection_coefficients_temp)) (F_check_ge (31
+                                                                    - s V_Reflection_coefficients_temp) (0))]
+     (-(393 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+      + (57 # 31) * s V_Reflection_coefficients_temp
+      + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + max0(9 - s V_Reflection_coefficients_i)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+      + (57 # 31) * max0(31 - s V_Reflection_coefficients_temp) <= z)%Q
+   | 40 => ((6 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+            + max0(s V_Reflection_coefficients_z) <= z)%Q
+   | 41 => hints
+     [(*-7.14286 0*) F_max0_monotonic (F_check_ge (8
+                                                   - s V_Reflection_coefficients_n) (7
+                                                                    - s V_Reflection_coefficients_n));
+      (*-7.14286 0*) F_max0_ge_0 (7 - s V_Reflection_coefficients_n);
+      (*-7 0*) F_max0_monotonic (F_check_ge (9
+                                             - s V_Reflection_coefficients_n) (8
+                                                                    - s V_Reflection_coefficients_n));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_Reflection_coefficients_z)) (F_check_ge (s V_Reflection_coefficients_z) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-2
+                                                   + s V_Reflection_coefficients_n)) (F_check_ge (-2
+                                                                    + s V_Reflection_coefficients_n) (0));
+      (*-0.142857 0*) F_binom_monotonic 1 (F_max0_ge_0 (-8
+                                                        + s V_Reflection_coefficients_n)) (F_check_ge (0) (0));
+      (*-0.142857 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-8
+                                                                    + s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (-8
+                                                                    + s V_Reflection_coefficients_n))]
+     ((6 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+      + max0(s V_Reflection_coefficients_z) <= z)%Q
+   | 42 => hints
+     [(*0 0.857143*) F_binom_monotonic 1 (F_max0_ge_arg (-1
+                                                         + s V_Reflection_coefficients_n)) (F_check_ge (-1
+                                                                    + s V_Reflection_coefficients_n) (0))]
+     ((6 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+      + max0(s V_Reflection_coefficients_z) <= z)%Q
+   | 43 => (max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+            + max0(s V_Reflection_coefficients_z) <= z)%Q
+   | 44 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (s V_Reflection_coefficients_z)) (F_check_ge (s V_Reflection_coefficients_z) (0))]
+     (max0(-2 + s V_Reflection_coefficients_n)
+      - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+      + max0(s V_Reflection_coefficients_z) <= z)%Q
+   | 45 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 46 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 47 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 48 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 49 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 50 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 51 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 52 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 53 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 54 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 55 => (s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 56 => hints
+     [(*-0.857143 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                                    + s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_Reflection_coefficients_n))]
+     (s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      - (6 # 7) * max0(-1 + s V_Reflection_coefficients_n)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 57 => ((6 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 58 => hints
+     [(*0 0.857143*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
+                                                                    - 
+                                                                    s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (8
+                                                                    - s V_Reflection_coefficients_n))]
+     ((6 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+      + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 59 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 60 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 61 => hints
+     [(*-6 0*) F_max0_pre_decrement 1 (9 - s V_Reflection_coefficients_n) (1);
+      (*-8 0*) F_max0_monotonic (F_check_ge (8
+                                             - s V_Reflection_coefficients_n) (7
+                                                                    - s V_Reflection_coefficients_n));
+      (*-8 0*) F_max0_ge_0 (7 - s V_Reflection_coefficients_n);
+      (*-1 0*) F_max0_monotonic (F_check_ge (9
+                                             - s V_Reflection_coefficients_n) (8
+                                                                    - s V_Reflection_coefficients_n));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
+                                                 + s V_Reflection_coefficients_n)) (F_check_ge (0) (0))]
+     (-(6 # 1) + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 62 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 63 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 64 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 65 => hints
+     [(*-0.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
                                                                    - 
-                                                                   (s IDReflection_coefficients_n)) (7
-                                                                    - (s IDReflection_coefficients_n)));
-                      (*-7.14286 0*) F_max0_ge_0 (7
-                                                  - (s IDReflection_coefficients_n));
-                      (*-7 0*) F_max0_monotonic (F_check_ge (9
-                                                             - (s IDReflection_coefficients_n)) (8
-                                                                    - (s IDReflection_coefficients_n)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDReflection_coefficients_z))) (F_check_ge ((s IDReflection_coefficients_z)) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-2
-                                                                   + 
-                                                                   (s IDReflection_coefficients_n))) (F_check_ge (-2
-                                                                    + (s IDReflection_coefficients_n)) (0));
-                      (*-0.142857 0*) F_binom_monotonic 1 (F_max0_ge_0 (-8
-                                                                    + (s IDReflection_coefficients_n))) (F_check_ge (0) (0));
-                      (*-0.142857 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-8
-                                                                    + (s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 (-8
-                                                                    + (s IDReflection_coefficients_n)))]
-    | 42%positive => [(*0 0.857143*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                    + (s IDReflection_coefficients_n))) (F_check_ge (-1
-                                                                    + (s IDReflection_coefficients_n)) (0))]
-    | 43%positive => []
-    | 44%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDReflection_coefficients_z))) (F_check_ge ((s IDReflection_coefficients_z)) (0))]
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => [(*-0.857143 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDReflection_coefficients_n)))]
-    | 57%positive => []
-    | 58%positive => [(*0 0.857143*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
-                                                                    - (s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 (8
-                                                                    - (s IDReflection_coefficients_n)))]
-    | 59%positive => []
-    | 60%positive => []
-    | 61%positive => [(*-6 0*) F_max0_pre_decrement (9
-                                                     - (s IDReflection_coefficients_n)) (1);
-                      (*-8 0*) F_max0_monotonic (F_check_ge (8
-                                                             - (s IDReflection_coefficients_n)) (7
-                                                                    - (s IDReflection_coefficients_n)));
-                      (*-8 0*) F_max0_ge_0 (7
-                                            - (s IDReflection_coefficients_n));
-                      (*-1 0*) F_max0_monotonic (F_check_ge (9
-                                                             - (s IDReflection_coefficients_n)) (8
-                                                                    - (s IDReflection_coefficients_n)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
-                                                                 + (s IDReflection_coefficients_n))) (F_check_ge (0) (0))]
-    | 62%positive => []
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => [(*-0.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
-                                                                    - (s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 (8
-                                                                    - (s IDReflection_coefficients_n)))]
-    | 66%positive => []
-    | 67%positive => []
-    | 68%positive => [(*-0.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
-                                                                    - (s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 (8
-                                                                    - (s IDReflection_coefficients_n)))]
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => [(*-7 0*) F_max0_pre_decrement (9
-                                                     - (s IDReflection_coefficients_n)) (1);
-                      (*-8.125 0*) F_max0_monotonic (F_check_ge (8
-                                                                 - (s IDReflection_coefficients_n)) (7
-                                                                    - (s IDReflection_coefficients_n)));
-                      (*-8.125 0*) F_max0_ge_0 (7
-                                                - (s IDReflection_coefficients_n));
-                      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDReflection_coefficients_n))) (F_check_ge (0) (0));
-                      (*-0.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 ((s IDReflection_coefficients_n)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
-                                                                 + (s IDReflection_coefficients_n))) (F_check_ge (0) (0))]
-    | 72%positive => []
-    | 73%positive => [(*-1.125 0*) F_binom_monotonic 1 (F_max0_ge_arg (8
-                                                                    - (s IDReflection_coefficients_n))) (F_check_ge (8
-                                                                    - (s IDReflection_coefficients_n)) (0))]
-    | 74%positive => []
-    | 75%positive => []
-    | 76%positive => []
-    | 77%positive => []
-    | 78%positive => []
-    | 79%positive => []
-    | 80%positive => []
-    | 81%positive => []
-    | 82%positive => []
-    | 83%positive => []
-    | 84%positive => []
-    | 85%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (9
-                                                                    - (s IDReflection_coefficients_m)
-                                                                    - (s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 (9
-                                                                    - (s IDReflection_coefficients_m)
-                                                                    - (s IDReflection_coefficients_n)))]
-    | 86%positive => []
-    | 87%positive => [(*-7 0*) F_max0_pre_decrement (9
-                                                     - (s IDReflection_coefficients_n)) (1);
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
-                                                                 + (s IDReflection_coefficients_n))) (F_check_ge (0) (0))]
-    | 88%positive => []
-    | 89%positive => []
-    | 90%positive => []
-    | 91%positive => []
-    | 92%positive => []
-    | 93%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDReflection_coefficients_z)) (0))) (F_max0_ge_0 ((s IDReflection_coefficients_z)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (10
-                                                                 - (s IDReflection_coefficients_m)
-                                                                 - (s IDReflection_coefficients_n))) (F_check_ge (0) (0));
-                      (*-0.142857 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
-                                                                    - (s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 (8
-                                                                    - (s IDReflection_coefficients_n)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
-                                                                    + (s IDReflection_coefficients_n)) (0))) (F_max0_ge_0 (-2
-                                                                    + (s IDReflection_coefficients_n)))]
-    | 94%positive => []
-    | 95%positive => []
-    | 96%positive => []
-    | 97%positive => []
-    | 98%positive => []
-    | 99%positive => []
-    | 100%positive => []
-    | 101%positive => []
-    | 102%positive => []
-    | 103%positive => [(*-1 0*) F_max0_pre_decrement (9
-                                                      - (s IDReflection_coefficients_m)
-                                                      - (s IDReflection_coefficients_n)) (1)]
-    | 104%positive => []
-    | 105%positive => []
-    | 106%positive => []
-    | 107%positive => []
-    | 108%positive => []
-    | 109%positive => []
-    | 110%positive => []
-    | 111%positive => []
-    | 112%positive => []
-    | 113%positive => []
-    | 114%positive => []
-    | 115%positive => [(*-7 0*) F_max0_monotonic (F_check_ge (8
-                                                              - (s IDReflection_coefficients_n)) (7
-                                                                    - (s IDReflection_coefficients_n)));
-                       (*-7 0*) F_max0_ge_0 (7
-                                             - (s IDReflection_coefficients_n));
-                       (*-7 0*) F_max0_monotonic (F_check_ge (9
-                                                              - (s IDReflection_coefficients_n)) (8
-                                                                    - (s IDReflection_coefficients_n)));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-2
-                                                                    + 
-                                                                    (s IDReflection_coefficients_n))) (F_check_ge (-2
-                                                                    + (s IDReflection_coefficients_n)) (0))]
-    | 116%positive => []
-    | 117%positive => []
-    | 118%positive => []
-    | 119%positive => []
-    | 120%positive => []
-    | 121%positive => [(*-0.142857 0*) F_binom_monotonic 1 (F_max0_ge_arg (8
-                                                                    - (s IDReflection_coefficients_n))) (F_check_ge (8
-                                                                    - (s IDReflection_coefficients_n)) (0))]
-    | 122%positive => []
-    | 123%positive => [(*-7 0*) F_max0_monotonic (F_check_ge (8
-                                                              - (s IDReflection_coefficients_i)) (7
-                                                                    - (s IDReflection_coefficients_i)));
-                       (*-7 0*) F_max0_ge_0 (7
-                                             - (s IDReflection_coefficients_i));
-                       (*-7 0*) F_max0_monotonic (F_check_ge (9
-                                                              - (s IDReflection_coefficients_i)) (8
-                                                                    - (s IDReflection_coefficients_i)));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-2
-                                                                    + 
-                                                                    (s IDReflection_coefficients_i))) (F_check_ge (-2
-                                                                    + (s IDReflection_coefficients_i)) (0))]
-    | 124%positive => [(*-7 0*) F_max0_pre_decrement (9
-                                                      - (s IDReflection_coefficients_i)) (1);
-                       (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
-                                                                    + (s IDReflection_coefficients_i)) (0))) (F_max0_ge_0 (-1
-                                                                    + (s IDReflection_coefficients_i)));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
-                                                                  + (s IDReflection_coefficients_i))) (F_check_ge (0) (0))]
-    | 125%positive => []
-    | 126%positive => []
-    | 127%positive => []
-    | 128%positive => []
-    | 129%positive => []
-    | 130%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (9
-                                                                  - (s IDReflection_coefficients_i))) (F_check_ge (0) (0));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (9
-                                                                    - (s IDReflection_coefficients_i)) (0))) (F_max0_ge_0 (9
-                                                                    - (s IDReflection_coefficients_i)))]
-    | 131%positive => [(*0 1*) F_max0_pre_decrement (9
-                                                     - (s IDReflection_coefficients_i)) (1)]
-    | 132%positive => []
-    | 133%positive => []
-    | 134%positive => []
-    | 135%positive => []
-    | 136%positive => []
-    | 137%positive => []
-    | 138%positive => []
-    | 139%positive => []
-    | 140%positive => []
-    | 141%positive => []
-    | 142%positive => []
-    | 143%positive => []
-    | 144%positive => [(*-1 0*) F_max0_pre_decrement (9
-                                                      - (s IDReflection_coefficients_i)) (1)]
-    | 145%positive => [(*0 1*) F_max0_pre_decrement (9
-                                                     - (s IDReflection_coefficients_i)) (1)]
-    | 146%positive => []
-    | 147%positive => []
-    | 148%positive => []
-    | 149%positive => []
-    | 150%positive => []
-    | 151%positive => []
-    | 152%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-(s IDReflection_coefficients_z))) (F_check_ge (0) (0));
-                       (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-
-                                                                    (s IDReflection_coefficients_z)) (0))) (F_max0_ge_0 (-
-                                                                    (s IDReflection_coefficients_z)))]
-    | 153%positive => []
-    | 154%positive => []
-    | 155%positive => []
-    | 156%positive => []
-    | 157%positive => []
-    | 158%positive => []
-    | 159%positive => []
-    | 160%positive => [(*-11.7143 0*) F_max0_pre_decrement (8
-                                                            - (s IDReflection_coefficients_i)) (1);
-                       (*-11.7143 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDReflection_coefficients_i))) (F_check_ge (0) (0));
-                       (*-11.7143 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDReflection_coefficients_i)) (0))) (F_max0_ge_0 ((s IDReflection_coefficients_i)));
-                       (*-11.7143 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
-                                                                    - (s IDReflection_coefficients_i)) (0))) (F_max0_ge_0 (8
-                                                                    - (s IDReflection_coefficients_i)))]
-    | 161%positive => []
-    | 162%positive => [(*0 10.7143*) F_one;
-                       (*-11.7143 0*) F_max0_pre_decrement (8
-                                                            - (s IDReflection_coefficients_i)) (1)]
-    | 163%positive => []
-    | 164%positive => []
-    | 165%positive => []
-    | 166%positive => []
-    | _ => []
+                                                                   s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (8
+                                                                    - s V_Reflection_coefficients_n))]
+     (-(6 # 1) + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 66 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 67 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 68 => hints
+     [(*-0.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
+                                                                   - 
+                                                                   s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (8
+                                                                    - s V_Reflection_coefficients_n))]
+     (-(6 # 1) + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 69 => (-(7 # 1) + (1 # 8) * s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (9 # 8) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 70 => (-(7 # 1) + (1 # 8) * s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (9 # 8) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 71 => hints
+     [(*-7 0*) F_max0_pre_decrement 1 (9 - s V_Reflection_coefficients_n) (1);
+      (*-8.125 0*) F_max0_monotonic (F_check_ge (8
+                                                 - s V_Reflection_coefficients_n) (7
+                                                                    - s V_Reflection_coefficients_n));
+      (*-8.125 0*) F_max0_ge_0 (7 - s V_Reflection_coefficients_n);
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_Reflection_coefficients_n)) (F_check_ge (0) (0));
+      (*-0.125 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (s V_Reflection_coefficients_n));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
+                                                 + s V_Reflection_coefficients_n)) (F_check_ge (0) (0))]
+     (-(7 # 1) + (1 # 8) * s V_Reflection_coefficients_n
+      + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + (9 # 8) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 72 => (-(7 # 1) + (1 # 8) * s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (9 # 8) * max0(8 - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 73 => hints
+     [(*-1.125 0*) F_binom_monotonic 1 (F_max0_ge_arg (8
+                                                       - s V_Reflection_coefficients_n)) (F_check_ge (8
+                                                                    - s V_Reflection_coefficients_n) (0))]
+     (-(7 # 1) + (1 # 8) * s V_Reflection_coefficients_n
+      + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + (9 # 8) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 74 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 75 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 76 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 77 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 78 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 79 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 80 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 81 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 82 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 83 => ((2 # 1) - s V_Reflection_coefficients_n
+            + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 84 => ((3 # 1) - s V_Reflection_coefficients_m
+            - s V_Reflection_coefficients_n + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 85 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (9
+                                                               - s V_Reflection_coefficients_m
+                                                               - s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (9
+                                                                    - s V_Reflection_coefficients_m
+                                                                    - s V_Reflection_coefficients_n))]
+     ((3 # 1) - s V_Reflection_coefficients_m - s V_Reflection_coefficients_n
+      + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 86 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 87 => hints
+     [(*-7 0*) F_max0_pre_decrement 1 (9 - s V_Reflection_coefficients_n) (1);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
+                                                 + s V_Reflection_coefficients_n)) (F_check_ge (0) (0))]
+     (-(6 # 1) + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + max0(9 - s V_Reflection_coefficients_m
+             - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 88 => ((1 # 1) + s V_Reflection_coefficients_z
+            + (7 # 1) * max0(8 - s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n) <= z)%Q
+   | 89 => ((1 # 1) + s V_Reflection_coefficients_z
+            + (7 # 1) * max0(8 - s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n) <= z)%Q
+   | 90 => ((1 # 1) + s V_Reflection_coefficients_z
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+            + max0(10 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n) <= z)%Q
+   | 91 => ((1 # 1) + s V_Reflection_coefficients_z
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+            + max0(10 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n) <= z)%Q
+   | 92 => ((1 # 1) + s V_Reflection_coefficients_z
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+            + max0(10 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n) <= z)%Q
+   | 93 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_Reflection_coefficients_z) (0))) (F_max0_ge_0 (s V_Reflection_coefficients_z));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (10
+                                                 - s V_Reflection_coefficients_m
+                                                 - s V_Reflection_coefficients_n)) (F_check_ge (0) (0));
+      (*-0.142857 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
+                                                                    - s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (8
+                                                                    - s V_Reflection_coefficients_n));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-2
+                                                               + s V_Reflection_coefficients_n) (0))) (F_max0_ge_0 (-2
+                                                                    + s V_Reflection_coefficients_n))]
+     (s V_Reflection_coefficients_z
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n)
+      + max0(10 - s V_Reflection_coefficients_m
+             - s V_Reflection_coefficients_n) <= z)%Q
+   | 94 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 95 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 96 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 97 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 98 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 99 => (-(6 # 1) + s V_Reflection_coefficients_z
+            + max0(-2 + s V_Reflection_coefficients_n)
+            + max0(9 - s V_Reflection_coefficients_m
+                   - s V_Reflection_coefficients_n)
+            + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 100 => (-(6 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(9 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 101 => (-(6 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(9 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 102 => (-(6 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(9 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 103 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (9 - s V_Reflection_coefficients_m
+                                       - s V_Reflection_coefficients_n) (1)]
+     (-(6 # 1) + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + max0(9 - s V_Reflection_coefficients_m
+             - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 104 => (-(5 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(8 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 105 => (-(5 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(8 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 106 => (-(5 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(8 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 107 => (-(5 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(8 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 108 => (-(5 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(8 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 109 => (-(5 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(9 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 110 => (-(5 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(9 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 111 => (-(5 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(9 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 112 => (-(6 # 1) + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + max0(9 - s V_Reflection_coefficients_m
+                    - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 113 => ((2 # 1) - s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 114 => ((2 # 1) - s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 115 => hints
+     [(*-7 0*) F_max0_monotonic (F_check_ge (8
+                                             - s V_Reflection_coefficients_n) (7
+                                                                    - s V_Reflection_coefficients_n));
+      (*-7 0*) F_max0_ge_0 (7 - s V_Reflection_coefficients_n);
+      (*-7 0*) F_max0_monotonic (F_check_ge (9
+                                             - s V_Reflection_coefficients_n) (8
+                                                                    - s V_Reflection_coefficients_n));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-2
+                                                   + s V_Reflection_coefficients_n)) (F_check_ge (-2
+                                                                    + s V_Reflection_coefficients_n) (0))]
+     ((2 # 1) - s V_Reflection_coefficients_n + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 116 => ((6 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 117 => ((6 # 7) - (6 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_n)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_n) <= z)%Q
+   | 118 => ((6 # 7) - s V_Reflection_coefficients_i
+             + (1 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_i)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 119 => ((6 # 7) - s V_Reflection_coefficients_i
+             + (1 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_i)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 120 => ((6 # 7) - s V_Reflection_coefficients_i
+             + (1 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_i)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 121 => hints
+     [(*-0.142857 0*) F_binom_monotonic 1 (F_max0_ge_arg (8
+                                                          - s V_Reflection_coefficients_n)) (F_check_ge (8
+                                                                    - s V_Reflection_coefficients_n) (0))]
+     ((6 # 7) - s V_Reflection_coefficients_i
+      + (1 # 7) * s V_Reflection_coefficients_n
+      + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_i)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 122 => ((2 # 1) - s V_Reflection_coefficients_i
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_i)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 123 => hints
+     [(*-7 0*) F_max0_monotonic (F_check_ge (8
+                                             - s V_Reflection_coefficients_i) (7
+                                                                    - s V_Reflection_coefficients_i));
+      (*-7 0*) F_max0_ge_0 (7 - s V_Reflection_coefficients_i);
+      (*-7 0*) F_max0_monotonic (F_check_ge (9
+                                             - s V_Reflection_coefficients_i) (8
+                                                                    - s V_Reflection_coefficients_i));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-2
+                                                   + s V_Reflection_coefficients_i)) (F_check_ge (-2
+                                                                    + s V_Reflection_coefficients_i) (0))]
+     ((2 # 1) - s V_Reflection_coefficients_i + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_i)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 124 => hints
+     [(*-7 0*) F_max0_pre_decrement 1 (9 - s V_Reflection_coefficients_i) (1);
+      (*0 1*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-1
+                                                              + s V_Reflection_coefficients_i) (0))) (F_max0_ge_0 (-1
+                                                                    + s V_Reflection_coefficients_i));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-2
+                                                 + s V_Reflection_coefficients_i)) (F_check_ge (0) (0))]
+     ((6 # 7) - s V_Reflection_coefficients_i
+      + (1 # 7) * s V_Reflection_coefficients_n
+      + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_i)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 125 => ((62 # 7) - (2 # 1) * s V_Reflection_coefficients_i
+             + (1 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-1 + s V_Reflection_coefficients_i)
+             + (7 # 1) * max0(8 - s V_Reflection_coefficients_i)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n) <= z)%Q
+   | 126 => ((62 # 7) - (2 # 1) * s V_Reflection_coefficients_i
+             + (1 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-1 + s V_Reflection_coefficients_i)
+             + (7 # 1) * max0(8 - s V_Reflection_coefficients_i)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n) <= z)%Q
+   | 127 => ((76 # 7) - (2 # 1) * s V_Reflection_coefficients_i
+             + (1 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_i)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 128 => ((76 # 7) - (2 # 1) * s V_Reflection_coefficients_i
+             + (1 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_i)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 129 => ((76 # 7) - (2 # 1) * s V_Reflection_coefficients_i
+             + (1 # 7) * s V_Reflection_coefficients_n
+             + s V_Reflection_coefficients_z
+             + max0(-2 + s V_Reflection_coefficients_i)
+             + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+             + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 130 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (9
+                                                 - s V_Reflection_coefficients_i)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (9
+                                                               - s V_Reflection_coefficients_i) (0))) (F_max0_ge_0 (9
+                                                                    - s V_Reflection_coefficients_i))]
+     ((69 # 7) - (2 # 1) * s V_Reflection_coefficients_i
+      + (1 # 7) * s V_Reflection_coefficients_n
+      + s V_Reflection_coefficients_z
+      + max0(-2 + s V_Reflection_coefficients_i)
+      + (1 # 7) * max0(8 - s V_Reflection_coefficients_n)
+      + (7 # 1) * max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 131 => hints
+     [(*0 1*) F_max0_pre_decrement 1 (9 - s V_Reflection_coefficients_i) (1)]
+     ((57 # 1) + s V_Reflection_coefficients_z
+      + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 132 => ((58 # 1) + s V_Reflection_coefficients_z
+             + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 133 => ((58 # 1) + s V_Reflection_coefficients_z
+             + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 134 => ((58 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 135 => ((58 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 136 => ((58 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 137 => ((57 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 138 => ((66 # 1) + s V_Reflection_coefficients_z
+             + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 139 => ((66 # 1) + s V_Reflection_coefficients_z
+             + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 140 => ((66 # 1) + s V_Reflection_coefficients_z
+             + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 141 => ((66 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 142 => ((66 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 143 => ((66 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 144 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (9 - s V_Reflection_coefficients_i) (1)]
+     ((65 # 1) + s V_Reflection_coefficients_z
+      + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 145 => hints
+     [(*0 1*) F_max0_pre_decrement 1 (9 - s V_Reflection_coefficients_i) (1)]
+     ((73 # 1) + s V_Reflection_coefficients_z
+      + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 146 => ((74 # 1) + s V_Reflection_coefficients_z
+             + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 147 => ((74 # 1) + s V_Reflection_coefficients_z
+             + max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 148 => ((74 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 149 => ((74 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 150 => ((74 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 151 => ((73 # 1) + s V_Reflection_coefficients_z
+             + max0(9 - s V_Reflection_coefficients_i) <= z)%Q
+   | 152 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-s V_Reflection_coefficients_z)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (-s V_Reflection_coefficients_z) (0))) (F_max0_ge_0 (-
+                                                                    s V_Reflection_coefficients_z))]
+     ((82 # 1) <= z)%Q
+   | 153 => ((82 # 1) + s V_Reflection_coefficients_z <= z)%Q
+   | 154 => ((82 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 155 => ((82 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 156 => ((82 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(7 - s V_Reflection_coefficients_i) <= z)%Q
+   | 157 => ((82 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(7 - s V_Reflection_coefficients_i) <= z)%Q
+   | 158 => ((82 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(7 - s V_Reflection_coefficients_i) <= z)%Q
+   | 159 => ((82 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(7 - s V_Reflection_coefficients_i) <= z)%Q
+   | 160 => hints
+     [(*-11.7143 0*) F_max0_pre_decrement 1 (8
+                                             - s V_Reflection_coefficients_i) (1);
+      (*-11.7143 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_Reflection_coefficients_i)) (F_check_ge (0) (0));
+      (*-11.7143 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_Reflection_coefficients_i) (0))) (F_max0_ge_0 (s V_Reflection_coefficients_i));
+      (*-11.7143 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (8
+                                                                    - 
+                                                                    s V_Reflection_coefficients_i) (0))) (F_max0_ge_0 (8
+                                                                    - s V_Reflection_coefficients_i))]
+     ((82 # 1) + s V_Reflection_coefficients_z
+      - (82 # 7) * max0(7 - s V_Reflection_coefficients_i) <= z)%Q
+   | 161 => (s V_Reflection_coefficients_z <= z)%Q
+   | 162 => hints
+     [(*0 10.7143*) F_one;
+      (*-11.7143 0*) F_max0_pre_decrement 1 (8
+                                             - s V_Reflection_coefficients_i) (1)]
+     ((82 # 1) + s V_Reflection_coefficients_z
+      - (82 # 7) * max0(7 - s V_Reflection_coefficients_i) <= z)%Q
+   | 163 => ((83 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 164 => ((83 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 165 => ((83 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | 166 => ((83 # 1) + s V_Reflection_coefficients_z
+             - (82 # 7) * max0(8 - s V_Reflection_coefficients_i) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
+  match p with
+  | P_Reflection_coefficients =>
+    [mkPA Q (fun n z s => ai_Reflection_coefficients n s /\ annot0_Reflection_coefficients n z s)]
   end.
 
-
-Theorem Reflection_coefficients_ai_correct:
-  forall s p' s', steps (g_start Reflection_coefficients) s (g_edges Reflection_coefficients) p' s' -> Reflection_coefficients_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem Reflection_coefficients_pot_correct:
-  forall s p' s',
-    steps (g_start Reflection_coefficients) s (g_edges Reflection_coefficients) p' s' ->
-    (Reflection_coefficients_pot (g_start Reflection_coefficients) s >= Reflection_coefficients_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_Reflection_coefficients (proc_start P_Reflection_coefficients) s1 (proc_end P_Reflection_coefficients) s2 ->
+    (s2 V_Reflection_coefficients_z <= (82 # 1))%Q.
 Proof.
-  check_lp Reflection_coefficients_ai_correct Reflection_coefficients_hints.
+  prove_bound ipa admissible_ipa P_Reflection_coefficients.
 Qed.
-

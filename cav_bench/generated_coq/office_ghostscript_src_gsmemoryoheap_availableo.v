@@ -1,214 +1,156 @@
 Require Import pasta.Pasta.
 
-Notation IDheap_available_z := 1%positive.
-Notation IDheap_available_avail := 2%positive.
-Notation IDheap_available_n := 3%positive.
-Definition heap_available : graph := {|
-  g_start := 1%positive;
-  g_end := 26%positive;
-  g_edges := (1%positive,(AAssign IDheap_available_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard (fun s => ((eval (EVar IDheap_available_n)
-             s) >= (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,AWeaken,4%positive)::
-             (4%positive,(AAssign IDheap_available_avail (Some (ENum (0)))),
-             5%positive)::
-             (5%positive,(AAssign IDheap_available_n (Some (ENum (0)))),
-             6%positive)::(6%positive,ANone,7%positive)::
-             (7%positive,AWeaken,8%positive)::
-             (8%positive,(AGuard (fun s => ((eval (EVar IDheap_available_n)
-             s) < (eval (ENum (20)) s))%Z)),10%positive)::
-             (8%positive,(AGuard (fun s => ((eval (EVar IDheap_available_n)
-             s) >= (eval (ENum (20)) s))%Z)),9%positive)::
-             (9%positive,AWeaken,22%positive)::
-             (10%positive,AWeaken,11%positive)::
-             (11%positive,ANone,21%positive)::
-             (11%positive,ANone,12%positive)::
-             (12%positive,ANone,13%positive)::
-             (13%positive,ANone,14%positive)::
-             (14%positive,(AAssign IDheap_available_avail None),15%positive)::
-             (15%positive,ANone,16%positive)::
-             (16%positive,(AAssign IDheap_available_n
-             (Some (EAdd (EVar IDheap_available_n) (ENum (1))))),17%positive)::
-             (17%positive,ANone,18%positive)::
-             (18%positive,ANone,19%positive)::
-             (19%positive,(AAssign IDheap_available_z (Some (EAdd (ENum (1))
-             (EVar IDheap_available_z)))),20%positive)::
-             (20%positive,AWeaken,8%positive)::
-             (21%positive,ANone,22%positive)::
-             (22%positive,ANone,23%positive)::
-             (23%positive,AWeaken,24%positive)::
-             (24%positive,(AGuard (fun s => ((eval (EVar IDheap_available_n)
-             s) <> (eval (ENum (0)) s))%Z)),27%positive)::
-             (24%positive,(AGuard (fun s => ((eval (EVar IDheap_available_n)
-             s) = (eval (ENum (0)) s))%Z)),25%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (27%positive,AWeaken,28%positive)::
-             (28%positive,(AAssign IDheap_available_n
-             (Some (EAdd (EVar IDheap_available_n) (ENum (-1))))),
-             29%positive)::(29%positive,ANone,30%positive)::
-             (30%positive,ANone,31%positive)::
-             (31%positive,(AAssign IDheap_available_z (Some (EAdd (ENum (1))
-             (EVar IDheap_available_z)))),32%positive)::
-             (32%positive,AWeaken,24%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_heap_available.
 
-Definition heap_available_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 4%positive => (-1 * (s IDheap_available_n) <= 0 /\ 1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_z) <= 0)%Z
-    | 5%positive => (-1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0 /\ 1 * (s IDheap_available_avail) <= 0 /\ -1 * (s IDheap_available_avail) <= 0)%Z
-    | 6%positive => (-1 * (s IDheap_available_avail) <= 0 /\ 1 * (s IDheap_available_avail) <= 0 /\ 1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 7%positive => (-1 * (s IDheap_available_n) <= 0 /\ 1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_avail) <= 0 /\ -1 * (s IDheap_available_avail) <= 0)%Z
-    | 8%positive => (-1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0 /\ 1 * (s IDheap_available_n) + -20 <= 0)%Z
-    | 9%positive => (1 * (s IDheap_available_n) + -20 <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) + 20 <= 0)%Z
-    | 10%positive => (-1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0)%Z
-    | 11%positive => (1 * (s IDheap_available_n) + -19 <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 12%positive => (-1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0)%Z
-    | 13%positive => (1 * (s IDheap_available_n) + -19 <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 14%positive => (-1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0)%Z
-    | 15%positive => (1 * (s IDheap_available_n) + -19 <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 16%positive => (-1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0)%Z
-    | 17%positive => (-1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) + 1 <= 0 /\ 1 * (s IDheap_available_n) + -20 <= 0)%Z
-    | 18%positive => (1 * (s IDheap_available_n) + -20 <= 0 /\ -1 * (s IDheap_available_n) + 1 <= 0 /\ -1 * (s IDheap_available_z) <= 0)%Z
-    | 19%positive => (-1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) + 1 <= 0 /\ 1 * (s IDheap_available_n) + -20 <= 0)%Z
-    | 20%positive => (1 * (s IDheap_available_n) + -20 <= 0 /\ -1 * (s IDheap_available_n) + 1 <= 0 /\ -1 * (s IDheap_available_z) + 1 <= 0)%Z
-    | 21%positive => (-1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0)%Z
-    | 22%positive => (1 * (s IDheap_available_n) + -20 <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 23%positive => (-1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) + -20 <= 0)%Z
-    | 24%positive => (1 * (s IDheap_available_n) + -20 <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 25%positive => (-1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) <= 0)%Z
-    | 26%positive => (1 * (s IDheap_available_n) <= 0 /\ -1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 27%positive => (-1 * (s IDheap_available_z) <= 0 /\ -1 * (s IDheap_available_n) + 1 <= 0 /\ 1 * (s IDheap_available_n) + -20 <= 0)%Z
-    | 28%positive => (1 * (s IDheap_available_n) + -20 <= 0 /\ -1 * (s IDheap_available_n) + 1 <= 0 /\ -1 * (s IDheap_available_z) <= 0)%Z
-    | 29%positive => (-1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 30%positive => (-1 * (s IDheap_available_n) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0 /\ -1 * (s IDheap_available_z) <= 0)%Z
-    | 31%positive => (-1 * (s IDheap_available_z) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0 /\ -1 * (s IDheap_available_n) <= 0)%Z
-    | 32%positive => (-1 * (s IDheap_available_n) <= 0 /\ 1 * (s IDheap_available_n) + -19 <= 0 /\ -1 * (s IDheap_available_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition heap_available_pot (p : node) (s : state): Q := 
+Notation V_heap_available_z := 1%positive.
+Notation V_heap_available_avail := 2%positive.
+Notation V_heap_available_n := 3%positive.
+Definition Pedges_heap_available: list (edge proc) :=
+  (EA 1 (AAssign V_heap_available_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_heap_available_n) s) >= (eval (ENum (0))
+  s))%Z)) 3)::(EA 3 AWeaken 4)::(EA 4 (AAssign V_heap_available_avail
+  (Some (ENum (0)))) 5)::(EA 5 (AAssign V_heap_available_n
+  (Some (ENum (0)))) 6)::(EA 6 ANone 7)::(EA 7 AWeaken 8)::(EA 8 (AGuard
+  (fun s => ((eval (EVar V_heap_available_n) s) < (eval (ENum (20))
+  s))%Z)) 10)::(EA 8 (AGuard (fun s => ((eval (EVar V_heap_available_n) s) >=
+  (eval (ENum (20)) s))%Z)) 9)::(EA 9 AWeaken 22)::(EA 10 AWeaken 11)::
+  (EA 11 ANone 21)::(EA 11 ANone 12)::(EA 12 ANone 13)::(EA 13 ANone 14)::
+  (EA 14 (AAssign V_heap_available_avail None) 15)::(EA 15 ANone 16)::
+  (EA 16 (AAssign V_heap_available_n (Some (EAdd (EVar V_heap_available_n)
+  (ENum (1))))) 17)::(EA 17 ANone 18)::(EA 18 ANone 19)::(EA 19 (AAssign
+  V_heap_available_z (Some (EAdd (ENum (1))
+  (EVar V_heap_available_z)))) 20)::(EA 20 AWeaken 8)::(EA 21 ANone 22)::
+  (EA 22 ANone 23)::(EA 23 AWeaken 24)::(EA 24 (AGuard
+  (fun s => ((eval (EVar V_heap_available_n) s) <> (eval (ENum (0))
+  s))%Z)) 27)::(EA 24 (AGuard (fun s => ((eval (EVar V_heap_available_n) s) =
+  (eval (ENum (0)) s))%Z)) 25)::(EA 25 AWeaken 26)::(EA 27 AWeaken 28)::
+  (EA 28 (AAssign V_heap_available_n (Some (EAdd (EVar V_heap_available_n)
+  (ENum (-1))))) 29)::(EA 29 ANone 30)::(EA 30 ANone 31)::(EA 31 (AAssign
+  V_heap_available_z (Some (EAdd (ENum (1))
+  (EVar V_heap_available_z)))) 32)::(EA 32 AWeaken 24)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_heap_available => Pedges_heap_available
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_heap_available => 26
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_heap_available (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_z <= 0)%Z
+   | 3 => (-1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 4 => (-1 * s V_heap_available_n <= 0 /\ 1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_z <= 0)%Z
+   | 5 => (-1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0 /\ 1 * s V_heap_available_avail <= 0 /\ -1 * s V_heap_available_avail <= 0)%Z
+   | 6 => (-1 * s V_heap_available_avail <= 0 /\ 1 * s V_heap_available_avail <= 0 /\ 1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 7 => (-1 * s V_heap_available_n <= 0 /\ 1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_avail <= 0 /\ -1 * s V_heap_available_avail <= 0)%Z
+   | 8 => (-1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0 /\ 1 * s V_heap_available_n + -20 <= 0)%Z
+   | 9 => (1 * s V_heap_available_n + -20 <= 0 /\ -1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n + 20 <= 0)%Z
+   | 10 => (-1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n + -19 <= 0)%Z
+   | 11 => (1 * s V_heap_available_n + -19 <= 0 /\ -1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 12 => (-1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n + -19 <= 0)%Z
+   | 13 => (1 * s V_heap_available_n + -19 <= 0 /\ -1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 14 => (-1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n + -19 <= 0)%Z
+   | 15 => (1 * s V_heap_available_n + -19 <= 0 /\ -1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 16 => (-1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n + -19 <= 0)%Z
+   | 17 => (-1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n + 1 <= 0 /\ 1 * s V_heap_available_n + -20 <= 0)%Z
+   | 18 => (1 * s V_heap_available_n + -20 <= 0 /\ -1 * s V_heap_available_n + 1 <= 0 /\ -1 * s V_heap_available_z <= 0)%Z
+   | 19 => (-1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n + 1 <= 0 /\ 1 * s V_heap_available_n + -20 <= 0)%Z
+   | 20 => (1 * s V_heap_available_n + -20 <= 0 /\ -1 * s V_heap_available_n + 1 <= 0 /\ -1 * s V_heap_available_z + 1 <= 0)%Z
+   | 21 => (-1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n + -19 <= 0)%Z
+   | 22 => (1 * s V_heap_available_n + -20 <= 0 /\ -1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 23 => (-1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n + -20 <= 0)%Z
+   | 24 => (1 * s V_heap_available_n + -20 <= 0 /\ -1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 25 => (-1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n <= 0)%Z
+   | 26 => (1 * s V_heap_available_n <= 0 /\ -1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 27 => (-1 * s V_heap_available_z <= 0 /\ -1 * s V_heap_available_n + 1 <= 0 /\ 1 * s V_heap_available_n + -20 <= 0)%Z
+   | 28 => (1 * s V_heap_available_n + -20 <= 0 /\ -1 * s V_heap_available_n + 1 <= 0 /\ -1 * s V_heap_available_z <= 0)%Z
+   | 29 => (-1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n + -19 <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 30 => (-1 * s V_heap_available_n <= 0 /\ 1 * s V_heap_available_n + -19 <= 0 /\ -1 * s V_heap_available_z <= 0)%Z
+   | 31 => (-1 * s V_heap_available_z <= 0 /\ 1 * s V_heap_available_n + -19 <= 0 /\ -1 * s V_heap_available_n <= 0)%Z
+   | 32 => (-1 * s V_heap_available_n <= 0 /\ 1 * s V_heap_available_n + -19 <= 0 /\ -1 * s V_heap_available_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_heap_available (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => ((40 # 1) <= z)%Q
+   | 2 => ((40 # 1) + max0(s V_heap_available_z) <= z)%Q
+   | 3 => ((40 # 1) + max0(s V_heap_available_z) <= z)%Q
+   | 4 => ((40 # 1) + max0(s V_heap_available_z) <= z)%Q
+   | 5 => ((40 # 1) + max0(s V_heap_available_z) <= z)%Q
+   | 6 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 7 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 8 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 9 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 10 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 11 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 12 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 13 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 14 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 15 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 16 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 17 => ((41 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 18 => ((41 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 19 => ((41 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 20 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_heap_available_z) (0))) (F_max0_ge_0 (s V_heap_available_z));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1 + s V_heap_available_z)) (F_check_ge (-1
+                                                                    + s V_heap_available_z) (0))]
+     ((41 # 1) - s V_heap_available_n + max0(-1 + s V_heap_available_z) <= z)%Q
+   | 21 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 22 => ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 23 => hints
+     [(*-2 0*) F_max0_monotonic (F_check_ge (20 - s V_heap_available_n) (19
+                                                                    - s V_heap_available_n));
+      (*-2 0*) F_max0_ge_0 (19 - s V_heap_available_n);
+      (*0 1*) F_binom_monotonic 1 (F_max0_ge_arg (s V_heap_available_z)) (F_check_ge (s V_heap_available_z) (0));
+      (*-2 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (20
+                                                               - s V_heap_available_n) (0))) (F_max0_ge_0 (20
+                                                                    - s V_heap_available_n))]
+     ((40 # 1) - s V_heap_available_n + max0(s V_heap_available_z) <= z)%Q
+   | 24 => (s V_heap_available_n + s V_heap_available_z <= z)%Q
+   | 25 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (s V_heap_available_n)) (F_check_ge (0) (0));
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_heap_available_n) (0))) (F_max0_ge_0 (s V_heap_available_n))]
+     (s V_heap_available_n + s V_heap_available_z <= z)%Q
+   | 26 => (s V_heap_available_z <= z)%Q
+   | 27 => (s V_heap_available_n + s V_heap_available_z <= z)%Q
+   | 28 => (s V_heap_available_n + s V_heap_available_z <= z)%Q
+   | 29 => ((1 # 1) + s V_heap_available_n + s V_heap_available_z <= z)%Q
+   | 30 => ((1 # 1) + s V_heap_available_n + s V_heap_available_z <= z)%Q
+   | 31 => ((1 # 1) + s V_heap_available_n + s V_heap_available_z <= z)%Q
+   | 32 => (s V_heap_available_n + s V_heap_available_z <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => ((40 # 1))%Q
-    | 2%positive => ((40 # 1) + max0((s IDheap_available_z)))%Q
-    | 3%positive => ((40 # 1) + max0((s IDheap_available_z)))%Q
-    | 4%positive => ((40 # 1) + max0((s IDheap_available_z)))%Q
-    | 5%positive => ((40 # 1) + max0((s IDheap_available_z)))%Q
-    | 6%positive => ((40 # 1) - (s IDheap_available_n)
-                     + max0((s IDheap_available_z)))%Q
-    | 7%positive => ((40 # 1) - (s IDheap_available_n)
-                     + max0((s IDheap_available_z)))%Q
-    | 8%positive => ((40 # 1) - (s IDheap_available_n)
-                     + max0((s IDheap_available_z)))%Q
-    | 9%positive => ((40 # 1) - (s IDheap_available_n)
-                     + max0((s IDheap_available_z)))%Q
-    | 10%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 11%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 12%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 13%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 14%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 15%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 16%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 17%positive => ((41 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 18%positive => ((41 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 19%positive => ((41 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 20%positive => ((41 # 1) - (s IDheap_available_n)
-                      + max0(-1 + (s IDheap_available_z)))%Q
-    | 21%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 22%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 23%positive => ((40 # 1) - (s IDheap_available_n)
-                      + max0((s IDheap_available_z)))%Q
-    | 24%positive => ((s IDheap_available_n) + (s IDheap_available_z))%Q
-    | 25%positive => ((s IDheap_available_n) + (s IDheap_available_z))%Q
-    | 26%positive => ((s IDheap_available_z))%Q
-    | 27%positive => ((s IDheap_available_n) + (s IDheap_available_z))%Q
-    | 28%positive => ((s IDheap_available_n) + (s IDheap_available_z))%Q
-    | 29%positive => ((1 # 1) + (s IDheap_available_n)
-                      + (s IDheap_available_z))%Q
-    | 30%positive => ((1 # 1) + (s IDheap_available_n)
-                      + (s IDheap_available_z))%Q
-    | 31%positive => ((1 # 1) + (s IDheap_available_n)
-                      + (s IDheap_available_z))%Q
-    | 32%positive => ((s IDheap_available_n) + (s IDheap_available_z))%Q
-    | _ => (0 # 1)%Q
+  | P_heap_available =>
+    [mkPA Q (fun n z s => ai_heap_available n s /\ annot0_heap_available n z s)]
   end.
 
-Definition heap_available_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => []
-    | 9%positive => []
-    | 10%positive => []
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => []
-    | 19%positive => []
-    | 20%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDheap_available_z)) (0))) (F_max0_ge_0 ((s IDheap_available_z)));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (-1
-                                                                   + 
-                                                                   (s IDheap_available_z))) (F_check_ge (-1
-                                                                    + (s IDheap_available_z)) (0))]
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => [(*-2 0*) F_max0_monotonic (F_check_ge (20
-                                                             - (s IDheap_available_n)) (19
-                                                                    - (s IDheap_available_n)));
-                      (*-2 0*) F_max0_ge_0 (19 - (s IDheap_available_n));
-                      (*0 1*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDheap_available_z))) (F_check_ge ((s IDheap_available_z)) (0));
-                      (*-2 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (20
-                                                                    - (s IDheap_available_n)) (0))) (F_max0_ge_0 (20
-                                                                    - (s IDheap_available_n)))]
-    | 24%positive => []
-    | 25%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 ((s IDheap_available_n))) (F_check_ge (0) (0));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDheap_available_n)) (0))) (F_max0_ge_0 ((s IDheap_available_n)))]
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => []
-    | _ => []
-  end.
-
-
-Theorem heap_available_ai_correct:
-  forall s p' s', steps (g_start heap_available) s (g_edges heap_available) p' s' -> heap_available_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem heap_available_pot_correct:
-  forall s p' s',
-    steps (g_start heap_available) s (g_edges heap_available) p' s' ->
-    (heap_available_pot (g_start heap_available) s >= heap_available_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_heap_available (proc_start P_heap_available) s1 (proc_end P_heap_available) s2 ->
+    (s2 V_heap_available_z <= (40 # 1))%Q.
 Proof.
-  check_lp heap_available_ai_correct heap_available_hints.
+  prove_bound ipa admissible_ipa P_heap_available.
 Qed.
-

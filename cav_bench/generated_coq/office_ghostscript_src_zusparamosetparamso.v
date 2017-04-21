@@ -1,574 +1,387 @@
 Require Import pasta.Pasta.
 
-Notation IDsetparams_z := 1%positive.
-Notation IDsetparams__tmp := 2%positive.
-Notation IDsetparams_code := 3%positive.
-Notation IDsetparams_i := 4%positive.
-Notation IDsetparams_pset_dref_off24 := 5%positive.
-Notation IDsetparams_pset_dref_off8 := 6%positive.
-Notation IDsetparams_plist := 7%positive.
-Notation IDsetparams_pset := 8%positive.
-Definition setparams : graph := {|
-  g_start := 1%positive;
-  g_end := 68%positive;
-  g_edges := (1%positive,(AAssign IDsetparams_z (Some (ENum (0)))),
-             2%positive)::
-             (2%positive,(AGuard
-             (fun s => ((eval (EVar IDsetparams_pset_dref_off8) s) >=
-             (eval (ENum (0)) s))%Z)),3%positive)::
-             (3%positive,(AGuard
-             (fun s => ((eval (EVar IDsetparams_pset_dref_off24) s) >=
-             (eval (ENum (0)) s))%Z)),4%positive)::
-             (4%positive,(AGuard (fun s => ((eval (EVar IDsetparams_i) s) >=
-             (eval (ENum (0)) s))%Z)),5%positive)::
-             (5%positive,AWeaken,6%positive)::
-             (6%positive,(AAssign IDsetparams_i (Some (ENum (0)))),
-             7%positive)::(7%positive,ANone,8%positive)::
-             (8%positive,AWeaken,9%positive)::
-             (9%positive,(AGuard (fun s => ((eval (EVar IDsetparams_i) s) <
-             (eval (EVar IDsetparams_pset_dref_off8) s))%Z)),42%positive)::
-             (9%positive,(AGuard (fun s => ((eval (EVar IDsetparams_i) s) >=
-             (eval (EVar IDsetparams_pset_dref_off8) s))%Z)),10%positive)::
-             (10%positive,AWeaken,11%positive)::
-             (11%positive,(AAssign IDsetparams_i (Some (ENum (0)))),
-             12%positive)::(12%positive,ANone,13%positive)::
-             (13%positive,AWeaken,14%positive)::
-             (14%positive,(AGuard (fun s => ((eval (EVar IDsetparams_i) s) <
-             (eval (EVar IDsetparams_pset_dref_off24) s))%Z)),19%positive)::
-             (14%positive,(AGuard (fun s => ((eval (EVar IDsetparams_i) s) >=
-             (eval (EVar IDsetparams_pset_dref_off24) s))%Z)),15%positive)::
-             (15%positive,AWeaken,16%positive)::
-             (16%positive,(AAssign IDsetparams__tmp (Some (ENum (0)))),
-             17%positive)::(17%positive,ANone,18%positive)::
-             (18%positive,AWeaken,68%positive)::
-             (19%positive,AWeaken,20%positive)::
-             (20%positive,ANone,36%positive)::
-             (20%positive,ANone,21%positive)::
-             (21%positive,(AAssign IDsetparams_code None),22%positive)::
-             (22%positive,AWeaken,23%positive)::
-             (23%positive,(AGuard (fun s => ((eval (EVar IDsetparams_code)
-             s) = (eval (ENum (0)) s))%Z)),25%positive)::
-             (23%positive,(AGuard (fun s => ((eval (EVar IDsetparams_code)
-             s) <> (eval (ENum (0)) s))%Z)),24%positive)::
-             (24%positive,AWeaken,29%positive)::
-             (25%positive,AWeaken,26%positive)::
-             (26%positive,(AAssign IDsetparams_code None),27%positive)::
-             (27%positive,ANone,28%positive)::
-             (28%positive,AWeaken,29%positive)::
-             (29%positive,(AGuard (fun s => ((eval (EVar IDsetparams_code)
-             s) < (eval (ENum (0)) s))%Z)),32%positive)::
-             (29%positive,(AGuard (fun s => ((eval (EVar IDsetparams_code)
-             s) >= (eval (ENum (0)) s))%Z)),30%positive)::
-             (30%positive,AWeaken,31%positive)::
-             (31%positive,ANone,37%positive)::
-             (32%positive,AWeaken,33%positive)::
-             (33%positive,(AAssign IDsetparams__tmp
-             (Some (EVar IDsetparams_code))),34%positive)::
-             (34%positive,ANone,35%positive)::
-             (35%positive,AWeaken,68%positive)::
-             (36%positive,ANone,37%positive)::
-             (37%positive,(AAssign IDsetparams_i
-             (Some (EAdd (EVar IDsetparams_i) (ENum (1))))),38%positive)::
-             (38%positive,ANone,39%positive)::
-             (39%positive,ANone,40%positive)::
-             (40%positive,(AAssign IDsetparams_z (Some (EAdd (ENum (1))
-             (EVar IDsetparams_z)))),41%positive)::
-             (41%positive,AWeaken,14%positive)::
-             (42%positive,AWeaken,43%positive)::
-             (43%positive,ANone,69%positive)::
-             (43%positive,ANone,44%positive)::
-             (44%positive,(AAssign IDsetparams_code None),45%positive)::
-             (45%positive,AWeaken,46%positive)::
-             (46%positive,ANone,65%positive)::
-             (46%positive,ANone,63%positive)::
-             (46%positive,ANone,47%positive)::
-             (47%positive,AWeaken,48%positive)::
-             (48%positive,ANone,60%positive)::
-             (48%positive,ANone,49%positive)::
-             (49%positive,AWeaken,50%positive)::
-             (50%positive,ANone,60%positive)::
-             (50%positive,ANone,51%positive)::
-             (51%positive,(AAssign IDsetparams_code None),52%positive)::
-             (52%positive,AWeaken,53%positive)::
-             (53%positive,(AGuard (fun s => ((eval (EVar IDsetparams_code)
-             s) < (eval (ENum (0)) s))%Z)),56%positive)::
-             (53%positive,(AGuard (fun s => ((eval (EVar IDsetparams_code)
-             s) >= (eval (ENum (0)) s))%Z)),54%positive)::
-             (54%positive,AWeaken,55%positive)::
-             (55%positive,ANone,64%positive)::
-             (56%positive,AWeaken,57%positive)::
-             (57%positive,(AAssign IDsetparams__tmp
-             (Some (EVar IDsetparams_code))),58%positive)::
-             (58%positive,ANone,59%positive)::
-             (59%positive,AWeaken,68%positive)::
-             (60%positive,(AAssign IDsetparams__tmp (Some (ENum (-15)))),
-             61%positive)::(61%positive,ANone,62%positive)::
-             (62%positive,AWeaken,68%positive)::
-             (63%positive,ANone,64%positive)::
-             (64%positive,ANone,70%positive)::
-             (65%positive,(AAssign IDsetparams__tmp
-             (Some (EVar IDsetparams_code))),66%positive)::
-             (66%positive,ANone,67%positive)::
-             (67%positive,AWeaken,68%positive)::
-             (69%positive,ANone,70%positive)::
-             (70%positive,(AAssign IDsetparams_i
-             (Some (EAdd (EVar IDsetparams_i) (ENum (1))))),71%positive)::
-             (71%positive,ANone,72%positive)::
-             (72%positive,ANone,73%positive)::
-             (73%positive,(AAssign IDsetparams_z (Some (EAdd (ENum (1))
-             (EVar IDsetparams_z)))),74%positive)::
-             (74%positive,AWeaken,9%positive)::nil
-|}.
+Inductive proc: Type :=
+  P_setparams.
 
-Definition setparams_ai (p: node) (s: state) := 
-  match p with
-    | 1%positive => (True)%Z
-    | 2%positive => (1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_z) <= 0)%Z
-    | 3%positive => (-1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_pset_dref_off8) <= 0)%Z
-    | 4%positive => (-1 * (s IDsetparams_pset_dref_off8) <= 0 /\ 1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 5%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 6%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ 1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 7%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ 1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 8%positive => (-1 * (s IDsetparams_i) <= 0 /\ 1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ 1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 9%positive => (-1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) <= 0)%Z
-    | 10%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i)+ 1 * (s IDsetparams_pset_dref_off8) <= 0)%Z
-    | 11%positive => (-1 * (s IDsetparams_i)+ 1 * (s IDsetparams_pset_dref_off8) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) <= 0)%Z
-    | 12%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 13%positive => (-1 * (s IDsetparams_i) <= 0 /\ 1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 14%positive => (-1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 15%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i)+ 1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 16%positive => (-1 * (s IDsetparams_i)+ 1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 17%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i)+ 1 * (s IDsetparams_pset_dref_off24) <= 0 /\ 1 * (s IDsetparams__tmp) <= 0 /\ -1 * (s IDsetparams__tmp) <= 0)%Z
-    | 18%positive => (-1 * (s IDsetparams__tmp) <= 0 /\ 1 * (s IDsetparams__tmp) <= 0 /\ -1 * (s IDsetparams_i)+ 1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 19%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0)%Z
-    | 20%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 21%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0)%Z
-    | 22%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 23%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0)%Z
-    | 24%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 25%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ 1 * (s IDsetparams_code) <= 0 /\ -1 * (s IDsetparams_code) <= 0)%Z
-    | 26%positive => (-1 * (s IDsetparams_code) <= 0 /\ 1 * (s IDsetparams_code) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0)%Z
-    | 27%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 28%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0)%Z
-    | 29%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 30%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_code) <= 0)%Z
-    | 31%positive => (-1 * (s IDsetparams_code) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 32%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ 1 * (s IDsetparams_code) + 1 <= 0)%Z
-    | 33%positive => (1 * (s IDsetparams_code) + 1 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 34%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ 1 * (s IDsetparams_code) + 1 <= 0 /\ 1 * (s IDsetparams__tmp) + 1 <= 0)%Z
-    | 35%positive => (1 * (s IDsetparams__tmp) + 1 <= 0 /\ 1 * (s IDsetparams_code) + 1 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 36%positive => (-1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0)%Z
-    | 37%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0)%Z
-    | 38%positive => (-1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) + 1 <= 0)%Z
-    | 39%positive => (-1 * (s IDsetparams_i) + 1 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) <= 0)%Z
-    | 40%positive => (-1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) + 1 <= 0)%Z
-    | 41%positive => (-1 * (s IDsetparams_i) + 1 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) + 1 <= 0)%Z
-    | 42%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 43%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 44%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 45%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 46%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 47%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 48%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 49%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 50%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 51%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 52%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 53%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 54%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_code) <= 0)%Z
-    | 55%positive => (-1 * (s IDsetparams_code) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 56%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ 1 * (s IDsetparams_code) + 1 <= 0)%Z
-    | 57%positive => (1 * (s IDsetparams_code) + 1 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 58%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ 1 * (s IDsetparams_code) + 1 <= 0 /\ 1 * (s IDsetparams__tmp) + 1 <= 0)%Z
-    | 59%positive => (1 * (s IDsetparams__tmp) + 1 <= 0 /\ 1 * (s IDsetparams_code) + 1 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 60%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 61%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ 1 * (s IDsetparams__tmp) + 15 <= 0 /\ -1 * (s IDsetparams__tmp) + -15 <= 0)%Z
-    | 62%positive => (-1 * (s IDsetparams__tmp) + -15 <= 0 /\ 1 * (s IDsetparams__tmp) + 15 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 63%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 64%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 65%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 66%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 67%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 68%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0)%Z
-    | 69%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0)%Z
-    | 70%positive => (1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) + 1 <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_i) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 71%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ -1 * (s IDsetparams_i) + 1 <= 0)%Z
-    | 72%positive => (-1 * (s IDsetparams_i) + 1 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0)%Z
-    | 73%positive => (-1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ -1 * (s IDsetparams_i) + 1 <= 0)%Z
-    | 74%positive => (-1 * (s IDsetparams_i) + 1 <= 0 /\ 1 * (s IDsetparams_i)+ -1 * (s IDsetparams_pset_dref_off8) <= 0 /\ -1 * (s IDsetparams_pset_dref_off24) <= 0 /\ -1 * (s IDsetparams_z) + 1 <= 0)%Z
-    | _ => False
+Definition var_global (v: id): bool :=
+  match v with
+  | _ => false
   end.
 
-Definition setparams_pot (p : node) (s : state): Q := 
+Notation V_setparams_z := 1%positive.
+Notation V_setparams__tmp := 2%positive.
+Notation V_setparams_code := 3%positive.
+Notation V_setparams_i := 4%positive.
+Notation V_setparams_pset_dref_off24 := 5%positive.
+Notation V_setparams_pset_dref_off8 := 6%positive.
+Notation V_setparams_plist := 7%positive.
+Notation V_setparams_pset := 8%positive.
+Definition Pedges_setparams: list (edge proc) :=
+  (EA 1 (AAssign V_setparams_z (Some (ENum (0)))) 2)::(EA 2 (AGuard
+  (fun s => ((eval (EVar V_setparams_pset_dref_off8) s) >= (eval (ENum (0))
+  s))%Z)) 3)::(EA 3 (AGuard
+  (fun s => ((eval (EVar V_setparams_pset_dref_off24) s) >= (eval (ENum (0))
+  s))%Z)) 4)::(EA 4 (AGuard (fun s => ((eval (EVar V_setparams_i) s) >=
+  (eval (ENum (0)) s))%Z)) 5)::(EA 5 AWeaken 6)::(EA 6 (AAssign V_setparams_i
+  (Some (ENum (0)))) 7)::(EA 7 ANone 8)::(EA 8 AWeaken 9)::(EA 9 (AGuard
+  (fun s => ((eval (EVar V_setparams_i) s) <
+  (eval (EVar V_setparams_pset_dref_off8) s))%Z)) 42)::(EA 9 (AGuard
+  (fun s => ((eval (EVar V_setparams_i) s) >=
+  (eval (EVar V_setparams_pset_dref_off8) s))%Z)) 10)::(EA 10 AWeaken 11)::
+  (EA 11 (AAssign V_setparams_i (Some (ENum (0)))) 12)::(EA 12 ANone 13)::
+  (EA 13 AWeaken 14)::(EA 14 (AGuard (fun s => ((eval (EVar V_setparams_i)
+  s) < (eval (EVar V_setparams_pset_dref_off24) s))%Z)) 19)::(EA 14 (AGuard
+  (fun s => ((eval (EVar V_setparams_i) s) >=
+  (eval (EVar V_setparams_pset_dref_off24) s))%Z)) 15)::(EA 15 AWeaken 16)::
+  (EA 16 (AAssign V_setparams__tmp (Some (ENum (0)))) 17)::(EA 17 ANone 18)::
+  (EA 18 AWeaken 68)::(EA 19 AWeaken 20)::(EA 20 ANone 36)::
+  (EA 20 ANone 21)::(EA 21 (AAssign V_setparams_code None) 22)::
+  (EA 22 AWeaken 23)::(EA 23 (AGuard (fun s => ((eval (EVar V_setparams_code)
+  s) = (eval (ENum (0)) s))%Z)) 25)::(EA 23 (AGuard
+  (fun s => ((eval (EVar V_setparams_code) s) <> (eval (ENum (0))
+  s))%Z)) 24)::(EA 24 AWeaken 29)::(EA 25 AWeaken 26)::(EA 26 (AAssign
+  V_setparams_code None) 27)::(EA 27 ANone 28)::(EA 28 AWeaken 29)::
+  (EA 29 (AGuard (fun s => ((eval (EVar V_setparams_code) s) <
+  (eval (ENum (0)) s))%Z)) 32)::(EA 29 (AGuard
+  (fun s => ((eval (EVar V_setparams_code) s) >= (eval (ENum (0))
+  s))%Z)) 30)::(EA 30 AWeaken 31)::(EA 31 ANone 37)::(EA 32 AWeaken 33)::
+  (EA 33 (AAssign V_setparams__tmp (Some (EVar V_setparams_code))) 34)::
+  (EA 34 ANone 35)::(EA 35 AWeaken 68)::(EA 36 ANone 37)::(EA 37 (AAssign
+  V_setparams_i (Some (EAdd (EVar V_setparams_i) (ENum (1))))) 38)::
+  (EA 38 ANone 39)::(EA 39 ANone 40)::(EA 40 (AAssign V_setparams_z
+  (Some (EAdd (ENum (1)) (EVar V_setparams_z)))) 41)::(EA 41 AWeaken 14)::
+  (EA 42 AWeaken 43)::(EA 43 ANone 69)::(EA 43 ANone 44)::(EA 44 (AAssign
+  V_setparams_code None) 45)::(EA 45 AWeaken 46)::(EA 46 ANone 65)::
+  (EA 46 ANone 63)::(EA 46 ANone 47)::(EA 47 AWeaken 48)::(EA 48 ANone 60)::
+  (EA 48 ANone 49)::(EA 49 AWeaken 50)::(EA 50 ANone 60)::(EA 50 ANone 51)::
+  (EA 51 (AAssign V_setparams_code None) 52)::(EA 52 AWeaken 53)::
+  (EA 53 (AGuard (fun s => ((eval (EVar V_setparams_code) s) <
+  (eval (ENum (0)) s))%Z)) 56)::(EA 53 (AGuard
+  (fun s => ((eval (EVar V_setparams_code) s) >= (eval (ENum (0))
+  s))%Z)) 54)::(EA 54 AWeaken 55)::(EA 55 ANone 64)::(EA 56 AWeaken 57)::
+  (EA 57 (AAssign V_setparams__tmp (Some (EVar V_setparams_code))) 58)::
+  (EA 58 ANone 59)::(EA 59 AWeaken 68)::(EA 60 (AAssign V_setparams__tmp
+  (Some (ENum (-15)))) 61)::(EA 61 ANone 62)::(EA 62 AWeaken 68)::
+  (EA 63 ANone 64)::(EA 64 ANone 70)::(EA 65 (AAssign V_setparams__tmp
+  (Some (EVar V_setparams_code))) 66)::(EA 66 ANone 67)::(EA 67 AWeaken 68)::
+  (EA 69 ANone 70)::(EA 70 (AAssign V_setparams_i
+  (Some (EAdd (EVar V_setparams_i) (ENum (1))))) 71)::(EA 71 ANone 72)::
+  (EA 72 ANone 73)::(EA 73 (AAssign V_setparams_z (Some (EAdd (ENum (1))
+  (EVar V_setparams_z)))) 74)::(EA 74 AWeaken 9)::nil.
+
+Instance PROG: Program proc := {
+  proc_edges := fun p =>
+    match p with
+    | P_setparams => Pedges_setparams
+    end;
+  proc_start := fun p => 1%positive;
+  proc_end := fun p =>
+    (match p with
+     | P_setparams => 68
+     end)%positive;
+  var_global := var_global
+}.
+
+Definition ai_setparams (p: node) (s: state): Prop := 
+  (match p with
+   | 1 => (True)%Z
+   | 2 => (1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_z <= 0)%Z
+   | 3 => (-1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_pset_dref_off8 <= 0)%Z
+   | 4 => (-1 * s V_setparams_pset_dref_off8 <= 0 /\ 1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 5 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_pset_dref_off8 <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 6 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off8 <= 0 /\ 1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 7 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_pset_dref_off8 <= 0 /\ 1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 8 => (-1 * s V_setparams_i <= 0 /\ 1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off8 <= 0 /\ 1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 9 => (-1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 <= 0)%Z
+   | 10 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i+ 1 * s V_setparams_pset_dref_off8 <= 0)%Z
+   | 11 => (-1 * s V_setparams_i+ 1 * s V_setparams_pset_dref_off8 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 <= 0)%Z
+   | 12 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 13 => (-1 * s V_setparams_i <= 0 /\ 1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 14 => (-1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 15 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i+ 1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 16 => (-1 * s V_setparams_i+ 1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 17 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i+ 1 * s V_setparams_pset_dref_off24 <= 0 /\ 1 * s V_setparams__tmp <= 0 /\ -1 * s V_setparams__tmp <= 0)%Z
+   | 18 => (-1 * s V_setparams__tmp <= 0 /\ 1 * s V_setparams__tmp <= 0 /\ -1 * s V_setparams_i+ 1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 19 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0)%Z
+   | 20 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 21 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0)%Z
+   | 22 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 23 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0)%Z
+   | 24 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 25 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ 1 * s V_setparams_code <= 0 /\ -1 * s V_setparams_code <= 0)%Z
+   | 26 => (-1 * s V_setparams_code <= 0 /\ 1 * s V_setparams_code <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0)%Z
+   | 27 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 28 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0)%Z
+   | 29 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 30 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_code <= 0)%Z
+   | 31 => (-1 * s V_setparams_code <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 32 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ 1 * s V_setparams_code + 1 <= 0)%Z
+   | 33 => (1 * s V_setparams_code + 1 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 34 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ 1 * s V_setparams_code + 1 <= 0 /\ 1 * s V_setparams__tmp + 1 <= 0)%Z
+   | 35 => (1 * s V_setparams__tmp + 1 <= 0 /\ 1 * s V_setparams_code + 1 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 36 => (-1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0)%Z
+   | 37 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0)%Z
+   | 38 => (-1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i + 1 <= 0)%Z
+   | 39 => (-1 * s V_setparams_i + 1 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z <= 0)%Z
+   | 40 => (-1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i + 1 <= 0)%Z
+   | 41 => (-1 * s V_setparams_i + 1 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z + 1 <= 0)%Z
+   | 42 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 43 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 44 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 45 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 46 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 47 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 48 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 49 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 50 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 51 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 52 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 53 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 54 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_code <= 0)%Z
+   | 55 => (-1 * s V_setparams_code <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 56 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ 1 * s V_setparams_code + 1 <= 0)%Z
+   | 57 => (1 * s V_setparams_code + 1 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 58 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ 1 * s V_setparams_code + 1 <= 0 /\ 1 * s V_setparams__tmp + 1 <= 0)%Z
+   | 59 => (1 * s V_setparams__tmp + 1 <= 0 /\ 1 * s V_setparams_code + 1 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 60 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 61 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ 1 * s V_setparams__tmp + 15 <= 0 /\ -1 * s V_setparams__tmp + -15 <= 0)%Z
+   | 62 => (-1 * s V_setparams__tmp + -15 <= 0 /\ 1 * s V_setparams__tmp + 15 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 63 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 64 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 65 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 66 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 67 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 68 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0)%Z
+   | 69 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0)%Z
+   | 70 => (1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 + 1 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_i <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 71 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 <= 0 /\ -1 * s V_setparams_i + 1 <= 0)%Z
+   | 72 => (-1 * s V_setparams_i + 1 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 <= 0 /\ -1 * s V_setparams_z <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0)%Z
+   | 73 => (-1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 <= 0 /\ -1 * s V_setparams_i + 1 <= 0)%Z
+   | 74 => (-1 * s V_setparams_i + 1 <= 0 /\ 1 * s V_setparams_i+ -1 * s V_setparams_pset_dref_off8 <= 0 /\ -1 * s V_setparams_pset_dref_off24 <= 0 /\ -1 * s V_setparams_z + 1 <= 0)%Z
+   | _ => False
+   end)%positive.
+
+Definition annot0_setparams (p: node) (z: Q) (s: state): Prop := 
+  (match p with
+   | 1 => (max0(s V_setparams_pset_dref_off24)
+           + max0(s V_setparams_pset_dref_off8) <= z)%Q
+   | 2 => (s V_setparams_z + max0(s V_setparams_pset_dref_off24)
+           + max0(s V_setparams_pset_dref_off8) <= z)%Q
+   | 3 => (s V_setparams_z + max0(s V_setparams_pset_dref_off24)
+           + max0(s V_setparams_pset_dref_off8) <= z)%Q
+   | 4 => (s V_setparams_z + max0(s V_setparams_pset_dref_off24)
+           + max0(s V_setparams_pset_dref_off8) <= z)%Q
+   | 5 => (s V_setparams_z + max0(s V_setparams_pset_dref_off24)
+           + max0(s V_setparams_pset_dref_off8) <= z)%Q
+   | 6 => (s V_setparams_z + max0(s V_setparams_pset_dref_off24)
+           + max0(s V_setparams_pset_dref_off8) <= z)%Q
+   | 7 => (s V_setparams_z
+           + max0(-s V_setparams_i + s V_setparams_pset_dref_off8)
+           + max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 8 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_setparams_pset_dref_off24)) (F_check_ge (s V_setparams_pset_dref_off24) (0))]
+     (s V_setparams_z + max0(-s V_setparams_i + s V_setparams_pset_dref_off8)
+      + max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 9 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+           + max0(-s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 10 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-s V_setparams_i
+                                             + s V_setparams_pset_dref_off8) (-1
+                                                                    - s V_setparams_i
+                                                                    + s V_setparams_pset_dref_off8));
+      (*-1 0*) F_max0_ge_0 (-1 - s V_setparams_i
+                            + s V_setparams_pset_dref_off8)]
+     (s V_setparams_pset_dref_off24 + s V_setparams_z
+      + max0(-s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 11 => (s V_setparams_pset_dref_off24 + s V_setparams_z <= z)%Q
+   | 12 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24)
+            - max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 13 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24)
+            - max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 14 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24)
+            - max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 15 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24)
+            - max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 16 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24)
+            - max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 17 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24)
+            - max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 18 => hints
+     [(*-1 0*) F_max0_monotonic (F_check_ge (-s V_setparams_i
+                                             + s V_setparams_pset_dref_off24) (-1
+                                                                    - s V_setparams_i
+                                                                    + s V_setparams_pset_dref_off24));
+      (*-1 0*) F_max0_ge_0 (-1 - s V_setparams_i
+                            + s V_setparams_pset_dref_off24);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_setparams_pset_dref_off24) (0))) (F_max0_ge_0 (s V_setparams_pset_dref_off24))]
+     (s V_setparams_pset_dref_off24 + s V_setparams_z
+      + max0(-s V_setparams_i + s V_setparams_pset_dref_off24)
+      - max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 19 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (-s V_setparams_i
+                                       + s V_setparams_pset_dref_off24) (1);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_setparams_pset_dref_off24) (0))) (F_max0_ge_0 (s V_setparams_pset_dref_off24))]
+     (s V_setparams_pset_dref_off24 + s V_setparams_z
+      + max0(-s V_setparams_i + s V_setparams_pset_dref_off24)
+      - max0(s V_setparams_pset_dref_off24) <= z)%Q
+   | 20 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 21 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 22 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 23 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 24 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 25 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 26 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 27 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 28 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 29 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 30 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 31 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 32 => hints
+     [(*-1 0*) F_max0_ge_0 (-1 - s V_setparams_i
+                            + s V_setparams_pset_dref_off24)]
+     ((1 # 1) + s V_setparams_z
+      + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 33 => ((1 # 1) + s V_setparams_z <= z)%Q
+   | 34 => ((1 # 1) + s V_setparams_z <= z)%Q
+   | 35 => hints
+     [(*-1 0*) F_one]
+     ((1 # 1) + s V_setparams_z <= z)%Q
+   | 36 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 37 => ((1 # 1) + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 38 => ((1 # 1) + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 39 => ((1 # 1) + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 40 => ((1 # 1) + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 41 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg (s V_setparams_pset_dref_off24)) (F_check_ge (s V_setparams_pset_dref_off24) (0))]
+     (s V_setparams_z
+      + max0(-s V_setparams_i + s V_setparams_pset_dref_off24) <= z)%Q
+   | 42 => hints
+     [(*-1 0*) F_max0_pre_decrement 1 (-s V_setparams_i
+                                       + s V_setparams_pset_dref_off8) (1)]
+     (s V_setparams_pset_dref_off24 + s V_setparams_z
+      + max0(-s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 43 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 44 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 45 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 46 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 47 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 48 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 49 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 50 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 51 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 52 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 53 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 54 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 55 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 56 => hints
+     [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-1 - s V_setparams_i
+                                                + s V_setparams_pset_dref_off8)) (F_check_ge (0) (0))]
+     ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+      + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 57 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z <= z)%Q
+   | 58 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z <= z)%Q
+   | 59 => hints
+     [(*-1 0*) F_one; (*-1 0*) F_max0_ge_0 (s V_setparams_pset_dref_off24);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_setparams_pset_dref_off24) (0))) (F_max0_ge_0 (s V_setparams_pset_dref_off24))]
+     ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z <= z)%Q
+   | 60 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 61 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+            + (1 # 14) * max0(-1 - s V_setparams__tmp)
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 62 => hints
+     [(*-1 0*) F_max0_ge_0 (s V_setparams_pset_dref_off24);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_setparams_pset_dref_off24) (0))) (F_max0_ge_0 (s V_setparams_pset_dref_off24));
+      (*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-1 - s V_setparams_i
+                                                + s V_setparams_pset_dref_off8)) (F_check_ge (0) (0));
+      (*-0.0714286 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
+                                                         - s V_setparams__tmp)) (F_check_ge (0) (0))]
+     (s V_setparams_pset_dref_off24 + s V_setparams_z
+      + (1 # 14) * max0(-1 - s V_setparams__tmp)
+      + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 63 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 64 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 65 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 66 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 67 => hints
+     [(*-1 0*) F_one;
+      (*-1 0*) F_max0_ge_0 (-1 - s V_setparams_i
+                            + s V_setparams_pset_dref_off8);
+      (*-1 0*) F_max0_ge_0 (s V_setparams_pset_dref_off24);
+      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge (s V_setparams_pset_dref_off24) (0))) (F_max0_ge_0 (s V_setparams_pset_dref_off24))]
+     ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+      + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 68 => (s V_setparams_z <= z)%Q
+   | 69 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 70 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-1 - s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 71 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 72 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 73 => ((1 # 1) + s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | 74 => (s V_setparams_pset_dref_off24 + s V_setparams_z
+            + max0(-s V_setparams_i + s V_setparams_pset_dref_off8) <= z)%Q
+   | _ => False
+   end)%positive.
+
+Definition ipa: IPA := fun p =>
   match p with
-    | 1%positive => (max0((s IDsetparams_pset_dref_off24))
-                     + max0((s IDsetparams_pset_dref_off8)))%Q
-    | 2%positive => ((s IDsetparams_z)
-                     + max0((s IDsetparams_pset_dref_off24))
-                     + max0((s IDsetparams_pset_dref_off8)))%Q
-    | 3%positive => ((s IDsetparams_z)
-                     + max0((s IDsetparams_pset_dref_off24))
-                     + max0((s IDsetparams_pset_dref_off8)))%Q
-    | 4%positive => ((s IDsetparams_z)
-                     + max0((s IDsetparams_pset_dref_off24))
-                     + max0((s IDsetparams_pset_dref_off8)))%Q
-    | 5%positive => ((s IDsetparams_z)
-                     + max0((s IDsetparams_pset_dref_off24))
-                     + max0((s IDsetparams_pset_dref_off8)))%Q
-    | 6%positive => ((s IDsetparams_z)
-                     + max0((s IDsetparams_pset_dref_off24))
-                     + max0((s IDsetparams_pset_dref_off8)))%Q
-    | 7%positive => ((s IDsetparams_z)
-                     + max0(-(s IDsetparams_i)
-                            + (s IDsetparams_pset_dref_off8))
-                     + max0((s IDsetparams_pset_dref_off24)))%Q
-    | 8%positive => ((s IDsetparams_z)
-                     + max0(-(s IDsetparams_i)
-                            + (s IDsetparams_pset_dref_off8))
-                     + max0((s IDsetparams_pset_dref_off24)))%Q
-    | 9%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                     + max0(-(s IDsetparams_i)
-                            + (s IDsetparams_pset_dref_off8)))%Q
-    | 10%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 11%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z))%Q
-    | 12%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24))
-                      - max0((s IDsetparams_pset_dref_off24)))%Q
-    | 13%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24))
-                      - max0((s IDsetparams_pset_dref_off24)))%Q
-    | 14%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24))
-                      - max0((s IDsetparams_pset_dref_off24)))%Q
-    | 15%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24))
-                      - max0((s IDsetparams_pset_dref_off24)))%Q
-    | 16%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24))
-                      - max0((s IDsetparams_pset_dref_off24)))%Q
-    | 17%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24))
-                      - max0((s IDsetparams_pset_dref_off24)))%Q
-    | 18%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24))
-                      - max0((s IDsetparams_pset_dref_off24)))%Q
-    | 19%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24))
-                      - max0((s IDsetparams_pset_dref_off24)))%Q
-    | 20%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 21%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 22%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 23%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 24%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 25%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 26%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 27%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 28%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 29%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 30%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 31%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 32%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 33%positive => ((1 # 1) + (s IDsetparams_z))%Q
-    | 34%positive => ((1 # 1) + (s IDsetparams_z))%Q
-    | 35%positive => ((1 # 1) + (s IDsetparams_z))%Q
-    | 36%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 37%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 38%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 39%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 40%positive => ((1 # 1) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 41%positive => ((s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off24)))%Q
-    | 42%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 43%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 44%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 45%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 46%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 47%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 48%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 49%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 50%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 51%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 52%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 53%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 54%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 55%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 56%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 57%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z))%Q
-    | 58%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z))%Q
-    | 59%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z))%Q
-    | 60%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 61%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + (1 # 14) * max0(-1 - (s IDsetparams__tmp))
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 62%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + (1 # 14) * max0(-1 - (s IDsetparams__tmp))
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 63%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 64%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 65%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 66%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 67%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 68%positive => ((s IDsetparams_z))%Q
-    | 69%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 70%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-1 - (s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 71%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 72%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 73%positive => ((1 # 1) + (s IDsetparams_pset_dref_off24)
-                      + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | 74%positive => ((s IDsetparams_pset_dref_off24) + (s IDsetparams_z)
-                      + max0(-(s IDsetparams_i)
-                             + (s IDsetparams_pset_dref_off8)))%Q
-    | _ => (0 # 1)%Q
+  | P_setparams =>
+    [mkPA Q (fun n z s => ai_setparams n s /\ annot0_setparams n z s)]
   end.
 
-Definition setparams_hints (p : node) (s : state) := 
-  match p with
-    | 1%positive => []
-    | 2%positive => []
-    | 3%positive => []
-    | 4%positive => []
-    | 5%positive => []
-    | 6%positive => []
-    | 7%positive => []
-    | 8%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDsetparams_pset_dref_off24))) (F_check_ge ((s IDsetparams_pset_dref_off24)) (0))]
-    | 9%positive => []
-    | 10%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-(s IDsetparams_i)
-                                                             + (s IDsetparams_pset_dref_off8)) (-1
-                                                                    - (s IDsetparams_i)
-                                                                    + (s IDsetparams_pset_dref_off8)));
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDsetparams_i)
-                                            + (s IDsetparams_pset_dref_off8))]
-    | 11%positive => []
-    | 12%positive => []
-    | 13%positive => []
-    | 14%positive => []
-    | 15%positive => []
-    | 16%positive => []
-    | 17%positive => []
-    | 18%positive => [(*-1 0*) F_max0_monotonic (F_check_ge (-(s IDsetparams_i)
-                                                             + (s IDsetparams_pset_dref_off24)) (-1
-                                                                    - (s IDsetparams_i)
-                                                                    + (s IDsetparams_pset_dref_off24)));
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDsetparams_i)
-                                            + (s IDsetparams_pset_dref_off24));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDsetparams_pset_dref_off24)) (0))) (F_max0_ge_0 ((s IDsetparams_pset_dref_off24)))]
-    | 19%positive => [(*-1 0*) F_max0_pre_decrement (-(s IDsetparams_i)
-                                                     + (s IDsetparams_pset_dref_off24)) (1);
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDsetparams_pset_dref_off24)) (0))) (F_max0_ge_0 ((s IDsetparams_pset_dref_off24)))]
-    | 20%positive => []
-    | 21%positive => []
-    | 22%positive => []
-    | 23%positive => []
-    | 24%positive => []
-    | 25%positive => []
-    | 26%positive => []
-    | 27%positive => []
-    | 28%positive => []
-    | 29%positive => []
-    | 30%positive => []
-    | 31%positive => []
-    | 32%positive => [(*-1 0*) F_max0_ge_0 (-1 - (s IDsetparams_i)
-                                            + (s IDsetparams_pset_dref_off24))]
-    | 33%positive => []
-    | 34%positive => []
-    | 35%positive => [(*-1 0*) F_one]
-    | 36%positive => []
-    | 37%positive => []
-    | 38%positive => []
-    | 39%positive => []
-    | 40%positive => []
-    | 41%positive => [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_arg ((s IDsetparams_pset_dref_off24))) (F_check_ge ((s IDsetparams_pset_dref_off24)) (0))]
-    | 42%positive => [(*-1 0*) F_max0_pre_decrement (-(s IDsetparams_i)
-                                                     + (s IDsetparams_pset_dref_off8)) (1)]
-    | 43%positive => []
-    | 44%positive => []
-    | 45%positive => []
-    | 46%positive => []
-    | 47%positive => []
-    | 48%positive => []
-    | 49%positive => []
-    | 50%positive => []
-    | 51%positive => []
-    | 52%positive => []
-    | 53%positive => []
-    | 54%positive => []
-    | 55%positive => []
-    | 56%positive => [(*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                - (s IDsetparams_i)
-                                                                + (s IDsetparams_pset_dref_off8))) (F_check_ge (0) (0))]
-    | 57%positive => []
-    | 58%positive => []
-    | 59%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_max0_ge_0 ((s IDsetparams_pset_dref_off24));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDsetparams_pset_dref_off24)) (0))) (F_max0_ge_0 ((s IDsetparams_pset_dref_off24)))]
-    | 60%positive => []
-    | 61%positive => []
-    | 62%positive => [(*-1 0*) F_max0_ge_0 ((s IDsetparams_pset_dref_off24));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDsetparams_pset_dref_off24)) (0))) (F_max0_ge_0 ((s IDsetparams_pset_dref_off24)));
-                      (*0 1*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                - (s IDsetparams_i)
-                                                                + (s IDsetparams_pset_dref_off8))) (F_check_ge (0) (0));
-                      (*-0.0714286 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1
-                                                                    - (s IDsetparams__tmp))) (F_check_ge (0) (0))]
-    | 63%positive => []
-    | 64%positive => []
-    | 65%positive => []
-    | 66%positive => []
-    | 67%positive => [(*-1 0*) F_one;
-                      (*-1 0*) F_max0_ge_0 (-1 - (s IDsetparams_i)
-                                            + (s IDsetparams_pset_dref_off8));
-                      (*-1 0*) F_max0_ge_0 ((s IDsetparams_pset_dref_off24));
-                      (*-1 0*) F_binom_monotonic 1 (F_max0_le_arg (F_check_ge ((s IDsetparams_pset_dref_off24)) (0))) (F_max0_ge_0 ((s IDsetparams_pset_dref_off24)))]
-    | 68%positive => []
-    | 69%positive => []
-    | 70%positive => []
-    | 71%positive => []
-    | 72%positive => []
-    | 73%positive => []
-    | 74%positive => []
-    | _ => []
-  end.
-
-
-Theorem setparams_ai_correct:
-  forall s p' s', steps (g_start setparams) s (g_edges setparams) p' s' -> setparams_ai p' s'.
+Theorem admissible_ipa: IPA_VC ipa.
 Proof.
-  check_ai.
+  prove_ipa_vc.
 Qed.
 
-Theorem setparams_pot_correct:
-  forall s p' s',
-    steps (g_start setparams) s (g_edges setparams) p' s' ->
-    (setparams_pot (g_start setparams) s >= setparams_pot p' s')%Q.
+Theorem bound_valid:
+  forall s1 s2, steps P_setparams (proc_start P_setparams) s1 (proc_end P_setparams) s2 ->
+    (s2 V_setparams_z <= max0(s1 V_setparams_pset_dref_off24)
+                         + max0(s1 V_setparams_pset_dref_off8))%Q.
 Proof.
-  check_lp setparams_ai_correct setparams_hints.
+  prove_bound ipa admissible_ipa P_setparams.
 Qed.
-
