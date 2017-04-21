@@ -15,7 +15,8 @@ do
 		echo "[TIMEOUT]"
 		;;
 	0)
-                mv generated_coq.v ../generated_coq/`basename $test | sed 's,\.,,g'`.v
+                vfile="../generated_coq/`basename $test | sed 's,\.\|-,,g'`.v"
+                mv generated_coq.v $vfile
 		echo "[OK]"
 		;;
 	*)
