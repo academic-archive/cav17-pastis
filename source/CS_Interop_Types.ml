@@ -4,12 +4,16 @@ type jump =
 
 type operation = OPlus | OMinus
 
+type operand =
+  | OpVar of Types.id
+  | OpCon of int
+
 type instruction =
   | ITick of int
   | IAssert of Types.expr * Types.cmp * Types.expr
-  | IInc of Types.id * operation * Types.id
-  | ISet of Types.id * Types.id option
-  | ICall of Types.id option * Types.id * Types.id list
+  | IInc of Types.id * operation * operand
+  | ISet of Types.id * operand option
+  | ICall of Types.id option * Types.id * operand list
 
 type csblock =
   {
@@ -25,13 +29,13 @@ type 'a csfunc =
     flocs : Types.id list;
     fbody : 'a
   }
-  
-(* 
-   for example, 
+
+(*
+   for example,
    blkdesc = csblock
    funcdesc = block array csfunc
  *)
-  
+
 module type CS_Querier = sig
   (* Module signature for code queriers.
    * This is the module type that has to be

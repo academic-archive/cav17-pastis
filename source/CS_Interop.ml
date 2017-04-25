@@ -1,7 +1,7 @@
 open Types
 open Graph
 open CS_Interop_Types
-          
+
 module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
 
   include Q
@@ -32,14 +32,14 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
      using a Querier module Q and turns it into a graph
      representation as in Graph_Types.
      Ignore function calls at first. *)
-      
+
   let graph_from_fundesc (fname, fdesc) =
 
     (*init (); it will be called outside *)
 
     (* each block starts with the node equivalent to its id *)
     let h_edges = Hashtbl.create 45 in
-    let initialnumber_of_nodes = get_nblk fdesc in 
+    let initialnumber_of_nodes = get_nblk fdesc in
     let next_node = ref (initialnumber_of_nodes - 1) in
     let start_node = 0 in
     let end_node = ref 0 in
@@ -48,7 +48,7 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
     let locs = get_locs fdesc in
     let _args = get_args fdesc in
     let focus = [] in
-    
+
     let new_node () =
       let node = !next_node in
       incr next_node;
@@ -60,28 +60,25 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
         failwith "invalid input propgram";
       Hashtbl.add h_edges src (act, dst)
     in
-    
+
+    let operand = function
+      | OpVar v -> EVar v
+      | OpCon k -> ENum k
+    in
+
     let do_ins ins s_node =
       match ins with
-      | IInc (id, op, v) ->
-         (try
-           let e_node = new_node () in
-           let int_value = int_of_string v in
-             let n_act = match op with
-               | OPlus -> AAssign (id, EAdd (EVar id, ENum int_value))
-               | OMinus -> AAssign (id, ESub (EVar id, ENum int_value))
-             in
-             new_edge s_node n_act e_node; e_node
-          with Failure e ->
-             let e_node = new_node () in
-             let n_act = match op with
-               | OPlus -> AAssign (id, EAdd (EVar id, EVar v))
-               | OMinus -> AAssign (id, ESub (EVar id, EVar v))
-             in
-             new_edge s_node n_act e_node; e_node)
+      | IInc (id, op, arg) ->
+         let a_arg = operand arg in
+         let n_act = match op with
+           | OPlus -> AAssign (id, EAdd (EVar id, a_arg))
+           | OMinus -> AAssign (id, ESub (EVar id, a_arg))
+         in
+         let e_node = new_node () in
+         new_edge s_node n_act e_node;
+         e_node
       | ICall (ido, id, idl) ->
          let e_node = new_node () in
-         let _el = List.map (fun x -> EVar x) idl in
          let n_act = failwith "calls TODO" in
          new_edge s_node n_act e_node;
          e_node
@@ -94,11 +91,11 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
          new_edge s_node ANone e_node;
          e_node *)
          s_node
-      | ISet (id, vo) ->
+      | ISet (id, argo) ->
          let e_node = new_node () in
-         let n_act = match vo with
+         let n_act = match argo with
            | None -> ANone
-           | Some v -> AAssign (id, ENum (int_of_string v))
+           | Some arg -> AAssign (id, operand arg)
          in
          new_edge s_node n_act e_node;
          e_node
@@ -107,7 +104,7 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
     (* s_node is the block id *)
     let do_blk s_node blk =
       let s_node = blk_foldl do_ins s_node blk in
-      let jump_ins = get_jmp blk in 
+      let jump_ins = get_jmp blk in
       match jump_ins with
       | JJmp il ->
          if (List.length il) = 0 then
@@ -134,7 +131,7 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
     for i = 0 to !next_node - 1 do
       edges.(i) <- Hashtbl.find_all h_edges i
     done;
-    
+
     { fun_name = name;
       fun_vars = locs;
       fun_focus = focus;
@@ -147,25 +144,25 @@ module Make_Graph(Q: CS_Interop_Types.CS_Querier) = struct
       fun_start_p = Utils.dummy_position;
       fun_end_p = Utils.dummy_position
     }
-    
+
   (* graph of main function and all called function inside *)
   let graph_from_main () =
     (* init the querier *)
     init ();
-    
+
     let h_funcs = Hashtbl.create 45 in
 
     let add_new_func fname fdesc =
       Hashtbl.replace h_funcs fname fdesc
     in
-    
+
     let rec get_all_called_funcs fd =
       let do_f_ins ins =
         match ins with
         | ICall (_, id, _) ->
            let fdesc = get_func id in
            add_new_func id fdesc;
-           get_all_called_funcs fdesc 
+           get_all_called_funcs fdesc
         | _ -> ()
       in
 
