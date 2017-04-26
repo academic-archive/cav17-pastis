@@ -1,0 +1,30 @@
+# This example uses polymorphic recursion
+# to get a bound of degree 2
+
+var z, g
+
+def id():
+	var n
+
+	focus n, g, binom_monotonic(2, n, 0), binom_monotonic(2, g, 0)
+
+	n = g
+	assume n >= 0
+
+	if n > 0:
+		n = n - 1
+		z = z + 1
+
+		g = n
+		id()
+		n = g
+
+		g = n + 1  # return n + 1
+
+		assume n >= 0
+		while n > 0:
+			n = n - 1
+			z = z + 1
+
+	else:
+		g = n      # don't change return value
