@@ -484,12 +484,7 @@ let add_focus_old ?(degree=1) ai_results ai_get_nonneg _ gfunc =
   let base = List.fold_left close base assigns in
   (* Remove constants. *)
   let base =
-    PSet.filter begin fun p ->
-      match Poly.is_const p with
-      | Some _ -> false
-      | None -> true
-    end base
-  in
+    PSet.filter (fun p -> Poly.is_const p = None) base in
 
   if false then
   PSet.iter (fun p ->
@@ -517,20 +512,25 @@ let add_focus_old ?(degree=1) ai_results ai_get_nonneg _ gfunc =
   let degn = binom degree [] in
   let base_list = PSet.elements base in
   let degn =
-    if false then degn else
-    List.fold_left (fun acc x ->
-      prodfold (degree - Focus_Builder.degree x) base_list acc
-      begin fun prod acc ->
-        List.fold_left
-          (fun p (b, e) ->
-            if e = 0 then p else
-            product p
-              (binom_monotonic e
-                (max0_ge_0 b)
-                (check_ge pzero pzero))
-          ) x prod :: acc
+    let rec cross d degn acc =
+      if false || d > degree then acc else
+      cross (d + 1) degn begin
+        List.fold_left (fun acc x ->
+          prodfold (d - Focus_Builder.degree x) base_list acc
+          begin fun prod acc ->
+            List.fold_left
+              (fun p (b, e) ->
+                if e = 0 then p else
+                product p
+                  (binom_monotonic e
+                    (max0_ge_0 b)
+                    (check_ge pzero pzero))
+              ) x prod :: acc
+          end
+        ) acc degn
       end
-    ) degn degn in
+    in cross 2 degn degn
+  in
 
   (* Add focus functions. *)
   let fun_focus = gfunc.fun_focus @ (List.map export degn) in
