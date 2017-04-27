@@ -310,10 +310,10 @@ Definition ai_gx_curve_x_at_y (p: node) (s: state): Prop :=
    | 102 => (-1 * s V_gx_curve_x_at_y_z <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0)%Z
    | 103 => (1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0)%Z
    | 104 => (-1 * s V_gx_curve_x_at_y_z <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y_yd <= 0)%Z
-   | 105 => (-1 * s V_gx_curve_x_at_y_yd <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_yrel <= 0)%Z
-   | 106 => (-1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_yrel <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y_yd <= 0)%Z
-   | 107 => (-1 * s V_gx_curve_x_at_y_yd <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_yrel <= 0)%Z
-   | 108 => (-1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_yrel <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y_yd <= 0)%Z
+   | 105 => (-1 * s V_gx_curve_x_at_y_yd <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0+ -1 * s V_gx_curve_x_at_y_yrel <= 0)%Z
+   | 106 => (-1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0+ -1 * s V_gx_curve_x_at_y_yrel <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y_yd <= 0)%Z
+   | 107 => (-1 * s V_gx_curve_x_at_y_yd <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0+ -1 * s V_gx_curve_x_at_y_yrel <= 0)%Z
+   | 108 => (-1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0+ -1 * s V_gx_curve_x_at_y_yrel <= 0 /\ -1 * s V_gx_curve_x_at_y_z <= 0 /\ 1 * s V_gx_curve_x_at_y_z <= 0 /\ -1 * s V_gx_curve_x_at_y_k <= 0 /\ -1 * s V_gx_curve_x_at_y__tmp+ 1 * s V_gx_curve_x_at_y_prc_dref_off88_off0 <= 0 /\ 1 * s V_gx_curve_x_at_y__tmp+ -1 * s V_gx_curve_x_at_y_prc_dref_off88_off8 <= 0 /\ -1 * s V_gx_curve_x_at_y_yd <= 0)%Z
    | 109 => (-1 * s V_gx_curve_x_at_y_z <= 0)%Z
    | 110 => (-1 * s V_gx_curve_x_at_y_z <= 0)%Z
    | 111 => (-1 * s V_gx_curve_x_at_y_z <= 0)%Z
@@ -377,36 +377,34 @@ Definition annot0_gx_curve_x_at_y (p: node) (z: Q) (s: state): Prop :=
    | 30 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
    | 31 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
    | 32 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
-   | 33 => hints
-     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_gx_curve_x_at_y_i)) (F_check_ge (0) (0))]
-     (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
-   | 34 => (s V_gx_curve_x_at_y_z - max0(-1 + s V_gx_curve_x_at_y_i)
-            + max0(s V_gx_curve_x_at_y_i) <= z)%Q
-   | 35 => (s V_gx_curve_x_at_y_z - max0(-1 + s V_gx_curve_x_at_y_i)
-            + max0(s V_gx_curve_x_at_y_i) <= z)%Q
-   | 36 => (s V_gx_curve_x_at_y_z - max0(-1 + s V_gx_curve_x_at_y_i)
-            + max0(s V_gx_curve_x_at_y_i) <= z)%Q
-   | 37 => (s V_gx_curve_x_at_y_z - max0(-1 + s V_gx_curve_x_at_y_i)
-            + max0(s V_gx_curve_x_at_y_i) <= z)%Q
-   | 38 => (s V_gx_curve_x_at_y_z - max0(-1 + s V_gx_curve_x_at_y_i)
-            + max0(s V_gx_curve_x_at_y_i) <= z)%Q
+   | 33 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
+   | 34 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
+   | 35 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
+   | 36 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
+   | 37 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
+   | 38 => (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
    | 39 => hints
      [(*0 1*) F_max0_monotonic (F_check_ge (s V_gx_curve_x_at_y_i) (-1
                                                                     + 
                                                                     s V_gx_curve_x_at_y_i))]
-     (s V_gx_curve_x_at_y_z - max0(-1 + s V_gx_curve_x_at_y_i)
-      + max0(s V_gx_curve_x_at_y_i) <= z)%Q
-   | 40 => (s V_gx_curve_x_at_y_z <= z)%Q
-   | 41 => (s V_gx_curve_x_at_y_z <= z)%Q
-   | 42 => (s V_gx_curve_x_at_y_z <= z)%Q
-   | 43 => (s V_gx_curve_x_at_y_z <= z)%Q
+     (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
+   | 40 => (s V_gx_curve_x_at_y_z + max0(-1 + s V_gx_curve_x_at_y_i) <= z)%Q
+   | 41 => (s V_gx_curve_x_at_y_z + max0(-1 + s V_gx_curve_x_at_y_i) <= z)%Q
+   | 42 => (s V_gx_curve_x_at_y_z + max0(-1 + s V_gx_curve_x_at_y_i) <= z)%Q
+   | 43 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_gx_curve_x_at_y_i)) (F_check_ge (0) (0))]
+     (s V_gx_curve_x_at_y_z + max0(-1 + s V_gx_curve_x_at_y_i) <= z)%Q
    | 44 => (s V_gx_curve_x_at_y_z <= z)%Q
-   | 45 => (s V_gx_curve_x_at_y_z <= z)%Q
+   | 45 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_gx_curve_x_at_y_i)) (F_check_ge (0) (0))]
+     (s V_gx_curve_x_at_y_z + max0(-1 + s V_gx_curve_x_at_y_i) <= z)%Q
    | 46 => (s V_gx_curve_x_at_y_z <= z)%Q
    | 47 => (s V_gx_curve_x_at_y_z <= z)%Q
    | 48 => (s V_gx_curve_x_at_y_z <= z)%Q
    | 49 => (s V_gx_curve_x_at_y_z <= z)%Q
-   | 50 => (s V_gx_curve_x_at_y_z <= z)%Q
+   | 50 => hints
+     [(*-1 0*) F_binom_monotonic 1 (F_max0_ge_0 (-1 + s V_gx_curve_x_at_y_i)) (F_check_ge (0) (0))]
+     (s V_gx_curve_x_at_y_z + max0(-1 + s V_gx_curve_x_at_y_i) <= z)%Q
    | 51 => (s V_gx_curve_x_at_y_z <= z)%Q
    | 52 => (s V_gx_curve_x_at_y_z <= z)%Q
    | 53 => (s V_gx_curve_x_at_y_z <= z)%Q
@@ -422,9 +420,9 @@ Definition annot0_gx_curve_x_at_y (p: node) (z: Q) (s: state): Prop :=
    | 63 => hints
      [(*-1 0*) F_max0_monotonic (F_check_ge (s V_gx_curve_x_at_y_i) (-1
                                                                     + 
-                                                                    s V_gx_curve_x_at_y_i))]
-     (s V_gx_curve_x_at_y_z - max0(-1 + s V_gx_curve_x_at_y_i)
-      + max0(s V_gx_curve_x_at_y_i) <= z)%Q
+                                                                    s V_gx_curve_x_at_y_i));
+      (*-1 0*) F_max0_ge_0 (-1 + s V_gx_curve_x_at_y_i)]
+     (s V_gx_curve_x_at_y_z + max0(s V_gx_curve_x_at_y_i) <= z)%Q
    | 64 => (s V_gx_curve_x_at_y_z <= z)%Q
    | 65 => (s V_gx_curve_x_at_y_z <= z)%Q
    | 66 => (s V_gx_curve_x_at_y_z <= z)%Q
