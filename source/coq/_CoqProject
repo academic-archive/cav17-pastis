@@ -1,6 +1,6 @@
--Q . pasta
+-Q . pastis
 CFG.v
-Pasta.v
 RewriteF.v
 Tactics.v
 Utils.v
+Pastis.v

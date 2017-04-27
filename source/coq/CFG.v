@@ -1,6 +1,6 @@
 Require Import ZArith.
 Require Import List.
-Require Import pasta.Utils.
+Require Import pastis.Utils.
 
 Definition id: Type := positive.
 Definition node: Type := positive.

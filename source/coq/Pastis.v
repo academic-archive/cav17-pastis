@@ -2,10 +2,10 @@ Require Export List.
 Require Export ZArith.
 Require Export QArith.
 
-Require Export pasta.Utils.
-Require Export pasta.RewriteF.
-Require Export pasta.CFG.
-Require Export pasta.Tactics.
+Require Export pastis.Utils.
+Require Export pastis.RewriteF.
+Require Export pastis.CFG.
+Require Export pastis.Tactics.
 
 Export ListNotations.
 

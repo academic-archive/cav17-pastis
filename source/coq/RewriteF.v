@@ -1,6 +1,6 @@
 Require Import List.
 Require Import Omega.
-Require Import pasta.Utils.
+Require Import pastis.Utils.
 
 Open Scope Z.
 

@@ -367,7 +367,7 @@ let dump fstart prog qry bnd print_bound ai_results annots =
   globs := (fst prog);
   let oc = open_out "generated_coq.v" in
   let fmt = Format.formatter_of_out_channel oc in
-  Format.fprintf fmt "@[<v>Require Import pasta.Pasta.@,@,";
+  Format.fprintf fmt "@[<v>Require Import pastis.Pastis.@,@,";
   dump_program fmt prog;
   Hashtbl.iter (dump_ai print_bound fmt) ai_results;
   Hashtbl.iter (dump_annots fmt) annots;

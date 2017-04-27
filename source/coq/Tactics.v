@@ -1,9 +1,9 @@
 Require Import ZArith.
 Require Import QArith.
 Require Import Psatz.
-Require Import pasta.Utils.
-Require Import pasta.CFG.
-Require Import pasta.RewriteF.
+Require Import pastis.Utils.
+Require Import pastis.CFG.
+Require Import pastis.RewriteF.
 
 Close Scope Z.
 Close Scope Q.
