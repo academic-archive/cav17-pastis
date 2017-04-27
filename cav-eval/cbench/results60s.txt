@@ -3731,7 +3731,7 @@ Sorry, I could not find a bound.
 --- File Inputs/Loopus/office_ghostscript_src_siscale.o.zoom_y.o
 Upper bound for z: max(0, Colors WidthOut)
                    + max(0, Colors WidthOut) max(0, contrib_dref_off4)
-Degree: 3
+Degree: 2
 [OK]
 --- File Inputs/Loopus/office_ghostscript_src_sjpegc.o.gs_jpeg_format_message.o
 Sorry, I could not find a bound.
