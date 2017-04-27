@@ -18,6 +18,6 @@ ${BIN}: ${BIN}.o
 	${CXX} ${CXXFLAGS} -c $^
 
 clean:
-	rm *.o ${BIN}
+	rm -f *.o ${BIN}
 
 .PHONY: all clean
