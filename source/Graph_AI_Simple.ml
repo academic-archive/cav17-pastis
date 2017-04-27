@@ -250,8 +250,8 @@ module Solver = struct
         let lbs, ubs =
           Poly.fold begin fun m k (lbs, ubs) ->
             let k = int_of_float k in
-            let addk k (k', l) = (k', L.addk (k*k') l) in
             if Monom.is_one m then
+              let addk k (k', l) = (k', L.addk (k*k') l) in
               (List.map (addk (+k)) lbs, List.map (addk (-k)) ubs)
             else
               let v = monom_var m in
@@ -263,10 +263,11 @@ module Solver = struct
               in
               let addscale l (k', l') =
                 let vk = Pervasives.abs (L.coeff v l) in
+                let l = L.set v 0 l in
                 let l = L.mult k l in
                 let lcm = Presburger.lcm vk k' in
                 let l = L.plus (lcm/vk) l (L.mult (lcm/k') l') in
-                (lcm, L.set v 0 l)
+                (lcm, l)
               in
               let merge a a' =
                 List.concat
