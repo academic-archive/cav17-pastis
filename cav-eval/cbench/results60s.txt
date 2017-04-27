@@ -2379,7 +2379,9 @@ Degree: 1
 --- File Inputs/Loopus/office_ghostscript_src_gdevpbm.o.pkm_print_row.o
 [TIMEOUT]
 --- File Inputs/Loopus/office_ghostscript_src_gdevpbm.o.ppgm_print_row.o
-[TIMEOUT]
+Upper bound for z: max(0, pdev_dref_off64)
+Degree: 1
+[OK]
 --- File Inputs/Loopus/office_ghostscript_src_gdevpbm.o.pxm_pbm_print_row.o
 Sorry, I could not find a bound.
 [FAILURE 1]
