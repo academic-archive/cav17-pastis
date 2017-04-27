@@ -1,0 +1,27 @@
+var z
+
+# This example is similar to the one
+# given in the paper to motivate the
+# framing of annotations.
+
+# Quite simply, by induction, one can
+# show that the final value of z is
+# the initial one.  This is pretty much
+# what our analysis proves here:
+#
+#  s2 G_z <= s1 G_z,  in generated_coq.v
+#
+# That is, the final value of z is bounded
+# by the initial value of z.
+
+# The interesting bit is that the entry
+# and exit annotations of 'f()' do not
+# exactly match the ones at the call
+# site: framing of a constant 1 is
+# necessary.
+
+def f():
+	if z > 0:
+		z = z - 1
+		f()
+		z = z + 1

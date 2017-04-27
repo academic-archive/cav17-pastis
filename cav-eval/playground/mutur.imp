@@ -1,0 +1,38 @@
+var a, b, z
+
+# This example demonstrates that our handling
+# of recursion is quite general with two
+# mutually recursive functions.
+
+# An ideal bound for this example would involve
+# min(a, b); but this is not in the language
+# of what our tool can express, instead the LP
+# solver decides to give it the bound 1 + 2 b.
+
+# As you can see with the generated Coq file,
+# this is a sound inference.
+
+# Like in qsort, "focus" annotations are
+# required because of the lack of heuristics
+# for recursive functions.
+
+def start():
+	assume a >= 0 and b >= 0
+	z = 0
+	f()
+
+def f():
+	focus a, b
+
+	if a > 0:
+		a = a - 1
+		g()
+		z = z + 1
+
+def g():
+	focus a, b
+
+	if b > 0:
+		b = b - 1
+		f()
+		z = z + 1

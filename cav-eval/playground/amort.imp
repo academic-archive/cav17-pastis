@@ -1,0 +1,23 @@
+# The typical amortized stack example.
+
+# For 'n' iterations, a stack is either 
+# grown by one element with cost 1, or
+# fully processed with cost the size of
+# the stack.
+
+# Our analysis proves linear complexity.
+
+def f():
+	var z, n, s
+
+	s = 0  # Used to model the size of a stack
+
+	while n > 0:
+		n = n - 1
+		if random:
+			s = s + 1  # Stack push
+			z = z + 1
+		else:
+			while s > 0:  # Stack popall
+				s = s - 1
+				z = z + 1

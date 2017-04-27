@@ -1,0 +1,8 @@
+def f():
+	var k, z
+
+	k = 0
+	z = 0
+	while k < 10:
+		k = k + 4
+		z = z + 1

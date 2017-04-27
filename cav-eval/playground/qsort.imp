@@ -1,0 +1,68 @@
+# Recursive QuickSort.
+
+# ******************************************
+# Analyze with "analyze -degree 2 qsort.imp"
+# ******************************************
+
+# There are currently no heuristics to add
+# rewrite functions and base functions for
+# recursive functions.  Hence the large
+# chunk of annotations "focus" below.
+#
+# On the other hand, this shows that our
+# mechanism for annotations (a contribution
+# of the paper) is expressive enough, even
+# for moderately complicated programs.
+
+
+# Like in the paper, global variables need
+# to be used to pass arguments to functions,
+# we use arg_l and arg_h to pass the low and
+# high bounds to the qsort procedure.  The
+# loop counter z also needs to be global.
+
+var arg_h, arg_l, z
+
+def qsort():
+    var h, l, m
+
+    focus \
+      # weakening of the else branch of "if l < h"
+      binom_monotonic(2, max0_ge_0(h - l), 0),
+      # upon entry of "if l < h"
+      max0_pre_decrement(2, h - l, 1),
+      # to turn ([l, h-1], 2) into ([l, m], 2) + ([m+1, h], 2) + (X >= 0)
+      binom_monotonic(2, max0_ge_arg(h-1 - l), h-1 - l),
+      binom_monotonic(2, max0_le_arg(h - (m+1)), max0_ge_0(h - (m+1))),
+      binom_monotonic(2, max0_le_arg(m - l), max0_ge_0(m - l)),
+      # to weaken the cross product
+      product(h - (m+1), m - l),
+      # inner loop
+      max0_pre_decrement(1, h-1 - m, 1),
+      max0_ge_0(h-1 - m),
+      # the ones below are just for the monomials
+      binom_monotonic(2, max0_ge_0(arg_h - arg_l), 0)
+
+
+    # Fetch the arguments
+    h = arg_h
+    l = arg_l
+
+    if l < h:
+
+        # Partition
+        m = l
+        while m < h-1 and random:  # Complex test is modeled with "random"
+            z = z + 1
+            m = m + 1
+        assume l <= m and m < h
+
+        # First recursive call on [l, m]
+        arg_h = m
+        arg_l = l
+        qsort()
+
+        # Second recursive call on [m+1, h]
+        arg_h = h
+        arg_l = m+1
+        qsort()
