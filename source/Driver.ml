@@ -1,4 +1,5 @@
 (* Quentin Carbonneaux - 2016-2017 *)
+(* Van Chan Ngo - 2017 *)
 
 let input_file = ref ""
 let main_func = ref None
@@ -137,6 +138,7 @@ let main () =
       let open Polynom in
         (Poly.of_monom (Monom.of_var "z") (+1.))
     in
+    (*
     let g_funcl =
       if !no_focus then g_funcl else
       g_funcl
@@ -152,6 +154,34 @@ let main () =
         with
         | None -> try_run (d+1)
         | Some sol -> Some sol
+      in try_run 1
+    in
+    *)
+    (*
+      For each degree from 1 to !degree, heuristically add focus functions and 
+      compute the result until it finds a valid result. Thus, if users give very big 
+      degree (e.g., 100) but in fact the bound has 1 degree then try_run only run 
+      1 iteration
+    *)
+    let g_funcl, st_results =
+      let rec try_run d =
+        if d > !degree then (g_funcl, None) else 
+        begin
+          let g_funcl = 
+            if !no_focus then 
+              g_funcl
+            else
+              g_funcl 
+              |> List.map (Heuristics.add_focus ~degree:d ai_results AI.get_nonneg AI.is_nonneg)
+              |> List.map (Heuristics.add_focus_old ~degree:d ai_results AI.get_nonneg AI.is_nonneg)
+          in
+          match
+            Analysis.run ai_results AI.is_nonneg
+              (globals, g_funcl) fstart d query
+          with
+          | None -> try_run (d+1)
+          | Some sol -> (g_funcl, Some sol)
+        end
       in try_run 1
     in
     let poly_print =
