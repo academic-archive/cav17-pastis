@@ -87,10 +87,10 @@ Section WithProgram.
     }.
 
   (* Inter-procedural annotation. *)
-  Definition IPA :=
+  Definition IA :=
     proc -> list PA.
 
-  Definition PA_VC (ipa: IPA) (P: proc) (pa: PA) :=
+  Definition PA_VC (ia: IA) (P: proc) (pa: PA) :=
     forall (z: pa_aux pa),
     Forall
       (fun e => match e with
@@ -107,33 +107,33 @@ Section WithProgram.
                        forall z,
                          pa_spec qpa (proc_start Q) z s1 ->
                          pa_spec qpa (proc_end Q) z s2
-                    ) (ipa Q) ->
+                    ) (ia Q) ->
              pa_spec pa n1 z s1 ->
              pa_spec pa n2 z (exit s1 s2)
 
          end)
       (proc_edges P).
 
-  Definition IPA_VC (ipa: IPA) :=
-    forall (P: proc), Forall (PA_VC ipa P) (ipa P).
+  Definition IA_VC (ia: IA) :=
+    forall (P: proc), Forall (PA_VC ia P) (ia P).
 
-  Theorem ipa_sound (ipa: IPA) (VC: IPA_VC ipa):
+  Theorem ia_sound (ia: IA) (VC: IA_VC ia):
     forall (P: proc) p1 s1 p2 s2 (STEPS: steps P p1 s1 p2 s2),
-    forall (pa: PA) z (InIPA: In pa (ipa P)), pa_spec pa p1 z s1 -> pa_spec pa p2 z s2.
+    forall (pa: PA) z (InIA: In pa (ia P)), pa_spec pa p1 z s1 -> pa_spec pa p2 z s2.
   Proof.
     intros ? ? ? ? ? STEPS.
     induction STEPS; intros ? ? ? INIT.
     - assumption.
-    - assert (paVC: PA_VC ipa P pa).
+    - assert (paVC: PA_VC ia P pa).
       { eapply Forall_In; eauto using VC. }
       eapply (Forall_In _ _ _ (paVC z) _ H).	
       eassumption.
       auto using IHSTEPS.
-    - assert (paVC: PA_VC ipa P pa).
+    - assert (paVC: PA_VC ia P pa).
       { eapply Forall_In; eauto using VC. }
       apply (Forall_In _ _ _ (paVC z) _ H).
       apply In_Forall.
-      intros qpa qpaInIPA z' ENTRY.
+      intros qpa qpaInIA z' ENTRY.
       auto using IHSTEPS2.
       auto using IHSTEPS1.
   Qed.

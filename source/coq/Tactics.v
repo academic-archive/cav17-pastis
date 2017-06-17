@@ -140,8 +140,8 @@ Ltac prove_edge :=
   | [ |- _ ] => idtac
   end.
 
-(* Prove that an IPA satisfies the VC. *)
-Ltac prove_ipa_vc :=
+(* Prove that an IA satisfies the VC. *)
+Ltac prove_ia_vc :=
   let P := fresh "Proc" in
   intro P; unfold PA_VC; destruct P; simpl;
   repeat apply conj; (* One goal per PA. *)
@@ -152,11 +152,11 @@ Ltac prove_ipa_vc :=
       prove_edge
   end.
 
-Ltac prove_bound ipa admissible_ipa Proc :=
-  match eval hnf in (ipa Proc) with
+Ltac prove_bound ia admissible_ia Proc :=
+  match eval hnf in (ia Proc) with
   | cons ?pa _ =>
     let STEPS := fresh "STEPS" in
     intros ? ? STEPS;
-    apply (ipa_sound ipa admissible_ipa _ _ _ _ _ STEPS pa);
+    apply (ia_sound ia admissible_ia _ _ _ _ _ STEPS pa);
     [ left; reflexivity | simpl; now auto using Qle_refl ]
   end.

@@ -338,8 +338,8 @@ let dump_annots fmt fn annots =
   List.iteri dump_annot annots;
   ()
 
-let dump_ipa fmt annots flist =
-  Format.fprintf fmt "@,Definition ipa: IPA := fun p =>@,  ";
+let dump_ia fmt annots flist =
+  Format.fprintf fmt "@,Definition ia: IA := fun p =>@,  ";
   Format.fprintf fmt "@[<v>match p with@,";
   List.iter (fun {fun_name = fn; _} ->
     let l = try Hashtbl.find annots fn with Not_found -> [] in
@@ -359,8 +359,8 @@ let dump_ipa fmt annots flist =
   ) flist;
   Format.fprintf fmt "end.@]@,@,";
   Format.fprintf fmt
-    "Theorem admissible_ipa: IPA_VC ipa.@,\
-     Proof.@,  prove_ipa_vc.@,Qed.@,";
+    "Theorem admissible_ia: IA_VC ia.@,\
+     Proof.@,  prove_ia_vc.@,Qed.@,";
   ()
 
 let dump fstart prog qry bnd print_bound ai_results annots =
@@ -371,12 +371,12 @@ let dump fstart prog qry bnd print_bound ai_results annots =
   dump_program fmt prog;
   Hashtbl.iter (dump_ai print_bound fmt) ai_results;
   Hashtbl.iter (dump_annots fmt) annots;
-  dump_ipa fmt annots (snd prog);
+  dump_ia fmt annots (snd prog);
   Format.fprintf fmt
     "@,Theorem bound_valid:@,  \
        forall s1 s2, steps %s (proc_start %s) s1 (proc_end %s) s2 ->@,    \
          (%a <= %a)%%Q.@,\
-     Proof.@,  prove_bound ipa admissible_ipa %s.@,Qed."
+     Proof.@,  prove_bound ia admissible_ia %s.@,Qed."
     (procname fstart) (procname fstart) (procname fstart)
     (dump_poly `Q (statevar "s2" (mkvarname fstart))) qry
     (dump_poly `Q (statevar "s1" (mkvarname fstart))) bnd
