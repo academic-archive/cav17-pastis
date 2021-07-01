@@ -1,0 +1,13 @@
+function start(x, n) do
+  var z;
+
+  z = 0;
+  while x > 0 do
+    x = x - 1;
+    if x > n then
+      x = n;
+    end
+    z = z + 1;
+  end
+
+end

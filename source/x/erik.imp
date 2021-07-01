@@ -1,0 +1,24 @@
+def nest():
+    var i, j, k, n, m, N, z
+
+    # [i,n][0,m]   >= [k,n][0,m] because k>=i
+    # [i,N]        ok
+    # [i,n]        >= [k,n] because k>=i  (was added by heuristic)
+
+    focus product(max0_ge_0(m), max0_monotonic(n-i >= n-k))
+
+    z = 0
+    i = 0
+    while i < n and random:
+        i = i + 1
+        j = 0
+        while j < m and random:
+            j = j + 1
+            k = i
+            while k < N and random:
+                k = k + 1
+                z = z + 1
+            assume k >= i  # weird that I don't get it
+            i = k
+            z = z + 1
+        z = z + 1

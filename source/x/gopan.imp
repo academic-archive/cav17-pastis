@@ -1,0 +1,19 @@
+function gopan() do
+  var y, z;
+
+  y = 0;
+  z = 0;
+  loop
+    if z <= 50 then
+      y = y + 1;
+    else
+      assume y > 0;
+      y = y - 1;
+    end
+    if y <= 0 then
+      break;
+    end
+    z = z + 1;
+  end
+
+end
